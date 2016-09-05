@@ -1,0 +1,28 @@
+sudo: required
+services:
+  - docker
+
+env:
+  COMPOSE_VERSION: 1.4.1
+
+before_install:
+ - curl -sSL https://get.docker.com/ | sudo sh
+ - sudo pip install docker-compose
+ - cp docker-compose.yml docker-compose_tmpl.yml
+ - cp Dockerfile Dockerfile_tmpl
+ - grep -vi proxy docker-compose_tmpl.yml > docker-compose.yml
+ - grep -vi proxy Dockerfile_tmpl > Dockerfile
+  
+script:
+  - docker-compose build
+  - docker-compose up -d
+  - docker-compose ps
+
+notifications:
+  irc:
+    channels:
+      - "irc.freenode.org#inasafe"
+    use_notice: true
+
+  email:
+    - andrewmcghienz@gmail.com

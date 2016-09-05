@@ -1,0 +1,12 @@
+header,,,,,,,,,,,,,,,,
+sample_ref,,,,,,MH8/1:4700/A,MH8/2:4700/B,MH8/3:4700/C,MH8/4:4700/D,MH8/5:4701/A,MH8/6:4701/B,MH8/7:4701/C,MH8/8:4701/D,MH8/9:4709,MH8/10:4710,MH8/11:4702
+sample_description,,,,,,Dry skin (A),Base plates (B),Scale tissue (C ),Tops (D),Dry skin (A),Base plates (B),Scale tissue (C ),Tops (D),dry skin(1),dry skin(2),dry skin(3)
+genotype,,,,,,,,,,,,,,,,
+tissue,,,,,,dry skin,base plate,scale,tops,dry skin,base plate,scale,tops,dry skin,dry skin,dry skin
+name,exact_mass,id_conf,cas,rt,intensity_units,,,,,,,,,,,
+"quercetin 3,4'-diglucoside",626.1483,1,29125-80-2,,mg/g FD,0.67,3.61,12.39,11.08,0.64,4.22,12.97,12.44,0.49,0.49,0.38
+quercetin 3-rutinoside,610.1534,1,153-18-4,,mg/g FD,0.31,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00
+quercetin 3-O-glucoside,464.0955,1,482-35-9,,mg/g FD,0.25,0.00,0.19,0.20,0.00,0.00,0.23,0.23,0.00,0.00,0.00
+quercetin 4'-glucoside,464.0955,1,20229-56-5,,mg/g FD,4.83,1.72,12.03,8.74,7.51,1.74,14.08,9.75,4.74,4.68,5.05
+quercetin,302.0427,1,117-39-5,,mg/g FD,7.16,0.73,1.22,3.99,8.79,0.42,1.07,4.92,14.12,13.42,14.41
+isorhamnetin,316.0583,1,480-19-3,,mg/g FD,0.55,0.05,0.13,0.13,0.24,0.00,0.12,0.15,0.29,0.30,0.29

@@ -1,0 +1,35 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 3/12/2015, 11:52:38 AM
+    Author     : cfpajm
+*/
+/**imgages**/
+/**other images**/
+.analysisStyle * img{
+    max-width: 80%;
+    border-radius: 5px;
+}
+.analysisStyle * img[src="/CAMcake/img/about%3Ablank"]{
+    display: none;
+}
+.analysisStyle * .noFormat * input{
+    margin-right: 5px;
+    padding-right: 5px;
+    width: 100%;
+}
+.analysisStyle * .noFormat * a{
+    margin-top: 1em;
+    margin-left: 10px;
+    font-size: 16px;
+}
+.analysisStyle * .noFormat * td:nth-child(2){
+    vertical-align: bottom;
+}
+img{
+    
+}
+

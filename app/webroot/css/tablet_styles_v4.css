@@ -1,0 +1,25 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 8/01/2016, 2:44:43 PM
+    Author     : cfpajm
+*/
+span#next, span#previous{
+    width:8%;
+    height:10%;
+    position: fixed;
+    top: 45%;
+}
+span#next{
+    left: 80%;    
+}
+span#previous{
+    left: 12%;
+    display: none;
+}
+span#next img, span#previous img{
+    width: 50px;
+}

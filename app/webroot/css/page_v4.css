@@ -1,0 +1,441 @@
+html{
+   width: 80%;
+   margin-left: 10%;
+}
+#container{
+    padding: 3% 10% 5% 10%;
+
+    border-radius: 10px;
+    box-shadow: 6px 6px 6px rgba(0,0,0,0.7);
+}
+h1{
+    text-shadow: 6px 6px 6px rgba(0,0,0,0.7);
+    text-align: center;
+    font-size: 3em;
+}
+p{
+    text-align: left;
+    margin: 0% 10% 0% 0%;
+    font-size: 1.5em;
+}
+.button{
+    margin-bottom: 4%;
+
+    background:#62af56;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#76BF6B), to(#3B8230));
+    background-image: -webkit-linear-gradient(top, #76BF6B, #3B8230);
+    background-image: -moz-linear-gradient(top, #76BF6B, #3B8230);
+    border-color: #2d6324;
+    text-shadow: rgba(0, 0, 0, 0.5) 0 -1px 0;
+    padding: 8px 10px;
+
+    display: inline;
+    font-size: 110%;
+    width: auto;
+    border-radius: 4px;
+}
+.button:hover{
+    background: #5BA150;
+}
+.tableCell{
+    display: table-cell;
+}
+.tableRow{
+    display: table-row;
+}
+.table{
+    display: table;
+}
+div.imgDiv{
+    width: 100%;
+}
+
+#boxes * input,#boxes * select{
+    width: 250px;
+}
+#boxes * label{
+    width:250px;
+}
+
+.iframeNoformat{
+    border: none;
+    width: 100%;
+    height: 60px;
+}
+/**Overlay styles**/
+.overlay{
+    display: none;
+    background-color: rgba(0, 0, 0, .5);
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 0px;
+    top:0px;
+}
+.AtomImg{
+    width: 47%;
+    height:60%;
+    position: fixed;
+    left: 2%;
+    top: 20%;
+    background-color: #FFF;
+}
+.AtomFrame{
+    width: 47%;
+    height:60%;
+    position: fixed;
+    left: 51%;
+    top: 20%;
+    background-color: #FFF;
+    overflow: hidden;
+}
+.AtomFrame *{
+    display: none;
+}
+#chart_div {
+    width: 70%;
+    height: 70%;
+    position: fixed;
+    left: 15%;
+    top:15%;
+}
+.closeButton {
+    width: 30px;
+    height: 30px;
+    position: fixed;
+    left: 95%;
+    top: 1%;
+}
+#ketcher{
+    width: 900px;
+    height: 502px;
+    position: fixed;
+    left: 10%;
+    top: 10%
+}
+#pubchem{
+    width: 80%;
+    height: 85%;
+    position: fixed;
+    left: 10%;
+    top: 10%;
+}
+
+/**search bax styler**/
+.noFormat.search * {
+    padding: 0px;
+    margin: 0px;
+}
+
+/**Pagination links**/
+.ResNum tr td a:not(.find-button){
+    padding-left: 1%;
+    color: #000;
+    text-decoration: none;
+    background-color: transparent;
+}
+.ResNum tr td:first-child span{
+    /*float: left;*/
+    color: #000;
+    width: 20em;
+    padding: 5px 1%;
+}
+.ResNum tr td:last-child span{
+    /*float: right;*/
+    color: #000;
+    margin-left: auto;
+    padding: 5px 1%;
+}
+.ResNum tr td:last-child{
+    text-align: right;
+    width: 100%;
+}
+.ResNum tr td:first-child{
+    width: 13%;
+}
+.ResNum tr td:not(:nth-child(2)) span{
+    border-radius: 3px;
+    padding: 2px 2% 2px 2%;
+	font-weight: 500
+}
+.ResNum tr td:not(:nth-child(2)) span span{
+    background-color: transparent;
+}
+.ResNum{
+    width: 100%;
+}
+.ResNum tr td:nth-child(2){
+    text-align: left;
+    width: 60px;
+}
+.ResNum tr td span .current{
+    color: #33F;
+}
+
+/**Tables**/
+.google-visualization-table-table *{
+    background-color: rgba(0,0,0,0);
+}
+td, .google-visualization-table-table{
+    background-color: rgba(0,0,0,0);
+}
+.Buttons{
+    width: 58px;
+}
+td a {
+    margin: 5px;
+}
+table:not(.noFormat) {
+	border-right:0;
+	clear: both;
+	margin-bottom: 10px;
+	width: 100%;
+        background-color: rgba(0,0,0,0);
+}
+th {
+        text-shadow: 6px 6px 6px rgba(0,0,0,0.7);
+	border:0;
+	border-bottom:2px solid #555;
+	text-align: left;
+	padding:4px;
+}
+th a {
+	display: block;
+	padding: 2px 4px;
+	text-decoration: none;
+}
+th a.asc:after {
+	content: ' ⇣';
+}
+th a.desc:after {
+	content: ' ⇡';
+}
+table:not(.noFormat) tr td {
+	padding: 6px;
+	text-align: left;
+	vertical-align: top;
+	border-bottom:1px solid #ddd;
+}
+td.actions {
+	text-align: center;
+	white-space: nowrap;
+}
+table:not(.noFormat) td.actions a {
+	margin: 0 6px;
+	padding:2px 5px;
+}
+
+
+/** Forms **/
+.noFormat.view tr td:nth-child(2) a{
+    margin-top: 2.5em;
+}
+
+.noFormat.view tr td:nth-child(2){
+    width:30%;
+}
+.noFormat.view tr td:first-child * input{
+   margin: 0px 5px 0px 5px;
+   padding: 0px 5px 0px 5px;
+   width: 98%;
+}
+
+#dates * select{
+    margin: 0px 5px 0px 5px;
+}
+.error-message{
+    color: darkgreen;
+}
+#dates div{
+    margin: 0px;
+    padding: 0px;
+}
+
+form {
+	clear: both;
+	margin-right: 20px;
+	padding: 0;
+	width: 95%;
+        border-collapse: collapse;
+}
+fieldset {
+	border: none;
+	margin-bottom: 1em;
+	padding: 16px 10px;
+        width: 100%;
+}
+fieldset legend {
+	font-size: 160%;
+	font-weight: bold;
+}
+fieldset fieldset {
+	margin-top: 0;
+	padding: 10px 0 0;
+}
+fieldset fieldset legend {
+	font-size: 120%;
+	font-weight: normal;
+}
+fieldset fieldset div {
+	clear: left;
+	margin: 0 20px;
+}
+form * div{
+    margin-bottom: 0px;
+}
+form div:not(.noFormat) {
+	clear: both;
+	margin-bottom: 0px;
+	padding: 10px 0;
+	vertical-align: text-top;
+}
+
+form .Trow {
+    padding-bottom: 20px;
+    display: table-row;
+}
+form .Trow div {
+    display: table-cell;
+}
+form .Trow span {
+    display: table-cell;
+    /*border: #660000 thick solid;*/
+    text-align: left;
+    padding: 10px;
+}
+form .input {
+	/*color: #444;*/
+}
+form .required {
+	font-weight: 400;
+}
+form .required label:after {
+	content: '*';
+	display:inline;
+}
+form div.submit:not(.large-button) {
+	border: 0;
+	clear: both;
+	margin-top: 0px;
+}
+label {
+        vertical-align: text-top;
+        text-align: left;
+	display: table-cell;
+	font-size: 110%;
+	margin-bottom:3px;
+        margin:0% 15%;
+        width:10%;
+}
+label[for="isDate"] {
+    margin: 0px;
+}
+form .Trow div label{
+    display: none;
+}
+span {
+    font-size: 110%;
+    vertical-align: middle;
+    width: 20%;
+}
+input, textarea {
+        display: table-cell;
+	clear: both;
+	font-size: 100%;
+	padding: .2em;
+	width:75%;
+        margin:.2% 10% .2% 2%;
+}
+select {
+        margin:1% 10% 1% 2%;
+	clear: both;
+	font-size: 130%;
+	vertical-align: text-bottom;
+}
+select[multiple=multiple] {
+	width: 100%;
+}
+option {
+	font-size: 100%;
+	padding: 0 3px;
+}
+.searchForm * input:not([type=submit]){
+    font-size: 129%;
+    line-height: 126%;
+    height: 134%;
+}
+.searchForm * select{
+    font-size: 140%;
+    line-height: 140%;
+    height: 140%;
+}
+.searchForm * option{
+    font-size: 120%;
+    line-height: 120%;
+    height: 120%;
+}
+input[type=checkbox] {
+	clear: left;
+	float: left;
+	margin: 0 6px 7px 2px;
+	width: auto;
+}
+div.checkbox label {
+	display: inline;
+}
+input[type=radio] {
+	float:left;
+	width:auto;
+	margin: 6px 0;
+	padding: 0;
+	line-height: 26px;
+}
+.radio label {
+	margin: 0 0 6px 20px;
+	line-height: 26px;
+}
+input[type=submit]:not(.large-button) {
+	display: inline;
+	font-size: 110%;
+	width: auto;
+        border-radius: 4px;
+}
+form .submit input[type=submit]:not(.large-button) {
+	background:#62af56;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#76BF6B), to(#3B8230));
+	background-image: -webkit-linear-gradient(top, #76BF6B, #3B8230);
+	background-image: -moz-linear-gradient(top, #76BF6B, #3B8230);
+	border-color: #2d6324;
+	text-shadow: rgba(0, 0, 0, 0.5) 0 -1px 0;
+	padding: 8px 10px;
+}
+form .submit input[type=submit]:not(.large-button):hover {
+	background: #5BA150;
+}
+/* Form errors */
+form .error {
+	background: #FFDACC;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	border-radius: 4px;
+	font-weight: normal;
+}
+form .error-message {
+	-moz-border-radius: none;
+	-webkit-border-radius: none;
+	border-radius: none;
+	border: none;
+	background: none;
+	margin: 0;
+	padding-left: 4px;
+	padding-right: 0;
+}
+form .error,
+form .error-message {
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	-ms-box-shadow: none;
+	-o-box-shadow: none;
+	box-shadow: none;
+	text-shadow: none;
+}

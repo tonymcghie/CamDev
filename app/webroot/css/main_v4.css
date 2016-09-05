@@ -1,0 +1,145 @@
+
+/**switch view images**/
+img.switchImg{
+    border-radius: 0px;
+    position: absolute;
+    left: 60px;
+    top: 10px;
+    width: 70px;
+}
+.sidebarToggle{
+    width: 40px;
+    position:absolute;
+    top: 0px;
+}
+.sidebarToggle#sidebarToggle1{
+    left: 166px;
+}
+.sidebarToggle#sidebarToggle2{
+    left: 0px;
+}
+
+.sidebar{
+    overflow-y: scroll;
+    direction:rtl;
+    overflow-x: hidden;
+    padding-left: 17px;
+}
+.sidebar *{
+    direction: ltr;
+}
+.sidebar{
+    width: 160px;
+    height: 100%;
+
+    padding: 0px 13px 20px 29px;
+}
+/**side bar img login and logout menu**/
+.sidebar img.menu{
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+
+    box-shadow: 2px 2px 2px rgba(0,0,0,0.7);
+}
+.sidebar ul.menu{
+    border-radius: 5px;
+    list-style: none;
+    padding: 5px 10px 5px 10px;
+
+}
+#sidebar .menu li{
+    display: inline-block;
+    padding: 1px 10px 2px 0px;
+	font-size: 12px
+}
+
+
+
+.sidebar .menu * a{
+    background-color: transparent;
+    color: #000;
+    text-decoration: none;
+}
+.sidebar .login li:hover{
+    background-color: lightgrey;
+}
+/**for the color picker*/
+ul:not(.menu){
+    list-style-type: disc;
+    margin:0px;
+    cursor: pointer;
+}
+ul:not(.menu) li{
+    float: left;
+    font-size: 150%;
+}
+ul:not(.menu) li:not(:first-child){
+    height: 1px;
+}
+ul:not(.menu) li.selected{
+    list-style-type: circle;
+}
+ul:not(.menu) li:before {
+    font-size: 150%;
+}
+/*this firefox selecting the list elements*/
+ul:not(.menu) li{
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/** end color picker*/
+
+h1{
+    margin: 0px;
+}
+h1 a{
+    /*color: palegreen;*/
+    font-size: 1.8em;
+    text-decoration: none;
+    margin: 3px;
+    padding: 3px;
+    margin-left: 0px;
+    padding-left: 0px;
+}
+h2{
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-size: 1.2em;
+}
+#container{
+    margin: 0px;
+    padding: 0px;
+
+    height:100%;
+
+}
+.frame{
+    position: absolute;
+    left: 201px;
+    top: 0px;
+    width: 89%;
+    height: 100%;
+    z-index: 1;
+}
+iframe{
+    background-image: url('../img/chemlab_pn_default.jpg');
+
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+
+    overflow: auto;
+
+    height: 100%;
+}
+body{
+    height: auto;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+}
