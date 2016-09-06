@@ -6,9 +6,9 @@
  * and open the template in the editor.
  */
 
-class SamplesController extends AppController{
+class ItemsController extends AppController{
     public $helpers = array('Html' , 'Form' , 'My');
-    public $uses = array('Analysis', 'SampleSet', 'Sample');
+    public $uses = array('Analysis', 'SampleSet');
     public $layout = 'PageLayout';
     public $components = ['My', 'RequestHandler', 'PhpExcel'];
     
