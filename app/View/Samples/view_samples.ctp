@@ -11,10 +11,10 @@ echo '</table></header>';
 
 echo '<div  id="resultsTable">'; 
 //if (isset($results[0]['Compound'])){     
-    //$names = array($this->Paginator->sort('sample_name', 'Sample', ['data' => $data]),
-        //$this->Paginator->sort('treatment_1', 'Treatment#1', ['data' => $data]),
-        //$this->Paginator->sort('description_1', 'Description#1', ['data' => $data]),
-        //$this->Paginator->sort('tissue', 'Tissue', ['data' => $data]));
+    $names = array($this->Paginator->sort('sample_name', 'Sample', ['data' => $data]),
+        $this->Paginator->sort('treatment_1', 'Treatment#1', ['data' => $data]),
+        $this->Paginator->sort('description_1', 'Description#1', ['data' => $data]),
+        $this->Paginator->sort('tissue', 'Tissue', ['data' => $data]));
     $cols = array('sample_name', 'treatment_1', 'description_1', 'tissue');
     $model = 'Sample';
     $type = 'Sample';
@@ -27,7 +27,7 @@ echo '<div  id="resultsTable">';
 
 
 <?php if (count($results)<=0): ?>
-<h2>No Data Found</h2>
+<h2>No Data Found Out</h2>
 <ol>
     <li id="add"><a href="">+</a></li>
 </ol>
