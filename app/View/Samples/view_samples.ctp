@@ -6,11 +6,13 @@ echo $this->Html->script(array('base'), array('inline' => false));
 <header>
 <h1>Sample View and Upload Workspace</h1>
 <h2>Set Code: <?php echo $info['SampleSet']['set_code'] ?></h2>
+<p>Crop: <?php echo $info['SampleSet']['crop'] ?></p>
+<p>Type: <?php echo $info['SampleSet']['type'] ?></p>
 <?php
 echo '</table></header>';
 
 echo '<div  id="resultsTable">'; 
-//if (isset($results[0]['Compound'])){     
+//if (isset($results[0]['Sample'])){     
     $names = array($this->Paginator->sort('sample_name', 'Sample', ['data' => $data]),
         $this->Paginator->sort('treatment_1', 'Treatment#1', ['data' => $data]),
         $this->Paginator->sort('description_1', 'Description#1', ['data' => $data]),

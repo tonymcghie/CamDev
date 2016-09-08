@@ -10,7 +10,8 @@ class SamplesController extends AppController{
     public $helpers = array('Html' , 'Form' , 'My');
     public $uses = array('Analysis', 'SampleSet', 'Sample');
     public $layout = 'PageLayout';
-    public $components = ['My', 'RequestHandler', 'PhpExcel'];
+    //public $components = ['My', 'RequestHandler', 'PhpExcel'];
+	public $components = array('Paginator', 'My', 'RequestHandler', 'PhpExcel');
     
     /**
      * @LIVE swap file URL
@@ -42,15 +43,12 @@ class SamplesController extends AppController{
         'limit' => 20,
         'order' => array('Sample.sample_name' => 'asc'));     //sets up the pagination options
 
-        $set = $this->SampleSet->findById($id); //find on id
-        $this->set('info', $set);// passes the set info to the page
-		//$results = $this->Sample->find('all', array('conditions' => array('set_code' => $set_code)));
-		//$results = $this->Sample->find('all', array('conditions' => array('set_code' => 'TK94')));
-		 $this->set('num', $this->Sample->find('count', array('conditions' => array('set_code' => 'TK94'))));// finds the num of results
-		$results = $this->Sample->find('all', array('conditions' => array('set_code' => 'TK94')));
-		$data = $this->Sample->find('all', array('conditions' => array('set_code' => 'TK94')));
-		$this->set('results', $results);
-		$this->set('data', $data);
+        $set = $this->SampleSet->findById($id); //find a sample set by id
+        $this->set('info', $set);// passes the sample set info to the view
+		$this->set('num', $this->Sample->find('count', array('conditions' => array('set_code' => 'TK94'))));// finds the num of results
+		$results = $this->Sample->find('all', array('conditions' => array('set_code' => $set['SampleSet']['set_code']))); //gets the sample records for the set_code
+		$this->set('results', $results);  //passes the sample record to the view
+		$this->set('data', $this->request->data); //sends all the data (search criteria) to the view so it can be added to the ajax links 
     }
 	/**
 	* displays sample set code but rest does not work. temporay save incase needed
