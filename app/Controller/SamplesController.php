@@ -50,16 +50,14 @@ class SamplesController extends AppController{
 		$this->set('results', $results);  //passes the sample record to the view
 		$this->set('data', $this->request->data); //sends all the data (search criteria) to the view so it can be added to the ajax links 
     }
-	/**
-	* displays sample set code but rest does not work. temporay save incase needed
-	*    
-	public function view_samples($set_code = null) {
-        $data = $this->request->data;        
-        if ($set_code == null){
-            $set_code = $this->params['url']['set_code'];
-		}
-		$this->set('set_code', $set_code);
-    }*/
+	
+	public function uploadSamples($id = null) {
+
+		$set = $this->SampleSet->findById($id); //find a sample set by id
+        $this->set('info', $set);// passes the sample set info to the view
+		
+    }  //displays view/Samples/upload_sample/.ctp
+
     /**
      * this is called when the save or create button is pressed. It will update the values in the database and/or create a new row
      * @param type $set_code
