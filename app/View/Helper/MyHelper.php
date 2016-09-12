@@ -119,9 +119,9 @@ class MyHelper extends AppHelper{
         //check if user is in bio chemistry before showing the analysis button //comment out if statment to show the analysis button
         //if ($this->Session->read('Auth.User')!==null && in_array("PFR-GP-Biological Chemistry and Bioactives Group", $this->Session->read('Auth.User')['groups'])){
             $temp .= $this->Form->postLink('Analyse', array('controller' => 'Analyses', 'action' => 'editAnalysis','?' => ['isTablet' => $isTablet, 'set_code' =>  $set_code]), array('style'=>'width: 60px','class' => 'find-button abbr-button', 'title'=>'Analyse'));
-			$temp .= $this->Form->postLink('Samples', array('controller' => 'Samples', 'action' => 'viewSamples', $id), array('style'=>'width: 55px','class' => 'find-button abbr-button', 'title'=>'Samples'));
-			$temp .= $this->Form->postLink('UploadSamples', array('controller' => 'Samples', 'action' => 'uploadSamples', $id), array('style'=>'width: 90px','class' => 'find-button abbr-button', 'title'=>'UploadSamples'));
-        //}
+			$temp .= $this->Form->postLink('Samples', array('controller' => 'Samples', 'action' => 'viewSamples', $id), array('style'=>'width: 55px','class' => 'find-button abbr-button', 'title'=>'View sample list'));
+			$temp .= $this->Form->postLink('ImportSamples', array('controller' => 'Samples', 'action' => 'importSamples', $id), array('style'=>'width: 90px','class' => 'find-button abbr-button', 'title'=>'Import sample list from a .csv file'));
+		//}
         return $temp;
     }
     protected function checkFlavVol($comment){

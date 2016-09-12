@@ -14,7 +14,7 @@ echo $this->Html->script(array('base'), array('inline' => false));
 <table class="noFormat">
     <tr>
         <td style="width: 92%;">
-            <iframe id="csvFileFrame" class="iframeNoformat" src="<?php echo $this->Html->url(['controller' => 'CompoundpfrData', 'action' => 'getCsv']);?>"></iframe>
+            <iframe id="csvFileFrame" class="iframeNoformat" src="<?php echo $this->Html->url(['controller' => 'Samples', 'action' => 'getCsv']);?>"></iframe>
         </td>
         <td style="width: 20%;">
             <span id="importData" class="find-button anySizeButton green-button">Import</span>
@@ -57,7 +57,7 @@ $('#csvFileFrame').on('load', function(){
         $('#fileName').val($('#csvFileFrame').contents().find('#fileName').val());
         if (!csvFile || csvFile === '')return;
         <?php //THis also sets the data into the input boxes through the setValues function
-            echo $this->Js->request(['controller' => 'CompoundpfrData', 'action' => 'getCsvPreview'], [
+            echo $this->Js->request(['controller' => 'Samples', 'action' => 'getCsvPreview'], [
                 'async' => true,
                 'method' => 'post',
                 'data' => '{url: csvFile}',
@@ -107,7 +107,7 @@ function makeTable(data){
     $('#csvTableDiv').width($('#csvTable').width()+10);
 }
 function makeSelect(name, title){
-    var select = '<select name="data[CompoundpfrData]['+name+']">';
+    var select = '<select name="data[Samples]['+name+']">';
     for (var i = 0;i<columns['names'].length;i++){
         if (title === columns['names'][i] || title === columns['displayNames'][i]){
             select += '<option selected value="'+columns['names'][i]+'">'+columns['displayNames'][i]+'</option>';
