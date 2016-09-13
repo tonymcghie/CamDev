@@ -53,8 +53,8 @@ class SamplesController extends AppController{
 	
 	public function importSamples($id = null) {
 
-		$set = $this->SampleSet->findById($id); //find a sample set by id
-        $this->set('info', $set);// passes the sample set info to the view
+		//$set = $this->SampleSet->findById($id); //find a sample set by id
+        //$this->set('info', $set);// passes the sample set info to the view
 
 		if($this->request->is('post')){ 
             $data = $this->request->data['Samples'];

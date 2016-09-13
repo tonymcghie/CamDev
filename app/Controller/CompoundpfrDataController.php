@@ -81,7 +81,14 @@ class CompoundpfrDataController extends AppController{
     public function graphData($data = null){        
         
     }
-    
+    /**
+     * shows all the field entries for a selected record in the CompoundpfrData table
+     *
+     */
+	public function viewData($id = null) {
+		
+	}
+
     /**
      * this is the Ajax function for getting the data from the graphing search routine
      * it returns the data in a Json formated string

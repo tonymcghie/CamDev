@@ -5,9 +5,9 @@ echo $this->Html->script(array('base'), array('inline' => false));
 ?>
 <header>
 <h1>Sample View and Upload Workspace</h1>
-<h2>Set Code: <?php echo $info['SampleSet']['set_code'] ?></h2>
-<p>Crop: <?php echo $info['SampleSet']['crop'] ?></p>
-<p>Type: <?php echo $info['SampleSet']['type'] ?></p>
+<h2 style="display:inline">Set Code: <?php echo $info['SampleSet']['set_code'] ?></h2>
+<p style="display:inline">Crop: <?php echo $info['SampleSet']['crop'] ?></p>
+<p style="display:inline">Type: <?php echo $info['SampleSet']['type'] ?></p>
 </header>
 <?php
 echo '</table></header>';

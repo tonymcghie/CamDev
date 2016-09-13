@@ -176,7 +176,13 @@ class MyHelper extends AppHelper{
     protected function msmsMetaboliteActions($id){
         return $this->Form->postLink('Edit', array('controller' => 'Metabolites', 'action' => 'editMsmsMetabolite', $id), array('class' => 'find-button green-button'));
     }
-    /**
+	/**
+     * helper method for making edit link for resulttable
+     */
+    protected function compoundpfrDataActions($id){
+        return $this->Form->postLink('View', array('controller' => 'CompoundpfrData', 'action' => 'viewData', $id), array('class' => 'find-button abbr-button'));
+    }    
+	/**
      * makes a Url that points to an iplant file that can be open in browser
      * @param type $url
      * @return type

@@ -45,7 +45,8 @@ if (!isset($box_nums)){$box_nums=1;} //sets the box nums for the first time
  <?php    
     echo '<div  id="resultsTable">';
     if (isset($results[0]['Compoundpfr_data'])){
-       $names = array($this->Paginator->sort('assigned_name', 'Name', ['data' => $data]),
+	   $names = array( $this->Paginator->sort('assigned_name', 'Name', ['data' => $data]),
+           array('Actions' => ['class' => 'Buttons']),
            $this->Paginator->sort('sample_ref', 'Sample Ref.',['data' => $data]),
            $this->Paginator->sort('reference', 'Experiment Ref.',['data' => $data]),
            $this->Paginator->sort('exact_mass','Exact Mass', ['data' => $data]),
@@ -55,7 +56,7 @@ if (!isset($box_nums)){$box_nums=1;} //sets the box nums for the first time
            $this->Paginator->sort('genotype', 'Genotype', ['data' => $data]),
            $this->Paginator->sort('tissue', 'Tissue', ['data' => $data]),
 		   $this->Paginator->sort('analyst', 'Analyst', ['data' => $data]));
-       $cols = array('assigned_name', 'sample_ref', 'reference', 'exact_mass', 'intensity_value', 'intensity_description', 'crop', 'genotype','tissue', 'analyst', );	
+       $cols = array('assigned_name', 'Actions', 'sample_ref', 'reference', 'exact_mass', 'intensity_value', 'intensity_description', 'crop', 'genotype','tissue', 'analyst', );	
        $type = 'none';
        echo $this->element('results_table', ['results' => $results, 'names' => $names, 'cols' => $cols, 'model' => $model, 'type' => $type, 'data' => $data, 'num' => $num]);
     } else if (isset($results)){
