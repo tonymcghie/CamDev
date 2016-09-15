@@ -86,6 +86,16 @@ class CompoundpfrDataController extends AppController{
      *
      */
 	public function viewData($id = null) {
+		$set = $this->Compoundpfr_data->findById($id); //if the id is passed then find on that
+        if (!$set){ //if the set does not exist
+            throw new NotFoundExcpetion(__('Invalid Data Record'));
+        } //if the sample set with that id exists
+        $this->set('info', $set);// passes the set to the page
+        //$deRes = $this->Analysis->find('all', ['fields' => ['Analysis.derived_results', 'Analysis.title'], 'conditions' => ['set_code' => $set['SampleSet']['set_code']]]); //finds the most recent version
+        //$this->set('deRes', $deRes); //passes the version to the page
+        //if (!$this->request->data){
+           // $this->request->data = $set;
+        //} //sets the data to go into the hidden inputs
 		
 	}
 

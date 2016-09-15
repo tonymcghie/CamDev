@@ -16,8 +16,8 @@ class SamplesController extends AppController{
     /**
      * @LIVE swap file URL
      */
-    private $file_URL = '/app/app/webroot/data/'; //live
-    //private $file_URL = 'data/';        //testing
+    //private $file_URL = '/app/app/webroot/data/'; //live
+    private $file_URL = 'data/';        //testing
     
     /**
      * this happens before everything else
@@ -101,7 +101,7 @@ class SamplesController extends AppController{
             move_uploaded_file($this->request->data['Samples']['csv_file']['tmp_name'], $newURL); //uploads the file
             $this->set('fileUrl', $newURL); //passes the new URL to the view
             $this->set('fileName', $this->request->data['Samples']['csv_file']['name']); //passes the filename to the view so it can be later added to the table
-        } //if the form is submitted then uplaod the csv file
+        } //if the form is submitted then upload the csv file
     }
     
     /**

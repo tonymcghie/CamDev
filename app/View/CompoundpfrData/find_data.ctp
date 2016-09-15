@@ -57,7 +57,7 @@ if (!isset($box_nums)){$box_nums=1;} //sets the box nums for the first time
            $this->Paginator->sort('tissue', 'Tissue', ['data' => $data]),
 		   $this->Paginator->sort('analyst', 'Analyst', ['data' => $data]));
        $cols = array('assigned_name', 'Actions', 'sample_ref', 'reference', 'exact_mass', 'intensity_value', 'intensity_description', 'crop', 'genotype','tissue', 'analyst', );	
-       $type = 'none';
+       $type = 'CompoundpfrData';
        echo $this->element('results_table', ['results' => $results, 'names' => $names, 'cols' => $cols, 'model' => $model, 'type' => $type, 'data' => $data, 'num' => $num]);
     } else if (isset($results)){
         echo "No Data found";

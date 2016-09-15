@@ -95,6 +95,8 @@ class MyHelper extends AppHelper{
                         $links .= $this->proposedMetaboliteActions($row[$options['model']]['id']);
                     } else if ($type=='Msms_Metabolite'){
                         $links .= $this->msmsMetaboliteActions($row[$options['model']]['id']);
+					} else if ($type=='CompoundpfrData'){
+                        $links .= $this->compoundpfrDataActions($row[$options['model']]['id']);
                     }
                     array_push($tableCells, $links);
                 } else {
