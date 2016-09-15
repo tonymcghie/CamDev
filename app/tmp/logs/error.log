@@ -28361,3 +28361,334 @@ Request URL: /CAM3-0/img/cake.icon.png
 Stack Trace:
 #0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
 #1 {main}
+2016-09-15 21:21:45 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/css/color_schemes_v4.css
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2016-09-15 21:22:01 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/css/color_schemes_v4.css
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2016-09-15 21:22:01 Error: Fatal Error (1): Call to undefined method SamplesController::makeString() in [/var/www/html/CAM3-0/app/Controller/SamplesController.php, line 125]
+2016-09-15 21:22:01 Error: [FatalErrorException] Call to undefined method SamplesController::makeString()
+Request URL: /CAM3-0/Samples/getCsvPreview
+Stack Trace:
+#0 /var/www/html/CAM3-0/lib/Cake/Error/ErrorHandler.php(213): ErrorHandler::handleFatalError(1, 'Call to undefin...', '/var/www/html/C...', 125)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to undefin...', '/var/www/html/C...', 125, Array)
+#2 /var/www/html/CAM3-0/lib/Cake/Core/App.php(933): call_user_func('ErrorHandler::h...', 1, 'Call to undefin...', '/var/www/html/C...', 125, Array)
+#3 /var/www/html/CAM3-0/lib/Cake/Core/App.php(906): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2016-09-15 21:25:20 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/css/color_schemes_v4.css
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2016-09-15 21:25:29 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/css/color_schemes_v4.css
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2016-09-15 21:26:19 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/css/color_schemes_v4.css
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2016-09-15 21:26:26 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/css/color_schemes_v4.css
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2016-09-15 21:27:09 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/css/color_schemes_v4.css
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2016-09-15 21:27:16 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/css/color_schemes_v4.css
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2016-09-15 21:28:18 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/css/color_schemes_v4.css
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2016-09-15 21:28:26 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/css/color_schemes_v4.css
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2016-09-15 21:31:08 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/css/color_schemes_v4.css
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2016-09-15 21:31:15 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/css/color_schemes_v4.css
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2016-09-15 21:49:08 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/css/color_schemes_v4.css
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2016-09-15 21:49:22 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/css/color_schemes_v4.css
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2016-09-15 21:49:22 Error: Fatal Error (1): Call to undefined method SamplesController::makeString() in [/var/www/html/CAM3-0/app/Controller/SamplesController.php, line 125]
+2016-09-15 21:49:22 Error: [FatalErrorException] Call to undefined method SamplesController::makeString()
+Request URL: /CAM3-0/Samples/getCsvPreview
+Stack Trace:
+#0 /var/www/html/CAM3-0/lib/Cake/Error/ErrorHandler.php(213): ErrorHandler::handleFatalError(1, 'Call to undefin...', '/var/www/html/C...', 125)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to undefin...', '/var/www/html/C...', 125, Array)
+#2 /var/www/html/CAM3-0/lib/Cake/Core/App.php(933): call_user_func('ErrorHandler::h...', 1, 'Call to undefin...', '/var/www/html/C...', 125, Array)
+#3 /var/www/html/CAM3-0/lib/Cake/Core/App.php(906): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2016-09-15 21:57:02 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/css/color_schemes_v4.css
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2016-09-15 21:57:15 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/css/color_schemes_v4.css
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2016-09-15 21:58:05 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/css/color_schemes_v4.css
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2016-09-15 22:06:14 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/css/color_schemes_v4.css
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2016-09-15 22:06:27 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/css/color_schemes_v4.css
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2016-09-15 22:06:27 Error: Fatal Error (1): Call to undefined method SamplesController::makeString() in [/var/www/html/CAM3-0/app/Controller/SamplesController.php, line 125]
+2016-09-15 22:06:27 Error: [FatalErrorException] Call to undefined method SamplesController::makeString()
+Request URL: /CAM3-0/Samples/getCsvPreview
+Stack Trace:
+#0 /var/www/html/CAM3-0/lib/Cake/Error/ErrorHandler.php(213): ErrorHandler::handleFatalError(1, 'Call to undefin...', '/var/www/html/C...', 125)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to undefin...', '/var/www/html/C...', 125, Array)
+#2 /var/www/html/CAM3-0/lib/Cake/Core/App.php(933): call_user_func('ErrorHandler::h...', 1, 'Call to undefin...', '/var/www/html/C...', 125, Array)
+#3 /var/www/html/CAM3-0/lib/Cake/Core/App.php(906): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2016-09-15 22:06:30 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/css/color_schemes_v4.css
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2016-09-15 22:06:41 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/css/color_schemes_v4.css
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2016-09-15 22:06:41 Error: Fatal Error (1): Call to undefined method SamplesController::makeString() in [/var/www/html/CAM3-0/app/Controller/SamplesController.php, line 125]
+2016-09-15 22:06:41 Error: [FatalErrorException] Call to undefined method SamplesController::makeString()
+Request URL: /CAM3-0/Samples/getCsvPreview
+Stack Trace:
+#0 /var/www/html/CAM3-0/lib/Cake/Error/ErrorHandler.php(213): ErrorHandler::handleFatalError(1, 'Call to undefin...', '/var/www/html/C...', 125)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to undefin...', '/var/www/html/C...', 125, Array)
+#2 /var/www/html/CAM3-0/lib/Cake/Core/App.php(933): call_user_func('ErrorHandler::h...', 1, 'Call to undefin...', '/var/www/html/C...', 125, Array)
+#3 /var/www/html/CAM3-0/lib/Cake/Core/App.php(906): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2016-09-15 22:15:58 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/css/color_schemes_v4.css
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2016-09-15 22:16:07 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/css/color_schemes_v4.css
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2016-09-15 22:17:38 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/css/color_schemes_v4.css
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2016-09-15 22:17:51 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/css/color_schemes_v4.css
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2016-09-15 22:17:51 Error: Fatal Error (1): Call to undefined method SamplesController::makeString() in [/var/www/html/CAM3-0/app/Controller/SamplesController.php, line 121]
+2016-09-15 22:17:51 Error: [FatalErrorException] Call to undefined method SamplesController::makeString()
+Request URL: /CAM3-0/Samples/getCsvPreview
+Stack Trace:
+#0 /var/www/html/CAM3-0/lib/Cake/Error/ErrorHandler.php(213): ErrorHandler::handleFatalError(1, 'Call to undefin...', '/var/www/html/C...', 121)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to undefin...', '/var/www/html/C...', 121, Array)
+#2 /var/www/html/CAM3-0/lib/Cake/Core/App.php(933): call_user_func('ErrorHandler::h...', 1, 'Call to undefin...', '/var/www/html/C...', 121, Array)
+#3 /var/www/html/CAM3-0/lib/Cake/Core/App.php(906): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2016-09-15 22:19:37 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/css/color_schemes_v4.css
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2016-09-15 22:19:44 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/css/color_schemes_v4.css
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2016-09-15 22:19:45 Error: Fatal Error (1): Call to undefined method SamplesController::makeString() in [/var/www/html/CAM3-0/app/Controller/SamplesController.php, line 121]
+2016-09-15 22:19:45 Error: [FatalErrorException] Call to undefined method SamplesController::makeString()
+Request URL: /CAM3-0/Samples/getCsvPreview
+Stack Trace:
+#0 /var/www/html/CAM3-0/lib/Cake/Error/ErrorHandler.php(213): ErrorHandler::handleFatalError(1, 'Call to undefin...', '/var/www/html/C...', 121)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to undefin...', '/var/www/html/C...', 121, Array)
+#2 /var/www/html/CAM3-0/lib/Cake/Core/App.php(933): call_user_func('ErrorHandler::h...', 1, 'Call to undefin...', '/var/www/html/C...', 121, Array)
+#3 /var/www/html/CAM3-0/lib/Cake/Core/App.php(906): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2016-09-15 22:19:57 Error: Fatal Error (1): Call to a member function saveMany() on a non-object in [/var/www/html/CAM3-0/app/Controller/SamplesController.php, line 79]
+2016-09-15 22:19:57 Error: [FatalErrorException] Call to a member function saveMany() on a non-object
+Request URL: /CAM3-0/Samples/importSamples
+Stack Trace:
+#0 /var/www/html/CAM3-0/lib/Cake/Error/ErrorHandler.php(213): ErrorHandler::handleFatalError(1, 'Call to a membe...', '/var/www/html/C...', 79)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', '/var/www/html/C...', 79, Array)
+#2 /var/www/html/CAM3-0/lib/Cake/Core/App.php(933): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', '/var/www/html/C...', 79, Array)
+#3 /var/www/html/CAM3-0/lib/Cake/Core/App.php(906): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2016-09-15 22:19:57 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/img/cake.power.gif
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2016-09-15 22:19:57 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/img/cake.icon.png
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}

@@ -23,8 +23,8 @@ class CompoundpfrDataController extends AppController{
     /*
      *  @LIVE swap file url 
      */
-    private $file_URL = '/app/app/webroot/data/'; //Live
-    //private $file_URL = 'data/';  //testing
+    //private $file_URL = '/app/app/webroot/data/'; //Live
+    private $file_URL = 'data/';  //testing
     
     /**
      * returns weather the the user is authorised to access the functions

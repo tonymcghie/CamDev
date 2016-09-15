@@ -1,16 +1,7 @@
-<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-<?php
-echo $this->Html->css('tabs_'.getenv('CSS_VERSION'), null, array('inline' => false));
-echo $this->Html->script(array('base'), array('inline' => false));
-?>
-<header>
 <h1>Sample Upload Workspace</h1>
-<!--<h2>Set Code: <?php echo $info['SampleSet']['set_code'] ?></h2>
-<p>Crop: <?php echo $info['SampleSet']['crop'] ?></p>
-<p>Type: <?php echo $info['SampleSet']['type'] ?></p>-->
+<?php
 
-</header>
-
+?>
 <table class="noFormat">
     <tr>
         <td style="width: 92%;">
@@ -79,10 +70,10 @@ $('#csvFileFrame').on('load', function(){
  * @param {type} data
  * @returns {undefined}
  */
-var columns = {names: ['none', 'assigned_name', 'assigned_confid', 'cas', 'exact_mass', 'intensity_value', 'intensity_description', 'rt_value', 'rt_description',
-            'reference', 'sample_ref' , 'sample_description', 'target_untarget', 'analyst', 'data_location', 'crop', 'species', 'genotype', 'tissue', 'date'],
-                displayNames: ["Don't Import", 'Name', 'Confidence Id', 'Cas', 'Exact Mass', 'Intensity Value', 'Intensity Description', 'Retention Value', 'Retention info',
-            'Exp Ref', 'Sample Reference' , 'Sample Description', 'Target', 'Analyst', 'Data Location', 'Crop', 'Species', 'Genotype', 'Tissue', 'Date']};
+var columns = {names: ['none', 'set_code', 'sample_name', 'treatment_1', 'description_1', 'treatment_2', 'treatment_3', 'description_3', 'tissue',
+            'sample_weight', 'weight_unit' , 'kea_num', 'comment'],
+                displayNames: ["Don't Import", 'Sample Set', 'Sample Name', 'Treatment 1', 'Description 1', 'Treatment 2', 'Description 2', 'Treatment 3', 'Description 3',
+            'Tissue', 'Sample Weight' , 'Unit', 'Kea Number', 'Comment']};
 
 function makeTable(data){     
     $('#csvTableSelects').html(''); //clears the current table

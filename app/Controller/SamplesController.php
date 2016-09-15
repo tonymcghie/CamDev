@@ -7,11 +7,11 @@
  */
 
 class SamplesController extends AppController{
-    public $helpers = array('Html' , 'Form' , 'My');
+    public $helpers = array('Html' , 'Form' , 'My', 'Js');
     public $uses = array('Analysis', 'SampleSet', 'Sample');
     public $layout = 'PageLayout';
     //public $components = ['My', 'RequestHandler', 'PhpExcel'];
-	public $components = array('Paginator', 'My', 'RequestHandler', 'PhpExcel');
+	public $components = array('Paginator', 'My', 'Pivot', 'RequestHandler', 'PhpExcel');
     
     /**
      * @LIVE swap file URL
@@ -52,10 +52,6 @@ class SamplesController extends AppController{
     }
 	
 	public function importSamples($id = null) {
-
-		//$set = $this->SampleSet->findById($id); //find a sample set by id
-        //$this->set('info', $set);// passes the sample set info to the view
-
 		if($this->request->is('post')){ 
             $data = $this->request->data['Samples'];
             $cols = array();
