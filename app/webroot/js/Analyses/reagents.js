@@ -6,11 +6,11 @@
 
 function newRow(){
     var row = $("<tr></tr>");
-    var compound = $('<td><input type="text" placeholder="Compounds"></td>');
-    var moleWeight = $('<td><input type="text" placeholder="Molicular Weight"></td>');
-    var Concentration  = $('<td><input type="text" placeholder="Concentration"></td>');
-    var vol = $('<td><input type="text" placeholder="Volume"></td>');
-    var quantityRequired = $('<td><input type="text" placeholder="Quantity Required"></td>');        
+    var compound = $('<td><input type="text" placeholder="Compound"></td>');
+    var moleWeight = $('<td><input type="text" placeholder="Molecular Weight (g/mol)"></td>');
+    var Concentration  = $('<td><input type="text" placeholder="Concentration (mmol/L)"></td>');
+    var vol = $('<td><input type="text" placeholder="Volume (mL)"></td>');
+    var quantityRequired = $('<td><input type="text" placeholder="Quantity Required (g)"></td>');        
     
     row.append(compound);
     row.append(moleWeight);

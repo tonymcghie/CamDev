@@ -28,7 +28,7 @@ class SampleSetsController extends AppController{
         if (isset($this->Auth->Session->read($this->Auth->sessionKey)['Auth']['User']['name'])){
             $this->SampleSet->username = $this->Auth->Session->read($this->Auth->sessionKey)['Auth']['User']['name'];
         }//sets the username of the user to a variable that can be used through out the contoller
-        $this->Auth->deny('editSet','newSet'); //deny access to edit and new set by default
+        $this->Auth->allow('editSet','newSet'); //deny access to edit and new set by default // 'deny' changed to 'allow' for home testing
         $this->Cookie->name = 'View'; //sets a cookie with the name view
         $this->Cookie->time = '365 days'; //sets the time till it expires to be really long
     }
