@@ -134,6 +134,7 @@ class MyHelper extends AppHelper{
      */
     protected function compoundActions($id, $chemLink = null, $metlinLink = null, $pubChemLink = null, $cas = null, $isFlav = false){
         $temp = $this->Form->postLink('Edit', array('controller' => 'Compounds', 'action' => 'editCompound', $id), array('class' => 'find-button abbr-button'));
+        $temp .= $this->Form->postLink('Calc. Conc.', array('controller' => 'Compounds', 'action' => 'calcconcCompound', $id), array('style'=>'width: 90px', 'class' => 'find-button abbr-button'));
         if ($pubChemLink!=null){
             $temp .= '<span onclick="popUp('.$pubChemLink.')" class="find-button abbr-button">View</span>';
             $temp .= $this->Html->link('Pub Chem', 'https://pubchem.ncbi.nlm.nih.gov/compound/'.$pubChemLink,  array('style'=>'width: 70px','class' => 'find-button abbr-button', 'target' => '_blank'));
@@ -147,7 +148,6 @@ class MyHelper extends AppHelper{
         if ($isFlav){
             $temp .= $this->Html->link('Flavornet', 'http://www.flavornet.org/info/'.$cas.'.html',  array('style'=>'width: 70px','class' => 'find-button abbr-button', 'target' => '_blank'));
         }
-
         /*$file = 'http://www.flavornet.org/info/'.$cas.'.html';
         $file_headers = get_headers($file);
         if($file_headers[0] == 'HTTP/1.1 404 Not Found' || $file_headers[0] == '') {
