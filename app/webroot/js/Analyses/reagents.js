@@ -20,10 +20,14 @@ function newRow(){
     return row;
 }
 
-function calculate(tableID){
-    $('#tableID tr').each(function() {
-        $(this).find('td').eq(colindex).find('input').val();
-    }
+function calculate(mw, conc_mmol, vol_ml){
+    return mw * conc_mmol * vol_ml
 }
+
+//function calculate_old(tableID){
+    //$('#tableID tr').each(function() {
+        //$(this).find('td').eq(colindex).find('input').val();
+    //}
+//}
 
 

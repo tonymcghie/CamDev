@@ -184,7 +184,7 @@ class CompoundsController extends AppController{
     /**
      * A function to get input and compute the amounts of compound required to make a solution of a given concentration
      */
-    public function calcconcCompound($id = null) {
+    public function reagentsCompound($id = null) {
         $compound = $this->Compound->findById($id); //find a compound by id
         $this->set('info', $compound);// passes the compound info to the view
     }
