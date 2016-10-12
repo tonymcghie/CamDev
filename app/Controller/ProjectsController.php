@@ -6,9 +6,9 @@
  * and open the template in the editor.
  */
 
-class MetabolitesController extends AppController{
+class ProjectsController extends AppController{
     public $helpers = array('Html' , 'Form' , 'My', 'Js');
-    public $uses = array('Metabolite','Msms_Metabolite','Proposed_Metabolite');
+    public $uses = array('Project, Metabolite','Msms_Metabolite','Proposed_Metabolite');
     public $layout = 'PageLayout';
     public $components = array('Paginator', 'RequestHandler', 'My');
     
@@ -38,10 +38,10 @@ class MetabolitesController extends AppController{
     //}
 
     /**
-     * adds a meatbolite
+     * adds a project
      * @return null
      */
-    public function addMetabolite(){
+    public function addProject(){
         if (isset($this->params['url']['isTablet']) && $this->params['url']['isTablet']==='true'){
             $this->autoRender = false;
             $this->set('tabletView', 'true');
@@ -52,11 +52,11 @@ class MetabolitesController extends AppController{
             $this->autoRender = true;
         } //sets the view (tablet or not tablet)
         
-        if (isset($this->request->data['Metabolite'])){ //check if the save button has being clicked            
+        if (isset($this->request->data['Project'])){ //check if the save button has being clicked            
             $data = $this->request->data;      //gets the data
-            $this->Metabolite->create();            //Need to add
-            if ($this->Metabolite->save($data)){                 //saves the Compound
-                return $this->redirect(['controller' => 'General', 'action' => 'blank', '?' => ['alert' => 'Unknown Compound Saved']]);
+            $this->Project->create();            //Need to add
+            if ($this->Project->save($data)){                 //saves the Compound
+                return $this->redirect(['controller' => 'General', 'action' => 'blank', '?' => ['alert' => 'New Project Saved']]);
             }
         } else if (isset($this->request->data['Proposed_Metabolite'])){
             $data = $this->request->data;      //gets the data
