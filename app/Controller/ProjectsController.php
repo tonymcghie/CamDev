@@ -8,7 +8,7 @@
 
 class ProjectsController extends AppController{
     public $helpers = array('Html' , 'Form' , 'My', 'Js');
-    public $uses = array('Project, Metabolite','Msms_Metabolite','Proposed_Metabolite');
+    public $uses = array('Project');
     public $layout = 'PageLayout';
     public $components = array('Paginator', 'RequestHandler', 'My');
     
@@ -25,7 +25,7 @@ class ProjectsController extends AppController{
     public function beforeFilter() {
         parent::beforeFilter();
         //$this->Auth->deny('addMetabolite','editMetabolite','editProposedMetabolite','editMsmsMetabolite');
-        $this->Auth->allow('addMetabolite','editMetabolite','editProposedMetabolite','editMsmsMetabolite');
+        $this->Auth->allow('addProject','addMetabolite');
     }
     
     /**
@@ -41,36 +41,14 @@ class ProjectsController extends AppController{
      * adds a project
      * @return null
      */
-    public function addProject(){
-        if (isset($this->params['url']['isTablet']) && $this->params['url']['isTablet']==='true'){
-            $this->autoRender = false;
-            $this->set('tabletView', 'true');
-            $this->layout= 'TabletLayout';
-            $this->render('add_metabolite_tablet');
-        } else {
-            $this->set('tabletView', 'false');
-            $this->autoRender = true;
-        } //sets the view (tablet or not tablet)
-        
+    public function addProject(){ 
         if (isset($this->request->data['Project'])){ //check if the save button has being clicked            
             $data = $this->request->data;      //gets the data
             $this->Project->create();            //Need to add
             if ($this->Project->save($data)){                 //saves the Compound
                 return $this->redirect(['controller' => 'General', 'action' => 'blank', '?' => ['alert' => 'New Project Saved']]);
             }
-        } else if (isset($this->request->data['Proposed_Metabolite'])){
-            $data = $this->request->data;      //gets the data
-            $this->Proposed_Metabolite->create();            //Need to add
-            if ($this->Proposed_Metabolite->save($data)){                 //saves the Compound
-                return $this->redirect(['controller' => 'General', 'action' => 'blank', '?' => ['alert' => 'Proposed Unknown Compound Saved']]);
-            }
-        } else if (isset($this->request->data['Msms_Metabolite'])){
-            $data = $this->request->data;      //gets the data
-            $this->Msms_Metabolite->create();            //Need to add
-            if ($this->Msms_Metabolite->save($data)){                 //saves the Compound
-                return $this->redirect(['controller' => 'General', 'action' => 'blank', '?' => ['alert' => 'Msms Unknown Compound Saved']]);
-            }
-        } //adds which ever one was pressed
+        } 
     }
     
     /**
@@ -80,23 +58,7 @@ class ProjectsController extends AppController{
     public function editMetabolite($id = null){
         $this->save($this->Metabolite, $id);        
     }
-    
-    /**
-     * updates a row in the Proposed Metabolite table
-     * @param String $id
-     */
-    public function editProposedMetabolite($id = null){
-        $this->save($this->Proposed_Metabolite, $id);
-    }
-    
-    /**
-     * updates a row in the msms table
-     * @param type $id
-     */
-    public function editMsmsMetabolite($id = null){
-        $this->save($this->Msms_Metabolite, $id);
-    }
-    
+      
     /**
      * Saves the data from the form
      * @param type $model
@@ -120,49 +82,33 @@ class ProjectsController extends AppController{
     }
 
     /**
-     * Search the metabolites
-     * @param array $data
-     * @return null
+     * Ajax function that returns list items that have the Project details in
      */
-    public function searchMetabolite($data = null){   
-        if ($data!=null&&!isset($this->request->data['Metabolite'])){ //if the data passed is through the url rather than post then set the data variable to the data passed from the url
-            parse_str($data);
-            $this->request->data['Metabolite'] = $Metabolite;
-        }
-        if (!isset($this->request->data['Metabolite'])){ //if data == null and request->data ==null
-            return;
-        }
-        $this->paginate = array(
-        'limit' => 20,
-        'order' => array('Metabolite.exact_mass' => 'asc'));     //sets up the pagination options
-        
-        $this->request->data['Metabolite']['num_boxes'] = (isset($this->request->data['Metabolite']['num_boxes']) ? $this->request->data['Metabolite']['num_boxes'] : 1); //sets boxnum to 1 if its not already set
-        $this->set('box_nums',$this->request->data['Metabolite']['num_boxes']);  //passes the box num to the view 
-        if ($this->request->data['Metabolite']['isDate']==='1'){ //checks if there is a date to search on
-            $this->request->data['Metabolite']['start_date'] = $this->request->data['Metabolite']['start_date']['year'].'-'.$this->request->data['Metabolite']['start_date']['month'].'-'.$this->request->data['Metabolite']['start_date']['day'];//makes date in  format where sql can compare time helper
-            $this->request->data['Metabolite']['end_date'] = $this->request->data['Metabolite']['end_date']['year'].'-'.$this->request->data['Metabolite']['end_date']['month'].'-'.$this->request->data['Metabolite']['end_date']['day'];
-        }
-        //gets the criteria for the search
-        $search = $this->My->extractSearchTerm($this->request->data, ['exact_mass', 'experiment_ref', 'sources', 'tissue', 'chemist'], 'Metabolite');        
-        $results = $this->paginate('Metabolite', $search); //search for the data for the page
-        $this->set('num', $this->Metabolite->find('count', ['conditions' =>$search]));// finds the num of results
-        $this->set('results' ,$results); //sends the reuslts to the page  
-        $this->set('data', $this->request->data); //sends all the data(search criteria) to the view so it can be added to the ajax links               
+    public function projectAutoComplete(){
+        $this->autoRender=false; //stops the page from rendering as this is ajax so it outputs data
+        $this->layout = 'ajax';  //ajax layout is blank
+        $query = $this->request->data['name']; //gets the part name of the name that has being entered
+		$results = $this->Project->find('all' , ['conditions' => ['short_name LIKE' => $query.'%']]);//gets all project short_names that start with that part of the name
+        $elements = '';
+        foreach($results as $row){
+            $elements .= "<li class='ui-menu-item' role='menuitem'><a class='ui-corner-all' tabindex='-1'";
+            $elements .= 'onclick="changeProject(\''.$row['Project']['short_name'].'\')"';
+            $elements .= ">".$row['Project']['short_name']." - ".$row['Project']['code']." - ".$row['Project']['type']."</a></li>";
+        } //makes the list of possible project names
+        echo $elements;
     }
     
-    /**
-     * Passes values the view to display them
-     * @param String $id
+        /**
+     *	Ajax funtion that gets the data of the projects
      */
-    public function viewMetabolite($id = null){
-        if ($id==null){echo "Metabolite is not found";}
-        $meta = $this->Metabolite->find('first', ['conditions' => ['id' => $id]]);
-        $msms = $this->Msms_Metabolite->find('all' , ['conditions' => ['metabolite_id' => $id]]);
-        $proposed = $this->Proposed_Metabolite->find('all' , ['conditions' => ['metabolite_id' => $id]]);
-        $this->set('meta', $meta);
-        $this->set('msms', $msms);
-        $this->set('proposed' , $proposed);
+    public function getData(){
+		$this->autoRender=false;
+		$this->layout = 'ajax';
+		$shortname = $this->request->data['name'];
+		$res = $this->Project->find('first', ['conditions' => ['short_name LIKE' => $shortname ]]);
+		echo json_encode($res);
     }
+
     
     /**
      * exports a search to a CSV file

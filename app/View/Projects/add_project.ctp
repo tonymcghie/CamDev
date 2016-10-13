@@ -6,7 +6,7 @@
 <?php
 $projectType_options = ['Blueskies' => 'Blueskies','BPA' => 'BPA','Commercial' => 'Commercial','Core' => 'Core','Discovery Science' => 'Discovery Science','MBIE' => 'MBIE',
     'Other' => 'Other'];
-$this->start('Metabolite');  //changing this to Project stops the page from showing - do not know why????
+$this->start('Project');  
 echo $this->Form->create('Project');
 echo "<h2>Enter New Project Details</h2>";
 //echo $this->My->makeInputRow('exact_mass', [], 'Exact Mass');
@@ -18,10 +18,6 @@ echo $this->My->makeInputRow('owner', ['placeholder' => 'PFR staff member'], 'Ow
 echo $this->Form->end(['label' => 'Save New Project', 'class' => 'large-button anySizeButton green-button']);
 $this->end();
 
-if ($tabletView !== 'true'){ //draw the blocks if not tablet view
-    echo $this->fetch('Metabolite');
-    echo $this->fetch('ProMetabolite');
-    echo $this->fetch('MsmsMetabolite');
-}
+echo $this->fetch('Project');
 ?>
 </div>
