@@ -27,7 +27,7 @@ echo $this->My->makeInputRow('isPreSetCode', ['type' => 'checkbox', 'id' => 'isP
 echo $this->My->makeInputRow('setCode', ['placeholder' => 'Create Sample Set Similar to previous Sample Set', 'id' => 'setCode', 'rowId' => 'setCodeRow'], 'Previous Sample Set:');
 echo $this->My->makeInputRow('confidential', ['type' => 'checkbox'], 'Confidential');
 echo $this->My->makeInputRow('submitter', ['value' => (isset($user['name']) ? $user['name'] : '')], 'PFR Collaborator *');
-echo $this->My->makeInputRow('p_name', [], 'Project Name');
+echo $this->My->makeInputRow('p_name', ['placeholder' => 'Start typing a Project Name - input will autocomplete','id' => 'p_name', 'autocomplete' => 'off'], 'Project Name');
 echo $this->My->makeInputRow('p_code', [], 'Project Code');
 echo $this->My->makeInputRow('exp_reference', ['placeholder' => 'Describe the experiment that produced the sample set'], 'Experiment Reference');
 echo $this->My->makeInputRow('chemist', ['id' => 'chemist' , 'autocomplete' => 'off'], 'Chemist Name *');
@@ -47,10 +47,17 @@ echo $this->Form->end(['label' => 'Save Set', 'class' => 'large-button anySizeBu
 $this->end();
 $this->start('extras');
 echo $this->Html->scriptStart();
-echo $this->Js->get('#chemist')->event('keyup', 'ajaxCall()', false); //ajax call that will update the ul with the possible names
+echo $this->Js->get('#chemist')->event('keyup', 'ajaxCallChemist()', false); //ajax call that will update the ul with the possible names
+echo $this->Html->scriptEnd();
+// Add a scriptStart specifically for project names
+echo $this->Html->scriptStart();
+echo $this->Js->get('#p_name')->event('keyup', 'ajaxCallProject()', false); //ajax call that will update the ul with the possible project names
 echo $this->Html->scriptEnd();
 ?>
 <ul id='autoOptions' class='ui-autocomplete ui-menu ui-widget ui-widget-content ui-corner-all' style='position: absolute;'>
+    
+</ul>
+<ul id='ProAutoOptions' class='ui-autocomplete ui-menu ui-widget ui-widget-content ui-corner-all' style='position: absolute;'>
     
 </ul>
 <script>
@@ -63,16 +70,27 @@ echo $this->Html->scriptEnd();
     });
     
     /**
+     * Shows the options when the project name textbox is selected
+     */
+    $("#p_name").on('focus', function(){ //shows the ul when project name input is selected
+        $("#ProAutoOptions").show(); 
+    });
+    
+    /**
      * hides the auto complete options when anything other than the chemist text box and the options ul is clicked
      */
     $("html").on('click', function(event){ //hides the ul when clicking off the chemist input
         if (event.target.id!=='chemist'&&event.targetid!=='autoOptions'){
             $('#autoOptions').hide(); 
-        }        
+        }
+        if (event.target.id!=='p_name'&&event.targetid!=='ProAutoOptions'){
+            $('#ProAutoOptions').hide(); 
+        }
     });
     
     $("document").ready(function (){
         $('#autoOptions').hide();  //hides the auto fill options when the page loads
+        $('#ProAutoOptions').hide();  //hides the auto fill options when the page loads
         $('#setCodeRow').hide();  //hides the previous set code option when the page loads
     });
     
@@ -88,7 +106,7 @@ echo $this->Html->scriptEnd();
      * This starts an Ajax call that will update the chemists auto fill as well as position it and hide it if there are no results to show
      * @returns {undefined}
      */
-    function ajaxCall(){
+    function ajaxCallChemist(){
         <?php
         echo $this->Js->request(['action' => 'nameAutoComplete'] , [
             'async' => true,
@@ -108,6 +126,43 @@ echo $this->Html->scriptEnd();
         }
     }
     
+    function ajaxCallProject(){
+        <?php
+        echo $this->Js->request(['controller' => 'Projects', 'action' => 'projectAutoComplete'] , [
+            'async' => true,
+            'method' => 'post',
+            'data' => '{name: $("#p_name").val()}',
+            'dataExpression' => true,
+            'update' => '#ProAutoOptions']);
+        ?>
+        var offset = $("#p_name").offset();  //gets the offset of the input box           
+        var height = $("#p_name").outerHeight();  //gets the height of the input bx
+        $("#ProAutoOptions").css('left' , offset.left); //sets the left offset for the ul
+        $("#ProAutoOptions").css('top' , offset.top+height); //sets the top offset
+        if($("#ProAutoOptions").is(':empty')){
+            $("#ProAutoOptions").hide(); //hides the options if there are none to display
+        } else {
+            $("#ProAutoOptions").show();
+        }
+    }
+    
+    function getProjectData(name){
+		var shortname = name.split(" - ")[0];
+        <?php
+		    echo $this->Js->request(['controller' => 'Projects', 'action' => 'getData'] , [
+		        'async' => true,
+		        'method' => 'post',
+		        'data' => '{name: shortname}',
+		        'dataExpression' => true,
+				'success' => '{updateProjectData(data);}']);
+        ?>
+	}
+        
+    function updateProjectData(data){
+		var dataArray = JSON.parse(data);
+		$('#p_code').val(dataArray['Project']['code']);
+	}
+    
     /**
      * This adds the new name to the chemist input
      * then hides the options
@@ -119,6 +174,13 @@ echo $this->Html->scriptEnd();
         ajaxCall();
         $("#autoOptions").hide();
     }
+    
+    function changeProject(newName){
+		$("#p_name").val(newName);
+		ajaxCallProject();
+		$("#ProAutoOptions").hide();
+		getProjectData(newName);
+	}
         
     /**
      * This is Called then the user inputs into the from previo0us sample set box
