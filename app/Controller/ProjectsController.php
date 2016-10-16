@@ -88,7 +88,7 @@ class ProjectsController extends AppController{
         $this->autoRender=false; //stops the page from rendering as this is ajax so it outputs data
         $this->layout = 'ajax';  //ajax layout is blank
         $query = $this->request->data['name']; //gets the part name of the name that has being entered
-		$results = $this->Project->find('all' , ['conditions' => ['short_name LIKE' => $query.'%']]);//gets all project short_names that start with that part of the name
+		$results = $this->Project->find('all' , ['conditions' => ['short_name LIKE' => '%'.$query.'%']]);//gets all project short_names that start with that part of the name
         $elements = '';
         foreach($results as $row){
             $elements .= "<li class='ui-menu-item' role='menuitem'><a class='ui-corner-all' tabindex='-1'";

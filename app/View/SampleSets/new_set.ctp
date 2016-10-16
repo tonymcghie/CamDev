@@ -27,8 +27,8 @@ echo $this->My->makeInputRow('isPreSetCode', ['type' => 'checkbox', 'id' => 'isP
 echo $this->My->makeInputRow('setCode', ['placeholder' => 'Create Sample Set Similar to previous Sample Set', 'id' => 'setCode', 'rowId' => 'setCodeRow'], 'Previous Sample Set:');
 echo $this->My->makeInputRow('confidential', ['type' => 'checkbox'], 'Confidential');
 echo $this->My->makeInputRow('submitter', ['value' => (isset($user['name']) ? $user['name'] : '')], 'PFR Collaborator *');
-echo $this->My->makeInputRow('p_name', ['placeholder' => 'Start typing a Project Name - input will autocomplete','id' => 'p_name', 'autocomplete' => 'off'], 'Project Name');
-echo $this->My->makeInputRow('p_code', [], 'Project Code');
+echo $this->My->makeInputRow('p_name', ['placeholder' => 'Start typing - registered projects will autocomplete','id' => 'p_name', 'autocomplete' => 'off'], 'Project Name');
+echo $this->My->makeInputRow('p_code', ['id' => 'p_code'], 'Project Code');
 echo $this->My->makeInputRow('exp_reference', ['placeholder' => 'Describe the experiment that produced the sample set'], 'Experiment Reference');
 echo $this->My->makeInputRow('chemist', ['id' => 'chemist' , 'autocomplete' => 'off'], 'Chemist Name *');
 echo $this->My->makeInputRow('crop', ['options' => $this->My->getCropOptions()], 'Crop *');
@@ -157,8 +157,7 @@ echo $this->Html->scriptEnd();
 				'success' => '{updateProjectData(data);}']);
         ?>
 	}
-        
-    function updateProjectData(data){
+        function updateProjectData(data){
 		var dataArray = JSON.parse(data);
 		$('#p_code').val(dataArray['Project']['code']);
 	}
