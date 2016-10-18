@@ -13,14 +13,23 @@ echo $this->Html->script(array('base'), array('inline' => false));
 
 <?php //echo $this->html->script('Analyses/reagents.js', ['inline' => false]); 
       //echo $this->fetch('script');?>
-<div id="reagent_calc" align="center" style="border:2px solid blue"">
-    Target Conc (mmol/L):<input type="number" min="0" max="1000" step="1" value="100" style="width: 10em;" id="Concentration"><br>
-    Target Volume (mL):<input type="number" min="0" max="1000" step="1" value="100" style="width: 10em;" id="Volume"><br><br>
-    <button type="button" class="large-button anySizeButton green-button" onclick="myFunction()">Calculate</button><br><br>
-</div
+<form>
+<!--<div id="reagent_calc" align="center" style="border:2px solid blue"">-->
+    Target Conc (mmol/L):<input type="number" min="0" max="1000" step="1" style="width: 10em;" id="Concentration" name="Concentration"><br>
+    Target Volume (mL):<input type="number" min="0" max="1000" step="1" style="width: 10em;" id="Volume" name="Volume"><br><br>
+    <!--<button type="button" class="large-button anySizeButton green-button" onclick="myFunction()">Calculate</button><br><br>-->
+<!--</div-->
 <br>
-<p>Quantity Required (g):</p>
-<p id="Quan_Required"</p>
+Quantity Required (g):<output oninput="value=Concentration.value * Volume.value"></output>
+<!--<p id="Quan_Required"</p>-->
+</form>
+<div id="reagent_calc" align="center" style="border:2px solid blue"">
+<form onsubmit="return false" oninput="o.value = <?php echo $info['Compound']['exact_mass'] ?> * (parseInt(conc_mmol.value)/1000) * (parseInt(vol_mL.value)/1000)">
+    <p>Target Conc (mmol/L):<input name="conc_mmol" type="number" step="any" style="width: 10em;"></p>
+    <p>Target Volume &nbsp;(mL):<input name="vol_mL" type="number" step="any" style="width: 10em;"></p>
+    <h2>Quantity Required (g):<output name="o"></output></h2>
+</form>
+</div>
 </header>
         
 
