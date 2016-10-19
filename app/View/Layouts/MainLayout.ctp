@@ -10,7 +10,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 	<title>
             <?php echo $this->fetch('title'); ?>
 	</title>
-        <link rel="shortcut icon" href="favicon.ico"/>
+        <link rel="shortcut icon" href="img/cam.ico"/>
 				<meta name="viewport" content="width=device-width, initial-scale=1">
 				<link href='https://fonts.googleapis.com/css?family=Roboto:400,400italic,300italic,300,500,500italic|Roboto+Slab:400,300,700' rel='stylesheet' type='text/css'>
 
