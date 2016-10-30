@@ -61,6 +61,7 @@ class CompoundpfrDataController extends AppController{
         //gets an array of the criteria for the search
         $search = $this->My->extractSearchTerm($this->request->data, ['assigned_name', 'assigned_confid', 'exact_mass', 'intensity_description', 'reference', 'sample_ref', 'crop', 'species', 'tissue', 'genotype', 'analyst', 'file'], 'Compoundpfr_data');    
         $search = $this->addPsu($this->request->data, $search); //adds the synonims to the search array
+        print_r($search);
         $this->set('results' ,$this->paginate('Compoundpfr_data', $search)); //sets the results from the cake pagination helper
         $this->set('num', $this->Compoundpfr_data->find('count', ['conditions' =>$search]));
         $this->set('data', $this->request->data); //sends all the data(search criteria) to the view so it can be added to the ajax links
