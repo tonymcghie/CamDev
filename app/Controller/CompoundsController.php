@@ -90,9 +90,11 @@ class CompoundsController extends AppController{
         if (!isset($this->request->data['Compound'])){
             return;
         } //if compound is not set then exit
+        
         $this->paginate = array(
-        'limit' => 20,
+        'limit' => 50,
         'order' => array('Compound.compound_name' => 'asc')); //sets the pagination values
+        
         $this->request->data['Compound']['num_boxes'] = (isset($this->request->data['Compound']['num_boxes']) ? $this->request->data['Compound']['num_boxes'] : 1); //sets boxnum to 1 if its not already set
         $this->set('box_nums',$this->request->data['Compound']['num_boxes']);  //passes the box num to the view 
         $data = $this->request->data;

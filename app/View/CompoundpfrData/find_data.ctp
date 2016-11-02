@@ -9,6 +9,7 @@ $options = array(
     'assigned_confid' => 'Id Confidence (1-5)',
     'exact_mass' => 'Exact Mass',
     'exact_mass_10mDa' => 'Exact Mass +- 10 mDa',
+    'exact_mass_50mDa' => 'Exact Mass +- 50 mDa',
     'intensity_description' => 'Units',
     'reference' => 'Experiment Ref.',
     'sample_ref' => 'Sample Ref.',

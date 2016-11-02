@@ -50,7 +50,7 @@ class CompoundpfrDataController extends AppController{
             return;
         }//if no data is passed return and dont search
         $this->paginate = array(
-        'limit' => 30,
+        'limit' => 50,
         'order' => array('Compoundpfr_data.assigned_name' => 'asc'));           
         $this->request->data['Compoundpfr_data']['num_boxes'] = (isset($this->request->data['Compoundpfr_data']['num_boxes']) ? $this->request->data['Compoundpfr_data']['num_boxes'] : 1); //sets boxnum to 1 if its not already set
         $this->set('box_nums',$this->request->data['Compoundpfr_data']['num_boxes']); //passes the number of boxes from the old form to the new form

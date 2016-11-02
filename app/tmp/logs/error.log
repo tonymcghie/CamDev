@@ -29819,3 +29819,112 @@ Request URL: /CAM3-0/img/cake.icon.png
 Stack Trace:
 #0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
 #1 {main}
+2016-11-01 21:18:35 Error: [PDOException] SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'LIMIT 20' at line 1
+Request URL: /CAM3-0/compoundpfr_data/findData
+Stack Trace:
+#0 /var/www/html/CAM3-0/lib/Cake/Model/Datasource/DboSource.php(461): PDOStatement->execute(Array)
+#1 /var/www/html/CAM3-0/lib/Cake/Model/Datasource/DboSource.php(427): DboSource->_execute('SELECT `Compoun...', Array)
+#2 /var/www/html/CAM3-0/lib/Cake/Model/Datasource/DboSource.php(669): DboSource->execute('SELECT `Compoun...', Array, Array)
+#3 /var/www/html/CAM3-0/lib/Cake/Model/Datasource/DboSource.php(1118): DboSource->fetchAll('SELECT `Compoun...', false)
+#4 /var/www/html/CAM3-0/lib/Cake/Model/Model.php(3031): DboSource->read(Object(Compoundpfr_data), Array)
+#5 /var/www/html/CAM3-0/lib/Cake/Model/Model.php(3003): Model->_readDataSource('all', Array)
+#6 /var/www/html/CAM3-0/lib/Cake/Controller/Component/PaginatorComponent.php(196): Model->find('all', Array)
+#7 /var/www/html/CAM3-0/lib/Cake/Controller/Controller.php(1086): PaginatorComponent->paginate('Compoundpfr_dat...', Array, Array)
+#8 /var/www/html/CAM3-0/app/Controller/CompoundpfrDataController.php(65): Controller->paginate('Compoundpfr_dat...', Array)
+#9 [internal function]: CompoundpfrDataController->findData()
+#10 /var/www/html/CAM3-0/lib/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(CompoundpfrDataController), Array)
+#11 /var/www/html/CAM3-0/lib/Cake/Routing/Dispatcher.php(193): Controller->invokeAction(Object(CakeRequest))
+#12 /var/www/html/CAM3-0/lib/Cake/Routing/Dispatcher.php(167): Dispatcher->_invoke(Object(CompoundpfrDataController), Object(CakeRequest))
+#13 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#14 {main}
+2016-11-01 21:18:35 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/img/cake.power.gif
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2016-11-01 21:18:35 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/img/cake.icon.png
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2016-11-01 21:24:26 Error: [PDOException] SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'LIMIT 20' at line 1
+Request URL: /CAM3-0/compoundpfr_data/findData
+Stack Trace:
+#0 /var/www/html/CAM3-0/lib/Cake/Model/Datasource/DboSource.php(461): PDOStatement->execute(Array)
+#1 /var/www/html/CAM3-0/lib/Cake/Model/Datasource/DboSource.php(427): DboSource->_execute('SELECT `Compoun...', Array)
+#2 /var/www/html/CAM3-0/lib/Cake/Model/Datasource/DboSource.php(669): DboSource->execute('SELECT `Compoun...', Array, Array)
+#3 /var/www/html/CAM3-0/lib/Cake/Model/Datasource/DboSource.php(1118): DboSource->fetchAll('SELECT `Compoun...', false)
+#4 /var/www/html/CAM3-0/lib/Cake/Model/Model.php(3031): DboSource->read(Object(Compoundpfr_data), Array)
+#5 /var/www/html/CAM3-0/lib/Cake/Model/Model.php(3003): Model->_readDataSource('all', Array)
+#6 /var/www/html/CAM3-0/lib/Cake/Controller/Component/PaginatorComponent.php(196): Model->find('all', Array)
+#7 /var/www/html/CAM3-0/lib/Cake/Controller/Controller.php(1086): PaginatorComponent->paginate('Compoundpfr_dat...', Array, Array)
+#8 /var/www/html/CAM3-0/app/Controller/CompoundpfrDataController.php(65): Controller->paginate('Compoundpfr_dat...', Array)
+#9 [internal function]: CompoundpfrDataController->findData()
+#10 /var/www/html/CAM3-0/lib/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(CompoundpfrDataController), Array)
+#11 /var/www/html/CAM3-0/lib/Cake/Routing/Dispatcher.php(193): Controller->invokeAction(Object(CakeRequest))
+#12 /var/www/html/CAM3-0/lib/Cake/Routing/Dispatcher.php(167): Dispatcher->_invoke(Object(CompoundpfrDataController), Object(CakeRequest))
+#13 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#14 {main}
+2016-11-01 21:24:27 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/img/cake.power.gif
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2016-11-01 21:24:28 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/img/cake.icon.png
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2016-11-01 21:24:28 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/img/cake.power.gif
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2016-11-01 21:54:49 Error: Fatal Error (4): syntax error, unexpected '.10' (T_DNUMBER) in [/var/www/html/CAM3-0/app/Controller/Component/MyComponent.php, line 57]
+2016-11-01 21:54:49 Error: [FatalErrorException] syntax error, unexpected '.10' (T_DNUMBER)
+Request URL: /CAM3-0/Compoundpfr_data/findData
+Stack Trace:
+#0 /var/www/html/CAM3-0/lib/Cake/Error/ErrorHandler.php(213): ErrorHandler::handleFatalError(4, 'syntax error, u...', '/var/www/html/C...', 57)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', '/var/www/html/C...', 57, Array)
+#2 /var/www/html/CAM3-0/lib/Cake/Core/App.php(933): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', '/var/www/html/C...', 57, Array)
+#3 /var/www/html/CAM3-0/lib/Cake/Core/App.php(906): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2016-11-01 21:54:50 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/img/cake.power.gif
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2016-11-01 21:54:50 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/img/cake.icon.png
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
