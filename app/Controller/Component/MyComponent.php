@@ -24,11 +24,12 @@ class MyComponent extends Component{
      * @return array An array that CakePHP can search on
      */
     public function extractSearchTerm($data, $allCols, $model){            
-        $criteria = array();$value = array();$logic = array();
+        $criteria = array();$value = array();$match = array();$logic = array();
         $count=0;
         while (isset($data[$model]['cri_'.$count])){
             array_push($criteria, $data[$model]['cri_'.$count]);//get the criteria values as an array
             array_push($value, $data[$model]['val_'.$count]);    //get the values as an array  
+            array_push($match, $data[$model]['match_'.$count]);    
             array_push($logic, $data[$model]['log_'.$count]);
             $count++;
         }        
@@ -64,7 +65,15 @@ class MyComponent extends Component{
                         array_push($search[$logic[$count]], [$model.'.'.exact_mass.' BETWEEN ? AND ?' => array($lower_limit, $upper_limit)]);
                         continue;
                     }
-                    array_push($search[$logic[$count]], [$model.'.'.$criteria[$count].' LIKE' => '%'.$value[$count].'%']);                    
+                    if ($match[$count] == 'include'){
+                        array_push($search[$logic[$count]], [$model.'.'.$criteria[$count].' LIKE' => '%'.$value[$count].'%']);
+                    }
+                    if ($match[$count] == 'exact'){
+                        array_push($search[$logic[$count]], [$model.'.'.$criteria[$count].' LIKE' => ''.$value[$count].'']);
+                    }
+                    if ($match[$count] == 'starts_with'){
+                        array_push($search[$logic[$count]], [$model.'.'.$criteria[$count].' LIKE' => ''.$value[$count].'%']);
+                    }
                 }
             }
         }
