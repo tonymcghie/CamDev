@@ -102,22 +102,23 @@ class CompoundsController extends AppController{
             $precision = count(explode('.', $data['Compound']['val_'.$i]))==2 ? strlen(explode('.', $data['Compound']['val_'.$i])[1]) : 0;            
             if ($data['Compound']['cri_'.$i] == '[M-H]-'){
                 $data['Compound']['val_'.$i] = round(floatval($data['Compound']['val_'.$i]) + 1.0078, $precision);
-                $data['Compound']['cri_'.$i] = 'exact_mass';
+                $data['Compound']['cri_'.$i] = 'exact_mass'; //search the exact mass field with the adjusted mass
             } //adjusts mass
             if ($data['Compound']['cri_'.$i] == '[M+COOH-H]-'){
                 $data['Compound']['val_'.$i] = round(floatval($data['Compound']['val_'.$i]) - 44.9977, $precision);
-                $data['Compound']['cri_'.$i] = 'exact_mass';
+                $data['Compound']['cri_'.$i] = 'exact_mass'; //search the exact mass field with the adjusted mass
             }//adjusts mass
             if ($data['Compound']['cri_'.$i] == '[M+H]+'){
                 $data['Compound']['val_'.$i] = round(floatval($data['Compound']['val_'.$i]) - 1.0078, $precision);
-                $data['Compound']['cri_'.$i] = 'exact_mass';
+                $data['Compound']['cri_'.$i] = 'exact_mass'; //search the exact mass field with the adjusted mass
             }//adjusts mass
             if ($data['Compound']['cri_'.$i] == '[M+Na]+'){
                 $data['Compound']['val_'.$i] = round(floatval($data['Compound']['val_'.$i]) - 22.9898, $precision);
-                $data['Compound']['cri_'.$i] = 'exact_mass';
+                $data['Compound']['cri_'.$i] = 'exact_mass'; //search the exact mass field with the adjusted mass
             }//adjusts mass
         } //adjust the mass and the names 
         $search = $this->My->extractSearchTerm($data, ['cas', 'compound_name', 'exact_mass', 'comment'], 'Compound'); //makes search term
+        print_r($search);
         $this->set('results', $this->paginate('Compound', $search)); //gets the results
         $this->set('num', $this->Compound->find('count', ['conditions' =>$search])); //passes the number of results to the view
         $this->set('data', $this->request->data);

@@ -29,8 +29,8 @@ class MyComponent extends Component{
         while (isset($data[$model]['cri_'.$count])){
             array_push($criteria, $data[$model]['cri_'.$count]);//get the criteria values as an array
             array_push($value, $data[$model]['val_'.$count]);    //get the values as an array  
-            array_push($match, $data[$model]['match_'.$count]);    
             array_push($logic, $data[$model]['log_'.$count]);
+            array_push($match, $data[$model]['match_'.$count]);    
             $count++;
         }        
         $search = array();
