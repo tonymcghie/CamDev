@@ -34,7 +34,7 @@ class MyHelper extends AppHelper{
         $temp = '<table class="noFormat search">';
         $temp .= $this->Html->tableCells([$this->Form->input('cri_'.$count, ['options' => $options, 'label' => '']),
             $this->Form->input('val_'.$count, array('label' => '')),
-            $this->Form->input('log_'.$count, ['label' => '' ,'options' => ['AND' => 'AND', 'OR' => 'OR', 'XOR' => 'XOR', 'NOT' => 'NOT']]),
+            $this->Form->input('log_'.$count, ['label' => '' ,'options' => ['AND' => 'AND', 'OR' => 'mOR', 'XOR' => 'XOR', 'NOT' => 'NOT']]),
             $this->Form->input('match_'.$count, array('label' => '','options' => ['include' => 'Includes', 'exact' => 'Exactly', 'starts_with' => 'Starts with']))]);
             //$this->Form->input('log_'.$count, ['label' => '' ,'options' => ['AND' => 'AND', 'OR' => 'OR', 'XOR' => 'XOR', 'NOT' => 'NOT']])]);
         $temp .= '</table>';
