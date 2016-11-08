@@ -30074,3 +30074,51 @@ Request URL: /CAM3-0/css/bootstrap.min.css.map
 Stack Trace:
 #0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
 #1 {main}
+2016-11-08 20:49:45 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/css/bootstrap.min.css.map
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2016-11-08 21:15:21 Error: [MissingViewException] View file "Compounds/id_list.ctp" is missing.
+Exception Attributes: array (
+  'file' => 'Compounds/id_list.ctp',
+)
+Request URL: /CAM3-0/Compounds/IdList
+Stack Trace:
+#0 /var/www/html/CAM3-0/lib/Cake/View/View.php(470): View->_getViewFileName(NULL)
+#1 /var/www/html/CAM3-0/lib/Cake/Controller/Controller.php(960): View->render(NULL, NULL)
+#2 /var/www/html/CAM3-0/lib/Cake/Routing/Dispatcher.php(200): Controller->render()
+#3 /var/www/html/CAM3-0/lib/Cake/Routing/Dispatcher.php(167): Dispatcher->_invoke(Object(CompoundsController), Object(CakeRequest))
+#4 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2016-11-08 21:15:21 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/img/cake.icon.png
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2016-11-08 21:15:21 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/img/cake.power.gif
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2016-11-08 21:37:23 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/css/color_schemes_v4.css
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}

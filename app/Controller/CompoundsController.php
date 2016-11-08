@@ -124,6 +124,16 @@ class CompoundsController extends AppController{
         $this->set('data', $this->request->data);
     }
     
+ /**
+     * This funciton adds a Compound to the table
+     * @return type
+     */
+    public function idMass(){
+        $file = fopen($this->request->data['Compound']['fileUrl'],"r"); //gets the file
+    }
+       
+    
+    
     /**
      * Exports the search results to a CSV file
      * @param type $data
