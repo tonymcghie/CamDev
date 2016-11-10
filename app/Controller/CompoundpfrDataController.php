@@ -98,7 +98,8 @@ class CompoundpfrDataController extends AppController{
      * this is the Ajax function for getting the data from the graphing search routine
      * it returns the data in a Json formated string
      */
-    public function getData(){  
+    public function getData(){ 
+        echo "reached getData";
         $this->autoRender=false; //tells Cake no to render the page as only the Json string should be rendered
         $this->layout = 'ajax'; 
         
@@ -108,11 +109,13 @@ class CompoundpfrDataController extends AppController{
             $data['Compoundpfr_data']['cri_'.$count] = $pair['cri'];
             $data['Compoundpfr_data']['val_'.$count] = $pair['val'];
             $data['Compoundpfr_data']['log_'.$count] = $pair['log'];
+            //$data['Compoundpfr_data']['match_'.$count] = $pair['match'];
             $count++;
         } //adds the search criteia value and logic to an array in the same structure as if it came from a form
         $options = $this->request->data['options']; // contains the options such as the pivot
         //gets the criteria for the search
         $search = $this->My->extractSearchTerm($data, ['assigned_name', 'assigned_confid', 'exact_mass', 'intensity_description', 'reference', 'sample_ref', 'crop', 'species', 'tissue', 'genotype', 'analyst'], 'Compoundpfr_data');               
+        //print_r($search);
         $search = $this->addPsu($data, $search); //adds psydonims from compund table to the search in OR array
         $data = $this->Compoundpfr_data->find('all', ['conditions' => $search]); //finds the data 
         //return;
