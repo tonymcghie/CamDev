@@ -129,7 +129,16 @@ class CompoundsController extends AppController{
      * @return type
      */
     public function idMass(){
-        $file = fopen($this->request->data['Compound']['fileUrl'],"r"); //gets the file
+        $data="";
+        if (isset($this->request->data['MyInputData'])){
+            $data = $this->request->data;
+            print_r($data);
+            // $this->set('$filename', $data);
+            $this->set($data);  // passes the entered name back to the view to display
+        }
+        $this->set($data);
+        //print_r($data);
+        //$file = fopen($this->request->data['Compound']['fileUrl'],"r"); //gets the file
     }
        
     
