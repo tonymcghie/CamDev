@@ -30312,3 +30312,159 @@ Request URL: /CAM3-0/css/bootstrap.min.css.map
 Stack Trace:
 #0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
 #1 {main}
+2016-11-14 19:34:00 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/css/bootstrap.min.css.map
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2016-11-14 19:35:02 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/css/bootstrap.min.css.map
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2016-11-14 20:06:41 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/css/bootstrap.min.css.map
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2016-11-14 20:54:50 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/css/bootstrap.min.css.map
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2016-11-14 20:55:28 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/css/bootstrap.min.css.map
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2016-11-14 20:55:43 Error: Fatal Error (1): Allowed memory size of 134217728 bytes exhausted (tried to allocate 32 bytes) in [/var/www/html/CAM3-0/lib/Cake/Model/Datasource/Database/Mysql.php, line 273]
+2016-11-14 20:55:43 Error: [FatalErrorException] Allowed memory size of 134217728 bytes exhausted (tried to allocate 32 bytes)
+Request URL: /CAM3-0/Compoundpfr_data/getData
+Stack Trace:
+#0 /var/www/html/CAM3-0/lib/Cake/Error/ErrorHandler.php(213): ErrorHandler::handleFatalError(1, 'Allowed memory ...', '/var/www/html/C...', 273)
+#1 [internal function]: ErrorHandler::handleError(1, 'Allowed memory ...', '/var/www/html/C...', 273, Array)
+#2 /var/www/html/CAM3-0/lib/Cake/Core/App.php(933): call_user_func('ErrorHandler::h...', 1, 'Allowed memory ...', '/var/www/html/C...', 273, Array)
+#3 /var/www/html/CAM3-0/lib/Cake/Core/App.php(906): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2016-11-14 20:55:45 Error: Fatal Error (1): Allowed memory size of 134217728 bytes exhausted (tried to allocate 81 bytes) in [/var/www/html/CAM3-0/lib/Cake/Model/Datasource/Database/Mysql.php, line 277]
+2016-11-14 20:55:45 Error: [FatalErrorException] Allowed memory size of 134217728 bytes exhausted (tried to allocate 81 bytes)
+Request URL: /CAM3-0/Compoundpfr_data/getData
+Stack Trace:
+#0 /var/www/html/CAM3-0/lib/Cake/Error/ErrorHandler.php(213): ErrorHandler::handleFatalError(1, 'Allowed memory ...', '/var/www/html/C...', 277)
+#1 [internal function]: ErrorHandler::handleError(1, 'Allowed memory ...', '/var/www/html/C...', 277, Array)
+#2 /var/www/html/CAM3-0/lib/Cake/Core/App.php(933): call_user_func('ErrorHandler::h...', 1, 'Allowed memory ...', '/var/www/html/C...', 277, Array)
+#3 /var/www/html/CAM3-0/lib/Cake/Core/App.php(906): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2016-11-14 21:09:01 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/css/bootstrap.min.css.map
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2016-11-14 21:19:41 Error: Fatal Error (4): syntax error, unexpected '$options' (T_VARIABLE) in [/var/www/html/CAM3-0/app/Controller/CompoundpfrDataController.php, line 116]
+2016-11-14 21:19:41 Error: [FatalErrorException] syntax error, unexpected '$options' (T_VARIABLE)
+Request URL: /CAM3-0/Compoundpfr_data/graphData
+Stack Trace:
+#0 /var/www/html/CAM3-0/lib/Cake/Error/ErrorHandler.php(213): ErrorHandler::handleFatalError(4, 'syntax error, u...', '/var/www/html/C...', 116)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', '/var/www/html/C...', 116, Array)
+#2 /var/www/html/CAM3-0/lib/Cake/Core/App.php(933): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', '/var/www/html/C...', 116, Array)
+#3 /var/www/html/CAM3-0/lib/Cake/Core/App.php(906): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2016-11-14 21:19:41 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/img/cake.power.gif
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2016-11-14 21:19:41 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/img/cake.icon.png
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2016-11-14 21:20:09 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/css/bootstrap.min.css.map
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2016-11-14 21:28:36 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/css/bootstrap.min.css.map
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2016-11-14 21:33:08 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/css/bootstrap.min.css.map
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2016-11-14 21:34:43 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/css/bootstrap.min.css.map
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2016-11-14 21:35:54 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/css/bootstrap.min.css.map
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2016-11-14 22:44:45 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/css/bootstrap.min.css.map
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
