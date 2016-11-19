@@ -50,7 +50,7 @@ class CompoundpfrDataController extends AppController{
             return;
         }//if no data is passed return and dont search
         $this->paginate = array(
-        'limit' => 50,
+        'limit' => 30,
         'order' => array('Compoundpfr_data.assigned_name' => 'asc'));           
         $this->request->data['Compoundpfr_data']['num_boxes'] = (isset($this->request->data['Compoundpfr_data']['num_boxes']) ? $this->request->data['Compoundpfr_data']['num_boxes'] : 1); //sets boxnum to 1 if its not already set
         $this->set('box_nums',$this->request->data['Compoundpfr_data']['num_boxes']); //passes the number of boxes from the old form to the new form
@@ -98,27 +98,22 @@ class CompoundpfrDataController extends AppController{
      * this is the Ajax function for getting the data from the graphing search routine
      * it returns the data in a Json formated string
      */
-    public function getData(){ 
-        echo "reached getData-";
-        $this->autoRender=false; //tells Cake not to render the page as only the Json string should be rendered
+    public function getData(){  
+        $this->autoRender=false; //tells Cake no to render the page as only the Json string should be rendered
         $this->layout = 'ajax'; 
         
         $data = ['Compoundpfr_data' => []];
         $count = 0;
-        //print_r($this->request->data['info']);
         foreach ($this->request->data['info'] as $pair){
             $data['Compoundpfr_data']['cri_'.$count] = $pair['cri'];
             $data['Compoundpfr_data']['val_'.$count] = $pair['val'];
             $data['Compoundpfr_data']['log_'.$count] = $pair['log'];
-            $data['Compoundpfr_data']['match_'.$count] = $pair['match'];
             $count++;
         } //adds the search criteia value and logic to an array in the same structure as if it came from a form
         $options = $this->request->data['options']; // contains the options such as the pivot
-        print_r('Options: '); print_r($options);//gets the criteria for the search
-        print_r('before extractSearchTerms: ');print_r($data);print_r('-');
+        //gets the criteria for the search
         $search = $this->My->extractSearchTerm($data, ['assigned_name', 'assigned_confid', 'exact_mass', 'intensity_description', 'reference', 'sample_ref', 'crop', 'species', 'tissue', 'genotype', 'analyst'], 'Compoundpfr_data');               
-        print_r('after extractSearchTerms: ');print_r($search);
-        //$search = $this->addPsu($data, $search); //adds psydonims from compund table to the search in OR array
+        $search = $this->addPsu($data, $search); //adds psydonims from compund table to the search in OR array
         $data = $this->Compoundpfr_data->find('all', ['conditions' => $search]); //finds the data 
         //return;
         if ($options['pivot']!='none'){

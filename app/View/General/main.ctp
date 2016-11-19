@@ -54,7 +54,6 @@
             echo '<li>'.
   $this->Html->link('Add', ['controller' => 'Compounds','action' => 'addCompound', '?' => ['isTablet' => $isTablet]], array('target' => 'mainFrame' , 'class' => 'none')).'</li>';
           //}
-        echo '<li>'.$this->Html->link('ID by Mass', array('controller' => 'Compounds','action' => 'idMass'), array('target' => 'mainFrame' , 'class' => 'none')).'</li>';
     ?>
     </ul></li>
     <li>PFR Data

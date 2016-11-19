@@ -1,0 +1,221 @@
+[33mcommit 5d5df6a8a5f43b83eb187ee1b1acebeb5937e648[m
+Author: tonymcghie <tonymcghienz@gmail.com>
+Date:   Fri Nov 18 23:13:27 2016 +1300
+
+    still trying to solve the graph problem
+
+[33mcommit c770452cfa306095c77c27d80f53c48bc59d2059[m
+Author: tonymcghie <tonymcghienz@gmail.com>
+Date:   Mon Nov 14 23:12:58 2016 +1300
+
+    trying to sort problem with graph data - some progress
+
+[33mcommit f995bfc123c29b81f1e40b43ef24ff7df93d625f[m
+Author: tonymcghie <tonymcghienz@gmail.com>
+Date:   Mon Nov 14 19:30:25 2016 +1300
+
+    new edits
+
+[33mcommit be3a365a924a59dc110b5e74ee4cd67d44e77914[m
+Author: tonymcghie <tonymcghienz@gmail.com>
+Date:   Sun Nov 13 22:29:39 2016 +1300
+
+    starting on id by mass page
+
+[33mcommit 75c7253ca6e6487915e929237af6c8a38a0aefd9[m
+Author: tonymcghie <tonymcghienz@gmail.com>
+Date:   Thu Nov 10 23:18:05 2016 +1300
+
+    trying to fix match for compounds and graph - still does not work
+
+[33mcommit 6d52d2a71f979bdf43e191378780b61f487b0e0b[m
+Author: tonymcghie <tonymcghienz@gmail.com>
+Date:   Tue Nov 8 21:50:25 2016 +1300
+
+    started adding Id compunds by mass routine
+
+[33mcommit 6fde45ac491039b4345124f807ca9d7f835650b1[m
+Author: tonymcghie <tonymcghienz@gmail.com>
+Date:   Mon Nov 7 22:00:45 2016 +1300
+
+    fixing search string matching
+
+[33mcommit b910dea54cc1a8c0c4668371befdc0372ed238be[m
+Author: tonymcghie <tonymcghienz@gmail.com>
+Date:   Sun Nov 6 22:39:19 2016 +1300
+
+    more progress to add matching for search criteria
+
+[33mcommit 72b9fc945be79452cf68263a91ed4ddf5a507dac[m
+Author: tonymcghie <tonymcghienz@gmail.com>
+Date:   Sat Nov 5 21:16:56 2016 +1300
+
+    adding match choices for search criteria
+
+[33mcommit 1e80ed3b943c30834c1634aca46b19dea612a1ff[m
+Author: tonymcghie <tonymcghienz@gmail.com>
+Date:   Wed Nov 2 21:56:56 2016 +1300
+
+    trying to alter pagination - not working
+
+[33mcommit 5532730551062dcb0163b2bf262e8a4df8974461[m
+Author: tonymcghie <tonymcghienz@gmail.com>
+Date:   Sun Oct 30 21:51:52 2016 +1300
+
+    started adding between function for eact mass search
+
+[33mcommit ee90211426ea93483e01e313b8f3927dfbe2da86[m
+Author: tonymcghie <tonymcghienz@gmail.com>
+Date:   Wed Oct 26 23:03:13 2016 +1300
+
+    Changed formating of the reagents calculator
+
+[33mcommit de2dd6f241d93f29e310d6ae5e3325314a32235a[m
+Author: tonymcghie <tonymcghienz@gmail.com>
+Date:   Wed Oct 19 22:29:31 2016 +1300
+
+    change ico image & edit readent calc
+
+[33mcommit b1ca2f1af6c3bf1f62b0367c37b94afcaf70e09d[m
+Author: tonymcghie <tonymcghienz@gmail.com>
+Date:   Tue Oct 18 22:11:54 2016 +1300
+
+    more updates for reagents using the output element
+
+[33mcommit 8e84fcef14a195bf1649be54b99bd81831bdb4df[m
+Author: tonymcghie <tonymcghienz@gmail.com>
+Date:   Sun Oct 16 22:16:19 2016 +1300
+
+    Project autocomplete working properely
+
+[33mcommit 1384eb4600bce0db688ee2c4dcca79f79670f3de[m
+Author: tonymcghie <tonymcghienz@gmail.com>
+Date:   Fri Oct 14 21:00:09 2016 +1300
+
+    progress on projects autocomplete
+
+[33mcommit e0a55b3a5b4af3bf659935891589f5f1133bb044[m
+Author: tonymcghie <tonymcghienz@gmail.com>
+Date:   Thu Oct 13 23:15:28 2016 +1300
+
+    progress adding New Projects
+
+[33mcommit e079e14198fb26f13b49ce0c43e69985af2eb526[m
+Author: tonymcghie <tonymcghienz@gmail.com>
+Date:   Wed Oct 12 22:13:13 2016 +1300
+
+    started adding in Projects
+
+[33mcommit 241cb85eca30ce3b70f9c8e016160f21cd35902c[m
+Author: tonymcghie <tonymcghienz@gmail.com>
+Date:   Sun Oct 9 22:25:54 2016 +1300
+
+    progressing plates - added description
+
+[33mcommit abbdb004d3dee80a2cedd00ee8aee4773fce397d[m
+Author: tonymcghie <tonymcghienz@gmail.com>
+Date:   Sun Oct 2 21:57:21 2016 +1300
+
+    adjusting layout for reagents
+
+[33mcommit 34f9a742cbaaa3ef47b6b67e2e597d6d26e8db58[m
+Author: tonymcghie <tonymcghienz@gmail.com>
+Date:   Thu Sep 29 22:33:17 2016 +1300
+
+    reagent calculator working
+
+[33mcommit 00a4e4174f7c32834ae087bae67b83b154393fa9[m
+Author: tonymcghie <tonymcghienz@gmail.com>
+Date:   Wed Sep 28 22:32:45 2016 +1300
+
+    working on reagents -got js function to work
+
+[33mcommit 0be8fc9868aefd779a35a986b9d1f5229f49b3b0[m
+Author: tonymcghie <tonymcghienz@gmail.com>
+Date:   Tue Sep 27 22:12:19 2016 +1300
+
+    continued work on reagents
+
+[33mcommit 0e549deb584dbf24151a301741f3832bd89cc11b[m
+Author: tonymcghie <tonymcghienz@gmail.com>
+Date:   Mon Sep 26 22:04:57 2016 +1300
+
+    trying to fix reagent.js problem
+
+[33mcommit 5b5c46c69dfb600d99f5a99405c7158fac8542d2[m
+Author: tonymcghie <tonymcghienz@gmail.com>
+Date:   Mon Sep 19 21:30:44 2016 +1200
+
+    working on adding calc conc
+
+[33mcommit 58f8d3a087b66f719eeeceaa886ee06f85b7ac23[m
+Author: tonymcghie <tonymcghienz@gmail.com>
+Date:   Sun Sep 18 21:44:01 2016 +1200
+
+    edits for adding readents to analyses
+
+[33mcommit 6bcd79e9582570fe216ff81883c9cada0436d0e7[m
+Author: tonymcghie <tonymcghienz@gmail.com>
+Date:   Sun Sep 18 19:26:28 2016 +1200
+
+    view compoundpfrData record working
+
+[33mcommit cc57adbc44af8f491215224fbd8c8db243e26e4f[m
+Author: tonymcghie <tonymcghienz@gmail.com>
+Date:   Thu Sep 15 22:21:31 2016 +1200
+
+    trying to find falt with Sample upload - table not showing
+
+[33mcommit 0203dad3c0ad714bcf9bd0fa85da1502bb6d1863[m
+Author: tonymcghie <tonymcghienz@gmail.com>
+Date:   Thu Sep 15 21:20:06 2016 +1200
+
+    more progress with Sample import
+
+[33mcommit c67f56abdd4c110afdc2aa5b95ddfa8f56ab7217[m
+Author: tonymcghie <tonymcghienz@gmail.com>
+Date:   Tue Sep 13 23:15:28 2016 +1200
+
+    more work on samples import
+
+[33mcommit 91f8e24b9d9680b03986881677897a718a45b2fb[m
+Author: tonymcghie <tonymcghienz@gmail.com>
+Date:   Mon Sep 12 22:11:52 2016 +1200
+
+    trying to get importSamples working
+
+[33mcommit 54f06bbf39753c9a2b0172c82f7649c41a5489ac[m
+Author: tonymcghie <tonymcghienz@gmail.com>
+Date:   Sun Sep 11 22:26:24 2016 +1200
+
+    added uploadSample action and added puload function to SamplesController, together iwth an upload view
+
+[33mcommit 695f2b3fbff49cf444c013698b1aa3b2a4ddc04a[m
+Author: tonymcghie <tonymcghienz@gmail.com>
+Date:   Thu Sep 8 22:05:18 2016 +1200
+
+    sample listing working, pagination still not
+
+[33mcommit 6812ca83394555c84ddd1e1ee2458d67c1a768fe[m
+Author: tonymcghie <tonymcghienz@gmail.com>
+Date:   Wed Sep 7 21:36:27 2016 +1200
+
+    progress on Samples - now reads table and views
+
+[33mcommit f5f581be2934ae569e4f72548c91f7104336f972[m
+Author: tonymcghie <tonymcghienz@gmail.com>
+Date:   Tue Sep 6 21:44:03 2016 +1200
+
+    progress on samples - sample->find works
+
+[33mcommit e093bf3597fe5d35078f2e437c10b4353c97ad46[m
+Author: tonymcghie <tonymcghienz@gmail.com>
+Date:   Mon Sep 5 21:52:28 2016 +1200
+
+    edits to samples controller - still not working
+
+[33mcommit 9d2058aaee109e91954bb8dfacb5dce7dcaecdc1[m
+Author: tonymcghie <tonymcghienz@gmail.com>
+Date:   Mon Sep 5 20:52:20 2016 +1200
+
+    first commit

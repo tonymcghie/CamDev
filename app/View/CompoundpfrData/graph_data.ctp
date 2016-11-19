@@ -181,7 +181,7 @@ echo '</table>';
             var data = [];
             var last=$("#Compoundpfr_dataCri"+ (l+1) +"_1").length > 0; //passed to the success function 
             for (var i = 1;$("#Compoundpfr_dataCri"+l+"_"+i).length > 0;i++){
-                data.push({cri: ($('#Compoundpfr_dataCri'+l+'_'+i).val()), val: ($('#Compoundpfr_dataVal'+l+'_'+i).val()), log: ($('#Compoundpfr_dataLog'+l+'_'+i).val()), match: ($('#Compoundpfr_dataMatch'+l+'_'+i).val())});
+                data.push({cri: ($('#Compoundpfr_dataCri'+l+'_'+i).val()), val: ($('#Compoundpfr_dataVal'+l+'_'+i).val()), log: ($('#Compoundpfr_dataLog'+l+'_'+i).val())});
             } //sets the array of criteria values and logic that will be passed to the controller for the current set
             
             var options = {pivot: $("#Pivot_By").val(), xAxis: $("#x_axis").val(), yAxis: $("#y_axis").val()}; //passed to the controller so that it knows how to pivot the data
