@@ -122,6 +122,13 @@ class CompoundsController extends AppController{
     }
     
     /**
+     * This funciton adds a Compound to the table
+     * @return type
+     */
+    public function idMass(){
+    }  
+    
+    /**
      * Exports the search results to a CSV file
      * @param type $data
      */
