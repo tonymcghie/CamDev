@@ -45,10 +45,10 @@ $pivotOptions = [ //this has the options that go into what the data can be pivot
     'tissue' => 'Tissue'];
 
 echo '<table class="noFormat search">'; //formatting needs to be looked at and add ing search boxes
-echo $this->Html->tableCells([$this->Form->input('x_axis', ['label' => 'X-axis', 'id' => 'x_axis', 'options' => $axisOptions]),
-        $this->Form->input('y_axis', ['label' => 'Y-axis', 'id' => 'y_axis', 'options' => $axisOptions]),
-        $this->Form->input('chartType', ['label' => 'Chart Type', 'id' => 'chartType', 'options' => ['pie' => '2D Pie', 'pie3d' => '3D Pie', 'bar' => 'Bar', 'line' => 'Line', 'scatter' => 'Scatter', 'table' => 'Table']]),    
-    $this->Form->input('Pivot_by', ['id' => 'Pivot_By', 'options' => $pivotOptions])]);
+echo $this->Html->tableCells([$this->Form->input('x_axis:', ['label' => 'X-axis', 'id' => 'x_axis', 'options' => $axisOptions]),
+        $this->Form->input('y_axis', ['label' => 'Y-axis:', 'id' => 'y_axis', 'options' => $axisOptions]),
+        $this->Form->input('chartType', ['label' => 'Chart Type:', 'id' => 'chartType', 'options' => ['pie' => '2D Pie', 'pie3d' => '3D Pie', 'bar' => 'Bar', 'line' => 'Line', 'scatter' => 'Scatter', 'table' => 'Table']]),    
+    $this->Form->input('Pivot_by(average):', ['id' => 'Pivot_By', 'options' => $pivotOptions])]);
 echo $this->Html->tableCells([
     '<span id="addSet" class="large-button anySizeButton" style="padding: 5px;height: 30px;margin-top:10px">Add Set</span>']);
 echo '</table>';

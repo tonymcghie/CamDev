@@ -53,14 +53,14 @@ class MyComponent extends Component{
                         continue;
                     }
                     if ($model == 'Compoundpfr_data' && $criteria[$count] == 'exact_mass_10mDa'){
-                        $criteria[$count]="exact_mass";
+                        $criteria[$count]="exact_mass"; //set variable to exact_mass so that the correct column is used for dB searching
                         $lower_limit=$value[$count]-0.010;
                         $upper_limit=$value[$count]+0.010;
                         array_push($search[$logic[$count]], [$model.'.'.$criteria[$count].' BETWEEN ? AND ?' => array($lower_limit, $upper_limit)]);
                         continue;
                     }
                     if ($model == 'Compoundpfr_data' && $criteria[$count] == 'exact_mass_50mDa'){
-                        $criteria[$count]="exact_mass";
+                        $criteria[$count]="exact_mass";  //set variable to exact_mass so that the correct column is used for dB searching
                         $lower_limit=$value[$count]-0.050;
                         $upper_limit=$value[$count]+0.050;
                         array_push($search[$logic[$count]], [$model.'.'.$criteria[$count].' BETWEEN ? AND ?' => array($lower_limit, $upper_limit)]);
