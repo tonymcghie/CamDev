@@ -59,7 +59,11 @@ class CompoundpfrDataController extends AppController{
             $this->request->data['Compoundpfr_data']['end_date'] = $this->request->data['Compoundpfr_data']['end_date']['year'].'-'.$this->request->data['Compoundpfr_data']['end_date']['month'].'-'.$this->request->data['Compoundpfr_data']['end_date']['day'];
         } //if the date is set then add the date to the search query
         //gets an array of the criteria for the search
-        $search = $this->My->extractSearchTerm($this->request->data, ['assigned_name', 'assigned_confid', 'exact_mass', 'intensity_description', 'reference', 'sample_ref', 'crop', 'species', 'tissue', 'genotype', 'analyst', 'file'], 'Compoundpfr_data');    
+        // add some lines to fine problems.  Want see what data is returned from the form
+        $search_data = $this->request->data;
+        print_r($search_data);print_r('');
+        $search = $this->My->extractSearchTerm($search_data, ['assigned_name', 'assigned_confid', 'exact_mass', 'intensity_description', 'reference', 'sample_ref', 'crop', 'species', 'tissue', 'genotype', 'analyst', 'file'], 'Compoundpfr_data'); 
+        //$search = $this->My->extractSearchTerm($this->request->data, ['assigned_name', 'assigned_confid', 'exact_mass', 'intensity_description', 'reference', 'sample_ref', 'crop', 'species', 'tissue', 'genotype', 'analyst', 'file'], 'Compoundpfr_data');
         $search = $this->addPsu($this->request->data, $search); //adds the synonims to the search array
         print_r($search);
         $this->set('results' ,$this->paginate('Compoundpfr_data', $search)); //sets the results from the cake pagination helper

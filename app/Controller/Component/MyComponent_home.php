@@ -24,13 +24,13 @@ class MyComponent extends Component{
      * @return array An array that CakePHP can search on
      */
     public function extractSearchTerm($data, $allCols, $model){            
-        $criteria = array();$value = array();$logic = array();$match = array();
+        $criteria = array();$value = array();$match = array();$logic = array();
         $count=0;
         while (isset($data[$model]['cri_'.$count])){
             array_push($criteria, $data[$model]['cri_'.$count]);//get the criteria values as an array
             array_push($value, $data[$model]['val_'.$count]);    //get the values as an array  
             array_push($logic, $data[$model]['log_'.$count]);
-            //array_push($match, $data[$model]['match_'.$count]);  
+            array_push($match, $data[$model]['match_'.$count]);    
             $count++;
         }        
         $search = array();
@@ -46,7 +46,7 @@ class MyComponent extends Component{
                         if (!isset($search['OR'])){$search['OR'] = [];}
                         array_push($search['OR'],[$model.'.'.$col.' LIKE' =>  '%'.$value[$count].'%']);                                              
                     }
-                } else { //only one table column is to be searchered when 'all' is not selected
+                } else { //only one table column searched is criteria if it isnt set to all
                     if (!isset($search[$logic[$count]])){$search[$logic[$count]]=[];} //if not set make it an array
                     // special search criteria added as requested
                     if ($model == 'Compound' && $criteria[$count] == 'compound_name'){//
@@ -54,20 +54,18 @@ class MyComponent extends Component{
                         continue;
                     }
                     if ($model == 'Compoundpfr_data' && $criteria[$count] == 'exact_mass_10mDa'){
-                        $criteria[$count]="exact_mass"; //set variable to exact_mass so that the correct column is used for dB searching
                         $lower_limit=$value[$count]-0.010;
                         $upper_limit=$value[$count]+0.010;
-                        array_push($search[$logic[$count]], [$model.'.'.$criteria[$count].' BETWEEN ? AND ?' => array($lower_limit, $upper_limit)]);
+                        array_push($search[$logic[$count]], [$model.'.'.exact_mass.' BETWEEN ? AND ?' => array($lower_limit, $upper_limit)]);
                         continue;
                     }
                     if ($model == 'Compoundpfr_data' && $criteria[$count] == 'exact_mass_50mDa'){
-                        $criteria[$count]="exact_mass";  //set variable to exact_mass so that the correct column is used for dB searching
                         $lower_limit=$value[$count]-0.050;
                         $upper_limit=$value[$count]+0.050;
-                        array_push($search[$logic[$count]], [$model.'.'.$criteria[$count].' BETWEEN ? AND ?' => array($lower_limit, $upper_limit)]);
+                        array_push($search[$logic[$count]], [$model.'.'.exact_mass.' BETWEEN ? AND ?' => array($lower_limit, $upper_limit)]);
                         continue;
                     }
-                    /*if ($match[$count] == 'contain'){
+                    if ($match[$count] == 'include'){
                         array_push($search[$logic[$count]], [$model.'.'.$criteria[$count].' LIKE' => '%'.$value[$count].'%']);
                     }
                     if ($match[$count] == 'exact'){
@@ -75,8 +73,7 @@ class MyComponent extends Component{
                     }
                     if ($match[$count] == 'starts_with'){
                         array_push($search[$logic[$count]], [$model.'.'.$criteria[$count].' LIKE' => ''.$value[$count].'%']);
-                    }*/
-                    array_push($search[$logic[$count]], [$model.'.'.$criteria[$count].' LIKE' => '%'.$value[$count].'%']);   //default search string constructured                  
+                    }
                 }
             }
         }
