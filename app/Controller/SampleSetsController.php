@@ -185,7 +185,7 @@ class SampleSetsController extends AppController{
             return;
         } //if there is no data then stop        
         $this->paginate = array( 
-        'limit' => 20,
+        'limit' => 30,
         'order' => array('SampleSet.date' => 'asc'));     //sets up the pagination options
         
         $this->request->data['SampleSet']['num_boxes'] = (isset($this->request->data['SampleSet']['num_boxes']) ? $this->request->data['SampleSet']['num_boxes'] : 1); //sets boxnum to 1 if its not already set
@@ -196,6 +196,7 @@ class SampleSetsController extends AppController{
         }
         //gets the criteria for the search
         $search = $this->My->extractSearchTerm($this->request->data, ['submitter', 'chemist', 'set_code', 'crop', 'type', 'p_name', 'p_code', 'exp_reference', 'compounds', 'comments', 'sample_loc', 'set_reason'], 'SampleSet');        
+        var_dump($search);
         $results = $this->paginate('SampleSet', $search); //search for the data for the page
         $this->set('num', $this->SampleSet->find('count', ['conditions' =>$search]));// finds the num of results
         $this->set('results' ,$results); //sends the reuslts to the page  

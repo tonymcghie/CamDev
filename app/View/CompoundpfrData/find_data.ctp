@@ -45,6 +45,10 @@ if (!isset($box_nums)){$box_nums=1;} //sets the box nums for the first time
  </script>
 </header>
  <?php    
+// echo '<code>';
+// var_dump($this->Paginator>paging);
+// echo '</code>';
+$this->Paginator->settings['limit'] = 30;
     echo '<div  id="resultsTable">';
     if (isset($results[0]['Compoundpfr_data'])){
 	   $names = array( $this->Paginator->sort('assigned_name', 'Name', ['data' => $data]),

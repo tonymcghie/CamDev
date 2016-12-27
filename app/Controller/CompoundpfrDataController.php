@@ -45,7 +45,7 @@ class CompoundpfrDataController extends AppController{
         if ($data!=null&&!isset($this->request->data['Compoundpfr_data'])){
             parse_str($data);
             $this->request->data['Compoundpfr_data'] = $Compoundpfr_data;
-        }//if no data is passed get the data from the set params
+        }// If no data is passed get the data from the set params.
         if (!isset($this->request->data['Compoundpfr_data'])){
             return;
         }//if no data is passed return and dont search
@@ -61,12 +61,15 @@ class CompoundpfrDataController extends AppController{
         //gets an array of the criteria for the search
         // add some lines to fine problems.  Want see what data is returned from the form
         $search_data = $this->request->data;
-        print_r($search_data);print_r('');
+//        print_r($search_data);print_r('');
         $search = $this->My->extractSearchTerm($search_data, ['assigned_name', 'assigned_confid', 'exact_mass', 'intensity_description', 'reference', 'sample_ref', 'crop', 'species', 'tissue', 'genotype', 'analyst', 'file'], 'Compoundpfr_data'); 
         //$search = $this->My->extractSearchTerm($this->request->data, ['assigned_name', 'assigned_confid', 'exact_mass', 'intensity_description', 'reference', 'sample_ref', 'crop', 'species', 'tissue', 'genotype', 'analyst', 'file'], 'Compoundpfr_data');
         $search = $this->addPsu($this->request->data, $search); //adds the synonims to the search array
-        print_r($search);
+//        print_r($search);
+        echo $this->paginate['limit'];
+        var_dump($search);
         $this->set('results' ,$this->paginate('Compoundpfr_data', $search)); //sets the results from the cake pagination helper
+//        var_dump($this->paginate('Compoundpfr_data', $search));
         $this->set('num', $this->Compoundpfr_data->find('count', ['conditions' =>$search]));
         $this->set('data', $this->request->data); //sends all the data(search criteria) to the view so it can be added to the ajax links
     } 
