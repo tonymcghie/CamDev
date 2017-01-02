@@ -30,6 +30,67 @@ class MyComponent extends Component{
             array_push($criteria, $data[$model]['cri_'.$count]);//get the criteria values as an array
             array_push($value, $data[$model]['val_'.$count]);    //get the values as an array  
             array_push($logic, $data[$model]['log_'.$count]);
+            array_push($match, $data[$model]['match_'.$count]);  
+            $count++;
+        }        
+        $search = array();
+        if (isset($data[$model]['start_date'])&&$data[$model]['start_date']!==$data[$model]['end_date']&&$data[$model]['isDate']==1){            
+            $search['date >='] = $data[$model]['start_date'];
+            $search['date <='] = $data[$model]['end_date'];
+        }        
+        unset($data[$model]['isDate']);
+        for ($count=0;$count<count($criteria);$count++){ //add the valid search pairs to an array
+            if ($criteria[$count]!=''&&$value[$count]!=''&&$criteria[$count]!='empty'){                
+                if ($criteria[$count]=='all'){ //all table columns searched if the criteria is all
+                    foreach ($allCols as $col){
+                        if (!isset($search['OR'])){$search['OR'] = [];}
+                        array_push($search['OR'],[$model.'.'.$col.' LIKE' =>  '%'.$value[$count].'%']);                                              
+                    }
+                } else { //only one table column is to be searchered when 'all' is not selected
+                    if (!isset($search[$logic[$count]])){$search[$logic[$count]]=[];} //if not set make it an array
+                    // special search criteria added as requested
+                    if ($model == 'Compound' && $criteria[$count] == 'compound_name'){//
+                        array_push($search[$logic[$count]], ['OR' => [[$model.'.'.$criteria[$count].' LIKE' => '%'.$value[$count].'%'],[$model.'.pseudonyms LIKE' => '%'.$value[$count].'%'],[$model.'.sys_name LIKE' => '%'.$value[$count].'%']]]);                        
+                        continue;
+                    }
+                    if ($model == 'Compoundpfr_data' && $criteria[$count] == 'exact_mass_10mDa'){
+                        $criteria[$count]="exact_mass"; //set variable to exact_mass so that the correct column is used for dB searching
+                        $lower_limit=$value[$count]-0.010;
+                        $upper_limit=$value[$count]+0.010;
+                        array_push($search[$logic[$count]], [$model.'.'.$criteria[$count].' BETWEEN ? AND ?' => array($lower_limit, $upper_limit)]);
+                        continue;
+                    }
+                    if ($model == 'Compoundpfr_data' && $criteria[$count] == 'exact_mass_50mDa'){
+                        $criteria[$count]="exact_mass";  //set variable to exact_mass so that the correct column is used for dB searching
+                        $lower_limit=$value[$count]-0.050;
+                        $upper_limit=$value[$count]+0.050;
+                        array_push($search[$logic[$count]], [$model.'.'.$criteria[$count].' BETWEEN ? AND ?' => array($lower_limit, $upper_limit)]);
+                        continue;
+                    }
+                    if ($match[$count] == 'contain'){
+                        array_push($search[$logic[$count]], [$model.'.'.$criteria[$count].' LIKE' => '%'.$value[$count].'%']);
+                    }
+                    if ($match[$count] == 'exact'){
+                        array_push($search[$logic[$count]], [$model.'.'.$criteria[$count].' LIKE' => ''.$value[$count].'']);
+                    }
+                    if ($match[$count] == 'starts_with'){
+                        array_push($search[$logic[$count]], [$model.'.'.$criteria[$count].' LIKE' => ''.$value[$count].'%']);
+                    }
+                    array_push($search[$logic[$count]], [$model.'.'.$criteria[$count].' LIKE' => '%'.$value[$count].'%']);   //default search string constructured                  
+                }
+            }
+        }
+        return $search;
+    }
+    
+    // added duplicate extractSearchTerm got graping only - this allows the depoyment of the search criteria matching
+    public function extractSearchTermGraph($data, $allCols, $model){            
+        $criteria = array();$value = array();$logic = array();$match = array();
+        $count=0;
+        while (isset($data[$model]['cri_'.$count])){
+            array_push($criteria, $data[$model]['cri_'.$count]);//get the criteria values as an array
+            array_push($value, $data[$model]['val_'.$count]);    //get the values as an array  
+            array_push($logic, $data[$model]['log_'.$count]);
             //array_push($match, $data[$model]['match_'.$count]);  
             $count++;
         }        
@@ -82,6 +143,7 @@ class MyComponent extends Component{
         }
         return $search;
     }
+    
     public function resultsToGraph($results, $model, $x_axis, $y_axis){
         $data = array();
         foreach($results as $row){

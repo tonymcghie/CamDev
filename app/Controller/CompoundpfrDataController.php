@@ -50,7 +50,7 @@ class CompoundpfrDataController extends AppController{
             return;
         }//if no data is passed return and dont search
         $this->paginate = array(
-        'limit' => 30,
+        'limit' => 40,
         'order' => array('Compoundpfr_data.assigned_name' => 'asc'));           
         $this->request->data['Compoundpfr_data']['num_boxes'] = (isset($this->request->data['Compoundpfr_data']['num_boxes']) ? $this->request->data['Compoundpfr_data']['num_boxes'] : 1); //sets boxnum to 1 if its not already set
         $this->set('box_nums',$this->request->data['Compoundpfr_data']['num_boxes']); //passes the number of boxes from the old form to the new form
@@ -119,7 +119,7 @@ class CompoundpfrDataController extends AppController{
         } //adds the search criteia value and logic to an array in the same structure as if it came from a form
         $options = $this->request->data['options']; // contains the options such as the pivot
         //gets the criteria for the search
-        $search = $this->My->extractSearchTerm($data, ['assigned_name', 'assigned_confid', 'exact_mass', 'intensity_description', 'reference', 'sample_ref', 'crop', 'species', 'tissue', 'genotype', 'analyst'], 'Compoundpfr_data');               
+        $search = $this->My->extractSearchTermGraph($data, ['assigned_name', 'assigned_confid', 'exact_mass', 'intensity_description', 'reference', 'sample_ref', 'crop', 'species', 'tissue', 'genotype', 'analyst'], 'Compoundpfr_data');               
         $search = $this->addPsu($data, $search); //adds psydonims from compund table to the search in OR array
         $data = $this->Compoundpfr_data->find('all', ['conditions' => $search]); //finds the data 
         //return;
