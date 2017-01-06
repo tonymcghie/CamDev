@@ -122,11 +122,19 @@ class CompoundsController extends AppController{
     }
     
     /**
-     * This funciton adds a Compound to the table
-     * @return type
+     * This function contains the code for identifying unknown compounds by accurate mass.
+     * 1) a csv file containing accurate masses is read;
+     * 2) each mass is conpared with entries in the compound table;
+     * 3) successful hits are written into an output file that is sent to Downloads
+     */
+    public function IdByMass(){
+    } 
+        
+    /**
+     * This function displays a message describing the process for identifying unknown compounds by accurate mass
      */
     public function idMass(){
-    }  
+    } 
     
     /**
      * Exports the search results to a CSV file
