@@ -1,5 +1,6 @@
+/*
 
-/**switch view images**/
+!**switch view images**!
 img.switchImg{
     border-radius: 0px;
     position: absolute;
@@ -34,7 +35,7 @@ img.switchImg{
 
     padding: 0px 13px 20px 29px;
 }
-/**side bar img login and logout menu**/
+!**side bar img login and logout menu**!
 .sidebar img.menu{
     cursor: pointer;
     width: 30px;
@@ -64,7 +65,7 @@ img.switchImg{
 .sidebar .login li:hover{
     background-color: lightgrey;
 }
-/**for the color picker*/
+!**for the color picker*!
 ul:not(.menu){
     list-style-type: disc;
     margin:0px;
@@ -83,7 +84,7 @@ ul:not(.menu) li.selected{
 ul:not(.menu) li:before {
     font-size: 150%;
 }
-/*this firefox selecting the list elements*/
+!*this firefox selecting the list elements*!
 ul:not(.menu) li{
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -93,13 +94,13 @@ ul:not(.menu) li{
     user-select: none;
 }
 
-/** end color picker*/
+!** end color picker*!
 
 h1{
     margin: 0px;
 }
 h1 a{
-    /*color: palegreen;*/
+    !*color: palegreen;*!
     font-size: 1.8em;
     text-decoration: none;
     margin: 3px;
@@ -143,3 +144,4 @@ body{
     padding: 0px;
     overflow: hidden;
 }
+*/

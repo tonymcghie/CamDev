@@ -9,7 +9,6 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 	<title>
             CAM - <?php echo $this->fetch('title'); ?>
 	</title>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<?php
 		echo $this->Html->meta('icon');
 
@@ -21,14 +20,6 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 	?>
 </head>
 <body>
-        <script>
-            jQuery(document).on("mobileinit", function() {
-                jQuery.mobile.autoInitializePage = false;
-            });
-        </script>
-        <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-        <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-        
 	<div id="container" style="margin-bottom: 50%;display: none;/*hides the page untill it has the right class*/">
 		<div id="content">
 			<?php echo $this->fetch('content'); ?>                    

@@ -11,7 +11,6 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
             CAM - <?php echo $this->fetch('title'); ?>
 	</title>
 				<link href='https://fonts.googleapis.com/css?family=Roboto:400,400italic,300italic,300,500,500italic|Roboto+Slab:400,300,700' rel='stylesheet' type='text/css'>
-				<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<?php
 		echo $this->Html->meta('icon');
 

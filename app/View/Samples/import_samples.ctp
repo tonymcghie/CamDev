@@ -97,6 +97,7 @@ function makeTable(data){
     }
     $('#csvTableDiv').width($('#csvTable').width()+10);
 }
+
 function makeSelect(name, title){
     var select = '<select name="data[Samples]['+name+']">';
     for (var i = 0;i<columns['names'].length;i++){

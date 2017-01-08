@@ -3,8 +3,6 @@
     echo $this->Html->script('http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js' , array('inline' => false));      
     
 ?>
-<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-
 <div class="sidebar" id="sidebar">
     <img src="img/login_menu.png" class="menu" id="menuButton">    
     <?php if (isset($isTablet) && $isTablet === 'true'): ?>

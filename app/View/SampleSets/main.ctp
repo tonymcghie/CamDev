@@ -1,6 +1,5 @@
 <?php
     $this->assign('title', 'Chemistry WorkBench');
-    echo $this->Html->script('http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js' , array('inline' => false));      
 ?>
 <div class="sidebar" id="sidebar">
     <img src="img/login_menu.png" class="menu" id="menuButton">

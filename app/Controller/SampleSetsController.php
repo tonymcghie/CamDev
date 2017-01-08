@@ -71,16 +71,7 @@ class SampleSetsController extends AppController{
         if (isset($this->Auth->Session->read($this->Auth->sessionKey)['Auth']['User']['name'])){
             $this->set('user', $this->Auth->Session->read($this->Auth->sessionKey)['Auth']['User']);
         } //sets the username to the view
-        if (isset($this->params['url']['isTablet']) && $this->params['url']['isTablet']==='true'){
-            $this->autoRender = false;
-            $this->set('tabletView', 'true');
-            $this->layout= 'TabletLayout';
-            $this->render('new_set_tablet');
-        } else {
-            $this->set('tabletView', 'false');
-            $this->autoRender = true;
-        } //selects the right view to use (Tablet or not tablet)
-        
+
         if ($this->request->is('post')){           
             $data = $this->request->data;      //gets the data
             $numChem = $this->Chemist->find('count', array('conditions' => array('name' => $data['SampleSet']['chemist']))); //finds the number of chemists with the name entered (should always be 1)
