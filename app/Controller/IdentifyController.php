@@ -36,7 +36,17 @@ class IdentifyController extends AppController{
      * 2) each mass is conpared with entries in the compound table;
      * 3) successful hits are written into an output file that is sent to Downloads
      */
-    public function IdByMass(){
+    public function SelectFile(){
+        
+    }
+    
+    public function IdByMass() {
+
+    }
+
+
+    /**
+    public function ReadFile(){
         if($this->request->is('post')){ 
             $data = $this->request->data['Identify'];
             $cols = array();
@@ -68,20 +78,20 @@ class IdentifyController extends AppController{
             } // saves all the values and sets a success or failure message
         }
     } 
-        
+    */   
     /**
      * This function displays a message describing the process for identifying unknown compounds by accurate mass
      */
     public function idMass(){
     }
     
-    public function getCsv(){
+    public function ReadFile(){
         $this->layout = 'MinLayout'; //minimilistic layout that has no formating
         if ($this->request->is('post')){            
-            $newURL = $this->file_URL.'files/compoundpfrData/temp'.rand().'.csv'; //adds a random number to the end of the file name to avoid clashes           
-            move_uploaded_file($this->request->data['CompoundpfrData']['csv_file']['tmp_name'], $newURL); //uploads the file
-            $this->set('fileUrl', $newURL); //passes the new URL to the view
-            $this->set('fileName', $this->request->data['CompoundpfrData']['csv_file']['name']); //passes the filename to the view so it can be later added to the table
+            //$newURL = $this->file_URL.'files/compoundpfrData/temp'.rand().'.csv'; //adds a random number to the end of the file name to avoid clashes           
+            //move_uploaded_file($this->request->data['CompoundpfrData']['csv_file']['tmp_name'], $newURL); //uploads the file
+            //$this->set('fileUrl', $newURL); //passes the new URL to the view
+            $this->set('fileName', $this->request->data['Identify']['csv_file']['name']); //passes the filename to the view so it can be later added to the table
         } //if the form is submitted then uplaod the csv file
     }
 }

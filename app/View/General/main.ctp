@@ -54,7 +54,7 @@
             echo '<li>'.
   $this->Html->link('Add', ['controller' => 'Compounds','action' => 'addCompound', '?' => ['isTablet' => $isTablet]], array('target' => 'mainFrame' , 'class' => 'none')).'</li>';
             echo '<li>'.$this->Html->link('ID by Mass', array('controller' => 'Identify','action' => 'idMass'), array('target' => 'mainFrame' , 'class' => 'none')).'</li>';
-            echo '<li>'.$this->Html->link('ID by Mass(ac)', array('controller' => 'Identify','action' => 'IdByMass'), array('target' => 'mainFrame' , 'class' => 'none')).'</li>';
+            echo '<li>'.$this->Html->link('ID by Mass(ac)', array('controller' => 'Identify','action' => 'SelectFile'), array('target' => 'mainFrame' , 'class' => 'none')).'</li>';
           //}
     ?>
     </ul></li>
