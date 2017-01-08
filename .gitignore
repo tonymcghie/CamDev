@@ -1,14 +1,14 @@
 # User specific & automatically generated files #
 #################################################
-/app/webroot/data
 /app/webroot/data/
-/lib/Cake/Console/Templates/skel/tmp/
-/plugins
-/vendors
+/lib
+/app/Lib/
+/app/Plugin/
+/app/Vendor/
 /build
 /dist
 /tags
-/app/temp/
+/app/tmp/
 *.mo
 
 # IDE and editor specific files #
