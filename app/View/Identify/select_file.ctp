@@ -1,27 +1,14 @@
-<header>
-<h1>Identify Compound by Matching Accurate Masses</h1>
-<?php echo $this->Html->image('underconstruction.png', array('alt' => 'CAM Logo', 'width' => '140')); ?>
-<p>Select data file (.csv) containing accurate masses.</p>
-</header>
-
-
-<table class="noFormat">
-    <tr>
-        <td style="width: 92%;">
-            <iframe id="csvFileFrame" class="iframeNoformat" src="<?php echo $this->Html->url(['controller' => 'Identify', 'action' => 'ReadFile']);?>"></iframe>
-        </td>
-        <td style="width: 50%;">
-            <span id="importData" class="find-button anySizeButton green-button">Read File</span>
-        </td>
-    </tr>
-</table>
-
-<div id="csvMassDataDiv">    
-    <?php
-    echo $this->Form->create('Identify', ['id' => 'csvForm']);
-    echo $this->Form->hidden('fileName', ['id' => 'fileName']);
-    echo $this->Form->hidden('fileUrl', ['id' => 'fileUrl']);
-    ?>
-</div>
-
-
+<p>Select file view</p>
+<?php
+    echo $this->Form->create('Identify', ['id' => 'fileForm', 'url' => 'SearchMasses', 'type' => 'file']);
+    echo $this->Form->hidden('MAX_FILE_SIZE', ['value' => '48000000']);
+    echo $this->Form->hidden('fileUrl', ['value' => (isset($fileUrl) ? $fileUrl : '') , 'id' => 'fileUrl']);
+    echo $this->Form->hidden('fileName', ['value' => (isset($fileName) ? $fileName : '') , 'id' => 'fileName']);
+    echo $this->Form->input('csv_file', ['label' => false, 'type' => 'file', 'id' => 'csvFile']);
+    echo $this->Form->end();
+?>
+<script>
+    $('#csvFile').on('change',function(){
+       $('#fileForm').submit(); 
+    });
+</script>

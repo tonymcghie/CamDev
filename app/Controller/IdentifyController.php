@@ -85,13 +85,25 @@ class IdentifyController extends AppController{
     public function idMass(){
     }
     
-    public function ReadFile(){
+    public function SearchMasses(){
         $this->layout = 'MinLayout'; //minimilistic layout that has no formating
-        if ($this->request->is('post')){            
-            //$newURL = $this->file_URL.'files/compoundpfrData/temp'.rand().'.csv'; //adds a random number to the end of the file name to avoid clashes           
-            //move_uploaded_file($this->request->data['CompoundpfrData']['csv_file']['tmp_name'], $newURL); //uploads the file
-            //$this->set('fileUrl', $newURL); //passes the new URL to the view
-            $this->set('fileName', $this->request->data['Identify']['csv_file']['name']); //passes the filename to the view so it can be later added to the table
-        } //if the form is submitted then uplaod the csv file
+        if ($this->request->is('post')){
+            //$file = fopen($this->request->data['Identify']['csv_file']['tmp_name'],"r"); //sets up the file for reading
+            $dataUrl="/home/tony/temp/TK151_apple_dissect.csv";
+            echo $dataUrl;
+            $massdata = array();
+            $file = fopen($dataUrl,"r"); //sets up the file for reading
+            while (1==1){
+                $line = fgetcsv($file);
+                if ($line=== false){
+                    break;
+                } //when there are no more lines exit the loop               
+                //var_dump($line);
+                array_push($massdata, $line); //adds the array contining the values to save to an array containing all vlaues to save                
+            } //loops through the CSV file an adds the appropriate values to an array
+            $this->set('fileName', $this->request->data['Identify']['csv_file']['name']); //passes the filename to the view 
+            $this->set('masses', $massdata); // pass array with the mass data from file to the view 
+            //var_dump($massdata);
+        }
     }
 }
