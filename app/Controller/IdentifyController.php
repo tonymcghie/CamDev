@@ -93,15 +93,21 @@ class IdentifyController extends AppController{
             echo $dataUrl;
             $massdata = array();
             $file = fopen($dataUrl,"r"); //sets up the file for reading
+            $head = fgetcsv($file); //read the column headers from the datafile
             while (1==1){
                 $line = fgetcsv($file);
                 if ($line=== false){
                     break;
                 } //when there are no more lines exit the loop               
                 //var_dump($line);
+                $search =  'Compound,exact_mass'.' LIKE '.$line[3].'%';
+                var_dump($search);
+                $this->Compound->find('all', ['conditions' =>$search]);
+                //$compound = $this->Compound->findById($line[3]);
                 array_push($massdata, $line); //adds the array contining the values to save to an array containing all vlaues to save                
             } //loops through the CSV file an adds the appropriate values to an array
             $this->set('fileName', $this->request->data['Identify']['csv_file']['name']); //passes the filename to the view 
+            $this->set('head', $head); // pass pass table headings to the view 
             $this->set('masses', $massdata); // pass array with the mass data from file to the view 
             //var_dump($massdata);
         }
