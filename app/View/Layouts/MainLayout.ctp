@@ -15,7 +15,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 		<link href='https://fonts.googleapis.com/css?family=Roboto:400,400italic,300italic,300,500,500italic|Roboto+Slab:400,300,700' rel='stylesheet' type='text/css'>
 
 	<?php
-		echo $this->Html->css(array ('bootstrap.min', 'materialize_colors', 'main_'.getenv('CSS_VERSION'),'button_'.getenv('CSS_VERSION'), 'simple-sidebar_'.getenv('CSS_VERSION'), 'custom_'.getenv('CSS_VERSION')));
+		echo $this->Html->css(array ('bootstrap.min', 'materialize_colors'));/* , 'main_'.getenv('CSS_VERSION'),'button_'.getenv('CSS_VERSION'), 'simple-sidebar_'.getenv('CSS_VERSION'), 'custom_'.getenv('CSS_VERSION') */
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
 		echo $this->fetch('script');
