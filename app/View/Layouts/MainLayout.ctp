@@ -16,13 +16,17 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 
 	<?php
 		echo $this->Html->css(array ('bootstrap.min', 'materialize_colors'));/* , 'main_'.getenv('CSS_VERSION'),'button_'.getenv('CSS_VERSION'), 'simple-sidebar_'.getenv('CSS_VERSION'), 'custom_'.getenv('CSS_VERSION') */
-		echo $this->fetch('meta');
+		echo $this->Html->script('jquery-3.1.1.min', ['inline' => true]);
+		echo $this->Html->script('bootstrap.min', ['inline' => false]);
+		echo $this->Html->script('ajax_helper', ['inline' => false]);
+        echo $this->fetch('meta');
 		echo $this->fetch('css');
 		echo $this->fetch('script');
 	?>
-    <script type="text/javascript" src="/js/jquery-3.1.1.min.js"></script>
+
+    <!--<script type="text/javascript" src="/js/jquery-3.1.1.min.js"></script>
     <script type="text/javascript" src="/js/bootstrap.min.js" async></script>
-    <script type="text/javascript" src="/js/ajax_helper.js" async></script>
+    <script type="text/javascript" src="/js/ajax_helper.js" async></script>-->
 </head>
 <body>
 	<div>
