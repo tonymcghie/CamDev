@@ -2,7 +2,7 @@
 $this->assign('title', 'New Set');
 ?>
 <header>
-<h1>PFR Chemistry: Collaboration Workspace</h1>
+<h1><?php echo $this->String->get_string('title', 'SampleSet_form'); ?></h1>
 
 <?php
 if (isset($set_code)){
@@ -13,36 +13,53 @@ if (isset($error)){
 }
 ?>
 
-<p>This workspace is for communicating information about the work unit (set of samples) that will be analysed.
-    Enter the relevant information (* required) and click Save Set</p>
+<p><?php echo $this->String->get_string('sub_title', 'SampleSet_form'); ?></p>
 	</header>
 <?php
 echo $this->Form->create('SampleSet', ['type' => 'file']);
-//This creates all the inputs in an inline table nested with divs and the text to the left in a span
-$this->start('slide1');
-echo $this->My->makeInputRow('isPreSetCode', ['type' => 'checkbox', 'id' => 'isPreSetCode', 'rowId' => 'isPreSetCodeRow'], 'From Previous Set code');
-echo $this->My->makeInputRow('setCode', ['placeholder' => 'Create Sample Set Similar to previous Sample Set', 'id' => 'setCode', 'rowId' => 'setCodeRow'], 'Previous Sample Set:');
-echo $this->My->makeInputRow('confidential', ['type' => 'checkbox'], 'Confidential');
-echo $this->My->makeInputRow('submitter', ['value' => (isset($user['name']) ? $user['name'] : '')], 'PFR Collaborator *');
-echo $this->My->makeInputRow('p_name', ['placeholder' => 'Start typing - registered projects will autocomplete','id' => 'p_name', 'autocomplete' => 'off'], 'Project Name');
-echo $this->My->makeInputRow('p_code', ['id' => 'p_code'], 'Project Code');
-echo $this->My->makeInputRow('exp_reference', ['placeholder' => 'Describe the experiment that produced the sample set'], 'Experiment Reference');
-echo $this->My->makeInputRow('chemist', ['id' => 'chemist' , 'autocomplete' => 'off'], 'Chemist Name *');
-echo $this->My->makeInputRow('crop', ['options' => $this->My->getCropOptions()], 'Crop *');
-echo $this->My->makeInputRow('type', ['placeholder' => 'Fruit, leaf, skin etc...'], 'Sample Type');
-$this->end();
-$this->start('slide2');
-echo $this->My->makeInputRow('number', [], 'Number of Samples *');
-echo $this->My->makeInputRow('sample_loc', [], 'Location/Transport Of Samples');
-echo $this->My->makeInputRow('set_reason', ['rows' => '3', 'placeholder' => 'why is the analysis required. Specifically, what results are required?'], 'Reason for Analysis');
-echo $this->My->makeInputRow('compounds', ['rows' => '3', 'placeholder' => 'Enter specific compound names, or analysis type'], 'Compounds for Analysis *');
-echo $this->My->makeInputRow('containment', ['type' => 'checkbox', 'id' => 'containment'], 'Requires Containment');
-echo $this->My->makeInputRow('containment_details', ['rows' => '3', 'rowId' => 'containment_details', 'rowStyle' => 'display: none;'], 'Details');
-echo $this->My->makeInputRow('comments', ['rows' => '3', 'placeholder' => 'Insert any additional information. For example, copy/past a table of sample identities (labels) from a spreadsheet'], 'Additional Comments');
-echo '<div class="Trow"><span>Upload Metadata File</span><div class="input text">'.$this->Form->file('metadataFile', []).'</div></div>';
-echo $this->Form->end(['label' => 'Save Set', 'class' => 'large-button anySizeButton']);
-$this->end();
-$this->start('extras');
+echo $this->Form->input('isPreSetCode', ['type' => 'checkbox',
+    'label' => $this->String->get_string('from_setcode', 'SampleSet_form')]);
+echo $this->Form->input('setCode', ['label' => $this->String->get_string('previous_setcode', 'SampleSet_form'),
+    'placeholder' => $this->String->get_string('previous_setcode_ph', 'SampleSet_form')]);
+echo $this->Form->input('confidential', ['type' => 'checkbox',
+    'label' => $this->String->get_string('confidential', 'SampleSet_form')]);
+echo $this->Form->input('submitter', ['label' => $this->String->get_string('collaborator', 'SampleSet_form'),
+    'value' => (isset($user['name']) ? $user['name'] : ''),
+    'required']);
+echo $this->Form->input('p_name', ['label' => $this->String->get_string('p_name', 'SampleSet_form'),
+    'placeholder' => $this->String->get_string('p_name_ph', 'SampleSet_form'),
+    'autocomplete' => 'off']);
+echo $this->Form->input('p_code', ['label' => $this->String->get_string('p_code', 'SampleSet_form')]);
+echo $this->Form->input('exp_reference', ['label' => $this->String->get_string('exp_reference', 'SampleSet_form'),
+    'placeholder' => $this->String->get_string('exp_reference_ph', 'SampleSet_form')]);
+echo $this->Form->input('chemist', ['label' => $this->String->get_string('chemist_name', 'SampleSet_form'),
+    'autocomplete' => 'off']);
+echo $this->Form->input('crop', ['label' => $this->String->get_string('crop', 'SampleSet_form'),
+    'required', 'options' => $this->My->getCropOptions()]);
+echo $this->Form->input('type', ['label' => $this->String->get_string('sample_type', 'SampleSet_form'),
+    'placeholder' => $this->String->get_string('sample_type_ph', 'SampleSet_form')]);
+echo $this->Form->input('number', ['label' => $this->String->get_string('sample_number', 'SampleSet_form'),
+    'required']);
+echo $this->Form->input('sample_loc', ['label' => $this->String->get_string('transport', 'SampleSet_form')]);
+echo $this->Form->input('set_reason', ['label' => $this->String->get_string('reason', 'SampleSet_form'),
+    'placeholder' => $this->String->get_string('reason_ph', 'SampleSet_form'),
+    'rows' => '3']);
+echo $this->Form->input('compounds', ['label' => $this->String->get_string('compounds', 'SampleSet_form'),
+    'placeholder' => $this->String->get_string('compounds_ph', 'SampleSet_form'),
+    'rows' => '3',
+    'required']);
+echo $this->Form->input('containment', ['type' => 'checkbox',
+    'label' => $this->String->get_string('containment', 'SampleSet_form')]);
+echo $this->Form->input('containment_details', ['label' => $this->String->get_string('containment_detils', 'SampleSet_form'),
+    'rows' => '3']);
+echo $this->Form->input('comments', ['label' => $this->String->get_string('comments', 'SampleSet_form'),
+    'placeholder' => $this->String->get_string('comments_ph', 'SampleSet_form'),
+    'rows' => '3']);
+echo $this->Form->input('metadataFile', ['label' => $this->String->get_string('metafile', 'SampleSet_form'),
+    'type' => 'file']);
+echo $this->Form->end(['label' => 'Save Set', 'class' => 'btn btn-default']);
+
+
 echo $this->Html->scriptStart();
 echo $this->Js->get('#chemist')->event('keyup', 'ajaxCallChemist()', false); //ajax call that will update the ul with the possible names
 echo $this->Html->scriptEnd();
@@ -230,11 +247,4 @@ echo $this->Html->scriptEnd();
         }        
     }
 </script>
-<?php $this->end();
-if ($tabletView !== 'true'){ //desktop view
-    echo $this->fetch('slide1');
-    echo $this->fetch('slide2');    
-    echo $this->fetch('extras');
-}
-?>
 
