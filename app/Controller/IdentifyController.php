@@ -89,9 +89,10 @@ class IdentifyController extends AppController{
         $this->layout = 'MinLayout'; //minimilistic layout that has no formating
         if ($this->request->is('post')){
             //$file = fopen($this->request->data['Identify']['csv_file']['tmp_name'],"r"); //sets up the file for reading
-            $dataUrl="/home/tony/temp/TK151_apple_dissect.csv";
+            //$dataUrl="/home/tony/temp/TK151_apple_dissect.csv";
+            $dataUrl="/home/tony/temp/SC16_QC_posESI_29863_dissect.csv";
             echo $dataUrl;
-            echo $mass_window;
+            //echo $mass_window;
             $massdata = array();
             $compounds = array();
             $file = fopen($dataUrl,"r"); //sets up the file for reading
@@ -104,7 +105,8 @@ class IdentifyController extends AppController{
                     break;
                 } //when there are no more lines exit the loop               
                 //var_dump($line);
-                $mass = $line[3] + 1.00794; //for [M-H] data add the mass of hydrogen to get monoisotopic MW
+                //$mass = $line[3] + 1.00794; //for [M-H] data add the mass of hydrogen to get monoisotopic MW
+                $mass = $line[3] - 1.00794; //for [M+H] data subtract the mass of hydrogen to get monoisotopic MW
                 $low_mass = $mass - 0.01; //calculate lower and upper limits of the acurate mass window
                 $high_mass = $mass + 0.01;
                 $search =  array("Compound.exact_mass BETWEEN ? AND ?" => array($low_mass, $high_mass));
@@ -124,5 +126,30 @@ class IdentifyController extends AppController{
             $this->set('masses', $massdata); // pass array with the mass data from file to the view 
             //var_dump($massdata);
         }
+    }
+    
+    /**
+     * Exports the search results to a CSV file
+     * @param type $data
+     */
+    public function export($masses = null){
+        //$this->My->exportCSV('Identify', $this->Identify, $this, [], $data); //removed ',true' to make export work
+         if ($masses==null){
+            return;
+        }
+        parse_str($masses);
+        var_dump($masses);
+        /**$data = array();
+        $data[$modelstr] = $$modelstr;
+        if ($allORSearch){
+            $search = $controller->buildConditionsArray($data);
+        } else {
+            $data[$modelstr]['num_boxes'] = (isset($data[$modelstr]['num_boxes']) ? $data[$modelstr]['num_boxes'] : 1);  
+            $search = $controller->My->extractSearchTerm($data, $allColums, $modelstr); 
+        }
+        $data = $model->find('all', ['conditions' => $search]);*/
+        $this->set('masses', $masses);
+        $this->response->download("export.csv");
+        $this->layout = 'ajax';
     }
 }

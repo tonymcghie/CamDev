@@ -32170,3 +32170,486 @@ Request URL: /CAM3-0/css/color_schemes_v4.css
 Stack Trace:
 #0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
 #1 {main}
+2017-01-13 21:50:35 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/css/color_schemes_v4.css
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-01-13 21:52:25 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/css/color_schemes_v4.css
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-01-13 22:00:01 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/css/color_schemes_v4.css
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-01-13 22:00:20 Error: [MissingViewException] View file "Identify/export.ctp" is missing.
+Exception Attributes: array (
+  'file' => 'Identify/export.ctp',
+)
+Request URL: /CAM3-0/identify/export/0%255B0%255D%3D1%260%255B1%255D%3D3.5%260%255B2%255D%3D30142%260%255B3%255D%3D289.0725%260%255B4%255D%3Depicatechin%261%255B0%255D%3D2%261%255B1%255D%3D3.5%261%255B2%255D%3D30142%261%255B3%255D%3D290.079%262%255B0%255D%3D3%262%255B1%255D%3D3.57%262%255B2%255D%3D113170%262%255B3%255D%3D563.2365%263%255B0%255D%3D4%263%255B1%255D%3D4.9%263%255B2%255D%3D69151%263%255B3%255D%3D609.1461%263%255B4%255D%3Dquercetin%2B3-rutinoside%264%255B0%255D%3D5%264%255B1%255D%3D5.06%264%255B2%255D%3D598993%264%255B3%255D%3D463.0872%264%255B4%255D%3Dquercetin%2B3-galactoside%265%255B0%255D%3D6%265%255B1%255D%3D5.15%265%255B2%255D%3D121175%265%255B3%255D%3D463.0881%265%255B4%255D%3Dquercetin%2B3-galactoside%266%255B0%255D%3D7%266%255B1%255D%3D5.43%266%255B2%255D%3D295243%266%255B3%255D%3D433.0777%266%255B4%255D%3Dquercetin%2B3-O-xyloside%267%255B0%255D%3D8%267%255B1%255D%3D5.55%267%255B2%255D%3D73690%267%255B3%255D%3D567.1712%267%255B4%255D%3Dphloretin-2-O-xyloglucoside%268%255B0%255D%3D9%268%255B1%255D%3D5.69%268%255B2%255D%3D613018%268%255B3%255D%3D433.0772%268%255B4%255D%3Dquercetin%2B3-O-xyloside%269%255B0%255D%3D10%269%255B1%255D%3D5.78%269%255B2%255D%3D57960%269%255B3%255D%3D433.0773%269%255B4%255D%3Dquercetin%2B3-O-xyloside%2610%255B0%255D%3D11%2610%255B1%255D%3D5.85%2610%255B2%255D%3D496509%2610%255B3%255D%3D447.0922%2610%255B4%255D%3Dquercetin%2B3-rhamnoside%2611%255B0%255D%3D12%2611%255B1%255D%3D6.21%2611%255B2%255D%3D1001647%2611%255B3%255D%3D435.1283%2611%255B4%255D%3Dphloridzin%253B%2Bphlorhizin%253B%2Basebotin%2612%255B0%255D%3D13%2612%255B1%255D%3D8.97%2612%255B2%255D%3D124474%2612%255B3%255D%3D329.2341%2613%255B0%255D%3D14%2613%255B1%255D%3D10.14%2613%255B2%255D%3D70542%2613%255B3%255D%3D501.3222%2614%255B0%255D%3D15%2614%255B1%255D%3D10.35%2614%255B2%255D%3D74147%2614%255B3%255D%3D476.2781%2615%255B0%255D%3D16%2615%255B1%255D%3D10.4%2615%255B2%255D%3D67710%2615%255B3%255D%3D564.3297%2616%255B0%255D%3D17%2616%255B1%255D%3D10.49%2616%255B2%255D%3D52328%2616%255B3%255D%3D595.2878%2617%255B0%255D%3D18%2617%255B1%255D%3D10.78%2617%255B2%255D%3D21299%2617%255B3%255D%3D265.1473%2618%255B0%255D%3D19%2618%255B1%255D%3D10.88%2618%255B2%255D%3D236937%2618%255B3%255D%3D485.3266%2618%255B4%255D%3Dannurcoic%2Bacid%2619%255B0%255D%3D20%2619%255B1%255D%3D10.94%2619%255B2%255D%3D78414%2619%255B3%255D%3D295.2281%2619%255B4%255D%3D13S-hydroxyoctadecadienoic%2Bacid
+Stack Trace:
+#0 /var/www/html/CAM3-0/lib/Cake/View/View.php(470): View->_getViewFileName(NULL)
+#1 /var/www/html/CAM3-0/lib/Cake/Controller/Controller.php(960): View->render(NULL, NULL)
+#2 /var/www/html/CAM3-0/lib/Cake/Routing/Dispatcher.php(200): Controller->render()
+#3 /var/www/html/CAM3-0/lib/Cake/Routing/Dispatcher.php(167): Dispatcher->_invoke(Object(IdentifyController), Object(CakeRequest))
+#4 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2017-01-13 22:00:20 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/img/cake.power.gif
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-01-13 22:00:20 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/img/cake.power.gif
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-01-13 22:00:20 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/img/cake.icon.png
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-01-13 22:04:14 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/css/color_schemes_v4.css
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-01-13 22:04:24 Error: Fatal Error (1): Call to a member function find() on a non-object in [/var/www/html/CAM3-0/app/Controller/Component/MyComponent.php, line 107]
+2017-01-13 22:04:24 Error: [FatalErrorException] Call to a member function find() on a non-object
+Request URL: /CAM3-0/identify/export/0%255B0%255D%3D1%260%255B1%255D%3D3.5%260%255B2%255D%3D30142%260%255B3%255D%3D289.0725%260%255B4%255D%3Depicatechin%261%255B0%255D%3D2%261%255B1%255D%3D3.5%261%255B2%255D%3D30142%261%255B3%255D%3D290.079%262%255B0%255D%3D3%262%255B1%255D%3D3.57%262%255B2%255D%3D113170%262%255B3%255D%3D563.2365%263%255B0%255D%3D4%263%255B1%255D%3D4.9%263%255B2%255D%3D69151%263%255B3%255D%3D609.1461%263%255B4%255D%3Dquercetin%2B3-rutinoside%264%255B0%255D%3D5%264%255B1%255D%3D5.06%264%255B2%255D%3D598993%264%255B3%255D%3D463.0872%264%255B4%255D%3Dquercetin%2B3-galactoside%265%255B0%255D%3D6%265%255B1%255D%3D5.15%265%255B2%255D%3D121175%265%255B3%255D%3D463.0881%265%255B4%255D%3Dquercetin%2B3-galactoside%266%255B0%255D%3D7%266%255B1%255D%3D5.43%266%255B2%255D%3D295243%266%255B3%255D%3D433.0777%266%255B4%255D%3Dquercetin%2B3-O-xyloside%267%255B0%255D%3D8%267%255B1%255D%3D5.55%267%255B2%255D%3D73690%267%255B3%255D%3D567.1712%267%255B4%255D%3Dphloretin-2-O-xyloglucoside%268%255B0%255D%3D9%268%255B1%255D%3D5.69%268%255B2%255D%3D613018%268%255B3%255D%3D433.0772%268%255B4%255D%3Dquercetin%2B3-O-xyloside%269%255B0%255D%3D10%269%255B1%255D%3D5.78%269%255B2%255D%3D57960%269%255B3%255D%3D433.0773%269%255B4%255D%3Dquercetin%2B3-O-xyloside%2610%255B0%255D%3D11%2610%255B1%255D%3D5.85%2610%255B2%255D%3D496509%2610%255B3%255D%3D447.0922%2610%255B4%255D%3Dquercetin%2B3-rhamnoside%2611%255B0%255D%3D12%2611%255B1%255D%3D6.21%2611%255B2%255D%3D1001647%2611%255B3%255D%3D435.1283%2611%255B4%255D%3Dphloridzin%253B%2Bphlorhizin%253B%2Basebotin%2612%255B0%255D%3D13%2612%255B1%255D%3D8.97%2612%255B2%255D%3D124474%2612%255B3%255D%3D329.2341%2613%255B0%255D%3D14%2613%255B1%255D%3D10.14%2613%255B2%255D%3D70542%2613%255B3%255D%3D501.3222%2614%255B0%255D%3D15%2614%255B1%255D%3D10.35%2614%255B2%255D%3D74147%2614%255B3%255D%3D476.2781%2615%255B0%255D%3D16%2615%255B1%255D%3D10.4%2615%255B2%255D%3D67710%2615%255B3%255D%3D564.3297%2616%255B0%255D%3D17%2616%255B1%255D%3D10.49%2616%255B2%255D%3D52328%2616%255B3%255D%3D595.2878%2617%255B0%255D%3D18%2617%255B1%255D%3D10.78%2617%255B2%255D%3D21299%2617%255B3%255D%3D265.1473%2618%255B0%255D%3D19%2618%255B1%255D%3D10.88%2618%255B2%255D%3D236937%2618%255B3%255D%3D485.3266%2618%255B4%255D%3Dannurcoic%2Bacid%2619%255B0%255D%3D20%2619%255B1%255D%3D10.94%2619%255B2%255D%3D78414%2619%255B3%255D%3D295.2281%2619%255B4%255D%3D13S-hydroxyoctadecadienoic%2Bacid
+Stack Trace:
+#0 /var/www/html/CAM3-0/lib/Cake/Error/ErrorHandler.php(213): ErrorHandler::handleFatalError(1, 'Call to a membe...', '/var/www/html/C...', 107)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', '/var/www/html/C...', 107, Array)
+#2 /var/www/html/CAM3-0/lib/Cake/Core/App.php(933): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', '/var/www/html/C...', 107, Array)
+#3 /var/www/html/CAM3-0/lib/Cake/Core/App.php(906): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2017-01-13 22:04:24 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/img/cake.power.gif
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-01-13 22:04:24 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/img/cake.icon.png
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-01-13 22:09:28 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/css/color_schemes_v4.css
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-01-13 22:09:32 Error: Fatal Error (1): Call to a member function set() on a non-object in [/var/www/html/CAM3-0/app/Controller/IdentifyController.php, line 148]
+2017-01-13 22:09:32 Error: [FatalErrorException] Call to a member function set() on a non-object
+Request URL: /CAM3-0/identify/export/0%255B0%255D%3D1%260%255B1%255D%3D3.5%260%255B2%255D%3D30142%260%255B3%255D%3D289.0725%260%255B4%255D%3Depicatechin%261%255B0%255D%3D2%261%255B1%255D%3D3.5%261%255B2%255D%3D30142%261%255B3%255D%3D290.079%262%255B0%255D%3D3%262%255B1%255D%3D3.57%262%255B2%255D%3D113170%262%255B3%255D%3D563.2365%263%255B0%255D%3D4%263%255B1%255D%3D4.9%263%255B2%255D%3D69151%263%255B3%255D%3D609.1461%263%255B4%255D%3Dquercetin%2B3-rutinoside%264%255B0%255D%3D5%264%255B1%255D%3D5.06%264%255B2%255D%3D598993%264%255B3%255D%3D463.0872%264%255B4%255D%3Dquercetin%2B3-galactoside%265%255B0%255D%3D6%265%255B1%255D%3D5.15%265%255B2%255D%3D121175%265%255B3%255D%3D463.0881%265%255B4%255D%3Dquercetin%2B3-galactoside%266%255B0%255D%3D7%266%255B1%255D%3D5.43%266%255B2%255D%3D295243%266%255B3%255D%3D433.0777%266%255B4%255D%3Dquercetin%2B3-O-xyloside%267%255B0%255D%3D8%267%255B1%255D%3D5.55%267%255B2%255D%3D73690%267%255B3%255D%3D567.1712%267%255B4%255D%3Dphloretin-2-O-xyloglucoside%268%255B0%255D%3D9%268%255B1%255D%3D5.69%268%255B2%255D%3D613018%268%255B3%255D%3D433.0772%268%255B4%255D%3Dquercetin%2B3-O-xyloside%269%255B0%255D%3D10%269%255B1%255D%3D5.78%269%255B2%255D%3D57960%269%255B3%255D%3D433.0773%269%255B4%255D%3Dquercetin%2B3-O-xyloside%2610%255B0%255D%3D11%2610%255B1%255D%3D5.85%2610%255B2%255D%3D496509%2610%255B3%255D%3D447.0922%2610%255B4%255D%3Dquercetin%2B3-rhamnoside%2611%255B0%255D%3D12%2611%255B1%255D%3D6.21%2611%255B2%255D%3D1001647%2611%255B3%255D%3D435.1283%2611%255B4%255D%3Dphloridzin%253B%2Bphlorhizin%253B%2Basebotin%2612%255B0%255D%3D13%2612%255B1%255D%3D8.97%2612%255B2%255D%3D124474%2612%255B3%255D%3D329.2341%2613%255B0%255D%3D14%2613%255B1%255D%3D10.14%2613%255B2%255D%3D70542%2613%255B3%255D%3D501.3222%2614%255B0%255D%3D15%2614%255B1%255D%3D10.35%2614%255B2%255D%3D74147%2614%255B3%255D%3D476.2781%2615%255B0%255D%3D16%2615%255B1%255D%3D10.4%2615%255B2%255D%3D67710%2615%255B3%255D%3D564.3297%2616%255B0%255D%3D17%2616%255B1%255D%3D10.49%2616%255B2%255D%3D52328%2616%255B3%255D%3D595.2878%2617%255B0%255D%3D18%2617%255B1%255D%3D10.78%2617%255B2%255D%3D21299%2617%255B3%255D%3D265.1473%2618%255B0%255D%3D19%2618%255B1%255D%3D10.88%2618%255B2%255D%3D236937%2618%255B3%255D%3D485.3266%2618%255B4%255D%3Dannurcoic%2Bacid%2619%255B0%255D%3D20%2619%255B1%255D%3D10.94%2619%255B2%255D%3D78414%2619%255B3%255D%3D295.2281%2619%255B4%255D%3D13S-hydroxyoctadecadienoic%2Bacid
+Stack Trace:
+#0 /var/www/html/CAM3-0/lib/Cake/Error/ErrorHandler.php(213): ErrorHandler::handleFatalError(1, 'Call to a membe...', '/var/www/html/C...', 148)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', '/var/www/html/C...', 148, Array)
+#2 /var/www/html/CAM3-0/lib/Cake/Core/App.php(933): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', '/var/www/html/C...', 148, Array)
+#3 /var/www/html/CAM3-0/lib/Cake/Core/App.php(906): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2017-01-13 22:09:33 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/img/cake.power.gif
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-01-13 22:09:33 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/img/cake.icon.png
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-01-13 22:10:29 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/css/color_schemes_v4.css
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-01-13 22:10:32 Error: Fatal Error (1): Call to a member function set() on a non-object in [/var/www/html/CAM3-0/app/Controller/IdentifyController.php, line 148]
+2017-01-13 22:10:32 Error: [FatalErrorException] Call to a member function set() on a non-object
+Request URL: /CAM3-0/identify/export/0%255B0%255D%3D1%260%255B1%255D%3D3.5%260%255B2%255D%3D30142%260%255B3%255D%3D289.0725%260%255B4%255D%3Depicatechin%261%255B0%255D%3D2%261%255B1%255D%3D3.5%261%255B2%255D%3D30142%261%255B3%255D%3D290.079%262%255B0%255D%3D3%262%255B1%255D%3D3.57%262%255B2%255D%3D113170%262%255B3%255D%3D563.2365%263%255B0%255D%3D4%263%255B1%255D%3D4.9%263%255B2%255D%3D69151%263%255B3%255D%3D609.1461%263%255B4%255D%3Dquercetin%2B3-rutinoside%264%255B0%255D%3D5%264%255B1%255D%3D5.06%264%255B2%255D%3D598993%264%255B3%255D%3D463.0872%264%255B4%255D%3Dquercetin%2B3-galactoside%265%255B0%255D%3D6%265%255B1%255D%3D5.15%265%255B2%255D%3D121175%265%255B3%255D%3D463.0881%265%255B4%255D%3Dquercetin%2B3-galactoside%266%255B0%255D%3D7%266%255B1%255D%3D5.43%266%255B2%255D%3D295243%266%255B3%255D%3D433.0777%266%255B4%255D%3Dquercetin%2B3-O-xyloside%267%255B0%255D%3D8%267%255B1%255D%3D5.55%267%255B2%255D%3D73690%267%255B3%255D%3D567.1712%267%255B4%255D%3Dphloretin-2-O-xyloglucoside%268%255B0%255D%3D9%268%255B1%255D%3D5.69%268%255B2%255D%3D613018%268%255B3%255D%3D433.0772%268%255B4%255D%3Dquercetin%2B3-O-xyloside%269%255B0%255D%3D10%269%255B1%255D%3D5.78%269%255B2%255D%3D57960%269%255B3%255D%3D433.0773%269%255B4%255D%3Dquercetin%2B3-O-xyloside%2610%255B0%255D%3D11%2610%255B1%255D%3D5.85%2610%255B2%255D%3D496509%2610%255B3%255D%3D447.0922%2610%255B4%255D%3Dquercetin%2B3-rhamnoside%2611%255B0%255D%3D12%2611%255B1%255D%3D6.21%2611%255B2%255D%3D1001647%2611%255B3%255D%3D435.1283%2611%255B4%255D%3Dphloridzin%253B%2Bphlorhizin%253B%2Basebotin%2612%255B0%255D%3D13%2612%255B1%255D%3D8.97%2612%255B2%255D%3D124474%2612%255B3%255D%3D329.2341%2613%255B0%255D%3D14%2613%255B1%255D%3D10.14%2613%255B2%255D%3D70542%2613%255B3%255D%3D501.3222%2614%255B0%255D%3D15%2614%255B1%255D%3D10.35%2614%255B2%255D%3D74147%2614%255B3%255D%3D476.2781%2615%255B0%255D%3D16%2615%255B1%255D%3D10.4%2615%255B2%255D%3D67710%2615%255B3%255D%3D564.3297%2616%255B0%255D%3D17%2616%255B1%255D%3D10.49%2616%255B2%255D%3D52328%2616%255B3%255D%3D595.2878%2617%255B0%255D%3D18%2617%255B1%255D%3D10.78%2617%255B2%255D%3D21299%2617%255B3%255D%3D265.1473%2618%255B0%255D%3D19%2618%255B1%255D%3D10.88%2618%255B2%255D%3D236937%2618%255B3%255D%3D485.3266%2618%255B4%255D%3Dannurcoic%2Bacid%2619%255B0%255D%3D20%2619%255B1%255D%3D10.94%2619%255B2%255D%3D78414%2619%255B3%255D%3D295.2281%2619%255B4%255D%3D13S-hydroxyoctadecadienoic%2Bacid
+Stack Trace:
+#0 /var/www/html/CAM3-0/lib/Cake/Error/ErrorHandler.php(213): ErrorHandler::handleFatalError(1, 'Call to a membe...', '/var/www/html/C...', 148)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', '/var/www/html/C...', 148, Array)
+#2 /var/www/html/CAM3-0/lib/Cake/Core/App.php(933): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', '/var/www/html/C...', 148, Array)
+#3 /var/www/html/CAM3-0/lib/Cake/Core/App.php(906): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2017-01-13 22:10:33 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/img/cake.power.gif
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-01-13 22:10:33 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/img/cake.icon.png
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-01-13 22:15:29 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/css/color_schemes_v4.css
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-01-13 22:15:39 Error: Fatal Error (1): Call to a member function set() on a non-object in [/var/www/html/CAM3-0/app/Controller/IdentifyController.php, line 148]
+2017-01-13 22:15:39 Error: [FatalErrorException] Call to a member function set() on a non-object
+Request URL: /CAM3-0/identify/export/0%255B0%255D%3D1%260%255B1%255D%3D3.5%260%255B2%255D%3D30142%260%255B3%255D%3D289.0725%260%255B4%255D%3Depicatechin%261%255B0%255D%3D2%261%255B1%255D%3D3.5%261%255B2%255D%3D30142%261%255B3%255D%3D290.079%262%255B0%255D%3D3%262%255B1%255D%3D3.57%262%255B2%255D%3D113170%262%255B3%255D%3D563.2365%263%255B0%255D%3D4%263%255B1%255D%3D4.9%263%255B2%255D%3D69151%263%255B3%255D%3D609.1461%263%255B4%255D%3Dquercetin%2B3-rutinoside%264%255B0%255D%3D5%264%255B1%255D%3D5.06%264%255B2%255D%3D598993%264%255B3%255D%3D463.0872%264%255B4%255D%3Dquercetin%2B3-galactoside%265%255B0%255D%3D6%265%255B1%255D%3D5.15%265%255B2%255D%3D121175%265%255B3%255D%3D463.0881%265%255B4%255D%3Dquercetin%2B3-galactoside%266%255B0%255D%3D7%266%255B1%255D%3D5.43%266%255B2%255D%3D295243%266%255B3%255D%3D433.0777%266%255B4%255D%3Dquercetin%2B3-O-xyloside%267%255B0%255D%3D8%267%255B1%255D%3D5.55%267%255B2%255D%3D73690%267%255B3%255D%3D567.1712%267%255B4%255D%3Dphloretin-2-O-xyloglucoside%268%255B0%255D%3D9%268%255B1%255D%3D5.69%268%255B2%255D%3D613018%268%255B3%255D%3D433.0772%268%255B4%255D%3Dquercetin%2B3-O-xyloside%269%255B0%255D%3D10%269%255B1%255D%3D5.78%269%255B2%255D%3D57960%269%255B3%255D%3D433.0773%269%255B4%255D%3Dquercetin%2B3-O-xyloside%2610%255B0%255D%3D11%2610%255B1%255D%3D5.85%2610%255B2%255D%3D496509%2610%255B3%255D%3D447.0922%2610%255B4%255D%3Dquercetin%2B3-rhamnoside%2611%255B0%255D%3D12%2611%255B1%255D%3D6.21%2611%255B2%255D%3D1001647%2611%255B3%255D%3D435.1283%2611%255B4%255D%3Dphloridzin%253B%2Bphlorhizin%253B%2Basebotin%2612%255B0%255D%3D13%2612%255B1%255D%3D8.97%2612%255B2%255D%3D124474%2612%255B3%255D%3D329.2341%2613%255B0%255D%3D14%2613%255B1%255D%3D10.14%2613%255B2%255D%3D70542%2613%255B3%255D%3D501.3222%2614%255B0%255D%3D15%2614%255B1%255D%3D10.35%2614%255B2%255D%3D74147%2614%255B3%255D%3D476.2781%2615%255B0%255D%3D16%2615%255B1%255D%3D10.4%2615%255B2%255D%3D67710%2615%255B3%255D%3D564.3297%2616%255B0%255D%3D17%2616%255B1%255D%3D10.49%2616%255B2%255D%3D52328%2616%255B3%255D%3D595.2878%2617%255B0%255D%3D18%2617%255B1%255D%3D10.78%2617%255B2%255D%3D21299%2617%255B3%255D%3D265.1473%2618%255B0%255D%3D19%2618%255B1%255D%3D10.88%2618%255B2%255D%3D236937%2618%255B3%255D%3D485.3266%2618%255B4%255D%3Dannurcoic%2Bacid%2619%255B0%255D%3D20%2619%255B1%255D%3D10.94%2619%255B2%255D%3D78414%2619%255B3%255D%3D295.2281%2619%255B4%255D%3D13S-hydroxyoctadecadienoic%2Bacid
+Stack Trace:
+#0 /var/www/html/CAM3-0/lib/Cake/Error/ErrorHandler.php(213): ErrorHandler::handleFatalError(1, 'Call to a membe...', '/var/www/html/C...', 148)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', '/var/www/html/C...', 148, Array)
+#2 /var/www/html/CAM3-0/lib/Cake/Core/App.php(933): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', '/var/www/html/C...', 148, Array)
+#3 /var/www/html/CAM3-0/lib/Cake/Core/App.php(906): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2017-01-13 22:15:39 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/img/cake.power.gif
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-01-13 22:15:39 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/img/cake.icon.png
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-01-13 22:16:41 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/css/color_schemes_v4.css
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-01-13 22:16:52 Error: Fatal Error (1): Call to a member function set() on a non-object in [/var/www/html/CAM3-0/app/Controller/IdentifyController.php, line 149]
+2017-01-13 22:16:52 Error: [FatalErrorException] Call to a member function set() on a non-object
+Request URL: /CAM3-0/identify/export/0%255B0%255D%3D1%260%255B1%255D%3D3.5%260%255B2%255D%3D30142%260%255B3%255D%3D289.0725%260%255B4%255D%3Depicatechin%261%255B0%255D%3D2%261%255B1%255D%3D3.5%261%255B2%255D%3D30142%261%255B3%255D%3D290.079%262%255B0%255D%3D3%262%255B1%255D%3D3.57%262%255B2%255D%3D113170%262%255B3%255D%3D563.2365%263%255B0%255D%3D4%263%255B1%255D%3D4.9%263%255B2%255D%3D69151%263%255B3%255D%3D609.1461%263%255B4%255D%3Dquercetin%2B3-rutinoside%264%255B0%255D%3D5%264%255B1%255D%3D5.06%264%255B2%255D%3D598993%264%255B3%255D%3D463.0872%264%255B4%255D%3Dquercetin%2B3-galactoside%265%255B0%255D%3D6%265%255B1%255D%3D5.15%265%255B2%255D%3D121175%265%255B3%255D%3D463.0881%265%255B4%255D%3Dquercetin%2B3-galactoside%266%255B0%255D%3D7%266%255B1%255D%3D5.43%266%255B2%255D%3D295243%266%255B3%255D%3D433.0777%266%255B4%255D%3Dquercetin%2B3-O-xyloside%267%255B0%255D%3D8%267%255B1%255D%3D5.55%267%255B2%255D%3D73690%267%255B3%255D%3D567.1712%267%255B4%255D%3Dphloretin-2-O-xyloglucoside%268%255B0%255D%3D9%268%255B1%255D%3D5.69%268%255B2%255D%3D613018%268%255B3%255D%3D433.0772%268%255B4%255D%3Dquercetin%2B3-O-xyloside%269%255B0%255D%3D10%269%255B1%255D%3D5.78%269%255B2%255D%3D57960%269%255B3%255D%3D433.0773%269%255B4%255D%3Dquercetin%2B3-O-xyloside%2610%255B0%255D%3D11%2610%255B1%255D%3D5.85%2610%255B2%255D%3D496509%2610%255B3%255D%3D447.0922%2610%255B4%255D%3Dquercetin%2B3-rhamnoside%2611%255B0%255D%3D12%2611%255B1%255D%3D6.21%2611%255B2%255D%3D1001647%2611%255B3%255D%3D435.1283%2611%255B4%255D%3Dphloridzin%253B%2Bphlorhizin%253B%2Basebotin%2612%255B0%255D%3D13%2612%255B1%255D%3D8.97%2612%255B2%255D%3D124474%2612%255B3%255D%3D329.2341%2613%255B0%255D%3D14%2613%255B1%255D%3D10.14%2613%255B2%255D%3D70542%2613%255B3%255D%3D501.3222%2614%255B0%255D%3D15%2614%255B1%255D%3D10.35%2614%255B2%255D%3D74147%2614%255B3%255D%3D476.2781%2615%255B0%255D%3D16%2615%255B1%255D%3D10.4%2615%255B2%255D%3D67710%2615%255B3%255D%3D564.3297%2616%255B0%255D%3D17%2616%255B1%255D%3D10.49%2616%255B2%255D%3D52328%2616%255B3%255D%3D595.2878%2617%255B0%255D%3D18%2617%255B1%255D%3D10.78%2617%255B2%255D%3D21299%2617%255B3%255D%3D265.1473%2618%255B0%255D%3D19%2618%255B1%255D%3D10.88%2618%255B2%255D%3D236937%2618%255B3%255D%3D485.3266%2618%255B4%255D%3Dannurcoic%2Bacid%2619%255B0%255D%3D20%2619%255B1%255D%3D10.94%2619%255B2%255D%3D78414%2619%255B3%255D%3D295.2281%2619%255B4%255D%3D13S-hydroxyoctadecadienoic%2Bacid
+Stack Trace:
+#0 /var/www/html/CAM3-0/lib/Cake/Error/ErrorHandler.php(213): ErrorHandler::handleFatalError(1, 'Call to a membe...', '/var/www/html/C...', 149)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', '/var/www/html/C...', 149, Array)
+#2 /var/www/html/CAM3-0/lib/Cake/Core/App.php(933): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', '/var/www/html/C...', 149, Array)
+#3 /var/www/html/CAM3-0/lib/Cake/Core/App.php(906): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2017-01-13 22:16:52 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/img/cake.power.gif
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-01-13 22:16:52 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/img/cake.icon.png
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-01-13 22:18:56 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/css/color_schemes_v4.css
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-01-13 22:19:14 Error: Fatal Error (1): Call to a member function set() on a non-object in [/var/www/html/CAM3-0/app/Controller/IdentifyController.php, line 149]
+2017-01-13 22:19:14 Error: [FatalErrorException] Call to a member function set() on a non-object
+Request URL: /CAM3-0/identify/export/0%255B0%255D%3D1%260%255B1%255D%3D3.5%260%255B2%255D%3D30142%260%255B3%255D%3D289.0725%260%255B4%255D%3Depicatechin%261%255B0%255D%3D2%261%255B1%255D%3D3.5%261%255B2%255D%3D30142%261%255B3%255D%3D290.079%262%255B0%255D%3D3%262%255B1%255D%3D3.57%262%255B2%255D%3D113170%262%255B3%255D%3D563.2365%263%255B0%255D%3D4%263%255B1%255D%3D4.9%263%255B2%255D%3D69151%263%255B3%255D%3D609.1461%263%255B4%255D%3Dquercetin%2B3-rutinoside%264%255B0%255D%3D5%264%255B1%255D%3D5.06%264%255B2%255D%3D598993%264%255B3%255D%3D463.0872%264%255B4%255D%3Dquercetin%2B3-galactoside%265%255B0%255D%3D6%265%255B1%255D%3D5.15%265%255B2%255D%3D121175%265%255B3%255D%3D463.0881%265%255B4%255D%3Dquercetin%2B3-galactoside%266%255B0%255D%3D7%266%255B1%255D%3D5.43%266%255B2%255D%3D295243%266%255B3%255D%3D433.0777%266%255B4%255D%3Dquercetin%2B3-O-xyloside%267%255B0%255D%3D8%267%255B1%255D%3D5.55%267%255B2%255D%3D73690%267%255B3%255D%3D567.1712%267%255B4%255D%3Dphloretin-2-O-xyloglucoside%268%255B0%255D%3D9%268%255B1%255D%3D5.69%268%255B2%255D%3D613018%268%255B3%255D%3D433.0772%268%255B4%255D%3Dquercetin%2B3-O-xyloside%269%255B0%255D%3D10%269%255B1%255D%3D5.78%269%255B2%255D%3D57960%269%255B3%255D%3D433.0773%269%255B4%255D%3Dquercetin%2B3-O-xyloside%2610%255B0%255D%3D11%2610%255B1%255D%3D5.85%2610%255B2%255D%3D496509%2610%255B3%255D%3D447.0922%2610%255B4%255D%3Dquercetin%2B3-rhamnoside%2611%255B0%255D%3D12%2611%255B1%255D%3D6.21%2611%255B2%255D%3D1001647%2611%255B3%255D%3D435.1283%2611%255B4%255D%3Dphloridzin%253B%2Bphlorhizin%253B%2Basebotin%2612%255B0%255D%3D13%2612%255B1%255D%3D8.97%2612%255B2%255D%3D124474%2612%255B3%255D%3D329.2341%2613%255B0%255D%3D14%2613%255B1%255D%3D10.14%2613%255B2%255D%3D70542%2613%255B3%255D%3D501.3222%2614%255B0%255D%3D15%2614%255B1%255D%3D10.35%2614%255B2%255D%3D74147%2614%255B3%255D%3D476.2781%2615%255B0%255D%3D16%2615%255B1%255D%3D10.4%2615%255B2%255D%3D67710%2615%255B3%255D%3D564.3297%2616%255B0%255D%3D17%2616%255B1%255D%3D10.49%2616%255B2%255D%3D52328%2616%255B3%255D%3D595.2878%2617%255B0%255D%3D18%2617%255B1%255D%3D10.78%2617%255B2%255D%3D21299%2617%255B3%255D%3D265.1473%2618%255B0%255D%3D19%2618%255B1%255D%3D10.88%2618%255B2%255D%3D236937%2618%255B3%255D%3D485.3266%2618%255B4%255D%3Dannurcoic%2Bacid%2619%255B0%255D%3D20%2619%255B1%255D%3D10.94%2619%255B2%255D%3D78414%2619%255B3%255D%3D295.2281%2619%255B4%255D%3D13S-hydroxyoctadecadienoic%2Bacid
+Stack Trace:
+#0 /var/www/html/CAM3-0/lib/Cake/Error/ErrorHandler.php(213): ErrorHandler::handleFatalError(1, 'Call to a membe...', '/var/www/html/C...', 149)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', '/var/www/html/C...', 149, Array)
+#2 /var/www/html/CAM3-0/lib/Cake/Core/App.php(933): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', '/var/www/html/C...', 149, Array)
+#3 /var/www/html/CAM3-0/lib/Cake/Core/App.php(906): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2017-01-13 22:19:14 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/img/cake.power.gif
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-01-13 22:19:14 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/img/cake.icon.png
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-01-13 22:33:37 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/css/color_schemes_v4.css
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-01-13 22:33:42 Error: [MissingViewException] View file "Identify/export.ctp" is missing.
+Exception Attributes: array (
+  'file' => 'Identify/export.ctp',
+)
+Request URL: /CAM3-0/identify/export/0%255B0%255D%3D1%260%255B1%255D%3D3.5%260%255B2%255D%3D30142%260%255B3%255D%3D289.0725%260%255B4%255D%3Depicatechin%261%255B0%255D%3D2%261%255B1%255D%3D3.5%261%255B2%255D%3D30142%261%255B3%255D%3D290.079%262%255B0%255D%3D3%262%255B1%255D%3D3.57%262%255B2%255D%3D113170%262%255B3%255D%3D563.2365%263%255B0%255D%3D4%263%255B1%255D%3D4.9%263%255B2%255D%3D69151%263%255B3%255D%3D609.1461%263%255B4%255D%3Dquercetin%2B3-rutinoside%264%255B0%255D%3D5%264%255B1%255D%3D5.06%264%255B2%255D%3D598993%264%255B3%255D%3D463.0872%264%255B4%255D%3Dquercetin%2B3-galactoside%265%255B0%255D%3D6%265%255B1%255D%3D5.15%265%255B2%255D%3D121175%265%255B3%255D%3D463.0881%265%255B4%255D%3Dquercetin%2B3-galactoside%266%255B0%255D%3D7%266%255B1%255D%3D5.43%266%255B2%255D%3D295243%266%255B3%255D%3D433.0777%266%255B4%255D%3Dquercetin%2B3-O-xyloside%267%255B0%255D%3D8%267%255B1%255D%3D5.55%267%255B2%255D%3D73690%267%255B3%255D%3D567.1712%267%255B4%255D%3Dphloretin-2-O-xyloglucoside%268%255B0%255D%3D9%268%255B1%255D%3D5.69%268%255B2%255D%3D613018%268%255B3%255D%3D433.0772%268%255B4%255D%3Dquercetin%2B3-O-xyloside%269%255B0%255D%3D10%269%255B1%255D%3D5.78%269%255B2%255D%3D57960%269%255B3%255D%3D433.0773%269%255B4%255D%3Dquercetin%2B3-O-xyloside%2610%255B0%255D%3D11%2610%255B1%255D%3D5.85%2610%255B2%255D%3D496509%2610%255B3%255D%3D447.0922%2610%255B4%255D%3Dquercetin%2B3-rhamnoside%2611%255B0%255D%3D12%2611%255B1%255D%3D6.21%2611%255B2%255D%3D1001647%2611%255B3%255D%3D435.1283%2611%255B4%255D%3Dphloridzin%253B%2Bphlorhizin%253B%2Basebotin%2612%255B0%255D%3D13%2612%255B1%255D%3D8.97%2612%255B2%255D%3D124474%2612%255B3%255D%3D329.2341%2613%255B0%255D%3D14%2613%255B1%255D%3D10.14%2613%255B2%255D%3D70542%2613%255B3%255D%3D501.3222%2614%255B0%255D%3D15%2614%255B1%255D%3D10.35%2614%255B2%255D%3D74147%2614%255B3%255D%3D476.2781%2615%255B0%255D%3D16%2615%255B1%255D%3D10.4%2615%255B2%255D%3D67710%2615%255B3%255D%3D564.3297%2616%255B0%255D%3D17%2616%255B1%255D%3D10.49%2616%255B2%255D%3D52328%2616%255B3%255D%3D595.2878%2617%255B0%255D%3D18%2617%255B1%255D%3D10.78%2617%255B2%255D%3D21299%2617%255B3%255D%3D265.1473%2618%255B0%255D%3D19%2618%255B1%255D%3D10.88%2618%255B2%255D%3D236937%2618%255B3%255D%3D485.3266%2618%255B4%255D%3Dannurcoic%2Bacid%2619%255B0%255D%3D20%2619%255B1%255D%3D10.94%2619%255B2%255D%3D78414%2619%255B3%255D%3D295.2281%2619%255B4%255D%3D13S-hydroxyoctadecadienoic%2Bacid
+Stack Trace:
+#0 /var/www/html/CAM3-0/lib/Cake/View/View.php(470): View->_getViewFileName(NULL)
+#1 /var/www/html/CAM3-0/lib/Cake/Controller/Controller.php(960): View->render(NULL, NULL)
+#2 /var/www/html/CAM3-0/lib/Cake/Routing/Dispatcher.php(200): Controller->render()
+#3 /var/www/html/CAM3-0/lib/Cake/Routing/Dispatcher.php(167): Dispatcher->_invoke(Object(IdentifyController), Object(CakeRequest))
+#4 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2017-01-13 22:33:42 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/img/cake.power.gif
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-01-13 22:33:42 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/img/cake.icon.png
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-01-13 22:33:42 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/img/cake.power.gif
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-01-13 22:36:41 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/css/color_schemes_v4.css
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-01-13 22:38:51 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/css/color_schemes_v4.css
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-01-13 22:43:16 Error: Fatal Error (1): Maximum execution time of 30 seconds exceeded in [/var/www/html/CAM3-0/lib/Cake/Utility/Debugger.php, line 811]
+2017-01-13 22:43:16 Error: [FatalErrorException] Maximum execution time of 30 seconds exceeded
+Request URL: /CAM3-0/identify/SearchMasses
+Stack Trace:
+#0 /var/www/html/CAM3-0/lib/Cake/Error/ErrorHandler.php(213): ErrorHandler::handleFatalError(1, 'Maximum executi...', '/var/www/html/C...', 811)
+#1 [internal function]: ErrorHandler::handleError(1, 'Maximum executi...', '/var/www/html/C...', 811, Array)
+#2 /var/www/html/CAM3-0/lib/Cake/Core/App.php(933): call_user_func('ErrorHandler::h...', 1, 'Maximum executi...', '/var/www/html/C...', 811, Array)
+#3 /var/www/html/CAM3-0/lib/Cake/Core/App.php(906): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2017-01-13 22:43:16 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/img/cake.power.gif
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-01-13 22:43:16 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/img/cake.icon.png
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-01-13 22:44:15 Error: Fatal Error (1): Maximum execution time of 30 seconds exceeded in [/var/www/html/CAM3-0/lib/Cake/Utility/Debugger.php, line 481]
+2017-01-13 22:44:15 Error: [FatalErrorException] Maximum execution time of 30 seconds exceeded
+Request URL: /CAM3-0/identify/SearchMasses
+Stack Trace:
+#0 /var/www/html/CAM3-0/lib/Cake/Error/ErrorHandler.php(213): ErrorHandler::handleFatalError(1, 'Maximum executi...', '/var/www/html/C...', 481)
+#1 [internal function]: ErrorHandler::handleError(1, 'Maximum executi...', '/var/www/html/C...', 481, Array)
+#2 /var/www/html/CAM3-0/lib/Cake/Core/App.php(933): call_user_func('ErrorHandler::h...', 1, 'Maximum executi...', '/var/www/html/C...', 481, Array)
+#3 /var/www/html/CAM3-0/lib/Cake/Core/App.php(906): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2017-01-13 22:44:15 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/img/cake.power.gif
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-01-13 22:44:16 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/img/cake.icon.png
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-01-13 22:44:44 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/css/color_schemes_v4.css
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-01-13 22:51:51 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/css/color_schemes_v4.css
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-01-13 22:52:55 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/css/color_schemes_v4.css
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-01-13 22:57:31 Error: Fatal Error (4): syntax error, unexpected 'scrollable' (T_STRING), expecting ',' or ';' in [/var/www/html/CAM3-0/app/View/Identify/search_masses.ctp, line 14]
+2017-01-13 22:57:31 Error: [FatalErrorException] syntax error, unexpected 'scrollable' (T_STRING), expecting ',' or ';'
+Request URL: /CAM3-0/identify/SearchMasses
+Stack Trace:
+#0 /var/www/html/CAM3-0/lib/Cake/Error/ErrorHandler.php(213): ErrorHandler::handleFatalError(4, 'syntax error, u...', '/var/www/html/C...', 14)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', '/var/www/html/C...', 14, Array)
+#2 /var/www/html/CAM3-0/lib/Cake/Core/App.php(933): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', '/var/www/html/C...', 14, Array)
+#3 /var/www/html/CAM3-0/lib/Cake/Core/App.php(906): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2017-01-13 22:57:31 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/img/cake.power.gif
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-01-13 22:57:31 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/img/cake.icon.png
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-01-13 22:59:14 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/css/color_schemes_v4.css
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-01-13 23:00:09 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/css/color_schemes_v4.css
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
