@@ -9,9 +9,9 @@
 App::uses('CakeEmail', 'Network/Email');
 
 class SampleSetsController extends AppController{
-    public $helpers = array('Html' , 'Form' , 'My' , 'Js', 'Time');
+    public $helpers = array('Html' , 'Form' , 'My' , 'Js', 'Time', 'String');
     public $uses = array('Analysis' , 'SampleSet' , 'Chemist');
-    public $layout = 'PageLayout';
+    public $layout = 'contentLayout';
     public $components = array('Paginator', 'RequestHandler', 'My', 'Session', 'Cookie', 'Auth');    
     
     /**
@@ -67,7 +67,8 @@ class SampleSetsController extends AppController{
      * Makes a new set and sends emails makes set code
      * @return type
      */
-    public function newSet(){        
+    public function newSet(){
+        $this->layout = 'contentLayout';
         if (isset($this->Auth->Session->read($this->Auth->sessionKey)['Auth']['User']['name'])){
             $this->set('user', $this->Auth->Session->read($this->Auth->sessionKey)['Auth']['User']);
         } //sets the username to the view
