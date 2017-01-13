@@ -41,7 +41,7 @@ class IdentifyController extends AppController{
     }
     
     public function IdByMass() {
-
+        $this->layout = 'ajax';
     }
 
 
@@ -83,6 +83,7 @@ class IdentifyController extends AppController{
      * This function displays a message describing the process for identifying unknown compounds by accurate mass
      */
     public function idMass(){
+        $this->layout = 'ajax';
     }
     
     public function SearchMasses(){

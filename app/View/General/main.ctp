@@ -1,6 +1,7 @@
 <style>
     nav > div.list-group > div {
         margin-bottom: 10px;
+        cursor: pointer;
     }
     nav > div.list-group > div > div.list-group {
         margin-bottom: 0px !important;
@@ -24,6 +25,7 @@
     <?php else: ?>
         div.content_container {background-image: url('img/vineyard-blenheim.jpg');}
     <?php endif; ?>
+
 </style>
 <?php
     $this->assign('title', 'Chemistry WorkBench');
@@ -41,9 +43,21 @@
             </div>
             <div class="panel-collapse collapse in" id="sample_sets_menu">
                 <div class="panel-body light-blue lighten-3">
-                    <button type="button" class="list-group-item" onclick="ajax_call_replace_url('SampleSets', 'newSet', '', $('#main_content'))">New</button>
-                    <button type="button" class="list-group-item" onclick="ajax_call_replace_url('SampleSets', 'searchSet', '', $('#main_content'))">Find</button>
-                    <button type="button" class="list-group-item" onclick="ajax_call_replace_url('Samples', 'importSamples', '', $('#main_content'))">Import Samples</button>
+                    <button type="button"
+                            class="list-group-item"
+                            onclick="load_page('<?php echo $this->Html->url(['controller' => 'SampleSets', 'action' => 'newSet'], true) ?>', $('#main_content'))">
+                        New
+                    </button>
+                    <button type="button"
+                            class="list-group-item"
+                            onclick="load_page('<?php echo $this->Html->url(['controller' => 'SampleSets', 'action' => 'searchSet'], true) ?>', $('#main_content'))">
+                        Find
+                    </button>
+                    <button type="button"
+                            class="list-group-item"
+                            onclick="load_page('<?php echo $this->Html->url(['controller' => 'Samples', 'action' => 'importSamples'], true) ?>', $('#main_content'))">
+                        Import Samples
+                    </button>
                     <!--links go here
                     if ($this->Session->read('Auth.User')!==null){-->
                     <?php /*echo $this->Html->link('New', ['controller' => 'SampleSets', 'action' => 'newSet'], ['target' => 'mainFrame', 'class' => 'btn btn-link']) */?>
@@ -58,10 +72,26 @@
             </div>
             <div class="panel-collapse collapse" id="compounds_menu">
                 <div class="panel-body light-blue lighten-3">
-                    <button type="button" class="list-group-item" onclick="ajax_call_replace_url('Compounds', 'subSearch', '', $('#main_content'))">Search</button>
-                    <button type="button" class="list-group-item" onclick="ajax_call_replace_url('Compounds', 'addCompound', '', $('#main_content'))">Add</button>
-                    <button type="button" class="list-group-item" onclick="ajax_call_replace_url('Identify', 'idMass', '', $('#main_content'))">ID by Mass</button>
-                    <button type="button" class="list-group-item" onclick="ajax_call_replace_url('Identify', 'IdByMass', '', $('#main_content'))">ID by Mass(ac)</button>
+                    <button type="button"
+                            class="list-group-item"
+                            onclick="load_page('<?php echo $this->Html->url(['controller' => 'Compounds', 'action' => 'subSearch'], true) ?>', $('#main_content'))">
+                        Search
+                    </button>
+                    <button type="button"
+                            class="list-group-item"
+                            onclick="load_page('<?php echo $this->Html->url(['controller' => 'Compounds', 'action' => 'addCompound'], true) ?>', $('#main_content'))">
+                        Add
+                    </button>
+                    <button type="button"
+                            class="list-group-item"
+                            onclick="load_page('<?php echo $this->Html->url(['controller' => 'Identify', 'action' => 'idMass'], true) ?>', $('#main_content'))">
+                        ID by Mass
+                    </button>
+                    <button type="button"
+                            class="list-group-item"
+                            onclick="load_page('<?php echo $this->Html->url(['controller' => 'Identify', 'action' => 'IdByMass'], true) ?>', $('#main_content'))">
+                        ID by Mass(ac)
+                    </button>
 
                     <?php
                     /*//if ($this->Session->read('Auth.User')!==null && in_array("PFR-GP-Biological Chemistry and Bioactives Group", $this->Session->read('Auth.User')['groups'])){
@@ -80,10 +110,26 @@
             </div>
             <div class="panel-collapse collapse" id="pfr_data_menu">
                 <div class="panel-body light-blue lighten-3">
-                    <button type="button" class="list-group-item" onclick="ajax_call_replace_url('Compoundpfr_data', 'findData', '', $('#main_content'))">Chemical</button>
-                    <button type="button" class="list-group-item" onclick="ajax_call_replace_url('Bioactivitypfr_data', 'findData', '', $('#main_content'))">Bioactivity</button>
-                    <button type="button" class="list-group-item" onclick="ajax_call_replace_url('Compoundpfr_data', 'graphData', '', $('#main_content'))">Graph</button>
-                    <button type="button" class="list-group-item" onclick="ajax_call_replace_url('CompoundpfrData', 'import', '', $('#main_content'))">Import</button>
+                    <button type="button"
+                            class="list-group-item"
+                            onclick="load_page('<?php echo $this->Html->url(['controller' => 'Compoundpfr_data', 'action' => 'findData'], true) ?>', $('#main_content'))">
+                        Chemical
+                    </button>
+                    <button type="button"
+                            class="list-group-item"
+                            onclick="load_page('<?php echo $this->Html->url(['controller' => 'Bioactivitypfr_data', 'action' => 'findData'], true) ?>', $('#main_content'))">
+                        Bioactivity
+                    </button>
+                    <button type="button"
+                            class="list-group-item"
+                            onclick="load_page('<?php echo $this->Html->url(['controller' => 'Compoundpfr_data', 'action' => 'graphData'], true) ?>', $('#main_content'))">
+                        Graph
+                    </button>
+                    <button type="button"
+                            class="list-group-item"
+                            onclick="load_page('<?php echo $this->Html->url(['controller' => 'Compoundpfr_data', 'action' => 'import'], true) ?>', $('#main_content'))">
+                        Import
+                    </button>
 
                     <?php
                     /*if ($this->Session->read('Auth.User')!==null && in_array("PFR-GP-Biological Chemistry and Bioactives Group", $this->Session->read('Auth.User')['groups'])) {
@@ -100,8 +146,16 @@
             </div>
             <div class="panel-collapse collapse" id="unknown_compounds_menu">
                 <div class="panel-body light-blue lighten-3">
-                    <button type="button" class="list-group-item" onclick="ajax_call_replace_url('Metabolites', 'addMetabolite', '', $('#main_content'))">Add</button>
-                    <button type="button" class="list-group-item" onclick="ajax_call_replace_url('Metabolites', 'searchMetabolite', '', $('#main_content'))">Search</button>
+                    <button type="button"
+                            class="list-group-item"
+                            onclick="load_page('<?php echo $this->Html->url(['controller' => 'Metabolites', 'action' => 'addMetabolite'], true) ?>', $('#main_content'))">
+                        Add
+                    </button>
+                    <button type="button"
+                            class="list-group-item"
+                            onclick="load_page('<?php echo $this->Html->url(['controller' => 'Metabolites', 'action' => 'searchMetabolite'], true) ?>', $('#main_content'))">
+                        Search
+                    </button>
                     <?php
                     /*if ($this->Session->read('Auth.User')!==null && in_array("PFR-GP-Biological Chemistry and Bioactives Group", $this->Session->read('Auth.User')['groups'])){
                         echo '<li>'.$this->Html->link('Add', ['controller' => 'Metabolites','action' => 'addMetabolite'], ['target' => 'mainFrame', 'class' => 'btn btn-link']).'</li>';
@@ -117,11 +171,31 @@
             </div>
             <div class="panel-collapse collapse" id="general_menu">
                 <div class="panel-body light-blue lighten-3">
-                    <button type="button" class="list-group-item" onclick="ajax_call_replace_url('General', 'scripts', '', $('#main_content'))">Scripts</button>
-                    <button type="button" class="list-group-item" onclick="ajax_call_replace_url('Projects', 'addProject', '', $('#main_content'))">New Project</button>
-                    <button type="button" class="list-group-item" onclick="ajax_call_replace_url('General', 'info', '', $('#main_content'))">Info</button>
-                    <button type="button" class="list-group-item" onclick="ajax_call_replace_url('General', 'howto', '', $('#main_content'))">How To</button>
-                    <button type="button" class="list-group-item" onclick="$('#main_content').html('');">Clear Workbench</button>
+                    <button type="button"
+                            class="list-group-item"
+                            onclick="load_page('<?php echo $this->Html->url(['controller' => 'General', 'action' => 'scripts'], true) ?>', $('#main_content'))">
+                        Scripts
+                    </button>
+                    <button type="button"
+                            class="list-group-item"
+                            onclick="load_page('<?php echo $this->Html->url(['controller' => 'Projects', 'action' => 'addProject'], true) ?>', $('#main_content'))">
+                        New Project
+                    </button>
+                    <button type="button"
+                            class="list-group-item"
+                            onclick="load_page('<?php echo $this->Html->url(['controller' => 'General', 'action' => 'info'], true) ?>', $('#main_content'))">
+                        Info
+                    </button>
+                    <button type="button"
+                            class="list-group-item"
+                            onclick="load_page('<?php echo $this->Html->url(['controller' => 'General', 'action' => 'howto'], true) ?>', $('#main_content'))">
+                        How To
+                    </button>
+                    <button type="button"
+                            class="list-group-item"
+                            onclick="$('#main_content').html('');">
+                        Clear Workbench
+                    </button>
                     <?php
                     /*if ($this->Session->read('Auth.User')!==null && in_array("PFR-GP-Biological Chemistry and Bioactives Group", $this->Session->read('Auth.User')['groups'])){
                         echo '<li>'.$this->Html->link('Scripts', ['controller' => 'General','action' => 'scripts'], ['target' => 'mainFrame', 'class' => 'btn btn-link']).'</li>';
@@ -137,7 +211,11 @@
             </div>
             <div class="panel-collapse collapse" id="pre_release_menu">
                 <div class="panel-body light-blue lighten-3">
-                    <button type="button" class="list-group-item" onclick="ajax_call_replace_url('SampleSets', 'newSet', '', $('#main_content'))">Plates</button>
+                    <button type="button"
+                            class="list-group-item"
+                            onclick="load_page('<?php echo $this->Html->url(['controller' => 'SampleSets', 'action' => 'newSet'], true) ?>', $('#main_content'))">
+                        Plates
+                    </button>
                 </div>
             </div>
         </div>

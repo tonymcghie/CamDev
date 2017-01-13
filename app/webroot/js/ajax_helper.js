@@ -4,9 +4,9 @@
 
 /**
  * This will do an ajax call that will replace the jquery object with whatever the ajax request resonds with
- * @param url
- * @param data
- * @param replaceid
+ * @param url url string
+ * @param data object
+ * @param replace Jquery object
  */
 function ajax_call_replace(url, data, replace){
     $.ajax({
@@ -41,16 +41,14 @@ function ajax_call(url, data, success_function){
         }
     })
 }
-function ajax_call_url(contoller, action, data, success_function){
-    ajax_call_replace(make_url(contoller, action), data, success_function);
-}
 
 /**
- * Makes a url from a controller and action so it can be used in an ajax request
- * @param contoller
- * @param action
- * @returns {string}
+ * This will load a page by passing no data
+ * @param url
+ * @param load_to
  */
-function make_url(contoller, action){
-    return '/'+contoller+'/'+action;
+function load_page(url, load_to){
+    ajax_call_replace(url, '', load_to);
 }
+
+

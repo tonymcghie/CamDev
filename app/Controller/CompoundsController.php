@@ -25,7 +25,7 @@ class CompoundsController extends AppController{
      */
     public function beforeFilter() {
         parent::beforeFilter();
-        $this->Auth->deny('addCompound', 'editCompound'); //deny access from addCompound and editCompound by default
+        //$this->Auth->deny('addCompound', 'editCompound'); //deny access from addCompound and editCompound by default
     }
     
     /**
