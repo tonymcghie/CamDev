@@ -9,8 +9,11 @@
     div.content_container {
         background-size: cover;
     }
-    div.content_container div {
-        background-color: rgba(200, 200, 200, 0.7);
+    div.content_container .content, nav {
+        background-color: rgb(255, 255, 255);
+    }
+    body{
+        background-color: rgb(241, 241, 241);
     }
     <?php if ($this->Session->read('Auth.User')['location'] == 'Palmerston North Research Centre'): ?>
         div.content_container {background-image: url('img/chemlab_pn.jpg');}
@@ -30,7 +33,7 @@
 <?php
     $this->assign('title', 'Chemistry WorkBench');
 ?>
-<nav class="col-lg-2 col-md-3" style="height: 100vh;overflow: scroll;border-right: thin solid #000;">
+<nav class="col-lg-2 col-md-3 layer-2" style="height: 100vh;overflow: auto;">
     <?php $tabletView = 'false';?>
     <p><?php echo $this->Html->image('cam.png', array('alt' => 'CAM Logo', 'width' => '140')); ?> </p>
     <?php echo $this->Html->link('login', ['controller' => 'users', 'action' => 'login'], ['target' => 'mainFrame', 'class' => 'btn btn-link']); ?>|
@@ -222,6 +225,6 @@
     </div>
 </nav>
 
-<div class="container-fluid content_container"  style="height: 100vh; overflow-y: scroll">
-    <div class="col-lg-10 col-lg-offset-1 content" id="main_content"></div>
+<div class="container-fluid content_container"  style="height: 100vh; overflow-y: auto">
+    <div class="col-lg-10 col-lg-offset-1 content container layer-2" id="main_content"></div>
 </div>
