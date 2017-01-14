@@ -19,7 +19,7 @@ ini_set('memory_limit', '1024M');
 class GeneralController extends AppController {
     public $helpers = array('Html' , 'Form' , 'My' , 'Js', 'Time');
     public $uses = array();
-    public $layout = 'PageLayout';
+    public $layout = 'content';
     public $components = array('Paginator', 'RequestHandler', 'My', 'Session', 'Cookie', 'Auth');  
     
     //@LIVE swap the URLS for both of them
@@ -60,12 +60,13 @@ class GeneralController extends AppController {
      * doesnt need anything usually contains tests for things like email and python.
      * These should be deleted or commented out when going live
      */
-    public function info(){  
-        
+    public function info(){
+        $this->layout = 'content';
     } 
  
 	public function howto(){  
         // added to implement howtos, functions with no commands execute defaults
+        $this->layout = 'content';
     }    
     /**
      * almost a blank page

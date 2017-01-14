@@ -9,10 +9,10 @@
 App::uses('CakeEmail', 'Network/Email');
 
 class SampleSetsController extends AppController{
-    public $helpers = array('Html' , 'Form' , 'My' , 'Js', 'Time', 'String');
-    public $uses = array('Analysis' , 'SampleSet' , 'Chemist');
-    public $layout = 'contentLayout';
-    public $components = array('Paginator', 'RequestHandler', 'My', 'Session', 'Cookie', 'Auth');    
+    public $helpers = ['Html' , 'Form' , 'My' , 'Js', 'Time', 'String', 'BootstrapForm'];
+    public $uses = ['Analysis' , 'SampleSet' , 'Chemist', 'Project'];
+    public $layout = 'content';
+    public $components = ['Paginator', 'RequestHandler', 'My', 'Session', 'Cookie', 'Auth'];
     
     /**
      * @LIVE Change loactions
@@ -25,12 +25,14 @@ class SampleSetsController extends AppController{
      */
     public function beforeFilter() {
         parent::beforeFilter();
-        if (isset($this->Auth->Session->read($this->Auth->sessionKey)['Auth']['User']['name'])){
-            $this->SampleSet->username = $this->Auth->Session->read($this->Auth->sessionKey)['Auth']['User']['name'];
-        }//sets the username of the user to a variable that can be used through out the contoller
-        $this->Auth->allow('editSet','newSet'); //deny access to edit and new set by default // 'deny' changed to 'allow' for home testing
-        $this->Cookie->name = 'View'; //sets a cookie with the name view
-        $this->Cookie->time = '365 days'; //sets the time till it expires to be really long
+
+//        if (isset($this->Auth->Session->read($this->Auth->sessionKey)['Auth']['User']['name'])){
+//            $this->SampleSet->username = $this->Auth->Session->read($this->Auth->sessionKey)['Auth']['User']['name'];
+//        }//sets the username of the user to a variable that can be used through out the contoller
+//        $this->Auth->allow('editSet','newSet'); //deny access to edit and new set by default // 'deny' changed to 'allow' for home testing
+//        $this->Cookie->name = 'View'; //sets a cookie with the name view
+//        $this->Cookie->time = '365 days'; //sets the time till it expires to be really long
+
     }
     
     /**
@@ -45,7 +47,7 @@ class SampleSetsController extends AppController{
     
     /**
      * Sends an email. The message is for when a new Sample Set is submitted
-     * @param type $options
+     * @param array $options
      */
     private function send_newSS_email($options){
         $Email = new CakeEmail($options); //creates an email object which will set most of the options
@@ -55,7 +57,7 @@ class SampleSetsController extends AppController{
         
     /**
      * Sends an email. The message is for when a Sample Set is edited
-     * @param type $options
+     * @param array $options
      */
     private function send_editSS_email($options){
         $Email = new CakeEmail($options); //creates the email object and sets most of the options
@@ -68,7 +70,10 @@ class SampleSetsController extends AppController{
      * @return type
      */
     public function newSet(){
-        $this->layout = 'contentLayout';
+        $this->layout = 'content';
+        $this->set('names', $this->Chemist->find('list', ['fields' => 'name']));
+        $this->set('p_names', $this->Project->find('list' , ['fields' => 'short_name']));
+
         if (isset($this->Auth->Session->read($this->Auth->sessionKey)['Auth']['User']['name'])){
             $this->set('user', $this->Auth->Session->read($this->Auth->sessionKey)['Auth']['User']);
         } //sets the username to the view
@@ -109,7 +114,13 @@ class SampleSetsController extends AppController{
                 $this->set('error', true);
             } //if the save was successful then send the emails if not send an error to the view
         } //check if the save button has being clicked and makes a new sample set if the form has being submitted   
-    }  
+    }
+
+    public function saveSet(){
+        if (!$this->request->is('ajax')){
+            echo 'no';
+        }
+    }
     
     /**
      * Updates a sample set
@@ -168,7 +179,8 @@ class SampleSetsController extends AppController{
      * @param type $data
      * @return type
      */
-    public function searchSet($data = null){  
+    public function searchSet($data = null){
+        $this->layout = 'content';
         if ($data!=null&&!isset($this->request->data['SampleSet'])){ //if the data passed is through the url rather than post then set the data variable to the data passed from the url
             parse_str($data);
             $this->request->data['SampleSet'] = $SampleSet;

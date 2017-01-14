@@ -9,7 +9,7 @@
 class CompoundsController extends AppController{
     public $helpers = array('Html' , 'Form' , 'My', 'Js');
     public $uses = array('Compound');
-    public $layout = 'PageLayout';
+    public $layout = 'content';
     public $components = array('Paginator', 'My');
     
    /** Sets the options for pagination */

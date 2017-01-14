@@ -9,7 +9,7 @@
 class BioactivitypfrDataController extends AppController{
     public $helpers = array('Html' , 'Form' , 'My', 'Js');
     public $uses = array('Bioactivitypfr_data','PubChemModel', 'Compound');
-    public $layout = 'PageLayout';
+    public $layout = 'content';
     public $components = array('Paginator', 'My', 'Pivot');
     
     //sets the values for the pagination

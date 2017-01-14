@@ -15,7 +15,7 @@ App::uses('AppController', 'Controller');
 class UsersController extends AppController {
     public $components = ['Session', 'LDAP', 'Cookie'];
     public $uses = ['Contact', 'SampleSet', 'Chemist'];
-    public $layout = 'PageLayout';
+    public $layout = 'content';
 
     /**
      * Stuff that happens before other functions are called

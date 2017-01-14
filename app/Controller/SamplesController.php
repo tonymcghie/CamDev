@@ -9,7 +9,7 @@
 class SamplesController extends AppController{
     public $helpers = array('Html' , 'Form' , 'My', 'Js');
     public $uses = array('Analysis', 'SampleSet', 'Sample');
-    public $layout = 'PageLayout';
+    public $layout = 'content';
     //public $components = ['My', 'RequestHandler', 'PhpExcel'];
 	public $components = array('Paginator', 'My', 'Pivot', 'RequestHandler', 'PhpExcel');
     

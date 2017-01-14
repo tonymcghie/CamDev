@@ -60,7 +60,6 @@ class AppController extends Controller {
         parent::beforeFilter();
         // Allow users to register and logout.
         $this->Auth->allow();
-        //$this->Auth->deny('editSet','editAnalysis','newSet');
     }
     
     /**

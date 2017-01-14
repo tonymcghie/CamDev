@@ -19,9 +19,9 @@
         <h2>How To: Access Sample Set Data</h2>
 
         <p>Login into CAM. Find the sample set using ‘Find’.  Click on ‘View’ button.</p>
-        <p><?php echo $this->Html->image('howto/AcessSSData_1.png', array('alt' => 'CAM Logo', 'width' => '1200')); ?> <br></p>
+        <p><?php echo $this->Html->image('howto/AcessSSData_1.png', array('alt' => 'Screen shot of CAM', 'class' => 'img-responsive layer-2')); ?> <br></p>
         <p>If data has been upload for this sample set, a file name will show below 'Processed Data'. Download the file by clicking on the ‘Open’ button.  When using Chrome, the download appears on the bottom left and the file can be opened in Excel by double clicking.</p>
-        <p><?php echo $this->Html->image('howto/AcessSSData_2.png', array('alt' => 'CAM Logo', 'width' => '1200')); ?> </p>
+        <p><?php echo $this->Html->image('howto/AcessSSData_2.png', array('alt' => 'Screen shot if CAM', 'class' => 'img-responsive layer-2')); ?> </p>
     </div>
     <div id="search_pfr_tab" class="tab-pane fade">
         <h2>Search for PFR Data</h2>

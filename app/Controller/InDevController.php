@@ -15,7 +15,7 @@ App::uses('AppController', 'Controller');
 class InDevController extends AppController {
     public $helpers = array('Html' , 'Form' , 'My' , 'Js', 'Time');
     public $uses = array();
-    public $layout = 'PageLayout';
+    public $layout = 'content';
 
     public function index($id) {
         

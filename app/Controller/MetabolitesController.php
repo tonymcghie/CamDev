@@ -9,7 +9,7 @@
 class MetabolitesController extends AppController{
     public $helpers = array('Html' , 'Form' , 'My', 'Js');
     public $uses = array('Metabolite','Msms_Metabolite','Proposed_Metabolite');
-    public $layout = 'PageLayout';
+    public $layout = 'content';
     public $components = array('Paginator', 'RequestHandler', 'My');
     
     public $paginate = array(
