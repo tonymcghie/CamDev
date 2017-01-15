@@ -87,15 +87,21 @@ class IdentifyController extends AppController{
     
     public function SearchMasses(){
         $this->layout = 'MinLayout'; //minimilistic layout that has no formating
-        if ($this->request->is('post')){
+        if ($this->request->is('get')){
             //$file = fopen($this->request->data['Identify']['csv_file']['tmp_name'],"r"); //sets up the file for reading
-            //$dataUrl="/home/tony/temp/TK151_apple_dissect.csv";
-            $dataUrl="/home/tony/temp/SC16_QC_posESI_29863_dissect.csv";
-            echo $dataUrl;
-            //echo $mass_window;
+            $DataFileUrl="/home/tony/temp/TK151_apple_dissect.csv";
+            //$DataFileUrl="/home/tony/temp/SC16_QC_posESI_29863_dissect.csv";
+            //$DataFileUrl="/home/tony/temp/SC16_QC_posESI_29863_FMF.csv";
+            echo $DataFileUrl;
+            $url = $this->params['url'];
+            var_dump($url);
+            $mass_window = $url['mass_window'];
+            $ion_type = $url['ion_type'];
+            echo $mass_window;
+            echo $ion_type;
             $massdata = array();
             $compounds = array();
-            $file = fopen($dataUrl,"r"); //sets up the file for reading
+            $file = fopen($DataFileUrl,"r"); //sets up the file for reading
             $head = fgetcsv($file); //read the column headers from the datafile
             array_push($head, "Compound"); //add another column for search hits to the column headers
             $n = 0;
@@ -105,8 +111,8 @@ class IdentifyController extends AppController{
                     break;
                 } //when there are no more lines exit the loop               
                 //var_dump($line);
-                //$mass = $line[3] + 1.00794; //for [M-H] data add the mass of hydrogen to get monoisotopic MW
-                $mass = $line[3] - 1.00794; //for [M+H] data subtract the mass of hydrogen to get monoisotopic MW
+                $mass = $line[3] + 1.00794; //for [M-H] data add the mass of hydrogen to get monoisotopic MW
+                //$mass = $line[3] - 1.00794; //for [M+H] data subtract the mass of hydrogen to get monoisotopic MW
                 $low_mass = $mass - 0.01; //calculate lower and upper limits of the acurate mass window
                 $high_mass = $mass + 0.01;
                 $search =  array("Compound.exact_mass BETWEEN ? AND ?" => array($low_mass, $high_mass));
@@ -120,7 +126,8 @@ class IdentifyController extends AppController{
                 array_push($compounds, $foundcmpd); //adds the array containing the found compounds  to an array containing all values to save
                 $n = $n + 1;
             } //loops through the CSV file an adds the appropriate values to an array
-            $this->set('fileName', $this->request->data['Identify']['csv_file']['name']); //passes the filename to the view 
+            //$this->set('fileName', $this->request->data['Identify']['csv_file']['name']); //passes the filename to the view 
+            $this->set('fileName', $url['csv_file']); //passes the filename to the view 
             $this->set('compounds', $compounds); // pass to the view 
             $this->set('head', $head); // pass table headings to the view 
             $this->set('masses', $massdata); // pass array with the mass data from file to the view 
@@ -138,7 +145,7 @@ class IdentifyController extends AppController{
             return;
         }
         parse_str($masses);
-        var_dump($masses);
+        //var_dump($masses);
         /**$data = array();
         $data[$modelstr] = $$modelstr;
         if ($allORSearch){
@@ -148,8 +155,15 @@ class IdentifyController extends AppController{
             $search = $controller->My->extractSearchTerm($data, $allColums, $modelstr); 
         }
         $data = $model->find('all', ['conditions' => $search]);*/
+        /**foreach ($masses as $row):
+            foreach ($row as &$cell):
+                // Escape double quotation marks
+                $cell = '"' . preg_replace('/"/','""',$cell) . '"';
+            endforeach;
+            echo implode(',', $row) . "\n";
+        endforeach;*/
         $this->set('masses', $masses);
-        $this->response->download("export.csv");
-        $this->layout = 'ajax';
+        //$this->response->download("export.csv");
+        //$this->layout = 'ajax';
     }
 }

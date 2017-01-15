@@ -9,7 +9,7 @@
 <p><?php //var_dump($masses) ?></p>
 <?php
 //var_dump($compounds[1]["Compound"]["compound_name"]);
-$tempExp = $this->Form->postLink('Export Data', ['action' => 'export', http_build_query($masses)], ['style'=>'width: 80px', 'class' => 'find-button abbr-button']);
+$tempExp = $this->Form->postLink('Export CSV', ['action' => 'export', http_build_query($masses)], ['style'=>'width: 80px', 'class' => 'find-button abbr-button']);
 echo $tempExp;
 echo "<div class='scrollable'>";
 echo "<table>";
