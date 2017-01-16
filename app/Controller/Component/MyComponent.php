@@ -109,8 +109,38 @@ class MyComponent extends Component{
         $controller->response->download("export.csv");
         $controller->layout = 'ajax';  
     }
-
     
+    public function IdentifyMass($DataFile, $mass_window, $ion_type){
+        $foundcmpd=array(); $data=array();
+        $file = fopen($DataFile,"r"); //sets up the file for reading
+        $head = fgetcsv($file); //read the column headers from the datafile
+        array_push($head, "Compound"); //add another column for search hits to the column headers
+        $n = 0;
+        while (1==1){
+            $line = fgetcsv($file);
+            if ($line=== false){
+                break;
+            } //when there are no more lines exit the loop               
+            //var_dump($line);
+            $mass = $line[3] + 1.00794; //for [M-H] data add the mass of hydrogen to get monoisotopic MW
+            //$mass = $line[3] - 1.00794; //for [M+H] data subtract the mass of hydrogen to get monoisotopic MW
+            $low_mass = $mass - 0.01; //calculate lower and upper limits of the acurate mass window
+            $high_mass = $mass + 0.01;
+            $search =  array("Compound.exact_mass BETWEEN ? AND ?" => array($low_mass, $high_mass));
+            //var_dump($search);
+            $foundcmpd = $this->Compound->find('first', ['conditions' =>$search]);
+            if (isset($foundcmpd["Compound"])){ 
+                array_push($line, $foundcmpd["Compound"]["compound_name"]);
+            }
+            //var_dump($foundcmpd);
+            array_push($data, $line); //adds the array contining the values to an array containing all values to save
+            //array_push($found, $foundcmpd); //adds the array containing the found compounds  to an array containing all values to save
+            $n = $n + 1;
+            } //loops through the CSV file an adds the appropriate values to an array
+        return $data;             
+    }
+
+ 
     /*
      * Functions for authorisation *************************
      */

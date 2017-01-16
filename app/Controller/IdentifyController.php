@@ -95,13 +95,13 @@ class IdentifyController extends AppController{
             echo $DataFileUrl;
             $url = $this->params['url'];
             var_dump($url);
-            $mass_window = $url['mass_window'];
+            $mass_tolerance = $url['mass_tolerance'];
             $ion_type = $url['ion_type'];
-            echo $mass_window;
+            echo $mass_tolerance;
             echo $ion_type;
             $massdata = array();
-            $compounds = array();
-            $file = fopen($DataFileUrl,"r"); //sets up the file for reading
+            $massdata=$this->My->IdentifyMass($DataFileUrl, $mass_window, $ion_type);
+            /**$file = fopen($DataFileUrl,"r"); //sets up the file for reading
             $head = fgetcsv($file); //read the column headers from the datafile
             array_push($head, "Compound"); //add another column for search hits to the column headers
             $n = 0;
@@ -123,13 +123,12 @@ class IdentifyController extends AppController{
                 }
                 //var_dump($foundcmpd);
                 array_push($massdata, $line); //adds the array contining the values to an array containing all values to save
-                array_push($compounds, $foundcmpd); //adds the array containing the found compounds  to an array containing all values to save
                 $n = $n + 1;
             } //loops through the CSV file an adds the appropriate values to an array
+             */
             //$this->set('fileName', $this->request->data['Identify']['csv_file']['name']); //passes the filename to the view 
             $this->set('fileName', $url['csv_file']); //passes the filename to the view 
-            $this->set('compounds', $compounds); // pass to the view 
-            $this->set('head', $head); // pass table headings to the view 
+            //$this->set('head', $head); // pass table headings to the view 
             $this->set('masses', $massdata); // pass array with the mass data from file to the view 
             //var_dump($massdata);
         }
