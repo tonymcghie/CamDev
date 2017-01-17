@@ -1,6 +1,11 @@
 <?php
 echo "<pre>";  //output array for testing
 echo "********************\n";
+echo htmlentities(print_r($head,true));
+echo "\n====================";
+echo "</pre>";
+cho "<pre>";  //output array for testing
+echo "********************\n";
 echo htmlentities(print_r($masses,true));
 echo "\n====================";
 echo "</pre>";

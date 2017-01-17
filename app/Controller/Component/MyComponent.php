@@ -110,11 +110,18 @@ class MyComponent extends Component{
         $controller->layout = 'ajax';  
     }
     
-    public function IdentifyMass($DataFile, $mass_window, $ion_type){
-        $foundcmpd=array(); $data=array();
+    public function IdentifyHeadings($DataFile){
         $file = fopen($DataFile,"r"); //sets up the file for reading
-        $head = fgetcsv($file); //read the column headers from the datafile
-        array_push($head, "Compound"); //add another column for search hits to the column headers
+        $heading = fgetcsv($file); //read the column headers from the datafile
+        array_push($heading, "Compound"); //add another column for search hits to the column headers
+        return $heading;
+    }
+    
+    public function IdentifyMass($DataFile, $mass_tolerance, $ion_type){
+        $foundcmpd=array(); $data=array();
+        $model = ClassRegistry::init('Compound');
+        $file = fopen($DataFile,"r"); //sets up the file for reading
+        $head = fgetcsv($file); //read the first line (column headers) from the datafile and ignore in this function
         $n = 0;
         while (1==1){
             $line = fgetcsv($file);
@@ -128,7 +135,7 @@ class MyComponent extends Component{
             $high_mass = $mass + 0.01;
             $search =  array("Compound.exact_mass BETWEEN ? AND ?" => array($low_mass, $high_mass));
             //var_dump($search);
-            $foundcmpd = $this->Compound->find('first', ['conditions' =>$search]);
+            $foundcmpd = $model->find('first', ['conditions' =>$search]);
             if (isset($foundcmpd["Compound"])){ 
                 array_push($line, $foundcmpd["Compound"]["compound_name"]);
             }

@@ -99,36 +99,14 @@ class IdentifyController extends AppController{
             $ion_type = $url['ion_type'];
             echo $mass_tolerance;
             echo $ion_type;
+            $identify_parms = array();
+            array_push($identify_parms, $DataFileUrl, $mass_tolerance, $ion_type); //put all the parameters for identifcation into an array
             $massdata = array();
-            $massdata=$this->My->IdentifyMass($DataFileUrl, $mass_window, $ion_type);
-            /**$file = fopen($DataFileUrl,"r"); //sets up the file for reading
-            $head = fgetcsv($file); //read the column headers from the datafile
-            array_push($head, "Compound"); //add another column for search hits to the column headers
-            $n = 0;
-            while (1==1){
-                $line = fgetcsv($file);
-                if ($line=== false){
-                    break;
-                } //when there are no more lines exit the loop               
-                //var_dump($line);
-                $mass = $line[3] + 1.00794; //for [M-H] data add the mass of hydrogen to get monoisotopic MW
-                //$mass = $line[3] - 1.00794; //for [M+H] data subtract the mass of hydrogen to get monoisotopic MW
-                $low_mass = $mass - 0.01; //calculate lower and upper limits of the acurate mass window
-                $high_mass = $mass + 0.01;
-                $search =  array("Compound.exact_mass BETWEEN ? AND ?" => array($low_mass, $high_mass));
-                //var_dump($search);
-                $foundcmpd = $this->Compound->find('first', ['conditions' =>$search]);
-                if (isset($foundcmpd["Compound"])){ 
-                    array_push($line, $foundcmpd["Compound"]["compound_name"]);
-                }
-                //var_dump($foundcmpd);
-                array_push($massdata, $line); //adds the array contining the values to an array containing all values to save
-                $n = $n + 1;
-            } //loops through the CSV file an adds the appropriate values to an array
-             */
-            //$this->set('fileName', $this->request->data['Identify']['csv_file']['name']); //passes the filename to the view 
-            $this->set('fileName', $url['csv_file']); //passes the filename to the view 
-            //$this->set('head', $head); // pass table headings to the view 
+            $head=$this->My->IdentifyHeadings($DataFileUrl);
+            $massdata=$this->My->IdentifyMass($DataFileUrl, $mass_tolerance, $ion_type);
+            //$this->set('fileName', $url['csv_file']); //passes the filename to the view 
+            $this->set('identify_parms', $identify_parms); //passes the identify parameters to the view 
+            $this->set('head', $head); // pass table headings to the view 
             $this->set('masses', $massdata); // pass array with the mass data from file to the view 
             //var_dump($massdata);
         }
@@ -138,13 +116,17 @@ class IdentifyController extends AppController{
      * Exports the search results to a CSV file
      * @param type $data
      */
-    public function export($masses = null){
+    public function export($identify_parms = null){
         //$this->My->exportCSV('Identify', $this->Identify, $this, [], $data); //removed ',true' to make export work
-         if ($masses==null){
+         if ($identify_parms==null){
             return;
         }
-        parse_str($masses);
-        //var_dump($masses);
+        //parse_str($filename);
+        $filename="/home/tony/temp/TK151_apple_dissect.csv";  //lock the data file name to a path that works - temporary fix
+        //var_dump($filename);
+        $head=$this->My->IdentifyHeadings($filename);
+        $massdata=$this->My->IdentifyMass($filename, $mass_tolerance, $ion_type);
+        //var_dump($head);
         /**$data = array();
         $data[$modelstr] = $$modelstr;
         if ($allORSearch){
@@ -161,8 +143,9 @@ class IdentifyController extends AppController{
             endforeach;
             echo implode(',', $row) . "\n";
         endforeach;*/
-        $this->set('masses', $masses);
-        //$this->response->download("export.csv");
-        //$this->layout = 'ajax';
+        $this->set('head', $head);
+        $this->set('masses', $massdata);
+        $this->response->download("export.csv");
+        $this->layout = 'ajax';
     }
 }
