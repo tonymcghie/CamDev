@@ -117,6 +117,8 @@ class IdentifyController extends AppController{
      * @param type $data
      */
     public function export($identify_parms = null){
+        $mass_tolerance = 0.01;
+        $ion_type = '[M-H]-'; //both these variable are set and passed to IdentifyMass, but are not yet used
         //$this->My->exportCSV('Identify', $this->Identify, $this, [], $data); //removed ',true' to make export work
          if ($identify_parms==null){
             return;
