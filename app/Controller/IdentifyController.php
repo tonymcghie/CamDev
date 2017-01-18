@@ -92,13 +92,13 @@ class IdentifyController extends AppController{
             $DataFileUrl="/home/tony/temp/TK151_apple_dissect.csv";
             //$DataFileUrl="/home/tony/temp/SC16_QC_posESI_29863_dissect.csv";
             //$DataFileUrl="/home/tony/temp/SC16_QC_posESI_29863_FMF.csv";
-            echo $DataFileUrl;
+            //echo $DataFileUrl;
             $url = $this->params['url'];
-            var_dump($url);
-            $mass_tolerance = $url['mass_tolerance'];
+            //var_dump($url);
+            $mass_tolerance = $url['mass_tolerance']/1000; //convert mass tolerance mDa to Da
             $ion_type = $url['ion_type'];
-            echo $mass_tolerance;
-            echo $ion_type;
+            //echo $mass_tolerance;
+            //echo $ion_type;
             $identify_parms = array();
             array_push($identify_parms, $DataFileUrl, $mass_tolerance, $ion_type); //put all the parameters for identifcation into an array
             $massdata = array();
@@ -119,34 +119,16 @@ class IdentifyController extends AppController{
     public function export($identify_parms = null){
         $mass_tolerance = 0.01;
         $ion_type = '[M-H]-'; //both these variable are set and passed to IdentifyMass, but are not yet used
-        //$this->My->exportCSV('Identify', $this->Identify, $this, [], $data); //removed ',true' to make export work
-         if ($identify_parms==null){
+        if ($identify_parms==null){
             return;
         }
         //parse_str($filename);
         $filename="/home/tony/temp/TK151_apple_dissect.csv";  //lock the data file name to a path that works - temporary fix
         //var_dump($filename);
-        $head=$this->My->IdentifyHeadings($filename);
-        $massdata=$this->My->IdentifyMass($filename, $mass_tolerance, $ion_type);
-        //var_dump($head);
-        /**$data = array();
-        $data[$modelstr] = $$modelstr;
-        if ($allORSearch){
-            $search = $controller->buildConditionsArray($data);
-        } else {
-            $data[$modelstr]['num_boxes'] = (isset($data[$modelstr]['num_boxes']) ? $data[$modelstr]['num_boxes'] : 1);  
-            $search = $controller->My->extractSearchTerm($data, $allColums, $modelstr); 
-        }
-        $data = $model->find('all', ['conditions' => $search]);*/
-        /**foreach ($masses as $row):
-            foreach ($row as &$cell):
-                // Escape double quotation marks
-                $cell = '"' . preg_replace('/"/','""',$cell) . '"';
-            endforeach;
-            echo implode(',', $row) . "\n";
-        endforeach;*/
-        $this->set('head', $head);
-        $this->set('masses', $massdata);
+        $head=$this->My->IdentifyHeadings($filename); //get the headings from the datafile
+        $massdata=$this->My->IdentifyMass($filename, $mass_tolerance, $ion_type); //get the masses from the data file; search compounds and return a compound name
+        $this->set('head', $head); //send to view
+        $this->set('masses', $massdata); //send to view
         $this->response->download("export.csv");
         $this->layout = 'ajax';
     }

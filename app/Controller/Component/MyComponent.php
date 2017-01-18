@@ -113,11 +113,14 @@ class MyComponent extends Component{
     public function IdentifyHeadings($DataFile){
         $file = fopen($DataFile,"r"); //sets up the file for reading
         $heading = fgetcsv($file); //read the column headers from the datafile
-        array_push($heading, "Compound"); //add another column for search hits to the column headers
+        array_push($heading, "Compound (found)"); //add another column for search hits to the column headers
         return $heading;
     }
     
     public function IdentifyMass($DataFile, $mass_tolerance, $ion_type){
+        //print $DataFile."\n";
+        //print $mass_tolerance."\n";
+        //print $ion_type."\n";
         $foundcmpd=array(); $data=array();
         $model = ClassRegistry::init('Compound');
         $file = fopen($DataFile,"r"); //sets up the file for reading
@@ -131,8 +134,8 @@ class MyComponent extends Component{
             //var_dump($line);
             $mass = $line[3] + 1.00794; //for [M-H] data add the mass of hydrogen to get monoisotopic MW
             //$mass = $line[3] - 1.00794; //for [M+H] data subtract the mass of hydrogen to get monoisotopic MW
-            $low_mass = $mass - 0.01; //calculate lower and upper limits of the acurate mass window
-            $high_mass = $mass + 0.01;
+            $low_mass = $mass - $mass_tolerance; //calculate lower and upper limits of the acurate mass window
+            $high_mass = $mass + $mass_tolerance;
             $search =  array("Compound.exact_mass BETWEEN ? AND ?" => array($low_mass, $high_mass));
             //var_dump($search);
             $foundcmpd = $model->find('first', ['conditions' =>$search]);

@@ -33554,3 +33554,166 @@ Request URL: /CAM3-0/css/color_schemes_v4.css
 Stack Trace:
 #0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
 #1 {main}
+2017-01-18 21:22:08 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/css/color_schemes_v4.css
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-01-18 21:26:29 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/css/color_schemes_v4.css
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-01-18 21:30:29 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/css/color_schemes_v4.css
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-01-18 21:32:58 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/css/color_schemes_v4.css
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-01-18 21:34:55 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/css/color_schemes_v4.css
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-01-18 21:36:46 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/css/color_schemes_v4.css
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-01-18 21:38:45 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/css/color_schemes_v4.css
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-01-18 21:41:09 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/css/color_schemes_v4.css
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-01-18 21:46:58 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/css/color_schemes_v4.css
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-01-18 21:48:13 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/css/color_schemes_v4.css
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-01-18 21:59:14 Error: Fatal Error (4): syntax error, unexpected ')', expecting ']' in [/var/www/html/CAM3-0/app/View/Identify/search_masses.ctp, line 19]
+2017-01-18 21:59:14 Error: [FatalErrorException] syntax error, unexpected ')', expecting ']'
+Request URL: /CAM3-0/identify/SearchMasses?mass_tolerance=10&ion_type=%5BM-H%5D-&MAX_FILE_SIZE=48000000&fileUrl=&fileName=&csv_file=TK151_apple_dissect.csv
+Stack Trace:
+#0 /var/www/html/CAM3-0/lib/Cake/Error/ErrorHandler.php(213): ErrorHandler::handleFatalError(4, 'syntax error, u...', '/var/www/html/C...', 19)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', '/var/www/html/C...', 19, Array)
+#2 /var/www/html/CAM3-0/lib/Cake/Core/App.php(933): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', '/var/www/html/C...', 19, Array)
+#3 /var/www/html/CAM3-0/lib/Cake/Core/App.php(906): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2017-01-18 21:59:15 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/img/cake.power.gif
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-01-18 21:59:15 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/img/cake.icon.png
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-01-18 21:59:49 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/css/color_schemes_v4.css
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-01-18 22:11:38 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/css/color_schemes_v4.css
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-01-18 22:34:24 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/css/color_schemes_v4.css
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-01-18 22:43:34 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/css/color_schemes_v4.css
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-01-18 22:44:20 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/css/color_schemes_v4.css
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
