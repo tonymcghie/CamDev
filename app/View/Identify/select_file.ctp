@@ -7,7 +7,7 @@
 <p> 3) The compounds that are present in the Compounds database, and that match your accurate mass data will be displayed.  This table can be exported.</p>
 </header>
 <?php
-    $mDa = ['10' => '10' , '20' => '20', '50' => '50', '100' => '100', '500' => '500'];
+    $mDa = ['5' => '5' , '10' => '10' , '20' => '20', '50' => '50', '100' => '100', '500' => '500'];
     $ions = ['[M-H]-' => '[M-H]-' , '[M+H]+' => '[M+H]+', '[M]' => '[M]'];
     //echo $this->Form->create('Identify', ['id' => 'fileForm', 'url' => 'SearchMasses', 'type' => 'file']);
     echo $this->Form->create('Identify', ['id' => 'fileForm', 'url' => 'SearchMasses', 'type' => 'get']);

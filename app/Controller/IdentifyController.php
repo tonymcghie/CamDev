@@ -88,13 +88,13 @@ class IdentifyController extends AppController{
     public function SearchMasses(){
         $this->layout = 'MinLayout'; //minimilistic layout that has no formating
         if ($this->request->is('get')){
-            //$file = fopen($this->request->data['Identify']['csv_file']['tmp_name'],"r"); //sets up the file for reading
-            $DataFileUrl="/home/tony/temp/TK151_apple_dissect.csv";
+            //$DataFileUrl="/home/tony/temp/TK151_apple_dissect.csv";
             //$DataFileUrl="/home/tony/temp/SC16_QC_posESI_29863_dissect.csv";
             //$DataFileUrl="/home/tony/temp/SC16_QC_posESI_29863_FMF.csv";
             //echo $DataFileUrl;
             $url = $this->params['url'];
             //var_dump($url);
+            $DataFileUrl = $url['csv_file'];
             $mass_tolerance = $url['mass_tolerance']/1000; //convert mass tolerance mDa to Da
             $ion_type = $url['ion_type'];
             //echo $mass_tolerance;
@@ -104,7 +104,6 @@ class IdentifyController extends AppController{
             $massdata = array();
             $head=$this->My->IdentifyHeadings($DataFileUrl);
             $massdata=$this->My->IdentifyMass($DataFileUrl, $mass_tolerance, $ion_type);
-            //$this->set('fileName', $url['csv_file']); //passes the filename to the view 
             $this->set('identify_parms', $identify_parms); //passes the identify parameters to the view 
             $this->set('head', $head); // pass table headings to the view 
             $this->set('masses', $massdata); // pass array with the mass data from file to the view 
@@ -116,14 +115,12 @@ class IdentifyController extends AppController{
      * Exports the search results to a CSV file
      * @param type $data
      */
-    public function export($identify_parms = null){
-        $mass_tolerance = 0.01;
-        $ion_type = '[M-H]-'; //both these variable are set and passed to IdentifyMass, but are not yet used
-        if ($identify_parms==null){
-            return;
-        }
-        //parse_str($filename);
-        $filename="/home/tony/temp/TK151_apple_dissect.csv";  //lock the data file name to a path that works - temporary fix
+    public function export($filename, $mass_tolerance, $ion_type){
+        //if ($identify_parms==null){
+            //return;
+        //}
+        $filename=  urldecode($filename);
+        //$filename="/home/tony/temp/TK151_apple_dissect.csv";  //lock the data file name to a path that works - temporary fix
         //var_dump($filename);
         $head=$this->My->IdentifyHeadings($filename); //get the headings from the datafile
         $massdata=$this->My->IdentifyMass($filename, $mass_tolerance, $ion_type); //get the masses from the data file; search compounds and return a compound name

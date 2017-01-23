@@ -1,15 +1,13 @@
 <?php
 //var_dump($head);
 //var_dump($masses);
-//foreach ($head as $row): //print headings to the .csv after removing unnecessary characters
-    foreach ($head as &$cell):
+    foreach ($head as &$cell):  //print the heading to the export csv
         // Escape double quotation marks
         $cell = '"' . preg_replace('/"/','""',$cell) . '"';
     endforeach;
     echo implode(',', $head) . "\n";
-//endforeach;
 
-foreach ($masses as $row): //print headings to the .csv after removing unnecessary characters 
+foreach ($masses as $row): //print data plus compounds matches from the database to the export csv
     foreach ($row as &$cell):
         // Escape double quotation marks
         $cell = '"' . preg_replace('/"/','""',$cell) . '"';
@@ -29,15 +27,5 @@ echo htmlentities(print_r($masses,true));
 echo "\n====================";
 echo "</pre>";*/
 ?>
-<?php 
-//echo $this->My->drawCSV($masses, 'Identify');
-//array_unshift($data,[$model => array_keys($data[0][$model])]);
-        /**foreach ($masses as $row):
-            foreach ($row as &$cell):
-                // Escape double quotation marks
-                $cell = '"' . preg_replace('/"/','""',$cell) . '"';
-            endforeach;
-            echo implode(',', $row) . "\n";
-        endforeach;*/
-?>
+
 
