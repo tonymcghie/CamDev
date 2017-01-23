@@ -17,7 +17,7 @@ $tempExp = $this->Form->postLink('Export CSV',  array('action' => 'export', urle
 echo $tempExp;
 //echo $this->Html->link('Export CSV',array('controller'=>'Identify','action'=>'export',urlencode($identify_parms[0]),$identify_parms[1],$identify_parms[2])); //this also works
 echo "<div class='scrollable'>";
-echo "<table>";
+echo '<table style="background-color: rgba(252, 252, 252, 0.75)">';
 echo $this->Html->tableHeaders(array($head[0], $head[1], $head[2], $head[3], $head[4], $head[5]));
 echo $this->Html->tableCells($masses);
 echo "</table>";
