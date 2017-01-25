@@ -37,48 +37,43 @@ class IdentifyController extends AppController{
      * 3) successful hits are written into an output file that is sent to Downloads
      */
     public function SelectFile(){
-        
+        //$this->layout = 'MinLayout'; //minimilistic layout that has no formating
+        $filename = '';
+        if ($this->request->is('post')) { // checks for the post values
+            $uploadData = $this->data['Upload']['csv_path'];
+            //var_dump($uploadData);
+            $mass_tolerance = $this->data['Upload']['mass_tolerance']/1000;
+            $ion_type = $this->data['Upload']['ion_type'];
+            //var_dump($mass_tolerance, $ion_type);
+            if ( $uploadData['size'] == 0 || $uploadData['error'] !== 0) { // checks for the errors and size of the uploaded file
+                return false;
+                }
+            $filename = basename($uploadData['name']); // gets the base name of the uploaded file
+            $uploadFolder = WWW_ROOT. 'data/files/Identify';  // path where the uploaded file has to be saved
+            //$filename = time() .'_'. $filename; // adding time stamp for the uploaded image for uniqueness
+            $uploadPath =  $uploadFolder . DS . $filename;
+            if( !file_exists($uploadFolder) ){
+                mkdir($uploadFolder); // creates folder if  not found
+            }
+            if (!move_uploaded_file($uploadData['tmp_name'], $uploadPath)) {
+                return false;
+            }
+            $identify_parms = array();
+            array_push($identify_parms, $filename, $mass_tolerance, $ion_type); //put all the parameters for identifcation into an array
+            $massdata = array();
+            $head=$this->My->IdentifyHeadings($uploadPath);
+            $massdata=$this->My->IdentifyMass($uploadPath, $mass_tolerance, $ion_type);
+            $this->set('identify_parms', $identify_parms); //passes the identify parameters to the view 
+            $this->set('head', $head); // pass table headings to the view 
+            $this->set('masses', $massdata); // pass array with the mass data from file to the view 
+            $this->render('search_masses'); //direct to the search_masses view and not the default select_file view
+        }
     }
     
     public function IdByMass() {
 
     }
-
-
-    /**
-    public function ReadFile(){
-        if($this->request->is('post')){ 
-            $data = $this->request->data['Identify'];
-            $cols = array();
-            for($i = 0;isset($data[$i]);$i++){
-                if ($data[$i] != 'none'){
-                    array_push($cols, ['colNum' => $i, 'colName' => $data[$i]]);
-                    unset($data[$i]);
-                }
-            } //creates array of column names and columns numbers that is used to match csv columns to table columns
-            $file = fopen($this->request->data['Identify']['fileUrl'],"r"); //gets the file
-            fgetcsv($file); //skips the titles             
-            $toSave = [];
-            while (1==1){
-                $line = fgetcsv($file);
-                if ($line=== false){
-                    break;
-                } //when there are no more lines exit the loop               
-                $newRow = [];
-                foreach($cols as $pair){
-                    $newRow[$pair['colName']] = $line[$pair['colNum']];
-                } //adds the values from the CSV file into an array to save to the table
-                $newRow['file'] = $data['fileName']; //adds the file name that it came from so all data from the file can be tracked together
-                array_push($toSave, $newRow); //adds the array contining the values to save to an array containing all vlaues to save                
-            } //loops through the CSV file an adds the appropriate values to an array
-            if ($this->Compoundpfr_data->saveMany($toSave)){
-                $this->set('message', 'Import Successful');
-            } else {
-                $this->set('message', 'Something went wrong');
-            } // saves all the values and sets a success or failure message
-        }
-    } 
-    */   
+   
     /**
      * This function displays a message describing the process for identifying unknown compounds by accurate mass
      */
@@ -87,6 +82,8 @@ class IdentifyController extends AppController{
     
     public function SearchMasses(){
         $this->layout = 'MinLayout'; //minimilistic layout that has no formating
+                
+        /** temporarily removed for tsting file upload
         if ($this->request->is('get')){
             //$DataFileUrl="/home/tony/temp/TK151_apple_dissect.csv";
             //$DataFileUrl="/home/tony/temp/SC16_QC_posESI_29863_dissect.csv";
@@ -108,7 +105,7 @@ class IdentifyController extends AppController{
             $this->set('head', $head); // pass table headings to the view 
             $this->set('masses', $massdata); // pass array with the mass data from file to the view 
             //var_dump($massdata);
-        }
+        }*/
     }
     
     /**
@@ -119,9 +116,8 @@ class IdentifyController extends AppController{
         //if ($identify_parms==null){
             //return;
         //}
-        $filename=  urldecode($filename);
-        //$filename="/home/tony/temp/TK151_apple_dissect.csv";  //lock the data file name to a path that works - temporary fix
-        //var_dump($filename);
+        $filename= urldecode($filename);
+        $filename=WWW_ROOT. 'data/files/Identify'. DS . $filename; //set the correct path to the datafile
         $head=$this->My->IdentifyHeadings($filename); //get the headings from the datafile
         $massdata=$this->My->IdentifyMass($filename, $mass_tolerance, $ion_type); //get the masses from the data file; search compounds and return a compound name
         $this->set('head', $head); //send to view

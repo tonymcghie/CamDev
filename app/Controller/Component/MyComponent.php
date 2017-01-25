@@ -111,7 +111,7 @@ class MyComponent extends Component{
     }
     
     public function IdentifyHeadings($DataFile){
-        $DataFile="/home/tony/temp/".$DataFile;
+        //$DataFile="/home/tony/temp/".$DataFile;
         $file = fopen($DataFile,"r"); //sets up the file for reading
         $heading = fgetcsv($file); //read the column headers from the datafile
         array_push($heading, "Compound (found)", "Total # of hits"); //add another column for search hits to the column headers
@@ -124,7 +124,7 @@ class MyComponent extends Component{
         //print $ion_type."\n";
         $foundcmpd=array(); $data=array();
         $model = ClassRegistry::init('Compound');
-        $DataFile="/home/tony/temp/".$DataFile;
+        //$DataFile="/home/tony/temp/".$DataFile;
         $file = fopen($DataFile,"r"); //sets up the file for reading
         $head = fgetcsv($file); //read the first line (column headers) from the datafile and ignore in this function
         $n = 0;
@@ -147,6 +147,8 @@ class MyComponent extends Component{
             $foundcmpd = $model->find('first', ['conditions' =>$search]);  //search compounds table for match and add to the $linae array if found
             if (isset($foundcmpd["Compound"])){ 
                 array_push($line, $foundcmpd["Compound"]["compound_name"]);
+            } else {
+                array_push($line, ' '); //insert a blank
             }
             $numberofcmpd = $model->find('count', ['conditions' =>$search]);
             //if (isset($numberofcmpd["Compound"])){ 
