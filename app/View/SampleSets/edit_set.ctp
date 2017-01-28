@@ -15,7 +15,7 @@ echo $this->Html->tableCells([$this->Form->input('versions',['options' => $versi
 echo '</table>';
 echo '</header>';
 foreach($versions as $version){
-    echo $this->Form->create('SampleSet', ['id' => $version['SampleSet']['version'].'form' ]);
+    echo $this->Form->create('SampleSet', ['id' => $version['SampleSet']['version'].'form', 'type' => 'file' ]);
     echo $this->Form->input('id', array('type' => 'hidden', 'value' => (isset($newId) ? $newId : $version['SampleSet']['id'])));
     echo $this->Form->input('set_code', array('type' => 'hidden', 'value' => $set_code));
     echo $this->Form->input('chemist', array('type' => 'hidden', 'value' => $version['SampleSet']['chemist']));
