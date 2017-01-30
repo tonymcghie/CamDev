@@ -13,6 +13,9 @@ class SampleSetsController extends AppController{
     public $uses = ['Analysis' , 'SampleSet' , 'Chemist', 'Project'];
     public $layout = 'content';
     public $components = ['Paginator', 'RequestHandler', 'My', 'Session', 'Cookie', 'Auth'];
+
+    // Define models for code completion perposes
+    //private $Analysis, $SampleSet, $Chemist, $Project;
     
     /**
      * @LIVE Change loactions
@@ -50,6 +53,7 @@ class SampleSetsController extends AppController{
      * @param array $options
      */
     private function send_newSS_email($options){
+        return;
         $Email = new CakeEmail($options); //creates an email object which will set most of the options
         $Email->subject('New Sample Set: '.$options['set_code']); //sets the subject
         $Email->send($options['submitter'].' has submitted a sample set with set code: '.$options['set_code']); //sets the message and sends the email
@@ -60,11 +64,58 @@ class SampleSetsController extends AppController{
      * @param array $options
      */
     private function send_editSS_email($options){
+        return;
         $Email = new CakeEmail($options); //creates the email object and sets most of the options
         $Email->subject('Sample Set: '.$options['set_code'].' was edited'); //sets the subject of the emial
         $Email->send($options['editor'].' has edited the sample set with set code: '.$options['set_code']); //sets the message of the email and also sends the email
     }
-    
+
+    public function createSampleSet(){
+        $this->layout = 'content';
+        $data = $this->request->query('data');
+        var_export($data);
+        // Find the number of chemists with the name entered (should always be 1)
+        $numChem = $this->Chemist->find('count', array('conditions' => array('name' => $data['SampleSet']['chemist'])));
+        $chemist = '';
+        if ($numChem!==0){
+            $chemist = $this->Chemist->find('first', array('fields' => array('Chemist.team', 'Chemist.name_code', 'Chemist.email'),  'conditions' => array('name' => $data['SampleSet']['chemist']))); //finds info for chemist
+            $data['SampleSet']['team']=$chemist['Chemist']['team'];  //updates the team
+            //$num = 1 + $this->SampleSet->find('count' , array ('conditions' => array('set_code LIKE' => $chemist['Chemist']['name_code'].'%')));       //finds the new number
+            $num = 1 + intval($this->SampleSet->query('SELECT MAX(CAST(SUBSTRING(`set_code` FROM 3 FOR 5)AS UNSIGNED)) AS `set_code` FROM camdata.sample_sets WHERE `set_code` LIKE "'.$chemist['Chemist']['name_code'].'%";')[0][0]['set_code']); //ONLY 2 CHARACTERs AT THE START this finds the highest number on the end of the set code
+            $data['SampleSet']['set_code'] = $chemist['Chemist']['name_code'].$num; //updates the set_code;
+        } else {
+            $data['SampleSet']['set_code'] = 'undefined';
+        } //makes sure the chemist is valid
+        $data['SampleSet']['date']= date('Y-m-d'); //sets the date that the sample sets was submitted
+        $data['SampleSet']['submitter_email'] = $this->Auth->Session->read($this->Auth->sessionKey)['Auth']['User']['email']; //sets the email of the user who submitted the sample set
+
+        if(isset($data['SampleSet']['metadataFile']['error']) && $data['SampleSet']['metadataFile']['error']=='0'){
+            $data['SampleSet']['metaFile'] =
+                $this->uploadFile(
+                    $data['SampleSet']['metadataFile'],
+                    $data['SampleSet']['set_code'].'_Metadata.'.substr(strtolower(strrchr($data['SampleSet']['metadataFile']['name'], '.')), 1)
+                );
+            unset($data['SampleSet']['metadataFile']);
+        }
+        $this->SampleSet->create(); //Need to add set code
+        if ($this->SampleSet->save($data['SampleSet'])){ //saves the sample set
+            $this->set('set_code', $data['SampleSet']['set_code']);
+
+            $this->send_newSS_email(['from' => 'no_reply@plantandfood.co.nz',
+                'to' => $chemist['Chemist']['email'],
+                'submitter' => $data['SampleSet']['submitter'],
+                'set_code' => $data['SampleSet']['set_code'],
+                'attachments' => isset($data['SampleSet']['metaFile']) ? $this->file_URL.'files/samplesets/'.$data['SampleSet']['metaFile'] : '']); //sets the values for the email to the chemist
+            $this->send_newSS_email(['from' => 'no_reply@plantandfood.co.nz',
+                'to' =>  $data['SampleSet']['submitter_email'],
+                'submitter' => $data['SampleSet']['submitter'],
+                'set_code' => $data['SampleSet']['set_code']]); //sets the values for the email to the submitter
+            $this->set('error', false);
+            $this->set('set_code', $data['SampleSet']['set_code']);
+        } else {
+            $this->set('error', true);
+        } //if the save was successful then send the emails if not send an error to the view
+    }
     /**
      * Makes a new set and sends emails makes set code
      * @return type
@@ -77,49 +128,6 @@ class SampleSetsController extends AppController{
         if (isset($this->Auth->Session->read($this->Auth->sessionKey)['Auth']['User']['name'])){
             $this->set('user', $this->Auth->Session->read($this->Auth->sessionKey)['Auth']['User']);
         } //sets the username to the view
-
-        if ($this->request->is('post')){           
-            $data = $this->request->data;      //gets the data
-            $numChem = $this->Chemist->find('count', array('conditions' => array('name' => $data['SampleSet']['chemist']))); //finds the number of chemists with the name entered (should always be 1)
-            $chemist = '';
-            if ($numChem!==0){
-                $chemist = $this->Chemist->find('first', array('fields' => array('Chemist.team', 'Chemist.name_code', 'Chemist.email'),  'conditions' => array('name' => $data['SampleSet']['chemist']))); //finds info for chemist
-                $data['SampleSet']['team']=$chemist['Chemist']['team'];  //updates the team
-                //$num = 1 + $this->SampleSet->find('count' , array ('conditions' => array('set_code LIKE' => $chemist['Chemist']['name_code'].'%')));       //finds the new number
-                $num = 1 + intval($this->SampleSet->query('SELECT MAX(CAST(SUBSTRING(`set_code` FROM 3 FOR 5)AS UNSIGNED)) AS `set_code` FROM cam_data.sample_sets WHERE `set_code` LIKE "'.$chemist['Chemist']['name_code'].'%";')[0][0]['set_code']); //ONLY 2 CHARACTERs AT THE START this finds the highest number on the end of the set code
-                $data['SampleSet']['set_code']=$chemist['Chemist']['name_code'].$num; //updates the set_code;
-            } //makes sure the chemist is valid
-            $data['SampleSet']['date']= date('Y-m-d'); //sets the date that the sample sets was submitted
-            $data['SampleSet']['submitter_email'] = $this->Auth->Session->read($this->Auth->sessionKey)['Auth']['User']['email']; //sets the email of the user who submitted the sample set
-            if(isset($data['SampleSet']['metadataFile']['error'])&&$data['SampleSet']['metadataFile']['error']=='0'){
-                $data['SampleSet']['metaFile'] = $this->uploadFile($data['SampleSet']['metadataFile'], $data['SampleSet']['set_code'].'_Metadata.'.substr(strtolower(strrchr($data['SampleSet']['metadataFile']['name'], '.')), 1));
-                unset($data['SampleSet']['metadataFile']); 
-            }
-            $this->SampleSet->create(); //Need to add set code
-            if ($this->SampleSet->save($data)){ //saves the sample set                
-                $this->set('set_code', $data['SampleSet']['set_code']);
-                
-                $this->send_newSS_email(['from' => 'no_reply@plantandfood.co.nz',
-                    'to' => $chemist['Chemist']['email'],
-                    'submitter' => $data['SampleSet']['submitter'],
-                    'set_code' => $data['SampleSet']['set_code'],
-                    'attachments' => $this->file_URL.'files/samplesets/'.$data['SampleSet']['metaFile']]); //sets the values for the email to the chemist
-                $this->send_newSS_email(['from' => 'no_reply@plantandfood.co.nz',
-                    'to' =>  $data['SampleSet']['submitter_email'],
-                    'submitter' => $data['SampleSet']['submitter'],
-                    'set_code' => $data['SampleSet']['set_code']]); //sets the values for the email to the submitter
-                
-                return $this->redirect(['controller' => 'General', 'action' => 'blank', '?' => ['alert' => 'Sample Set Saved. Set Code is '.$data['SampleSet']['set_code']]]); //redirects the page to the blank page and makes an alert message containing the set code
-            } else {
-                $this->set('error', true);
-            } //if the save was successful then send the emails if not send an error to the view
-        } //check if the save button has being clicked and makes a new sample set if the form has being submitted   
-    }
-
-    public function saveSet(){
-        if (!$this->request->is('ajax')){
-            echo 'no';
-        }
     }
     
     /**

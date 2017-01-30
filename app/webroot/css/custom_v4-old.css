@@ -1,85 +1,302 @@
 
-html {font-size: 100%; width: 100%}
-body {background-color: rgba(252, 252, 252, 0.5);  font-family: Roboto, serif;
- color: #666; font-size: 1em; line-height: 1.3; font-weight: 300}
-h1, h2, h3, h4, h5 {font-family: 'Roboto Slab', serif; font-weight: 300}
+html {
+    font-size: 100%;
+    width: 100%
+}
 
+body {
+    background-color: rgba(252, 252, 252, 0.5);
+    font-family: Roboto, serif;
+    color: #666;
+    font-size: 1em;
+    line-height: 1.3;
+    font-weight: 300
+}
 
-label {font-weight: 500}
+h1, h2, h3, h4, h5 {
+    font-family: 'Roboto Slab', serif;
+    font-weight: 300
+}
 
+label {
+    font-weight: 500
+}
 
-#sidebar {padding: 10px 0 0 10px; width: 250px; overflow-y: hidden}
-#sidebar  ul {padding: 4px 0px; }
-#sidebar li {display: block; float: none; padding: 0px; height: inherit; font-size: 1em; }
-#sidebar li a { font-size: inherit;}
-#sidebar ul > li >ul >li {font-size: 0.9em; padding:0 0 0 10px}
-#sidebar ul > li >ul {padding: 0}
-#sidebar > ul > li {font-weight: 400}
-#sidebar h1 {margin-top: 30px}
+#sidebar {
+    padding: 10px 0 0 10px;
+    width: 250px;
+    overflow-y: hidden
+}
 
-h1 {text-shadow: none}
-#container  {box-shadow: none;  margin: 0px; width: 84%; padding: 0}
-#mainFrameDiv {left: 200px; width: 100%}
-html {margin-left: 0; width: 99%}
-form {margin-right: 0}
+#sidebar ul {
+    padding: 4px 0px;
+}
 
-th {text-shadow: none}
-form { margin: 0 auto}
+#sidebar li {
+    display: block;
+    float: none;
+    padding: 0px;
+    height: inherit;
+    font-size: 1em;
+}
 
-header {margin: 0 auto; padding: 10px 20px}
-input, select  {font-size: 0.9em!important}
-header table td {border: 0px solid #ccc}
+#sidebar li a {
+    font-size: inherit;
+}
+
+#sidebar ul > li > ul > li {
+    font-size: 0.9em;
+    padding: 0 0 0 10px
+}
+
+#sidebar ul > li > ul {
+    padding: 0
+}
+
+#sidebar > ul > li {
+    font-weight: 400
+}
+
+#sidebar h1 {
+    margin-top: 30px
+}
+
+h1 {
+    text-shadow: none
+}
+
+#container {
+    box-shadow: none;
+    margin: 0px;
+    width: 84%;
+    padding: 0
+}
+
+#mainFrameDiv {
+    left: 200px;
+    width: 100%
+}
+
+html {
+    margin-left: 0;
+    width: 99%
+}
+
+form {
+    margin-right: 0
+}
+
+th {
+    text-shadow: none
+}
+
+form {
+    margin: 0 auto
+}
+
+header {
+    margin: 0 auto;
+    padding: 10px 20px
+}
+
+input, select {
+    font-size: 0.9em !important
+}
+
+header table td {
+    border: 0px solid #ccc
+}
+
 .noFormat * {
     margin: 5px;
 }
-.menu-link {display:none}
-#expand-menu:hover #sidebar  {display: block; }
+
+.menu-link {
+    display: none
+}
+
+#expand-menu:hover #sidebar {
+    display: block;
+}
+
 #expand-menu:hover + #mainFrameDiv {
     left: 200px
 }
 
-.abbr-button {color: black; text-shadow: none; border: 1px solid black; border-radius: 8px; padding: 2px; margin: 0 2px; width: 15px}
-th.Buttons {width: 100px}
-#mainFrameDiv:hover - #expand-menu {}
-#UserLoginForm {margin: 0 auto}
-#UserLoginForm input[type="text"], #UserLoginForm input[type="password"] {display: inline-block; width: 40%; padding: 3px; margin:  0}
-#UserLoginForm input[type="checkbox"] {width: 20px; margin: 0 0 0 130px; text-align: right}
-#UserLoginForm label {display: inline-block; margin: 0 0 0 50px; text-align: left; width: 100px}
-#UserLoginForm > label {width: 60%; margin: 0}
-#UserLoginForm input[type="submit"] {margin-left: 150px; font-weight: 400}
+.abbr-button {
+    color: black;
+    text-shadow: none;
+    border: 1px solid black;
+    border-radius: 8px;
+    padding: 2px;
+    margin: 0 2px;
+    width: 15px
+}
 
-.anySizeButton{font-weight: 400; margin-left: 10px; background-color: #999}
+th.Buttons {
+    width: 100px
+}
 
-.noFormat.search td {width: 250px}
-.noFormat.search label {width: 250px}
-.noFormat.search input {width: 250px}
-.noFormat.search .input.select {width: 250px}
-#boxes * input, #boxes * select {max-width: 245px}
-#expand-menu {margin-top: 0}
+#mainFrameDiv:hover
 
-.table-striped>tbody>tr:nth-of-type(odd) { background-color: rgba(249,249,249, 0.4)!important }
+-
+#expand-menu {
+}
 
-#resultsTable {margin-left: 40px}
+#UserLoginForm {
+    margin: 0 auto
+}
 
-form div.Trow:nth-of-type(odd) {background-color: rgba(249,249,249, 0.6)!important}
-form {background-color: rgba(249,249,249, 0.4)}
-.checkbox {padding-left: 40px!important}
-form div.Trow span {vertical-align: top}
-form div.Trow {}
-#SampleSetSearchSetForm .checkbox input[type=checkbox] {top: -7px}
+#UserLoginForm input[type="text"], #UserLoginForm input[type="password"] {
+    display: inline-block;
+    width: 40%;
+    padding: 3px;
+    margin: 0
+}
 
-#SampleSetSearchSetForm label {display: inline-block; margin-right: 0; min-width: 200px}
-#SampleSetSearchSetForm td label {display: table-cell; }
+#UserLoginForm input[type="checkbox"] {
+    width: 20px;
+    margin: 0 0 0 130px;
+    text-align: right
+}
 
-.viewSampleSet h2, .view h2 {font-family: Roboto; font-weight: 400; display: inline-block; font-size: 20px}
-table.viewSampleSet tr:nth-of-type(odd) {background-color: rgba(249,249,249, 0.4)!important}
-table.viewSampleSet td {padding: 7px; border: 1px solid}
-header p, header table {margin: 20px 60px; background-color: rgba(249,249,249, 0.6); padding: 20px}
-table.viewSampleSet, table.view {margin: 20px 60px;  padding: 20px}
-header h2 {margin: 20px 60px; background-color: rgba(249,249,249, 0.8); padding: 20px; color: red}
+#UserLoginForm label {
+    display: inline-block;
+    margin: 0 0 0 50px;
+    text-align: left;
+    width: 100px
+}
+
+#UserLoginForm > label {
+    width: 60%;
+    margin: 0
+}
+
+#UserLoginForm input[type="submit"] {
+    margin-left: 150px;
+    font-weight: 400
+}
+
+.anySizeButton {
+    font-weight: 400;
+    margin-left: 10px;
+    background-color: #999
+}
+
+.noFormat.search td {
+    width: 250px
+}
+
+.noFormat.search label {
+    width: 250px
+}
+
+.noFormat.search input {
+    width: 250px
+}
+
+.noFormat.search .input.select {
+    width: 250px
+}
+
+#boxes * input, #boxes * select {
+    max-width: 245px
+}
+
+#expand-menu {
+    margin-top: 0
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) {
+    background-color: rgba(249, 249, 249, 0.4) !important
+}
+
+#resultsTable {
+    margin-left: 40px
+}
+
+form div.Trow:nth-of-type(odd) {
+    background-color: rgba(249, 249, 249, 0.6) !important
+}
+
+form {
+    background-color: rgba(249, 249, 249, 0.4)
+}
+
+.checkbox {
+    padding-left: 40px !important
+}
+
+form div.Trow span {
+    vertical-align: top
+}
+
+form div.Trow {
+}
+
+#SampleSetSearchSetForm .checkbox input[type=checkbox] {
+    top: -7px
+}
+
+#SampleSetSearchSetForm label {
+    display: inline-block;
+    margin-right: 0;
+    min-width: 200px
+}
+
+#SampleSetSearchSetForm td label {
+    display: table-cell;
+}
+
+.viewSampleSet h2, .view h2 {
+    font-family: Roboto;
+    font-weight: 400;
+    display: inline-block;
+    font-size: 20px
+}
+
+table.viewSampleSet tr:nth-of-type(odd) {
+    background-color: rgba(249, 249, 249, 0.4) !important
+}
+
+table.viewSampleSet td {
+    padding: 7px;
+    border: 1px solid
+}
+
+header p, header table {
+    margin: 20px 60px;
+    background-color: rgba(249, 249, 249, 0.6);
+    padding: 20px
+}
+
+table.viewSampleSet, table.view {
+    margin: 20px 60px;
+    padding: 20px
+}
+
+header h2 {
+    margin: 20px 60px;
+    background-color: rgba(249, 249, 249, 0.8);
+    padding: 20px;
+    color: red
+}
+
 @media (max-width: 960px) {
-  #sidebar { display: none}
-  #mainFrameDiv {left: 10px; top: 30px}
-#container  {width: 100%; }
-.menu-link {display:block}
+    #sidebar {
+        display: none
+    }
+
+    #mainFrameDiv {
+        left: 10px;
+        top: 30px
+    }
+
+    #container {
+        width: 100%;
+    }
+
+    .menu-link {
+        display: block
+    }
 }

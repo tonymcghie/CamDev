@@ -1,11 +1,11 @@
 /****************************************************************************
  * Copyright (C) 2009-2010 GGA Software Services LLC
- * 
+ *
  * This file may be distributed and/or modified under the terms of the
  * GNU Affero General Public License version 3 as published by the Free
  * Software Foundation and appearing in the file LICENSE.GPL included in
  * the packaging of this file.
- * 
+ *
  * This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
  * WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  ***************************************************************************/
@@ -20,22 +20,22 @@ util.Map = function (obj) {
     this._count = 0;
 };
 
-util.Map.prototype.each = function(func, context) {
+util.Map.prototype.each = function (func, context) {
     for (var v in this._obj) {
         var v_int = parseInt(v);
         var value = this._obj[v];
-        
+
         if (!isNaN(v_int))
             v = v_int;
         func.call(context, v, value)
     }
 };
 
-util.Map.prototype.find = function(func, context) {
+util.Map.prototype.find = function (func, context) {
     for (var v in this._obj) {
         var v_int = parseInt(v);
         var value = this._obj[v];
-        
+
         if (!isNaN(v_int))
             v = v_int;
         if (func.call(context, v, value))
@@ -43,7 +43,7 @@ util.Map.prototype.find = function(func, context) {
     }
 };
 
-util.Map.prototype.findAll = function(func, context) {
+util.Map.prototype.findAll = function (func, context) {
     var vv = [];
     for (var v in this._obj) {
         var v_int = parseInt(v);
@@ -56,7 +56,7 @@ util.Map.prototype.findAll = function(func, context) {
     return vv;
 };
 
-util.Map.prototype.keys = function() {
+util.Map.prototype.keys = function () {
     var keys = [];
     for (var v in this._obj) {
         keys.push(v);
@@ -64,7 +64,7 @@ util.Map.prototype.keys = function() {
     return keys;
 };
 
-util.Map.prototype.ikeys = function() {
+util.Map.prototype.ikeys = function () {
     var keys = [];
     for (var v in this._obj) {
         keys.push(v - 0);
@@ -115,6 +115,6 @@ util.Map.prototype.idList = function () {
     return util.idList(this._obj);
 };
 
-util.Map.prototype.keyOf = function(value) {
+util.Map.prototype.keyOf = function (value) {
     for (var key in this._obj) if (this._obj[key] == value) return key;
 };

@@ -4,14 +4,17 @@ ol {
     border-bottom: #444 ridge medium;
     padding: 1% 1% 2px 1%;
 }
-ol li{
+
+ol li {
     display: inline;
 
 }
-ol li a:hover{
+
+ol li a:hover {
     background-color: #AAA;
 }
-ol li a{
+
+ol li a {
     font-weight: bold;
     color: black;
     background-color: #CCC;
@@ -30,18 +33,19 @@ ol li a{
     border-left: #444 ridge medium;
     border-right: #444 ridge medium;
 }
-a.active{
+
+a.active {
     background-color: #888;
 }
 
-.overlayContent{
+.overlayContent {
     position: fixed;
     width: 400px;
     left: 20%;
     top: 30%;
     border-radius: 10px;
-    padding:2px;
-    background-color: rgba(249,249,249, 0.8);
-    z-index:10;
+    padding: 2px;
+    background-color: rgba(249, 249, 249, 0.8);
+    z-index: 10;
 
 }

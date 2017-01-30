@@ -31,5 +31,10 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 			<?php echo $this->fetch('content'); ?>
 		</div>
 	</div>
+    <script>
+        $('button').on('click', function(event){
+            event.preventDefault();
+        });
+    </script>
 </body>
 </html>

@@ -8,20 +8,20 @@
  * @param data object
  * @param replace Jquery object
  */
-function ajax_call_replace(url, data, replace){
+function ajax_call_replace(url, data, replace) {
     $.ajax({
         url: url,
         data: data,
-        success: function(response){
+        success: function (response) {
             replace.html(response);
         },
-        error: function(error, message){
+        error: function (error, message) {
             console.log('There was an ajax error: ' + message);
         }
     })
 }
 
-function ajax_call_replace_url(contoller, action, data, replace){
+function ajax_call_replace_url(contoller, action, data, replace) {
     ajax_call_replace(make_url(contoller, action), data, replace);
 }
 
@@ -31,12 +31,12 @@ function ajax_call_replace_url(contoller, action, data, replace){
  * @param data
  * @param success_function
  */
-function ajax_call(url, data, success_function){
+function ajax_call(url, data, success_function) {
     $.ajax({
         url: url,
         data: data,
         success: success_function,
-        error: function(error, message){
+        error: function (error, message) {
             console.log('There was an ajax error: ' + message);
         }
     })
@@ -47,8 +47,15 @@ function ajax_call(url, data, success_function){
  * @param url
  * @param load_to
  */
-function load_page(url, load_to){
+function load_page(url, load_to) {
     ajax_call_replace(url, '', load_to);
+}
+
+function submit_form(url, success_function) {
+    ajax_call(url, $('form').serialize(), success_function);
+}
+function submit_form_replace(url, id) {
+    ajax_call_replace(url, $('form').serialize(), id);
 }
 
 

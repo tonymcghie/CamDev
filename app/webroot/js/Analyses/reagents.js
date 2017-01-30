@@ -4,14 +4,14 @@
  * and open the template in the editor.
  */
 
-function newRow(){
+function newRow() {
     var row = $("<tr></tr>");
     var compound = $('<td><input type="text" placeholder="Compound"></td>');
     var moleWeight = $('<td><input type="text" placeholder="Molecular Weight (g/mol)"></td>');
-    var Concentration  = $('<td><input type="text" placeholder="Concentration (mmol/L)"></td>');
+    var Concentration = $('<td><input type="text" placeholder="Concentration (mmol/L)"></td>');
     var vol = $('<td><input type="text" placeholder="Volume (mL)"></td>');
-    var quantityRequired = $('<td><input type="text" placeholder="Quantity Required (g)"></td>');        
-    
+    var quantityRequired = $('<td><input type="text" placeholder="Quantity Required (g)"></td>');
+
     row.append(compound);
     row.append(moleWeight);
     row.append(Concentration);
@@ -20,14 +20,14 @@ function newRow(){
     return row;
 }
 
-function calculate(mw, conc_mmol, vol_ml){
+function calculate(mw, conc_mmol, vol_ml) {
     return mw * conc_mmol * vol_ml
 }
 
 //function calculate_old(tableID){
-    //$('#tableID tr').each(function() {
-        //$(this).find('td').eq(colindex).find('input').val();
-    //}
+//$('#tableID tr').each(function() {
+//$(this).find('td').eq(colindex).find('input').val();
+//}
 //}
 
 

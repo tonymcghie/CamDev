@@ -8,9 +8,6 @@ $this->assign('title', 'New Set');
 if (isset($set_code)){
     echo '<h2>The Set code for this sample set is: '.$set_code.'</h2>';
 }
-if (isset($error)){
-    echo '<h2>Some Thing went wrong and the Sample Set was unable to be added</h2>';
-}
 ?>
 
 <p><?php echo $this->String->get_string('sub_title', 'SampleSet_form'); ?></p>
@@ -52,27 +49,19 @@ echo $this->BootstrapForm->input_horizontal('containment_details', ['label' => $
     'rows' => '3']);
 echo $this->BootstrapForm->input_horizontal('comments', ['label' => $this->String->get_string('comments', 'SampleSet_form'),
     'placeholder' => $this->String->get_string('comments_ph', 'SampleSet_form'),
-    'rows' => '3']);
+    'rows' => '3']);/*
 echo $this->BootstrapForm->input_horizontal('metadataFile', ['label' => $this->String->get_string('metafile', 'SampleSet_form'),
-    'type' => 'file']);
-echo $this->BootstrapForm->end(['label' => 'Save Set', 'class' => 'btn btn-primary']);
+    'type' => 'file']);*/
+echo $this->BootstrapForm->file_input('metadataFile');
+echo $this->BootstrapForm->input_maker('save', [
+        'onclick' => 'submit_form_replace(\''.$this->Html->url(['controller' => 'SampleSets', 'action' => 'createSampleSet'], true).'\' , $(\'#main_content\')); return false;'
+    ], [
+        'horizontal' => true,
+        'type' => 'button'
+]);
+echo $this->BootstrapForm->end();
 
-
-echo $this->Html->scriptStart();
-echo $this->Js->get('#chemist')->event('keyup', 'ajaxCallChemist()', false); //ajax call that will update the ul with the possible names
-echo $this->Html->scriptEnd();
-// Add a scriptStart specifically for project names
-echo $this->Html->scriptStart();
-echo $this->Js->get('#p_name')->event('keyup', 'ajaxCallProject()', false); //ajax call that will update the ul with the possible project names
-echo $this->Html->scriptEnd();
-?>
-<ul id='autoOptions' class='ui-autocomplete ui-menu ui-widget ui-widget-content ui-corner-all' style='position: absolute;'>
-    
-</ul>
-<ul id='ProAutoOptions' class='ui-autocomplete ui-menu ui-widget ui-widget-content ui-corner-all' style='position: absolute;'>
-    
-</ul>
-<?php echo $this->Html->script('typeahead', ['inline' => true]); ?>
+echo $this->Html->script('typeahead', ['inline' => true]); ?>
 <script>
     var substringMatcher = function(strs) {
         return function findMatches(q, cb) {

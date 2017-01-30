@@ -1,10 +1,8 @@
-body
-{
+body {
     margin: 0;
 }
 
-body > div:first-child
-{
+body > div:first-child {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -12,8 +10,7 @@ body > div:first-child
     max-height: 720px;
 }
 
-a, img
-{
+a, img {
     border-color: #E0E0E0;
     color: #E0E0E0;
     border-width: 0;
@@ -21,13 +18,11 @@ a, img
     padding: 1px;
 }
 
-td
-{
+td {
     padding: 0;
 }
 
-table#ketcher_window
-{
+table#ketcher_window {
     position: absolute;
     z-index: 1;
     width: 100%;
@@ -46,13 +41,11 @@ table#ketcher_window > tr
 }
 */
 
-#main_toolbar
-{
+#main_toolbar {
     height: 40px;
 }
 
-.toolButton, .sideButton
-{
+.toolButton, .sideButton {
     cursor: pointer;
     border-color: #E8E8E8;
     border-width: thin;
@@ -61,55 +54,46 @@ table#ketcher_window > tr
     /*vertical-align: middle;*/
 }
 
-.toolIcon
-{
+.toolIcon {
     width: 32px;
     height: 36px;
 }
 
-.toolButtonCell
-{
+.toolButtonCell {
     width: 36px;
 }
 
-.sideButtonCell
-{
+.sideButtonCell {
     height: 36px;
 }
 
-.sideButton
-{
+.sideButton {
     width: 32px;
     height: 32px;
     padding: 1px;
 }
 
-.buttonHighlight
-{
+.buttonHighlight {
     border-color: white;
 }
 
-.buttonDisabled
-{
+.buttonDisabled {
     opacity: 0.25;
-    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=25)";
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=25)";
     filter: alpha(opacity=25);
 }
 
-.toolDelimiter
-{
+.toolDelimiter {
     width: 16px;
 }
 
-.buttonPressed, .buttonSelected
-{
+.buttonPressed, .buttonSelected {
     border-color: #606060;
     border-style: inset;
     background-color: white;
 }
 
-#client_area
-{
+#client_area {
     overflow: auto;
     background-color: white;
     border-color: #E0E0E0;
@@ -120,34 +104,29 @@ table#ketcher_window > tr
     /*height: 100%;*/
 }
 
-#elem_table_area
-{
-    background-color:#E0E0E0;
+#elem_table_area {
+    background-color: #E0E0E0;
     border-style: none;
 }
 
-#rgroup_table_area
-{
-    background-color:#E0E0E0;
+#rgroup_table_area {
+    background-color: #E0E0E0;
     border-style: none;
 }
 
-#reagenerics_table_area
-{
-    background-color:#E0E0E0;
+#reagenerics_table_area {
+    background-color: #E0E0E0;
     border-style: none;
 }
 
-.dropdownButton
-{
+.dropdownButton {
     cursor: pointer;
     position: absolute;
     left: 28px;
     top: 28px;
 }
 
-.dropdownList
-{
+.dropdownList {
     position: absolute;
     z-index: 2;
     left: 6px;
@@ -157,143 +136,121 @@ table#ketcher_window > tr
     border-color: white
 }
 
-.dropdownList > table
-{
+.dropdownList > table {
     font-family: arial;
-    font-size:   0.9em;
+    font-size: 0.9em;
 }
 
-#selector_dropdown_list
-{
+#selector_dropdown_list {
     top: 43px;
 }
 
-#bond_dropdown_list
-{
+#bond_dropdown_list {
     top: 120px;
 }
 
-#template_dropdown_list
-{
+#template_dropdown_list {
     top: 196px;
 }
 
-#reaction_dropdown_list
-{
+#reaction_dropdown_list {
     top: 310px;
 }
 
-#rgroup_dropdown_list
-{
+#rgroup_dropdown_list {
     top: 386px;
 }
 
-.dropdownListItem
-{
+.dropdownListItem {
     cursor: default;
 }
 
-.dropdownListItem > td > div
-{
+.dropdownListItem > td > div {
     height: 24px;
-    width:  24px;
-    float:  left;
+    width: 24px;
+    float: left;
     margin-right: 2px;
-    margin-top : -3px;
+    margin-top: -3px;
 }
 
-.dropdownListDelimiter
-{
+.dropdownListDelimiter {
     background-color: #C0C0C0;
     height: 2px;
 }
 
-.highlightedItem
-{
+.highlightedItem {
     background-color: #C0C0C0;
 }
 
-#buffer_frame
-{
+#buffer_frame {
     display: none;
 }
 
-input#input_label
-{
+input#input_label {
     position: absolute;
-    z-index:  3;
+    z-index: 3;
 }
 
-div#window_cover
-{
+div#window_cover {
     position: absolute;
-    z-index:  4;
+    z-index: 4;
     background-color: black;
-    left:     0;
-    top:      0;
-    opacity:    0.15;
+    left: 0;
+    top: 0;
+    opacity: 0.15;
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=15)";
-    filter:     alpha(opacity=15);
+    filter: alpha(opacity=15);
 }
 
-div#loading
-{
-    width:  100%;
+div#loading {
+    width: 100%;
     height: 100%;
-    background-image:    url('loading.gif');
-    background-repeat:   no-repeat;
+    background-image: url('loading.gif');
+    background-repeat: no-repeat;
     background-position: center center;
 }
 
-.dialogWindow
-{
+.dialogWindow {
     position: absolute;
-    z-index:  5;
+    z-index: 5;
     background-color: #E0E0E0;
     border-color: #F0F0F0;
     border-style: outset;
     border-width: thin;
     padding: 4px;
     text-align: center;
-    left:  10%;
-    top:   10%;
+    left: 10%;
+    top: 10%;
 }
 
-.dialogWindow > div > div:first-child
-{
+.dialogWindow > div > div:first-child {
     background-color: #D0D0D0;
 }
 
-.fileDialog
-{
+.fileDialog {
 }
 
-.elemTableDialog
-{
-    left:  5%;
-    top:   5%;
+.elemTableDialog {
+    left: 5%;
+    top: 5%;
 }
 
-.chemicalText
-{
+.chemicalText {
     width: 320px;
     height: 320px;
-    overflow:    auto;
+    overflow: auto;
     white-space: pre;
 }
 
-.chemicalText_IE
-{
+.chemicalText_IE {
     white-space: pre;
 }
 
-.dataSGroupValue
-{
+.dataSGroupValue {
     width: 320px;
     height: 200px;
-    overflow:    auto;
+    overflow: auto;
 }
 
-.propDialog
-{
+.propDialog {
 }
