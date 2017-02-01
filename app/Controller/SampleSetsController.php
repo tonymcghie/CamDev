@@ -17,8 +17,8 @@ class SampleSetsController extends AppController{
     /**
      * @LIVE Change loactions
      */    
-    private $file_URL = '/app/app/webroot/data/'; //live
-    //private $file_URL = 'data/';        //testing   
+    //private $file_URL = '/app/app/webroot/data/'; //live
+    private $file_URL = 'data/';        //testing   
     
     /**
      * stuff that happens before everything
@@ -89,7 +89,7 @@ class SampleSetsController extends AppController{
                 $chemist = $this->Chemist->find('first', array('fields' => array('Chemist.team', 'Chemist.name_code', 'Chemist.email'),  'conditions' => array('name' => $data['SampleSet']['chemist']))); //finds info for chemist
                 $data['SampleSet']['team']=$chemist['Chemist']['team'];  //updates the team
                 //$num = 1 + $this->SampleSet->find('count' , array ('conditions' => array('set_code LIKE' => $chemist['Chemist']['name_code'].'%')));       //finds the new number
-                $num = 1 + intval($this->SampleSet->query('SELECT MAX(CAST(SUBSTRING(`set_code` FROM 3 FOR 5)AS UNSIGNED)) AS `set_code` FROM cam_data.sample_sets WHERE `set_code` LIKE "'.$chemist['Chemist']['name_code'].'%";')[0][0]['set_code']); //ONLY 2 CHARACTERs AT THE START this finds the highest number on the end of the set code
+                $num = 1 + intval($this->SampleSet->query('SELECT MAX(CAST(SUBSTRING(`set_code` FROM 3 FOR 5)AS UNSIGNED)) AS `set_code` FROM camdata.sample_sets WHERE `set_code` LIKE "'.$chemist['Chemist']['name_code'].'%";')[0][0]['set_code']); //ONLY 2 CHARACTERs AT THE START this finds the highest number on the end of the set code
                 $data['SampleSet']['set_code']=$chemist['Chemist']['name_code'].$num; //updates the set_code;
             } //makes sure the chemist is valid
             $data['SampleSet']['date']= date('Y-m-d'); //sets the date that the sample sets was submitted
@@ -102,7 +102,7 @@ class SampleSetsController extends AppController{
             if ($this->SampleSet->save($data)){ //saves the sample set                
                 $this->set('set_code', $data['SampleSet']['set_code']);
                 
-                $this->send_newSS_email(['from' => 'no_reply@plantandfood.co.nz',
+                /**$this->send_newSS_email(['from' => 'no_reply@plantandfood.co.nz',
                     'to' => $chemist['Chemist']['email'],
                     'submitter' => $data['SampleSet']['submitter'],
                     'set_code' => $data['SampleSet']['set_code'],
@@ -110,7 +110,7 @@ class SampleSetsController extends AppController{
                 $this->send_newSS_email(['from' => 'no_reply@plantandfood.co.nz',
                     'to' =>  $data['SampleSet']['submitter_email'],
                     'submitter' => $data['SampleSet']['submitter'],
-                    'set_code' => $data['SampleSet']['set_code']]); //sets the values for the email to the submitter
+                    'set_code' => $data['SampleSet']['set_code']]); //sets the values for the email to the submitter*/
                 
                 return $this->redirect(['controller' => 'General', 'action' => 'blank', '?' => ['alert' => 'Sample Set Saved. Set Code is '.$data['SampleSet']['set_code']]]); //redirects the page to the blank page and makes an alert message containing the set code
             } else {
@@ -126,6 +126,7 @@ class SampleSetsController extends AppController{
      * @throws NotFoundExcpetion
      */
     public function editSet($id = null){
+        echo var_export($this->request->data), "<br>";
         if (isset($this->request->data['SampleSet']['id'])){ //updates the id to the provious one when editing twice
             $id = $this->request->data['SampleSet']['id'];
         }
@@ -141,10 +142,12 @@ class SampleSetsController extends AppController{
         if (isset($this->request->data['SampleSet'])){
             $this->request->data['SampleSet']['version'] = $set['SampleSet']['version'] + 1; //makes a new version with a version number 1 greater than the current highest version number
             $this->request->data['SampleSet']['date'] = $set['SampleSet']['date'];//keeps the submit date the same
-            if(isset($data['SampleSet']['metadataFile']['error'])&&$data['SampleSet']['metadataFile']['error']=='0'){
-                $data['SampleSet']['metaFile'] = $this->uploadFile($data['SampleSet']['metadataFile'], $data['SampleSet']['set_code'].'_Metadata.'.substr(strtolower(strrchr($data['SampleSet']['metadataFile']['name'], '.')), 1));
-                unset($data['SampleSet']['metadataFile']); 
-            } //uploads metadata file
+            $set = $this->request->data;
+            echo var_export($set), "<br>";
+            //if(isset($data['SampleSet']['metadataFile']['error'])&&$data['SampleSet']['metadataFile']['error']=='0'){
+                $set['SampleSet']['metaFile'] = $this->uploadFile($set['SampleSet']['metadataFile'], $set['SampleSet']['set_code'].'_Metadata.'.substr(strtolower(strrchr($set['SampleSet']['metadataFile']['name'], '.')), 1));
+                unset($set['SampleSet']['metadataFile']); 
+            //} //uploads metadata file
             unset($this->request->data['SampleSet']['id']); //unsets the id so the new version is saved as a new row
             $this->SampleSet->create(); //create a new version
             if ($this->SampleSet->save($this->request->data)){ //saves the new version
@@ -152,7 +155,7 @@ class SampleSetsController extends AppController{
                 $set = $this->SampleSet->find('all', ['conditions' => ['SampleSet.set_code LIKE' => $set['SampleSet']['set_code']]]); //updates $set to be the most recent version
                 $this->set('newId', $set[0]['SampleSet']['id']); //passes the new ID to the view               
                 
-                $this->send_editSS_email(['from' => 'no_reply@plantandfood.co.nz',
+                /**$this->send_editSS_email(['from' => 'no_reply@plantandfood.co.nz',
                     'to' => $this->Chemist->find('first', array('fields' => array('Chemist.email'),  'conditions' => array('name' => $set[0]['SampleSet']['chemist'])))['Chemist']['email'],
                     'editor' => $this->Auth->Session->read($this->Auth->sessionKey)['Auth']['User']['name'],
                     'set_code' => $set[0]['SampleSet']['set_code']]); //send email to the Chemist when the samplt set is updated
@@ -161,7 +164,7 @@ class SampleSetsController extends AppController{
                         'to' => $set[0]['SampleSet']['submitter_email'],
                         'editor' => $this->Auth->Session->read($this->Auth->sessionKey)['Auth']['User']['name'],
                         'set_code' => $set[0]['SampleSet']['set_code']]);
-                } //send email to the submitter if their email is recoded along with the sample set
+                } //send email to the submitter if their email is recoded along with the sample set*/
                 
                 return;
             }
@@ -271,6 +274,7 @@ class SampleSetsController extends AppController{
      */
     private function uploadFile($file, $newName){ 
         $URL = $this->file_URL.'files/samplesets/'.$newName; //sets the new location
+        echo var_export($URL), "<br>";
         $result = move_uploaded_file( $file['tmp_name'], $URL ); //uploads the file
         if ($result){return $newName;}//returns the name if the uplaod was successful
     }

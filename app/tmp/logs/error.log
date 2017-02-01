@@ -34848,3 +34848,226 @@ Request URL: /CAM3-0/css/color_schemes_v4.css
 Stack Trace:
 #0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
 #1 {main}
+2017-02-01 21:11:41 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/css/images/ui-bg_flat_75_ffffff_40x100.png
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-02-01 21:13:21 Error: [PDOException] SQLSTATE[42S02]: Base table or view not found: 1146 Table 'cam_data.sample_sets' doesn't exist
+Request URL: /CAM3-0/SampleSets/newSet?isTablet=false
+Stack Trace:
+#0 /var/www/html/CAM3-0/lib/Cake/Model/Datasource/DboSource.php(461): PDOStatement->execute(Array)
+#1 /var/www/html/CAM3-0/lib/Cake/Model/Datasource/DboSource.php(427): DboSource->_execute('SELECT MAX(CAST...', Array)
+#2 /var/www/html/CAM3-0/lib/Cake/Model/Datasource/DboSource.php(669): DboSource->execute('SELECT MAX(CAST...', Array, Array)
+#3 /var/www/html/CAM3-0/lib/Cake/Model/Datasource/DboSource.php(540): DboSource->fetchAll('SELECT MAX(CAST...')
+#4 [internal function]: DboSource->query('SELECT MAX(CAST...')
+#5 /var/www/html/CAM3-0/lib/Cake/Model/Model.php(3456): call_user_func_array(Array, Array)
+#6 /var/www/html/CAM3-0/app/Controller/SampleSetsController.php(92): Model->query('SELECT MAX(CAST...')
+#7 [internal function]: SampleSetsController->newSet()
+#8 /var/www/html/CAM3-0/lib/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(SampleSetsController), Array)
+#9 /var/www/html/CAM3-0/lib/Cake/Routing/Dispatcher.php(193): Controller->invokeAction(Object(CakeRequest))
+#10 /var/www/html/CAM3-0/lib/Cake/Routing/Dispatcher.php(167): Dispatcher->_invoke(Object(SampleSetsController), Object(CakeRequest))
+#11 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2017-02-01 21:13:21 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/img/cake.power.gif
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-02-01 21:13:21 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/img/cake.power.gif
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-02-01 21:13:21 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/img/cake.icon.png
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-02-01 21:16:08 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/css/images/ui-bg_flat_75_ffffff_40x100.png
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-02-01 21:16:49 Error: [PDOException] SQLSTATE[42S02]: Base table or view not found: 1146 Table 'cam_data.sample_sets' doesn't exist
+Request URL: /CAM3-0/SampleSets/newSet?isTablet=false
+Stack Trace:
+#0 /var/www/html/CAM3-0/lib/Cake/Model/Datasource/DboSource.php(461): PDOStatement->execute(Array)
+#1 /var/www/html/CAM3-0/lib/Cake/Model/Datasource/DboSource.php(427): DboSource->_execute('SELECT MAX(CAST...', Array)
+#2 /var/www/html/CAM3-0/lib/Cake/Model/Datasource/DboSource.php(669): DboSource->execute('SELECT MAX(CAST...', Array, Array)
+#3 /var/www/html/CAM3-0/lib/Cake/Model/Datasource/DboSource.php(540): DboSource->fetchAll('SELECT MAX(CAST...')
+#4 [internal function]: DboSource->query('SELECT MAX(CAST...')
+#5 /var/www/html/CAM3-0/lib/Cake/Model/Model.php(3456): call_user_func_array(Array, Array)
+#6 /var/www/html/CAM3-0/app/Controller/SampleSetsController.php(92): Model->query('SELECT MAX(CAST...')
+#7 [internal function]: SampleSetsController->newSet()
+#8 /var/www/html/CAM3-0/lib/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(SampleSetsController), Array)
+#9 /var/www/html/CAM3-0/lib/Cake/Routing/Dispatcher.php(193): Controller->invokeAction(Object(CakeRequest))
+#10 /var/www/html/CAM3-0/lib/Cake/Routing/Dispatcher.php(167): Dispatcher->_invoke(Object(SampleSetsController), Object(CakeRequest))
+#11 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2017-02-01 21:16:49 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/img/cake.power.gif
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-02-01 21:16:49 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/img/cake.icon.png
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-02-01 21:16:49 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/img/cake.power.gif
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-02-01 21:25:48 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/css/images/ui-bg_flat_75_ffffff_40x100.png
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-02-01 21:26:17 Error: [PDOException] SQLSTATE[42S02]: Base table or view not found: 1146 Table 'cam_data.sample_sets' doesn't exist
+Request URL: /CAM3-0/SampleSets/newSet?isTablet=false
+Stack Trace:
+#0 /var/www/html/CAM3-0/lib/Cake/Model/Datasource/DboSource.php(461): PDOStatement->execute(Array)
+#1 /var/www/html/CAM3-0/lib/Cake/Model/Datasource/DboSource.php(427): DboSource->_execute('SELECT MAX(CAST...', Array)
+#2 /var/www/html/CAM3-0/lib/Cake/Model/Datasource/DboSource.php(669): DboSource->execute('SELECT MAX(CAST...', Array, Array)
+#3 /var/www/html/CAM3-0/lib/Cake/Model/Datasource/DboSource.php(540): DboSource->fetchAll('SELECT MAX(CAST...')
+#4 [internal function]: DboSource->query('SELECT MAX(CAST...')
+#5 /var/www/html/CAM3-0/lib/Cake/Model/Model.php(3456): call_user_func_array(Array, Array)
+#6 /var/www/html/CAM3-0/app/Controller/SampleSetsController.php(92): Model->query('SELECT MAX(CAST...')
+#7 [internal function]: SampleSetsController->newSet()
+#8 /var/www/html/CAM3-0/lib/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(SampleSetsController), Array)
+#9 /var/www/html/CAM3-0/lib/Cake/Routing/Dispatcher.php(193): Controller->invokeAction(Object(CakeRequest))
+#10 /var/www/html/CAM3-0/lib/Cake/Routing/Dispatcher.php(167): Dispatcher->_invoke(Object(SampleSetsController), Object(CakeRequest))
+#11 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2017-02-01 21:26:17 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/img/cake.power.gif
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-02-01 21:26:17 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/img/cake.icon.png
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-02-01 21:26:17 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/img/cake.power.gif
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-02-01 21:29:15 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/css/images/ui-bg_flat_75_ffffff_40x100.png
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-02-01 21:31:02 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/css/images/ui-bg_flat_75_ffffff_40x100.png
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-02-01 21:34:45 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/css/images/ui-bg_flat_75_ffffff_40x100.png
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-02-01 21:38:53 Error: [SocketException] 
+Request URL: /CAM3-0/SampleSets/editSet/352
+Stack Trace:
+#0 /var/www/html/CAM3-0/lib/Cake/Network/Email/MailTransport.php(51): MailTransport->_mail('tony.mcghie@pla...', 'Sample Set: TK2...', ' has edited the...', 'From: no_reply@...', NULL)
+#1 /var/www/html/CAM3-0/lib/Cake/Network/Email/CakeEmail.php(1173): MailTransport->send(Object(CakeEmail))
+#2 /var/www/html/CAM3-0/app/Controller/SampleSetsController.php(63): CakeEmail->send(' has edited the...')
+#3 /var/www/html/CAM3-0/app/Controller/SampleSetsController.php(158): SampleSetsController->send_editSS_email(Array)
+#4 [internal function]: SampleSetsController->editSet('352')
+#5 /var/www/html/CAM3-0/lib/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(SampleSetsController), Array)
+#6 /var/www/html/CAM3-0/lib/Cake/Routing/Dispatcher.php(193): Controller->invokeAction(Object(CakeRequest))
+#7 /var/www/html/CAM3-0/lib/Cake/Routing/Dispatcher.php(167): Dispatcher->_invoke(Object(SampleSetsController), Object(CakeRequest))
+#8 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#9 {main}
+2017-02-01 21:38:53 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/img/cake.power.gif
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-02-01 21:38:53 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/img/cake.icon.png
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-02-01 21:38:53 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/img/cake.power.gif
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
