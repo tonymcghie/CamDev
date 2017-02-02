@@ -126,33 +126,38 @@ class SampleSetsController extends AppController{
      * @throws NotFoundExcpetion
      */
     public function editSet($id = null){
-        echo var_export($this->request->data), "<br>";
+        //needs to reworked so $set (post data) is named differently eg new_setdata, and then used to avoid conflict with the old_setdata
+        //then need to be careful that all the chages align
+        $new_setdata = $this->request->data; //get the posted data from the form
+        echo var_export($new_setdata), "<br>";
         if (isset($this->request->data['SampleSet']['id'])){ //updates the id to the provious one when editing twice
             $id = $this->request->data['SampleSet']['id'];
         }
         if (!$id){
             throw new NotFoundExcpetion(__('Invalid Sample Set'));
         } //makes sure that the id is set
-        $set = $this->SampleSet->findById($id); 
-        if (!$set){
+        $old_setdata = $this->SampleSet->findById($id); //get sampleset data for the last version in the database 
+        if (!$old_setdata){
             throw new NotFoundExcpetion(__('Invalid Sample Set'));
-        } //makes sure that the set exists                
-        $this->set('versions', $this->SampleSet->find('allVersions', ['conditions' => ['set_code' => $set['SampleSet']['set_code']]])); //sets all the versions so that the view can diplsay them
-        $this->set('set_code', $set['SampleSet']['set_code']); //sets the setcode for the smaple set this means that the view can pass it back
+        }
+        $this->set('versions', $this->SampleSet->find('allVersions', ['conditions' => ['set_code' => $old_setdata['SampleSet']['set_code']]])); //sets all the versions so that the view can diplsay them
+        $this->set('set_code', $old_setdata['SampleSet']['set_code']); //sets the setcode for the smaple set this means that the view can pass it back
         if (isset($this->request->data['SampleSet'])){
-            $this->request->data['SampleSet']['version'] = $set['SampleSet']['version'] + 1; //makes a new version with a version number 1 greater than the current highest version number
-            $this->request->data['SampleSet']['date'] = $set['SampleSet']['date'];//keeps the submit date the same
-            $set = $this->request->data;
-            echo var_export($set), "<br>";
-            //if(isset($data['SampleSet']['metadataFile']['error'])&&$data['SampleSet']['metadataFile']['error']=='0'){
-                $set['SampleSet']['metaFile'] = $this->uploadFile($set['SampleSet']['metadataFile'], $set['SampleSet']['set_code'].'_Metadata.'.substr(strtolower(strrchr($set['SampleSet']['metadataFile']['name'], '.')), 1));
-                unset($set['SampleSet']['metadataFile']); 
-            //} //uploads metadata file
-            unset($this->request->data['SampleSet']['id']); //unsets the id so the new version is saved as a new row
+            $new_setdata['SampleSet']['version'] = $old_setdata['SampleSet']['version'] + 1; //makes a new version with a version number 1 greater than the current highest version number
+            $new_setdata['SampleSet']['date'] = $old_setdata['SampleSet']['date'];//keeps the submit date the same
+            if ($new_setdata['SampleSet']['metadataFile']['error']!='0'){
+                    $new_setdata['SampleSet']['metaFile'] = $old_setdata['SampleSet']['metaFile'];
+                }
+            if(isset($new_setdata['SampleSet']['metadataFile']['error'])&&$new_setdata['SampleSet']['metadataFile']['error']=='0'){
+                $new_setdata['SampleSet']['metaFile'] = $this->uploadFile($new_setdata['SampleSet']['metadataFile'], $new_setdata['SampleSet']['set_code'].'_Metadata.'.substr(strtolower(strrchr($new_setdata['SampleSet']['metadataFile']['name'], '.')), 1));
+                unset($new_setdata['SampleSet']['metadataFile']); 
+            } //uploads metadata file
+            unset($new_setdata['SampleSet']['id']); //unsets the id so the new version is saved as a new row
             $this->SampleSet->create(); //create a new version
-            if ($this->SampleSet->save($this->request->data)){ //saves the new version
-                $this->set('versions', $this->SampleSet->find('allVersions', ['conditions' => ['set_code' => $set['SampleSet']['set_code']]]));  //updates the version shown on the page
-                $set = $this->SampleSet->find('all', ['conditions' => ['SampleSet.set_code LIKE' => $set['SampleSet']['set_code']]]); //updates $set to be the most recent version
+            //if ($this->SampleSet->save($this->request->data)){ //saves the new version
+            if ($this->SampleSet->save($new_setdata)){ //saves the new version
+                $this->set('versions', $this->SampleSet->find('allVersions', ['conditions' => ['set_code' => $new_setdata['SampleSet']['set_code']]]));  //updates the version shown on the page
+                $set = $this->SampleSet->find('all', ['conditions' => ['SampleSet.set_code LIKE' => $new_setdata['SampleSet']['set_code']]]); //updates $set to be the most recent version
                 $this->set('newId', $set[0]['SampleSet']['id']); //passes the new ID to the view               
                 
                 /**$this->send_editSS_email(['from' => 'no_reply@plantandfood.co.nz',
@@ -170,7 +175,7 @@ class SampleSetsController extends AppController{
             }
         } //update the Sample Set
         if (!$this->request->data){
-            $this->request->data = $set; //makes sure all the inputs get updated
+            $this->request->data = $new_setdata; //makes sure all the inputs get updated
         } //update the values that should be showing in the form after its being submitted and updated
     }    
     
