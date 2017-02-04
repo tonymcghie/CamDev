@@ -52,10 +52,41 @@ function load_page(url, load_to) {
 }
 
 function submit_form(url, success_function) {
-    ajax_call(url, $('form').serialize(), success_function);
+    var formData = new FormData($('form')[0]);
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: formData,
+        processData: false,
+        contentType: false,
+        error: function(jqXHR, textStatus, errorMessage) {
+            console.log(errorMessage);
+        },
+        success: success_function
+    });
 }
+/**
+ * Submits the for to a given url
+ * @param url
+ * @param id
+ */
 function submit_form_replace(url, id) {
-    ajax_call_replace(url, $('form').serialize(), id);
+    var success_function = function(response){
+        $('#'+id).html(response);
+    };
+    submit_form(url, success_function);
+}
+/**
+ * Sumits the first form that jquery finds on the page
+ * @param id
+ */
+function submit_first_form(id) {
+    for (var validator of validators){
+        if (!validator.validate()){
+            return false;
+        }
+    }
+    submit_form_replace($('form').attr('action'), id);
 }
 
 
