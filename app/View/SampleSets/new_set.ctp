@@ -13,7 +13,7 @@ if (isset($set_code)){
 <p><?php echo $this->String->get_string('sub_title', 'SampleSet_form'); ?></p>
 	</header>
 <?php
-echo $this->BootstrapForm->create_horizontal('SampleSet', ['type' => 'file']);
+echo $this->BootstrapForm->create_horizontal('SampleSet', ['type' => 'file' ,'action' => 'createSampleSet']);
 //to do make a clone button in the table
 echo $this->BootstrapForm->input_horizontal('confidential', ['type' => 'checkbox',
     'label' => $this->String->get_string('confidential', 'SampleSet_form')]);
@@ -49,12 +49,19 @@ echo $this->BootstrapForm->input_horizontal('containment_details', ['label' => $
     'rows' => '3']);
 echo $this->BootstrapForm->input_horizontal('comments', ['label' => $this->String->get_string('comments', 'SampleSet_form'),
     'placeholder' => $this->String->get_string('comments_ph', 'SampleSet_form'),
-    'rows' => '3']);/*
+    'rows' => '3']);
 echo $this->BootstrapForm->input_horizontal('metadataFile', ['label' => $this->String->get_string('metafile', 'SampleSet_form'),
-    'type' => 'file']);*/
-echo $this->BootstrapForm->file_input('metadataFile');
+    'type' => 'file']);
+
+echo $this->BootstrapForm->add_validator('requires', 'submitter');
+echo $this->BootstrapForm->add_validator('requires', 'chemist');
+echo $this->BootstrapForm->add_validator('requires', 'number');
+echo $this->BootstrapForm->add_validator('requires', 'compounds');
+
+echo $this->BootstrapForm->display_if_checked('containment_details', 'containment');
+
 echo $this->BootstrapForm->input_maker('save', [
-        'onclick' => 'submit_form_replace(\''.$this->Html->url(['controller' => 'SampleSets', 'action' => 'createSampleSet'], true).'\' , $(\'#main_content\')); return false;'
+        'onclick' => 'submit_first_form(\'main_content\'); return false;'
     ], [
         'horizontal' => true,
         'type' => 'button'
@@ -95,7 +102,7 @@ echo $this->Html->script('typeahead', ['inline' => true]); ?>
      * @param {array} data in the form data[0]["SampleSet"][values]
      * @returns {null}
      */
-    function setValues(data){
+/*    function setValues(data){
         if (typeof data[0] !== 'undefined') {
             $("[name='data[SampleSet][submitter]']").val(data[0]["SampleSet"]["submitter"]);
             $("[name='data[SampleSet][p_name]']").val(data[0]["SampleSet"]["p_name"]);
@@ -116,7 +123,7 @@ echo $this->Html->script('typeahead', ['inline' => true]); ?>
                 $("[#containment_details").hide();
             }
             $("[name='data[SampleSet][comments]']").val(data[0]["SampleSet"]["comments"]);  
-        }        
-    }
+        }
+    }*/
 </script>
 
