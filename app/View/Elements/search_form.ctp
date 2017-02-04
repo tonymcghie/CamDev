@@ -28,7 +28,7 @@ if (!isset($url)){
 }
 echo $this->Form->create($model, ['action' => $url, 'class' => 'searchForm']);
 echo $this->Form->input('num_boxes', array('type' => 'hidden', 'value' => $box_nums, 'id' => 'box_nums'));
- if ($model === 'SampleSet' || $model === 'Metabolite' || $model === 'Compoundpfr_data' || $model === 'Bioactivitypfr_data') : ?>
+ if ($model === 'SampleSet' || $model === 'Metabolite' || $model === 'Compoundpfr_data' || $model === 'Bioactivitypfr_data'  || $model === 'Compound') : ?>
     <?php echo $this->Form->input('isDate', ['type' => 'checkbox', 'label' => 'Add Date Criteria', 'id' => 'isDate']); ?>
     <section id="dates" style="display:none;">
     <?php echo $this->Form->input('start_date', array('label' => 'Start Date', 'dateFormat' => 'DMY', 'minYear' => 2000, 'maxYear' => date('Y'), 'type' => 'date',

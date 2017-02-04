@@ -153,7 +153,7 @@ class CompoundsController extends AppController{
      * @param String $log The logic of the criteria and value
      * @return Array The new Data Array
      */
-    public function addSearchCondition($data, $cri, $val, $log){
+    public function addSearchCondition($data, $cri, $val, $log, $match){
         $i = 0;
         while (isset($data['Compound']['cri_'.$i])){
             $i++;
@@ -161,6 +161,7 @@ class CompoundsController extends AppController{
         $data['Compound'][('cri_'.$i)] = $cri;
         $data['Compound']['val_'.$i] = $val;
         $data['Compound']['log_'.$i] = $log;
+        $data['Compound']['match_'.$i] = $match;
         return $data;
     }       
     
