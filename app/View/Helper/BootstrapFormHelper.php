@@ -7,6 +7,7 @@
  * Time: 6:18 PM
  */
 class BootstrapFormHelper extends FormHelper{
+    private $model;
 
     /**
      * Starts a new standard form
@@ -16,7 +17,8 @@ class BootstrapFormHelper extends FormHelper{
      * @return string
      */
     public function create($model = null, $options = []){
-        return parent::create($model, $options);
+        $this->model = $model;
+        return parent::create($model, $options).'<script>validators = [];</script>';
     }
 
     /**
@@ -31,7 +33,7 @@ class BootstrapFormHelper extends FormHelper{
             $options['class'] = '';
         }
         $options['class'] .= ' form-inline';
-        return parent::create($model, $options);
+        return $this->create($model, $options);
     }
 
     /**
@@ -46,7 +48,8 @@ class BootstrapFormHelper extends FormHelper{
             $options['class'] = '';
         }
         $options['class'] .= ' form-horizontal';
-        return parent::create($model, $options);
+//        $options['enctype'] = "m"
+        return $this->create($model, $options);
     }
 
     /**
@@ -147,7 +150,28 @@ class BootstrapFormHelper extends FormHelper{
         }
     }
 
-    public function file_input($name){
-        return '<iframe name="'.$name.'" class="file-input" src="'.$this->Html->url(['controller' => 'File', 'action' => 'uploadFile']).'"></iframe>';
+    /**
+     * Returns the javascript for adding a validator
+     * @param string $validator name of the validation class
+     * @param string $name name of the form element
+     * @param array $args options to pass to the validator
+     * @return string
+     */
+    public function add_validator($validator, $name, $args = []){
+        $name = "data[$this->model][$name]";
+        $args = json_encode($args);
+        return "<script>validators.push(new $validator('$name', '$args'));</script>";
+    }
+
+    public function display_if_checked($base_name, $rule_element_name){
+        $base_name = "data[$this->model][$base_name]";
+        $rule_element_name = "data[$this->model][$rule_element_name]";
+        return "<script>new display_if_checked('$base_name', '$rule_element_name')</script>";
+    }
+    public function display_if_equals($base_name, $rule_element_name, $value){
+
+    }
+    public function display_if_not_equals($base_name, $rule_element_name, $value){
+
     }
 }
