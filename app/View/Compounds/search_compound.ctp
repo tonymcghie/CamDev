@@ -83,37 +83,37 @@ if (isset($results[0]['Compound'])){
     });
         
     $("document").ready(function(){
-        $('td:nth-child(4)').hide();
+        $('#resultsTable td:nth-child(4)').hide();
         $('td:nth-child(5)').hide();
         $('td:nth-child(6)').hide();
         $('td:nth-child(7)').hide();
 
-        $('th:nth-child(4)').hide();
+        $('#resultsTable th:nth-child(4)').hide();
         $('th:nth-child(5)').hide();
         $('th:nth-child(6)').hide();
         $('th:nth-child(7)').hide();       
     });
     $("#displayMonoisotopicMass").change(function(){
-        $('td:nth-child(4)').fadeOut('fast');
+        $('#resultsTable td:nth-child(4)').fadeOut('fast');
         $('td:nth-child(5)').fadeOut('fast');
         $('td:nth-child(6)').fadeOut('fast');
         $('td:nth-child(7)').fadeOut('fast');
 
-        $('th:nth-child(4)').fadeOut('fast');
+        $('#resultsTable th:nth-child(4)').fadeOut('fast');
         $('th:nth-child(5)').fadeOut('fast');
         $('th:nth-child(6)').fadeOut('fast');
         $('th:nth-child(7)').fadeOut('fast'); 
     });
     $("#displayNegativeIons").change(function(){       
         $('td:nth-child(6)').fadeOut('fast',function(){
-            $('td:nth-child(4)').fadeIn('fast'); 
+            $('#resultsTable td:nth-child(4)').fadeIn('fast'); 
         });
         $('td:nth-child(7)').fadeOut('fast', function(){
             $('td:nth-child(5)').fadeIn('fast');
         });
                 
         $('th:nth-child(6)').fadeOut('fast', function(){
-            $('th:nth-child(4)').fadeIn('fast');
+            $('#resultsTable th:nth-child(4)').fadeIn('fast');
         });
         $('th:nth-child(7)').fadeOut('fast', function(){
             $('th:nth-child(5)').fadeIn('fast');
@@ -121,14 +121,14 @@ if (isset($results[0]['Compound'])){
             
     });
     $("#displayPositiveIons").change(function(){
-        $('td:nth-child(4)').fadeOut('fast',function(){
+        $('#resultsTable td:nth-child(4)').fadeOut('fast',function(){
             $('td:nth-child(6)').fadeIn('fast');
         });
         $('td:nth-child(5)').fadeOut('fast',function(){
             $('td:nth-child(7)').fadeIn('fast');
         });                
 
-        $('th:nth-child(4)').fadeOut('fast', function(){
+        $('#resultsTable th:nth-child(4)').fadeOut('fast', function(){
             $('th:nth-child(6)').fadeIn('fast');
         });
         $('th:nth-child(5)').fadeOut('fast', function(){
