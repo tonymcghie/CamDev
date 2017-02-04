@@ -12,7 +12,7 @@ class SampleSetsController extends AppController{
     public $helpers = ['Html' , 'Form' , 'My' , 'Js', 'Time', 'String', 'BootstrapForm'];
     public $uses = ['Analysis' , 'SampleSet' , 'Chemist', 'Project'];
     public $layout = 'content';
-    public $components = ['Paginator', 'RequestHandler', 'My', 'Session', 'Cookie', 'Auth'];
+    public $components = ['Paginator', 'RequestHandler', 'My', 'Session', 'Cookie', 'Auth', 'File'];
 
     // Define models for code completion perposes
     //private $Analysis, $SampleSet, $Chemist, $Project;
@@ -72,8 +72,7 @@ class SampleSetsController extends AppController{
 
     public function createSampleSet(){
         $this->layout = 'content';
-        $data = $this->request->query('data');
-        var_export($data);
+        $data = $this->request->data;
         // Find the number of chemists with the name entered (should always be 1)
         $numChem = $this->Chemist->find('count', array('conditions' => array('name' => $data['SampleSet']['chemist'])));
         $chemist = '';
@@ -88,13 +87,11 @@ class SampleSetsController extends AppController{
         } //makes sure the chemist is valid
         $data['SampleSet']['date']= date('Y-m-d'); //sets the date that the sample sets was submitted
         $data['SampleSet']['submitter_email'] = $this->Auth->Session->read($this->Auth->sessionKey)['Auth']['User']['email']; //sets the email of the user who submitted the sample set
-
         if(isset($data['SampleSet']['metadataFile']['error']) && $data['SampleSet']['metadataFile']['error']=='0'){
             $data['SampleSet']['metaFile'] =
-                $this->uploadFile(
-                    $data['SampleSet']['metadataFile'],
-                    $data['SampleSet']['set_code'].'_Metadata.'.substr(strtolower(strrchr($data['SampleSet']['metadataFile']['name'], '.')), 1)
-                );
+                $this->File->uploadFile($data['SampleSet']['metadataFile'],
+                    'SampleSet_Metadata',
+                    $data['SampleSet']['set_code'].'_Metadata.'.substr(strtolower(strrchr($data['SampleSet']['metadataFile']['name'], '.')), 1));
             unset($data['SampleSet']['metadataFile']);
         }
         $this->SampleSet->create(); //Need to add set code
@@ -274,17 +271,6 @@ class SampleSetsController extends AppController{
         $results = $this->SampleSet->find('all', ['conditions' => [ 'AND' => [ '0' => [ 'SampleSet.set_code' => $set_code]]]]); //finds the sample set 
         $results = [$results[0]]; //return only the first result
         echo json_encode($results);
-    }   
-    /**
-     * uplaods a new file into the samplesets dir in the files dir
-     * @param type $file
-     * @param type $newName
-     * @return type
-     */
-    private function uploadFile($file, $newName){ 
-        $URL = $this->file_URL.'files/samplesets/'.$newName; //sets the new location
-        $result = move_uploaded_file( $file['tmp_name'], $URL ); //uploads the file
-        if ($result){return $newName;}//returns the name if the uplaod was successful
     }
 }
 
