@@ -12,7 +12,7 @@ class SampleSetsController extends AppController{
     public $helpers = ['Html' , 'Form' , 'My' , 'Js', 'Time', 'String', 'BootstrapForm', 'SearchForm'];
     public $uses = ['Analysis' , 'SampleSet' , 'Chemist', 'Project'];
     public $layout = 'content';
-    public $components = ['Paginator', 'RequestHandler', 'My', 'Session', 'Cookie', 'Auth', 'File'];
+    public $components = ['Paginator', 'RequestHandler', 'My', 'Session', 'Cookie', 'Auth', 'File', 'Search'];
 
     // Define models for code completion perposes
     //private $Analysis, $SampleSet, $Chemist, $Project;
@@ -213,8 +213,13 @@ class SampleSetsController extends AppController{
 
     public function search(){
         $this->layout = 'ajax';
-        var_export($this->request->data['SampleSet']);
-
+        // Listed these here for auto complete reasons and to stop the IDE displaying errors
+        $criteria = null;$value = null;$logic = null;$match = null;
+        extract($this->request->data['SampleSet']);
+        $query = $this->Search->build_query('SampleSet', $criteria, $value, $logic, $match);
+        $results = $this->paginate('SampleSet', $query);
+        $this->set('results', $results);
+        var_export($results);
     }
     
     /**

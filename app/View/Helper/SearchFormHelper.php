@@ -13,7 +13,7 @@ class SearchFormHelper extends AppHelper {
     /** @var array The list of categories and values to make a select out of */
     private $category_options = [];
     /** @var array The list of logic options that the select will display */
-    private $logic_options = ['and' => 'and', 'or' => 'or', 'xor' => 'xor', 'not' => 'not'];
+    private $logic_options = ['AND' => 'and', 'OR' => 'or', 'XOR' => 'xor', 'NOT' => 'not'];
     /** @var array The array of options that the match select will display */
     private $match_options = ['contains' => 'Contains', 'exact' => 'exactly', 'starts' => 'Start with'];
     /** @var int The number of groups to show when rendering */
