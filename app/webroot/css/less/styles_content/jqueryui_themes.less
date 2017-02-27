@@ -1,0 +1,32 @@
+
+
+.ui-autocomplete {
+
+}
+ul.ui-autocomplete {
+  .make-lg-column(8);
+  margin-top: 4px;
+  padding: 4px 0;
+  background-color: #FFF;
+  border: 1px solid #CCC;
+  .border-radius(4px);
+  .box-shadow(0, 5px, 10px, rgba(0, 0, 0, .2));
+
+  z-index: 5;
+  position: absolute;
+  list-style: none;
+  max-height: 400px;
+  overflow-y: auto;
+  li {
+    padding: 5px;
+  }
+  &:empty{
+    display: none;
+  }
+}
+
+// I think there a bug with the auto complete making parts of this show up
+// when they shouldnt
+.ui-helper-hidden-accessible{
+  display: none;
+}

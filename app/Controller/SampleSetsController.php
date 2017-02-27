@@ -9,7 +9,7 @@
 App::uses('CakeEmail', 'Network/Email');
 
 class SampleSetsController extends AppController{
-    public $helpers = ['Html' , 'Form' , 'My' , 'Js', 'Time', 'String', 'BootstrapForm'];
+    public $helpers = ['Html' , 'Form' , 'My' , 'Js', 'Time', 'String', 'BootstrapForm', 'SearchForm'];
     public $uses = ['Analysis' , 'SampleSet' , 'Chemist', 'Project'];
     public $layout = 'content';
     public $components = ['Paginator', 'RequestHandler', 'My', 'Session', 'Cookie', 'Auth', 'File'];
@@ -204,18 +204,18 @@ class SampleSetsController extends AppController{
             $this->request->data['SampleSet']['end_date'] = $this->request->data['SampleSet']['end_date']['year'].'-'.$this->request->data['SampleSet']['end_date']['month'].'-'.$this->request->data['SampleSet']['end_date']['day'];
         }
         //gets the criteria for the search
-        $search = $this->My->extractSearchTerm($this->request->data, ['submitter', 'chemist', 'set_code', 'crop', 'type', 'p_name', 'p_code', 'exp_reference', 'compounds', 'comments', 'sample_loc', 'set_reason'], 'SampleSet');        
-        var_dump($search);
+        $search = $this->My->extractSearchTerm($this->request->data, ['submitter', 'chemist', 'set_code', 'crop', 'type', 'p_name', 'p_code', 'exp_reference', 'compounds', 'comments', 'sample_loc', 'set_reason'], 'SampleSet');
         $results = $this->paginate('SampleSet', $search); //search for the data for the page
         $this->set('num', $this->SampleSet->find('count', ['conditions' =>$search]));// finds the num of results
-        $this->set('results' ,$results); //sends the reuslts to the page  
-        $this->set('data', $this->request->data); //sends all the data(search criteria) to the view so it can be added to the ajax links    
-        
-        if($this->Cookie->check('View.isTablet')){     
-            $this->set('isTablet', $this->Cookie->read('View.isTablet'));
-        }//adds the type of view to the view
-            
-    }       
+        $this->set('results' ,$results); //sends the reuslts to the page
+        $this->set('data', $this->request->data); //sends all the data(search criteria) to the view so it can be added to the ajax links
+    }
+
+    public function search(){
+        $this->layout = 'ajax';
+        var_export($this->request->data['SampleSet']);
+
+    }
     
     /**
      * The Controller function for viewing the sample sets

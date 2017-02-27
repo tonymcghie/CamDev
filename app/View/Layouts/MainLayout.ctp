@@ -18,8 +18,12 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 		echo $this->Html->script('jquery-3.1.1.min', ['inline' => true]);
 		echo $this->Html->script('bootstrap.min', ['inline' => false, 'async' => 'async']);
 		echo $this->Html->script('ajax_helper', ['inline' => false, 'async' => 'async']);
+
         echo $this->Html->script('typescript/validator/validator', ['inline' => false, 'async' => 'async']);
         echo $this->Html->script('typescript/form_rules/displayif', ['inline' => false, 'async' => 'async']);
+        echo $this->Html->script('search_helper', ['inline' => false, 'async' => 'async']);
+
+        echo $this->Html->script('jquery-ui-1.12.1/jquery-ui', ['inline' => false, 'async' => 'async']);
         echo $this->fetch('meta');
 		echo $this->fetch('css');
 		echo $this->fetch('script');

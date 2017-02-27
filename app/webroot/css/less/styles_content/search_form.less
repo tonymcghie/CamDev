@@ -1,0 +1,20 @@
+@import (reference) "../bootstrap/bootstrap";
+.search-form {
+  .search-set {
+    label{
+      display: none;
+    }
+    &:nth-child(3) div label { // The first one is third child because of cake hidden element and the script tag.
+        display: inline-block;
+    }
+  }
+  .search-action-buttons {
+    button {
+      .make-lg-column(2);
+      margin: 0 5px;
+    }
+    div:first-child > button{
+      .make-lg-column-offset(7);
+    }
+  }
+}

@@ -1,4 +1,4 @@
-<header>
+
 <?php
 $title = "Search Sample Sets";
 $model = "SampleSet";
@@ -14,28 +14,40 @@ $options = array(
 'compounds' => 'Compounds',
 'comments' => 'Comments',
 'exp_reference' => 'Experiment Reference',
-'team' => 'Team',
-'start_date' => ((isset($data[$model]['isDate'])&&$data[$model]['isDate']==='1') ? $data['SampleSet']['start_date'] : '2000-01-01'));
+'team' => 'Team');
+//'start_date' => ((isset($data[$model]['isDate'])&&$data[$model]['isDate']==='1') ? $data['SampleSet']['start_date'] : '2000-01-01'));
 
-$this->Html->script('HelperScripts_'.getenv('CSS_VERSION'), array('inline' => false));
+$this->SearchForm->set_options($options);
+$this->SearchForm->set_model('SampleSet');
+$this->SearchForm->set_title('Search Sample Sets');
+echo $this->SearchForm->render();?>
+
+<div id="search-results">
+
+</div>
+
+
+<header>
+<?php
+/*$this->Html->script('HelperScripts_'.getenv('CSS_VERSION'), array('inline' => false));
 if (!isset($box_nums)){$box_nums=1;} //sets the box nums for the first time
-    echo $this->element('search_form', ['title' => $title, 'model' => $model, 'options' => $options, 'box_nums' => $box_nums]);
+    echo $this->element('search_form', ['title' => $title, 'model' => $model, 'options' => $options, 'box_nums' => $box_nums]);*/
 ?>
 </header>
 <script>
-    var boxnum=<?php echo $box_nums; ?>;    
+   /* var boxnum=<?php echo $box_nums; ?>;
     var cols =<?php echo json_encode(array_keys($options)); ?>;
     var names = <?php echo json_encode(array_values($options)); ?>;
     cols.splice(cols.length-1,1);  //removes the date option
     names.splice(names.length-1,1); //removes the date option
-    /**
+    /!**
      * adds another input pair    
-     */
+     *!/
     function add(){
         $('#boxes').append(getNewBox(boxnum, cols,names,'<?php echo $model; ?>')); //adds the new boxes the the section
         boxnum++; //increases the number of boxes passed to and from the view and controller
         $('#box_nums').val(boxnum); //updates the hidden input
-    }
+    }*/
  </script>
 
  <?php
