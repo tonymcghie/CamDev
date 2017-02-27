@@ -1,17 +1,15 @@
 /// <reference path="../definitions/jquery/jquery.d.ts" />
 interface validator{
-    name: string;
+    input: JQuery;
     data?: Array<string>;
     validate(): boolean;
 }
 
 class requires implements validator{
-    name: string;
     input: JQuery;
 
     constructor(name: string){
-        this.name = name;
-        this.input = $(':input[name="'+this.name+'"]');
+        this.input = $(':input[name="'+name+'"]');
     }
 
     validate(): boolean{
@@ -25,14 +23,12 @@ class requires implements validator{
 }
 
 class number_validator implements validator{
-    name: string;
     input: JQuery;
     max: number = null;
     min: number = null;
 
     constructor(name: string, args: string){
-        this.name = name;
-        this.input = $(':input[name="'+this.name+'"]');
+        this.input = $(':input[name="'+name+'"]');
         this.min = Number(this.input.attr('min'));
         this.max = Number(this.input.attr('max'));
     }
@@ -46,5 +42,26 @@ class number_validator implements validator{
             return false;
         }
     }
+}
 
+class match_validator implements validator{
+    input: JQuery;
+    data: Array<string>;
+
+    constructor(name: string, args: string){
+        args = JSON.parse(args);
+        this.data = args['data'];
+        this.input = $(':input[name="'+name+'"]');
+    }
+
+    validate(): boolean {
+        console.log(this.data);
+        for(var index in this.data){
+            console.log(this.data[index] + ' : ' + this.input.val());
+            if (this.data[index] == this.input.val())return true;
+        }
+        console.log('ho');
+        this.input.parents('div.form-group').prepend('<span class="alert-danger">This input did not match the possible values</span>');
+        return false;
+    }
 }

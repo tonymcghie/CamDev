@@ -22,13 +22,11 @@ echo $this->BootstrapForm->input_horizontal('submitter', ['label' => ['text' => 
     'required',]);
 echo $this->BootstrapForm->input_horizontal('p_name', ['label' => $this->String->get_string('p_name', 'SampleSet_form'),
     'placeholder' => $this->String->get_string('p_name_ph', 'SampleSet_form'),
-    'autocomplete' => 'off',
-    'class' => 'typeahead']);
+    'autocomplete' => 'off']);
 echo $this->BootstrapForm->input_horizontal('exp_reference', ['label' => $this->String->get_string('exp_reference', 'SampleSet_form'),
     'placeholder' => $this->String->get_string('exp_reference_ph', 'SampleSet_form')]);
 echo $this->BootstrapForm->input_horizontal('chemist', ['label' => $this->String->get_string('chemist_name', 'SampleSet_form'),
-    'autocomplete' => 'off',
-    'class' => 'typeahead']);
+    'autocomplete' => 'off']);
 echo $this->BootstrapForm->input_horizontal('crop', ['label' => $this->String->get_string('crop', 'SampleSet_form'),
     'required', 'options' => $this->My->getCropOptions()]);
 echo $this->BootstrapForm->input_horizontal('type', ['label' => $this->String->get_string('sample_type', 'SampleSet_form'),
@@ -57,8 +55,9 @@ echo $this->BootstrapForm->add_validator('requires', 'submitter');
 echo $this->BootstrapForm->add_validator('requires', 'chemist');
 echo $this->BootstrapForm->add_validator('requires', 'number');
 echo $this->BootstrapForm->add_validator('requires', 'compounds');
+echo $this->BootstrapForm->add_validator('match_validator', 'chemist', ['data' => $names]);
 
-echo $this->BootstrapForm->display_if_checked('containment_details', 'containment');
+echo $this->BootstrapForm->new_rule('display_if_checked', 'containment_details', 'containment');
 
 echo $this->BootstrapForm->input_maker('save', [
         'onclick' => 'submit_first_form(\'main_content\'); return false;'
@@ -67,35 +66,19 @@ echo $this->BootstrapForm->input_maker('save', [
         'type' => 'button'
 ]);
 echo $this->BootstrapForm->end();
-
-echo $this->Html->script('typeahead', ['inline' => true]); ?>
+?>
 <script>
-    var substringMatcher = function(strs) {
-        return function findMatches(q, cb) {
-            var matches, substringRegex;
-            matches = [];
-
-            substringRegex = new RegExp(q, 'i');
-
-            $.each(strs, function(i, str) {
-                if (substringRegex.test(str)) {
-                    matches.push(str);
-                }
-            });
-            cb(matches);
-        };
-    };
-
-    $('#SampleSetChemist').typeahead({highlight: true}, {
-            name: 'names',
-            source: substringMatcher(JSON.parse('<?php echo json_encode($names); ?>'))
+    $(function() {
+        $('#SampleSetChemist').autocomplete({
+            source: Object.values(JSON.parse('<?php echo json_encode($names); ?>')),
+            appendTo: $('#SampleSetChemist').closest('div')
         });
+        $('#SampleSetPName').autocomplete({
+            source: Object.values(JSON.parse('<?php echo json_encode($p_names); ?>')),
+            appendTo: $('#SampleSetPName').closest('div')
+        });
+    });
 
-    $('#SampleSetPName').typeahead({highlight: true},
-        {
-            name: 'p_name',
-            source: substringMatcher(JSON.parse('<?php echo json_encode($p_names); ?>'))
-        })
 
     /**
      * takes an array and sets all the values in the form from that array
