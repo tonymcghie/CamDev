@@ -8,6 +8,7 @@
  */
 class BootstrapFormHelper extends FormHelper{
     private $model;
+    private $currently_grouping = false;
 
     /**
      * Starts a new standard form
@@ -48,7 +49,6 @@ class BootstrapFormHelper extends FormHelper{
             $options['class'] = '';
         }
         $options['class'] .= ' form-horizontal';
-//        $options['enctype'] = "m"
         return $this->create($model, $options);
     }
 
@@ -91,8 +91,7 @@ class BootstrapFormHelper extends FormHelper{
         if (!isset($options['class'])){
             $options['class'] = '';
         }
-
-        $options['div']['class'] .= ' form-group row';
+        if (!$this->currently_grouping)$options['div']['class'] .= ' form-group row';
         if (!isset($options['type']) || $options['type'] != 'checkbox') {
             $options['class'] .= ' form-control';
         }
@@ -107,6 +106,7 @@ class BootstrapFormHelper extends FormHelper{
      * @return string
      */
     public function input_horizontal($fieldName, $options = []) {
+
         if (!isset($options['label'])) {
             $options['label'] = '';
         }
@@ -117,10 +117,10 @@ class BootstrapFormHelper extends FormHelper{
             $options['label'] = [];
             $options['label']['class'] = '';
             $options['label']['text'] = $label_text;
-        } else {
-
+        } else if(gettype($options['label']) !== 'boolean') {
+            throw new Exception('You are passing somethign that isnt a string or array or false in the $options[\'label\'] index');
         }
-        if (isset($options['label'])){
+        if (!empty($options['label'])){
             $options['label']['class'] .= ' control-label col-lg-4';
         }
         if (!isset($options['between'])){
@@ -143,6 +143,7 @@ class BootstrapFormHelper extends FormHelper{
     public function single_button($fieldName, $options = [], $button_options = []){
         $options['type'] = 'button';
         $options['class'] = 'btn '.$button_options['class'];
+        $options['label'] = false;
         if (isset($button_options['horizontal']) && $button_options['horizontal']) {
             return $this->input_horizontal($fieldName, $options);
         } else {
@@ -163,15 +164,40 @@ class BootstrapFormHelper extends FormHelper{
         return "<script>validators.push(new $validator('$name', '$args'));</script>";
     }
 
-    public function display_if_checked($base_name, $rule_element_name){
+    /**
+     * Adds a new rule to the form
+     * @param $rule
+     * @param $base_name
+     * @param $rule_element_name
+     * @param array $args
+     * @return string
+     */
+    public function new_rule($rule, $base_name, $rule_element_name, $args = []){
         $base_name = "data[$this->model][$base_name]";
         $rule_element_name = "data[$this->model][$rule_element_name]";
-        return "<script>new display_if_checked('$base_name', '$rule_element_name')</script>";
+        $args = json_encode($args);
+        return "<script>new $rule('$base_name', '$rule_element_name', '$args');</script>";
     }
-    public function display_if_equals($base_name, $rule_element_name, $value){
 
+    public function start_group($options = []){
+        if($this->currently_grouping == true)throw new Exception('You are already in a group');
+        $this->currently_grouping = true;
+        if (!isset($options['class'])) {
+            $options['class'] = 'form-group row';
+        } else {
+            $options['class'] .= ' form-group row';
+        }
+        $html = '<div';
+        foreach ($options as $name => $value){
+            $html .= ' ' . $name . '="'.$value.'"';
+        }
+        $html .= '>';
+        return $html;
     }
-    public function display_if_not_equals($base_name, $rule_element_name, $value){
 
+    public function end_group(){
+        if($this->currently_grouping == false)throw new Exception('You are not in a group');
+        $this->currently_grouping = false;
+        return '</div>';
     }
 }
