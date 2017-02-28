@@ -51,7 +51,7 @@ class MyComponent extends Component{
                     // special search criteria added as requested
                     if ($model == 'Compound' && $criteria[$count] == 'compound_name'){//
                         array_push($search[$logic[$count]], ['OR' => [[$model.'.'.$criteria[$count].' LIKE' => '%'.$value[$count].'%'],[$model.'.pseudonyms LIKE' => '%'.$value[$count].'%'],[$model.'.sys_name LIKE' => '%'.$value[$count].'%']]]);                        
-                        continue;
+                        //continue;
                     }
                     if ($model == 'Compoundpfr_data' && $criteria[$count] == 'exact_mass_10mDa'){
                         $criteria[$count]="exact_mass"; //set variable to exact_mass so that the correct column is used for dB searching

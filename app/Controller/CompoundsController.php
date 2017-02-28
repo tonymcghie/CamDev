@@ -116,6 +116,7 @@ class CompoundsController extends AppController{
             }//adjusts mass
         } //adjust the mass and the names 
         $search = $this->My->extractSearchTerm($data, ['cas', 'compound_name', 'exact_mass', 'comment'], 'Compound'); //makes search term
+        //echo var_export($search), "<br>";
         $this->set('results', $this->paginate('Compound', $search)); //gets the results
         $this->set('num', $this->Compound->find('count', ['conditions' =>$search])); //passes the number of results to the view
         $this->set('data', $this->request->data);
