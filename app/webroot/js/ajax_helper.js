@@ -18,7 +18,7 @@ function ajax_call_replace(url, data, replace) {
         error: function (error, message) {
             console.log('There was an ajax error: ' + message);
         }
-    })
+    });
 }
 
 function ajax_call_replace_url(contoller, action, data, replace) {
@@ -39,7 +39,7 @@ function ajax_call(url, data, success_function) {
         error: function (error, message) {
             console.log('There was an ajax error: ' + message);
         }
-    })
+    });
 }
 
 /**

@@ -1,3 +1,4 @@
+/*
 function setUp() {
     var takePicture = document.querySelectorAll(".take-picture"),
         ids = document.querySelectorAll(".ids");
@@ -57,4 +58,4 @@ function handelPicture(i, event) {
             }
         }
     }
-}
+}*/

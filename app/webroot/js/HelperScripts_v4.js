@@ -10,7 +10,7 @@ function getNewBox(count, cols, names, model) {
         newPair += "<option value=" + cols[i] + ">" + names[i] + "</option>";
     }
     newPair += "</select></div></td>";
-    newPair += "<td><div class='input text'><label for='" + model + "Val" + count + "'></label><input name='data[" + model + "][val_" + count + "]' type='text' id='" + model + "Val" + count + "'></div></td>"
+    newPair += "<td><div class='input text'><label for='" + model + "Val" + count + "'></label><input name='data[" + model + "][val_" + count + "]' type='text' id='" + model + "Val" + count + "'></div></td>";
     newPair += '<td><div class="input select"><label for="' + model + 'Log' + count + '"></label><select id="' + model + 'Log' + count + '" name="data[' + model + '][log_' + count + ']"><option value="AND">AND</option><option value="OR">OR</option><option value="XOR">XOR</option><option value="NOT">NOT</option></select></div></td>';
     newPair += '<td><div class="input select"><label for="' + model + 'Match' + count + '"></label><select id="' + model + 'Match' + count + '" name="data[' + model + '][match_' + count + ']"><option value="contain">Contains</option><option value="exact">Exactly</option><option value="starts_with">Start with</option></select></div></td>';
     newPair += "</tr></table>";

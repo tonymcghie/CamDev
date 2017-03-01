@@ -60,7 +60,6 @@ class match_validator implements validator{
             console.log(this.data[index] + ' : ' + this.input.val());
             if (this.data[index] == this.input.val())return true;
         }
-        console.log('ho');
         this.input.parents('div.form-group').prepend('<span class="alert-danger">This input did not match the possible values</span>');
         return false;
     }

@@ -14,20 +14,20 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<?php
-		echo $this->Html->css(['bootstrap.min', 'less/styles_required', 'materialize_colors']);/* , 'main_'.getenv('CSS_VERSION'),'button_'.getenv('CSS_VERSION'), 'simple-sidebar_'.getenv('CSS_VERSION'), 'custom_'.getenv('CSS_VERSION') */
-		echo $this->Html->script('jquery-3.1.1.min', ['inline' => true]);
-		echo $this->Html->script('bootstrap.min', ['inline' => false, 'async' => 'async']);
-		echo $this->Html->script('ajax_helper', ['inline' => false, 'async' => 'async']);
+		echo $this->Html->css(['bootstrap.min', 'styles_required', 'materialize_colors']);/* , 'main_'.getenv('CSS_VERSION'),'button_'.getenv('CSS_VERSION'), 'simple-sidebar_'.getenv('CSS_VERSION'), 'custom_'.getenv('CSS_VERSION') */
+		echo $this->Html->script('lib/jquery-3.1.1.min', ['inline' => true]);
+		echo $this->Html->script('lib/bootstrap.min', ['inline' => false, 'async' => 'async']);
+		echo $this->Html->script('ajax_helper.min', ['inline' => false, 'async' => 'async']);
 
-        echo $this->Html->script('typescript/validator/validator', ['inline' => false, 'async' => 'async']);
-        echo $this->Html->script('typescript/form_rules/displayif', ['inline' => false, 'async' => 'async']);
-        echo $this->Html->script('search_helper', ['inline' => false, 'async' => 'async']);
+        echo $this->Html->script('typescript/validator/validator.min', ['inline' => false, 'async' => 'async']);
+        echo $this->Html->script('typescript/form_rules/displayif.min', ['inline' => false, 'async' => 'async']);
+        echo $this->Html->script('search_helper.min', ['inline' => false, 'async' => 'async']);
 
-        echo $this->Html->script('jquery-ui-1.12.1/jquery-ui', ['inline' => false, 'async' => 'async']);
+        echo $this->Html->script('lib/jquery-ui-1.12.1/jquery-ui', ['inline' => false, 'async' => 'async']);
         echo $this->fetch('meta');
 		echo $this->fetch('css');
 		echo $this->fetch('script');
-		echo $this->Html->css('less/styles_content', ['media' => 'none', 'onload' => 'if(media!=\'all\')media=\'all\'']);
+		echo $this->Html->css('styles_content', ['media' => 'none', 'onload' => 'if(media!=\'all\')media=\'all\'']);
 	?>
 </head>
 <body>
