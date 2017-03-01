@@ -129,7 +129,7 @@ class SampleSetsController extends AppController{
         //needs to reworked so $set (post data) is named differently eg new_setdata, and then used to avoid conflict with the old_setdata
         //then need to be careful that all the chages align
         $new_setdata = $this->request->data; //get the posted data from the form
-        echo var_export($new_setdata), "<br>";
+        echo "NewSetData =", "<br>", var_export($new_setdata), "<br>";
         if (isset($this->request->data['SampleSet']['id'])){ //updates the id to the provious one when editing twice
             $id = $this->request->data['SampleSet']['id'];
         }
@@ -137,6 +137,7 @@ class SampleSetsController extends AppController{
             throw new NotFoundExcpetion(__('Invalid Sample Set'));
         } //makes sure that the id is set
         $old_setdata = $this->SampleSet->findById($id); //get sampleset data for the last version in the database 
+        echo "OldSetData =", "<br>", var_export($old_setdata), "<br>";
         if (!$old_setdata){
             throw new NotFoundExcpetion(__('Invalid Sample Set'));
         }
@@ -173,6 +174,7 @@ class SampleSetsController extends AppController{
                 
                 return;
             }
+            echo "NewSetData =", "<br>", var_export($new_setdata), "<br>";
         } //update the Sample Set
         if (!$this->request->data){
             $this->request->data = $new_setdata; //makes sure all the inputs get updated

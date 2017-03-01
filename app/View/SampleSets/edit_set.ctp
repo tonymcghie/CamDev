@@ -42,6 +42,7 @@ foreach($versions as $version){
     echo $this->My->makeInputRow('containment', ['type' => 'checkbox', 'id' => 'containment'.$version['SampleSet']['version'], 'checked' => $version['SampleSet']['containment'] ], 'Reqires Containment');
     echo $this->My->makeInputRow('containment_details', ['rows' => '3', 'rowId' => 'containment_details'.$version['SampleSet']['version'], 'value' => $version['SampleSet']['containment_details']], 'Details');
     echo $this->My->makeInputRow('comments', ['rows' => '3', 'value' => $version['SampleSet']['comments']], 'Additional Comments');
+    echo $this->My->makeInputRow('metaFile', ['disabled' => 'disabled', 'value' => $version['SampleSet']['metaFile']], 'MetaData File');
     echo '<div class="Trow"><span>Upload Metadata File (replace current)</span><div class="input text">'.$this->Form->file('metadataFile', []).'</div></div>';
     echo $this->Form->end(['label' => 'Save As New Version', 'class' => 'large-button anySizeButton']);
 }
