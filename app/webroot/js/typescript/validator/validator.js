@@ -24,7 +24,7 @@ var number_validator = (function () {
     }
     number_validator.prototype.validate = function () {
         var value = this.input.val();
-        if (!isNaN(value) && Number(value) > this.min && Number(value) > this.max) {
+        if (!isNaN(value) && Number(value) >= this.min && Number(value) <= this.max) {
             return true;
         }
         else {

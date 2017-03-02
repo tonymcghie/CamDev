@@ -7,12 +7,9 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 <html>
 <head>
 	<?php echo $this->Html->charset(); ?>
-	<title>
-            <?php echo $this->fetch('title'); ?>
-	</title>
-        <link rel="shortcut icon" href="img/cam.ico"/>
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-
+	<title><?= $this->fetch('title'); ?></title>
+    <link rel="shortcut icon" href="img/cam.ico"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 	<?php
 		echo $this->Html->css(['bootstrap.min', 'styles_required', 'materialize_colors']);/* , 'main_'.getenv('CSS_VERSION'),'button_'.getenv('CSS_VERSION'), 'simple-sidebar_'.getenv('CSS_VERSION'), 'custom_'.getenv('CSS_VERSION') */
 		echo $this->Html->script('lib/jquery-3.1.1.min', ['inline' => true]);

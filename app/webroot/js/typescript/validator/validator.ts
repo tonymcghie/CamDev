@@ -35,7 +35,7 @@ class number_validator implements validator{
 
     validate(): boolean {
         let value = this.input.val();
-        if (!isNaN(value) && Number(value) > this.min && Number(value) > this.max){ // TODO make this work with elements that do not have a max and min attribute
+        if (!isNaN(value) && Number(value) >= this.min && Number(value) <= this.max){ // TODO make this work with elements that do not have a max and min attribute
             return true;
         } else {
             this.input.parent('div').prepend('<span class="alert-danger">This field needs to be a number</span>');

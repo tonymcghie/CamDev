@@ -163,4 +163,8 @@ class GeneralController extends AppController {
         $this->layout = 'ajax'; //makes sure there is not head or body tags round the output
         $this->render('ScriptHelp/'.$this->params['url']['name']); //this will render the html code in the help file to javascript on the page wich will then set it in the help DIV
     }
+
+    public function QunitTests(){
+        $this->layout = 'QUnitLayout';
+    }
 }
