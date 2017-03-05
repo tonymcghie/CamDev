@@ -9,9 +9,8 @@
 App::uses('Component', 'Controller');
 
 class FileComponent extends Component {
-    private $file_areas = [
-
-        ];
+    /** @var array holds all the file areas [name => path] */
+    private $file_areas = [];
 
     /**
      * This is run before the controllers beforeFilter function
@@ -20,6 +19,8 @@ class FileComponent extends Component {
      */
     public function initialize(Controller $controller){
         $this->file_areas['SampleSet_Metadata'] = WWW_ROOT.'data'.DS.'sampleset'.DS.'metadata'.DS;
+        // Define more file areas here.
+
         // Creates the file areas if the do not exist.
         foreach ($this->file_areas as $file_area_path){
             if (!is_dir($file_area_path)) {
