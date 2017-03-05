@@ -41,9 +41,7 @@ var match_validator = (function () {
         this.input = $(':input[name="' + name + '"]');
     }
     match_validator.prototype.validate = function () {
-        console.log(this.data);
         for (var index in this.data) {
-            console.log(this.data[index] + ' : ' + this.input.val());
             if (this.data[index] == this.input.val())
                 return true;
         }
