@@ -15,7 +15,7 @@
     echo $this->Html->script('search_helper.min');
     echo $this->Html->script('lib/jquery-ui-1.12.1/jquery-ui');
 
-    echo $this->Html->script(['tests/ajax_helper.test', 'tests/validator.test']);
+    echo $this->Html->script(['tests/ajax_helper.test', 'tests/validator.test', 'tests/search_helper.test']);
     echo $this->fetch('css');
     echo $this->fetch('script');
     ?>

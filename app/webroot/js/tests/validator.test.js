@@ -38,3 +38,18 @@ QUnit.test('number_validator', function(assert) {
     input.val(2.2);
     assert.equal(validator.validate(), true);
 });
+QUnit.test('match_validator', function(assert){
+   let name = 'input_test_match';
+   let input = $(':input[name="'+name+'"]');
+   let validator = new match_validator(name,JSON.stringify({data: ['value1', 'value2']}));
+   // Check that it doesnt match empty
+   assert.equal(validator.validate(), false);
+    // Check that it doesnt match a value not in array
+    input.val('value3');
+    assert.equal(validator.validate(), false);
+    // Check that it correctly mataches all values
+    input.val('value2');
+    assert.equal(validator.validate(), true);
+    input.val('value1');
+    assert.equal(validator.validate(), true);
+});
