@@ -2,9 +2,7 @@
 <?php
 $title = "Search Sample Sets";
 $model = "SampleSet";
-$options = array(
-'empty' => 'Select Criteria',
-'all' => 'All',
+$options = ['all' => 'All',
 'set_code' => 'Set Code',
 'submitter' => 'PFR Collaborator',
 'chemist' => 'Chemist',
@@ -14,7 +12,7 @@ $options = array(
 'compounds' => 'Compounds',
 'comments' => 'Comments',
 'exp_reference' => 'Experiment Reference',
-'team' => 'Team');
+'team' => 'Team'];
 //'start_date' => ((isset($data[$model]['isDate'])&&$data[$model]['isDate']==='1') ? $data['SampleSet']['start_date'] : '2000-01-01'));
 
 $this->SearchForm->set_options($options);
@@ -35,19 +33,19 @@ if (!isset($box_nums)){$box_nums=1;} //sets the box nums for the first time
 ?>
 </header>
 <script>
-   /* var boxnum=<?php echo $box_nums; ?>;
-    var cols =<?php echo json_encode(array_keys($options)); ?>;
-    var names = <?php echo json_encode(array_values($options)); ?>;
-    cols.splice(cols.length-1,1);  //removes the date option
-    names.splice(names.length-1,1); //removes the date option
-    /!**
-     * adds another input pair    
-     *!/
-    function add(){
-        $('#boxes').append(getNewBox(boxnum, cols,names,'<?php echo $model; ?>')); //adds the new boxes the the section
-        boxnum++; //increases the number of boxes passed to and from the view and controller
-        $('#box_nums').val(boxnum); //updates the hidden input
-    }*/
+//    var boxnum=<?php //echo $box_nums; ?>//;
+//    var cols =<?php //echo json_encode(array_keys($options)); ?>//;
+//    var names = <?php //echo json_encode(array_values($options)); ?>//;
+//    cols.splice(cols.length-1,1);  //removes the date option
+//    names.splice(names.length-1,1); //removes the date option
+//    /!**
+//     * adds another input pair
+//     *!/
+//    function add(){
+//        $('#boxes').append(getNewBox(boxnum, cols,names,'<?php //echo $model; ?>//')); //adds the new boxes the the section
+//        boxnum++; //increases the number of boxes passed to and from the view and controller
+//        $('#box_nums').val(boxnum); //updates the hidden input
+//    }
  </script>
 
  <?php

@@ -51,13 +51,13 @@ echo $this->BootstrapForm->input_horizontal('comments', ['label' => $this->Strin
 echo $this->BootstrapForm->input_horizontal('metadataFile', ['label' => $this->String->get_string('metafile', 'SampleSet_form'),
     'type' => 'file']);
 
-echo $this->BootstrapForm->add_validator('requires', 'submitter');
-echo $this->BootstrapForm->add_validator('requires', 'chemist');
-echo $this->BootstrapForm->add_validator('requires', 'number');
-echo $this->BootstrapForm->add_validator('requires', 'compounds');
-echo $this->BootstrapForm->add_validator('match_validator', 'chemist', ['data' => $names]);
+$this->BootstrapForm->add_validator('requires', 'submitter');
+$this->BootstrapForm->add_validator('requires', 'chemist');
+$this->BootstrapForm->add_validator('requires', 'number');
+$this->BootstrapForm->add_validator('requires', 'compounds');
+$this->BootstrapForm->add_validator('match_validator', 'chemist', ['data' => $names]);
 
-echo $this->BootstrapForm->new_rule('display_if_checked', 'containment_details', 'containment');
+$this->BootstrapForm->new_rule('display_if_checked', 'containment_details', 'containment' , null, ['transition' => 'slide_down']);
 
 echo $this->BootstrapForm->input_maker('save', [
         'onclick' => 'submit_first_form(\'main_content\'); return false;'
@@ -65,6 +65,7 @@ echo $this->BootstrapForm->input_maker('save', [
         'horizontal' => true,
         'type' => 'button'
 ]);
+echo $this->BootstrapForm->get_js();
 echo $this->BootstrapForm->end();
 ?>
 <script>
