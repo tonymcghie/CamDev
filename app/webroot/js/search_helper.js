@@ -17,7 +17,10 @@ function set_listeners(){
  */
 function add_search_set() {
     let div = $('#action-buttons').closest('div.form-group');
-    get_new_search_set().insertBefore(div);
+    let new_search_set = get_new_search_set();
+    new_search_set.hide();
+    new_search_set.insertBefore(div);
+    new_search_set.slideDown();
 }
 
 /**
