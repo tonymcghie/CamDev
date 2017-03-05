@@ -33,7 +33,15 @@ module.exports = function(grunt) {
         },
         uglify: {
             files:{
-                src: ['app/webroot/js/**.es5.js', 'app/webroot/js/typescript/**.js', 'app/webroot/js/typescript/**/**.js', '!app/webroot/js/**.min.js', '!app/webroot/js/**.es5.js.map', '!app/webroot/js/lib/**.js', '!app/webroot/js/JsPlugins/**.js'],
+                src: ['app/webroot/js/**.es5.js',
+                    'app/webroot/js/typescript/**.js',
+                    'app/webroot/js/typescript/**/**.js',
+                    '!app/webroot/js/typescript/**.min.js',
+                    '!app/webroot/js/typescript/**/**.min.js',
+                    '!app/webroot/js/**.min.js',
+                    '!app/webroot/js/**.es5.js.map',
+                    '!app/webroot/js/lib/**.js',
+                    '!app/webroot/js/JsPlugins/**.js'],
                 expand: true,
                 rename: uglifyRename
             },
