@@ -221,18 +221,18 @@ class MyHelper extends AppHelper{
      */
     public function getCropOptions(){
         return ['apple' => 'apple' , 'arabidopsis' => 'arabidopsis',
-            'avocado' => 'avocado' , 'blackcurrant' => 'blackcurrant' , 'boysenberry' => 'boysenberry',
+            'avocado' => 'avocado' , 'blackcurrant' => 'blackcurrant' , 'blueberry' => 'blueberry', 'boysenberry' => 'boysenberry',
             'broccoli' => 'broccoli' , 'carrot' => 'carrot' , 'feijoa' => 'feijoa' , 'grape' => 'grape' , 'honey' => 'honey', 'hops' => 'hops',
             'human plasma' => 'human plasma' , 'human urine' => 'human urine' , 'kiwifruit' => 'kiwifruit' , 'marine' => 'marine' , 'NZ Natives' => 'NZ Natives' ,'onion' => 'onion' , 'pear' => 'pear',
             'potato' => 'potato' , 'pumpkin' => 'pumpkin' , 'raspberry' => 'raspberry' , 'rat plasma' => 'rat plasma' , 'rat urine' => 'rat urine' , 'seafood' => 'seafood' ,
-            'strawberry' => 'strawberry' , 'tobacco' => 'tobacco' , 'tomato' => 'tomato', 'wine' => 'wine' , 'other' => 'other'];
+            'strawberry' => 'strawberry' , 'tamarillo' => 'tamarillo', 'tobacco' => 'tobacco' , 'tomato' => 'tomato', 'wine' => 'wine' , 'other' => 'other'];
     }
 	/**
      * returns the option value pairs for the Chemical Class select input
      * @return type
      */
 	public function getChemicalClassOptions(){
-        return ['' => '' , 'alcohol' => 'alcohol' , 'aldehyde' => 'aldehyde' , 'alkaloid' => 'alkaloid' , 'amino acid' => 'amino acid' , 'carbohydrate' => 'carbohydrate' , 'carotenoid' => 'carotenoid' , 'epoxide' => 'epoxide' , 'ester' => 'ester' , 'flavonoid' => 'flavonoid',
+        return ['' => '' , 'alcohol' => 'alcohol' , 'aldehyde' => 'aldehyde' , 'alkaloid' => 'alkaloid' , 'amine' => 'amine' ,'amino acid' => 'amino acid' , 'carbohydrate' => 'carbohydrate' , 'carotenoid' => 'carotenoid' , 'epoxide' => 'epoxide' , 'ester' => 'ester' , 'flavonoid' => 'flavonoid',
             'glucosinolate' => 'glucosinolate' , 'hydrocarbon' => 'hydrocarbon' , 'ketone' => 'ketone' , 'lipid' => 'lipid' , 'organic acid' => 'organic acid' , 'peptide' => 'peptide' , 'phenolic acid' => 'phenolic acid' , 'sulphur compound' => 'sulphur compound' , 'terpene' => 'terpene' , 'other' => 'other'];
     }
 }

@@ -40,7 +40,16 @@ class MyComponent extends Component{
         }        
         unset($data[$model]['isDate']);
         for ($count=0;$count<count($criteria);$count++){ //add the valid search pairs to an array
-            if ($criteria[$count]!=''&&$value[$count]!=''&&$criteria[$count]!='empty'){                
+            if ($criteria[$count]!=''&&$value[$count]!=''&&$criteria[$count]!='empty'){
+                if ($match[$count] == 'contain'){
+                    $search_value = '%'.$value[$count].'%';
+                }
+                if ($match[$count] == 'exact'){
+                    $search_value = ''.$value[$count].'';
+                }
+                if ($match[$count] == 'starts_with'){
+                    $search_value = ''.$value[$count].'%';
+                }
                 if ($criteria[$count]=='all'){ //all table columns searched if the criteria is all
                     foreach ($allCols as $col){
                         if (!isset($search['OR'])){$search['OR'] = [];}
@@ -50,7 +59,7 @@ class MyComponent extends Component{
                     if (!isset($search[$logic[$count]])){$search[$logic[$count]]=[];} //if not set make it an array
                     // special search criteria added as requested
                     if ($model == 'Compound' && $criteria[$count] == 'compound_name'){//
-                        array_push($search[$logic[$count]], ['OR' => [[$model.'.'.$criteria[$count].' LIKE' => '%'.$value[$count].'%'],[$model.'.pseudonyms LIKE' => '%'.$value[$count].'%'],[$model.'.sys_name LIKE' => '%'.$value[$count].'%']]]);                        
+                        array_push($search[$logic[$count]], ['OR' => [[$model.'.'.$criteria[$count].' LIKE' => $search_value],[$model.'.pseudonyms LIKE' => $search_value],[$model.'.sys_name LIKE' => $search_value]]]);                        
                         //continue;
                     }
                     if ($model == 'Compoundpfr_data' && $criteria[$count] == 'exact_mass_10mDa'){
@@ -67,7 +76,7 @@ class MyComponent extends Component{
                         array_push($search[$logic[$count]], [$model.'.'.$criteria[$count].' BETWEEN ? AND ?' => array($lower_limit, $upper_limit)]);
                         continue;
                     }
-                    if ($match[$count] == 'contain'){
+                    /**if ($match[$count] == 'contain'){
                         array_push($search[$logic[$count]], [$model.'.'.$criteria[$count].' LIKE' => '%'.$value[$count].'%']);
                     }
                     if ($match[$count] == 'exact'){
@@ -75,8 +84,8 @@ class MyComponent extends Component{
                     }
                     if ($match[$count] == 'starts_with'){
                         array_push($search[$logic[$count]], [$model.'.'.$criteria[$count].' LIKE' => ''.$value[$count].'%']);
-                    }
-                    array_push($search[$logic[$count]], [$model.'.'.$criteria[$count].' LIKE' => '%'.$value[$count].'%']);   //default search string constructured                  
+                    }*/
+                    array_push($search[$logic[$count]], [$model.'.'.$criteria[$count].' LIKE' => $search_value]);   //default search string constructured                  
                 }
             }
         }
