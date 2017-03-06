@@ -11,7 +11,7 @@ class SamplesController extends AppController{
     public $uses = array('Analysis', 'SampleSet', 'Sample');
     public $layout = 'PageLayout';
     //public $components = ['My', 'RequestHandler', 'PhpExcel'];
-	public $components = array('Paginator', 'My', 'Pivot', 'RequestHandler', 'PhpExcel');
+	public $components = array('Paginator', 'My');
     
     /**
      * @LIVE swap file URL
@@ -50,7 +50,27 @@ class SamplesController extends AppController{
 		$this->set('results', $results);  //passes the sample record to the view
 		$this->set('data', $this->request->data); //sends all the data (search criteria) to the view so it can be added to the ajax links 
     }
-	
+    
+    public function importSamples($id = null) {
+        $filename = '';
+        if ($this->request->is('post')) { // checks for the post values
+            $uploadData = $this->data['Upload']['csv_path'];
+            //var_dump($uploadData);
+            if ( $uploadData['size'] == 0 || $uploadData['error'] !== 0) { // checks for the errors and size of the uploaded file
+                return false;
+            }
+            $filename = basename($uploadData['name']); // gets the base name of the uploaded file
+            $uploadFolder = WWW_ROOT. 'data/files/samples';  // path where the uploaded file has to be saved
+            //$filename = time() .'_'. $filename; // adding time stamp for the uploaded image for uniqueness
+            $uploadPath =  $uploadFolder . DS . $filename;
+            if( !file_exists($uploadFolder) ){
+                mkdir($uploadFolder); // creates folder if  not found
+            }
+            if (!move_uploaded_file($uploadData['tmp_name'], $uploadPath)) {
+                return false;
+            }
+    }
+/**	
 	public function importSamples($id = null) {
 		if($this->request->is('post')){ 
             $data = $this->request->data['Samples'];
@@ -84,7 +104,7 @@ class SamplesController extends AppController{
         } //if you are trying to import data rather than the first display
 		
     }  
-
+*/
     
 
 	 /**

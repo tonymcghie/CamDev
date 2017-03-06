@@ -42,7 +42,7 @@
         echo '<li>'.$this->Html->link('New', array('controller' => 'SampleSets', 'action' => 'newSet', '?' => ['isTablet' => $isTablet]), array('target' => 'mainFrame' , 'class' => 'none')).'</li>';
       //}
         echo '<li>'.$this->Html->link('Find', array('controller' => 'SampleSets','action' => 'searchSet'), array('target' => 'mainFrame' , 'class' => 'none')).'</li>';
-		echo '<li>'.$this->Html->link('Import Samples', array('controller' => 'Samples','action' => 'importSamples'), array('target' => 'mainFrame' , 'class' => 'none')).'</li>';
+	echo '<li>'.$this->Html->link('Import Samples', array('controller' => 'Samples','action' => 'importSamples'), array('target' => 'mainFrame' , 'class' => 'none')).'</li>';
     ?>
     </ul></li>
     <li>Compounds
