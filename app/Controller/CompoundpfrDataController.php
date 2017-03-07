@@ -130,6 +130,13 @@ class CompoundpfrDataController extends AppController{
         } //if there is a pivot set then pivot the data if not format the data into a format friendlier to the google charts API
         echo json_encode($results); //echos the Json string back to the ajax call
     }
+    /**
+     * Enables the user to obtain a summary review of the data in the CompoundPFR data table.  This is a large table and this tool is useful 
+     * for getting an overview of the data in the table 
+     */
+    public function reviewData(){
+        
+    }
     
     /**
      * This handles the importing of data

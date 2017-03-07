@@ -42,7 +42,7 @@
         echo '<li>'.$this->Html->link('New', array('controller' => 'SampleSets', 'action' => 'newSet', '?' => ['isTablet' => $isTablet]), array('target' => 'mainFrame' , 'class' => 'none')).'</li>';
       //}
         echo '<li>'.$this->Html->link('Find', array('controller' => 'SampleSets','action' => 'searchSet'), array('target' => 'mainFrame' , 'class' => 'none')).'</li>';
-	echo '<li>'.$this->Html->link('Import Samples', array('controller' => 'Samples','action' => 'importSamples'), array('target' => 'mainFrame' , 'class' => 'none')).'</li>';
+	echo '<li>'.$this->Html->link('Import Samples', array('controller' => 'Samples','action' => 'uploadSamples'), array('target' => 'mainFrame' , 'class' => 'none')).'</li>';
     ?>
     </ul></li>
     <li>Compounds
@@ -61,12 +61,13 @@
     <li>PFR Data
     <ul>
     <?php
-        echo '<li>'.$this->Html->link('Chemical', array('controller' => 'Compoundpfr_data','action' => 'findData'), array('target' => 'mainFrame' , 'class' => 'none')).'</li>';
-		echo '<li>'.$this->Html->link('Bioactivity', array('controller' => 'Bioactivitypfr_data','action' => 'findData'), array('target' => 'mainFrame' , 'class' => 'none')).'</li>';
-        echo '<li>'.$this->Html->link('Graph', array('controller' => 'Compoundpfr_data','action' => 'graphData'), array('target' => 'mainFrame' , 'class' => 'none')).'</li>';
+        echo '<li>'.$this->Html->link('Find-Chemical', array('controller' => 'Compoundpfr_data','action' => 'findData'), array('target' => 'mainFrame' , 'class' => 'none')).'</li>';
+	echo '<li>'.$this->Html->link('Review-Chemical', array('controller' => 'Compoundpfr_data','action' => 'reviewData'), array('target' => 'mainFrame' , 'class' => 'none')).'</li>';
+        echo '<li>'.$this->Html->link('Graph-Chemical', array('controller' => 'Compoundpfr_data','action' => 'graphData'), array('target' => 'mainFrame' , 'class' => 'none')).'</li>';
         //if ($this->Session->read('Auth.User')!==null && in_array("PFR-GP-Biological Chemistry and Bioactives Group", $this->Session->read('Auth.User')['groups'])) {
         //echo '<li>'.$this->Html->link('Import', array('controller' => 'Compoundpfr_data','action' => 'import'), array('target' => 'mainFrame' , 'class' => 'none')).'</li>';
-		echo '<li>'.$this->Html->link('Import', array('controller' => 'CompoundpfrData','action' => 'import'), array('target' => 'mainFrame' , 'class' => 'none')).'</li>';
+	echo '<li>'.$this->Html->link('Import-Chemical', array('controller' => 'CompoundpfrData','action' => 'import'), array('target' => 'mainFrame' , 'class' => 'none')).'</li>';
+        echo '<li>'.$this->Html->link('Bioactivity', array('controller' => 'Bioactivitypfr_data','action' => 'findData'), array('target' => 'mainFrame' , 'class' => 'none')).'</li>';
       //}
     ?>
     </ul></li>

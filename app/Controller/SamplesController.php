@@ -51,11 +51,11 @@ class SamplesController extends AppController{
 		$this->set('data', $this->request->data); //sends all the data (search criteria) to the view so it can be added to the ajax links 
     }
     
-    public function importSamples($id = null) {
+    public function uploadSamples($id = null) {
         $filename = '';
         if ($this->request->is('post')) { // checks for the post values
             $uploadData = $this->data['Upload']['csv_path'];
-            //var_dump($uploadData);
+            var_dump($uploadData);
             if ( $uploadData['size'] == 0 || $uploadData['error'] !== 0) { // checks for the errors and size of the uploaded file
                 return false;
             }
@@ -69,6 +69,7 @@ class SamplesController extends AppController{
             if (!move_uploaded_file($uploadData['tmp_name'], $uploadPath)) {
                 return false;
             }
+        }//the above section gets the filename from the view and uploads the file 
     }
 /**	
 	public function importSamples($id = null) {
