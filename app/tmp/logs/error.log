@@ -35428,3 +35428,120 @@ Request URL: /CAM3-0/img/cake.icon.png
 Stack Trace:
 #0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
 #1 {main}
+2017-03-08 20:54:10 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/css/color_schemes_v4.css
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-03-08 20:54:21 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/css/color_schemes_v4.css
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-03-10 23:09:43 Error: Fatal Error (4): syntax error, unexpected '=>' (T_DOUBLE_ARROW) in [/var/www/html/CAM3-0/app/View/CompoundpfrData/review_data.ctp, line 41]
+2017-03-10 23:09:43 Error: [FatalErrorException] syntax error, unexpected '=>' (T_DOUBLE_ARROW)
+Request URL: /CAM3-0/Compoundpfr_data/reviewData
+Stack Trace:
+#0 /var/www/html/CAM3-0/lib/Cake/Error/ErrorHandler.php(213): ErrorHandler::handleFatalError(4, 'syntax error, u...', '/var/www/html/C...', 41)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', '/var/www/html/C...', 41, Array)
+#2 /var/www/html/CAM3-0/lib/Cake/Core/App.php(933): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', '/var/www/html/C...', 41, Array)
+#3 /var/www/html/CAM3-0/lib/Cake/Core/App.php(906): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2017-03-10 23:09:43 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/img/cake.power.gif
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-03-10 23:09:44 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/img/cake.icon.png
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-03-10 23:35:14 Error: Fatal Error (4): syntax error, unexpected 'apple' (T_STRING), expecting ')' in [/var/www/html/CAM3-0/app/Controller/CompoundpfrDataController.php, line 143]
+2017-03-10 23:35:14 Error: [FatalErrorException] syntax error, unexpected 'apple' (T_STRING), expecting ')'
+Request URL: /CAM3-0/Compoundpfr_data/reviewData
+Stack Trace:
+#0 /var/www/html/CAM3-0/lib/Cake/Error/ErrorHandler.php(213): ErrorHandler::handleFatalError(4, 'syntax error, u...', '/var/www/html/C...', 143)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', '/var/www/html/C...', 143, Array)
+#2 /var/www/html/CAM3-0/lib/Cake/Core/App.php(933): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', '/var/www/html/C...', 143, Array)
+#3 /var/www/html/CAM3-0/lib/Cake/Core/App.php(906): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2017-03-10 23:35:14 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/img/cake.power.gif
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-03-10 23:35:14 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/img/cake.icon.png
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-03-10 23:42:27 Error: [PDOException] SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'DISTINCT `Compoundpfr_data`.`assigned_name` FROM `camdata`.`compoundpfr_data` AS' at line 1
+Request URL: /CAM3-0/Compoundpfr_data/reviewData
+Stack Trace:
+#0 /var/www/html/CAM3-0/lib/Cake/Model/Datasource/DboSource.php(461): PDOStatement->execute(Array)
+#1 /var/www/html/CAM3-0/lib/Cake/Model/Datasource/DboSource.php(427): DboSource->_execute('SELECT `Compoun...', Array)
+#2 /var/www/html/CAM3-0/lib/Cake/Model/Datasource/DboSource.php(669): DboSource->execute('SELECT `Compoun...', Array, Array)
+#3 /var/www/html/CAM3-0/lib/Cake/Model/Datasource/DboSource.php(1118): DboSource->fetchAll('SELECT `Compoun...', false)
+#4 /var/www/html/CAM3-0/lib/Cake/Model/Model.php(3031): DboSource->read(Object(Compoundpfr_data), Array)
+#5 /var/www/html/CAM3-0/lib/Cake/Model/Model.php(3003): Model->_readDataSource('list', Array)
+#6 /var/www/html/CAM3-0/app/Controller/CompoundpfrDataController.php(144): Model->find('list', Array)
+#7 [internal function]: CompoundpfrDataController->reviewData()
+#8 /var/www/html/CAM3-0/lib/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(CompoundpfrDataController), Array)
+#9 /var/www/html/CAM3-0/lib/Cake/Routing/Dispatcher.php(193): Controller->invokeAction(Object(CakeRequest))
+#10 /var/www/html/CAM3-0/lib/Cake/Routing/Dispatcher.php(167): Dispatcher->_invoke(Object(CompoundpfrDataController), Object(CakeRequest))
+#11 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2017-03-10 23:42:27 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/img/cake.power.gif
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-03-10 23:42:27 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/img/cake.icon.png
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-03-10 23:42:27 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/img/cake.power.gif
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
