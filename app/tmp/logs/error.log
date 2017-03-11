@@ -35545,3 +35545,115 @@ Request URL: /CAM3-0/img/cake.power.gif
 Stack Trace:
 #0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
 #1 {main}
+2017-03-11 17:47:09 Error: Fatal Error (1): Maximum execution time of 30 seconds exceeded in [/var/www/html/CAM3-0/lib/Cake/Utility/Debugger.php, line 291]
+2017-03-11 17:47:09 Error: [FatalErrorException] Maximum execution time of 30 seconds exceeded
+Request URL: /CAM3-0/Compoundpfr_data/reviewData
+Stack Trace:
+#0 /var/www/html/CAM3-0/lib/Cake/Error/ErrorHandler.php(213): ErrorHandler::handleFatalError(1, 'Maximum executi...', '/var/www/html/C...', 291)
+#1 [internal function]: ErrorHandler::handleError(1, 'Maximum executi...', '/var/www/html/C...', 291, Array)
+#2 /var/www/html/CAM3-0/lib/Cake/Core/App.php(933): call_user_func('ErrorHandler::h...', 1, 'Maximum executi...', '/var/www/html/C...', 291, Array)
+#3 /var/www/html/CAM3-0/lib/Cake/Core/App.php(906): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2017-03-11 17:47:09 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/img/cake.power.gif
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-03-11 17:47:10 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/img/cake.icon.png
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-03-11 17:48:01 Error: Fatal Error (1): Maximum execution time of 30 seconds exceeded in [/var/www/html/CAM3-0/lib/Cake/Utility/CakeText.php, line 234]
+2017-03-11 17:48:01 Error: [FatalErrorException] Maximum execution time of 30 seconds exceeded
+Request URL: /CAM3-0/Compoundpfr_data/reviewData
+Stack Trace:
+#0 /var/www/html/CAM3-0/lib/Cake/Error/ErrorHandler.php(213): ErrorHandler::handleFatalError(1, 'Maximum executi...', '/var/www/html/C...', 234)
+#1 [internal function]: ErrorHandler::handleError(1, 'Maximum executi...', '/var/www/html/C...', 234, Array)
+#2 /var/www/html/CAM3-0/lib/Cake/Core/App.php(933): call_user_func('ErrorHandler::h...', 1, 'Maximum executi...', '/var/www/html/C...', 234, Array)
+#3 /var/www/html/CAM3-0/lib/Cake/Core/App.php(906): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2017-03-11 17:48:01 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/img/cake.power.gif
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-03-11 17:48:01 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/img/cake.icon.png
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-03-11 17:49:16 Error: Fatal Error (1): Maximum execution time of 30 seconds exceeded in [/var/www/html/CAM3-0/lib/Cake/Utility/Debugger.php, line 758]
+2017-03-11 17:49:16 Error: [FatalErrorException] Maximum execution time of 30 seconds exceeded
+Request URL: /CAM3-0/Compoundpfr_data/reviewData
+Stack Trace:
+#0 /var/www/html/CAM3-0/lib/Cake/Error/ErrorHandler.php(213): ErrorHandler::handleFatalError(1, 'Maximum executi...', '/var/www/html/C...', 758)
+#1 [internal function]: ErrorHandler::handleError(1, 'Maximum executi...', '/var/www/html/C...', 758, Array)
+#2 /var/www/html/CAM3-0/lib/Cake/Core/App.php(933): call_user_func('ErrorHandler::h...', 1, 'Maximum executi...', '/var/www/html/C...', 758, Array)
+#3 /var/www/html/CAM3-0/lib/Cake/Core/App.php(906): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2017-03-11 17:49:16 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/img/cake.power.gif
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-03-11 17:49:16 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/img/cake.icon.png
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-03-11 17:50:52 Error: Fatal Error (4): syntax error, unexpected ';', expecting ')' in [/var/www/html/CAM3-0/app/Controller/CompoundpfrDataController.php, line 147]
+2017-03-11 17:50:52 Error: [FatalErrorException] syntax error, unexpected ';', expecting ')'
+Request URL: /CAM3-0/Compoundpfr_data/reviewData
+Stack Trace:
+#0 /var/www/html/CAM3-0/lib/Cake/Error/ErrorHandler.php(213): ErrorHandler::handleFatalError(4, 'syntax error, u...', '/var/www/html/C...', 147)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', '/var/www/html/C...', 147, Array)
+#2 /var/www/html/CAM3-0/lib/Cake/Core/App.php(933): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', '/var/www/html/C...', 147, Array)
+#3 /var/www/html/CAM3-0/lib/Cake/Core/App.php(906): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2017-03-11 17:50:52 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/img/cake.power.gif
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-03-11 17:50:52 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/img/cake.icon.png
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}

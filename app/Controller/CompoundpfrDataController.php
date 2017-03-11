@@ -137,13 +137,19 @@ class CompoundpfrDataController extends AppController{
     public function reviewData(){
         if ($this->request->is('post')){
             $review_options = $this->request->data;
-            echo var_dump($review_options);
+            echo var_dump($review_options),"<br>";
             $results = $this->Compoundpfr_data->find('all', array(
             'fields' => 'DISTINCT Compoundpfr_data.assigned_name',
             'conditions' => array('Compoundpfr_data.reference LIKE'=> '%MA287%')
             ));
-            echo var_dump($results);
-            $this->set('results');
+            echo var_dump($results),"<br>";
+            $output = array();
+            for ($n = 0; $n <= 10; $n++){
+                array_push($output, $results[$n]['Compoundpfr_data']['assigned_name']);
+                //var_dump($n, $results[$n]['Compoundpfr_data']['assigned_name'], "<br>");
+            }
+            //echo var_dump($output),"<br>";
+            $this->set('output', $output);
             $this->set('data', $this->request->data); //sends all the data(search criteria) to the view so it can be added to the ajax links
         }
     }

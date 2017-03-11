@@ -51,7 +51,14 @@ echo'</table>';
 </section>
 
 <?php
-echo '<div  id="resultsTable">';
+echo "<div class='scrollable'>";
+echo '<table style="background-color: rgba(252, 252, 252, 0.75)">';
+echo $this->Html->tableHeaders('Compound');
+echo $this->Html->tableCells($output);
+echo var_dump($output),"<br>";
+echo "</table>";
+echo "</div>";
+/**echo '<div  id="resultsTable">';
     if (isset($results[0]['Compoundpfr_data'])){
 	   $names = array( $this->Paginator->sort('assigned_name', 'Name', ['data' => $data]),
            array('Actions' => ['class' => 'Buttons']),
@@ -70,5 +77,5 @@ echo '<div  id="resultsTable">';
     } else if (isset($results)){
         echo "No Data found";
     }
-    echo '</div>';
+    echo '</div>';*/
     ?>
