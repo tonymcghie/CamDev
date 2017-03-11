@@ -138,14 +138,21 @@ class CompoundpfrDataController extends AppController{
         if ($this->request->is('post')){
             $review_options = $this->request->data;
             echo var_dump($review_options),"<br>";
+            echo var_dump($review_options['review']['cri_']),"<br>";
+            echo var_dump($review_options['review']['by_']),"<br>";
+            echo var_dump($review_options['review']['for_']),"<br>";
+            $review_for = 'DISTINCT Compoundpfr_data.'.$review_options['review']['for_'];
+            $review_by_value = '%'.$review_options['review']['by_'].'%';
+            $review_by_field = 'Compoundpfr_data.'.$review_options['review']['cri_'].' LIKE';
             $results = $this->Compoundpfr_data->find('all', array(
-            'fields' => 'DISTINCT Compoundpfr_data.assigned_name',
-            'conditions' => array('Compoundpfr_data.reference LIKE'=> '%MA287%')
+            'fields' => $review_for,
+            'conditions' => array($review_by_field => $review_by_value)
             ));
-            echo var_dump($results),"<br>";
+            //echo var_dump($results),"<br>";
             $output = array();
-            for ($n = 0; $n <= 10; $n++){
-                array_push($output, $results[$n]['Compoundpfr_data']['assigned_name']);
+            //for ($n = 0; $n <= 10; $n++){
+            foreach ($results as $n) {
+                array_push($output, $n['Compoundpfr_data'][$review_options['review']['for_']]);
                 //var_dump($n, $results[$n]['Compoundpfr_data']['assigned_name'], "<br>");
             }
             //echo var_dump($output),"<br>";
