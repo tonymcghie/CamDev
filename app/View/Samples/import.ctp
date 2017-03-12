@@ -1,6 +1,6 @@
 <h1>Sample Import Workspace:</h1>
-<p> Samples can only be imported in an existing Sample Set!</p><br>
-<p><b>The process is:</b></p>
+<p> Samples can only be imported to an existing Sample Set!</p><br>
+<p><The process is:</p>
 <p> 1) Generate a flat .csv file containing sample and treatment information.</p>
 <p> 2) Select the .csv file and the first 5 rows of the sample table will be displayed.  </p>
 <p> 3) Use this guide to select the table headings to match the database fields.</p>

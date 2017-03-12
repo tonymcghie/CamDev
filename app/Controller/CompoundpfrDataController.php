@@ -137,10 +137,10 @@ class CompoundpfrDataController extends AppController{
     public function reviewData(){
         if ($this->request->is('post')){
             $review_options = $this->request->data;
-            echo var_dump($review_options),"<br>";
-            echo var_dump($review_options['review']['cri_']),"<br>";
-            echo var_dump($review_options['review']['by_']),"<br>";
-            echo var_dump($review_options['review']['for_']),"<br>";
+            //echo var_dump($review_options),"<br>";
+            //echo var_dump($review_options['review']['cri_']),"<br>";
+            //echo var_dump($review_options['review']['by_']),"<br>";
+            //echo var_dump($review_options['review']['for_']),"<br>";
             $review_for = 'DISTINCT Compoundpfr_data.'.$review_options['review']['for_'];
             $review_by_value = '%'.$review_options['review']['by_'].'%';
             $review_by_field = 'Compoundpfr_data.'.$review_options['review']['cri_'].' LIKE';

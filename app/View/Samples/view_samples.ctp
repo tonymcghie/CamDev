@@ -17,16 +17,17 @@ echo '<div  id="resultsTable">';
     $names = array($this->Paginator->sort('sample_name', 'Sample', ['data' => $data]),
         $this->Paginator->sort('treatment_1', 'Treatment#1', ['data' => $data]),
         $this->Paginator->sort('description_1', 'Description#1', ['data' => $data]),
-		$this->Paginator->sort('treatment_2', 'Treatment#2', ['data' => $data]),
+	$this->Paginator->sort('treatment_2', 'Treatment#2', ['data' => $data]),
         $this->Paginator->sort('description_2', 'Description#2', ['data' => $data]),
-		$this->Paginator->sort('treatment_3', 'Treatment#3', ['data' => $data]),
+	$this->Paginator->sort('treatment_3', 'Treatment#3', ['data' => $data]),
         $this->Paginator->sort('description_3', 'Description#3', ['data' => $data]),
-		$this->Paginator->sort('sample_weight', 'Weight', ['data' => $data]),
-		$this->Paginator->sort('weight_unit', 'Unit', ['data' => $data]),
+        $this->Paginator->sort('replicate', 'Rep', ['data' => $data]),
+	$this->Paginator->sort('sample_weight', 'Weight', ['data' => $data]),
+	$this->Paginator->sort('weight_unit', 'Unit', ['data' => $data]),
         $this->Paginator->sort('tissue', 'Tissue', ['data' => $data]),
-		$this->Paginator->sort('kea_num', 'Kea #', ['data' => $data]),
-		$this->Paginator->sort('comment', 'Comment', ['data' => $data]));
-    $cols = array('sample_name', 'treatment_1', 'description_1', 'treatment_2', 'description_2', 'treatment_3', 'description_3', 'sample_weight', 'weight_unit', 'tissue', 'kea_num', 'comment');
+	$this->Paginator->sort('kea_num', 'Kea #', ['data' => $data]),
+	$this->Paginator->sort('comment', 'Comment', ['data' => $data]));
+    $cols = array('sample_name', 'treatment_1', 'description_1', 'treatment_2', 'description_2', 'treatment_3', 'description_3', 'replication', 'sample_weight', 'weight_unit', 'tissue', 'kea_num', 'comment');
     $model = 'Sample';
     $type = 'Sample';
     echo $this->element('results_table', ['results' => $results, 'names' => $names, 'cols' => $cols, 'model' => $model, 'type' => $type, 'data' => $data, 'num' => $num]);    

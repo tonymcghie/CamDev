@@ -2,16 +2,26 @@
 <?php
 $title = "Review PFR Data - Compounds";
 $model = "Compoundpfr_data";
-$options = array(
-    'empty' => 'Select Criteria',
+$options_a = array(
+    'crop' => 'Crop',
+    'genotype' => 'Genotype',
+    'tissue' => 'Tissue',
+    'species' => 'Species',
+    'reference' => 'Exp. Reference',
+    'analyst' => 'Analyst',
+    'sample_ref' => 'Sample Ref.',
     'assigned_name' => 'Compound',
     'cas' => 'CAS',
-    'assigned_confid' => 'Id Confidence (1-5)',
+    'exact_mass' => 'Exact Mass',
+    'intensity_description' => 'Units');
+
+$options_b = array(
+    'assigned_name' => 'Compound',
+    'cas' => 'CAS',
     'exact_mass' => 'Exact Mass',
     'intensity_description' => 'Units',
-    'reference' => 'Experiment Ref.',
+    'reference' => 'Exp. Reference',
     'sample_ref' => 'Sample Ref.',
-    'sample_description' => 'Sample Description',
     'crop' => 'Crop',
     'species' => 'Species',
     'tissue' => 'Tissue',
@@ -29,15 +39,15 @@ if (!isset($box_nums)){$box_nums=1;} //sets the box nums for the first time
 </header>
 <section id="boxes" class="noFormat">
 <table class="noFormat search">
-<?php echo $this->Html->tableCells(['<label>Review</label>','<label>By</label>','<label>Match</label>','<label>For</label>']); ?>
+<?php echo $this->Html->tableCells(['<label>Review</label>','<label>By (enter value)</label>','<label>Match</label>','<label>For</label>']); ?>
 </table>
 <?php
 echo'<table class="noFormat search">';
 echo $this->Html->tableCells([$this->Form->create('review', ['type' => 'file']),
-$this->Form->input('cri_', ['options' => $options, 'label' => '']),
+$this->Form->input('cri_', ['options' => $options_a, 'label' => '']),
 $this->Form->input('by_', array('label' => '')),
 $this->Form->input('match_', array('label' => '','options' => ['contain' => 'Contains', 'exact' => 'Exactly', 'starts_with' => 'Starts with'])),
-$this->Form->input('for_', ['options' => $options, 'label' => '']),
+$this->Form->input('for_', ['options' => $options_b, 'label' => '']),
 $this->Form->end(['label' => 'Review Data >>'])]);         
 echo'</table>';
 ?>
@@ -47,8 +57,10 @@ echo'</table>';
 <?php
 //$output[0] = " ";  //stops an error when page is first accessed to set up the Review criteria, but the first tiem in the list is not printed ????
 echo "<div class='scrollable'>";
-foreach ($output as $line) {
-    echo $line, "<br>";
+if (isset($output)){
+    foreach ($output as $line) {
+        echo $line, "<br>";
+    }
 }
 echo "</div>";
 ?>
