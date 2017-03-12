@@ -43,6 +43,7 @@
       //}
         echo '<li>'.$this->Html->link('Find', array('controller' => 'SampleSets','action' => 'searchSet'), array('target' => 'mainFrame' , 'class' => 'none')).'</li>';
 	echo '<li>'.$this->Html->link('Import Samples', array('controller' => 'Samples','action' => 'uploadSamples'), array('target' => 'mainFrame' , 'class' => 'none')).'</li>';
+        echo '<li>'.$this->Html->link('Import Samples(new)', array('controller' => 'Samples','action' => 'import'), array('target' => 'mainFrame' , 'class' => 'none')).'</li>';
     ?>
     </ul></li>
     <li>Compounds

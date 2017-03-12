@@ -7,7 +7,7 @@
  */
 
 class Sample extends AppModel{
-	var $useTable = 'samples'; // This model uses a database table 'samples'
+    var $useTable = 'samples'; // This model uses a database table 'samples'
     public $validate = array(
         'sample_name' => array(
             'rule' => 'notBlank'
