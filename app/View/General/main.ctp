@@ -42,8 +42,7 @@
         echo '<li>'.$this->Html->link('New', array('controller' => 'SampleSets', 'action' => 'newSet', '?' => ['isTablet' => $isTablet]), array('target' => 'mainFrame' , 'class' => 'none')).'</li>';
       //}
         echo '<li>'.$this->Html->link('Find', array('controller' => 'SampleSets','action' => 'searchSet'), array('target' => 'mainFrame' , 'class' => 'none')).'</li>';
-	echo '<li>'.$this->Html->link('Import Samples', array('controller' => 'Samples','action' => 'uploadSamples'), array('target' => 'mainFrame' , 'class' => 'none')).'</li>';
-        echo '<li>'.$this->Html->link('Import Samples(new)', array('controller' => 'Samples','action' => 'import'), array('target' => 'mainFrame' , 'class' => 'none')).'</li>';
+	        echo '<li>'.$this->Html->link('Import Samples', array('controller' => 'Samples','action' => 'import'), array('target' => 'mainFrame' , 'class' => 'none')).'</li>';
     ?>
     </ul></li>
     <li>Compounds
@@ -54,20 +53,19 @@
         //if ($this->Session->read('Auth.User')!==null && in_array("PFR-GP-Biological Chemistry and Bioactives Group", $this->Session->read('Auth.User')['groups'])){
             echo '<li>'.
   $this->Html->link('Add', ['controller' => 'Compounds','action' => 'addCompound', '?' => ['isTablet' => $isTablet]], array('target' => 'mainFrame' , 'class' => 'none')).'</li>';
-            echo '<li>'.$this->Html->link('ID by Mass', array('controller' => 'Identify','action' => 'idMass'), array('target' => 'mainFrame' , 'class' => 'none')).'</li>';
-            echo '<li>'.$this->Html->link('ID by Mass(ac)', array('controller' => 'Identify','action' => 'SelectFile'), array('target' => 'mainFrame' , 'class' => 'none')).'</li>';
+        echo '<li>'.$this->Html->link('ID by Mass', array('controller' => 'Identify','action' => 'SelectFile'), array('target' => 'mainFrame' , 'class' => 'none')).'</li>';
           //}
     ?>
     </ul></li>
-    <li>PFR Data
+    <li>PFR Compound Data
     <ul>
     <?php
-        echo '<li>'.$this->Html->link('Find-Compound', array('controller' => 'Compoundpfr_data','action' => 'findData'), array('target' => 'mainFrame' , 'class' => 'none')).'</li>';
-	echo '<li>'.$this->Html->link('Review-Compound', array('controller' => 'Compoundpfr_data','action' => 'reviewData'), array('target' => 'mainFrame' , 'class' => 'none')).'</li>';
-        echo '<li>'.$this->Html->link('Graph-Compound', array('controller' => 'Compoundpfr_data','action' => 'graphData'), array('target' => 'mainFrame' , 'class' => 'none')).'</li>';
+        echo '<li>'.$this->Html->link('Find', array('controller' => 'Compoundpfr_data','action' => 'findData'), array('target' => 'mainFrame' , 'class' => 'none')).'</li>';
+	echo '<li>'.$this->Html->link('Overview', array('controller' => 'Compoundpfr_data','action' => 'reviewData'), array('target' => 'mainFrame' , 'class' => 'none')).'</li>';
+        echo '<li>'.$this->Html->link('Graph', array('controller' => 'Compoundpfr_data','action' => 'graphData'), array('target' => 'mainFrame' , 'class' => 'none')).'</li>';
         //if ($this->Session->read('Auth.User')!==null && in_array("PFR-GP-Biological Chemistry and Bioactives Group", $this->Session->read('Auth.User')['groups'])) {
         //echo '<li>'.$this->Html->link('Import', array('controller' => 'Compoundpfr_data','action' => 'import'), array('target' => 'mainFrame' , 'class' => 'none')).'</li>';
-	echo '<li>'.$this->Html->link('Import-Compound', array('controller' => 'CompoundpfrData','action' => 'import'), array('target' => 'mainFrame' , 'class' => 'none')).'</li>';
+	echo '<li>'.$this->Html->link('Import', array('controller' => 'CompoundpfrData','action' => 'import'), array('target' => 'mainFrame' , 'class' => 'none')).'</li>';
         echo '<li>'.$this->Html->link('Find-Bioactivity', array('controller' => 'Bioactivitypfr_data','action' => 'findData'), array('target' => 'mainFrame' , 'class' => 'none')).'</li>';
       //}
     ?>

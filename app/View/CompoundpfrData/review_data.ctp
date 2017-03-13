@@ -58,8 +58,12 @@ echo'</table>';
 //$output[0] = " ";  //stops an error when page is first accessed to set up the Review criteria, but the first tiem in the list is not printed ????
 echo "<div class='scrollable'>";
 if (isset($output)){
-    foreach ($output as $line) {
-        echo $line, "<br>";
+    if (isset($output[0])){
+        foreach ($output as $line) {
+            echo $line, "<br>";
+        }
+    } else if (isset($output)){
+        echo "No Data found";
     }
 }
 echo "</div>";

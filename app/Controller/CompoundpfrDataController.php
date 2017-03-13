@@ -135,6 +135,9 @@ class CompoundpfrDataController extends AppController{
      * for getting an overview of the data in the table 
      */
     public function reviewData(){
+        if (!isset($this->request->data['review'])){
+            return;
+        } // if no data is passed return and dont search
         if ($this->request->is('post')){
             $review_options = $this->request->data;
             //echo var_dump($review_options),"<br>";
