@@ -9,7 +9,7 @@ let num_boxes = 0;
  */
 function set_listeners(){
     base_search_set = $('#search-set').detach().removeAttr('id').clone();
-    add_search_set();
+    get_new_search_set().insertBefore($('#action-buttons').closest('div.form-group'));
 }
 
 /**
@@ -34,4 +34,14 @@ function get_new_search_set(){
     });
     num_boxes++;
     return search_set;
+}
+
+/**
+ * This will remove the closest search set to the element passed
+ * @param event
+ */
+function remove_search_set(element){
+    $(element).closest('.search-set').slideUp(400, function(){
+        $(this).remove();
+    });
 }
