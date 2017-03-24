@@ -1,0 +1,48 @@
+.table-dialog{
+  width: 95vw;
+  height: 95vh;
+  margin: 2.5vh 2.5vw;
+  .modal-content {
+    height: 100%;
+    .modal-header {
+      height: 50px;
+      h2{
+        height: 50px;
+        display: inline-block;
+        margin: 0;
+      }
+      & > button{
+        display: inline-block;
+      }
+    }
+    .modal-body{
+      div{
+        height: calc(95vh - 187px);
+      }
+      .results-table {
+        overflow: auto;
+        height: calc(100% - 30px);
+      }
+      #hidden-columns{
+        height: 30px;
+      }
+    }
+    .modal-footer {
+      height: 65px;
+
+      & > button{
+        float: right;
+      }
+    }
+    #hidden-columns{
+      float: left;
+      .label{
+        margin-right: 10px;
+      }
+    }
+    .table-page-nums{
+      height: 30px;
+      float: right;
+    }
+  }
+}
