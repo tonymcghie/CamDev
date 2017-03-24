@@ -1,11 +1,17 @@
 @import (reference) "../bootstrap/bootstrap";
+
 .search-form {
   .search-set {
     label{
       display: none;
     }
-    &:nth-child(2) div label { // The first one is second child because of cake hidden element.
+    &:nth-child(2){
+      button{
+        display: none;
+      }
+      div label { // The first one is second child because of cake hidden element.
         display: inline-block;
+      }
     }
   }
   .search-action-buttons {
