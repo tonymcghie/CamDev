@@ -44,7 +44,7 @@ class display_if_equals implements display_rule_interface{
                 element.show();
                 break;
             default:
-                alert('default show');
+                alert('default show'); // TODO throw error here
         }
     }
 
@@ -63,7 +63,7 @@ class display_if_equals implements display_rule_interface{
                 element.hide();
                 break;
             default:
-                alert('default hide');
+                alert('default hide'); // TODO throw error here
         }
     }
 

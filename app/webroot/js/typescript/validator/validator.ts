@@ -55,9 +55,7 @@ class match_validator implements validator{
     }
 
     validate(): boolean {
-        console.log(this.data);
         for(var index in this.data){
-            console.log(this.data[index] + ' : ' + this.input.val());
             if (this.data[index] == this.input.val())return true;
         }
         this.input.parents('div.form-group').prepend('<span class="alert-danger">This input did not match the possible values</span>');

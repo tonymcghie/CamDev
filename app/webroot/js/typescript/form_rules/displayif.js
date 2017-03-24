@@ -51,7 +51,7 @@ var display_if_equals = (function () {
                 element.show();
                 break;
             default:
-                alert('default show');
+                alert('default show'); // TODO throw error here
         }
     };
     display_if_equals.prototype.hide_element = function (element) {
@@ -69,7 +69,7 @@ var display_if_equals = (function () {
                 element.hide();
                 break;
             default:
-                alert('default hide');
+                alert('default hide'); // TODO throw error here
         }
     };
     return display_if_equals;
