@@ -9,7 +9,7 @@
 App::uses('CakeEmail', 'Network/Email');
 
 class SampleSetsController extends AppController{
-    public $helpers = ['Html' , 'Form' , 'My' , 'Js', 'Time', 'String', 'BootstrapForm', 'SearchForm'];
+    public $helpers = ['Html' , 'Form' , 'My' , 'Js', 'Time', 'String', 'BootstrapForm'];
     public $uses = ['Analysis' , 'SampleSet' , 'Chemist', 'Project'];
     public $layout = 'content';
     public $components = ['Paginator', 'RequestHandler', 'My', 'Session', 'Cookie', 'Auth', 'File', 'Search'];
@@ -180,7 +180,7 @@ class SampleSetsController extends AppController{
     }    
     
     /**
-     * This will search the the sample sets 
+     * This will search the the sample sets
      * @param type $data
      * @return type
      */
@@ -192,13 +192,13 @@ class SampleSetsController extends AppController{
         } //if data is passed to the function then set it to be in the $this->request->data variable
         if (!isset($this->request->data['SampleSet'])){ //if data == null and request->data ==null
             return;
-        } //if there is no data then stop        
-        $this->paginate = array( 
+        } //if there is no data then stop
+        $this->paginate = array(
         'limit' => 30,
         'order' => array('SampleSet.date' => 'asc'));     //sets up the pagination options
-        
+
         $this->request->data['SampleSet']['num_boxes'] = (isset($this->request->data['SampleSet']['num_boxes']) ? $this->request->data['SampleSet']['num_boxes'] : 1); //sets boxnum to 1 if its not already set
-        $this->set('box_nums',$this->request->data['SampleSet']['num_boxes']);  //passes the box num to the view 
+        $this->set('box_nums',$this->request->data['SampleSet']['num_boxes']);  //passes the box num to the view
         if ($this->request->data['SampleSet']['isDate']==='1'){ //checks if there is a date to search on
             $this->request->data['SampleSet']['start_date'] = $this->request->data['SampleSet']['start_date']['year'].'-'.$this->request->data['SampleSet']['start_date']['month'].'-'.$this->request->data['SampleSet']['start_date']['day'];//makes date in  format where sql can compare time helper
             $this->request->data['SampleSet']['end_date'] = $this->request->data['SampleSet']['end_date']['year'].'-'.$this->request->data['SampleSet']['end_date']['month'].'-'.$this->request->data['SampleSet']['end_date']['day'];
@@ -213,13 +213,20 @@ class SampleSetsController extends AppController{
 
     public function search(){
         $this->layout = 'ajax';
+        $this->autoRender = false;
+        $this->paginate = [
+            'limit' => 30,
+            'order' => array('SampleSet.date' => 'asc')
+        ];
         // Listed these here for auto complete reasons and to stop the IDE displaying errors
         $criteria = null;$value = null;$logic = null;$match = null;
         extract($this->request->data['SampleSet']);
-        $query = $this->Search->build_query('SampleSet', $criteria, $value, $logic, $match);
+        $query = $this->Search->build_query($this->SampleSet, $criteria, $value, $logic, $match);
         $results = $this->paginate('SampleSet', $query);
         $this->set('results', $results);
-        var_export($results);
+        $this->set('model', 'SampleSet');
+        $this->render('/Elements/results_table');
+        //var_export($results);
     }
     
     /**
@@ -248,7 +255,7 @@ class SampleSetsController extends AppController{
     public function export($data = null){
         $this->My->exportCSV('SampleSet', $this->SampleSet, $this, ['set_code', 'submitter', 'chemist', 'crop', 'type', 'number', 'compounds','comments'], $data);  //exports the data to an csv file
     }
-    
+
     /**
      * Ajax function that returns list items the have the chemist details in
      */
@@ -258,11 +265,11 @@ class SampleSetsController extends AppController{
         $query = $this->request->data['name']; //gets the part name of the name that has being entered
         $results = $this->Chemist->find('all' , array('conditions' => array('name LIKE' => $query.'%')));//gets all names that start with that part of the name
         $elements = '';
-        foreach($results as $row){ 
+        foreach($results as $row){
             $elements .= "<li class='ui-menu-item' role='menuitem'><a class='ui-corner-all' tabindex='-1'";
-            $elements .= 'onclick="change(\''.$row['Chemist']['name'].'\')"'; 
+            $elements .= 'onclick="change(\''.$row['Chemist']['name'].'\')"';
             $elements .= ">".$row['Chemist']['name']." - ".$row['Chemist']['team']." - ".$row['Chemist']['name_code']."</a></li>";
-        } //makes the list of possible names 
+        } //makes the list of possible names
         echo $elements;
     }
     /**
