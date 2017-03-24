@@ -50,6 +50,7 @@ module.exports = function(grunt) {
         less: {
             development: {
                 options: {
+                    strictMath: true,
                     paths: ['app/webroot/css/less'],
                     compress: true
                 },
