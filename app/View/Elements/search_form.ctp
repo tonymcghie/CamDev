@@ -24,6 +24,8 @@ if (!isset($url)){
         $url = 'searchMetabolite';
     } else if ($model==='Compound'){
         $url = 'searchCompound';
+    } else if ($model==='Molecular_feature'){
+        $url = 'findData';
     }
 }
 echo $this->Form->create($model, ['action' => $url, 'class' => 'searchForm']);
