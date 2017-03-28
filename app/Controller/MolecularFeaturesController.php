@@ -36,8 +36,8 @@ class MolecularFeaturesController extends AppController{
     }
     
     /**
-     * this is the search funciton for the pfr data
-     * its similar the the basic one where is adds everything together but it also adds synonims from the Compound table to the search
+     * this is the search function for the metabolomic data
+     * its similar the the basic one where is adds everything together 
      * @param type $data
      * @return type
      */
@@ -131,7 +131,7 @@ class MolecularFeaturesController extends AppController{
      */
     public function import(){
         if($this->request->is('post')){ 
-            $data = $this->request->data['CompoundpfrData'];
+            $data = $this->request->data['Molecular_feature'];
             $cols = array();
             for($i = 0;isset($data[$i]);$i++){
                 if ($data[$i] != 'none'){
@@ -139,7 +139,7 @@ class MolecularFeaturesController extends AppController{
                     unset($data[$i]);
                 }
             } //creates array of column names and columns numbers that is used to match csv columns to table columns
-            $file = fopen($this->request->data['CompoundpfrData']['fileUrl'],"r"); //gets the file
+            $file = fopen($this->request->data['Molecular_feature']['fileUrl'],"r"); //gets the file
             fgetcsv($file); //skips the titles             
             $toSave = [];
             while (1==1){
@@ -154,7 +154,7 @@ class MolecularFeaturesController extends AppController{
                 $newRow['file'] = $data['fileName']; //adds the file name that it came from so all data from the file can be tracked together
                 array_push($toSave, $newRow); //adds the array contining the values to save to an array containing all vlaues to save                
             } //loops through the CSV file an adds the appropriate values to an array
-            if ($this->Compoundpfr_data->saveMany($toSave)){
+            if ($this->Molecular_feature->saveMany($toSave)){
                 $this->set('message', 'Import Successful');
             } else {
                 $this->set('message', 'Something went wrong');
@@ -168,11 +168,13 @@ class MolecularFeaturesController extends AppController{
     public function getCsv(){
         $this->layout = 'MinLayout'; //minimilistic layout that has no formating
         if ($this->request->is('post')){            
-            $newURL = $this->file_URL.'files/compoundpfrData/temp'.rand().'.csv'; //adds a random number to the end of the file name to avoid clashes           
-            move_uploaded_file($this->request->data['CompoundpfrData']['csv_file']['tmp_name'], $newURL); //uploads the file
+            $newURL = $this->file_URL.'files/molecularfeatures/temp'.rand().'.csv'; //adds a random number to the end of the file name to avoid clashes 
+            //echo $newURL, "<br>";
+            //echo var_dump($this->request->data['Molecular_feature']['csv_file']),"<br>";
+            move_uploaded_file($this->request->data['Molecular_feature']['csv_file']['tmp_name'], $newURL); //uploads the file
             $this->set('fileUrl', $newURL); //passes the new URL to the view
-            $this->set('fileName', $this->request->data['CompoundpfrData']['csv_file']['name']); //passes the filename to the view so it can be later added to the table
-        } //if the form is submitted then uplaod the csv file
+            $this->set('fileName', $this->request->data['Molecular_feature']['csv_file']['name']); //passes the filename to the view so it can be later added to the table
+        } //if the form is submitted then upload the csv file
     }
     
     /**

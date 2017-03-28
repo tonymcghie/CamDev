@@ -78,7 +78,7 @@
         //echo '<li>'.$this->Html->link('Graph', array('controller' => 'Compoundpfr_data','action' => 'graphData'), array('target' => 'mainFrame' , 'class' => 'none')).'</li>';
         //if ($this->Session->read('Auth.User')!==null && in_array("PFR-GP-Biological Chemistry and Bioactives Group", $this->Session->read('Auth.User')['groups'])) {
         //echo '<li>'.$this->Html->link('Import', array('controller' => 'Compoundpfr_data','action' => 'import'), array('target' => 'mainFrame' , 'class' => 'none')).'</li>';
-	echo '<li>'.$this->Html->link('Import', array('controller' => 'CompoundpfrData','action' => 'import'), array('target' => 'mainFrame' , 'class' => 'none')).'</li>';
+	echo '<li>'.$this->Html->link('Import', array('controller' => 'Molecular_features','action' => 'import'), array('target' => 'mainFrame' , 'class' => 'none')).'</li>';
         //}
     ?>
     </ul></li>
