@@ -12,9 +12,8 @@
 $title = "Search Compounds";
 $model = "Compound";
 $options = array(
-'empty' => 'Select Criteria',
+'compound_name' => 'Compound Name',
 'all' => 'All',
-'compound_name' => 'Compound Name',    
 'cas' => 'CAS',
 'compound_type' => 'Chemical Class',
 'exact_mass' => 'Exact Mass',

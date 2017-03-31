@@ -35,9 +35,12 @@ class SamplesController extends AppController{
 
     $set = $this->SampleSet->findById($id); //find a sample set by id
     $this->set('info', $set);// passes the sample set info to the view
-    $this->set('num', $this->Sample->find('count', array('conditions' => array('set_code' => 'TK94'))));// finds the num of results
-    $results = $this->Sample->find('all', array('conditions' => array('set_code' => $set['SampleSet']['set_code']))); //gets the sample records for the specified set_code
-    $this->set('results', $results);  //passes the sample record to the view
+    $this->set('num', $this->Sample->find('count', array('conditions' => array('set_code' => $set['SampleSet']['set_code']))));// finds the num of results
+    //$results = $this->Sample->find('all', array('conditions' => array('set_code' => $set['SampleSet']['set_code']))); //gets the sample records for the specified set_code
+    //$search = 'set_code ='.$set['SampleSet']['set_code'];
+    $this->set('results', $this->paginate('Sample', array('set_code =' => $set['SampleSet']['set_code']))); //gets the results
+    //$this->set('info', $set);// passes the sample set info to the view so it can be displayed with the data
+    //$this->set('results', $results);  //passes the sample record to the view
     $this->set('data', $this->request->data); //sends all the data (search criteria) to the view so it can be added to the ajax links 
     }
     
@@ -135,5 +138,9 @@ class SamplesController extends AppController{
             $val = filter_var($val, FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_HIGH);            
         } //filters the string and sets it in the array
         return json_encode($array); //returns the encoded result
+    }
+    
+    public function export($data = null){
+        $this->My->exportCSV('Sample', $this->Sample, $this, [], $data); //removed ',true' to make export work
     }
 }

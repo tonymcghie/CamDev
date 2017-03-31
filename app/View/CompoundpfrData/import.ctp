@@ -1,4 +1,9 @@
 <h1>Import Data:</h1>
+<p><The process is:</p>
+<p> 1) Generate a flat .csv file containing analytical compound data and relevant metadata information.</p>
+<p> 2) Click on Choose File and select the .csv file. The first 5 rows of the .csv data table will be displayed.  </p>
+<p> 3) Select the database fields (top row) to match the table column headings (second row) of the incoming .csv file.</p>
+<p> 4) Click on Import button to upload the sample data into the database.</p>
 <?php
 
 ?>
@@ -71,7 +76,7 @@ $('#csvFileFrame').on('load', function(){
  */
 var columns = {names: ['none', 'assigned_name', 'assigned_confid', 'cas', 'exact_mass', 'intensity_value', 'intensity_description', 'rt_value', 'rt_description',
             'reference', 'sample_ref' , 'sample_description', 'target_untarget', 'analyst', 'data_location', 'crop', 'species', 'genotype', 'tissue', 'date'],
-                displayNames: ["Don't Import", 'Name', 'Confidence Id', 'Cas', 'Exact Mass', 'Intensity Value', 'Intensity Description', 'Retention Value', 'Retention info',
+                displayNames: ["Don't Import", 'Compound Name', 'Confidence Id', 'Cas', 'Exact Mass', 'Intensity Value', 'Intensity Description', 'Retention Value', 'Retention info',
             'Exp Ref', 'Sample Reference' , 'Sample Description', 'Target', 'Analyst', 'Data Location', 'Crop', 'Species', 'Genotype', 'Tissue', 'Date']};
 
 function makeTable(data){     

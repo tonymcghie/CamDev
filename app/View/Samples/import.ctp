@@ -1,10 +1,10 @@
 <h1>Sample Import Workspace:</h1>
-<p> Samples can only be imported to an existing Sample Set!</p><br>
+<p> Samples can only be imported to an existing Sample Set.</p><br>
 <p><The process is:</p>
-<p> 1) Generate a flat .csv file containing sample and treatment information.</p>
-<p> 2) Select the .csv file and the first 5 rows of the sample table will be displayed.  </p>
-<p> 3) Use this guide to select the table headings to match the database fields.</p>
-<p> 4) Click on Import to upload the sample data into the database.</p>
+<p> 1) Generate a flat .csv file containing sample and treatment or attribute information.</p>
+<p> 2) Click on Choose File and select the .csv file. The first 5 rows of the .csv sample table will be displayed.  </p>
+<p> 3) Select the database fields (top row) to match the table column headings (second row) of the incoming .csv file.</p>
+<p> 4) Click on Import button to upload the sample data into the database.</p>
 <?php
 
 ?>
@@ -76,9 +76,9 @@ $('#csvFileFrame').on('load', function(){
  * @returns {undefined}
  */
 var columns = {names: ['none', 'set_code', 'sample_name', 'treatment_1', 'description_1', 'treatment_2', 'description_2', 'treatment_3', 'description_3', 'replicate',
-            'tissue', 'sample_weight' , 'weight_unit', 'kea_num', 'comment'],
-                displayNames: ["Don't Import", 'Set Code', 'Sample Name', 'Tmt_1_label', 'Tmt_1_desc', 'Tmt_2_label', 'Tmt_2_desc', 'Tmt_3_label', 'Tmt_3_desc', 'Replicate_label',
-            'Tissue', 'Sample Weight' , 'Weight unit', 'Kea #', 'comment']};
+            'tissue', 'sample_weight' , 'weight_unit', 'kea_num', 'ebrida_ref','comment'],
+                displayNames: ["Don't Import", 'Set Code', 'Sample Name', 'Attribute_1', 'Attribute_1 Description', 'Attribute_2', 'Attribute_2 Description', 'Attribute_3', 'Attribute_3 Description', 'Replicate_label',
+            'Tissue', 'Sample Weight' , 'Weight unit', 'Kea #', 'eBrida #', 'comment']};
 
 function makeTable(data){     
     $('#csvTableSelects').html(''); //clears the current table

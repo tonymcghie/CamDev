@@ -3,9 +3,8 @@
 $title = "Search PFR Chemical Data";
 $model = "Compoundpfr_data";
 $options = array(
-    'empty' => 'Select Criteria',
-    'all' => 'All',
     'assigned_name' => 'Compound',
+    'all' => 'All',
     'cas' => 'CAS',
     'metabolite_tag' => 'Metabolite',
     'assigned_confid' => 'Id Confidence (1-5)',

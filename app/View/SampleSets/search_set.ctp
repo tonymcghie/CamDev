@@ -3,9 +3,8 @@
 $title = "Search Sample Sets";
 $model = "SampleSet";
 $options = array(
-'empty' => 'Select Criteria',
-'all' => 'All',
 'set_code' => 'Set Code',
+'all' => 'All',
 'submitter' => 'PFR Collaborator',
 'chemist' => 'Chemist',
 'p_name' => 'Project Name',

@@ -3,9 +3,8 @@
 $title = "Search Unknown Compounds";
 $model = "Metabolite";
 $options = array( //sets the options in the criteria select
-'empty' => 'Select Criteria',
-'all' => 'All',
 'exact_mass' => 'Exact Mass',
+'all' => 'All',
 'experiment_ref' => 'Experiment Reference',
 'sources' => 'Source',
 'tissue' => 'Tissue',

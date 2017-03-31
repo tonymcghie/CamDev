@@ -90,7 +90,7 @@
   $this->Html->link('Add', array('controller' => 'Metabolites','action' => 'addMetabolite', '?' => ['isTablet' => $isTablet]), array('target' => 'mainFrame' , 'class' => 'none')).'</li>';
         }
         echo '<li>'.$this->Html->link('Add', array('controller' => 'Metabolites','action' => 'addMetabolite', '?' => ['isTablet' => $isTablet]), array('target' => 'mainFrame' , 'class' => 'none')).'</li>';
-        echo '<li>'.$this->Html->link('Search', array('controller' => 'Metabolites','action' => 'searchMetabolite'), array('target' => 'mainFrame' , 'class' => 'none')).'</li>';
+        echo '<li>'.$this->Html->link('Find', array('controller' => 'Metabolites','action' => 'searchMetabolite'), array('target' => 'mainFrame' , 'class' => 'none')).'</li>';
     ?>
     </ul></li>
     <li>General
