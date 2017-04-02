@@ -31,6 +31,7 @@ if (isset($results[0]['Sample'])){
     $cols = array('sample_name', 'treatment_1', 'description_1', 'treatment_2', 'description_2', 'treatment_3', 'description_3', 'replicate', 'sample_weight', 'weight_unit', 'tissue', 'kea_num', 'ebrida_ref','comment');
     $model = 'Sample';
     $type = 'Sample';
+    echo "view_samples:", var_dump($data['SampleSet']['set_code']), "<br>";
     echo $this->element('results_table', ['results' => $results, 'names' => $names, 'cols' => $cols, 'model' => $model, 'type' => $type, 'data' => $data, 'num' => $num]);    
 } else if (isset($results)) {
     echo "No Samples have been loaded for this Sample Set!";

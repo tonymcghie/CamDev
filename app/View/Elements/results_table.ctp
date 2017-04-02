@@ -7,6 +7,7 @@ $this->Paginator->options(array(
 if (isset($results)){
     echo '<table class="ResNum noFormat">';
     $tempRes = '<span>Results: '.$num.'</span>';
+    echo "results_table:", var_dump($data), "<br>";
     if (isset($data)){
         $tempExp = $this->Form->postLink('Export Data', ['action' => 'export', http_build_query($data)], ['style'=>'width: 80px', 'class' => 'find-button abbr-button']);
     }

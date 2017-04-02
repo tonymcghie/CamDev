@@ -41,7 +41,7 @@ class SamplesController extends AppController{
     $this->set('results', $this->paginate('Sample', array('set_code =' => $set['SampleSet']['set_code']))); //gets the results
     //$this->set('info', $set);// passes the sample set info to the view so it can be displayed with the data
     //$this->set('results', $results);  //passes the sample record to the view
-    $this->set('data', $this->request->data); //sends all the data (search criteria) to the view so it can be added to the ajax links 
+    $this->set('data', $set); //sends all the data (search criteria) to the view 
     }
     
     /**
@@ -141,6 +141,14 @@ class SamplesController extends AppController{
     }
     
     public function export($data = null){
-        $this->My->exportCSV('Sample', $this->Sample, $this, [], $data); //removed ',true' to make export work
+        //$this->My->exportCSV('Sample', $this->Sample, $this, [], $data); //removed ',true' to make export work
+        //$results = $this->Sample->find('all', array('conditions' => array('set_code' => $set['SampleSet']['set_code']))); //gets the sample records for the specified set_code
+        //echo var_dump($data),"<br>";
+        parse_str($data);
+        $data['SampleSet']['set_code']='TK100';
+        $data = $this->Sample->find('all', array('conditions' => array('set_code' => $data['SampleSet']["set_code"])));
+        $this->set('data', $data);
+        $this->response->download("export.csv");
+        $this->layout = 'ajax'; 
     }
 }
