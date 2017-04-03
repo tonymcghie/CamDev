@@ -29,19 +29,21 @@ class SamplesController extends AppController{
     
     public function viewSamples($id = null) {
 		
-    $this->paginate = array(
-    'limit' => 20,
+    /**
+    this->paginate = array(
+    'limit' => 50,
     'order' => array('Sample.sample_name' => 'asc'));     //sets up the pagination options
+     */
+    
+    $this->paginate = array(
+    'limit' => 50
+    );     //sets up the pagination options
 
-    $set = $this->SampleSet->findById($id); //find a sample set by id
+    $set = $this->SampleSet->findById($id); //find a sample set in the SampleSets table by id
     $this->set('info', $set);// passes the sample set info to the view
     $this->set('num', $this->Sample->find('count', array('conditions' => array('set_code' => $set['SampleSet']['set_code']))));// finds the num of results
-    //$results = $this->Sample->find('all', array('conditions' => array('set_code' => $set['SampleSet']['set_code']))); //gets the sample records for the specified set_code
-    //$search = 'set_code ='.$set['SampleSet']['set_code'];
-    $this->set('results', $this->paginate('Sample', array('set_code =' => $set['SampleSet']['set_code']))); //gets the results
-    //$this->set('info', $set);// passes the sample set info to the view so it can be displayed with the data
-    //$this->set('results', $results);  //passes the sample record to the view
-    $this->set('data', $set); //sends all the data (search criteria) to the view 
+    $this->set('results', $this->paginate('Sample', array('set_code =' => $set['SampleSet']['set_code']))); //gets the results and displays using pagination
+    $this->set('data', $this->request->data); //sends all the data (search criteria) to the view so it can be added to the ajax links 
     }
     
     /**
@@ -143,9 +145,9 @@ class SamplesController extends AppController{
     public function export($data = null){
         //$this->My->exportCSV('Sample', $this->Sample, $this, [], $data); //removed ',true' to make export work
         //$results = $this->Sample->find('all', array('conditions' => array('set_code' => $set['SampleSet']['set_code']))); //gets the sample records for the specified set_code
-        //echo var_dump($data),"<br>";
+        echo var_dump($data),"<br>";
         parse_str($data);
-        $data['SampleSet']['set_code']='TK100';
+        //$data['SampleSet']['set_code']='TK100';
         $data = $this->Sample->find('all', array('conditions' => array('set_code' => $data['SampleSet']["set_code"])));
         $this->set('data', $data);
         $this->response->download("export.csv");

@@ -72,7 +72,7 @@ class MolecularFeaturesController extends AppController{
      * @param type $data
      */
     public function export($data = null){
-        $this->My->exportCSV('Compoundpfr_data', $this->Compoundpfr_data, $this, ['assigned_name', 'assigned_confid', 'exact_mass', 'intensity_description', 'reference', 'sample_ref', 'crop', 'species', 'tissue', 'genotype', 'analyst'], $data);  
+        $this->My->exportCSV('Molecular_feature', $this->Molecular_feature, $this, ['feature_tag', 'sample_reference', 'experiment_reference', 'mz', 'ion_polarity','intensity', 'crop', 'genotype','tissue', 'analyst'], $data);  
     }
     
     /**

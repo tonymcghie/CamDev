@@ -38238,3 +38238,79 @@ Request URL: /CAM3-0/css/bootstrap.min.css.map
 Stack Trace:
 #0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
 #1 {main}
+2017-04-03 20:22:07 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/css/bootstrap.min.css.map
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-03 20:26:51 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/css/bootstrap.min.css.map
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-03 21:27:41 Error: Fatal Error (1): Call to a member function find() on a non-object in [/var/www/html/CAM3-0/app/Controller/Component/MyComponent.php, line 116]
+2017-04-03 21:27:41 Error: [FatalErrorException] Call to a member function find() on a non-object
+Request URL: /CAM3-0/molecular_features/export/Molecular_feature%255Bnum_boxes%255D%3D1%26Molecular_feature%255Bcri_0%255D%3Dexperiment_reference%26Molecular_feature%255Bval_0%255D%3DTK153%26Molecular_feature%255Blog_0%255D%3DAND%26Molecular_feature%255Bmatch_0%255D%3Dcontain
+Stack Trace:
+#0 /var/www/html/CAM3-0/lib/Cake/Error/ErrorHandler.php(213): ErrorHandler::handleFatalError(1, 'Call to a membe...', '/var/www/html/C...', 116)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', '/var/www/html/C...', 116, Array)
+#2 /var/www/html/CAM3-0/lib/Cake/Core/App.php(933): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', '/var/www/html/C...', 116, Array)
+#3 /var/www/html/CAM3-0/lib/Cake/Core/App.php(906): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2017-04-03 21:27:41 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/img/cake.power.gif
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-03 21:27:41 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/img/cake.icon.png
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-03 21:33:56 Error: [MissingViewException] View file "MolecularFeatures/export.ctp" is missing.
+Exception Attributes: array (
+  'file' => 'MolecularFeatures/export.ctp',
+)
+Request URL: /CAM3-0/molecular_features/export/Molecular_feature%255Bnum_boxes%255D%3D1%26Molecular_feature%255Bcri_0%255D%3Dempty%26Molecular_feature%255Bval_0%255D%3DTK153%26Molecular_feature%255Blog_0%255D%3DAND%26Molecular_feature%255Bmatch_0%255D%3Dcontain
+Stack Trace:
+#0 /var/www/html/CAM3-0/lib/Cake/View/View.php(470): View->_getViewFileName(NULL)
+#1 /var/www/html/CAM3-0/lib/Cake/Controller/Controller.php(960): View->render(NULL, NULL)
+#2 /var/www/html/CAM3-0/lib/Cake/Routing/Dispatcher.php(200): Controller->render()
+#3 /var/www/html/CAM3-0/lib/Cake/Routing/Dispatcher.php(167): Dispatcher->_invoke(Object(MolecularFeaturesController), Object(CakeRequest))
+#4 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2017-04-03 21:33:56 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/img/cake.power.gif
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-03 21:33:56 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /CAM3-0/img/cake.icon.png
+Stack Trace:
+#0 /var/www/html/CAM3-0/app/webroot/index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}

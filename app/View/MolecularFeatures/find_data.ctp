@@ -51,12 +51,13 @@ $this->Paginator->settings['limit'] = 30;
            $this->Paginator->sort('sample_reference', 'Sample Ref.',['data' => $data]),
            $this->Paginator->sort('experiment_reference', 'Experiment Ref.',['data' => $data]),
            $this->Paginator->sort('mz','Exact Mass', ['data' => $data]),
+           $this->Paginator->sort('ion_polarity','Polarity', ['data' => $data]),    
            $this->Paginator->sort('intensity', 'Intensity', ['data' => $data]),
            $this->Paginator->sort('crop', 'Crop',['data' => $data]),
            $this->Paginator->sort('genotype', 'Genotype', ['data' => $data]),
            $this->Paginator->sort('tissue', 'Tissue', ['data' => $data]),
            $this->Paginator->sort('analyst', 'Analyst', ['data' => $data]));
-       $cols = array('feature_tag', 'Actions', 'sample_reference', 'experiment_reference', 'mz', 'intensity', 'crop', 'genotype','tissue', 'analyst', );	
+       $cols = array('feature_tag', 'Actions', 'sample_reference', 'experiment_reference', 'mz', 'ion_polarity','intensity', 'crop', 'genotype','tissue', 'analyst');	
        $type = 'Molecular_feature';
        echo $this->element('results_table', ['results' => $results, 'names' => $names, 'cols' => $cols, 'model' => $model, 'type' => $type, 'data' => $data, 'num' => $num]);
     } else if (isset($results)){
