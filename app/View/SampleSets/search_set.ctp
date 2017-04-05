@@ -1,6 +1,6 @@
 <header>
 <?php
-$title = "Search Sample Sets";
+$title = "Find Sample Sets";
 $model = "SampleSet";
 $options = array(
 'set_code' => 'Set Code',

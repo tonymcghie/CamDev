@@ -1,16 +1,15 @@
 <header>
 <?php
-$title = "Search Metabolomic Data";
+$title = "Find Metabolomic Data";
 $model = "Molecular_feature";
 $options = array(
-    'empty' => 'Select Criteria',
+    'experiment_reference' => 'Experiment Reference',
     'all' => 'All',
     'feature_tag' => 'Metabolite Tag',
     'mz' => 'Exact m/z',
     'exact_mass_10mDa' => 'Exact Mass +- 10 mDa',
     'exact_mass_50mDa' => 'Exact Mass +- 50 mDa',
     'ms_instrument_loc' => 'MS Instrument',
-    'experiment_reference' => 'Experiment Reference',
     'sample_reference' => 'Sample Reference',
     'sample_description' => 'Sample Description',
     'crop' => 'Crop',

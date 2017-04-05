@@ -34,7 +34,7 @@ if (isset($results[0]['Sample'])){
     //echo "view_samples:", var_dump($data['SampleSet']['set_code']), "<br>";
     echo $this->element('results_table', ['results' => $results, 'names' => $names, 'cols' => $cols, 'model' => $model, 'type' => $type, 'data' => $data, 'num' => $num]);    
 } else if (isset($results)) {
-    echo "No Samples have been loaded for this Sample Set!";
+    echo "<br>", "No Samples have been loaded for this Sample Set!";
 }
  echo '</div>';
 ?>

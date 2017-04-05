@@ -1,6 +1,6 @@
 <header>
 <?php
-$title = "Search Unknown Compounds";
+$title = "Find Unknown Compounds";
 $model = "Metabolite";
 $options = array( //sets the options in the criteria select
 'exact_mass' => 'Exact Mass',

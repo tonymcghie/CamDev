@@ -9,7 +9,7 @@
 </style>
 <header>
 <?php
-$title = "Search Compounds";
+$title = "Find Compounds";
 $model = "Compound";
 $options = array(
 'compound_name' => 'Compound Name',

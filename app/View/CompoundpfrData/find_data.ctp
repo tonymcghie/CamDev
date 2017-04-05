@@ -1,6 +1,6 @@
 <header>
 <?php
-$title = "Search PFR Chemical Data";
+$title = "Find PFR Compound Data";
 $model = "Compoundpfr_data";
 $options = array(
     'assigned_name' => 'Compound',

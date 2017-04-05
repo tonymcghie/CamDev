@@ -44,10 +44,10 @@ if (!isset($box_nums)){$box_nums=1;} //sets the box nums for the first time
 <?php
 echo'<table class="noFormat search">';
 echo $this->Html->tableCells([$this->Form->create('review', ['type' => 'file']),
-$this->Form->input('cri_', ['options' => $options_a, 'label' => '']),
-$this->Form->input('by_', array('label' => '')),
-$this->Form->input('match_', array('label' => '','options' => ['contain' => 'Contains', 'exact' => 'Exactly', 'starts_with' => 'Starts with'])),
-$this->Form->input('for_', ['options' => $options_b, 'label' => '']),
+$this->Form->input('cri', ['options' => $options_a, 'label' => '']),
+$this->Form->input('by', array('label' => '')),
+$this->Form->input('match', array('label' => '','options' => ['contain' => 'Contains', 'exact' => 'Exactly', 'starts_with' => 'Starts with'])),
+$this->Form->input('for', ['options' => $options_b, 'label' => '']),
 $this->Form->end(['label' => 'Review Data >>'])]);         
 echo'</table>';
 ?>
@@ -55,10 +55,10 @@ echo'</table>';
     
 
 <?php
-//$output[0] = " ";  //stops an error when page is first accessed to set up the Review criteria, but the first tiem in the list is not printed ????
+//displays the data ($output) at a simple list of values
 echo "<div class='scrollable'>";
 if (isset($output)){
-    if (isset($output[0])){
+    if ($num >= 1) {
         foreach ($output as $line) {
             echo $line, "<br>";
         }
@@ -66,5 +66,12 @@ if (isset($output)){
         echo "No Data found";
     }
 }
+/**if (isset($output)){
+    foreach ($output as $line) {
+            echo $line, "<br>";
+        }
+    } else {
+        echo "No results found";
+    }*/
 echo "</div>";
 ?>
