@@ -6,7 +6,6 @@ $options = array(
     'assigned_name' => 'Compound',
     'all' => 'All',
     'cas' => 'CAS',
-    'metabolite_tag' => 'Metabolite',
     'assigned_confid' => 'Id Confidence (1-5)',
     'exact_mass' => 'Exact Mass',
     'exact_mass_10mDa' => 'Exact Mass +- 10 mDa',
@@ -53,7 +52,6 @@ $this->Paginator->settings['limit'] = 30;
     echo '<div  id="resultsTable">';
     if (isset($results[0]['Compoundpfr_data'])){
 	   $names = array( $this->Paginator->sort('assigned_name', 'Compound', ['data' => $data]),
-           $this->Paginator->sort('metabolite_tag', 'Metabolite', ['data' => $data]),
            array('Actions' => ['class' => 'Buttons']),
            $this->Paginator->sort('sample_ref', 'Sample Ref.',['data' => $data]),
            $this->Paginator->sort('reference', 'Experiment Ref.',['data' => $data]),
@@ -63,8 +61,8 @@ $this->Paginator->settings['limit'] = 30;
            $this->Paginator->sort('crop', 'Crop',['data' => $data]),
            $this->Paginator->sort('genotype', 'Genotype', ['data' => $data]),
            $this->Paginator->sort('tissue', 'Tissue', ['data' => $data]),
-		   $this->Paginator->sort('analyst', 'Analyst', ['data' => $data]));
-       $cols = array('assigned_name', 'metabolite_tag', 'Actions', 'sample_ref', 'reference', 'exact_mass', 'intensity_value', 'intensity_description', 'crop', 'genotype','tissue', 'analyst', );	
+           $this->Paginator->sort('analyst', 'Analyst', ['data' => $data]));
+       $cols = array('assigned_name', 'Actions', 'sample_ref', 'reference', 'exact_mass', 'intensity_value', 'intensity_description', 'crop', 'genotype','tissue', 'analyst', );	
        $type = 'CompoundpfrData';
        echo $this->element('results_table', ['results' => $results, 'names' => $names, 'cols' => $cols, 'model' => $model, 'type' => $type, 'data' => $data, 'num' => $num]);
     } else if (isset($results)){

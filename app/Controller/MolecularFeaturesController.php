@@ -83,11 +83,11 @@ class MolecularFeaturesController extends AppController{
         
     }
     /**
-     * shows all the field entries for a selected record in the CompoundpfrData table
+     * shows all the field entries for a selected record in the Molecular_features table
      *
      */
 	public function viewData($id = null) {
-		$data = $this->Compoundpfr_data->findById($id); //if the id is passed then find on that
+		$data = $this->Molecular_feature->findById($id); //if the id is passed then find on that
         if (!$data){ //if the set does not exist
             throw new NotFoundExcpetion(__('Invalid Data Record'));
         } //if the sample set with that id exists

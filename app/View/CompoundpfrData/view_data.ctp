@@ -4,7 +4,7 @@ echo $this->Html->css('tabs_'.getenv('CSS_VERSION'), null, array('inline' => fal
 echo $this->Html->script(array('base'), array('inline' => false));
 ?>
 <header>
-<h1>Data Record Viewer</h1>
+<h1>PFR Compound Data Viewer</h1>
 </header>
 <table class="noFormat viewSampleSet">
     <tr>

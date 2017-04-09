@@ -111,11 +111,13 @@ class MyHelper extends AppHelper{
                         $links .= $this->proposedMetaboliteActions($row[$options['model']]['id']);
                     } else if ($type=='Msms_Metabolite'){
                         $links .= $this->msmsMetaboliteActions($row[$options['model']]['id']);
-					} else if ($type=='CompoundpfrData'){
+                    } else if ($type=='CompoundpfrData'){
                         $links .= $this->compoundpfrDataActions($row[$options['model']]['id']);
+                    } else if ($type=='Molecular_feature'){
+                        $links .= $this->molecular_featureActions($row[$options['model']]['id']);
                     }
                     array_push($tableCells, $links);
-                } else {
+                    } else {
                     if (isset($row[$options['model']][$col])){
                         array_push($tableCells,$row[$options['model']][$col]);
                     } else {
@@ -199,7 +201,14 @@ class MyHelper extends AppHelper{
      */
     protected function compoundpfrDataActions($id){
         return $this->Form->postLink('View', array('controller' => 'CompoundpfrData', 'action' => 'viewData', $id), array('class' => 'find-button abbr-button'));
-    }    
+    }
+    /**
+     * helper method for making edit link for resulttable
+     */
+    protected function molecular_featureActions($id){
+        return $this->Form->postLink('View', array('controller' => 'MolecularFeatures', 'action' => 'viewData', $id), array('class' => 'find-button abbr-button'));
+    }
+    
 	/**
      * makes a Url that points to an iplant file that can be open in browser
      * @param type $url
