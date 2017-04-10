@@ -47,16 +47,16 @@ $this->Paginator->settings['limit'] = 30;
     if (isset($results[0]['Molecular_feature'])){
 	   $names = array( $this->Paginator->sort('feature_tag', 'Metabolite Tag', ['data' => $data]),
            array('Actions' => ['class' => 'Buttons']),
-           $this->Paginator->sort('sample_reference', 'Sample Ref.',['data' => $data]),
-           $this->Paginator->sort('experiment_reference', 'Experiment Ref.',['data' => $data]),
+           $this->Paginator->sort('feature_id', 'Metabolite ID',['data' => $data]), 
            $this->Paginator->sort('mz','Exact Mass', ['data' => $data]),
            $this->Paginator->sort('ion_polarity','Polarity', ['data' => $data]),    
            $this->Paginator->sort('intensity', 'Intensity', ['data' => $data]),
+           $this->Paginator->sort('sample_reference', 'Sample Ref.',['data' => $data]),
+           $this->Paginator->sort('experiment_reference', 'Experiment Ref.',['data' => $data]),
            $this->Paginator->sort('crop', 'Crop',['data' => $data]),
            $this->Paginator->sort('genotype', 'Genotype', ['data' => $data]),
-           $this->Paginator->sort('tissue', 'Tissue', ['data' => $data]),
-           $this->Paginator->sort('analyst', 'Analyst', ['data' => $data]));
-       $cols = array('feature_tag', 'Actions', 'sample_reference', 'experiment_reference', 'mz', 'ion_polarity','intensity', 'crop', 'genotype','tissue', 'analyst');	
+           $this->Paginator->sort('tissue', 'Tissue', ['data' => $data]));
+       $cols = array('feature_tag', 'Actions', 'feature_id', 'mz', 'ion_polarity','intensity', 'sample_reference', 'experiment_reference', 'crop', 'genotype','tissue');	
        $type = 'Molecular_feature';
        echo $this->element('results_table', ['results' => $results, 'names' => $names, 'cols' => $cols, 'model' => $model, 'type' => $type, 'data' => $data, 'num' => $num]);
     } else if (isset($results)){
