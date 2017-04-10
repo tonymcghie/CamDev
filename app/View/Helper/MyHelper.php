@@ -224,6 +224,9 @@ class MyHelper extends AppHelper{
     public function makeSSmetaURL($name){
         return '/data/files/samplesets/'.$name;
     }
+    public function makeTemplateURL($name){
+        return '/data/files/templates/'.$name;
+    }
     /**
      * returns the option value pairs for the crop select input
      * @return type

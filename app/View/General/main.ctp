@@ -93,13 +93,15 @@
         echo '<li>'.$this->Html->link('Find', array('controller' => 'Metabolites','action' => 'searchMetabolite'), array('target' => 'mainFrame' , 'class' => 'none')).'</li>';
     ?>
     </ul></li>
-    <li>General
+    <li>Tools
     <ul>
     <?php
         if ($this->Session->read('Auth.User')!==null && in_array("PFR-GP-Biological Chemistry and Bioactives Group", $this->Session->read('Auth.User')['groups'])){
             echo '<li>'.
   $this->Html->link('Scripts', ['controller' => 'General','action' => 'scripts', '?' => ['isTablet' => $isTablet]], array('target' => 'mainFrame' , 'class' => 'none')).'</li>';
         }
+        echo '<li>'.$this->Html->link('Scripts', ['controller' => 'General','action' => 'scripts', '?' => ['isTablet' => $isTablet]], array('target' => 'mainFrame' , 'class' => 'none')).'</li>';
+        echo '<li>'.$this->Html->link('Data Templates', ['controller' => 'General','action' => 'templates'], array('target' => 'mainFrame' , 'class' => 'none')).'</li>';
         echo '<li>'.$this->Html->link('New Project', array('controller' => 'Projects', 'action' => 'addProject'), ['target' => 'mainFrame', 'class' => 'none']).'</li>';
         echo '<li>'.$this->Html->link('Info', array('controller' => 'General', 'action' => 'info'), ['target' => 'mainFrame', 'class' => 'none']).'</li>';        
 	echo '<li>'.$this->Html->link('How To', array('controller' => 'General', 'action' => 'howto'), ['target' => 'mainFrame', 'class' => 'none']).'</li>';
