@@ -50,7 +50,6 @@ class IdentifyController extends AppController{
                 }
             $filename = basename($uploadData['name']); // gets the base name of the uploaded file
             $uploadFolder = WWW_ROOT. 'data/files/Identify';  // path where the uploaded file has to be saved
-            //$filename = time() .'_'. $filename; // adding time stamp for the uploaded image for uniqueness
             $uploadPath =  $uploadFolder . DS . $filename;
             if( !file_exists($uploadFolder) ){
                 mkdir($uploadFolder); // creates folder if  not found

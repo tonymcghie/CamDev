@@ -69,9 +69,9 @@ $('#csvFileFrame').on('load', function(){
  * @param {type} data
  * @returns {undefined}
  */
-var columns = {names: ['none', 'feature_tag', 'mz', 'ion_polarity', 'intensity', 'ms_instrument_loc', 'retention_time', 'chromatography_description',
+var columns = {names: ['none', 'feature_tag', 'feature_id', 'id_confidence', 'mz', 'ion_polarity', 'intensity', 'ms_instrument_loc', 'retention_time', 'chromatography_description',
             'experiment_reference', 'sample_reference' , 'sample_description', 'analyst', 'data_location', 'crop', 'genus_species', 'genotype', 'tissue', 'date'],
-                displayNames: ["Don't Import", 'Molecular Feature', 'Accurate m/z', 'Polarity', 'Intensity', 'MS Instrument/Loc', 'Retention Time (min)', 'Chromatography Description', 
+                displayNames: ["Don't Import", 'Molecular Feature','Feature ID', 'ID Code', 'm/z', 'Polarity', 'Intensity', 'MS Instrument/Loc', 'Retention Time (min)', 'Chromatography Description', 
             'Experiment Reference', 'Sample Reference' , 'Sample Description', 'Analyst', 'Data Location', 'Crop', 'Species Name', 'Genotype', 'Tissue', 'Date']};
 
 function makeTable(data){     

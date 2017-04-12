@@ -153,6 +153,10 @@ class MyComponent extends Component{
             $high_mass = $mass + $mass_tolerance;
             $search =  array("Compound.exact_mass BETWEEN ? AND ?" => array($low_mass, $high_mass));
             //var_dump($search);
+            $foundallcmpd = $model->find('all', ['conditions' =>$search]);
+            foreach ($foundallcmpd as $cmpd) {
+                echo var_dump($cmpd['Compound']['exact_mass']), $mass, $mass-$cmpd['Compound']['exact_mass'], "<br>";
+            }
             $foundcmpd = $model->find('first', ['conditions' =>$search]);  //search compounds table for match and add to the $linae array if found
             if (isset($foundcmpd["Compound"])){ 
                 array_push($line, $foundcmpd["Compound"]["compound_name"]);
