@@ -2,8 +2,9 @@
 /**
  *  @LIVE swap location of pythonScripts
 */
-$python_location = '/app/app/webroot/files/pythonScripts/';
-//$python_location = 'C:/wamp/www/CAMcake/app/webroot/files/pythonScripts/';
+//$python_location = '/app/app/webroot/files/pythonScripts/';
+//$python_location = 'C:/wamp/www/CAMcake/app/webroot/files/pythonScripts/'; //for windows installations
+$python_location = '/var/www/html/CAM3-0/app/webroot/files/pythonScripts/'; //for linux installations
 ?>
 <header>
 <h1>Scripts</h1>

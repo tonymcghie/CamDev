@@ -23,11 +23,12 @@ class GeneralController extends AppController {
     public $components = array('Paginator', 'RequestHandler', 'My', 'Session', 'Cookie', 'Auth');  
     
     //@LIVE swap the URLS for both of them
-    private $file_URL = '/app/app/webroot/data/'; //live
-    //private $file_URL = 'data/';        //testing
+    //private $file_URL = '/app/app/webroot/data/'; //live
+    private $file_URL = 'data/';        //testing
     
-    private $python_location = '/app/app/webroot/files/pythonScripts/'; //live
-    //private $python_location = 'C:/wamp/www/CAMcake/app/webroot/files/pythonScripts/'; //testing
+    //private $python_location = '/app/app/webroot/files/pythonScripts/'; //live
+    //private $python_location = 'C:/wamp/www/CAMcake/app/webroot/files/pythonScripts/'; // Windows testing
+    private $python_location = '/var/www/html/CAM3-0/app/webroot/files/pythonScripts/'; //linux testing
     
     /**
      * checks if the user is authorised to the controller functions
@@ -158,7 +159,9 @@ class GeneralController extends AppController {
         $command = $this->python_location.$this->request->data['name'].' '; // adds the file location to the command
         foreach ($this->request->data['args'] as $arg){
             $command .= $arg.' ';
-        } //adds values to pass to the python script by defualt first one is input file location and the second one is output file location
+        }
+        echo var_dump($command), "<br>";
+        //adds values to pass to the python script by defualt first one is input file location and the second one is output file location
         echo shell_exec('python '.$command); //@LIVE add 'python '. for live //executes the commad and passes the output back to the View         
     }
     
