@@ -105,6 +105,7 @@
         echo '<li>'.$this->Html->link('New Project', array('controller' => 'Projects', 'action' => 'addProject'), ['target' => 'mainFrame', 'class' => 'none']).'</li>';
         echo '<li>'.$this->Html->link('Info', array('controller' => 'General', 'action' => 'info'), ['target' => 'mainFrame', 'class' => 'none']).'</li>';        
 	echo '<li>'.$this->Html->link('How To', array('controller' => 'General', 'action' => 'howto'), ['target' => 'mainFrame', 'class' => 'none']).'</li>';
+        echo '<li>'.$this->Html->link('Feedback', array('controller' => 'Feedbacks', 'action' => 'new_feedback'), ['target' => 'mainFrame', 'class' => 'none']).'</li>';
         echo '<li>'.$this->Html->link('Clear Workbench', 'about:blank', ['target' => 'mainFrame', 'class' => 'none']).'</li>';
     ?>
     </ul>

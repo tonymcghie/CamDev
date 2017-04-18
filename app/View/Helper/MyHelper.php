@@ -247,4 +247,11 @@ class MyHelper extends AppHelper{
         return ['' => '' , 'alcohol' => 'alcohol' , 'aldehyde' => 'aldehyde' , 'alkaloid' => 'alkaloid' , 'amide' => 'amide', 'amine' => 'amine', 'amino acid' => 'amino acid' , 'carbohydrate' => 'carbohydrate' , 'carotenoid' => 'carotenoid' , 'epoxide' => 'epoxide' , 'ester' => 'ester' , 'flavonoid' => 'flavonoid',
             'glucosinolate' => 'glucosinolate' , 'hydrocarbon' => 'hydrocarbon' , 'ketone' => 'ketone' , 'lipid' => 'lipid' , 'organic acid' => 'organic acid' , 'peptide' => 'peptide' , 'phenolic acid' => 'phenolic acid' , 'sulphur compound' => 'sulphur compound' , 'terpene' => 'terpene' , 'other' => 'other'];
     }
+    /**
+     * returns the option value pairs for the Feedback select input
+     * @return type
+     */
+	public function getFeedbackOptions(){
+        return ['suggestion for improvement' => 'suggestion for improvement' , 'fault - urgent' => 'fault - urgent' , 'fault - not urgent' => 'fault - not urgent' , 'observation' => 'observation'];
+    }
 }
