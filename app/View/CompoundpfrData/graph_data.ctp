@@ -1,6 +1,6 @@
 <header class="graph"><h1>Draw Graph</h1>
 <?php
-echo $this->Html->script('HelperScripts_'.getenv('CSS_VERSION'), array('inline' => false));
+echo $this->Html->script('HelperScripts_'.getenv('CSS_VERSION').'.min', array('inline' => false));
 echo $this->Html->script('https://www.gstatic.com/charts/loader.js');
 
 $title = "Graph Pfr data: This is under constuction";

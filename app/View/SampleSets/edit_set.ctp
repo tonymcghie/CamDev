@@ -1,7 +1,7 @@
 <header>
 <h1>Review/Edit Sample Set MetaData</h1>
 <?php
-echo $this->Html->script('http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js' , array('inline' => false));
+echo $this->Html->script('jquery-3.1.1/jquery-3.1.1.min' , array('inline' => false));
 
 $versionOptions = array();
 foreach($versions as $version){
