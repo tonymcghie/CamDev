@@ -1,6 +1,6 @@
 <?php
     $this->assign('title', 'Chemistry WorkBench');
-    echo $this->Html->script('http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js' , array('inline' => false));      
+    echo $this->Html->script('jquery-3.1.1/jquery-3.1.1.min' , array('inline' => false));
     
 ?>
 <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>

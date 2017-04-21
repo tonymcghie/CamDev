@@ -1,5 +1,5 @@
 <!-- This is blank -->
-<?php echo $this->Html->script('http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js' , array('inline' => true));?>
+<?php echo $this->Html->script('jquery-3.1.1/jquery-3.1.1.min' , array('inline' => true));?>
 <script>
     function switch_first(){
        <?php echo $this->Js->request(['controller' => 'Users', 'action' => 'Session_first'], [

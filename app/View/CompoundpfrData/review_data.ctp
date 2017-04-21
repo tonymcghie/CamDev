@@ -28,7 +28,7 @@ $options_b = array(
     'genotype' => 'Genotype',
     'analyst' => 'Analyst');
 
-$this->Html->script('HelperScripts_'.getenv('CSS_VERSION'), array('inline' => false));
+$this->Html->script('HelperScripts_'.getenv('CSS_VERSION').'.min', array('inline' => false));
 if (!isset($box_nums)){$box_nums=1;} //sets the box nums for the first time
 //echo $this->My->makeSearchForm($title, $model, $options, $box_nums)
         //echo $this->element('search_form', ['title' => $title, 'model' => $model, 'options' => $options, 'box_nums' => $box_nums]);

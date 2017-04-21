@@ -10,7 +10,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
             CAM - <?php echo $this->fetch('title'); ?>
 	</title>       
 	<?php
-            echo $this->Html->script('http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js' , array('inline' => false));                  
+            echo $this->Html->script('jquery-3.1.1/jquery-3.1.1.min' , array('inline' => false));
             echo $this->Html->meta('icon');
 
             echo $this->Html->css(array ('page_'.getenv('CSS_VERSION'), 'button_'.getenv('CSS_VERSION'), 'color_schemes_'.getenv('CSS_VERSION')));

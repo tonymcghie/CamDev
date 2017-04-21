@@ -16,7 +16,7 @@ $options = array(
 'team' => 'Team',
 'start_date' => ((isset($data[$model]['isDate'])&&$data[$model]['isDate']==='1') ? $data['SampleSet']['start_date'] : '2000-01-01'));
 
-$this->Html->script('HelperScripts_'.getenv('CSS_VERSION'), array('inline' => false));
+$this->Html->script('HelperScripts_'.getenv('CSS_VERSION').'.min', array('inline' => false));
 if (!isset($box_nums)){$box_nums=1;} //sets the box nums for the first time
     echo $this->element('search_form', ['title' => $title, 'model' => $model, 'options' => $options, 'box_nums' => $box_nums]);
 ?>
