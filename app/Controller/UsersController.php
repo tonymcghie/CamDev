@@ -35,7 +35,8 @@ class UsersController extends AppController {
     /**
      * Logs a user in. Commented out when login not wanted
      */
-    public function login() {  
+    public function login() { 
+        $this->Auth->_loggedIn = true; //sets the user to be logged in copeid from below and added as a standalone to login for testing
 	/**            
     if ($this->Session->read('Auth.User')) {
         $data = http_build_query(['alert' => 'You are already Logged in as '.$this->Session->read('Auth.User')['name']]);        

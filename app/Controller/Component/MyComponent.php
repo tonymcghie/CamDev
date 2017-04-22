@@ -201,10 +201,10 @@ class MyComponent extends Component{
         }
     }
     public function isAuthorizedCompound($user, $Compound){
-        if (($Compound->action == 'editCompound' || $Compound->action == 'addCompound' ) && !in_array("PFR-GP-Biological Chemistry and Bioactives Group", $user['groups'])){
-            $Compound->redirect(array('controller' => 'users', 'action' => 'noPerm'));
-            return false;
-        }
+        //if (($Compound->action == 'editCompound' || $Compound->action == 'addCompound' ) && !in_array("PFR-GP-Biological Chemistry and Bioactives Group", $user['groups'])){
+            //$Compound->redirect(array('controller' => 'users', 'action' => 'noPerm'));
+           // return false;
+        //}  //diable to Authorize for testing
         return true;
     }
     public function isAuthorizedPFRData($user, $PFRData){
