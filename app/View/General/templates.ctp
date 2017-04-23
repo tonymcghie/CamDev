@@ -15,7 +15,7 @@
         <td><?php  echo $this->Html->link('DownLoad Template',$this->My->makeTemplateURL('pfr_compound_specifications.xlsx'),['target'=>'_blank', 'class' => 'find-button anySizeButton']); ?></td
     </tr>
     <tr>
-        <td><h2>Metabolomics Data Upload Specifciations:</h2></td>
+        <td><h2>Metabolomics Data Upload Specifications:</h2></td>
         <td><?php  echo $this->Html->link('DownLoad Template',$this->My->makeTemplateURL('molecular_features_specifications.xlsx'),['target'=>'_blank', 'class' => 'find-button anySizeButton']); ?></td
     </tr>
     <tr>

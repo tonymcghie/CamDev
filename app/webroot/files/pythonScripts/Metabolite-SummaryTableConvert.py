@@ -13,12 +13,17 @@ name, file_location_in, file_location_out = argv
 # Column1=compound name; Column 2= mass (accurate); Column3=id code; Column4=CAS number; Column5=conc units
 # Column 6+ data intensity values.
 # Row 1 contains a blank line with text in the first column eg 'header'
-# Row 2 contains 'sample_ref' then the actual samples names from column 7
-# Row 3 contains 'sample_description' then the actual sample description from column 7
-# Row 4 contains 'genotype' then the actual genotype from column 7
-# Row 5 contains 'tissue' then the actual tissue from column 7
-# Row 6 contains 'name' 'exact_mass' 'id_conf' 'cas' 'rt' 'intensity units' then blank from column 7
-# Row 7 onwards contains the data
+# Row 2 contains 'experiment_reference' then the actual experiment reference from column 7
+# Row 3 contains 'sample_reference' then the actual samples names from column 7
+# Row 4 contains 'sample_description' then the actual sample description from column 7
+# Row 5 contains 'crop' then the actual crop names from column 7
+# Row 6 contains 'genotype' then the actual genotype from column 7
+# Row 7 contains 'tissue' then the actual tissue from column 7
+# Row 8 contains 'genus_species' then the actual genus_species names from column 7
+# Row 9 contains 'analyst' then the actual analyst's name from column 7
+# Row 10 contains 'data location' then the actual data locations from column 7
+# Row 11 contains 'name' 'exact_mass' 'id_conf' 'cas' 'rt' 'intensity units' then blank from column 7
+# Row 12 onwards contains the data
 ##### Enter the location of the csv file - add double back slashes for MSWindows
 FileName=file_location_in;
 df=pd.read_csv(FileName, header=0)
@@ -30,10 +35,10 @@ df=pd.read_csv(FileName, header=0)
 # Remember to adjust the variables in the next three rows to match the loaded table
 # The columns for the df_Compound need to match the incoming table
 FirstSample = 6  ## enter the column number of the first sample column
-#### error thrown if last sample is too large. Make sure this numer is correct  
-FirstCompound = 4 ## enter the row number of the first compound row
+#### error thrown if last sample is too large. Make sure this number is correct  
+FirstCompound = 9 ## enter the row number of the first compound row
 #setup the new dataframe with the necessary column
-df_byCompound = pd.DataFrame(columns=['compound','exact_mass','assigned_confid','cas', 'rt_value', 'intensity_units', 'sample_ref', 'sample_description', 'genotype', 'tissue', 'intensity_value'])
+df_byCompound = pd.DataFrame(columns=['metabolite','mz','polarity', 'rt', 'metabolite_id', 'id_confid', 'intensity_value', 'experiment_ref', 'sample_ref', 'sample_description', 'crop', 'genotype', 'tissue', 'genus_species', 'analyst', 'data_location'])
 #now loop thought the input dataframe and write values into the output dataframe
 loop = FirstSample
 while 1==1: #process across samples
@@ -42,7 +47,7 @@ while 1==1: #process across samples
         for i,r in df.iterrows(): #for each row (compound) in a samples add data to the new datatable (df_byCompound)
             #print df.ix[i,0], df.ix[i,1], df.ix[i,2], df.ix[i,3]
             if i > FirstCompound: #the first rows of df that contain sample information and are loaded into the new df as below
-                df_byCompound = df_byCompound.append({'compound':df.ix[i,0], 'exact_mass':df.ix[i,1], 'assigned_confid':df.ix[i,2], 'cas':df.ix[i,3], 'rt_value':df.ix[i,4],'intensity_units':df.ix[i,5], 'sample_ref':df.ix[0,loop],'sample_description':df.ix[1,loop],'genotype':df.ix[2,loop],'tissue':df.ix[3,loop],'intensity_value':df.ix[i,loop]},ignore_index=True)
+                df_byCompound = df_byCompound.append({'metabolite':df.ix[i,0], 'mz':df.ix[i,1], 'polarity':df.ix[i,2], 'rt':df.ix[i,3], 'metabolite_id':df.ix[i,4], 'id_confid':df.ix[i,5], 'intensity_value':df.ix[i,loop], 'experiment_ref':df.ix[0,loop],'sample_ref':df.ix[1,loop],'sample_description':df.ix[2,loop], 'crop':df.ix[3,loop],'genotype':df.ix[4,loop],'tissue':df.ix[5,loop], 'genus_species':df.ix[6,loop], 'analyst':df.ix[7,loop], 'data_location':df.ix[8,loop]},ignore_index=True)
     except:
         break
     loop=loop+1

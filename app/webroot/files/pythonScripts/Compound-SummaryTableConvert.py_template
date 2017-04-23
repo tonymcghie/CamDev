@@ -1,0 +1,18 @@
+header,,,,,,,,,,,,,,,,,,,,,
+experiment_reference,,,,,,MH29,MH29,MH29,MH29,MH29,MH29,MH29,MH29,MH29,MH29,MH29,MH29,MH29,MH29,MH29,MH29
+sample_reference,,,,,,MH29.1,MH29.2,MH29.3,MH29.4,MH29.5,MH29.6,MH29.7,MH29.8,MH29.9,MH29.10,MH29.11,MH29.12,MH29.13,MH29.14,MH29.15,MH29.16
+sample_description,,,,,,1,2,3,4,25,26,27,28,41,42,43,44,49,50,51,52
+crop,,,,,,onion,onion,onion,onion,onion,onion,onion,onion,onion,onion,onion,onion,onion,onion,onion,onion
+genotype,,,,,,Pukekohe LK,Pukekohe LK,Pukekohe LK,Pukekohe LK,Pukekohe LK,Pukekohe LK,Pukekohe LK,Pukekohe LK,Pukekohe LK,Pukekohe LK,Pukekohe LK,Pukekohe LK,Pukekohe LK,Pukekohe LK,Pukekohe LK,Pukekohe LK
+tissue,,,,,,bulb,bulb,bulb,bulb,bulb,bulb,bulb,bulb,bulb,bulb,bulb,bulb,bulb,bulb,bulb,bulb
+genus/species,,,,,,Allium cepa,Allium cepa,Allium cepa,Allium cepa,Allium cepa,Allium cepa,Allium cepa,Allium cepa,Allium cepa,Allium cepa,Allium cepa,Allium cepa,Allium cepa,Allium cepa,Allium cepa,Allium cepa
+analyst,,,,,,Martin Hunt,Martin Hunt,Martin Hunt,Martin Hunt,Martin Hunt,Martin Hunt,Martin Hunt,Martin Hunt,Martin Hunt,Martin Hunt,Martin Hunt,Martin Hunt,Martin Hunt,Martin Hunt,Martin Hunt,Martin Hunt
+data location,,,,,,Chromeleon/Data16/MH29,Chromeleon/Data16/MH29,Chromeleon/Data16/MH29,Chromeleon/Data16/MH29,Chromeleon/Data16/MH29,Chromeleon/Data16/MH29,Chromeleon/Data16/MH29,Chromeleon/Data16/MH29,Chromeleon/Data16/MH29,Chromeleon/Data16/MH29,Chromeleon/Data16/MH29,Chromeleon/Data16/MH29,Chromeleon/Data16/MH29,Chromeleon/Data16/MH29,Chromeleon/Data16/MH29,Chromeleon/Data16/MH29
+name,exact_mass,id_conf,cas,rt,intensity_units,,,,,,,,,,,,,,,,
+"quercetin 3,4'-diglucoside",626.1483,1,29125-80-2,,ug/g FD,6241,4470,2498,2313,1521,1428,6312,2216,980,1412,2637,5455,1598,765,5081,2569
+quercetin 3-rutinoside,610.1534,1,153-18-4,,ug/g FD,n.d.,n.d.,n.d.,n.d.,n.d.,1,n.d.,n.d.,n.d.,3,n.d.,4,n.d.,8,6,8
+quercetin 3-glucoside,464.0955,1,482-35-9,,ug/g FD,245,103,38,33,34,27,137,60,17,37,94,200,26,12,127,121
+quercetin 4'-glucoside,464.0955,1,20229-56-5,,ug/g FD,4304,2755,1287,994,812,715,3364,1408,501,846,1626,3789,815,346,3414,1614
+isorhamnetin 4'-glucoside,478.1111,3,,,ug/g FD,534,484,266,190,118,134,399,241,136,169,191,623,229,75,471,195
+quercetin,302.0427,1,117-39-5,,ug/g FD,5,3,3,n.d.,n.d.,n.d.,5,1,n.d.,3,1,2,n.d.,6,3,2
+isorhamnetin,316.0583,1,480-19-3,,ug/g FD,n.d.,n.d.,n.d.,n.d.,n.d.,n.d.,n.d.,n.d.,n.d.,n.d.,n.d.,n.d.,n.d.,n.d.,n.d.,n.d.
