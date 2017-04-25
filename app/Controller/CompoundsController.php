@@ -22,12 +22,12 @@ class CompoundsController extends AppController{
     
     /**
      * What to do before funcitons are called
-     */
+     
     public function beforeFilter() {
         parent::beforeFilter();
         $this->Auth->deny('addCompound', 'editCompound'); //deny access from addCompound and editCompound by default
     }
-    
+    */
     /**
      * Return weather the user is authorised to access the function
      * @param type $user
