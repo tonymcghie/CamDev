@@ -22,8 +22,10 @@
         <td><h2>Number of Samples:</h2> <?php echo $info['SampleSet']['number']; ?></td>
         <td><h2>Location/Transport of Samples:</h2> <?php echo $info['SampleSet']['sample_loc']; ?></td>
     </tr>
-    <tr>
-        <td colspan="3"><h2>Is Confidential:&nbsp;</h2><span  style="display: inline-block;"><?php echo (($info['SampleSet']['confidential'] == '1') ? 'yes' : 'no');?></span></td>
+    <tr>   
+        <td><h2>Data Available:&nbsp;</h2><span  style="display: inline-block;"><?php echo (($info['SampleSet']['data_available'] == '1') ? 'yes' : 'no');?></span></td>
+        <td><h2>Sample Set Status:</h2> <?php echo $info['SampleSet']['status']; ?></td>
+        <td><h2>Is Confidential:&nbsp;</h2><span  style="display: inline-block;"><?php echo (($info['SampleSet']['confidential'] == '1') ? 'yes' : 'no');?></span></td>
     </tr>
     <tr>
         <td colspan="3"><h2>Reason for Analysis:</h2> <?php echo $info['SampleSet']['set_reason']; ?></td>

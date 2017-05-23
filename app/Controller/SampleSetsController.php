@@ -83,13 +83,14 @@ class SampleSetsController extends AppController{
         
         if ($this->request->is('post')){           
             $data = $this->request->data;      //gets the data
+            $data['SampleSet']['status']='submitted'; //sets the initial status of the new sample set to 'submitted'
             $numChem = $this->Chemist->find('count', array('conditions' => array('name' => $data['SampleSet']['chemist']))); //finds the number of chemists with the name entered (should always be 1)
             $chemist = '';
             if ($numChem!==0){
                 $chemist = $this->Chemist->find('first', array('fields' => array('Chemist.team', 'Chemist.name_code', 'Chemist.email'),  'conditions' => array('name' => $data['SampleSet']['chemist']))); //finds info for chemist
                 $data['SampleSet']['team']=$chemist['Chemist']['team'];  //updates the team
                 //$num = 1 + $this->SampleSet->find('count' , array ('conditions' => array('set_code LIKE' => $chemist['Chemist']['name_code'].'%')));       //finds the new number
-                $num = 1 + intval($this->SampleSet->query('SELECT MAX(CAST(SUBSTRING(`set_code` FROM 3 FOR 5)AS UNSIGNED)) AS `set_code` FROM camdata.sample_sets WHERE `set_code` LIKE "'.$chemist['Chemist']['name_code'].'%";')[0][0]['set_code']); //ONLY 2 CHARACTERs AT THE START this finds the highest number on the end of the set code
+                $num = 1 + intval($this->SampleSet->query('SELECT MAX(CAST(SUBSTRING(`set_code` FROM 3 FOR 5)AS UNSIGNED)) AS `set_code` FROM cam_data.sample_sets WHERE `set_code` LIKE "'.$chemist['Chemist']['name_code'].'%";')[0][0]['set_code']); //ONLY 2 CHARACTERs AT THE START this finds the highest number on the end of the set code
                 $data['SampleSet']['set_code']=$chemist['Chemist']['name_code'].$num; //updates the set_code;
             } //makes sure the chemist is valid
             $data['SampleSet']['date']= date('Y-m-d'); //sets the date that the sample sets was submitted
@@ -206,7 +207,7 @@ class SampleSetsController extends AppController{
         }
         //gets the criteria for the search
         $search = $this->My->extractSearchTerm($this->request->data, ['submitter', 'chemist', 'set_code', 'crop', 'type', 'p_name', 'p_code', 'exp_reference', 'compounds', 'comments', 'sample_loc', 'set_reason'], 'SampleSet');        
-        var_dump($search);
+        //var_dump($search);
         $results = $this->paginate('SampleSet', $search); //search for the data for the page
         $this->set('num', $this->SampleSet->find('count', ['conditions' =>$search]));// finds the num of results
         $this->set('results' ,$results); //sends the reuslts to the page  

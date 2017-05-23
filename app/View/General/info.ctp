@@ -167,7 +167,7 @@ header {padding-bottom: 0}
     <p>Chemists can edit the information entered in the compounds database table. There is no autocomplete function or checking on the CAS number on the form</p>
 </div>
 <div id="PFRdata" style="display: none;">
-    <h2>PFR data</h2>
+    <h2>PFR Compound Data</h2>
 
     <h3>Find</h3>
     <p>All PFR staff can search the PFR compounds Database. The Search function has be designed so that the desired results can be found using a combination of search criteria.  Logical operators can be used to specifically find a given set of data.  Once the desired data set have be displayed, the data can be downloaded as an Excel file for further data processing of graphing as required. If you search on compound name CAM will first search the compounds database and add adding synonyms that are present in the Compounds table.

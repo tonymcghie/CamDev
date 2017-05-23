@@ -14,6 +14,7 @@ $options = array(
 'comments' => 'Comments',
 'exp_reference' => 'Experiment Reference',
 'team' => 'Team',
+'status' => 'Status',
 'start_date' => ((isset($data[$model]['isDate'])&&$data[$model]['isDate']==='1') ? $data['SampleSet']['start_date'] : '2000-01-01'));
 
 $this->Html->script('HelperScripts_'.getenv('CSS_VERSION').'.min', array('inline' => false));
@@ -42,6 +43,7 @@ if (!isset($box_nums)){$box_nums=1;} //sets the box nums for the first time
     if (isset($results[0]['SampleSet'])){       
        $names = array( $this->Paginator->sort('set_code', 'Code', ['data' => $data]),
            array('Actions' => ['class' => 'Buttons']),
+           $this->Paginator->sort('status', 'Status', ['data' => $data]),
            $this->Paginator->sort('submitter', 'PFR Collaborator', ['data' => $data]),
            $this->Paginator->sort('chemist', 'Chemist', ['data' => $data]),
            $this->Paginator->sort('crop', 'Crop', ['data' => $data]),
@@ -49,7 +51,7 @@ if (!isset($box_nums)){$box_nums=1;} //sets the box nums for the first time
            $this->Paginator->sort('number', 'Number', ['data' => $data]),
            $this->Paginator->sort('compounds', 'Compounds', ['data' => $data]),
            $this->Paginator->sort('comments', 'Comments', ['data' => $data]));
-       $cols = array('set_code', 'Actions', 'submitter', 'chemist', 'crop', 'type', 'number', 'compounds','comments');
+       $cols = array('set_code', 'Actions', 'status', 'submitter', 'chemist', 'crop', 'type', 'number', 'compounds','comments');
        $type = 'SampleSet';
        echo $this->element('results_table', ['results' => $results, 'names' => $names, 'cols' => $cols, 'model' => $model, 'type' => $type, 'data' => $data, 'num' => $num, 'isTablet' => $isTablet]);
     } else if (isset($results)){

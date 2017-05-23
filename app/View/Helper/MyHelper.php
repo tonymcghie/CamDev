@@ -134,13 +134,14 @@ class MyHelper extends AppHelper{
      * helper method for making the links for makeResultsTable if its a sample set table
      */
     protected function sampleSetActions($id, $set_code, $isTablet = 'false'){
-        $temp = $this->Form->postLink('Edit', array('controller' => 'SampleSets', 'action' => 'editSet', $id), array('class' => 'find-button abbr-button', 'title'=>'Edit'));
-        $temp .= $this->Form->postLink('View', array('controller' => 'SampleSets', 'action' => 'viewSet', $id), array('class' => 'find-button abbr-button', 'title'=>'View'));
+        //$temp = $this->Form->postLink('Edit', array('controller' => 'SampleSets', 'action' => 'editSet', $id), array('class' => 'find-button abbr-button', 'title'=>'Edit'));
+        $temp = $this->Form->postLink('View', array('controller' => 'SampleSets', 'action' => 'viewSet', $id), array('class' => 'find-button abbr-button', 'title'=>'View'));
+        $temp .= $this->Form->postLink('Edit', array('controller' => 'SampleSets', 'action' => 'editSet', $id), array('class' => 'find-button abbr-button', 'title'=>'Edit'));
         //check if user is in bio chemistry before showing the analysis button //comment out if statment to show the analysis button
         //if ($this->Session->read('Auth.User')!==null && in_array("PFR-GP-Biological Chemistry and Bioactives Group", $this->Session->read('Auth.User')['groups'])){
             $temp .= $this->Form->postLink('Analyse', array('controller' => 'Analyses', 'action' => 'editAnalysis','?' => ['isTablet' => $isTablet, 'set_code' =>  $set_code]), array('style'=>'width: 60px','class' => 'find-button abbr-button', 'title'=>'Analyse'));
 			$temp .= $this->Form->postLink('Samples', array('controller' => 'Samples', 'action' => 'viewSamples', $id), array('style'=>'width: 55px','class' => 'find-button abbr-button', 'title'=>'View sample list'));
-			$temp .= $this->Form->postLink('ImportSamples', array('controller' => 'Samples', 'action' => 'importSamples', $id), array('style'=>'width: 90px','class' => 'find-button abbr-button', 'title'=>'Import sample list from a .csv file'));
+			//$temp .= $this->Form->postLink('ImportSamples', array('controller' => 'Samples', 'action' => 'importSamples', $id), array('style'=>'width: 90px','class' => 'find-button abbr-button', 'title'=>'Import sample list from a .csv file'));
 		//}
         return $temp;
     }
@@ -253,5 +254,12 @@ class MyHelper extends AppHelper{
      */
 	public function getFeedbackOptions(){
         return ['suggestion for improvement' => 'suggestion for improvement' , 'fault - urgent' => 'fault - urgent' , 'fault - not urgent' => 'fault - not urgent' , 'observation' => 'observation'];
+    }
+    /**
+    * returns the option value pairs for the Sample Set Status select input
+    * @return type
+    */
+ 	public function getSS_StatusOptions(){
+         return ['submitted' => 'submitted' , 'in progress' => 'in progress' , 'completed' => 'completed'];
     }
 }
