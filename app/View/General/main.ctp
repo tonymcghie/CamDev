@@ -144,26 +144,9 @@
         }
         tabletView = isTabletView;
         $("#sidebar").height($(window).height()-10);
-        switch ('<?php echo (isset($this->Session->read('Auth.User')['location']) ? $this->Session->read('Auth.User')['location'] : "default" )?>'){
-			case 'Palmerston North Research Centre':
-				$('#mainFrame').css('background-image', 'url("img/chemlab_pn.jpg")');
-                break;
-            case 'Mt Albert Research Centre':
-                $('#mainFrame').css('background-image', 'url("img/chemlab_pn.jpg")');
-                break;
-            case 'Ruakura Research Centre':
-                $('#mainFrame').css('background-image', 'url("img/chemlab_ruakura.jpg")');
-                break;
-            case 'Lincoln Research Centre':
-                $('#mainFrame').css('background-image', 'url("img/chemlab_pn.jpg")');
-                break;
-            case 'Otago University':
-                $('#mainFrame').css('background-image', 'url("img/chemlab_otago.jpg")');
-                break;
-            default:
-                $('#mainFrame').css('background-image', 'url("img/vineyard-blenheim.jpg")');
-                break;
-        };
+        $('#mainFrame').css('background-image', 'url("img/vineyard-blenheim.jpg")'); 
+        //$('#<?php echo $title.'pane' ?>').hide();
+        //above lie is an example of how to transport a php variable into js
     };
 
     /**

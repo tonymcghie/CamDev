@@ -96,8 +96,10 @@ class MyHelper extends AppHelper{
     public function makeResultsTable($results, $options, $type = null, $isTablet = 'false'){
         $table = '<table class="table-striped">';
         $table .= $this->Html->tableHeaders($options['names']);
+        //echo var_dump($results), "<br>";
         foreach($results as $row){
             $tableCells = array();
+            //echo var_dump($row['Compoundpfr_data']['reference']), "<br>";
             foreach($options['cols'] as $col){
                 if ($col=='Actions'){
                     $links = '';
@@ -112,7 +114,7 @@ class MyHelper extends AppHelper{
                     } else if ($type=='Msms_Metabolite'){
                         $links .= $this->msmsMetaboliteActions($row[$options['model']]['id']);
                     } else if ($type=='CompoundpfrData'){
-                        $links .= $this->compoundpfrDataActions($row[$options['model']]['id']);
+                        $links .= $this->compoundpfrDataActions($row[$options['model']]['id'], $row['Compoundpfr_data']['reference']);
                     } else if ($type=='Molecular_feature'){
                         $links .= $this->molecular_featureActions($row[$options['model']]['id']);
                     }
@@ -200,8 +202,10 @@ class MyHelper extends AppHelper{
 	/**
      * helper method for making edit link for resulttable
      */
-    protected function compoundpfrDataActions($id){
-        return $this->Form->postLink('View', array('controller' => 'CompoundpfrData', 'action' => 'viewData', $id), array('class' => 'find-button abbr-button'));
+    protected function compoundpfrDataActions($id, $set_code){
+        $temp = $this->Form->postLink('Data View', array('controller' => 'CompoundpfrData', 'action' => 'viewData', $id), array('class' => 'find-button abbr-button'));
+        $temp .= $this->Form->postLink('Set View', array('controller' => 'SampleSets', 'action' => 'viewSet', $id, $set_code), array('class' => 'find-button abbr-button'));
+        return $temp;
     }
     /**
      * helper method for making edit link for resulttable

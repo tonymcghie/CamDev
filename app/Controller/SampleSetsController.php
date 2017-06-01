@@ -225,10 +225,17 @@ class SampleSetsController extends AppController{
      * @param type $id
      * @throws NotFoundExcpetion
      */
-    public function viewSet($id = null){
-        $set = $this->SampleSet->findById($id); //if the id is passed then find on that
+    public function viewSet($id = null, $set_code = null){
+        if ($set_code!=null){
+            //find by set_code and get set id
+            $search = $this->My->extractSearchTerm($set_code, ['submitter', 'chemist', 'set_code', 'crop', 'type', 'p_name', 'p_code', 'exp_reference', 'compounds', 'comments', 'sample_loc', 'set_reason'], 'SampleSet');  
+            var_dump($search);
+        }
+        else {
+            $set = $this->SampleSet->findById($id); //if the id is passed then find on that
+        }
         if (!$set){ //if the set does not exist
-            throw new NotFoundExcpetion(__('Invalid Sample Set'));
+            throw new NotFoundException(__('Invalid Sample Set'));
         } //if the sample set with that id exists
         $this->set('info', $set);// passes the set to the page
         $deRes = $this->Analysis->find('all', ['fields' => ['Analysis.derived_results', 'Analysis.title'], 'conditions' => ['set_code' => $set['SampleSet']['set_code']]]); //finds the most recent version

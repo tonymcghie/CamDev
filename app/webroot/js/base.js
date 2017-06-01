@@ -1,16 +1,6 @@
-function setUp(){
-    var takePicture = document.querySelectorAll(".take-picture"),
-        ids = document.querySelectorAll(".ids");
 
-    for (var i=0 ; i<takePicture.length ; i++){
-        if (takePicture[i]) {
-            // Set events
-            takePicture[i].onchange = function (event) {
-                // Get a reference to the taken picture or chosen file
-                handelPicture(i,event);
-            };
-        }
-    }
+function setUp(){
+    console.log('the Function setUp in base.js had been deprecated - cannot be used');
 }
 
 function handelPicture(i,event){
