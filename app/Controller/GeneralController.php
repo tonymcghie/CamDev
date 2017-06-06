@@ -73,9 +73,9 @@ class GeneralController extends AppController {
      * will redirect to a login page if the user is not logged in and its the first time accessing it. This is to stop it getting in a loop
      */
     public function blank(){                
-        if ($this->Session->read('Auth.User')== null && $this->Session->read('first') != true){
-            $this->redirect(['controller' => 'users', 'action' => 'login']); //redirects to the login page
-        } //checks if there is no one logged in
+        //if ($this->Session->read('Auth.User')== null && $this->Session->read('first') != true){
+            //$this->redirect(['controller' => 'users', 'action' => 'login']); //redirects to the login page
+       // } //checks if there is no one logged in
         $this->layout = ''; //sets the layout to blank so there is no divs or anything so the page looks blank
     }
     

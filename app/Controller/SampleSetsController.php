@@ -228,8 +228,12 @@ class SampleSetsController extends AppController{
     public function viewSet($id = null, $set_code = null){
         if ($set_code!=null){
             //find by set_code and get set id
-            $search = $this->My->extractSearchTerm($set_code, ['submitter', 'chemist', 'set_code', 'crop', 'type', 'p_name', 'p_code', 'exp_reference', 'compounds', 'comments', 'sample_loc', 'set_reason'], 'SampleSet');  
-            var_dump($search);
+            $set = $this->SampleSet->find('first', ['conditions' => ['set_code' => $set_code]]);
+            //var_dump($set);
+            //if set does not exist this redirects the page to the blank page and makes an alert message containing the set code
+            if (!$set){
+                return $this->redirect(['controller' => 'General', 'action' => 'blank', '?' => ['alert' => 'Sample Set does not exist.']]); 
+            }    
         }
         else {
             $set = $this->SampleSet->findById($id); //if the id is passed then find on that

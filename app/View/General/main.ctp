@@ -135,18 +135,12 @@
      * @returns {null}
      */
     function fixSize(isTabletView){
-        if (isTabletView){
-            $("#mainFrame").attr('style','position: absolute;top: 0px;left: -201px;width: 100%; z-index: 1;');
-            $("#sidebar").attr('style','position: absolute;top: 0px;left: 0px;z-index: 3;box-shadow: 6px 6px 6px rgba(0,0,0,0.7);');
-            $("#mainFrame").width($(window).width());
-        } else {
-            $("#mainFrame").width('100%');
-        }
-        tabletView = isTabletView;
+        $("#mainFrame").width('100%');
+        //tabletView = isTabletView;
         $("#sidebar").height($(window).height()-10);
-        $('#mainFrame').css('background-image', 'url("img/vineyard-blenheim.jpg")'); 
-        //$('#<?php echo $title.'pane' ?>').hide();
-        //above lie is an example of how to transport a php variable into js
+        $('#mainFrame').css('background-image', 'url("img/pn_backgrounds/palmy_town.jpg")'); 
+        /**$('#<?php echo $title.'pane' ?>').hide();
+        //above lie is an example of how to transport a php variable into js*/
     };
 
     /**
