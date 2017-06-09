@@ -124,7 +124,62 @@ class MolecularFeaturesController extends AppController{
         } //if there is a pivot set then pivot the data if not format the data into a format friendlier to the google charts API
         echo json_encode($results); //echos the Json string back to the ajax call
     }
-        
+    
+    /**
+     * Enables the user to obtain a summary review of the data in the Metabolomics data table.  This is a large table and this tool is useful 
+     * for getting an overview of the data in the table 
+     */
+    public function reviewData(){
+        if (!isset($this->request->data['review'])){
+            return;
+        } // if no data is passed return and dont search
+        if ($this->request->is('post')){
+            $review_options = $this->request->data;
+            echo var_dump($review_options),"<br>";
+            /*
+             * next code sets up a SQL query in the form of:
+             * SELECT DISTINCT experiment_reference FROM cam_data.molecular_features WHERE crop LIKE '%kiwi%';
+             */
+            //echo var_dump($review_options['review']['cri']),"<br>";
+            //echo var_dump($review_options['review']['by']),"<br>";
+            //echo var_dump($review_options['review']['for']),"<br>";
+            $review_for = 'DISTINCT '.$review_options['review']['for'];
+            echo "Review for: ", var_dump($review_for),"<br>";
+            if ($review_options['review']['match'] == 'contain'){
+                    $review_by_value = '%'.$review_options['review']['by'].'%';
+                }
+            if ($review_options['review']['match'] == 'exact'){
+                    $review_by_value = ''.$review_options['review']['by'].'';
+                }
+            if ($review_options['review']['match'] == 'starts_with'){
+                    $review_by_value = ''.$review_options['review']['by'].'%';
+                }
+            echo "Review by: ", var_dump($review_by_value),"<br>";
+            $review_by_field = $review_options['review']['cri'].' LIKE';
+            echo "Review by field: ", var_dump($review_by_field),"<br>";
+            $num = $this->Molecular_feature->find('count', array(
+            'fields' => $review_for,
+            'conditions' => array($review_by_field => $review_by_value)
+            ));
+            echo "Count: ", var_dump($num),"<br>";
+            $results = $this->Molecular_feature->find('all', array(
+            'fields' => $review_for,
+            'conditions' => array($review_by_field => $review_by_value)
+            ));
+            //echo var_dump($results),"<br>";
+            $output = array();
+            //for ($n = 0; $n <= 10; $n++){
+            foreach ($results as $n) {
+                array_push($output, $n['Molecular_feature'][$review_options['review']['for']]);
+                //var_dump($n, $results[$n]['Compoundpfr_data']['assigned_name'], "<br>");
+            }
+            //echo var_dump($output),"<br>";
+            $this->set('num', $num);
+            $this->set('output', $output);
+            $this->set('data', $this->request->data); //sends all the data(search criteria) to the view so it can be added to the ajax links
+        }
+    }
+    
     /**
      * This handles the importing of data
      * the uplaoding and prieview is already done all this does is add the colums to the data base that have being matched to a column in the table to the table

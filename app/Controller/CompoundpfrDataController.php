@@ -145,7 +145,7 @@ class CompoundpfrDataController extends AppController{
             //echo var_dump($review_options['review']['by']),"<br>";
             //echo var_dump($review_options['review']['for']),"<br>";
             $review_for = 'DISTINCT Compoundpfr_data.'.$review_options['review']['for'];
-            //echo "Review for: ", var_dump($review_for),"<br>";
+            echo "Review for: ", var_dump($review_for),"<br>";
             if ($review_options['review']['match'] == 'contain'){
                     $review_by_value = '%'.$review_options['review']['by'].'%';
                 }
@@ -156,7 +156,7 @@ class CompoundpfrDataController extends AppController{
                     $review_by_value = ''.$review_options['review']['by'].'%';
                 }
             //$review_by_value = '%'.$review_options['review']['by_'].'%';
-            //echo "Review by: ", var_dump($review_by_value),"<br>";
+            echo "Review by: ", var_dump($review_by_value),"<br>";
             $review_by_field = 'Compoundpfr_data.'.$review_options['review']['cri'].' LIKE';
             //echo "Review by field: ", var_dump($review_by_field),"<br>";
             $num = $this->Compoundpfr_data->find('count', array(
