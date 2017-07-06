@@ -142,30 +142,13 @@ function filterResults(){
     echo $this->Js->request(['controller' => 'Compounds', 'action' => 'filterSubStructRes'], [
             'async' => true,
             'method' => 'post',
-            'data' => '{CID: results["IdentifierList"]["CID"][iterator]}',
+            'data' => '{CID: results["IdentifierList"]["CID"]}',
             'dataExpression' => true,
             'type' => 'json',
-            'success'=> ' 
-                        resultsDone++; /* increase the number of results done so that the percentage is increased */
-                        $("#statusText").html("Filtering Results: "+Math.round((resultsDone/totalResults)*100)+"% ");
-                        
-                        if (data.length !== 0){
-                            CIDs.push(data);
-                        }
-                        if (iterator+1 >= totalResults){
-                            drawRes();
-                        } else {
-                            iterator++
-                            filterResults();
-                        }
-                                                
-                    ',
-            'error' => '
-                iterator++;
-                filterResults();
-             '
+            'success'=> 'CIDs = data;drawRes();'
             ]);
     ?>
+    console.log(results["IdentifierList"]["CID"])
 }
 
 /**
@@ -174,8 +157,14 @@ function filterResults(){
  */
 function drawRes(){
     $("#statusText").html('Results: '+CIDs.length); 
-    for (var i = 0;i<CIDs.length;i++){
-        $('#res > tbody:last-child').append('<tr id="'+CIDs[i]["Compound"]["pub_chem"]+'"><td>'+CIDs[i]["Compound"]["pub_chem"]+'</td><td><span class="find-button blue-button" onclick="showPubChem('+CIDs[i]["Compound"]["pub_chem"]+')">Pub Chem</span></td><td>'+CIDs[i]["Compound"]["compound_name"]+'</td><td>'+CIDs[i]["Compound"]["exact_mass"]+'</td></tr>');
+    $('#res > tbody').html('');
+    for (var i = 0; i < CIDs.length; i++){        
+        $('#res > tbody:last-child').append('<tr id="'+CIDs[i]["compounds"]["pub_chem"]+'">\n\
+                <td>'+CIDs[i]["compounds"]["pub_chem"]+'</td>\n\
+                <td><span class="find-button blue-button" onclick="showPubChem('+CIDs[i]["compounds"]["pub_chem"]+')">Pub Chem</span></td>\n\
+                <td>'+CIDs[i]["compounds"]["compound_name"]+'</td>\n\
+                <td>'+CIDs[i]["compounds"]["exact_mass"]+'</td>\n\
+            </tr>');
     } // loops throught the array of positive matches and adds a row to the table
     $("#res").show(); //shows the results table
     $("#state").hide(); //hides the gif

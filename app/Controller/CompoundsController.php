@@ -178,10 +178,12 @@ class CompoundsController extends AppController{
      */
     public function filterSubStructRes(){
         $this->autoRender=false; //stops the page from rendering as this is ajax so it outputs data
-        $this->layout = 'ajax';     //ajax layout is blank
-        $CID = $this->request->data['CID']; 
-        $comp = $this->Compound->find('first', ['conditions' => ['pub_chem' => $CID], 'fields' => ['Compound.pub_chem', 'Compound.compound_name', 'Compound.exact_mass']]);
-        echo json_encode($comp);
+        $this->layout = 'ajax';     //ajax layout is blank 
+        $CIDs = implode(', ', $this->request->data['CID']); 
+        $results = $this->Compound->query("SELECT compounds.pub_chem, compounds.compound_name, compounds.exact_mass FROM cam_data.compounds WHERE pub_chem IN ({$CIDs})");
+        echo json_encode($results);
+        //$comp = $this->Compound->find('first', ['conditions' => ['pub_chem' => $CID], 'fields' => ['Compound.pub_chem', 'Compound.compound_name', 'Compound.exact_mass']]);
+        //echo json_encode($comp);
     }
     
     /**
