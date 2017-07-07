@@ -1,11 +1,12 @@
 <?php
 
+App::uses('ConnectionManager', 'Model');
+
 /* 
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 class MolecularFeaturesController extends AppController{
     public $helpers = array('Html' , 'Form' , 'My', 'Js');
     public $uses = array('Molecular_feature','PubChemModel', 'Compound');
@@ -135,46 +136,24 @@ class MolecularFeaturesController extends AppController{
         } // if no data is passed return and dont search
         if ($this->request->is('post')){
             $review_options = $this->request->data;
-            echo var_dump($review_options),"<br>";
-            /*
-             * next code sets up a SQL query in the form of:
-             * SELECT DISTINCT experiment_reference FROM cam_data.molecular_features WHERE crop LIKE '%kiwi%';
-             */
-            //echo var_dump($review_options['review']['cri']),"<br>";
-            //echo var_dump($review_options['review']['by']),"<br>";
-            //echo var_dump($review_options['review']['for']),"<br>";
-            $review_for = 'DISTINCT '.$review_options['review']['for'];
-            echo "Review for: ", var_dump($review_for),"<br>";
-            if ($review_options['review']['match'] == 'contain'){
-                    $review_by_value = '%'.$review_options['review']['by'].'%';
-                }
-            if ($review_options['review']['match'] == 'exact'){
-                    $review_by_value = ''.$review_options['review']['by'].'';
-                }
-            if ($review_options['review']['match'] == 'starts_with'){
-                    $review_by_value = ''.$review_options['review']['by'].'%';
-                }
-            echo "Review by: ", var_dump($review_by_value),"<br>";
-            $review_by_field = $review_options['review']['cri'].' LIKE';
-            echo "Review by field: ", var_dump($review_by_field),"<br>";
-            $num = $this->Molecular_feature->find('count', array(
-            'fields' => $review_for,
-            'conditions' => array($review_by_field => $review_by_value)
-            ));
-            echo "Count: ", var_dump($num),"<br>";
-            $results = $this->Molecular_feature->find('all', array(
-            'fields' => $review_for,
-            'conditions' => array($review_by_field => $review_by_value)
-            ));
-            //echo var_dump($results),"<br>";
-            $output = array();
-            //for ($n = 0; $n <= 10; $n++){
-            foreach ($results as $n) {
-                array_push($output, $n['Molecular_feature'][$review_options['review']['for']]);
-                //var_dump($n, $results[$n]['Compoundpfr_data']['assigned_name'], "<br>");
-            }
-            //echo var_dump($output),"<br>";
-            $this->set('num', $num);
+            
+            if ($review_options['review']['match'] == 'contain')$review_by_value = '%'.$review_options['review']['by'].'%';
+            if ($review_options['review']['match'] == 'exact')$review_by_value = $review_options['review']['by'];
+            if ($review_options['review']['match'] == 'starts_with')$review_by_value = $review_options['review']['by'].'%';
+            
+            $db_name = ConnectionManager::getDataSource('default')->config['database'];
+            $results = $this->Molecular_feature->query("SELECT DISTINCT {$review_options['review']['for']} "
+                    . "FROM {$db_name}.molecular_features as Molecular_feature"
+                    . " WHERE {$review_options['review']['cri']} LIKE '{$review_by_value}';");
+                    
+            // Makes the result array a 1 dimentional indexed array ie.            
+            $squash_function = function($carry = [], $item) use ($review_options){
+                if (empty($carry))$carry = [];
+                $carry[] = $item['Molecular_feature'][$review_options['review']['for']];
+                return $carry;
+            };           
+            $output = array_reduce($results, $squash_function);
+            
             $this->set('output', $output);
             $this->set('data', $this->request->data); //sends all the data(search criteria) to the view so it can be added to the ajax links
         }
