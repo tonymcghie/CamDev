@@ -54,6 +54,45 @@ if (!isset($box_nums)){$box_nums=1;} //sets the box nums for the first time
     
 <?php
 if (!empty($data)) {
-    echo $this->element('basic_results_table', ['label' => $options_b[$data['review']['for']], 'output' => $output]);
+    $values = ['label' => $options_b[$data['review']['for']], 'output' => $output, 'controller' => 'SampleSet', 'action' => 'searchSet'];
+    switch ($data['review']['for']) {
+        case 'reference':
+            $values['controller'] = 'SampleSets';
+            $values['action'] = 'searchSet';
+            $values['column'] = 'set_code';
+            break;
+        case 'crop':
+            $values['controller'] = 'SampleSets';
+            $values['action'] = 'searchSet';
+            $values['column'] = 'crop';
+            break;
+        case 'tissue':
+            $values['controller'] = 'SampleSets';
+            $values['action'] = 'searchSet';
+            $values['column'] = 'type';
+            break;
+        case 'analyst':
+            $values['controller'] = 'SampleSets';
+            $values['action'] = 'searchSet';
+            $values['column'] = 'chemist';
+            break;
+        case 'cas':
+            $values['controller'] = 'Compounds';
+            $values['action'] = 'searchCompound';
+            $values['column'] = 'cas';
+            break;
+        case 'exact_mass':
+            $values['controller'] = 'Compounds';
+            $values['action'] = 'searchCompound';
+            $values['column'] = 'exact_mass';
+            break;
+        case 'assigned_name':
+            $values['controller'] = 'Compounds';
+            $values['action'] = 'searchCompound';
+            $values['column'] = 'compound_name';
+            break;
+        default:
+    }
+    echo $this->element('basic_results_table', $values);
 }
 ?>

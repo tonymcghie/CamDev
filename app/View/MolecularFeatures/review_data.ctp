@@ -50,6 +50,7 @@ if (!isset($box_nums)){$box_nums=1;} //sets the box nums for the first time
     
 <?php
 if (!empty($data)) {
-    echo $this->element('basic_results_table', ['label' => $options_b[$data['review']['for']], 'output' => $output]);
+    $values = ['label' => $options_b[$data['review']['for']], 'output' => $output];
+    echo $this->element('basic_results_table', $values);
 }
 ?>

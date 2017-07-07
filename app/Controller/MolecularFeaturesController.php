@@ -47,25 +47,35 @@ class MolecularFeaturesController extends AppController{
             parse_str($data);
             $this->request->data['Molecular_feature'] = $Molecular_feature;
         }// If no data is passed get the data from the set params.
-        if (!isset($this->request->data['Molecular_feature'])){
-            return;
-        }//if no data is passed return and dont search
-        $this->Paginator->settings = array('limit' => 100);
-        $this->request->data['Molecular_feature']['num_boxes'] = (isset($this->request->data['Molecular_feature']['num_boxes']) ? $this->request->data['Molecular_feature']['num_boxes'] : 1); //sets boxnum to 1 if its not already set
-        $this->set('box_nums',$this->request->data['Molecular_feature']['num_boxes']); //passes the number of boxes from the old form to the new form
-        if ($this->request->data['Molecular_feature']['isDate']==='1'){
-            $this->request->data['Molecular_feature']['start_date'] = $this->request->data['Molecular_feature']['start_date']['year'].'-'.$this->request->data['Molecular_feature']['start_date']['month'].'-'.$this->request->data['Molecular_feature']['start_date']['day'];//makes date in  format where sql can compare time helper
-            $this->request->data['Molecular_feature']['end_date'] = $this->request->data['Molecular_feature']['end_date']['year'].'-'.$this->request->data['Molecular_feature']['end_date']['month'].'-'.$this->request->data['Molecular_feature']['end_date']['day'];
-        } //if the date is set then add the date to the search query
-        //gets an array of the criteria for the search
-        // add some lines to fine problems.  Want see what data is returned from the form
-        $search_data = $this->request->data;
-        $search = $this->My->extractSearchTerm($search_data, ['feature_tag', 'mz', 'ms_instrument_loc', 'experiment_reference', 'sample_reference', 'crop', 'genus_species', 'tissue', 'genotype', 'analyst', 'file'], 'Molecular_feature'); 
-        //echo var_export($search), "<br>";
-        //var_dump($search);
-        $this->set('results' ,$this->paginate('Molecular_feature', $search)); //sends the results from the cake pagination helper to the view
-        $this->set('num', $this->Molecular_feature->find('count', ['conditions' =>$search]));
-        $this->set('data', $this->request->data); //sends all the data(search criteria) to the view so it can be added to the ajax links
+        
+        if (isset($this->params->query['search'])) {
+            $search = [$this->params->query['search']['column'] => $this->params->query['search']['value']];
+            $results = $this->paginate('SampleSet', $search); //search for the data for the page
+            $this->set('num', $this->Molecular_feature->find('count', ['conditions' => $search]));// finds the num of results
+            $this->set('results' ,$results);
+            
+            $data['Molecular_feature'] = [];
+            $this->set('data', $data);
+        }
+        
+        if (isset($this->request->data['Molecular_feature'])){
+            $this->Paginator->settings = array('limit' => 100);
+            $this->request->data['Molecular_feature']['num_boxes'] = (isset($this->request->data['Molecular_feature']['num_boxes']) ? $this->request->data['Molecular_feature']['num_boxes'] : 1); //sets boxnum to 1 if its not already set
+            $this->set('box_nums',$this->request->data['Molecular_feature']['num_boxes']); //passes the number of boxes from the old form to the new form
+            if ($this->request->data['Molecular_feature']['isDate']==='1'){
+                $this->request->data['Molecular_feature']['start_date'] = $this->request->data['Molecular_feature']['start_date']['year'].'-'.$this->request->data['Molecular_feature']['start_date']['month'].'-'.$this->request->data['Molecular_feature']['start_date']['day'];//makes date in  format where sql can compare time helper
+                $this->request->data['Molecular_feature']['end_date'] = $this->request->data['Molecular_feature']['end_date']['year'].'-'.$this->request->data['Molecular_feature']['end_date']['month'].'-'.$this->request->data['Molecular_feature']['end_date']['day'];
+            } //if the date is set then add the date to the search query
+            //gets an array of the criteria for the search
+            // add some lines to fine problems.  Want see what data is returned from the form
+            $search_data = $this->request->data;
+            $search = $this->My->extractSearchTerm($search_data, ['feature_tag', 'mz', 'ms_instrument_loc', 'experiment_reference', 'sample_reference', 'crop', 'genus_species', 'tissue', 'genotype', 'analyst', 'file'], 'Molecular_feature'); 
+            //echo var_export($search), "<br>";
+            //var_dump($search);
+            $this->set('results' ,$this->paginate('Molecular_feature', $search)); //sends the results from the cake pagination helper to the view
+            $this->set('num', $this->Molecular_feature->find('count', ['conditions' =>$search]));
+            $this->set('data', $this->request->data); //sends all the data(search criteria) to the view so it can be added to the ajax links
+        }
     } 
     
     /**

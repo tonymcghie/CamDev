@@ -179,34 +179,46 @@ class SampleSetsController extends AppController{
      * @return type
      */
     public function searchSet($data = null){  
-        if ($data!=null&&!isset($this->request->data['SampleSet'])){ //if the data passed is through the url rather than post then set the data variable to the data passed from the url
+        if ($data != null && !isset($this->request->data['SampleSet'])){ //if the data passed is through the url rather than post then set the data variable to the data passed from the url
             parse_str($data);
             $this->request->data['SampleSet'] = $SampleSet;
         } //if data is passed to the function then set it to be in the $this->request->data variable
-        if (isset($this->request->data['SampleSet'])){ //if data == null and request->data ==null                
+        $data = $this->request->data;
+        if (isset($this->params->query['search'])) {
+            $column = $this->params->query['search']['column'];
+            $value = $this->params->query['search']['value'];
+            
+            $data['SampleSet'] = [];
+            $data['SampleSet']['num_boxes'] = 1;
+            $data['SampleSet']['cri_0'] = $column;
+            $data['SampleSet']['val_0'] = $value;
+            $data['SampleSet']['log_0'] = 'AND';
+            $data['SampleSet']['match_0'] = 'contain';
+        }
+        if (isset($data['SampleSet'])){ //if data == null and request->data ==null                
 //            $this->paginate = array( 
 //            'limit' => 30,
 //            'order' => array('SampleSet.date' => 'asc'));     //sets up the pagination options
 
-            $this->request->data['SampleSet']['num_boxes'] = (isset($this->request->data['SampleSet']['num_boxes']) ? $this->request->data['SampleSet']['num_boxes'] : 1); //sets boxnum to 1 if its not already set
-            $this->set('box_nums',$this->request->data['SampleSet']['num_boxes']);  //passes the box num to the view 
-            if ($this->request->data['SampleSet']['isDate']==='1'){ //checks if there is a date to search on
-                $this->request->data['SampleSet']['start_date'] = $this->request->data['SampleSet']['start_date']['year'].'-'.$this->request->data['SampleSet']['start_date']['month'].'-'.$this->request->data['SampleSet']['start_date']['day'];//makes date in  format where sql can compare time helper
-                $this->request->data['SampleSet']['end_date'] = $this->request->data['SampleSet']['end_date']['year'].'-'.$this->request->data['SampleSet']['end_date']['month'].'-'.$this->request->data['SampleSet']['end_date']['day'];
+            $data['SampleSet']['num_boxes'] = (isset($data['SampleSet']['num_boxes']) ? $data['SampleSet']['num_boxes'] : 1); //sets boxnum to 1 if its not already set
+            $this->set('box_nums',$data['SampleSet']['num_boxes']);  //passes the box num to the view 
+            if ($data['SampleSet']['isDate']==='1'){ //checks if there is a date to search on
+                $data['SampleSet']['start_date'] = $data['SampleSet']['start_date']['year'].'-'.$data['SampleSet']['start_date']['month'].'-'.$data['SampleSet']['start_date']['day'];//makes date in  format where sql can compare time helper
+                $data['SampleSet']['end_date'] = $data['SampleSet']['end_date']['year'].'-'.$data['SampleSet']['end_date']['month'].'-'.$data['SampleSet']['end_date']['day'];
             }
             //gets the criteria for the search
-            $search = $this->My->extractSearchTerm($this->request->data, ['submitter', 'chemist', 'set_code', 'crop', 'type', 'p_name', 'p_code', 'exp_reference', 'compounds', 'comments', 'sample_loc', 'set_reason'], 'SampleSet');        
-            //var_dump($search);
+            $search = $this->My->extractSearchTerm($data, ['submitter', 'chemist', 'set_code', 'crop', 'type', 'p_name', 'p_code', 'exp_reference', 'compounds', 'comments', 'sample_loc', 'set_reason'], 'SampleSet');        
+
             $results = $this->paginate('SampleSet', $search); //search for the data for the page
-            $this->set('num', $this->SampleSet->find('count', ['conditions' =>$search]));// finds the num of results
+            $this->set('num', $this->SampleSet->find('count', ['conditions' => $search]));// finds the num of results
             $this->set('results' ,$results); //sends the reuslts to the page
-            $this->set('data', $this->request->data); //sends all the data(search criteria) to the view so it can be added to the ajax links
+            $this->set('data', $data); //sends all the data(search criteria) to the view so it can be added to the ajax links
         }
     }       
     
     /**
      * The Controller function for viewing the sample sets
-     * this bassically adds the derived data from the analysis to the view
+     * this basically adds the derived data from the analysis to the view
      * @param type $id
      * @throws NotFoundExcpetion
      */
