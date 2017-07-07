@@ -159,11 +159,11 @@ function drawRes(){
     $("#statusText").html('Results: '+CIDs.length); 
     $('#res > tbody').html('');
     for (var i = 0; i < CIDs.length; i++){        
-        $('#res > tbody:last-child').append('<tr id="'+CIDs[i]["compounds"]["pub_chem"]+'">\n\
-                <td>'+CIDs[i]["compounds"]["pub_chem"]+'</td>\n\
-                <td><span class="find-button blue-button" onclick="showPubChem('+CIDs[i]["compounds"]["pub_chem"]+')">Pub Chem</span></td>\n\
-                <td>'+CIDs[i]["compounds"]["compound_name"]+'</td>\n\
-                <td>'+CIDs[i]["compounds"]["exact_mass"]+'</td>\n\
+        $('#res > tbody:last-child').append('<tr id="'+CIDs[i]["Compound"]["pub_chem"]+'">\n\
+                <td>'+CIDs[i]["Compound"]["pub_chem"]+'</td>\n\
+                <td><span class="find-button blue-button" onclick="showPubChem('+CIDs[i]["Compound"]["pub_chem"]+')">Pub Chem</span></td>\n\
+                <td>'+CIDs[i]["Compound"]["compound_name"]+'</td>\n\
+                <td>'+CIDs[i]["Compound"]["exact_mass"]+'</td>\n\
             </tr>');
     } // loops throught the array of positive matches and adds a row to the table
     $("#res").show(); //shows the results table

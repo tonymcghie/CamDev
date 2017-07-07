@@ -1,11 +1,12 @@
 <?php
 
+App::uses('ConnectionManager', 'Model');
+
 /* 
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 class CompoundsController extends AppController{
     public $helpers = array('Html' , 'Form' , 'My', 'Js');
     public $uses = array('Compound');
@@ -180,10 +181,9 @@ class CompoundsController extends AppController{
         $this->autoRender=false; //stops the page from rendering as this is ajax so it outputs data
         $this->layout = 'ajax';     //ajax layout is blank 
         $CIDs = implode(', ', $this->request->data['CID']); 
-        $results = $this->Compound->query("SELECT compounds.pub_chem, compounds.compound_name, compounds.exact_mass FROM cam_data.compounds WHERE pub_chem IN ({$CIDs})");
+        $db_name = $db_name = ConnectionManager::getDataSource('default')->config['database'];
+        $results = $this->Compound->query("SELECT Compound.pub_chem, Compound.compound_name, Compound.exact_mass FROM {$db_name}.compounds as Compound WHERE pub_chem IN ({$CIDs})");
         echo json_encode($results);
-        //$comp = $this->Compound->find('first', ['conditions' => ['pub_chem' => $CID], 'fields' => ['Compound.pub_chem', 'Compound.compound_name', 'Compound.exact_mass']]);
-        //echo json_encode($comp);
     }
     
     /**
