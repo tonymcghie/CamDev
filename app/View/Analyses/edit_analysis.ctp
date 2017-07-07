@@ -47,12 +47,12 @@ foreach ($results as $res){
 <?php
     echo $this->Form->create('Analysis', ['type' => 'file']);
     echo $this->Form->input('set_code', array('type' => 'hidden', 'value' => $set_code));
-    if ($tabletView !== 'true'){echo $this->Form->submit('Save', ['class' => 'large-button anySizeButton green-button']);}
+    echo $this->Form->submit('Save', ['class' => 'large-button anySizeButton green-button']);
     $i=0;
     foreach ($results as $row){
         $form_model = 'Analysis.'.$i.'.';
         $i++;
-        echo $this->element('analysis_tab', ['row' => $row, 'form_model' => $form_model, 'tabletView' => $tabletView]);
+        echo $this->element('analysis_tab', ['row' => $row, 'form_model' => $form_model]);
     }
     echo $this->Form->end(['label' => 'Save', 'class' => 'large-button anySizeButton green-button']);
 ?>
@@ -63,9 +63,7 @@ foreach ($results as $res){
 </div>
 <?php
 $this->end();
-if ($tabletView !== 'true'){ //desktop view
-    echo $this->fetch('tabContent');
-}
+echo $this->fetch('tabContent');
 endif;
 $this->start('extras')?>
 
@@ -192,15 +190,7 @@ $this->start('extras')?>
                                 currentImg = 0;
                                 var id = findID('<?php echo $title;?>');
                                 $('#show-picture'+id).attr('src', imgURL(id, currentImg));
-                                centerImg(id);
-                                <?php if ($tabletView === 'true'): ?> //when changing tabs return to the first pane
-                                    $('#'+panes[current]).hide();
-                                    panes = getPanes();
-                                    current = 0;
-                                    $('#next').show();
-                                    $('#previous').hide();
-                                    $('#'+panes[current]).show();
-                                <?php endif; ?>
+                                centerImg(id);                               
                             });             //fades on new pane after alod pane has faded out
                         });
                     }
@@ -264,6 +254,5 @@ $this->start('extras')?>
     });
 </script>
 <?php $this->end();
-if ($tabletView !== 'true'){ //desktop view
-    echo $this->fetch('extras');
-}
+echo $this->fetch('extras');
+

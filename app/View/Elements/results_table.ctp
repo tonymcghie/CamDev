@@ -36,6 +36,6 @@ if (isset($results)){
         'names' => $names,
         'cols' => $cols,
         'model' => $model,),
-        $type, (isset($isTablet) ? $isTablet : ''));
+        $type);
 }
 echo $this->Js->writeBuffer();

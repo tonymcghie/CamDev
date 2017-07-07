@@ -23,13 +23,12 @@
     ?>
 <table id="csvTable">
     <thead>
-        <tr id="csvTableSelects">            
+        <tr id="csvTableSelects">
         </tr>
-        <tr id="csvTableTitles">            
+        <tr id="csvTableTitles"> 
         </tr>
     </thead>
     <tbody id="csvTableBody">
-        
     </tbody>    
 </table>
     <?php

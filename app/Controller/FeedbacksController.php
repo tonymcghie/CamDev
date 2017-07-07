@@ -62,10 +62,6 @@ class FeedbacksController extends AppController{
             $this->set('user', $this->Auth->Session->read($this->Auth->sessionKey)['Auth']['User']);
         } //sets the username to the view
         
-        $this->set('tabletView', 'false');
-        $this->autoRender = true;
-        //selects the view to not tablet)
-        
         if ($this->request->is('post')){           
             $data = $this->request->data;      //gets the data
             echo var_dump($data), "<br>";

@@ -53,7 +53,7 @@ if (!isset($box_nums)){$box_nums=1;} //sets the box nums for the first time
            $this->Paginator->sort('comments', 'Comments', ['data' => $data]));
        $cols = array('set_code', 'Actions', 'status', 'submitter', 'chemist', 'crop', 'type', 'number', 'compounds','comments');
        $type = 'SampleSet';
-       echo $this->element('results_table', ['results' => $results, 'names' => $names, 'cols' => $cols, 'model' => $model, 'type' => $type, 'data' => $data, 'num' => $num, 'isTablet' => $isTablet]);
+       echo $this->element('results_table', ['results' => $results, 'names' => $names, 'cols' => $cols, 'model' => $model, 'type' => $type, 'data' => $data, 'num' => $num]);
     } else if (isset($results)){
         echo "No Sample Sets Found";
     }

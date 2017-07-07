@@ -8,7 +8,7 @@ h1, h2, h3, h4, h5 {font-family: 'Roboto Slab', serif; font-weight: 300}
 label {font-weight: 500}
 
 
-#sidebar {padding: 10px 0 0 10px; width: 250px; overflow-y: hidden}
+#sidebar {padding: 10px 0 0 10px; overflow-y: hidden}
 #sidebar  ul {padding: 4px 0px; }
 #sidebar li {display: block; float: none; padding: 0px; height: inherit; font-size: 1em; }
 #sidebar li a { font-size: inherit;}
@@ -19,7 +19,6 @@ label {font-weight: 500}
 
 h1 {text-shadow: none}
 #container  {box-shadow: none;  margin: 0px; width: 84%; padding: 0}
-#mainFrameDiv {left: 200px; width: 100%}
 html {margin-left: 0; width: 99%}
 form {margin-right: 0}
 

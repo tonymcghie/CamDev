@@ -44,7 +44,7 @@
         <?php endif; ?>
     </div>
 	<?php if($row['Analysis']['workflow'] == 'chem_everything' || $row['Analysis']['workflow'] == 'chem_files' || $row['Analysis']['workflow'] == 'bio_everything' || $row['Analysis']['workflow'] == 'bio_files'): ?>
-    <div id="slide_<?php echo (($row['Analysis']['workflow'] == 'files') ? '2' : '3')?>_<?php echo $row['Analysis']['title'];?>pane" style="<?php if($tabletView === 'true'){echo 'display: none;';} ?>">
+    <div id="slide_<?php echo (($row['Analysis']['workflow'] == 'files') ? '2' : '3')?>_<?php echo $row['Analysis']['title'];?>pane">
         <fieldset><legend>File Locations <span>(files stored in http://storage.powerplant.pfr.co.nz/output/chemistry/cam/...)</span></legend>
         <?php
         $urlAnalysis = $row['Analysis']['raw_data'];
@@ -67,7 +67,7 @@
     </div>
     <?php endif; /* The file inputs */?>
     <?php if($row['Analysis']['workflow'] == 'chem_everything' || $row['Analysis']['workflow'] == 'chem_pictures' || $row['Analysis']['workflow'] == 'bio_everything' || $row['Analysis']['workflow'] == 'bio_pictures'): ?>
-    <div id="slide_2_<?php echo $row['Analysis']['title'];?>pane" style="<?php if($tabletView === 'true'){echo 'display: none;';} ?>">
+    <div id="slide_2_<?php echo $row['Analysis']['title'];?>pane">
         <h2>Upload an Image</h2>
         <?php
         echo $this->Form->hidden($form_model.'imgURL', ['value' => $row['Analysis']['imgURL'], 'id' => $row['Analysis']['id'].'imgURL']);

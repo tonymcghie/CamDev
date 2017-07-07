@@ -64,22 +64,13 @@ class SampleSetsController extends AppController{
     }
     
     /**
-     * Makes a new set and sends emails makes set code
+     * Makes a new set and sends email makes set code
      * @return type
      */
     public function newSet(){        
         if (isset($this->Auth->Session->read($this->Auth->sessionKey)['Auth']['User']['name'])){
             $this->set('user', $this->Auth->Session->read($this->Auth->sessionKey)['Auth']['User']);
         } //sets the username to the view
-        if (isset($this->params['url']['isTablet']) && $this->params['url']['isTablet']==='true'){
-            $this->autoRender = false;
-            $this->set('tabletView', 'true');
-            $this->layout= 'TabletLayout';
-            $this->render('new_set_tablet');
-        } else {
-            $this->set('tabletView', 'false');
-            $this->autoRender = true;
-        } //selects the right view to use (Tablet or not tablet)
         
         if ($this->request->is('post')){           
             $data = $this->request->data;      //gets the data
@@ -192,31 +183,25 @@ class SampleSetsController extends AppController{
             parse_str($data);
             $this->request->data['SampleSet'] = $SampleSet;
         } //if data is passed to the function then set it to be in the $this->request->data variable
-        if (!isset($this->request->data['SampleSet'])){ //if data == null and request->data ==null
-            return;
-        } //if there is no data then stop        
-        $this->paginate = array( 
-        'limit' => 30,
-        'order' => array('SampleSet.date' => 'asc'));     //sets up the pagination options
-        
-        $this->request->data['SampleSet']['num_boxes'] = (isset($this->request->data['SampleSet']['num_boxes']) ? $this->request->data['SampleSet']['num_boxes'] : 1); //sets boxnum to 1 if its not already set
-        $this->set('box_nums',$this->request->data['SampleSet']['num_boxes']);  //passes the box num to the view 
-        if ($this->request->data['SampleSet']['isDate']==='1'){ //checks if there is a date to search on
-            $this->request->data['SampleSet']['start_date'] = $this->request->data['SampleSet']['start_date']['year'].'-'.$this->request->data['SampleSet']['start_date']['month'].'-'.$this->request->data['SampleSet']['start_date']['day'];//makes date in  format where sql can compare time helper
-            $this->request->data['SampleSet']['end_date'] = $this->request->data['SampleSet']['end_date']['year'].'-'.$this->request->data['SampleSet']['end_date']['month'].'-'.$this->request->data['SampleSet']['end_date']['day'];
+        if (isset($this->request->data['SampleSet'])){ //if data == null and request->data ==null                
+//            $this->paginate = array( 
+//            'limit' => 30,
+//            'order' => array('SampleSet.date' => 'asc'));     //sets up the pagination options
+
+            $this->request->data['SampleSet']['num_boxes'] = (isset($this->request->data['SampleSet']['num_boxes']) ? $this->request->data['SampleSet']['num_boxes'] : 1); //sets boxnum to 1 if its not already set
+            $this->set('box_nums',$this->request->data['SampleSet']['num_boxes']);  //passes the box num to the view 
+            if ($this->request->data['SampleSet']['isDate']==='1'){ //checks if there is a date to search on
+                $this->request->data['SampleSet']['start_date'] = $this->request->data['SampleSet']['start_date']['year'].'-'.$this->request->data['SampleSet']['start_date']['month'].'-'.$this->request->data['SampleSet']['start_date']['day'];//makes date in  format where sql can compare time helper
+                $this->request->data['SampleSet']['end_date'] = $this->request->data['SampleSet']['end_date']['year'].'-'.$this->request->data['SampleSet']['end_date']['month'].'-'.$this->request->data['SampleSet']['end_date']['day'];
+            }
+            //gets the criteria for the search
+            $search = $this->My->extractSearchTerm($this->request->data, ['submitter', 'chemist', 'set_code', 'crop', 'type', 'p_name', 'p_code', 'exp_reference', 'compounds', 'comments', 'sample_loc', 'set_reason'], 'SampleSet');        
+            //var_dump($search);
+            $results = $this->paginate('SampleSet', $search); //search for the data for the page
+            $this->set('num', $this->SampleSet->find('count', ['conditions' =>$search]));// finds the num of results
+            $this->set('results' ,$results); //sends the reuslts to the page
+            $this->set('data', $this->request->data); //sends all the data(search criteria) to the view so it can be added to the ajax links
         }
-        //gets the criteria for the search
-        $search = $this->My->extractSearchTerm($this->request->data, ['submitter', 'chemist', 'set_code', 'crop', 'type', 'p_name', 'p_code', 'exp_reference', 'compounds', 'comments', 'sample_loc', 'set_reason'], 'SampleSet');        
-        //var_dump($search);
-        $results = $this->paginate('SampleSet', $search); //search for the data for the page
-        $this->set('num', $this->SampleSet->find('count', ['conditions' =>$search]));// finds the num of results
-        $this->set('results' ,$results); //sends the reuslts to the page  
-        $this->set('data', $this->request->data); //sends all the data(search criteria) to the view so it can be added to the ajax links    
-        
-        if($this->Cookie->check('View.isTablet')){     
-            $this->set('isTablet', $this->Cookie->read('View.isTablet'));
-        }//adds the type of view to the view
-            
     }       
     
     /**

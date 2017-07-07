@@ -4,9 +4,7 @@
 <p> 2) Click on Choose File and select the .csv file. The first 5 rows of the .csv data table will be displayed.  </p>
 <p> 3) Select the database fields (top row) to match the table column headings (second row) of the incoming .csv file.</p>
 <p> 4) Click on Import button to upload the sample data into the database.</p>
-<?php
 
-?>
 <table class="noFormat">
     <tr>
         <td style="width: 92%;">
@@ -28,13 +26,12 @@
     ?>
 <table id="csvTable">
     <thead>
-        <tr id="csvTableSelects">            
+        <tr id="csvTableSelects">
         </tr>
-        <tr id="csvTableTitles">            
+        <tr id="csvTableTitles">
         </tr>
     </thead>
     <tbody id="csvTableBody">
-        
     </tbody>    
 </table>
     <?php

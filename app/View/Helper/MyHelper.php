@@ -93,7 +93,7 @@ class MyHelper extends AppHelper{
      * <b>link</b> ('' => [text , [options]]) always green
      * @return string
      */
-    public function makeResultsTable($results, $options, $type = null, $isTablet = 'false'){
+    public function makeResultsTable($results, $options, $type = null){
         $table = '<table class="table-striped">';
         $table .= $this->Html->tableHeaders($options['names']);
         //echo var_dump($results), "<br>";
@@ -104,7 +104,7 @@ class MyHelper extends AppHelper{
                 if ($col=='Actions'){
                     $links = '';
                     if ($type=='SampleSet'){
-                        $links .= $this->sampleSetActions($row['SampleSet']['id'], $row['SampleSet']['set_code'], $isTablet);
+                        $links .= $this->sampleSetActions($row['SampleSet']['id'], $row['SampleSet']['set_code']);
                     } else if ($type=='Compound'){
                         $links .= $this->compoundActions($row[$options['model']]['id'], $row[$options['model']]['chemspider_id'], $row[$options['model']]['metlin_id'],$row[$options['model']]['pub_chem'],$row[$options['model']]['cas'],$this->checkFlavVol($row[$options['model']]['comment']));
                     } else if ($type=='Metabolite'){
@@ -135,13 +135,13 @@ class MyHelper extends AppHelper{
     /**
      * helper method for making the links for makeResultsTable if its a sample set table
      */
-    protected function sampleSetActions($id, $set_code, $isTablet = 'false'){
+    protected function sampleSetActions($id, $set_code){
         //$temp = $this->Form->postLink('Edit', array('controller' => 'SampleSets', 'action' => 'editSet', $id), array('class' => 'find-button abbr-button', 'title'=>'Edit'));
         $temp = $this->Form->postLink('View', array('controller' => 'SampleSets', 'action' => 'viewSet', $id), array('class' => 'find-button abbr-button', 'title'=>'View'));
         $temp .= $this->Form->postLink('Edit', array('controller' => 'SampleSets', 'action' => 'editSet', $id), array('class' => 'find-button abbr-button', 'title'=>'Edit'));
         //check if user is in bio chemistry before showing the analysis button //comment out if statment to show the analysis button
         //if ($this->Session->read('Auth.User')!==null && in_array("PFR-GP-Biological Chemistry and Bioactives Group", $this->Session->read('Auth.User')['groups'])){
-            $temp .= $this->Form->postLink('Analyse', array('controller' => 'Analyses', 'action' => 'editAnalysis','?' => ['isTablet' => $isTablet, 'set_code' =>  $set_code]), array('style'=>'width: 60px','class' => 'find-button abbr-button', 'title'=>'Analyse'));
+            $temp .= $this->Form->postLink('Analyse', array('controller' => 'Analyses', 'action' => 'editAnalysis','?' => ['set_code' =>  $set_code]), array('style'=>'width: 60px','class' => 'find-button abbr-button', 'title'=>'Analyse'));
 			$temp .= $this->Form->postLink('Samples', array('controller' => 'Samples', 'action' => 'viewSamples', $id), array('style'=>'width: 55px','class' => 'find-button abbr-button', 'title'=>'View sample list'));
 			//$temp .= $this->Form->postLink('ImportSamples', array('controller' => 'Samples', 'action' => 'importSamples', $id), array('style'=>'width: 90px','class' => 'find-button abbr-button', 'title'=>'Import sample list from a .csv file'));
 		//}
