@@ -2,7 +2,7 @@
 $this->assign('title', 'New Set');
 echo $this->Html->script('jquery-3.1.1/jquery-3.1.1.min' , array('inline' => false));
 echo $this->Html->script('https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js' , array('inline' => false)); 
-$this->Html->css('jquery-ui_'.getenv('CSS_VERSION'), null, array('inline' => false));
+$this->Html->css('jquery-ui', null, array('inline' => false));
 ?>
 <header>
 <h1>PFR Chemistry: Collaboration Workspace</h1>
@@ -234,10 +234,8 @@ echo $this->Html->scriptEnd();
     }
 </script>
 <?php $this->end();
-if ($tabletView !== 'true'){ //desktop view
     echo $this->fetch('slide1');
     echo $this->fetch('slide2');    
     echo $this->fetch('extras');
-}
 ?>
 

@@ -11,7 +11,7 @@ $options = array( //sets the options in the criteria select
 'chemist' => 'Chemist',
 'start_date' => ((isset($data[$model]['isDate'])&&$data[$model]['isDate']==='1') ? $data[$model]['start_date'] : '2000-01-01'));
 
-$this->Html->script('HelperScripts_'.getenv('CSS_VERSION').'.min', array('inline' => false));
+$this->Html->script('HelperScripts.min.js?'.filemtime('js/HelperScripts.min.js'), array('inline' => false));
 if (!isset($box_nums)){$box_nums=1;} //sets the box nums for the first time
     echo $this->element('search_form', ['title' => $title, 'model' => $model, 'options' => $options, 'box_nums' => $box_nums]);
 ?>

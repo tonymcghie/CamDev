@@ -2,7 +2,7 @@
     width: 100vw;
     height: 100vh;
 }
-.content-wrapper .sidebar{
+.content-wrapper .sidebar {
     box-shadow: #003d4c 3px 3px 3px;
     z-index: 2;
 }
@@ -16,14 +16,14 @@
     border: none;
 }
 /**switch view images**/
-img.switchImg{
+img.switchImg {
     border-radius: 0px;
     position: absolute;
     left: 60px;
     top: 10px;
     width: 70px;
 }
-.sidebarToggle{
+.sidebarToggle {
     width: 40px;
     position:absolute;
     top: 0px;
@@ -35,7 +35,7 @@ img.switchImg{
     left: 0px;
 }
 
-.sidebar{
+.sidebar {
     overflow-y: scroll;
     direction:rtl;
     overflow-x: hidden;
@@ -44,9 +44,8 @@ img.switchImg{
 .sidebar *{
     direction: ltr;
 }
-.sidebar{
+.sidebar {
     height: 100%;
-
     padding: 0px 13px 20px 29px;
 }
 /**side bar img login and logout menu**/

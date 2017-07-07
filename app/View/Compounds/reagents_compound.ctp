@@ -46,7 +46,7 @@ strong {
 }
 </style>
 <?php
-echo $this->Html->css('tabs_'.getenv('CSS_VERSION'), null, array('inline' => false));
+echo $this->Html->css('tabs.css?'.filemtime('css/tabs.css'), null, array('inline' => false));
 echo $this->Html->script(array('base'), array('inline' => false));
 ?>
 <header>

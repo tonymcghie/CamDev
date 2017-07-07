@@ -12,7 +12,7 @@
         <fieldset><legend>Analysis Info</legend>
         <?php
         echo $this->Form->input($form_model.'title', array('label' => 'Edit Title:', 'value' => $row['Analysis']['title'], 'oninput' => 'fix("newTitle'.$row['Analysis']['title'].'")', 'id' => 'newTitle'.$row['Analysis']['title']));
-        echo $this->Form->input($form_model.'id', array('label' => '', 'type' => 'hidden', 'value' => $row['Analysis']['id_analysis'], 'class' => 'ids'));
+        echo $this->Form->input($form_model.'id', array('label' => '', 'type' => 'hidden', 'value' => $row['Analysis']['id'], 'class' => 'ids'));
 
         if ($row['Analysis']['workflow'] == 'chem_everything' || $row['Analysis']['workflow'] == 'chem_details' || $row['Analysis']['workflow'] == 'bio_everything' || $row['Analysis']['workflow'] == 'bio_details'){
             echo $this->Form->input($form_model.'startdate', array('label' => 'Start date (dd/mm/yyyy):', 'value' => $row['Analysis']['startdate']));

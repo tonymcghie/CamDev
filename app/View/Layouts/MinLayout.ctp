@@ -13,7 +13,10 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
             echo $this->Html->script('jquery-3.1.1/jquery-3.1.1.min' , array('inline' => false));
             echo $this->Html->meta('icon');
 
-            echo $this->Html->css(array ('page_'.getenv('CSS_VERSION'), 'button_'.getenv('CSS_VERSION'), 'color_schemes_'.getenv('CSS_VERSION')));
+            echo $this->Html->css([
+                'page.css?'.filemtime('css/page.css'),
+                'button.css?'.filemtime('css/button.css')
+                ]);
 
             echo $this->fetch('meta');
             echo $this->fetch('css');

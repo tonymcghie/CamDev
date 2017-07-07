@@ -25,7 +25,7 @@ $options = array(
 'chemspider_id' => 'ChemSpider ID',
 'comment' => 'Additional Info');
 
-$this->Html->script('HelperScripts_'.getenv('CSS_VERSION').'.min', array('inline' => false));
+$this->Html->script('HelperScripts.min.js?'.filemtime('js/HelperScripts.min.js'), array('inline' => false));
 if (!isset($box_nums)){$box_nums=1;} //sets the box nums for the first time
 echo $this->element('search_form', ['title' => $title, 'model' => $model, 'options' => $options, 'box_nums' => $box_nums]);
 

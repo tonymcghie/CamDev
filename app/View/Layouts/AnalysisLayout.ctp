@@ -15,7 +15,13 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 	<?php
 		echo $this->Html->meta('icon');
 
-                echo $this->Html->css(array ('bootstrap-3.3.7/bootstrap.min','page_'.getenv('CSS_VERSION'),'button_'.getenv('CSS_VERSION'),'analysis_'.getenv('CSS_VERSION'), 'custom_'.getenv('CSS_VERSION')));
+                echo $this->Html->css([
+                    'bootstrap-3.3.7/bootstrap.min',
+                    'page.css?'.filemtime('css/page.css'),
+                    'button.css?'.filemtime('css/button.css'),
+                    'analysis.css?'.filemtime('css/analysis.css'),
+                    'custom.css?'.filemtime('css/custom.css')
+                ]);
 
 		echo $this->fetch('meta');
 		echo $this->fetch('css');

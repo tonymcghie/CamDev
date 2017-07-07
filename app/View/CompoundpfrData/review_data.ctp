@@ -29,7 +29,7 @@ $options_b = array(
 
 //TODO $options_a and $options_b are identival so one should be removed if you dont have other plans for them
 
-$this->Html->script('HelperScripts_'.getenv('CSS_VERSION').'.min', array('inline' => false));
+$this->Html->script('HelperScripts.min.js?'.filemtime('js/HelperScripts.min.js'), array('inline' => false));
 if (!isset($box_nums)){$box_nums=1;} //sets the box nums for the first time
 //echo $this->My->makeSearchForm($title, $model, $options, $box_nums)
         //echo $this->element('search_form', ['title' => $title, 'model' => $model, 'options' => $options, 'box_nums' => $box_nums]);
