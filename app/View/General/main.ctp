@@ -80,6 +80,7 @@
           $this->Html->link('Scripts', ['controller' => 'General','action' => 'scripts'], array('target' => 'mainFrame' , 'class' => 'none')).'</li>';
                 }
                 echo '<li>'.$this->Html->link('Scripts', ['controller' => 'General','action' => 'scripts'], array('target' => 'mainFrame' , 'class' => 'none')).'</li>';
+                echo '<li>'.$this->Html->link('GCMS Utilities', ['controller' => 'General','action' => 'gcms_utilities'], array('target' => 'mainFrame' , 'class' => 'none')).'</li>';
                 echo '<li>'.$this->Html->link('Data Templates', ['controller' => 'General','action' => 'templates'], array('target' => 'mainFrame' , 'class' => 'none')).'</li>';
                 echo '<li>'.$this->Html->link('New Project', array('controller' => 'Projects', 'action' => 'addProject'), ['target' => 'mainFrame', 'class' => 'none']).'</li>';
                 echo '<li>'.$this->Html->link('Info', array('controller' => 'General', 'action' => 'info'), ['target' => 'mainFrame', 'class' => 'none']).'</li>';        

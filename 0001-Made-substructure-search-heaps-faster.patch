@@ -1,0 +1,89 @@
+From 4f5598f28bb22bcd0b29223b62e2f89ba39c5e85 Mon Sep 17 00:00:00 2001
+From: Tony McGhie <tonymcghienz@gmail.com>
+Date: Thu, 6 Jul 2017 23:41:18 +1200
+Subject: [PATCH] Made substructure search heaps faster
+
+---
+ app/Controller/CompoundsController.php | 10 ++++++----
+ app/View/Compounds/sub_search.ctp      | 33 +++++++++++----------------------
+ 2 files changed, 17 insertions(+), 26 deletions(-)
+
+diff --git a/app/Controller/CompoundsController.php b/app/Controller/CompoundsController.php
+index fb1fddc..6da1b52 100755
+--- a/app/Controller/CompoundsController.php
++++ b/app/Controller/CompoundsController.php
+@@ -178,10 +178,12 @@ class CompoundsController extends AppController{
+      */
+     public function filterSubStructRes(){
+         $this->autoRender=false; //stops the page from rendering as this is ajax so it outputs data
+-        $this->layout = 'ajax';     //ajax layout is blank
+-        $CID = $this->request->data['CID']; 
+-        $comp = $this->Compound->find('first', ['conditions' => ['pub_chem' => $CID], 'fields' => ['Compound.pub_chem', 'Compound.compound_name', 'Compound.exact_mass']]);
+-        echo json_encode($comp);
++        $this->layout = 'ajax';     //ajax layout is blank 
++        $CIDs = implode(', ', $this->request->data['CID']); 
++        $results = $this->Compound->query("SELECT compounds.pub_chem, compounds.compound_name, compounds.exact_mass FROM cam_data.compounds WHERE pub_chem IN ({$CIDs})");
++        echo json_encode($results);
++        //$comp = $this->Compound->find('first', ['conditions' => ['pub_chem' => $CID], 'fields' => ['Compound.pub_chem', 'Compound.compound_name', 'Compound.exact_mass']]);
++        //echo json_encode($comp);
+     }
+     
+     /**
+diff --git a/app/View/Compounds/sub_search.ctp b/app/View/Compounds/sub_search.ctp
+index 491f1dc..9eb454f 100755
+--- a/app/View/Compounds/sub_search.ctp
++++ b/app/View/Compounds/sub_search.ctp
+@@ -142,30 +142,13 @@ function filterResults(){
+     echo $this->Js->request(['controller' => 'Compounds', 'action' => 'filterSubStructRes'], [
+             'async' => true,
+             'method' => 'post',
+-            'data' => '{CID: results["IdentifierList"]["CID"][iterator]}',
++            'data' => '{CID: results["IdentifierList"]["CID"]}',
+             'dataExpression' => true,
+             'type' => 'json',
+-            'success'=> ' 
+-                        resultsDone++; /* increase the number of results done so that the percentage is increased */
+-                        $("#statusText").html("Filtering Results: "+Math.round((resultsDone/totalResults)*100)+"% ");
+-                        
+-                        if (data.length !== 0){
+-                            CIDs.push(data);
+-                        }
+-                        if (iterator+1 >= totalResults){
+-                            drawRes();
+-                        } else {
+-                            iterator++
+-                            filterResults();
+-                        }
+-                                                
+-                    ',
+-            'error' => '
+-                iterator++;
+-                filterResults();
+-             '
++            'success'=> 'CIDs = data;drawRes();'
+             ]);
+     ?>
++    console.log(results["IdentifierList"]["CID"])
+ }
+ 
+ /**
+@@ -174,8 +157,14 @@ function filterResults(){
+  */
+ function drawRes(){
+     $("#statusText").html('Results: '+CIDs.length); 
+-    for (var i = 0;i<CIDs.length;i++){
+-        $('#res > tbody:last-child').append('<tr id="'+CIDs[i]["Compound"]["pub_chem"]+'"><td>'+CIDs[i]["Compound"]["pub_chem"]+'</td><td><span class="find-button blue-button" onclick="showPubChem('+CIDs[i]["Compound"]["pub_chem"]+')">Pub Chem</span></td><td>'+CIDs[i]["Compound"]["compound_name"]+'</td><td>'+CIDs[i]["Compound"]["exact_mass"]+'</td></tr>');
++    $('#res > tbody').html('');
++    for (var i = 0; i < CIDs.length; i++){        
++        $('#res > tbody:last-child').append('<tr id="'+CIDs[i]["compounds"]["pub_chem"]+'">\n\
++                <td>'+CIDs[i]["compounds"]["pub_chem"]+'</td>\n\
++                <td><span class="find-button blue-button" onclick="showPubChem('+CIDs[i]["compounds"]["pub_chem"]+')">Pub Chem</span></td>\n\
++                <td>'+CIDs[i]["compounds"]["compound_name"]+'</td>\n\
++                <td>'+CIDs[i]["compounds"]["exact_mass"]+'</td>\n\
++            </tr>');
+     } // loops throught the array of positive matches and adds a row to the table
+     $("#res").show(); //shows the results table
+     $("#state").hide(); //hides the gif
+-- 
+2.13.0
+

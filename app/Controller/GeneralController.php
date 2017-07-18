@@ -110,7 +110,7 @@ class GeneralController extends AppController {
     }
     
     /**
-     * This is the controller for the scripts since the file uploads and running the script is handled separatly it only handles downloading the file
+     * This is the controller for the scripts since the file uploads and running the script is handled separately it only handles downloading the file
      * @return type
      */
     public function scripts(){   
@@ -122,6 +122,14 @@ class GeneralController extends AppController {
             ));
             return $this->response;
         } //if the form is submitted
+    }
+    
+    /**
+     * This is the controller for the gcms utilities 
+     * @return type
+     */
+    public function gcms_utilities(){   
+        
     }
     
     /**
