@@ -21,7 +21,10 @@
                         <div id="table-tab" class="tab-pane fade in active">
                             <div class="results-table">
                                 <table class="table table-striped table-hover">
+                                    **Table Should be here**
                                     <?php
+                                    var_export($model); //check if model name is being passed correctly
+                                    var_export($results); //check if results array is being passed correctly
                                     $headings = [];
                                     foreach (array_keys($results[0][$model]) as $key){
                                         $heading = $this->String->get_string_bool($key, $model);

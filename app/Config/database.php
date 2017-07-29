@@ -10,7 +10,7 @@ class DATABASE_CONFIG {
 		'host' => 'localhost',
 		'login' => 'root',
 		'password' => 'abc123',
-		'database' => 'camdata',
+		'database' => 'cam_data',
 		'prefix' => '',
 		'encoding' => 'utf8'
 	);

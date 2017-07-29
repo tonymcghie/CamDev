@@ -1,6 +1,6 @@
 <?php
 $logic_options = ['AND' => 'and', 'OR' => 'or', 'XOR' => 'xor', 'NOT' => 'not'];
-$match_options = ['contains' => 'Contains', 'exact' => 'exactly', 'starts' => 'Start with'];
+$match_options = ['contains' => 'Contains', 'exact' => 'Exactly', 'starts' => 'Starts with'];
 if (!empty($title))echo '<h1>'.$title.'</h1>';?>
 
 <?= $this->BootstrapForm->create($model, ['action' => 'search', 'class' => 'search-form']); ?>
@@ -15,7 +15,7 @@ if (!empty($title))echo '<h1>'.$title.'</h1>';?>
 
 <?= $this->BootstrapForm->start_group(['id' => 'action-buttons', 'class' => 'search-action-buttons']); ?>
 <?= $this->BootstrapForm->single_button('Add Set', ['onclick' => 'add_search_set();return false;'], ['class' => 'btn-success col-lg-1']); ?>
-<?= $this->BootstrapForm->single_button('Search', ['onclick' => 'submit_first_form(\'search-results\'); return false;'], ['class' => 'btn-primary col-lg-1']); ?>
+<?= $this->BootstrapForm->single_button('Find', ['onclick' => 'submit_first_form(\'search-results\'); return false;'], ['class' => 'btn-primary col-lg-1']); ?>
 <?= $this->BootstrapForm->end_group(); ?>
 <?= $this->BootstrapForm->end(); ?>
 <script>set_listeners();</script>
