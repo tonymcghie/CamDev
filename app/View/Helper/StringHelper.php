@@ -39,12 +39,25 @@ class StringHelper extends AppHelper{
         'SampleSet' => [
             'set_code' => 'Set Code',
             'submitter' => 'PFR Collabotator',
-            'chemist' => 'Chemist',
+            'chemist' => 'Analyst',
             'crop' => 'Crop',
             'type' => 'Type',
             'number' => 'Number',
             'compounds' => 'Compounds',
-            'comments' => 'Comments']
+            'comments' => 'Comments'],
+        'Compoundpfr_data' => [
+            'assigned_name' => 'Compound',
+            'exact_mass' => 'Exact Mass',
+            'intensity_value' => 'Intensity',
+            'intensity_description' => 'Units',
+            'reference' => 'Experiment Ref.',
+            'sample_ref' => 'Sample Ref.',
+            'sample_description' => 'Sample Description',
+            'genotype' => 'Genotype',
+            'tissue' => 'Tissue',
+            'crop' => 'Crop',
+            'species' => 'Species',
+            'analyst' => 'Analyst']
     ];
 
     public function get_string($identifier, $set){

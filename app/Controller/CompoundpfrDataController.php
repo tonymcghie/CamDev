@@ -90,7 +90,7 @@ class CompoundpfrDataController extends AppController{
         $this->set('results', $results);
         $this->set('model', 'Compoundpfr_data');
         $this->render('/Elements/results_table');
-        var_export($results);
+        //var_export($results);
     }
     
     /**
