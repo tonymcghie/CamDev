@@ -144,6 +144,39 @@
         </div>
 
         <div class="panel panel-default">
+            <div class="panel-heading light-green lighten-3" data-toggle="collapse" data-parent="#nav_accordion" href="#metabolomic_menu">
+                <span>Metabolomic Data</span>
+            </div>
+            <div class="panel-collapse collapse" id="metabolomic_menu">
+                <div class="panel-body light-blue lighten-3">
+                    <button type="button"
+                            class="list-group-item"
+                            onclick="load_page('<?php echo $this->Html->url(['controller' => 'Compounds', 'action' => 'searchCompound'], true) ?>', $('#main_content'))">
+                        Find
+                    </button>
+                    <button type="button"
+                            class="list-group-item"
+                            onclick="load_page('<?php echo $this->Html->url(['controller' => 'Compounds', 'action' => 'addCompound'], true) ?>', $('#main_content'))">
+                        Overview
+                    </button>
+                    <button type="button"
+                            class="list-group-item"
+                            onclick="load_page('<?php echo $this->Html->url(['controller' => 'Identify', 'action' => 'IdByMass'], true) ?>', $('#main_content'))">
+                        Import)
+                    </button>
+
+                    <?php
+                    /*//if ($this->Session->read('Auth.User')!==null && in_array("PFR-GP-Biological Chemistry and Bioactives Group", $this->Session->read('Auth.User')['groups'])){
+                    echo '<li>'. $this->Html->link('Add', ['controller' => 'Compounds','action' => 'addCompound'], ['target' => 'mainFrame', 'class' => 'btn btn-link']).'</li>';
+                    echo '<li>'.$this->Html->link('ID by Mass', ['controller' => 'Identify','action' => 'idMass'], ['target' => 'mainFrame', 'class' => 'btn btn-link']).'</li>';
+                    echo '<li>'.$this->Html->link('ID by Mass(ac)', ['controller' => 'Identify','action' => 'IdByMass'], ['target' => 'mainFrame', 'class' => 'btn btn-link']).'</li>';
+                    //}
+                    */?>
+                </div>
+            </div>
+        </div>
+        
+        <div class="panel panel-default">
             <div class="panel-heading light-green lighten-3" data-toggle="collapse" data-parent="#nav_accordion" href="#unknown_compounds_menu">
                 <span>Unknown Compounds</span>
             </div>
