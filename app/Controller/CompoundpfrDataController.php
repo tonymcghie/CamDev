@@ -73,7 +73,25 @@ class CompoundpfrDataController extends AppController{
 //        var_dump($this->paginate('Compoundpfr_data', $search));
         $this->set('num', $this->Compoundpfr_data->find('count', ['conditions' =>$search]));
         $this->set('data', $this->request->data); //sends all the data(search criteria) to the view so it can be added to the ajax links
-    } 
+    }
+    
+    public function search(){
+        $this->layout = 'ajax';
+        $this->autoRender = false;
+        $this->paginate = [
+            'limit' => 30,
+            'order' => array('Compoundpfr_data.date' => 'asc')
+        ];
+        // Listed these here for auto complete reasons and to stop the IDE displaying errors
+        $criteria = null;$value = null;$logic = null;$match = null;
+        extract($this->request->data['Compoundpfr_data']);
+        $query = $this->Search->build_query($this->Compoundpfr_data, $criteria, $value, $logic, $match);
+        $results = $this->paginate('Compoundpfr_data', $query);
+        $this->set('results', $results);
+        $this->set('model', 'Compoundpfr_data');
+        $this->render('/Elements/results_table');
+        //var_export($results);
+    }
     
     /**
      * extorts the current search data as a csv file

@@ -48,7 +48,20 @@ class StringHelper extends AppHelper{
             'team' => 'Team',
             'p_name' => 'Project Name',
             'p_code' => 'Project Code',
-            'actions' => 'Actions']
+            'actions' => 'Actions'],
+        'Compoundpfr_data' => [
+            'assigned_name' => 'Compound',
+            'exact_mass' => 'Exact Mass',
+            'intensity_value' => 'Intensity',
+            'intensity_description' => 'Units',
+            'reference' => 'Experiment Ref.',
+            'sample_ref' => 'Sample Ref.',
+            'sample_description' => 'Sample Description',
+            'genotype' => 'Genotype',
+            'tissue' => 'Tissue',
+            'crop' => 'Crop',
+            'species' => 'Species',
+            'analyst' => 'Analyst']
     ];
 
     public function get_string($identifier, $set){
@@ -58,15 +71,6 @@ class StringHelper extends AppHelper{
         return "[[ The String: '$identifier' in the set: '$set' was not found. ]]";
     }
 
-    /**
-     * returns false if the string is not found
-     * You should have a very good reason for using this
-     * I might make it private at some point
-     *
-     * @param $identifier
-     * @param $set
-     * @return bool
-     */
     public function get_string_bool($identifier, $set){
         if (!isset($this->strings[$set][$identifier])){
             return false;
