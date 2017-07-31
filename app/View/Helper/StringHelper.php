@@ -57,7 +57,32 @@ class StringHelper extends AppHelper{
             'tissue' => 'Tissue',
             'crop' => 'Crop',
             'species' => 'Species',
-            'analyst' => 'Analyst']
+            'analyst' => 'Analyst'],
+        'Molecular_feature' => [
+            'feature_tag' => 'Metabolite Tag',
+            'feature_id' => 'Metabolite ID',
+            'id_confidence' => 'ID confidence (1-4)',
+            'mz' => 'm/z',
+            'ion_polarity' => 'Ion Polarity',
+            'intensity' => 'Intensity',
+            'retention_time' => 'RT(min)',
+            'chromatography_description' => 'Chrmoatography',
+            'ms_instrument_loc' => 'MS Instrument',
+            'experiment_reference' => 'Experiment Ref.',
+            'sample_reference' => 'Sample Ref.',
+            'sample_description' => 'Sample Description',
+            'genotype' => 'Genotype',
+            'tissue' => 'Tissue',
+            'crop' => 'Crop',
+            'species' => 'Species',
+            'analyst' => 'Analyst'],
+        'Compound' => [
+            'compound_name' => 'Name',
+            'formula' => 'Formula',
+            'exact_mass' => 'Exact Mass',
+            'cas' => 'CAS',
+            'compound_type' => 'Class',
+            'comment' => 'Comment']
     ];
 
     public function get_string($identifier, $set){

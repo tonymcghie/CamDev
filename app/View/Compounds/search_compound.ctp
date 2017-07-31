@@ -1,18 +1,7 @@
-
-<style>
-    label{
-        text-align: left;
-    }
-    /*.noFormat * td{
-        width: 100%;
-    }*/
-</style>
-<header>
 <?php
-$title = "Search Compounds";
+$title = "Find Compounds";
 $model = "Compound";
-$options = array(
-'empty' => 'Select Criteria',
+$options = ['empty' => 'Select Criteria',
 'all' => 'All',
 'compound_name' => 'Compound Name',    
 'cas' => 'CAS',
@@ -24,9 +13,12 @@ $options = array(
 '[M+Na]+' => '[M+Na]+',
 'pub_chem' => 'PubChem CID',
 'chemspider_id' => 'ChemSpider ID',
-'comment' => 'Additional Info');
+'comment' => 'Additional Info'];
 
-$this->Html->script('HelperScripts_'.getenv('CSS_VERSION'), array('inline' => false));
+echo $this->element('search_form', ['model' => $model, 'title' => $title, 'category_options' => $options]); ?>
+    
+<?php
+/**$this->Html->script('HelperScripts_'.getenv('CSS_VERSION'), array('inline' => false));
 if (!isset($box_nums)){$box_nums=1;} //sets the box nums for the first time
 echo $this->element('search_form', ['title' => $title, 'model' => $model, 'options' => $options, 'box_nums' => $box_nums]);
 
@@ -141,13 +133,17 @@ if (isset($results[0]['Compound'])){
     var names = <?php echo json_encode(array_values($options)); ?>;
     cols.splice(cols.length-1,1);  //removes the date option
     names.splice(names.length-1,1); //removes the date option
+ * 
+ * 
+ */
+
     /**
      * adds another input pair    
      */
-    function add(){
-        $('#boxes').append(getNewBox(boxnum, cols,names,'<?php echo $model; ?>')); //adds the new boxes the the section
-        boxnum++; //increases the number of boxes passed to and from the view and controller
-        $('#box_nums').val(boxnum); //updates the hidden input
-    }
+    //function add(){
+    //    $('#boxes').append(getNewBox(boxnum, cols,names,'<?php echo $model; ?>')); //adds the new boxes the the section
+    //    boxnum++; //increases the number of boxes passed to and from the view and controller
+    //    $('#box_nums').val(boxnum); //updates the hidden input
+    //}
     
-</script>
+//</script>

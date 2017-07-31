@@ -1,8 +1,9 @@
 
 <?php
-$title = "Search Sample Sets";
+$title = "Find Sample Set";
 $model = "SampleSet";
-$options = ['all' => 'All',
+$options = ['set_code' => 'Set Code',
+'all' => 'All',
 'set_code' => 'Set Code',
 'submitter' => 'PFR Collaborator',
 'chemist' => 'Chemist',
