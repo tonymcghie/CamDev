@@ -185,6 +185,7 @@ class MyHelper extends AppHelper{
     protected function metaboliteActions($id){
         $temp = $this->Form->postLink('Edit', array('controller' => 'Metabolites', 'action' => 'editMetabolite', $id), array('class' => 'find-button abbr-button'));
         $temp .= $this->Form->postLink('View', array('controller' => 'Metabolites', 'action' => 'viewMetabolite', $id), array('class' => 'find-button abbr-button'));
+        $temp .= $this->Form->postLink('Upload Docs', array('controller' => 'Metabolites', 'action' => 'docsMetabolite', $id), array('class' => 'find-button abbr-button'));
         return $temp;
     }
     /**

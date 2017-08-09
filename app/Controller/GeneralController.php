@@ -10,7 +10,7 @@ App::uses('AppController', 'Controller');
 
 // added by TKM to allow loading of larger images
 
-ini_set('memory_limit', '1024M');
+ini_set('memory_limit', '2048M');
 
 /**
  * CakePHP General

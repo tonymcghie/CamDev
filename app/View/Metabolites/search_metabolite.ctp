@@ -3,10 +3,10 @@
 $title = "Find Unknown Compounds";
 $model = "Metabolite";
 $options = array( //sets the options in the criteria select
+'sources' => 'Source',
 'exact_mass' => 'Exact Mass',
 'all' => 'All',
 'experiment_ref' => 'Experiment Reference',
-'sources' => 'Source',
 'tissue' => 'Tissue',
 'chemist' => 'Chemist',
 'start_date' => ((isset($data[$model]['isDate'])&&$data[$model]['isDate']==='1') ? $data[$model]['start_date'] : '2000-01-01'));

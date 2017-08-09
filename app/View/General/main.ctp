@@ -67,8 +67,8 @@
                     echo '<li>'.
           $this->Html->link('Add', array('controller' => 'Metabolites','action' => 'addMetabolite'), array('target' => 'mainFrame' , 'class' => 'none')).'</li>';
                 }
-                echo '<li>'.$this->Html->link('Add', array('controller' => 'Metabolites','action' => 'addMetabolite'), array('target' => 'mainFrame' , 'class' => 'none')).'</li>';
                 echo '<li>'.$this->Html->link('Find', array('controller' => 'Metabolites','action' => 'searchMetabolite'), array('target' => 'mainFrame' , 'class' => 'none')).'</li>';
+                echo '<li>'.$this->Html->link('Add', array('controller' => 'Metabolites','action' => 'addMetabolite'), array('target' => 'mainFrame' , 'class' => 'none')).'</li>';
             ?>
             </ul>
         </li>

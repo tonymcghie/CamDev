@@ -52,36 +52,6 @@ class ProjectsController extends AppController{
     }
     
     /**
-     * updates a row in the metabolite table
-     * @param String $id
-     */
-    public function editMetabolite($id = null){
-        $this->save($this->Metabolite, $id);        
-    }
-      
-    /**
-     * Saves the data from the form
-     * @param type $model
-     * @param type $id
-     * @return type
-     * @throws NotFoundExcpetion
-     */
-    protected function save($model,$id = null){
-        if (!$id){echo "SomeThing went wrong please try again";} //error hadeling
-        $set = $model->findById($id); //finds the Metabolite to change
-        if (!$set){echo "SomeThing went wrong please try again";}  //error hadeling  
-        if ($this->request->is(array('post', 'put'))){
-            $model->id = $id;
-            if ($model->save($this->request->data)){
-                return;
-            }
-        }
-        if (!$this->request->data){
-            $this->request->data = $set;
-        }     
-    }
-
-    /**
      * Ajax function that returns list items that have the Project details in
      */
     public function projectAutoComplete(){

@@ -15,11 +15,11 @@ echo '</table></header>';
 echo '<div  id="resultsTable">'; 
 if (isset($results[0]['Sample'])){     
     $names = array($this->Paginator->sort('sample_name', 'Sample', ['data' => $data]),
-        $this->Paginator->sort('treatment_1', 'Attribute#1', ['data' => $data]),
+        $this->Paginator->sort('attribute_1', 'Attribute#1', ['data' => $data]),
         $this->Paginator->sort('description_1', 'Description#1', ['data' => $data]),
-	$this->Paginator->sort('treatment_2', 'Attribute#2', ['data' => $data]),
+	$this->Paginator->sort('attribute_2', 'Attribute#2', ['data' => $data]),
         $this->Paginator->sort('description_2', 'Description#2', ['data' => $data]),
-	$this->Paginator->sort('treatment_3', 'Attribute#3', ['data' => $data]),
+	$this->Paginator->sort('attribute_3', 'Attribute#3', ['data' => $data]),
         $this->Paginator->sort('description_3', 'Description#3', ['data' => $data]),
         $this->Paginator->sort('replicate', 'Rep', ['data' => $data]),
 	$this->Paginator->sort('sample_weight', 'Weight', ['data' => $data]),
@@ -28,7 +28,7 @@ if (isset($results[0]['Sample'])){
 	$this->Paginator->sort('kea_num', 'Kea #', ['data' => $data]),
         $this->Paginator->sort('eBrida_ref', 'eBrida #', ['data' => $data]),
 	$this->Paginator->sort('comment', 'Comment', ['data' => $data]));
-    $cols = array('sample_name', 'treatment_1', 'description_1', 'treatment_2', 'description_2', 'treatment_3', 'description_3', 'replicate', 'sample_weight', 'weight_unit', 'tissue', 'kea_num', 'ebrida_ref','comment');
+    $cols = array('sample_name', 'attribute_1', 'description_1', 'attribute_2', 'description_2', 'attribute_3', 'description_3', 'replicate', 'sample_weight', 'weight_unit', 'tissue', 'kea_num', 'ebrida_ref','comment');
     $model = 'Sample';
     $type = 'Sample';
     //echo "view_samples:", var_dump($data['SampleSet']['set_code']), "<br>";

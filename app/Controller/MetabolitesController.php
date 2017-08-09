@@ -88,6 +88,38 @@ class MetabolitesController extends AppController{
     }
     
     /**
+     * attached document to an Unknown Compounds and uploads to Powerplant
+     * @param type $id
+     */
+    public function docsMetabolite($id = null){
+        if ($id==null){echo "Metabolite is not found";}
+        $meta = $this->Metabolite->find('first', ['conditions' => ['id' => $id]]);
+        $msms = $this->Msms_Metabolite->find('all' , ['conditions' => ['metabolite_id' => $id]]);
+        $proposed = $this->Proposed_Metabolite->find('all' , ['conditions' => ['metabolite_id' => $id]]);
+        $this->set('meta', $meta);
+        $this->set('msms', $msms);
+        $this->set('proposed' , $proposed);
+        
+        $filename = '';
+        if ($this->request->is('post')) { // checks for the post values
+            $uploadData = $this->data['Upload']['doc_path'];
+            var_dump($uploadData);
+            if ( $uploadData['size'] == 0 || $uploadData['error'] !== 0) { // checks for the errors and size of the uploaded file
+                return false;
+                }
+            $filename = basename($uploadData['name']); // gets the base name of the uploaded file
+            $uploadFolder = WWW_ROOT. '/files/Unknowns';  // path where the uploaded file has to be saved
+            $uploadPath =  $uploadFolder . DS . 'Unknown_'.$id.'_'.$filename;
+            if( !file_exists($uploadFolder) ){
+                mkdir($uploadFolder); // creates folder if  not found
+            }
+            if (!move_uploaded_file($uploadData['tmp_name'], $uploadPath)) {
+                return false;
+            }
+        }
+    }
+    
+    /**
      * Saves the data from the form
      * @param type $model
      * @param type $id
