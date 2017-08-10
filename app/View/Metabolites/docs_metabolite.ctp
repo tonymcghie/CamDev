@@ -1,6 +1,21 @@
 <header>
-<h1>Attach and Upload Documents for an Unknown Compound</h1>
+<h1>Upload Document for an Unknown Compound</h1>
+<br>
+<p style="display:inline">Unknown Compound: <?php echo $meta['Metabolite']['id'] ?></p><br><br>
 </header>
+<?php
+    echo $this->Form->create('Upload', array( 'type' => 'file'));
+    echo $this->Form->input('doc_path', array('type' => 'file','label' => 'Select document to Upload'));
+    echo $this->Form->end('Upload');
+    
+?>
+</header>
+<script>
+    $('#csvFile').on('change',function(){
+       $('#fileForm').submit(); 
+    });
+</script>
+
 <div class="unknown-compounds">
 <?php
 if (!isset($meta)){
@@ -8,46 +23,11 @@ if (!isset($meta)){
 } else {
     $results['Metabolite'] = $meta;
     echo $this->My->makeResultsTable($results, array(
-            'names' => array('Exact Mass', 'ID', 'Ion Type', 'Retention Value', 'Retention Description','Sources','Tissue','Chemist','Experiment Reference','UV/vis Spectra','NMR Spectra','Start Date'),
-            'cols' => array('exact_mass', 'id', 'ion_type', 'rt_value', 'rt_description','sources','tissue','chemist','experiment_ref','spectra_uv','spectra_nmr','start_date'),
+            'names' => array('ID', 'Exact Mass', 'Ion Type', 'Retention Value', 'Retention Description','Sources','Tissue','Chemist','Experiment Reference'),
+            'cols' => array('id', 'exact_mass', 'ion_type', 'rt_value', 'rt_description','sources','tissue','chemist','experiment_ref'),
             'model' => 'Metabolite',),
             'Metabolite');
 }
 ?>
-<h2>Proposed Unknown Compound</h2>
-<?php
-if (!isset($proposed)||count($proposed)===0){
-    echo 'No Propsed Metabolites Found';
-} else {
-        echo $this->My->makeResultsTable($proposed, array(
-            'names' => array('Name', 'Actions', 'Formula', 'Mass Difference', 'Msigma','Data File','Comments'),
-            'cols' => array('name', 'Actions', 'formula', 'mass_diff', 'msigma','data_file','comment'),
-            'model' => 'Proposed_Metabolite',),
-            'Proposed_Metabolite');
-}
-?>
-<h2>Msms Unknown Compound</h2>
-<?php
-if (!isset($msms)||count($msms)===0){
-    echo 'No Msms Metabolites Found';
-} else {
-        echo $this->My->makeResultsTable($msms, array(
-            'names' => array('Name', 'Actions', 'MZ Parent', 'Energy (eV)', 'charge','Msms Level','Spectra Msms','Comments'),
-            'cols' => array('name', 'Actions', 'parent_mz', 'energy_ev', 'charge','msms_level','spectra_msms','comment'),
-            'model' => 'Msms_Metabolite',),
-            'Msms_Metabolite');
-}
-?>
-</div>
 
-<?php
-    echo $this->Form->create('Upload', array( 'type' => 'file'));
-    echo $this->Form->input('doc_path', array('type' => 'file','label' => 'Upload Document'));
-    echo $this->Form->end('Upload');
-    
-?>
-<script>
-    $('#csvFile').on('change',function(){
-       $('#fileForm').submit(); 
-    });
-</script>
+
