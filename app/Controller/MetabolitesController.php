@@ -43,7 +43,7 @@ class MetabolitesController extends AppController{
      */
     public function addMetabolite(){        
         if (isset($this->request->data['Metabolite'])){ //check if the save button has being clicked            
-            $data = $this->request->data;      //gets the data
+            $data = $this->request->data;     //gets the data
             $this->Metabolite->create();            //Need to add
             if ($this->Metabolite->save($data)){                 //saves the Compound
                 return $this->redirect(['controller' => 'General', 'action' => 'blank', '?' => ['alert' => 'Unknown Compound Saved']]);

@@ -178,7 +178,7 @@ class SampleSetsController extends AppController{
      * @param type $data
      * @return type
      */
-    public function searchSet($data = null){  
+    public function searchSet($data = null){
         if ($data != null && !isset($this->request->data['SampleSet'])){ //if the data passed is through the url rather than post then set the data variable to the data passed from the url
             parse_str($data);
             $this->request->data['SampleSet'] = $SampleSet;
