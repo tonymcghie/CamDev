@@ -41,7 +41,7 @@ if (!isset($msms)||count($msms)===0){
 <h2>Document:</h2>
 <?php
 //var_dump($meta);
-echo $meta['Metabolite']['document']; echo $this->Html->link('open',$this->My->makeSSmetaURL($meta['Metabolite']['document']),['target'=>'_blank', 'class' => 'find-button anySizeButton']);
+echo $meta['Metabolite']['document']; echo $this->Html->link('open',$this->My->makeUnknownURL($meta['Metabolite']['document']),['target'=>'_blank', 'class' => 'find-button anySizeButton']);
 ?>
 
 </div>
