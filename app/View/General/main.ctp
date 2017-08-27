@@ -92,6 +92,7 @@
             <ul>
                 <?php
                     echo '<l1>'.$this->Html->link('plates', ['controller' => 'InDev', 'action' => 'plates'], ['target' => 'mainFrame', 'class' => 'none']).'</li>';
+                    echo '<l1>'.$this->Html->link('Text Input', ['controller' => 'InDev', 'action' => 'text_input'], ['target' => 'mainFrame', 'class' => 'none']).'</li>';
                 ?>
             </ul>
         </li>

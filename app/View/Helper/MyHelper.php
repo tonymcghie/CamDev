@@ -83,6 +83,34 @@ class MyHelper extends AppHelper{
         return $row;
     }
     /**
+     * will create a div containg a span with the text in it
+     * and another div inside the first with the input in it
+     * @param type $name
+     * name of database colum
+     * @param array $options
+     * normal options for an input<br>
+     * label will be set to an empty string
+     * @param type $text
+     * the text to go before the input
+     * @return string
+     */
+    public function makeInputTextEd($name, $options, $text){
+        $options['label'] = '';
+        $row = '<div class="Trow"';
+        if (isset($options['rowId'])){
+            $row .= ' id="'.$options['rowId'].'"';
+            unset($options['rowId']);
+        }
+        if (isset($options['rowStyle'])){
+            $row .= ' style="'.$options['rowStyle'].'"';
+            unset($options['rowStyle']);
+        }
+        $row .= '><span>'.$text.'</span>';
+        $row .= $this->Form->input($name, $options);
+        $row .= '</div>';
+        return $row;
+    }
+    /**
      * returns a table of the results.
      * @param type $results
      * @param type $options

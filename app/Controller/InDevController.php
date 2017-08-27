@@ -14,9 +14,10 @@ App::uses('AppController', 'Controller');
  */
 class InDevController extends AppController {
     public $helpers = array('Html' , 'Form' , 'My' , 'Js', 'Time');
-    public $uses = array();
+    public $uses = array('Test');
     public $layout = 'PageLayout';
-
+    public $components = array('Paginator', 'RequestHandler', 'My', 'Session', 'Cookie', 'Auth');
+    
     public function index($id) {
         
     }
@@ -24,5 +25,19 @@ class InDevController extends AppController {
     public function plates(){
         
     }
+    
+    public function text_input(){
+        if ($this->request->is('post')){           
+            $data = $this->request->data;  //gets the data from the post
+            var_dump($data);
+        }
+        $this->Test->create();            //Need to add
+            if ($this->Test->save($data)){ //saves the Compound
+                $this->set('text_input', $data['Test']['text_input']);                
+                //return $this->redirect(['controller' => 'General', 'action' => 'blank', '?' => ['alert' => 'New Text Saved']]);
+            }
+    }
+    
+    
 
 }
