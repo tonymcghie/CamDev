@@ -83,31 +83,32 @@ class MyHelper extends AppHelper{
         return $row;
     }
     /**
-     * will create a div containg a span with the text in it
+     * will create a div containing a span with the text in it
      * and another div inside the first with the input in it
      * @param type $name
      * name of database colum
      * @param array $options
      * normal options for an input<br>
      * label will be set to an empty string
-     * @param type $text
-     * the text to go before the input
-     * @return string
      */
-    public function makeInputTextEd($name, $options, $text){
-        $options['label'] = '';
-        $row = '<div class="Trow"';
-        if (isset($options['rowId'])){
-            $row .= ' id="'.$options['rowId'].'"';
-            unset($options['rowId']);
-        }
-        if (isset($options['rowStyle'])){
-            $row .= ' style="'.$options['rowStyle'].'"';
-            unset($options['rowStyle']);
-        }
-        $row .= '><span>'.$text.'</span>';
-        $row .= $this->Form->input($name, $options);
-        $row .= '</div>';
+    public function makeInputTextEd($name, $options){
+        //$options['label'] = '';
+        //var_dump($options);
+        //$row = '<div class="Trow"';
+        //$row .= '><span>'.$text.'</span>';
+        $row = $this->Form->input('text_input', array(
+           'placeholder' => 'Enter specific compound names, or analysis type',
+           'rows' => '3',
+           'class' => 'ckeditor',
+           'required' => false
+        ));
+        //$row .= $this->Form->testarea($name, $options);
+        //$row .= '</div>';
+        //echo $this->Form->textarea('text_input', array(
+         //  'class' => 'ckeditor',
+        //   'required' => false
+        //));
+        var_dump($row);
         return $row;
     }
     /**

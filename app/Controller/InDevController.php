@@ -29,12 +29,12 @@ class InDevController extends AppController {
     public function text_input(){
         if ($this->request->is('post')){           
             $data = $this->request->data;  //gets the data from the post
-            var_dump($data);
+            //var_dump($data);
         }
         $this->Test->create();            //Need to add
             if ($this->Test->save($data)){ //saves the Compound
                 $this->set('text_input', $data['Test']['text_input']);                
-                //return $this->redirect(['controller' => 'General', 'action' => 'blank', '?' => ['alert' => 'New Text Saved']]);
+                return $this->redirect(['controller' => 'General', 'action' => 'blank', '?' => ['alert' => 'New Text Saved']]);
             }
     }
     
