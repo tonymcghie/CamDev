@@ -1,11 +1,9 @@
 <?php
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 App::import('model', 'Chemist');
+App::uses('AppModel', 'Model');
+
+require_once 'DataObject/SampleSet.php';
 
 class SampleSet extends AppModel{
     public $findMethods = array('available' =>  true);
@@ -14,9 +12,7 @@ class SampleSet extends AppModel{
             'rule' => 'notBlank'
         ),
         'chemist' => array(
-            'rule' => ['isChemist', 1],
-            'required' => true,
-            'message' => 'Could not find Chemist'
+            'rule' => 'notBlank'
         ),
         'set_code' => array(
             'rule' => 'notBlank'
@@ -35,85 +31,104 @@ class SampleSet extends AppModel{
         )
     );
     public $username = '';
-    
+
     /**
-     * Checks that a chemist exists
-     * @param String $check The name of the chemist
-     * @param type $limit (unused)
-     * @return boolean
-     */
-    public function isChemist($check, $limit){
-        $chemist = new Chemist();
-        $num = $chemist->find('count', ['conditions' => ['name' => $check]]);
-        return $num === 1;
-    }
-    /**
-     * This ovverides the built in find method so that the query all will exclude old versions
+     * This overrides the built in find method so that the query all will exclude old versions
      * allVersions will return what the all type query used to
      * the all type query has beign override so that pagination still works
      * @param String $type
-     * @param Array $query
-     * @return Array
+     * @param array $query
+     * @return array|int
      */
     public function find($type = 'first', $query = Array()) { //        
         switch ($type){
-        case 'all':
-            $results = $this->doJoinQuery($query); //gets the results that is the most recent version
-            return $results;
-        case 'count':
-            $results = $this->doJoinQuery($query); //gets the results that are the most recent version
-            return count($results); //retruns the number of results
-        case 'allVersions':
-            return $this->filterConfidential(parent::find('all', $query));
-        default:            
-            return $this->filterConfidential(parent::find($type, $query));
+            case 'all':
+                $results = $this->getSampleSet($query); //gets the results that is the most recent version
+                return $results;
+            case 'count':
+                $results = $this->getSampleSet($query); //gets the results that are the most recent version
+                return count($results); //returns the number of results
+            case 'allVersions':
+                // TODO filter confidential
+                return parent::find('all', $query);
+            case 'withID':
+                return parent::find('first', $query);
+            default:
+                // TODO filter confidential
+                return parent::find($type, $query);
         }
     }
+
     /**
      * makes the query and returns results
-     * @param Array $query
-     * @return Array results from the query
+     * Filters the confidential as well
+     *
+     * @param $query
+     * @return array results from the query
+     * @internal param array $conditions
      */
-    protected function doJoinQuery($query){
-        $queryString = "SELECT * FROM `sample_sets` AS `SampleSet` INNER JOIN ( SELECT sample_sets.set_code, max(version) as maxrev FROM sample_sets WHERE sample_sets.version GROUP BY sample_sets.set_code) AS child ON (SampleSet.set_code = child.set_code) AND (SampleSet.version = maxrev)";
-        $db = $this->getDataSource(); //gets the connection to MySQL
-        $subQuery = $db->buildStatement(['fields' => ['empty'], 
-        'conditions' => $query['conditions']], $this); //creates the condition part of the query
-        $queryString .= ' AND (';
-        $queryString .= substr($subQuery, 30); //chops off the front of the subquery so that only the conditions are left
-        $queryString .= ')';
+    private function getSampleSet($query){
+        $conditions = $query['conditions'];
+        $db = $this->getDataSource();
+
+        $temp = explode('WHERE', $db->buildStatement(['fields' => ['empty'], 'conditions' => $conditions], $this));
+        $parsedConditions = end($temp);
+
+        $sql = "SELECT *
+                          FROM sample_sets AS SampleSet 
+                         INNER JOIN (SELECT sample_sets.set_code sc, max(version) as maxrev
+                          FROM sample_sets 
+                          WHERE sample_sets.version 
+                          GROUP BY sample_sets.set_code) AS child 
+                        ON (SampleSet.set_code = child.sc)
+                          AND (SampleSet.version = maxrev)
+                          AND (({$parsedConditions})
+                          AND ((SampleSet.confidential = 1 
+                              AND (SampleSet.chemist = '{$this->username}' OR SampleSet.submitter = '{$this->username}')) 
+                            OR SampleSet.confidential = 0))";
         if (isset($query['order'])){
             $key = current(array_keys($query['order']));
-            $queryString .= " ORDER BY ".$key." ".$query['order'][$key];
+            $sql .= " ORDER BY ".$key." ".$query['order'][$key];
         }
         if (isset($query['limit'])){ //gets the right number for pagination
             $limit = $query['limit'];
             $page = $query['page'];
-            $queryString .= " LIMIT ".(int)(($page-1)*$limit).", ".(int)($limit);
-        }        
-        $results = $this->filterConfidential($this->query($queryString));
-        return $results;
+            $sql .= " LIMIT ".(int)(($page-1)*$limit).", ".(int)($limit);
+        }
+        var_dump($query);
+        return $this->query($sql);
     }
-    /**
-     * This will get the username from the Cookie and filter out all the confidential sample sets that dont containe the username
-     * @param type $results
-     * @return type
-     */
-    private function filterConfidential($results){
-        if (!isset($this->username)){
-            $this->username = '';
+
+    public function buildObjects($queryResults){
+        $sampleSetObjects = [];
+        foreach ($queryResults as $data) {
+            $sampleSetObjects[] = new Model\DataObject\SampleSet($this, $data['SampleSet']);
         }
-        if (isset($results[0]['SampleSet'])){ //if there are multiple results
-            foreach(array_keys($results) as $key){ //filter if confidential and username != name on SS
-                if ($results[$key]['SampleSet']['confidential'] === '1' && $this->username !== $results[$key]['SampleSet']['chemist'] && $this->username !== $results[$key]['SampleSet']['submitter']){
-                    unset($results[$key]);
-                }
-            }
-        } else if(isset($results['SampleSet'])){ //if there is only one result
-                if ($results['SampleSet']['confidential'] === '1' && $this->username !== $results['SampleSet']['chemist'] && $this->username !== $results['SampleSet']['submitter']){
-                    unset($results[$key]);
-                }            
-        }
-        return $results;
+        return $sampleSetObjects;
+    }
+
+    public function getSearchableFields() {
+        return ['set_code',
+            'chemist',
+            'submitter',
+            'p_name',
+            'p_code',
+            'crop',
+            'compounds',
+            'comments',
+            'team'];
+    }
+
+    public function getDisplayFields() {
+        return ['actions',
+            'set_code',
+            'chemist',
+            'submitter',
+            'p_name',
+            'p_code',
+            'crop',
+            'compounds',
+            'comments',
+            'team'];
     }
 }

@@ -97,6 +97,7 @@ class BootstrapFormHelper extends FormHelper{
         if (!isset($options['type']) || $options['type'] != 'checkbox') {
             $options['class'] .= ' form-control';
         }
+        if (isset($options['type']) &&  $options['type'] == 'checkbox')return $this->make_checkbox($fieldName, $options);
         return parent::input($fieldName, $options);
     }
 
@@ -108,10 +109,7 @@ class BootstrapFormHelper extends FormHelper{
      * @return string
      */
     public function input_horizontal($fieldName, $options = []) {
-
-        if (!isset($options['label'])) {
-            $options['label'] = '';
-        }
+        if (!isset($options['label']))$options['label'] = '';
         if (gettype($options['label']) == 'array' && !isset($options['label']['class'])) {
             $options['label']['class'] = '';
         } else if(gettype($options['label']) == 'string') {
@@ -121,13 +119,9 @@ class BootstrapFormHelper extends FormHelper{
             $options['label']['text'] = $label_text;
         } else if(gettype($options['label']) !== 'boolean') {
             throw new Exception('You are passing somethign that isnt a string or array or false in the $options[\'label\'] index');
-        }
-        if (!empty($options['label'])){
-            $options['label']['class'] .= ' control-label col-lg-4';
-        }
-        if (!isset($options['between'])){
-            $options['between'] = '';
-        }
+        }$options['label']['class'] .= ' control-label col-lg-4';
+
+        if (!isset($options['between']))$options['between'] = '';
         $options['between'] .= '<div class="col-lg-6">';
         if (!isset($options['after'])){
             $options['after'] = '';
@@ -136,13 +130,18 @@ class BootstrapFormHelper extends FormHelper{
         return $this->input($fieldName, $options);
     }
 
+    public function make_checkbox($fieldName, $options = array()) {
+        $options['checkbox'] = parent::input($fieldName, ['type' => 'checkbox', 'label' => false, 'div' => false]);
+        return $this->_View->Element('form/checkbox', ['options' => $options]);
+    }
+
     /**
      * this creates a button for an inline or normal form
      * @param string $fieldName
      * @param array $options
      * @return string HTML code for the button
      */
-    public function single_button($fieldName, $options = [], $button_options = []){
+    public function single_button($fieldName, $options = [], $button_options = []) {
         $options['type'] = 'button';
         $options['class'] = 'btn '.$button_options['class'];
         $options['label'] = false;
@@ -151,6 +150,32 @@ class BootstrapFormHelper extends FormHelper{
         } else {
             return $this->input($fieldName, $options);
         }
+    }
+
+    /**
+     * Creates a single link element
+     * @param $text
+     * @param $url
+     * @param array $options
+     * @param array $button_options
+     * @return string
+     */
+    public function single_link($text, $url, $options = [], $button_options = []) {
+        if (!isset($options['class']))$options['class'] = '';
+        $options['class'] .= ' btn btn-default';
+        return $this->Html->div($button_options['class'],  $this->Html->link($text, $url, $options), $button_options);
+    }
+
+    /**
+     * Creates a save and cancel button
+     */
+    public function addActionButtons() {
+        $html = '';
+        $html .= $this->start_group();
+        $html .= $this->single_button('Cancel', ['onclick' => 'window.history.back();', 'div' => ['class' => 'offset-lg-4 col-lg-1']], ['class' => 'btn-default']);
+        $html .= $this->single_button('Save', ['div' => ['class' => 'col-lg-1']], ['class' => 'btn-primary']);
+        $html .= $this->end_group();
+        return $html;
     }
 
     /**
@@ -184,7 +209,11 @@ class BootstrapFormHelper extends FormHelper{
     }
 
     public function get_js(){
-        return '<script>'.$this->js.'</script>';
+        $html = '';
+        $html .= $this->Html->script('typescript/validator/validator.min', ['inline' => false, 'async' => 'async']);
+        $html .= $this->Html->script('typescript/form_rules/displayif.min', ['inline' => false, 'async' => 'async']);
+        $html .= '<script>'.$this->js.'</script>';
+        return $html;
     }
 
     /**

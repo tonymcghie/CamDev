@@ -20,25 +20,7 @@
                     <div class="tab-content">
                         <div id="table-tab" class="tab-pane fade in active">
                             <div class="results-table">
-                                <table class="table table-striped table-hover">
-                                    <?php
-                                    $headings = [];
-                                    foreach (array_keys($results[0][$model]) as $key){
-                                        $heading = $this->String->get_string_bool($key, $model);
-                                        if (!$heading){
-                                            foreach ($results as &$row){
-                                                unset($row[$model][$key]);
-                                            }
-                                        } else {
-                                            $headings[] = $heading;
-                                        }
-                                    }
-                                    echo $this->Html->tableHeaders($headings);
-                                    foreach ($results as $row){
-                                        echo $this->Html->tableCells(array_values($row[$model]));
-                                    }
-                                    ?>
-                                </table>
+                                <?= $this->element('search_results_table', ['cols' => $cols, 'results' => $results, 'model' => $model]) ?>
                             </div>
                             <div id="hidden-columns"></div>
                             <div class="table-page-nums">

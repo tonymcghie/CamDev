@@ -27,4 +27,11 @@ $(function() {
             $('#hidden-columns').append(newTag);
         }
     }
+
+    function open_new_page(url){
+        $('#table-model').on('hidden.bs.modal', function(){
+            load_page(url, $('#main_content'));
+        });
+        $('#table-model').modal('hide');
+    }
 });

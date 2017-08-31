@@ -1,0 +1,40 @@
+@media screen and (max-width: 767px) {
+}
+@media (min-width: 768px) {
+}
+@media (min-width: 768px) {
+}
+@media (max-width: 767px) {
+}
+@media (min-width: 768px) {
+}
+@media (min-width: 768px) {
+}
+@media (max-width: 767px) {
+}
+@media (max-width: 767px) {
+}
+.search-form .search-set label {
+  display: none;
+}
+.search-form .search-set:nth-child(3) div label {
+  display: inline-block;
+}
+.search-form .action-buttons button {
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin: 0 5px;
+}
+@media (min-width: 1200px) {
+  .search-form .action-buttons button {
+    float: left;
+    width: 16.66666667%;
+  }
+}
+@media (min-width: 1200px) {
+  .search-form .action-buttons div:first-child > button {
+    margin-left: 58.33333333%;
+  }
+}

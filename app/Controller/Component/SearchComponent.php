@@ -42,11 +42,9 @@ class SearchComponent extends Component{
                     break;
             }
             if ($criteria_value == 'all') {
-                foreach (array_keys($model->schema()) as $column_name) {
-                    if (in_array($column_name, $this->excluded_fields)){
-                        continue;
-                    }
-                    $query[$logic_value][] = [$model->name . '.' . $column_name . ' LIKE' => $value_value];
+                $query[$logic_value]['OR'] = [];
+                foreach ($model->getSearchableFields() as $column_name) {
+                    $query[$logic_value]['OR'][] = [$model->name . '.' . $column_name . ' LIKE' => $value_value];
                 }
             } else {
                 $query[$logic_value][] = [$model->name . '.' . $criteria_value . ' LIKE' => $value_value];

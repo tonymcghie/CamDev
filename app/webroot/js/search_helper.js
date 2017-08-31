@@ -3,6 +3,7 @@
  */
 let base_search_set;
 let num_boxes = 0;
+let animation_speed = 400;
 
 /**
  * Sets up the functionality for the search forms
@@ -20,7 +21,7 @@ function add_search_set() {
     let new_search_set = get_new_search_set();
     new_search_set.hide();
     new_search_set.insertBefore(div);
-    new_search_set.slideDown();
+    new_search_set.slideDown(animation_speed);
 }
 
 /**
@@ -41,7 +42,7 @@ function get_new_search_set(){
  * @param event
  */
 function remove_search_set(element){
-    $(element).closest('.search-set').slideUp(400, function(){
+    $(element).closest('.search-set').slideUp(animation_speed, function(){
         $(this).remove();
     });
 }

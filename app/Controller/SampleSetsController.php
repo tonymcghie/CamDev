@@ -7,27 +7,26 @@
  */
 
 App::uses('CakeEmail', 'Network/Email');
+App::uses('AppController', 'Controller');
 
 class SampleSetsController extends AppController{
     public $helpers = ['Html' , 'Form' , 'My' , 'Js', 'Time', 'String', 'BootstrapForm'];
     public $uses = ['Analysis' , 'SampleSet' , 'Chemist', 'Project'];
-    public $layout = 'content';
+    public $layout = 'main';
     public $components = ['Paginator', 'RequestHandler', 'My', 'Session', 'Cookie', 'Auth', 'File', 'Search'];
 
     // Define models for code completion perposes
     //private $Analysis, $SampleSet, $Chemist, $Project;
     
-    /**
-     * @LIVE Change loactions
-     */    
-    private $file_URL = '/app/app/webroot/data/'; //live
-    //private $file_URL = 'data/';        //testing   
+    /** @var string $file_URL sets the location to save files to */
+    private $file_URL;
     
     /**
      * stuff that happens before everything
      */
     public function beforeFilter() {
         parent::beforeFilter();
+        $file_URL = Configure::read('live') ? '/app/app/webroot/data/' : 'data/';
 
 //        if (isset($this->Auth->Session->read($this->Auth->sessionKey)['Auth']['User']['name'])){
 //            $this->SampleSet->username = $this->Auth->Session->read($this->Auth->sessionKey)['Auth']['User']['name'];
@@ -71,35 +70,35 @@ class SampleSetsController extends AppController{
     }
 
     public function createSampleSet(){
-        $this->layout = 'content';
+        $errors = [];
         $data = $this->request->data;
-        // Find the number of chemists with the name entered (should always be 1)
-        $numChem = $this->Chemist->find('count', array('conditions' => array('name' => $data['SampleSet']['chemist'])));
-        $chemist = '';
-        if ($numChem!==0){
-            $chemist = $this->Chemist->find('first', array('fields' => array('Chemist.team', 'Chemist.name_code', 'Chemist.email'),  'conditions' => array('name' => $data['SampleSet']['chemist']))); //finds info for chemist
-            $data['SampleSet']['team']=$chemist['Chemist']['team'];  //updates the team
-            //$num = 1 + $this->SampleSet->find('count' , array ('conditions' => array('set_code LIKE' => $chemist['Chemist']['name_code'].'%')));       //finds the new number
-            $num = 1 + intval($this->SampleSet->query('SELECT MAX(CAST(SUBSTRING(`set_code` FROM 3 FOR 5)AS UNSIGNED)) AS `set_code` FROM camdata.sample_sets WHERE `set_code` LIKE "'.$chemist['Chemist']['name_code'].'%";')[0][0]['set_code']); //ONLY 2 CHARACTERs AT THE START this finds the highest number on the end of the set code
-            $data['SampleSet']['set_code'] = $chemist['Chemist']['name_code'].$num; //updates the set_code;
+
+        if ($chemist = $this->Chemist->nextSamplesetInfo($data['SampleSet']['chemist'])) {
+            $data['SampleSet']['team'] = $chemist->team;
+            $data['SampleSet']['set_code'] = $chemist->nextSetCode;
         } else {
-            $data['SampleSet']['set_code'] = 'undefined';
-        } //makes sure the chemist is valid
-        $data['SampleSet']['date']= date('Y-m-d'); //sets the date that the sample sets was submitted
-        $data['SampleSet']['submitter_email'] = $this->Auth->Session->read($this->Auth->sessionKey)['Auth']['User']['email']; //sets the email of the user who submitted the sample set
+            $errors[] = "No Chemist was found with the name {$data['SampleSet']['chemist']}";
+        }
+
+        //sets the date that the sample sets was submitted
+        $data['SampleSet']['date'] = date('Y-m-d');
+
+        //sets the email of the user who submitted the sample set
+        $data['SampleSet']['submitter_email'] = $this->Auth->Session->read($this->Auth->sessionKey)['Auth']['User']['email'];
+
         if(isset($data['SampleSet']['metadataFile']['error']) && $data['SampleSet']['metadataFile']['error']=='0'){
             $data['SampleSet']['metaFile'] =
                 $this->File->uploadFile($data['SampleSet']['metadataFile'],
                     'SampleSet_Metadata',
                     $data['SampleSet']['set_code'].'_Metadata.'.substr(strtolower(strrchr($data['SampleSet']['metadataFile']['name'], '.')), 1));
-            unset($data['SampleSet']['metadataFile']);
         }
-        $this->SampleSet->create(); //Need to add set code
-        if ($this->SampleSet->save($data['SampleSet'])){ //saves the sample set
-            $this->set('set_code', $data['SampleSet']['set_code']);
+        unset($data['SampleSet']['metadataFile']);
 
+        $this->SampleSet->create();
+        if ($sampleSet = $this->SampleSet->save($data['SampleSet'])){ //saves the sample set
+            //if the save was successful then send the emails if not send an error to the view
             $this->send_newSS_email(['from' => 'no_reply@plantandfood.co.nz',
-                'to' => $chemist['Chemist']['email'],
+                'to' => $chemist->email,
                 'submitter' => $data['SampleSet']['submitter'],
                 'set_code' => $data['SampleSet']['set_code'],
                 'attachments' => isset($data['SampleSet']['metaFile']) ? $this->file_URL.'files/samplesets/'.$data['SampleSet']['metaFile'] : '']); //sets the values for the email to the chemist
@@ -107,24 +106,32 @@ class SampleSetsController extends AppController{
                 'to' =>  $data['SampleSet']['submitter_email'],
                 'submitter' => $data['SampleSet']['submitter'],
                 'set_code' => $data['SampleSet']['set_code']]); //sets the values for the email to the submitter
-            $this->set('error', false);
-            $this->set('set_code', $data['SampleSet']['set_code']);
+            $this->set('sampleSet', $sampleSet);
+            $this->render('details');
         } else {
             $this->set('error', true);
-        } //if the save was successful then send the emails if not send an error to the view
+        }
     }
+
     /**
      * Makes a new set and sends emails makes set code
      * @return type
      */
     public function newSet(){
-        $this->layout = 'content';
         $this->set('names', $this->Chemist->find('list', ['fields' => 'name']));
         $this->set('p_names', $this->Project->find('list' , ['fields' => 'short_name']));
-
+        // TODO test this should set the valuse in the form
+        if (isset($this->request->data['id'])){
+            $this->set('SampleSet', $this->SampleSet->find('list', ['id' => $this->request->data['id']]));
+        }
+        $this->set('SampleSets', $this->SampleSet->find('list', [
+            'conditions' => ['id' => 5],
+            'fields' => ['SampleSet.p_name']
+        ]));
+        // end test
         if (isset($this->Auth->Session->read($this->Auth->sessionKey)['Auth']['User']['name'])){
             $this->set('user', $this->Auth->Session->read($this->Auth->sessionKey)['Auth']['User']);
-        } //sets the username to the view
+        }
     }
     
     /**
@@ -180,12 +187,13 @@ class SampleSetsController extends AppController{
     }    
     
     /**
+     * TODO remove
+     * OLD SEARCH
      * This will search the the sample sets
      * @param type $data
      * @return type
      */
     public function searchSet($data = null){
-        $this->layout = 'content';
         if ($data!=null&&!isset($this->request->data['SampleSet'])){ //if the data passed is through the url rather than post then set the data variable to the data passed from the url
             parse_str($data);
             $this->request->data['SampleSet'] = $SampleSet;
@@ -221,12 +229,16 @@ class SampleSetsController extends AppController{
         // Listed these here for auto complete reasons and to stop the IDE displaying errors
         $criteria = null;$value = null;$logic = null;$match = null;
         extract($this->request->data['SampleSet']);
+
         $query = $this->Search->build_query($this->SampleSet, $criteria, $value, $logic, $match);
         $results = $this->paginate('SampleSet', $query);
-        $this->set('results', $results);
+
+        $resultObjects = $this->SampleSet->buildObjects($results);
+
+        $this->set('cols', $this->SampleSet->getDisplayFields());
+        $this->set('results', $resultObjects);
         $this->set('model', 'SampleSet');
-        $this->render('/Elements/results_table');
-        //var_export($results);
+        $this->render('/Elements/search_results_modal');
     }
     
     /**
@@ -246,7 +258,22 @@ class SampleSetsController extends AppController{
         if (!$this->request->data){
             $this->request->data = $set;
         } //sets the data to go into the hidden inputs
-    }    
+    }
+
+    public function details() {
+        $this->layout = 'main';
+        if (empty($this->request->data['id'])) {
+            $this->set('error', 'Invalid Sample Set');
+            return;
+        }
+        $id = $this->request->data['id'];
+        $sampleSet = $this->SampleSet->find('withID', ['id' => $id]);
+        if (empty($sampleSet)) {
+            $this->set('error', 'Sample Set not found');
+            return;
+        }
+        $this->set('sampleSet', $sampleSet);
+    }
     
     /**
      * Creates and exports a CSV file from a search
