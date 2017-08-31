@@ -57,13 +57,9 @@ class MyHelper extends AppHelper{
     /**
      * will create a div containg a span with the text in it
      * and another div inside the first with the input in it
-     * @param type $name
-     * name of database colum
-     * @param array $options
-     * normal options for an input<br>
-     * label will be set to an empty string
-     * @param type $text
-     * the text to go before the input
+     * @param string $name name of database colum
+     * @param array $options normal options for an input<br>label will be set to an empty string
+     * @param string $text the text to go before the input
      * @return string
      */
     public function makeInputRow($name, $options, $text){
