@@ -5,6 +5,7 @@
      * @param type $form_model
      * @return string
      */
+    echo $this->Html->script('ckeditor/ckeditor' ,  array('inline' => false));
 ?>
 
 <div id="<?php echo $row['Analysis']['title'];?>pane" name="panes" class='tab-pane fade in active'>
@@ -20,7 +21,8 @@
 
             echo $this->Form->input($form_model.'method', array('label' => 'Method File:', 'value' => $row['Analysis']['method']));
             echo $this->Form->input($form_model.'labbook_ref', array('label' => 'Reference:', 'value' => $row['Analysis']['labbook_ref'], 'placeholder' => 'Lab Book/ MS #/ Job #'));
-            echo $this->Form->input($form_model.'prep', array('label' => 'Sample Preparation:', 'value' => $row['Analysis']['prep'], 'rows' => '5', 'cols' => '100'));
+            echo $this->My->makeInputTextEd($form_model.'prep', []);
+            //echo $this->Form->input($form_model.'prep', array('label' => 'Sample Preparation:', 'value' => $row['Analysis']['prep'], 'rows' => '5', 'cols' => '100'));
             echo $this->Form->input($form_model.'details', array('label' => 'Analysis Details:', 'value' => $row['Analysis']['details'], 'rows' => '5', 'cols' => '100'));
         }
         ?>

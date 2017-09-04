@@ -2,9 +2,9 @@
 $this->assign('title', 'New Set');
 echo $this->Html->script('jquery-3.1.1/jquery-3.1.1.min' , array('inline' => false));
 echo $this->Html->script('https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js' , array('inline' => false)); 
-//echo $this->Html->script('/js/ckeditor/ckeditor' ,  array('inline' => false));
+echo $this->Html->script('ckeditor/ckeditor' ,  array('inline' => false));
 //the above is not working. the Js ckeditor is not loaded or not operational
-echo $this->Html->script('https://cdn.ckeditor.com/4.7.2/standard/ckeditor.js' , array('inline' => false));
+//echo $this->Html->script('https://cdn.ckeditor.com/4.7.2/standard/ckeditor.js' , array('inline' => false));
 //CKEditor is working for the above line eventhough it is installed into the project in webroot/js
 //this is okay but for production there are too many dangerous editing options and so the number of editing options with need to be reduced
 $this->Html->css('jquery-ui', null, array('inline' => false));
