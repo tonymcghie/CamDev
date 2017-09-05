@@ -1,7 +1,9 @@
 <header>
 <h1>Identify Compound by Matching Accurate Masses</h1>
 <?php //echo $this->Html->image('underconstruction.png', array('alt' => 'CAM Logo', 'width' => '140')); ?>
-<p> The process is:</p>
+<p id="one">  The process is:</p>
+<?php $message = "This is a message - Hello World"; ?>
+<input id="myButton" type="button" onclick="displayAlert()" value="Display Message">
 <p> 1) Generate a .csv file where the fourth column contains accurate masses.</p>
 <p> 2) Select a mass tolerance (eg +/- 10 mDa) and the ion type;  select tyour input data file.</p>
 <p> 3) The compounds that are present in the Compounds database, and that match your accurate mass data will be displayed.  This table can be exported.</p>
@@ -28,6 +30,12 @@
     echo $this->Form->end();*/
 ?>
 <script>
+    function displayAlert(){
+      //var content = 'This is a message - Hello World - variable Content';  
+      //var content = document.getElementById("one").innerText;
+      //window.alert(content);
+      window.alert('<?php echo $message ?>');
+    }
     $('#csvFile').on('change',function(){
        $('#fileForm').submit(); 
     });
