@@ -92,13 +92,8 @@
                     </button>
                     <button type="button"
                             class="list-group-item"
-                            onclick="load_page('<?php echo $this->Html->url(['controller' => 'Identify', 'action' => 'idMass'], true) ?>', $('#main_content'))">
+                            onclick="load_page('<?php echo $this->Html->url(['controller' => 'Identify','action' => 'SelectFile'], true) ?>', $('#main_content'))">
                         ID by Mass
-                    </button>
-                    <button type="button"
-                            class="list-group-item"
-                            onclick="load_page('<?php echo $this->Html->url(['controller' => 'Identify', 'action' => 'IdByMass'], true) ?>', $('#main_content'))">
-                        ID by Mass(ac)
                     </button>
 
                     <?php

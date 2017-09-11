@@ -37,9 +37,37 @@ class IdentifyController extends AppController{
      * 3) successful hits are written into an output file that is sent to Downloads
      */
     public function SelectFile(){
-        
+        $filename = '';
+        if ($this->request->is('post')) { // checks for the post values
+            $uploadData = $this->data['Upload']['csv_path'];
+            //var_dump($uploadData);
+            $mass_tolerance = $this->data['Upload']['mass_tolerance']/1000;
+            $ion_type = $this->data['Upload']['ion_type'];
+            //var_dump($mass_tolerance, $ion_type);
+            if ( $uploadData['size'] == 0 || $uploadData['error'] !== 0) { // checks for the errors and size of the uploaded file
+                return false;
+                }
+            $filename = basename($uploadData['name']); // gets the base name of the uploaded file
+            $uploadFolder = WWW_ROOT. 'data/files/Identify';  // path where the uploaded file has to be saved
+            $uploadPath =  $uploadFolder . DS . $filename;
+            if( !file_exists($uploadFolder) ){
+                mkdir($uploadFolder); // creates folder if  not found
+            }
+            if (!move_uploaded_file($uploadData['tmp_name'], $uploadPath)) {
+                return false;
+            }
+            $identify_parms = array();
+            array_push($identify_parms, $filename, $mass_tolerance, $ion_type); //put all the parameters for identifcation into an array
+            $massdata = array();
+            $head=$this->My->IdentifyHeadings($uploadPath);
+            $massdata=$this->My->IdentifyMass($uploadPath, $mass_tolerance, $ion_type);
+            $this->set('identify_parms', $identify_parms); //passes the identify parameters to the view 
+            $this->set('head', $head); // pass table headings to the view 
+            $this->set('masses', $massdata); // pass array with the mass data from file to the view 
+            $this->render('search_masses'); //direct to the search_masses view and not the default select_file view
+        }  
     }
-    
+        
     public function IdByMass() {
         $this->layout = 'ajax';
     }
