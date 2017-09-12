@@ -193,30 +193,8 @@ class SampleSetsController extends AppController{
      * @param type $data
      * @return type
      */
-    public function searchSet($data = null){
-        if ($data!=null&&!isset($this->request->data['SampleSet'])){ //if the data passed is through the url rather than post then set the data variable to the data passed from the url
-            parse_str($data);
-            $this->request->data['SampleSet'] = $SampleSet;
-        } //if data is passed to the function then set it to be in the $this->request->data variable
-        if (!isset($this->request->data['SampleSet'])){ //if data == null and request->data ==null
-            return;
-        } //if there is no data then stop
-        $this->paginate = array(
-        'limit' => 30,
-        'order' => array('SampleSet.date' => 'asc'));     //sets up the pagination options
+    public function searchSet(){
 
-        $this->request->data['SampleSet']['num_boxes'] = (isset($this->request->data['SampleSet']['num_boxes']) ? $this->request->data['SampleSet']['num_boxes'] : 1); //sets boxnum to 1 if its not already set
-        $this->set('box_nums',$this->request->data['SampleSet']['num_boxes']);  //passes the box num to the view
-        if ($this->request->data['SampleSet']['isDate']==='1'){ //checks if there is a date to search on
-            $this->request->data['SampleSet']['start_date'] = $this->request->data['SampleSet']['start_date']['year'].'-'.$this->request->data['SampleSet']['start_date']['month'].'-'.$this->request->data['SampleSet']['start_date']['day'];//makes date in  format where sql can compare time helper
-            $this->request->data['SampleSet']['end_date'] = $this->request->data['SampleSet']['end_date']['year'].'-'.$this->request->data['SampleSet']['end_date']['month'].'-'.$this->request->data['SampleSet']['end_date']['day'];
-        }
-        //gets the criteria for the search
-        $search = $this->My->extractSearchTerm($this->request->data, ['submitter', 'chemist', 'set_code', 'crop', 'type', 'p_name', 'p_code', 'exp_reference', 'compounds', 'comments', 'sample_loc', 'set_reason'], 'SampleSet');
-        $results = $this->paginate('SampleSet', $search); //search for the data for the page
-        $this->set('num', $this->SampleSet->find('count', ['conditions' =>$search]));// finds the num of results
-        $this->set('results' ,$results); //sends the reuslts to the page
-        $this->set('data', $this->request->data); //sends all the data(search criteria) to the view so it can be added to the ajax links
     }
 
     public function search(){
