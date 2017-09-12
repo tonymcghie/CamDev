@@ -1,9 +1,8 @@
 <?php
 $title = "Find Compounds";
 $model = "Compound";
-$options = ['empty' => 'Select Criteria',
-'all' => 'All',
-'compound_name' => 'Compound Name',    
+$options = ['compound_name' => 'Compound Name',
+'all' => 'All', 
 'cas' => 'CAS',
 'compound_type' => 'Chemical Class',
 'exact_mass' => 'Exact Mass',

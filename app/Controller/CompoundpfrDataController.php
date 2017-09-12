@@ -36,43 +36,13 @@ class CompoundpfrDataController extends AppController{
     }
     
     /**
-     * this is the search funciton for the pfr data
-     * its similar the the basic one where is adds everything together but it also adds synonims from the Compound table to the search
-     * @param type $data
-     * @return type
+     * Entry point for PFR Compound Data -> Find
+     * Control transfers to the find_data view and onto to /Elements/search_form
+     * and then back to the search() function below.
+     * Search results are displayed as a modal as defined by /Elements/results table 
      */
-    public function findData($data = null){   
-        if ($data!=null&&!isset($this->request->data['Compoundpfr_data'])){
-            parse_str($data);
-            $this->request->data['Compoundpfr_data'] = $Compoundpfr_data;
-        }// If no data is passed get the data from the set params.
-        if (!isset($this->request->data['Compoundpfr_data'])){
-            return;
-        }//if no data is passed return and dont search
-        //$this->paginate = array(
-        //'limit' => 40,
-        //'order' => array('Compoundpfr_data.assigned_name' => 'asc')); 
-        $this->Paginator->settings = array('limit' => 100);
-        $this->request->data['Compoundpfr_data']['num_boxes'] = (isset($this->request->data['Compoundpfr_data']['num_boxes']) ? $this->request->data['Compoundpfr_data']['num_boxes'] : 1); //sets boxnum to 1 if its not already set
-        $this->set('box_nums',$this->request->data['Compoundpfr_data']['num_boxes']); //passes the number of boxes from the old form to the new form
-        if ($this->request->data['Compoundpfr_data']['isDate']==='1'){
-            $this->request->data['Compoundpfr_data']['start_date'] = $this->request->data['Compoundpfr_data']['start_date']['year'].'-'.$this->request->data['Compoundpfr_data']['start_date']['month'].'-'.$this->request->data['Compoundpfr_data']['start_date']['day'];//makes date in  format where sql can compare time helper
-            $this->request->data['Compoundpfr_data']['end_date'] = $this->request->data['Compoundpfr_data']['end_date']['year'].'-'.$this->request->data['Compoundpfr_data']['end_date']['month'].'-'.$this->request->data['Compoundpfr_data']['end_date']['day'];
-        } //if the date is set then add the date to the search query
-        //gets an array of the criteria for the search
-        // add some lines to fine problems.  Want see what data is returned from the form
-        $search_data = $this->request->data;
-//        print_r($search_data);print_r('');
-        $search = $this->My->extractSearchTerm($search_data, ['assigned_name', 'assigned_confid', 'exact_mass', 'intensity_description', 'reference', 'sample_ref', 'crop', 'species', 'tissue', 'genotype', 'analyst', 'file'], 'Compoundpfr_data'); 
-        //$search = $this->My->extractSearchTerm($this->request->data, ['assigned_name', 'assigned_confid', 'exact_mass', 'intensity_description', 'reference', 'sample_ref', 'crop', 'species', 'tissue', 'genotype', 'analyst', 'file'], 'Compoundpfr_data');
-        $search = $this->addPsu($this->request->data, $search); //adds the synonims to the search array
-//        print_r($search);
-//        echo $this->paginate['limit'];
-//        var_dump($search);
-        $this->set('results' ,$this->paginate('Compoundpfr_data', $search)); //sets the results from the cake pagination helper
-//        var_dump($this->paginate('Compoundpfr_data', $search));
-        $this->set('num', $this->Compoundpfr_data->find('count', ['conditions' =>$search]));
-        $this->set('data', $this->request->data); //sends all the data(search criteria) to the view so it can be added to the ajax links
+    public function findData(){   
+      
     }
     
     public function search(){

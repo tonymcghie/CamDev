@@ -7,10 +7,10 @@
  */
 
 class CompoundsController extends AppController{
-    public $helpers = array('Html' , 'Form' , 'My', 'Js');
+    public $helpers = array('Html' , 'Form' , 'My', 'Js', 'Time', 'String', 'BootstrapForm');
     public $uses = array('Compound');
     public $layout = 'content';
-    public $components = array('Paginator', 'My');
+    public $components = array('Paginator', 'RequestHandler', 'My', 'Session', 'Cookie', 'Auth', 'File', 'Search');
     
    /** Sets the options for pagination */
     public $paginate = array(
@@ -78,12 +78,13 @@ class CompoundsController extends AppController{
     }
     
     /**
-     * Searches for compounds in the table will search for synonims when searching on name
-     * @param type $data
-     * @return type
+     * Entry point for Compounds -> Find
+     * Control transfers to the search_compound view and onto to /Elements/search_form
+     * and then back to the search() function below.
+     * Search results are displayed as a modal as defined by /Elements/results table 
      */
     public function searchCompound($data = null){
-        if ($data!=null&&!isset($this->request->data['Compound'])){
+        /**if ($data!=null&&!isset($this->request->data['Compound'])){
             parse_str($data);
             $this->request->data['Compound'] = $Compound;
         } //sets the data
@@ -118,7 +119,28 @@ class CompoundsController extends AppController{
         $search = $this->My->extractSearchTerm($data, ['cas', 'compound_name', 'exact_mass', 'comment'], 'Compound'); //makes search term
         $this->set('results', $this->paginate('Compound', $search)); //gets the results
         $this->set('num', $this->Compound->find('count', ['conditions' =>$search])); //passes the number of results to the view
-        $this->set('data', $this->request->data);
+        $this->set('data', $this->request->data);*/
+    }
+    // search not working appear that the search are not being passed or control is not getting back to the search() here
+    public function search(){
+        $data = $this->request->data;
+        var_export($data);
+        $this->layout = 'ajax';
+        $this->autoRender = false;
+        $this->paginate = [
+            'limit' => 30,
+            'order' => array('Compound.compound_name' => 'asc')
+        ];
+        // Listed these here for auto complete reasons and to stop the IDE displaying errors
+        $criteria = null;$value = null;$logic = null;$match = null;
+        extract($this->request->data['Compound']);
+        $query = $this->Search->build_query($this->Compound, $criteria, $value, $logic, $match);
+        $results = $this->paginate('Compound', $query);
+        //var_export($results);
+        $this->set('results', $results);
+        $this->set('model', 'Compound');
+        $this->render('/Elements/results_table');
+        //var_export($results);
     }
     
     /**
