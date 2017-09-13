@@ -199,6 +199,8 @@ class SampleSetsController extends AppController{
         // Listed these here for auto complete reasons and to stop the IDE displaying errors
         $criteria = null;$value = null;$logic = null;$match = null;
         extract($this->request->data['SampleSet']);
+        //$criteria = 'set_code';$value = 'TK123';$logic = 'AND';$match = 'contains';
+        var_export($criteria);var_export($value);var_export($match);var_export($logic);
         $query = $this->Search->build_query($this->SampleSet, $criteria, $value, $logic, $match);
         $results = $this->paginate('SampleSet', $query);
         $this->set('results', $results);

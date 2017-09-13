@@ -7,10 +7,10 @@
  */
 
 class MetabolitesController extends AppController{
-    public $helpers = array('Html' , 'Form' , 'My', 'Js');
+    public $helpers = array('Html' , 'Form' , 'My' , 'Js', 'Time', 'String', 'BootstrapForm');
     public $uses = array('Metabolite','Msms_Metabolite','Proposed_Metabolite');
     public $layout = 'content';
-    public $components = array('Paginator', 'RequestHandler', 'My');
+    public $components = array('Paginator', 'RequestHandler', 'My', 'Session', 'Cookie', 'Auth', 'File', 'Search');
     
     public $paginate = array(
         'limit' => 2,
@@ -124,30 +124,27 @@ class MetabolitesController extends AppController{
      * @param array $data
      * @return null
      */
-    public function searchMetabolite($data = null){   
-        if ($data!=null&&!isset($this->request->data['Metabolite'])){ //if the data passed is through the url rather than post then set the data variable to the data passed from the url
-            parse_str($data);
-            $this->request->data['Metabolite'] = $Metabolite;
-        }
-        if (!isset($this->request->data['Metabolite'])){ //if data == null and request->data ==null
-            return;
-        }
-        $this->paginate = array(
-        'limit' => 20,
-        'order' => array('Metabolite.exact_mass' => 'asc'));     //sets up the pagination options
-        
-        $this->request->data['Metabolite']['num_boxes'] = (isset($this->request->data['Metabolite']['num_boxes']) ? $this->request->data['Metabolite']['num_boxes'] : 1); //sets boxnum to 1 if its not already set
-        $this->set('box_nums',$this->request->data['Metabolite']['num_boxes']);  //passes the box num to the view 
-        if ($this->request->data['Metabolite']['isDate']==='1'){ //checks if there is a date to search on
-            $this->request->data['Metabolite']['start_date'] = $this->request->data['Metabolite']['start_date']['year'].'-'.$this->request->data['Metabolite']['start_date']['month'].'-'.$this->request->data['Metabolite']['start_date']['day'];//makes date in  format where sql can compare time helper
-            $this->request->data['Metabolite']['end_date'] = $this->request->data['Metabolite']['end_date']['year'].'-'.$this->request->data['Metabolite']['end_date']['month'].'-'.$this->request->data['Metabolite']['end_date']['day'];
-        }
-        //gets the criteria for the search
-        $search = $this->My->extractSearchTerm($this->request->data, ['exact_mass', 'experiment_ref', 'sources', 'tissue', 'chemist'], 'Metabolite');        
-        $results = $this->paginate('Metabolite', $search); //search for the data for the page
-        $this->set('num', $this->Metabolite->find('count', ['conditions' =>$search]));// finds the num of results
-        $this->set('results' ,$results); //sends the reuslts to the page  
-        $this->set('data', $this->request->data); //sends all the data(search criteria) to the view so it can be added to the ajax links               
+    public function searchMetabolite(){   
+                     
+    }
+    
+    public function search(){
+        $this->layout = 'ajax';
+        $this->autoRender = false;
+        $this->paginate = [
+            'limit' => 30,
+            'order' => array('SampleSet.date' => 'asc')
+        ];
+        // Listed these here for auto complete reasons and to stop the IDE displaying errors
+        $criteria = null;$value = null;$logic = null;$match = null;
+        extract($this->request->data['Metabolite']);
+        var_export($criteria);var_export($value);var_export($match);var_export($logic);
+        $query = $this->Search->build_query($this->Metabolite, $criteria, $value, $logic, $match);
+        $results = $this->paginate('Metabolite', $query);
+        $this->set('results', $results);
+        $this->set('model', 'Metabolite');
+        $this->render('/Elements/results_table');
+        //var_export($results);
     }
     
     /**

@@ -1,7 +1,7 @@
 <?php
 $logic_options = ['AND' => 'and', 'OR' => 'or', 'XOR' => 'xor', 'NOT' => 'not'];
 $match_options = ['contains' => 'Contains', 'exact' => 'Exactly', 'starts' => 'Starts with'];
-if (!empty($title))echo '<h1>'.$title.'</h1>';?>
+if (!empty($title))echo '<h1>'.$model.'</h1>';?>
 
 <?= $this->BootstrapForm->create($model, ['action' => 'search', 'class' => 'search-form']); ?>
 
