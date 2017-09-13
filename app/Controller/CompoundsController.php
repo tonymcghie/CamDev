@@ -134,6 +134,7 @@ class CompoundsController extends AppController{
         // Listed these here for auto complete reasons and to stop the IDE displaying errors
         $criteria = null;$value = null;$logic = null;$match = null;
         extract($this->request->data['Compound']);
+        var_export($criteria);var_export($value);var_export($match);var_export($logic);
         $query = $this->Search->build_query($this->Compound, $criteria, $value, $logic, $match);
         $results = $this->paginate('Compound', $query);
         //var_export($results);
