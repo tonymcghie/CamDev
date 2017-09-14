@@ -86,7 +86,23 @@ class StringHelper extends AppHelper{
             'exact_mass' => 'Exact Mass',
             'cas' => 'CAS',
             'compound_type' => 'Class',
-            'comment' => 'Comment']
+            'pseudonyms' => 'Symonyms',
+            'comment' => 'Comment'],
+        'IonAdducts' => [
+            'compound_name' => 'Name',
+            'exact_mass' => 'Exact Mass',
+            'cas' => 'CAS'],
+        'Metabolite' => [
+            'id' => 'ID',
+            'exact_mass' => 'Exact Mass',
+            'ion_type' => 'Ion Type',
+            'rt_value' => 'Retention Time',
+            'rt_description' => 'Chromatography',
+            'sources' => 'Source',
+            'tissue' => 'Tissue',
+            'chemist' => 'Chemist',
+            'experiment_ref' => 'Experiment Reference',
+            'date' => 'Start Date']
     ];
 
     public function get_string($identifier, $set){
