@@ -120,9 +120,10 @@ class MetabolitesController extends AppController{
     }
 
     /**
-     * Search the metabolites
-     * @param array $data
-     * @return null
+     * Entry point for Unknown -> Find
+     * Control transfers to the search_compound view and onto to /Elements/search_form
+     * and then back to the search() function below.
+     * Search results are displayed as a modal as defined by /Elements/results table 
      */
     public function searchMetabolite(){   
                      
@@ -138,13 +139,14 @@ class MetabolitesController extends AppController{
         // Listed these here for auto complete reasons and to stop the IDE displaying errors
         $criteria = null;$value = null;$logic = null;$match = null;
         extract($this->request->data['Metabolite']);
-        var_export($criteria);var_export($value);var_export($match);var_export($logic);
+        //var_export($criteria);var_export($value);var_export($match);var_export($logic);
         $query = $this->Search->build_query($this->Metabolite, $criteria, $value, $logic, $match);
+        //var_export($query);
         $results = $this->paginate('Metabolite', $query);
+        //var_export($results);
         $this->set('results', $results);
         $this->set('model', 'Metabolite');
         $this->render('/Elements/results_table');
-        //var_export($results);
     }
     
     /**

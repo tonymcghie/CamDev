@@ -81,7 +81,7 @@ class CompoundsController extends AppController{
      * Entry point for Compounds -> Find
      * Control transfers to the search_compound view and onto to /Elements/search_form
      * and then back to the search() function below.
-     * Search results are displayed as a modal as defined by /Elements/results table 
+     * Search results are displayed as a modal as defined by /Elements/compound_results table 
      */
     public function searchCompound($data = null){
         /**if ($data!=null&&!isset($this->request->data['Compound'])){
@@ -124,7 +124,6 @@ class CompoundsController extends AppController{
     // search not working appear that the search are not being passed or control is not getting back to the search() here
     public function search(){
         $data = $this->request->data;
-        var_export($data);
         $this->layout = 'ajax';
         $this->autoRender = false;
         $this->paginate = [
@@ -134,14 +133,13 @@ class CompoundsController extends AppController{
         // Listed these here for auto complete reasons and to stop the IDE displaying errors
         $criteria = null;$value = null;$logic = null;$match = null;
         extract($this->request->data['Compound']);
-        var_export($criteria);var_export($value);var_export($match);var_export($logic);
+        //var_export($criteria);var_export($value);var_export($match);var_export($logic);
         $query = $this->Search->build_query($this->Compound, $criteria, $value, $logic, $match);
         $results = $this->paginate('Compound', $query);
         //var_export($results);
         $this->set('results', $results);
         $this->set('model', 'Compound');
-        $this->render('/Elements/results_table');
-        //var_export($results);
+        $this->render('/Elements/compound_results_table');
     }
     
     /**
@@ -225,6 +223,6 @@ class CompoundsController extends AppController{
     public function reagentsCompound($id = null) {
         $compound = $this->Compound->findById($id); //find a compound by id
         $this->set('info', $compound);// passes the compound info to the view
-    }
+    }    
 }
 

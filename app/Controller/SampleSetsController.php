@@ -200,9 +200,11 @@ class SampleSetsController extends AppController{
         $criteria = null;$value = null;$logic = null;$match = null;
         extract($this->request->data['SampleSet']);
         //$criteria = 'set_code';$value = 'TK123';$logic = 'AND';$match = 'contains';
-        var_export($criteria);var_export($value);var_export($match);var_export($logic);
+        //var_export($criteria);var_export($value);var_export($match);var_export($logic);
         $query = $this->Search->build_query($this->SampleSet, $criteria, $value, $logic, $match);
+        //var_export($query);
         $results = $this->paginate('SampleSet', $query);
+        var_export($results);
         $this->set('results', $results);
         $this->set('model', 'SampleSet');
         $this->render('/Elements/results_table');
