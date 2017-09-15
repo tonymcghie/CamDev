@@ -42,6 +42,7 @@ class CompoundsController extends AppController{
      * @return type
      */
     public function addCompound(){
+        $this->layout = 'content';
         if ($this->request->is('post')){ //check if the save button has being clicked            
             $data = $this->request->data; //gets the data
             if ($data['Compound']['cas'] != '' && $this->Compound->find('count', ['conditions' => ['cas' => $data['Compound']['cas']]]) > 0){

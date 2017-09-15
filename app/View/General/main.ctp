@@ -88,7 +88,7 @@
                     <button type="button"
                             class="list-group-item"
                             onclick="load_page('<?php echo $this->Html->url(['controller' => 'Compounds', 'action' => 'addCompound'], true) ?>', $('#main_content'))">
-                        Add
+                        New
                     </button>
                     <button type="button"
                             class="list-group-item"
