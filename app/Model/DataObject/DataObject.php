@@ -12,16 +12,25 @@ abstract class DataObject {
 
     protected $model;
     protected $immutableFields;
+    protected $data;
 
-    public function __construct($model) {
+    public function __construct($model, $data) {
         $this->model = $model;
+        $this->data = $data;
     }
 
     function __set($name, $value) {
         if (in_array($name, $this->immutableFields)) {
             return;
         }
-        $this->$name = $value;
+        $this->data[$name] = $value;
+    }
+
+    function __get($name) {
+        if (!isset($this->data[$name])) {
+            throw new \Exception('The Value for '.$name.' was not got from the database');
+        }
+        return $this->data[$name];
     }
 
 

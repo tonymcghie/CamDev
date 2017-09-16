@@ -78,14 +78,14 @@ class SampleSet extends AppModel{
                           FROM sample_sets AS SampleSet 
                          INNER JOIN (SELECT sample_sets.set_code sc, max(version) as maxrev
                           FROM sample_sets 
-                          WHERE sample_sets.version 
-                          GROUP BY sample_sets.set_code) AS child 
-                        ON (SampleSet.set_code = child.sc)
+                         WHERE sample_sets.version 
+                      GROUP BY sample_sets.set_code) AS child 
+                               ON (SampleSet.set_code = child.sc)
                           AND (SampleSet.version = maxrev)
                           AND (({$parsedConditions})
                           AND ((SampleSet.confidential = 1 
                               AND (SampleSet.chemist = '{$this->username}' OR SampleSet.submitter = '{$this->username}')) 
-                            OR SampleSet.confidential = 0))";
+                           OR SampleSet.confidential = 0))";
         if (isset($query['order'])){
             $key = current(array_keys($query['order']));
             $sql .= " ORDER BY ".$key." ".$query['order'][$key];
@@ -95,7 +95,6 @@ class SampleSet extends AppModel{
             $page = $query['page'];
             $sql .= " LIMIT ".(int)(($page-1)*$limit).", ".(int)($limit);
         }
-        var_dump($query);
         return $this->query($sql);
     }
 
