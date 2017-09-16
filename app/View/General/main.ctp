@@ -190,7 +190,7 @@
                     <button type="button"
                             class="list-group-item"
                             onclick="load_page('<?php echo $this->Html->url(['controller' => 'Metabolites', 'action' => 'addMetabolite'], true) ?>', $('#main_content'))">
-                        Add
+                        New
                     </button>
                     <?php
                     /*if ($this->Session->read('Auth.User')!==null && in_array("PFR-GP-Biological Chemistry and Bioactives Group", $this->Session->read('Auth.User')['groups'])){

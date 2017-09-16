@@ -235,4 +235,22 @@ class MyHelper extends AppHelper{
         return ['' => '' , 'alcohol' => 'alcohol' , 'aldehyde' => 'aldehyde' , 'alkaloid' => 'alkaloid' , 'amino acid' => 'amino acid' , 'carbohydrate' => 'carbohydrate' , 'carotenoid' => 'carotenoid' , 'epoxide' => 'epoxide' , 'ester' => 'ester' , 'flavonoid' => 'flavonoid',
             'glucosinolate' => 'glucosinolate' , 'hydrocarbon' => 'hydrocarbon' , 'ketone' => 'ketone' , 'lipid' => 'lipid' , 'organic acid' => 'organic acid' , 'peptide' => 'peptide' , 'phenolic acid' => 'phenolic acid' , 'sulphur compound' => 'sulphur compound' , 'terpene' => 'terpene' , 'other' => 'other'];
     }
+    
+    /**
+     * returns the option value pairs for the type of Project select input
+     * @return type
+     */
+	public function getProjectTypeOptions(){
+        return ['Blueskies' => 'Blueskies','BPA' => 'BPA','Commercial' => 'Commercial','Core' => 'Core','Discovery Science' => 'Discovery Science','MBIE' => 'MBIE',
+    'Other' => 'Other'];
+    }
+    
+    /**
+     * returns the option value pairs for the type of MS ion to select for input
+     * @return type
+     */
+	public function getIonTypeOptions(){
+        return ['[M-H]-' => '[M-H]-', '[2M-H]-' => '[2M-H]-', '[M+HCOOH-H]-' => '[M+HCOOH-H]-','[M+H]+' => '[M+H]+',
+    '[2M+H]+' => '[2M+H]+', '[M+Na]+' => '[M+Na]+','[M+K]+' => '[M+K]+'];
+    }
 }

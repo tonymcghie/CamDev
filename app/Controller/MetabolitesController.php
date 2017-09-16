@@ -42,17 +42,9 @@ class MetabolitesController extends AppController{
      * @return null
      */
     public function addMetabolite(){
-        if (isset($this->params['url']['isTablet']) && $this->params['url']['isTablet']==='true'){
-            $this->autoRender = false;
-            $this->set('tabletView', 'true');
-            $this->layout= 'TabletLayout';
-            $this->render('add_metabolite_tablet');
-        } else {
-            $this->set('tabletView', 'false');
-            $this->autoRender = true;
-        } //sets the view (tablet or not tablet)
-        
-        if (isset($this->request->data['Metabolite'])){ //check if the save button has being clicked            
+        $this->layout = 'content'; 
+        $this->set('names', $this->Chemist->find('list', ['fields' => 'name']));
+        /**if (isset($this->request->data['Metabolite'])){ //check if the save button has being clicked            
             $data = $this->request->data;      //gets the data
             $this->Metabolite->create();            //Need to add
             if ($this->Metabolite->save($data)){                 //saves the Compound
@@ -71,6 +63,20 @@ class MetabolitesController extends AppController{
                 return $this->redirect(['controller' => 'General', 'action' => 'blank', '?' => ['alert' => 'Msms Unknown Compound Saved']]);
             }
         } //adds which ever one was pressed
+         * 
+         */
+    }
+    
+    /**
+     * saves the unknown metabolite to the database
+     * @return null
+     */
+    public function createMetabolite(){         
+        $data = $this->request->data;      //gets the data
+        $this->Metabolite->create();            //Need to add
+        if ($this->Metabolite->save($data)){                 //saves the Compound
+            return $this->redirect(['controller' => 'General', 'action' => 'blank', '?' => ['alert' => 'Unknown Compound Saved']]);
+        }
     }
     
     /**
