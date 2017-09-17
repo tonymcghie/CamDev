@@ -1,0 +1,992 @@
+
+2015-11-25 01:45:35 Debug: Array
+(
+    [criteria] => Array
+        (
+            [empty] => Select Criteria
+            [all] => All
+            [set_code] => Set Code
+            [submitter] => PFR Collaborator
+            [crop] => Crop
+            [compounds] => Compounds
+            [comment] => Comments
+            [exp_reference] => Experiment Reference
+            [chemist] => Chemist
+            [team] => Team
+        )
+
+    [count] => 1
+)
+
+2015-11-25 01:45:35 Debug: 1
+2015-11-25 01:45:35 Debug: 2
+2015-11-25 01:45:35 Debug: 3
+2015-11-25 01:45:35 Debug: 4
+2015-12-21 20:51:55 Debug: Notice (8): Undefined offset: 0 in [C:\wamp\www\CAMcake\app\Controller\Component\LDAPComponent.php, line 64]
+Trace:
+LDAPComponent::formatInfo() - APP\Controller\Component\LDAPComponent.php, line 64
+LDAPComponent::getInfo() - APP\Controller\Component\LDAPComponent.php, line 59
+UsersController::findByUsername() - APP\Controller\UsersController.php, line 44
+UsersController::login() - APP\Controller\UsersController.php, line 26
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 490
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 193
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 167
+[main] - APP\webroot\index.php, line 111
+
+2015-12-21 20:51:55 Debug: Notice (8): Undefined offset: 0 in [C:\wamp\www\CAMcake\app\Controller\Component\LDAPComponent.php, line 65]
+Trace:
+LDAPComponent::formatInfo() - APP\Controller\Component\LDAPComponent.php, line 65
+LDAPComponent::getInfo() - APP\Controller\Component\LDAPComponent.php, line 59
+UsersController::findByUsername() - APP\Controller\UsersController.php, line 44
+UsersController::login() - APP\Controller\UsersController.php, line 26
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 490
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 193
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 167
+[main] - APP\webroot\index.php, line 111
+
+2015-12-21 20:51:55 Debug: Notice (8): Undefined offset: 0 in [C:\wamp\www\CAMcake\app\Controller\Component\LDAPComponent.php, line 67]
+Trace:
+LDAPComponent::formatInfo() - APP\Controller\Component\LDAPComponent.php, line 67
+LDAPComponent::getInfo() - APP\Controller\Component\LDAPComponent.php, line 59
+UsersController::findByUsername() - APP\Controller\UsersController.php, line 44
+UsersController::login() - APP\Controller\UsersController.php, line 26
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 490
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 193
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 167
+[main] - APP\webroot\index.php, line 111
+
+2015-12-21 20:51:55 Debug: Notice (8): Undefined offset: 0 in [C:\wamp\www\CAMcake\app\Controller\Component\LDAPComponent.php, line 68]
+Trace:
+LDAPComponent::formatInfo() - APP\Controller\Component\LDAPComponent.php, line 68
+LDAPComponent::getInfo() - APP\Controller\Component\LDAPComponent.php, line 59
+UsersController::findByUsername() - APP\Controller\UsersController.php, line 44
+UsersController::login() - APP\Controller\UsersController.php, line 26
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 490
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 193
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 167
+[main] - APP\webroot\index.php, line 111
+
+2015-12-21 20:51:55 Debug: Notice (8): Undefined offset: 0 in [C:\wamp\www\CAMcake\app\Controller\Component\LDAPComponent.php, line 69]
+Trace:
+LDAPComponent::formatInfo() - APP\Controller\Component\LDAPComponent.php, line 69
+LDAPComponent::getInfo() - APP\Controller\Component\LDAPComponent.php, line 59
+UsersController::findByUsername() - APP\Controller\UsersController.php, line 44
+UsersController::login() - APP\Controller\UsersController.php, line 26
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 490
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 193
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 167
+[main] - APP\webroot\index.php, line 111
+
+2015-12-21 20:52:21 Debug: Notice (8): Undefined offset: 0 in [C:\wamp\www\CAMcake\app\Controller\Component\LDAPComponent.php, line 64]
+Trace:
+LDAPComponent::formatInfo() - APP\Controller\Component\LDAPComponent.php, line 64
+LDAPComponent::getInfo() - APP\Controller\Component\LDAPComponent.php, line 59
+UsersController::findByUsername() - APP\Controller\UsersController.php, line 44
+UsersController::login() - APP\Controller\UsersController.php, line 26
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 490
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 193
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 167
+[main] - APP\webroot\index.php, line 111
+
+2015-12-21 20:52:21 Debug: Notice (8): Undefined offset: 0 in [C:\wamp\www\CAMcake\app\Controller\Component\LDAPComponent.php, line 65]
+Trace:
+LDAPComponent::formatInfo() - APP\Controller\Component\LDAPComponent.php, line 65
+LDAPComponent::getInfo() - APP\Controller\Component\LDAPComponent.php, line 59
+UsersController::findByUsername() - APP\Controller\UsersController.php, line 44
+UsersController::login() - APP\Controller\UsersController.php, line 26
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 490
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 193
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 167
+[main] - APP\webroot\index.php, line 111
+
+2015-12-21 20:52:21 Debug: Notice (8): Undefined offset: 0 in [C:\wamp\www\CAMcake\app\Controller\Component\LDAPComponent.php, line 67]
+Trace:
+LDAPComponent::formatInfo() - APP\Controller\Component\LDAPComponent.php, line 67
+LDAPComponent::getInfo() - APP\Controller\Component\LDAPComponent.php, line 59
+UsersController::findByUsername() - APP\Controller\UsersController.php, line 44
+UsersController::login() - APP\Controller\UsersController.php, line 26
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 490
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 193
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 167
+[main] - APP\webroot\index.php, line 111
+
+2015-12-21 20:52:21 Debug: Notice (8): Undefined offset: 0 in [C:\wamp\www\CAMcake\app\Controller\Component\LDAPComponent.php, line 68]
+Trace:
+LDAPComponent::formatInfo() - APP\Controller\Component\LDAPComponent.php, line 68
+LDAPComponent::getInfo() - APP\Controller\Component\LDAPComponent.php, line 59
+UsersController::findByUsername() - APP\Controller\UsersController.php, line 44
+UsersController::login() - APP\Controller\UsersController.php, line 26
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 490
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 193
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 167
+[main] - APP\webroot\index.php, line 111
+
+2015-12-21 20:52:21 Debug: Notice (8): Undefined offset: 0 in [C:\wamp\www\CAMcake\app\Controller\Component\LDAPComponent.php, line 69]
+Trace:
+LDAPComponent::formatInfo() - APP\Controller\Component\LDAPComponent.php, line 69
+LDAPComponent::getInfo() - APP\Controller\Component\LDAPComponent.php, line 59
+UsersController::findByUsername() - APP\Controller\UsersController.php, line 44
+UsersController::login() - APP\Controller\UsersController.php, line 26
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 490
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 193
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 167
+[main] - APP\webroot\index.php, line 111
+
+2015-12-21 21:17:22 Debug: Notice (8): Use of undefined constant length - assumed 'length' in [C:\wamp\www\CAMcake\app\Controller\AnalysesController.php, line 124]
+Trace:
+AnalysesController::uploadFile() - APP\Controller\AnalysesController.php, line 124
+AnalysesController::editAnalysis() - APP\Controller\AnalysesController.php, line 52
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 490
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 193
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 167
+[main] - APP\webroot\index.php, line 111
+
+2015-12-21 21:17:22 Debug: Notice (8): Array to string conversion in [C:\wamp\www\CAMcake\app\Controller\AnalysesController.php, line 124]
+Trace:
+AnalysesController::uploadFile() - APP\Controller\AnalysesController.php, line 124
+AnalysesController::editAnalysis() - APP\Controller\AnalysesController.php, line 52
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 490
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 193
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 167
+[main] - APP\webroot\index.php, line 111
+
+2015-12-21 21:17:22 Debug: Notice (8): Use of undefined constant length - assumed 'length' in [C:\wamp\www\CAMcake\app\Controller\AnalysesController.php, line 124]
+Trace:
+AnalysesController::uploadFile() - APP\Controller\AnalysesController.php, line 124
+AnalysesController::editAnalysis() - APP\Controller\AnalysesController.php, line 52
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 490
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 193
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 167
+[main] - APP\webroot\index.php, line 111
+
+2015-12-21 21:17:22 Debug: Notice (8): Array to string conversion in [C:\wamp\www\CAMcake\app\Controller\AnalysesController.php, line 124]
+Trace:
+AnalysesController::uploadFile() - APP\Controller\AnalysesController.php, line 124
+AnalysesController::editAnalysis() - APP\Controller\AnalysesController.php, line 52
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 490
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 193
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 167
+[main] - APP\webroot\index.php, line 111
+
+2015-12-21 21:17:22 Debug: Notice (8): Undefined offset: -2 in [C:\wamp\www\CAMcake\app\Controller\AnalysesController.php, line 124]
+Trace:
+AnalysesController::uploadFile() - APP\Controller\AnalysesController.php, line 124
+AnalysesController::editAnalysis() - APP\Controller\AnalysesController.php, line 52
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 490
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 193
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 167
+[main] - APP\webroot\index.php, line 111
+
+2015-12-21 23:05:50 Debug: Notice (8): Undefined variable: analysisId in [C:\wamp\www\CAMcake\app\Controller\AnalysesController.php, line 29]
+Trace:
+AnalysesController::editAnalysis() - APP\Controller\AnalysesController.php, line 29
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 490
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 193
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 167
+[main] - APP\webroot\index.php, line 111
+
+2015-12-21 23:16:22 Debug: Notice (8): Undefined variable: filename in [C:\wamp\www\CAMcake\app\Controller\AnalysesController.php, line 135]
+Trace:
+AnalysesController::uploadPData() - APP\Controller\AnalysesController.php, line 135
+AnalysesController::editAnalysis() - APP\Controller\AnalysesController.php, line 47
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 490
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 193
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 167
+[main] - APP\webroot\index.php, line 111
+
+2015-12-21 23:16:22 Debug: Notice (8): Undefined variable: newName in [C:\wamp\www\CAMcake\app\Controller\AnalysesController.php, line 168]
+Trace:
+AnalysesController::uploadFile() - APP\Controller\AnalysesController.php, line 168
+AnalysesController::uploadPData() - APP\Controller\AnalysesController.php, line 149
+AnalysesController::editAnalysis() - APP\Controller\AnalysesController.php, line 47
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 490
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 193
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 167
+[main] - APP\webroot\index.php, line 111
+
+2015-12-21 23:16:34 Debug: Notice (8): Undefined variable: filename in [C:\wamp\www\CAMcake\app\Controller\AnalysesController.php, line 107]
+Trace:
+AnalysesController::uploadDData() - APP\Controller\AnalysesController.php, line 107
+AnalysesController::editAnalysis() - APP\Controller\AnalysesController.php, line 50
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 490
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 193
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 167
+[main] - APP\webroot\index.php, line 111
+
+2015-12-21 23:16:34 Debug: Notice (8): Undefined variable: analysisId in [C:\wamp\www\CAMcake\app\Controller\AnalysesController.php, line 111]
+Trace:
+AnalysesController::uploadDData() - APP\Controller\AnalysesController.php, line 111
+AnalysesController::editAnalysis() - APP\Controller\AnalysesController.php, line 50
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 490
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 193
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 167
+[main] - APP\webroot\index.php, line 111
+
+2015-12-21 23:16:34 Debug: Notice (8): Undefined variable: newName in [C:\wamp\www\CAMcake\app\Controller\AnalysesController.php, line 168]
+Trace:
+AnalysesController::uploadFile() - APP\Controller\AnalysesController.php, line 168
+AnalysesController::uploadDData() - APP\Controller\AnalysesController.php, line 121
+AnalysesController::editAnalysis() - APP\Controller\AnalysesController.php, line 50
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 490
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 193
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 167
+[main] - APP\webroot\index.php, line 111
+
+2015-12-21 23:17:09 Debug: Notice (8): Undefined variable: filename in [C:\wamp\www\CAMcake\app\Controller\AnalysesController.php, line 135]
+Trace:
+AnalysesController::uploadPData() - APP\Controller\AnalysesController.php, line 135
+AnalysesController::editAnalysis() - APP\Controller\AnalysesController.php, line 47
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 490
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 193
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 167
+[main] - APP\webroot\index.php, line 111
+
+2015-12-21 23:17:09 Debug: Notice (8): Undefined variable: analysisId in [C:\wamp\www\CAMcake\app\Controller\AnalysesController.php, line 139]
+Trace:
+AnalysesController::uploadPData() - APP\Controller\AnalysesController.php, line 139
+AnalysesController::editAnalysis() - APP\Controller\AnalysesController.php, line 47
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 490
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 193
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 167
+[main] - APP\webroot\index.php, line 111
+
+2015-12-21 23:17:09 Debug: Notice (8): Undefined variable: newName in [C:\wamp\www\CAMcake\app\Controller\AnalysesController.php, line 168]
+Trace:
+AnalysesController::uploadFile() - APP\Controller\AnalysesController.php, line 168
+AnalysesController::uploadPData() - APP\Controller\AnalysesController.php, line 149
+AnalysesController::editAnalysis() - APP\Controller\AnalysesController.php, line 47
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 490
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 193
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 167
+[main] - APP\webroot\index.php, line 111
+
+2015-12-21 23:18:33 Debug: Notice (8): Undefined variable: titles in [C:\wamp\www\CAMcake\app\View\Analyses\edit_analysis.ctp, line 64]
+Trace:
+include - APP\View\Analyses\edit_analysis.ctp, line 64
+View::_evaluate() - CORE\Cake\View\View.php, line 971
+View::_render() - CORE\Cake\View\View.php, line 933
+View::render() - CORE\Cake\View\View.php, line 473
+Controller::render() - CORE\Cake\Controller\Controller.php, line 960
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 200
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 167
+[main] - APP\webroot\index.php, line 111
+
+2015-12-21 23:18:33 Debug: Notice (8): Undefined variable: titles in [C:\wamp\www\CAMcake\app\View\Analyses\edit_analysis.ctp, line 68]
+Trace:
+include - APP\View\Analyses\edit_analysis.ctp, line 68
+View::_evaluate() - CORE\Cake\View\View.php, line 971
+View::_render() - CORE\Cake\View\View.php, line 933
+View::render() - CORE\Cake\View\View.php, line 473
+Controller::render() - CORE\Cake\Controller\Controller.php, line 960
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 200
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 167
+[main] - APP\webroot\index.php, line 111
+
+2015-12-21 23:18:33 Debug: Notice (8): Undefined variable: titles in [C:\wamp\www\CAMcake\app\View\Analyses\edit_analysis.ctp, line 69]
+Trace:
+include - APP\View\Analyses\edit_analysis.ctp, line 69
+View::_evaluate() - CORE\Cake\View\View.php, line 971
+View::_render() - CORE\Cake\View\View.php, line 933
+View::render() - CORE\Cake\View\View.php, line 473
+Controller::render() - CORE\Cake\Controller\Controller.php, line 960
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 200
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 167
+[main] - APP\webroot\index.php, line 111
+
+2015-12-21 23:18:34 Debug: Notice (8): Undefined variable: titles in [C:\wamp\www\CAMcake\app\View\Analyses\edit_analysis.ctp, line 71]
+Trace:
+include - APP\View\Analyses\edit_analysis.ctp, line 71
+View::_evaluate() - CORE\Cake\View\View.php, line 971
+View::_render() - CORE\Cake\View\View.php, line 933
+View::render() - CORE\Cake\View\View.php, line 473
+Controller::render() - CORE\Cake\Controller\Controller.php, line 960
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 200
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 167
+[main] - APP\webroot\index.php, line 111
+
+2015-12-21 23:18:45 Debug: Notice (8): Undefined variable: filename in [C:\wamp\www\CAMcake\app\Controller\AnalysesController.php, line 135]
+Trace:
+AnalysesController::uploadPData() - APP\Controller\AnalysesController.php, line 135
+AnalysesController::editAnalysis() - APP\Controller\AnalysesController.php, line 47
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 490
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 193
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 167
+[main] - APP\webroot\index.php, line 111
+
+2015-12-21 23:18:45 Debug: Notice (8): Undefined variable: newName in [C:\wamp\www\CAMcake\app\Controller\AnalysesController.php, line 168]
+Trace:
+AnalysesController::uploadFile() - APP\Controller\AnalysesController.php, line 168
+AnalysesController::uploadPData() - APP\Controller\AnalysesController.php, line 149
+AnalysesController::editAnalysis() - APP\Controller\AnalysesController.php, line 47
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 490
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 193
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 167
+[main] - APP\webroot\index.php, line 111
+
+2015-12-21 23:18:53 Debug: Notice (8): Undefined variable: filename in [C:\wamp\www\CAMcake\app\Controller\AnalysesController.php, line 107]
+Trace:
+AnalysesController::uploadDData() - APP\Controller\AnalysesController.php, line 107
+AnalysesController::editAnalysis() - APP\Controller\AnalysesController.php, line 50
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 490
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 193
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 167
+[main] - APP\webroot\index.php, line 111
+
+2015-12-21 23:18:53 Debug: Notice (8): Undefined variable: newName in [C:\wamp\www\CAMcake\app\Controller\AnalysesController.php, line 168]
+Trace:
+AnalysesController::uploadFile() - APP\Controller\AnalysesController.php, line 168
+AnalysesController::uploadDData() - APP\Controller\AnalysesController.php, line 121
+AnalysesController::editAnalysis() - APP\Controller\AnalysesController.php, line 50
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 490
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 193
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 167
+[main] - APP\webroot\index.php, line 111
+
+2015-12-21 23:19:09 Debug: Notice (8): Undefined variable: filename in [C:\wamp\www\CAMcake\app\Controller\AnalysesController.php, line 135]
+Trace:
+AnalysesController::uploadPData() - APP\Controller\AnalysesController.php, line 135
+AnalysesController::editAnalysis() - APP\Controller\AnalysesController.php, line 47
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 490
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 193
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 167
+[main] - APP\webroot\index.php, line 111
+
+2015-12-21 23:19:09 Debug: Notice (8): Undefined variable: newName in [C:\wamp\www\CAMcake\app\Controller\AnalysesController.php, line 168]
+Trace:
+AnalysesController::uploadFile() - APP\Controller\AnalysesController.php, line 168
+AnalysesController::uploadPData() - APP\Controller\AnalysesController.php, line 149
+AnalysesController::editAnalysis() - APP\Controller\AnalysesController.php, line 47
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 490
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 193
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 167
+[main] - APP\webroot\index.php, line 111
+
+2015-12-21 23:19:18 Debug: Notice (8): Undefined variable: filename in [C:\wamp\www\CAMcake\app\Controller\AnalysesController.php, line 135]
+Trace:
+AnalysesController::uploadPData() - APP\Controller\AnalysesController.php, line 135
+AnalysesController::editAnalysis() - APP\Controller\AnalysesController.php, line 47
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 490
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 193
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 167
+[main] - APP\webroot\index.php, line 111
+
+2015-12-21 23:19:19 Debug: Notice (8): Undefined variable: newName in [C:\wamp\www\CAMcake\app\Controller\AnalysesController.php, line 168]
+Trace:
+AnalysesController::uploadFile() - APP\Controller\AnalysesController.php, line 168
+AnalysesController::uploadPData() - APP\Controller\AnalysesController.php, line 149
+AnalysesController::editAnalysis() - APP\Controller\AnalysesController.php, line 47
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 490
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 193
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 167
+[main] - APP\webroot\index.php, line 111
+
+2016-01-17 21:49:48 Debug: Notice (8): Undefined offset: 0 in [C:\wamp\www\CAMcake\app\Controller\Component\LDAPComponent.php, line 63]
+Trace:
+LDAPComponent::formatInfo() - APP\Controller\Component\LDAPComponent.php, line 63
+LDAPComponent::getInfo() - APP\Controller\Component\LDAPComponent.php, line 58
+UsersController::findByUsername() - APP\Controller\UsersController.php, line 54
+UsersController::login() - APP\Controller\UsersController.php, line 37
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 490
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 193
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 167
+[main] - APP\webroot\index.php, line 111
+
+2016-01-17 21:49:48 Debug: Notice (8): Undefined offset: 0 in [C:\wamp\www\CAMcake\app\Controller\Component\LDAPComponent.php, line 64]
+Trace:
+LDAPComponent::formatInfo() - APP\Controller\Component\LDAPComponent.php, line 64
+LDAPComponent::getInfo() - APP\Controller\Component\LDAPComponent.php, line 58
+UsersController::findByUsername() - APP\Controller\UsersController.php, line 54
+UsersController::login() - APP\Controller\UsersController.php, line 37
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 490
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 193
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 167
+[main] - APP\webroot\index.php, line 111
+
+2016-01-17 21:49:48 Debug: Notice (8): Undefined offset: 0 in [C:\wamp\www\CAMcake\app\Controller\Component\LDAPComponent.php, line 66]
+Trace:
+LDAPComponent::formatInfo() - APP\Controller\Component\LDAPComponent.php, line 66
+LDAPComponent::getInfo() - APP\Controller\Component\LDAPComponent.php, line 58
+UsersController::findByUsername() - APP\Controller\UsersController.php, line 54
+UsersController::login() - APP\Controller\UsersController.php, line 37
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 490
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 193
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 167
+[main] - APP\webroot\index.php, line 111
+
+2016-01-17 21:49:48 Debug: Notice (8): Undefined offset: 0 in [C:\wamp\www\CAMcake\app\Controller\Component\LDAPComponent.php, line 67]
+Trace:
+LDAPComponent::formatInfo() - APP\Controller\Component\LDAPComponent.php, line 67
+LDAPComponent::getInfo() - APP\Controller\Component\LDAPComponent.php, line 58
+UsersController::findByUsername() - APP\Controller\UsersController.php, line 54
+UsersController::login() - APP\Controller\UsersController.php, line 37
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 490
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 193
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 167
+[main] - APP\webroot\index.php, line 111
+
+2016-01-17 21:49:48 Debug: Notice (8): Undefined offset: 0 in [C:\wamp\www\CAMcake\app\Controller\Component\LDAPComponent.php, line 68]
+Trace:
+LDAPComponent::formatInfo() - APP\Controller\Component\LDAPComponent.php, line 68
+LDAPComponent::getInfo() - APP\Controller\Component\LDAPComponent.php, line 58
+UsersController::findByUsername() - APP\Controller\UsersController.php, line 54
+UsersController::login() - APP\Controller\UsersController.php, line 37
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 490
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 193
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 167
+[main] - APP\webroot\index.php, line 111
+
+2016-02-01 23:06:13 Debug: Notice (8): Undefined variable: url in [C:\wamp\www\CAMcake\app\View\Elements\search_form.ctp, line 23]
+Trace:
+include - APP\View\Elements\search_form.ctp, line 23
+View::_evaluate() - CORE\Cake\View\View.php, line 971
+View::_render() - CORE\Cake\View\View.php, line 933
+View::_renderElement() - CORE\Cake\View\View.php, line 1224
+View::element() - CORE\Cake\View\View.php, line 418
+include - APP\View\Compounds\search_compound.ctp, line 27
+View::_evaluate() - CORE\Cake\View\View.php, line 971
+View::_render() - CORE\Cake\View\View.php, line 933
+View::render() - CORE\Cake\View\View.php, line 473
+Controller::render() - CORE\Cake\Controller\Controller.php, line 960
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 200
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 167
+[main] - APP\webroot\index.php, line 111
+
+2016-02-11 21:24:41 Debug: Notice (8): Undefined offset: 0 in [C:\wamp\www\CAMcake\app\Controller\SampleSetsController.php, line 257]
+Trace:
+SampleSetsController::getSetCode() - APP\Controller\SampleSetsController.php, line 257
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 490
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 193
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 167
+[main] - APP\webroot\index.php, line 111
+
+2016-02-11 21:24:43 Debug: Notice (8): Undefined offset: 0 in [C:\wamp\www\CAMcake\app\Controller\SampleSetsController.php, line 257]
+Trace:
+SampleSetsController::getSetCode() - APP\Controller\SampleSetsController.php, line 257
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 490
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 193
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 167
+[main] - APP\webroot\index.php, line 111
+
+2016-02-11 21:24:48 Debug: Notice (8): Undefined offset: 0 in [C:\wamp\www\CAMcake\app\Controller\SampleSetsController.php, line 257]
+Trace:
+SampleSetsController::getSetCode() - APP\Controller\SampleSetsController.php, line 257
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 490
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 193
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 167
+[main] - APP\webroot\index.php, line 111
+
+2016-02-11 21:24:51 Debug: Notice (8): Undefined offset: 0 in [C:\wamp\www\CAMcake\app\Controller\SampleSetsController.php, line 257]
+Trace:
+SampleSetsController::getSetCode() - APP\Controller\SampleSetsController.php, line 257
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 490
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 193
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 167
+[main] - APP\webroot\index.php, line 111
+
+2016-02-11 21:24:51 Debug: Notice (8): Undefined offset: 0 in [C:\wamp\www\CAMcake\app\Controller\SampleSetsController.php, line 257]
+Trace:
+SampleSetsController::getSetCode() - APP\Controller\SampleSetsController.php, line 257
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 490
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 193
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 167
+[main] - APP\webroot\index.php, line 111
+
+2016-02-11 21:24:52 Debug: Notice (8): Undefined offset: 0 in [C:\wamp\www\CAMcake\app\Controller\SampleSetsController.php, line 257]
+Trace:
+SampleSetsController::getSetCode() - APP\Controller\SampleSetsController.php, line 257
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 490
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 193
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 167
+[main] - APP\webroot\index.php, line 111
+
+2016-02-15 23:00:02 Debug: Notice (8): Undefined offset: 0 in [C:\wamp\www\CAMcake\app\Controller\SampleSetsController.php, line 261]
+Trace:
+SampleSetsController::getSetCode() - APP\Controller\SampleSetsController.php, line 261
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 490
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 193
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 167
+[main] - APP\webroot\index.php, line 111
+
+2016-02-15 23:00:02 Debug: Notice (8): Undefined offset: 0 in [C:\wamp\www\CAMcake\app\Controller\SampleSetsController.php, line 261]
+Trace:
+SampleSetsController::getSetCode() - APP\Controller\SampleSetsController.php, line 261
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 490
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 193
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 167
+[main] - APP\webroot\index.php, line 111
+
+2016-02-15 23:00:25 Debug: Notice (8): Undefined index: metaFile in [C:\wamp\www\CAMcake\app\Controller\SampleSetsController.php, line 109]
+Trace:
+SampleSetsController::newSet() - APP\Controller\SampleSetsController.php, line 109
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 490
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 193
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 167
+[main] - APP\webroot\index.php, line 111
+
+2016-02-15 23:04:46 Debug: Notice (8): Undefined variable: isTablet in [C:\wamp\www\CAMcake\app\View\SampleSets\search_set.ctp, line 51]
+Trace:
+include - APP\View\SampleSets\search_set.ctp, line 51
+View::_evaluate() - CORE\Cake\View\View.php, line 971
+View::_render() - CORE\Cake\View\View.php, line 933
+View::render() - CORE\Cake\View\View.php, line 473
+Controller::render() - CORE\Cake\Controller\Controller.php, line 960
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 200
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 167
+[main] - APP\webroot\index.php, line 111
+
+2016-02-15 23:24:06 Debug: Notice (8): Undefined index: metaFile in [C:\wamp\www\CAMcake\app\Controller\SampleSetsController.php, line 109]
+Trace:
+SampleSetsController::newSet() - APP\Controller\SampleSetsController.php, line 109
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 490
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 193
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 167
+[main] - APP\webroot\index.php, line 111
+
+2016-02-17 22:08:09 Debug: Notice (8): Undefined index: CID in [C:\wamp\www\CAMcake\app\Controller\CompoundsController.php, line 165]
+Trace:
+CompoundsController::filterSubStructRes() - APP\Controller\CompoundsController.php, line 165
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 490
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 193
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 167
+[main] - APP\webroot\index.php, line 111
+
+2016-02-17 22:09:13 Debug: Notice (8): Undefined index: CID in [C:\wamp\www\CAMcake\app\Controller\CompoundsController.php, line 165]
+Trace:
+CompoundsController::filterSubStructRes() - APP\Controller\CompoundsController.php, line 165
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 490
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 193
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 167
+[main] - APP\webroot\index.php, line 111
+
+2016-02-17 23:26:34 Debug: Notice (8): Undefined variable: isTablet in [C:\wamp\www\CAMcake\app\View\SampleSets\search_set.ctp, line 51]
+Trace:
+include - APP\View\SampleSets\search_set.ctp, line 51
+View::_evaluate() - CORE\Cake\View\View.php, line 971
+View::_render() - CORE\Cake\View\View.php, line 933
+View::render() - CORE\Cake\View\View.php, line 473
+Controller::render() - CORE\Cake\Controller\Controller.php, line 960
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 200
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 167
+[main] - APP\webroot\index.php, line 111
+
+2016-02-18 21:29:06 Debug: Notice (8): Undefined index: physicaldeliveryofficename in [C:\wamp\www\CAMcake\app\Controller\Component\LDAPComponent.php, line 68]
+Trace:
+LDAPComponent::formatInfo() - APP\Controller\Component\LDAPComponent.php, line 68
+LDAPComponent::getInfo() - APP\Controller\Component\LDAPComponent.php, line 57
+UsersController::findByUsername() - APP\Controller\UsersController.php, line 78
+UsersController::login() - APP\Controller\UsersController.php, line 48
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 490
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 193
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 167
+[main] - APP\webroot\index.php, line 111
+
+2016-02-18 21:41:20 Debug: Notice (8): Undefined offset: 0 in [C:\wamp\www\CAMcake\app\Controller\Component\LDAPComponent.php, line 63]
+Trace:
+LDAPComponent::formatInfo() - APP\Controller\Component\LDAPComponent.php, line 63
+LDAPComponent::getInfo() - APP\Controller\Component\LDAPComponent.php, line 58
+UsersController::findByUsername() - APP\Controller\UsersController.php, line 78
+UsersController::login() - APP\Controller\UsersController.php, line 48
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 490
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 193
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 167
+[main] - APP\webroot\index.php, line 111
+
+2016-02-18 21:41:20 Debug: Notice (8): Undefined offset: 0 in [C:\wamp\www\CAMcake\app\Controller\Component\LDAPComponent.php, line 64]
+Trace:
+LDAPComponent::formatInfo() - APP\Controller\Component\LDAPComponent.php, line 64
+LDAPComponent::getInfo() - APP\Controller\Component\LDAPComponent.php, line 58
+UsersController::findByUsername() - APP\Controller\UsersController.php, line 78
+UsersController::login() - APP\Controller\UsersController.php, line 48
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 490
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 193
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 167
+[main] - APP\webroot\index.php, line 111
+
+2016-02-18 21:41:20 Debug: Notice (8): Undefined offset: 0 in [C:\wamp\www\CAMcake\app\Controller\Component\LDAPComponent.php, line 66]
+Trace:
+LDAPComponent::formatInfo() - APP\Controller\Component\LDAPComponent.php, line 66
+LDAPComponent::getInfo() - APP\Controller\Component\LDAPComponent.php, line 58
+UsersController::findByUsername() - APP\Controller\UsersController.php, line 78
+UsersController::login() - APP\Controller\UsersController.php, line 48
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 490
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 193
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 167
+[main] - APP\webroot\index.php, line 111
+
+2016-02-18 21:41:20 Debug: Notice (8): Undefined offset: 0 in [C:\wamp\www\CAMcake\app\Controller\Component\LDAPComponent.php, line 67]
+Trace:
+LDAPComponent::formatInfo() - APP\Controller\Component\LDAPComponent.php, line 67
+LDAPComponent::getInfo() - APP\Controller\Component\LDAPComponent.php, line 58
+UsersController::findByUsername() - APP\Controller\UsersController.php, line 78
+UsersController::login() - APP\Controller\UsersController.php, line 48
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 490
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 193
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 167
+[main] - APP\webroot\index.php, line 111
+
+2016-02-18 21:41:20 Debug: Notice (8): Undefined offset: 0 in [C:\wamp\www\CAMcake\app\Controller\Component\LDAPComponent.php, line 68]
+Trace:
+LDAPComponent::formatInfo() - APP\Controller\Component\LDAPComponent.php, line 68
+LDAPComponent::getInfo() - APP\Controller\Component\LDAPComponent.php, line 58
+UsersController::findByUsername() - APP\Controller\UsersController.php, line 78
+UsersController::login() - APP\Controller\UsersController.php, line 48
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 490
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 193
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 167
+[main] - APP\webroot\index.php, line 111
+
+2016-02-18 21:41:20 Debug: Notice (8): Undefined offset: 0 in [C:\wamp\www\CAMcake\app\Controller\Component\LDAPComponent.php, line 69]
+Trace:
+LDAPComponent::formatInfo() - APP\Controller\Component\LDAPComponent.php, line 69
+LDAPComponent::getInfo() - APP\Controller\Component\LDAPComponent.php, line 58
+UsersController::findByUsername() - APP\Controller\UsersController.php, line 78
+UsersController::login() - APP\Controller\UsersController.php, line 48
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 490
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 193
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 167
+[main] - APP\webroot\index.php, line 111
+
+2016-02-18 21:41:31 Debug: Notice (8): Undefined offset: 0 in [C:\wamp\www\CAMcake\app\Controller\Component\LDAPComponent.php, line 63]
+Trace:
+LDAPComponent::formatInfo() - APP\Controller\Component\LDAPComponent.php, line 63
+LDAPComponent::getInfo() - APP\Controller\Component\LDAPComponent.php, line 58
+UsersController::findByUsername() - APP\Controller\UsersController.php, line 78
+UsersController::login() - APP\Controller\UsersController.php, line 48
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 490
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 193
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 167
+[main] - APP\webroot\index.php, line 111
+
+2016-02-18 21:41:31 Debug: Notice (8): Undefined offset: 0 in [C:\wamp\www\CAMcake\app\Controller\Component\LDAPComponent.php, line 64]
+Trace:
+LDAPComponent::formatInfo() - APP\Controller\Component\LDAPComponent.php, line 64
+LDAPComponent::getInfo() - APP\Controller\Component\LDAPComponent.php, line 58
+UsersController::findByUsername() - APP\Controller\UsersController.php, line 78
+UsersController::login() - APP\Controller\UsersController.php, line 48
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 490
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 193
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 167
+[main] - APP\webroot\index.php, line 111
+
+2016-02-18 21:41:31 Debug: Notice (8): Undefined offset: 0 in [C:\wamp\www\CAMcake\app\Controller\Component\LDAPComponent.php, line 66]
+Trace:
+LDAPComponent::formatInfo() - APP\Controller\Component\LDAPComponent.php, line 66
+LDAPComponent::getInfo() - APP\Controller\Component\LDAPComponent.php, line 58
+UsersController::findByUsername() - APP\Controller\UsersController.php, line 78
+UsersController::login() - APP\Controller\UsersController.php, line 48
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 490
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 193
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 167
+[main] - APP\webroot\index.php, line 111
+
+2016-02-18 21:41:31 Debug: Notice (8): Undefined offset: 0 in [C:\wamp\www\CAMcake\app\Controller\Component\LDAPComponent.php, line 67]
+Trace:
+LDAPComponent::formatInfo() - APP\Controller\Component\LDAPComponent.php, line 67
+LDAPComponent::getInfo() - APP\Controller\Component\LDAPComponent.php, line 58
+UsersController::findByUsername() - APP\Controller\UsersController.php, line 78
+UsersController::login() - APP\Controller\UsersController.php, line 48
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 490
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 193
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 167
+[main] - APP\webroot\index.php, line 111
+
+2016-02-18 21:41:31 Debug: Notice (8): Undefined offset: 0 in [C:\wamp\www\CAMcake\app\Controller\Component\LDAPComponent.php, line 68]
+Trace:
+LDAPComponent::formatInfo() - APP\Controller\Component\LDAPComponent.php, line 68
+LDAPComponent::getInfo() - APP\Controller\Component\LDAPComponent.php, line 58
+UsersController::findByUsername() - APP\Controller\UsersController.php, line 78
+UsersController::login() - APP\Controller\UsersController.php, line 48
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 490
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 193
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 167
+[main] - APP\webroot\index.php, line 111
+
+2016-02-18 21:41:31 Debug: Notice (8): Undefined offset: 0 in [C:\wamp\www\CAMcake\app\Controller\Component\LDAPComponent.php, line 69]
+Trace:
+LDAPComponent::formatInfo() - APP\Controller\Component\LDAPComponent.php, line 69
+LDAPComponent::getInfo() - APP\Controller\Component\LDAPComponent.php, line 58
+UsersController::findByUsername() - APP\Controller\UsersController.php, line 78
+UsersController::login() - APP\Controller\UsersController.php, line 48
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 490
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 193
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 167
+[main] - APP\webroot\index.php, line 111
+
+2016-02-18 21:42:18 Debug: Notice (8): Undefined offset: 0 in [C:\wamp\www\CAMcake\app\Controller\Component\LDAPComponent.php, line 64]
+Trace:
+LDAPComponent::formatInfo() - APP\Controller\Component\LDAPComponent.php, line 64
+LDAPComponent::getInfo() - APP\Controller\Component\LDAPComponent.php, line 59
+UsersController::findByUsername() - APP\Controller\UsersController.php, line 78
+UsersController::login() - APP\Controller\UsersController.php, line 48
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 490
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 193
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 167
+[main] - APP\webroot\index.php, line 111
+
+2016-02-18 21:42:18 Debug: Notice (8): Undefined offset: 0 in [C:\wamp\www\CAMcake\app\Controller\Component\LDAPComponent.php, line 65]
+Trace:
+LDAPComponent::formatInfo() - APP\Controller\Component\LDAPComponent.php, line 65
+LDAPComponent::getInfo() - APP\Controller\Component\LDAPComponent.php, line 59
+UsersController::findByUsername() - APP\Controller\UsersController.php, line 78
+UsersController::login() - APP\Controller\UsersController.php, line 48
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 490
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 193
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 167
+[main] - APP\webroot\index.php, line 111
+
+2016-02-18 21:42:18 Debug: Notice (8): Undefined offset: 0 in [C:\wamp\www\CAMcake\app\Controller\Component\LDAPComponent.php, line 67]
+Trace:
+LDAPComponent::formatInfo() - APP\Controller\Component\LDAPComponent.php, line 67
+LDAPComponent::getInfo() - APP\Controller\Component\LDAPComponent.php, line 59
+UsersController::findByUsername() - APP\Controller\UsersController.php, line 78
+UsersController::login() - APP\Controller\UsersController.php, line 48
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 490
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 193
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 167
+[main] - APP\webroot\index.php, line 111
+
+2016-02-18 21:42:18 Debug: Notice (8): Undefined offset: 0 in [C:\wamp\www\CAMcake\app\Controller\Component\LDAPComponent.php, line 68]
+Trace:
+LDAPComponent::formatInfo() - APP\Controller\Component\LDAPComponent.php, line 68
+LDAPComponent::getInfo() - APP\Controller\Component\LDAPComponent.php, line 59
+UsersController::findByUsername() - APP\Controller\UsersController.php, line 78
+UsersController::login() - APP\Controller\UsersController.php, line 48
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 490
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 193
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 167
+[main] - APP\webroot\index.php, line 111
+
+2016-02-18 21:42:18 Debug: Notice (8): Undefined offset: 0 in [C:\wamp\www\CAMcake\app\Controller\Component\LDAPComponent.php, line 69]
+Trace:
+LDAPComponent::formatInfo() - APP\Controller\Component\LDAPComponent.php, line 69
+LDAPComponent::getInfo() - APP\Controller\Component\LDAPComponent.php, line 59
+UsersController::findByUsername() - APP\Controller\UsersController.php, line 78
+UsersController::login() - APP\Controller\UsersController.php, line 48
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 490
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 193
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 167
+[main] - APP\webroot\index.php, line 111
+
+2016-02-18 21:42:18 Debug: Notice (8): Undefined offset: 0 in [C:\wamp\www\CAMcake\app\Controller\Component\LDAPComponent.php, line 70]
+Trace:
+LDAPComponent::formatInfo() - APP\Controller\Component\LDAPComponent.php, line 70
+LDAPComponent::getInfo() - APP\Controller\Component\LDAPComponent.php, line 59
+UsersController::findByUsername() - APP\Controller\UsersController.php, line 78
+UsersController::login() - APP\Controller\UsersController.php, line 48
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 490
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 193
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 167
+[main] - APP\webroot\index.php, line 111
+
+2016-02-18 21:42:29 Debug: Notice (8): Undefined offset: 0 in [C:\wamp\www\CAMcake\app\Controller\Component\LDAPComponent.php, line 64]
+Trace:
+LDAPComponent::formatInfo() - APP\Controller\Component\LDAPComponent.php, line 64
+LDAPComponent::getInfo() - APP\Controller\Component\LDAPComponent.php, line 59
+UsersController::findByUsername() - APP\Controller\UsersController.php, line 78
+UsersController::login() - APP\Controller\UsersController.php, line 48
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 490
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 193
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 167
+[main] - APP\webroot\index.php, line 111
+
+2016-02-18 21:42:29 Debug: Notice (8): Undefined offset: 0 in [C:\wamp\www\CAMcake\app\Controller\Component\LDAPComponent.php, line 65]
+Trace:
+LDAPComponent::formatInfo() - APP\Controller\Component\LDAPComponent.php, line 65
+LDAPComponent::getInfo() - APP\Controller\Component\LDAPComponent.php, line 59
+UsersController::findByUsername() - APP\Controller\UsersController.php, line 78
+UsersController::login() - APP\Controller\UsersController.php, line 48
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 490
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 193
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 167
+[main] - APP\webroot\index.php, line 111
+
+2016-02-18 21:42:29 Debug: Notice (8): Undefined offset: 0 in [C:\wamp\www\CAMcake\app\Controller\Component\LDAPComponent.php, line 67]
+Trace:
+LDAPComponent::formatInfo() - APP\Controller\Component\LDAPComponent.php, line 67
+LDAPComponent::getInfo() - APP\Controller\Component\LDAPComponent.php, line 59
+UsersController::findByUsername() - APP\Controller\UsersController.php, line 78
+UsersController::login() - APP\Controller\UsersController.php, line 48
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 490
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 193
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 167
+[main] - APP\webroot\index.php, line 111
+
+2016-02-18 21:42:29 Debug: Notice (8): Undefined offset: 0 in [C:\wamp\www\CAMcake\app\Controller\Component\LDAPComponent.php, line 68]
+Trace:
+LDAPComponent::formatInfo() - APP\Controller\Component\LDAPComponent.php, line 68
+LDAPComponent::getInfo() - APP\Controller\Component\LDAPComponent.php, line 59
+UsersController::findByUsername() - APP\Controller\UsersController.php, line 78
+UsersController::login() - APP\Controller\UsersController.php, line 48
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 490
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 193
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 167
+[main] - APP\webroot\index.php, line 111
+
+2016-02-18 21:42:29 Debug: Notice (8): Undefined offset: 0 in [C:\wamp\www\CAMcake\app\Controller\Component\LDAPComponent.php, line 69]
+Trace:
+LDAPComponent::formatInfo() - APP\Controller\Component\LDAPComponent.php, line 69
+LDAPComponent::getInfo() - APP\Controller\Component\LDAPComponent.php, line 59
+UsersController::findByUsername() - APP\Controller\UsersController.php, line 78
+UsersController::login() - APP\Controller\UsersController.php, line 48
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 490
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 193
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 167
+[main] - APP\webroot\index.php, line 111
+
+2016-02-18 21:42:29 Debug: Notice (8): Undefined offset: 0 in [C:\wamp\www\CAMcake\app\Controller\Component\LDAPComponent.php, line 70]
+Trace:
+LDAPComponent::formatInfo() - APP\Controller\Component\LDAPComponent.php, line 70
+LDAPComponent::getInfo() - APP\Controller\Component\LDAPComponent.php, line 59
+UsersController::findByUsername() - APP\Controller\UsersController.php, line 78
+UsersController::login() - APP\Controller\UsersController.php, line 48
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 490
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 193
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 167
+[main] - APP\webroot\index.php, line 111
+
+2016-02-18 21:43:27 Debug: Notice (8): Undefined offset: 0 in [C:\wamp\www\CAMcake\app\Controller\Component\LDAPComponent.php, line 64]
+Trace:
+LDAPComponent::formatInfo() - APP\Controller\Component\LDAPComponent.php, line 64
+LDAPComponent::getInfo() - APP\Controller\Component\LDAPComponent.php, line 59
+UsersController::findByUsername() - APP\Controller\UsersController.php, line 82
+UsersController::login() - APP\Controller\UsersController.php, line 40
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 490
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 193
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 167
+[main] - APP\webroot\index.php, line 111
+
+2016-02-18 21:43:27 Debug: Notice (8): Undefined offset: 0 in [C:\wamp\www\CAMcake\app\Controller\Component\LDAPComponent.php, line 65]
+Trace:
+LDAPComponent::formatInfo() - APP\Controller\Component\LDAPComponent.php, line 65
+LDAPComponent::getInfo() - APP\Controller\Component\LDAPComponent.php, line 59
+UsersController::findByUsername() - APP\Controller\UsersController.php, line 82
+UsersController::login() - APP\Controller\UsersController.php, line 40
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 490
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 193
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 167
+[main] - APP\webroot\index.php, line 111
+
+2016-02-18 21:43:27 Debug: Notice (8): Undefined offset: 0 in [C:\wamp\www\CAMcake\app\Controller\Component\LDAPComponent.php, line 67]
+Trace:
+LDAPComponent::formatInfo() - APP\Controller\Component\LDAPComponent.php, line 67
+LDAPComponent::getInfo() - APP\Controller\Component\LDAPComponent.php, line 59
+UsersController::findByUsername() - APP\Controller\UsersController.php, line 82
+UsersController::login() - APP\Controller\UsersController.php, line 40
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 490
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 193
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 167
+[main] - APP\webroot\index.php, line 111
+
+2016-02-18 21:43:27 Debug: Notice (8): Undefined offset: 0 in [C:\wamp\www\CAMcake\app\Controller\Component\LDAPComponent.php, line 68]
+Trace:
+LDAPComponent::formatInfo() - APP\Controller\Component\LDAPComponent.php, line 68
+LDAPComponent::getInfo() - APP\Controller\Component\LDAPComponent.php, line 59
+UsersController::findByUsername() - APP\Controller\UsersController.php, line 82
+UsersController::login() - APP\Controller\UsersController.php, line 40
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 490
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 193
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 167
+[main] - APP\webroot\index.php, line 111
+
+2016-02-18 21:43:27 Debug: Notice (8): Undefined offset: 0 in [C:\wamp\www\CAMcake\app\Controller\Component\LDAPComponent.php, line 69]
+Trace:
+LDAPComponent::formatInfo() - APP\Controller\Component\LDAPComponent.php, line 69
+LDAPComponent::getInfo() - APP\Controller\Component\LDAPComponent.php, line 59
+UsersController::findByUsername() - APP\Controller\UsersController.php, line 82
+UsersController::login() - APP\Controller\UsersController.php, line 40
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 490
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 193
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 167
+[main] - APP\webroot\index.php, line 111
+
+2016-02-18 21:43:27 Debug: Notice (8): Undefined offset: 0 in [C:\wamp\www\CAMcake\app\Controller\Component\LDAPComponent.php, line 70]
+Trace:
+LDAPComponent::formatInfo() - APP\Controller\Component\LDAPComponent.php, line 70
+LDAPComponent::getInfo() - APP\Controller\Component\LDAPComponent.php, line 59
+UsersController::findByUsername() - APP\Controller\UsersController.php, line 82
+UsersController::login() - APP\Controller\UsersController.php, line 40
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 490
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 193
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 167
+[main] - APP\webroot\index.php, line 111
+
