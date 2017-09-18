@@ -28,7 +28,8 @@ abstract class DataObject {
 
     function __get($name) {
         if (!isset($this->data[$name])) {
-            throw new \Exception('The Value for '.$name.' was not got from the database');
+            trigger_error('The Value for '.$name.' was not got from the database');
+            return '';
         }
         return $this->data[$name];
     }
