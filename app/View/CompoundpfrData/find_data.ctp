@@ -1,9 +1,8 @@
 <?php
-$title = "Search PFR Chemical Data";
+$title = "Find PFR Compound Data";
 $model = "Compoundpfr_data";
 $options = ['assigned_name' => 'Compound Name',
     'all' => 'All',
-    'assigned_name' => 'Compound Name',
     'assigned_confid' => 'Id Confidence (1-5)',
     'exact_mass' => 'Exact Mass',
     'exact_mass_10mDa' => 'Exact Mass +- 10 mDa',

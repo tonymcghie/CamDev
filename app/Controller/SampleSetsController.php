@@ -197,6 +197,12 @@ class SampleSetsController extends AppController{
 
     }
 
+    /**
+     * Entry point for Sample Sets -> Find
+     * Control transfers to the search_set view and onto to /Elements/search_form
+     * and then back to the search() function below.
+     * Search results are displayed as a modal as defined by /Elements/results table
+     */
     public function search(){
         $this->layout = 'ajax';
         $this->autoRender = false;

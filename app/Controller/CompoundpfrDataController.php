@@ -7,10 +7,10 @@
  */
 
 class CompoundpfrDataController extends AppController{
-    public $helpers = array('Html' , 'Form' , 'My', 'Js');
+    public $helpers = array('Html' , 'Form' , 'My', 'Js', 'Time', 'String', 'BootstrapForm');
     public $uses = array('Compoundpfr_data','PubChemModel', 'Compound');
     public $layout = 'content';
-    public $components = array('Paginator', 'My', 'Pivot');
+    public $components = array('Paginator', 'My', 'Pivot', 'RequestHandler', 'Session', 'Cookie', 'Auth', 'File', 'Search');
     
     //sets the values for the pagination
     public $paginate = array(

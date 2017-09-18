@@ -77,8 +77,13 @@
                 <div class="panel-body light-blue lighten-3">
                     <button type="button"
                             class="list-group-item"
+                            onclick="load_page('<?php echo $this->Html->url(['controller' => 'Compounds', 'action' => 'searchCompound'], true) ?>', $('#main_content'))">
+                        Find
+                    </button>
+                    <button type="button"
+                            class="list-group-item"
                             onclick="load_page('<?php echo $this->Html->url(['controller' => 'Compounds', 'action' => 'subSearch'], true) ?>', $('#main_content'))">
-                        Search
+                        Sub Structure Search
                     </button>
                     <button type="button"
                             class="list-group-item"
@@ -104,19 +109,14 @@
 
         <div class="panel panel-default">
             <div class="panel-heading light-green lighten-3" data-toggle="collapse" data-parent="#nav_accordion" href="#pfr_data_menu">
-                <span>PFR Data</span>
+                <span>PFR Compound Data</span>
             </div>
             <div class="panel-collapse collapse" id="pfr_data_menu">
                 <div class="panel-body light-blue lighten-3">
                     <button type="button"
                             class="list-group-item"
                             onclick="load_page('<?php echo $this->Html->url(['controller' => 'Compoundpfr_data', 'action' => 'findData'], true) ?>', $('#main_content'))">
-                        Chemical
-                    </button>
-                    <button type="button"
-                            class="list-group-item"
-                            onclick="load_page('<?php echo $this->Html->url(['controller' => 'Bioactivitypfr_data', 'action' => 'findData'], true) ?>', $('#main_content'))">
-                        Bioactivity
+                        Find
                     </button>
                     <button type="button"
                             class="list-group-item"
@@ -127,6 +127,11 @@
                             class="list-group-item"
                             onclick="load_page('<?php echo $this->Html->url(['controller' => 'Compoundpfr_data', 'action' => 'import'], true) ?>', $('#main_content'))">
                         Import
+                    </button>
+                    <button type="button"
+                            class="list-group-item"
+                            onclick="load_page('<?php echo $this->Html->url(['controller' => 'Bioactivitypfr_data', 'action' => 'findData'], true) ?>', $('#main_content'))">
+                        Find-Bioactivity
                     </button>
 
                     <?php
@@ -170,7 +175,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="panel panel-default">
             <div class="panel-heading light-green lighten-3" data-toggle="collapse" data-parent="#nav_accordion" href="#unknown_compounds_menu">
                 <span>Unknown Compounds</span>
@@ -185,7 +190,7 @@
                     <button type="button"
                             class="list-group-item"
                             onclick="load_page('<?php echo $this->Html->url(['controller' => 'Metabolites', 'action' => 'addMetabolite'], true) ?>', $('#main_content'))">
-                        Add
+                        New
                     </button>
                     <?php
                     /*if ($this->Session->read('Auth.User')!==null && in_array("PFR-GP-Biological Chemistry and Bioactives Group", $this->Session->read('Auth.User')['groups'])){
