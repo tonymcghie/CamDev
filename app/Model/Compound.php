@@ -6,6 +6,27 @@
  * and open the template in the editor.
  */
 
+require_once 'DataObject/Compound.php';
+
 class Compound extends AppModel{
+    
+    public function buildObjects($queryResults){
+        $compoundObjects = [];
+        foreach ($queryResults as $data) {
+            $compoundObjects[] = new Model\DataObject\Compound($this, $data['Compound']);
+        }
+        return $compoundObjects;
+    }
+    
+    public function getDisplayFields() {
+        return ['actions',
+            'compound_name',
+            'pseudonyms',
+            'formula',
+            'exact_mass',
+            'cas',
+            'compound_type',
+            'comment'];
+    }
     
 }

@@ -150,7 +150,8 @@ class StringHelper extends AppHelper{
             'cas' => 'CAS',
             'compound_type' => 'Class',
             'pseudonyms' => 'Symonyms',
-            'comment' => 'Comment'],
+            'comment' => 'Comment',
+            'actions' => 'Actions'],
         'IonAdducts' => [
             'compound_name' => 'Name',
             'exact_mass' => 'Exact Mass',

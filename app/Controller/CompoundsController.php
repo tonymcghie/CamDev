@@ -122,7 +122,7 @@ class CompoundsController extends AppController{
         $this->set('num', $this->Compound->find('count', ['conditions' =>$search])); //passes the number of results to the view
         $this->set('data', $this->request->data);*/
     }
-    // search not working appear that the search are not being passed or control is not getting back to the search() here
+    
     public function search(){
         $data = $this->request->data;
         $this->layout = 'ajax';
@@ -138,9 +138,15 @@ class CompoundsController extends AppController{
         $query = $this->Search->build_query($this->Compound, $criteria, $value, $logic, $match);
         $results = $this->paginate('Compound', $query);
         //var_export($results);
-        $this->set('results', $results);
+        
+        $resultObjects = $this->Compound->buildObjects($results);
+                
+        $this->set('cols', $this->Compound->getDisplayFields());
+        $this->set('results', $resultObjects);
+        //$this->set('results', $results);
         $this->set('model', 'Compound');
-        $this->render('/Elements/compound_results_table');
+        $this->render('/Elements/search_results_modal');
+        //$this->render('/Elements/compound_results_table');
     }
     
     /**
