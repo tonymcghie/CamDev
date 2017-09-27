@@ -39,7 +39,7 @@ class CompoundpfrDataController extends AppController{
      * Entry point for PFR Compound Data -> Find
      * Control transfers to the find_data view and onto to /Elements/search_form
      * and then back to the search() function below.
-     * Search results are displayed as a modal as defined by /Elements/results table 
+     * Search results are displayed as a modal as defined by /Elements/results table_modal 
      */
     public function findData(){   
       
@@ -57,9 +57,12 @@ class CompoundpfrDataController extends AppController{
         extract($this->request->data['Compoundpfr_data']);
         $query = $this->Search->build_query($this->Compoundpfr_data, $criteria, $value, $logic, $match);
         $results = $this->paginate('Compoundpfr_data', $query);
-        $this->set('results', $results);
+        $resultObjects = $this->Compoundpfr_data->buildObjects($results);
+
+        $this->set('cols', $this->Compoundpfr_data->getDisplayFields());             
+        $this->set('results', $resultObjects);
         $this->set('model', 'Compoundpfr_data');
-        $this->render('/Elements/results_table');
+        $this->render('/Elements/search_results_modal');
         //var_export($results);
     }
     
@@ -120,6 +123,54 @@ class CompoundpfrDataController extends AppController{
         } //if there is a pivot set then pivot the data if not format the data into a format friendlier to the google charts API
         echo json_encode($results); //echos the Json string back to the ajax call
     }
+    
+    /**
+     * Entry point for CompoundspfrData -> overview
+     * Control transfers to the soverview_data view and onto to /Elements/overview_form
+     * and then back to the overview() function below.
+     * Search results are displayed as a modal as defined by /Elements/results table
+     */
+    
+    public function overviewData(){
+        
+    }
+    
+    /**
+     * Enables the user to obtain a summary review of the data in the CompoundPFR data table.  This is a large table and this tool is useful 
+     * for getting an overview of the data in the table 
+     */
+    public function overview(){
+        $this->layout = 'ajax';
+        $this->autoRender = false;
+        // Listed these here for auto complete reasons and to stop the IDE displaying errors
+        $criteria = null;$value = null;$logic = null;$match = null;
+        extract($this->request->data['Compoundpfr_data']);
+        if ($this->request->is('post')){
+            $review_options = $this->request->data;
+            
+            if ($review_options['review']['match'] == 'contain')$review_by_value = '%'.$review_options['review']['by'].'%';
+            if ($review_options['review']['match'] == 'exact')$review_by_value = $review_options['review']['by'];
+            if ($review_options['review']['match'] == 'starts_with')$review_by_value = $review_options['review']['by'].'%';
+            
+            $db_name = ConnectionManager::getDataSource('default')->config['database'];
+            $results = $this->Compoundpfr_data->query("SELECT DISTINCT {$review_options['review']['for']} "
+                    . "FROM {$db_name}.compoundpfr_data as Compoundpfr_data"
+                    . " WHERE {$review_options['review']['cri']} LIKE '{$review_by_value}';");
+                    
+            // Makes the result array a 1 dimentional indexed array ie.            
+            $squash_function = function($carry = [], $item) use ($review_options){
+                if (empty($carry))$carry = [];
+                $carry[] = $item['Compoundpfr_data'][$review_options['review']['for']];
+                return $carry;
+            };           
+            $output = array_reduce($results, $squash_function);
+            
+            $this->set('output', $output);
+            $this->set('data', $this->request->data); //sends all the data(search criteria) to the view so it can be added to the ajax links
+        }
+    }
+    
+    
     
     /**
      * This handles the importing of data

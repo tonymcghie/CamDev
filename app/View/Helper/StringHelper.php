@@ -124,7 +124,8 @@ class StringHelper extends AppHelper{
             'tissue' => 'Tissue',
             'crop' => 'Crop',
             'species' => 'Species',
-            'analyst' => 'Analyst'],
+            'analyst' => 'Analyst',
+            'actions' => 'Actions'],
         'Molecular_feature' => [
             'feature_tag' => 'Metabolite Tag',
             'feature_id' => 'Metabolite ID',
@@ -142,7 +143,8 @@ class StringHelper extends AppHelper{
             'tissue' => 'Tissue',
             'crop' => 'Crop',
             'species' => 'Species',
-            'analyst' => 'Analyst'],
+            'analyst' => 'Analyst',
+            'actions' => 'Actions'],
         'Compound' => [
             'compound_name' => 'Name',
             'formula' => 'Formula',
@@ -166,7 +168,8 @@ class StringHelper extends AppHelper{
             'tissue' => 'Tissue',
             'chemist' => 'Chemist',
             'experiment_ref' => 'Experiment Reference',
-            'date' => 'Start Date']
+            'date' => 'Start Date',
+            'actions' => 'Actions']
     ];
 
     public function get_string($identifier, $set){

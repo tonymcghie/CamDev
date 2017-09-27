@@ -120,6 +120,11 @@
                     </button>
                     <button type="button"
                             class="list-group-item"
+                            onclick="load_page('<?php echo $this->Html->url(['controller' => 'Compoundpfr_data', 'action' => 'overviewData'], true) ?>', $('#main_content'))">
+                        Overview
+                    </button>
+                    <button type="button"
+                            class="list-group-item"
                             onclick="load_page('<?php echo $this->Html->url(['controller' => 'Compoundpfr_data', 'action' => 'graphData'], true) ?>', $('#main_content'))">
                         Graph
                     </button>
