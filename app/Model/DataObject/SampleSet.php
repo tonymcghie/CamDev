@@ -28,9 +28,9 @@ class SampleSet extends DataObject {
      */
     public function getActionData() {
         return [
-            'viewURL' => ['controller' => 'SampleSets', 'action' => 'viewSet', 100],
-            'editURL' => ['controller' => 'SampleSet', 'action' => 'details', 'id' => $this->id],
-            'analysisURL' => ['controller' => 'SampleSet', 'action' => 'details', 'id' => $this->id]
+            'viewURL' => ['controller' => 'SampleSets', 'action' => 'details', 'id' => $this->id],
+            'editURL' => ['controller' => 'SampleSets', 'action' => 'details', 'id' => $this->id],
+            'analysisURL' => ['controller' => 'SampleSets', 'action' => 'details', 'id' => $this->id]
         ];
     }
 
