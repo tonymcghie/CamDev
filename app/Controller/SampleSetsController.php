@@ -250,7 +250,8 @@ class SampleSetsController extends AppController{
             $this->set('error', 'Invalid Sample Set');
             return;
         }
-        $id = $this->request->data['id'];
+        //$id = $this->request->data['id'];
+        $id = 363;
         $sampleSet = $this->SampleSet->find('withID', ['id' => $id]);
         if (empty($sampleSet)) {
             $this->set('error', 'Sample Set not found');

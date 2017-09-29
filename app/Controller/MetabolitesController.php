@@ -149,10 +149,18 @@ class MetabolitesController extends AppController{
         $query = $this->Search->build_query($this->Metabolite, $criteria, $value, $logic, $match);
         //var_export($query);
         $results = $this->paginate('Metabolite', $query);
-        //var_export($results);
-        $this->set('results', $results);
+        
+        $resultObjects = $this->Metabolite->buildObjects($results);
+
+        $this->set('cols', $this->Metabolite->getDisplayFields());             
+        $this->set('results', $resultObjects);
         $this->set('model', 'Metabolite');
-        $this->render('/Elements/results_table');
+        $this->render('/Elements/search_results_modal');
+        
+        //var_export($results);
+        //$this->set('results', $results);
+        //$this->set('model', 'Metabolite');
+        //$this->render('/Elements/results_table');
     }
     
     /**

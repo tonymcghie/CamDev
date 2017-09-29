@@ -6,11 +6,11 @@ require_once 'DataObject.php';
 
 /**
  * Created by PhpStorm.
- * User: mgoo
- * Date: 31/08/17
- * Time: 11:23 AM
+ * User: tony
+ * Date: 26/9/17
+ * Time: 10:30 PM
  */
-class SampleSet extends DataObject {
+class Metabolite extends DataObject {
 
     /** @var string $actions HTML string of the actions to display in table */
     public $actions;
@@ -27,11 +27,10 @@ class SampleSet extends DataObject {
      * @return array
      */
     public function getActionData() {
-        //var_export();
         return [
-            'viewURL' => ['controller' => 'SampleSets', 'action' => 'viewSet', 'id' => $this->id],
-            'editURL' => ['controller' => 'SampleSets', 'action' => 'details', 'id' => $this->id],
-            'analysisURL' => ['controller' => 'SampleSets', 'action' => 'details', 'id' => $this->id]
+            'viewURL' => ['controller' => 'Metabolites', 'action' => 'viewSet', 100],
+            'editURL' => ['controller' => 'Metabolites', 'action' => 'details', 'id' => $this->id],
+            'loaddocURL' => ['controller' => 'Metabolites', 'action' => 'details', 'id' => $this->id]
         ];
     }
 

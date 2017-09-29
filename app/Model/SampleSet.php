@@ -107,7 +107,8 @@ class SampleSet extends AppModel{
     }
 
     public function getSearchableFields() {
-        return ['set_code',
+        return ['id',
+            'set_code',
             'chemist',
             'submitter',
             'p_name',
@@ -120,6 +121,7 @@ class SampleSet extends AppModel{
 
     public function getDisplayFields() {
         return ['actions',
+            'id',
             'set_code',
             'chemist',
             'submitter',

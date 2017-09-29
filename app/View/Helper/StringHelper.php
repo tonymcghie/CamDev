@@ -100,6 +100,7 @@ class StringHelper extends AppHelper{
             'spectra_msms' => 'MSMS Spectrum',
             'comment' => 'Comment'],
         'SampleSet' => [
+            'id' => 'ID',
             'set_code' => 'Set Code',
             'submitter' => 'PFR Collabotator',
             'chemist' => 'Analyst',
