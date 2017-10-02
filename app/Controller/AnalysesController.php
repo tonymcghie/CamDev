@@ -40,7 +40,7 @@ class AnalysesController extends AppController{
      * this is called when the save or create button is pressed. It will update the values in the database and/or create a new row
      * @param type $set_code
      */
-    public function editAnalysis($set_code = null){                    
+    public function editAnalysis($set_code = null){
         $data = $this->request->data;        
         if ($set_code == null){
             $set_code = $this->params['url']['set_code'];

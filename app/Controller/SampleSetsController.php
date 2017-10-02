@@ -141,9 +141,14 @@ class SampleSetsController extends AppController{
      * @throws NotFoundExcpetion
      */
     public function editSet($id = null){
-        if (isset($this->request->data['SampleSet']['id'])){ //updates the id to the provious one when editing twice
-            $id = $this->request->data['SampleSet']['id'];
-        }
+        //if (isset($this->request->data['SampleSet']['id'])){ //updates the id to the provious one when editing twice
+            //$id = $this->request->data['SampleSet']['id'];
+        //}
+        $this->layout = 'main';
+        $data = $this->request->data;        
+        if ($id == null){
+            $id = $this->params['url']['id'];
+        } // gets $id from the url
         if (!$id){
             throw new NotFoundExcpetion(__('Invalid Sample Set'));
         } //makes sure that the id is set
@@ -230,8 +235,10 @@ class SampleSetsController extends AppController{
      * this bassically adds the derived data from the analysis to the view
      * @param type $id
      * @throws NotFoundExcpetion
+     * Old function no longer used, but retained because it is an example of how to find the most recent version of the Sample Set
      */
     public function viewSet($id = null){
+        $id = 363;
         $set = $this->SampleSet->findById($id); //if the id is passed then find on that
         if (!$set){ //if the set does not exist
             throw new NotFoundExcpetion(__('Invalid Sample Set'));
@@ -244,20 +251,31 @@ class SampleSetsController extends AppController{
         } //sets the data to go into the hidden inputs
     }
 
-    public function details() {
+    /**
+     * The Controller function for viewing the sample set information
+     * and accessing the uploaded files.
+     * Sample Set data is found using the ID and uploaded files specified in the Analysis tabs are added to the view.
+     * @param type $id
+     */
+    
+    public function details($id = null) {
         $this->layout = 'main';
-        if (empty($this->request->data['id'])) {
+        $data = $this->request->data;        
+        if ($id == null){
+            $id = $this->params['url']['id'];
+        } // gets $id from the url
+        if (empty($id)) {
             $this->set('error', 'Invalid Sample Set');
             return;
         }
-        //$id = $this->request->data['id'];
-        $id = 363;
-        $sampleSet = $this->SampleSet->find('withID', ['id' => $id]);
+        $sampleSet = $this->SampleSet->findById($id); 
         if (empty($sampleSet)) {
             $this->set('error', 'Sample Set not found');
             return;
         }
-        $this->set('sampleSet', $sampleSet);
+        //var_dump($sampleSet);
+        $this->set('info', $sampleSet);
+        $this->view = 'view_set';
     }
     
     /**
