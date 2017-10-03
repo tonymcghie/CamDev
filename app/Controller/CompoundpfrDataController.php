@@ -81,17 +81,55 @@ class CompoundpfrDataController extends AppController{
     public function graphData($data = null){        
         
     }
+    
     /**
-     * shows all the field entries for a selected record in the CompoundpfrData table
+     * Displays all the field entries for a selected record in the CompoundpfrData table
      *
-     */
-	public function viewData($id = null) {
-		$data = $this->Compoundpfr_data->findById($id); //if the id is passed then find on that
-        if (!$data){ //if the set does not exist
-            throw new NotFoundExcpetion(__('Invalid Data Record'));
-        } //if the sample set with that id exists
-        $this->set('info', $data);// passes the set to the page
-	}
+     */        
+        public function viewData($id = null) {
+        $this->layout = 'main';
+        $data = $this->request->data;        
+        if ($id == null){
+            $id = $this->params['url']['id'];
+        } // gets $id from the url
+        if (empty($id)) {
+            $this->set('error', 'Invalid Sample Set');
+            return;
+        }
+        $CompoundData = $this->Compoundpfr_data->findById($id); 
+        if (empty($CompoundData)) {
+            $this->set('error', 'Compound data not found');
+            return;
+        }
+        //var_dump($sampleSet);
+        $this->set('info', $CompoundData); //passes the set information to the view and renders
+        //$this->view = 'view_set';
+    }
+    
+    /**
+     * Displays the metadata for the Sample Set that the CompoundpfrData record is derived from
+     *
+     */        
+        public function viewSet($reference = null) {
+        $this->layout = 'main';
+        $data = $this->request->data; 
+        var_dump($data);
+        if ($reference == null){
+            $reference = $this->params['url']['reference'];
+        } // gets $id from the url
+        var_dump($reference);
+        if (empty($id)) {
+            $this->set('error', 'Invalid Sample Set');
+            return;
+        }
+        $SetData = $this->SampleSet->findById($reference); 
+        if (empty($SetData)) {
+            $this->set('error', 'Sample Set not found');
+            return;
+        }
+        //var_dump($sampleSet);
+        $this->set('info', $SetData); //passes the set information to the view and renders
+    }
 
     /**
      * this is the Ajax function for getting the data from the graphing search routine

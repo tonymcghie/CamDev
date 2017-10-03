@@ -28,8 +28,8 @@ class Compoundpfr_data extends DataObject {
      */
     public function getActionData() {
         return [
-            'viewURL' => ['controller' => 'Compound', 'action' => 'viewSet', 100],
-            'editURL' => ['controller' => 'Compound', 'action' => 'details', 'id' => $this->id]
+            'DataViewURL' => ['controller' => 'CompoundpfrData', 'action' => 'viewData', '?' => ['id' => $this->id]],
+            'SetViewURL' => ['controller' => 'CompoundpfrData', 'action' => 'viewSet', '?' => ['reference' => $this->reference]]
         ];
     }
 
