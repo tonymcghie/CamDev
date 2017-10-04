@@ -120,7 +120,7 @@ class SampleSetsController extends AppController{
     public function newSet(){
         $this->set('names', $this->Chemist->find('list', ['fields' => 'name']));
         $this->set('p_names', $this->Project->find('list' , ['fields' => 'short_name']));
-        // TODO test this should set the valuse in the form
+        // TODO test this should set the values in the form
         if (isset($this->request->data['id'])){
             $this->set('SampleSet', $this->SampleSet->find('list', ['id' => $this->request->data['id']]));
         }
@@ -152,14 +152,17 @@ class SampleSetsController extends AppController{
         if (!$id){
             throw new NotFoundExcpetion(__('Invalid Sample Set'));
         } //makes sure that the id is set
-        $set = $this->SampleSet->findById($id); 
+        $set = $this->SampleSet->findById($id);
+        //var_dump($set);
         if (!$set){
             throw new NotFoundExcpetion(__('Invalid Sample Set'));
         } //makes sure that the set exists                
-        $this->set('versions', $this->SampleSet->find('allVersions', ['conditions' => ['set_code' => $set['SampleSet']['set_code']]])); //sets all the versions so that the view can diplsay them
-        $this->set('set_code', $set['SampleSet']['set_code']); //sets the setcode for the smaple set this means that the view can pass it back
+        $this->set('versions', $this->SampleSet->find('allVersions', ['conditions' => ['set_code' => $set['SampleSet']['set_code']]])); 
+        //sets all the versions so that the view can diplsay them
+        $this->set('set_code', $set['SampleSet']['set_code']); //sets the setcode for the sample set this means that the view can pass it back
         if (isset($this->request->data['SampleSet'])){
-            $this->request->data['SampleSet']['version'] = $set['SampleSet']['version'] + 1; //makes a new version with a version number 1 greater than the current highest version number
+            $this->request->data['SampleSet']['version'] = $set['SampleSet']['version'] + 1; 
+            //makes a new version with a version number 1 greater than the current highest version number
             $this->request->data['SampleSet']['date'] = $set['SampleSet']['date'];//keeps the submit date the same
             if(isset($data['SampleSet']['metadataFile']['error'])&&$data['SampleSet']['metadataFile']['error']=='0'){
                 $data['SampleSet']['metaFile'] = $this->uploadFile($data['SampleSet']['metadataFile'], $data['SampleSet']['set_code'].'_Metadata.'.substr(strtolower(strrchr($data['SampleSet']['metadataFile']['name'], '.')), 1));

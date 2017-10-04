@@ -9,8 +9,8 @@
 class StringHelper extends AppHelper{
     private $strings = [
         'SampleSet_form' => [
-            'title' => 'PFR Chemistry: Collaboration Workspace',
-            'sub_title' => 'This workspace is for communicating information about the work unit (set of samples) that will be analysed. Enter the relevant information (* required) and click Save Set',
+            'title' => 'PFR Chemistry: Sample Set Collaboration Workspace',
+            'sub_title' => 'Enter/Edit the relevant metadata information about the Sample Set (* required) and then click Save Set',
             'from_setcode' => 'From Previous Set Code',
             'previous_setcode' => 'Previouse Sample Set',
             'previous_setcode_ph' => 'Create Sample Set Similar to previouse Sample Set',
@@ -33,6 +33,7 @@ class StringHelper extends AppHelper{
             'compounds_ph' => 'Enter specific compound names, or analysis type',
             'containment' => 'Requires Containment',
             'containment_detils' => 'Details',
+            'version' => 'Version #',
             'comments' => 'Additional Comments',
             'comments_ph' => 'Insert any additional information. For example, copy/past a table of sample identities (labels) from a spreadsheet',
             'metafile' => 'Upload Metadata File'],

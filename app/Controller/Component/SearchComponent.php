@@ -22,7 +22,7 @@ class SearchComponent extends Component{
      */
     public function build_query($model, $criteria, $value, $logic, $match) {
         $query = [];
-        foreach ($criteria as $index => $criteria_value) {
+        foreach ($criteria as $index => $criteria_value) { //TODO there is a problem here: sometime the value is not passed to this function ????
             $value_value = $value[$index];
             $logic_value = $logic[$index];
             $match_value = $match[$index];

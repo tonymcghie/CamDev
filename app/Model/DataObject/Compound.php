@@ -28,8 +28,10 @@ class Compound extends DataObject {
      */
     public function getActionData() {
         return [
-            'viewURL' => ['controller' => 'Compound', 'action' => 'viewSet', 100],
-            'editURL' => ['controller' => 'Compound', 'action' => 'details', 'id' => $this->id]
+            'pubchemLink' => ['https://pubchem.ncbi.nlm.nih.gov/compound/'.$this->pub_chem],
+            'pubchemURL' => ['?' => ['pub_chem#' => $this->pub_chem]],
+            'viewURL' => ['controller' => 'Compound', 'action' => 'details', '?' => ['id' => $this->id]],
+            'editURL' => ['controller' => 'Compound', 'action' => 'details', '?' => ['id' => $this->id]]
         ];
     }
 

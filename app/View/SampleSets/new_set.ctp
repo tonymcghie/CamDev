@@ -1,5 +1,5 @@
 <?php
-$this->assign('title', 'New Set');
+$this->assign('title', 'New Sample Set');
 ?>
 <header>
 <h1><?php echo $this->String->get_string('title', 'SampleSet_form'); ?></h1>
