@@ -29,9 +29,9 @@ class Compound extends DataObject {
     public function getActionData() {
         return [
             'pubchemLink' => ['https://pubchem.ncbi.nlm.nih.gov/compound/'.$this->pub_chem],
-            'pubchemURL' => ['?' => ['pub_chem#' => $this->pub_chem]],
-            'viewURL' => ['controller' => 'Compound', 'action' => 'details', '?' => ['id' => $this->id]],
-            'editURL' => ['controller' => 'Compound', 'action' => 'details', '?' => ['id' => $this->id]]
+            'chemspiderLink' => ['http://www.chemspider.com/Chemical-Structure.'.$this->chemspider_id.'.html'],
+            'viewURL' => ['controller' => 'Compounds', 'action' => 'addCompound', '?' => ['id' => $this->id]],
+            'editURL' => ['controller' => 'Compounds', 'action' => 'editCompound', '?' => ['id' => $this->id]]
         ];
     }
 

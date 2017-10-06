@@ -62,7 +62,13 @@ class CompoundsController extends AppController{
      * @return type
      * @throws NotFoundExcpetion
      */
-    public function editCompound($id = null){        
+    public function editCompound($id = null){
+        $this->layout = 'main';
+        $data = $this->request->data;        
+        if ($id == null){
+            $id = $this->params['url']['id'];
+        } // gets $id from the url
+        var_dum($id);
         $set = $this->Compound->findById($id);
         if (!$set){
             throw new NotFoundExcpetion(__('Invalid Compound'));
