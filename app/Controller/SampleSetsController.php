@@ -229,6 +229,7 @@ class SampleSetsController extends AppController{
 
         $this->set('cols', $this->SampleSet->getDisplayFields());
         $this->set('results', $resultObjects);
+        $this->set('num', $this->SampleSet->find('count', ['conditions' => $query])); //passes the number of results to the view
         $this->set('model', 'SampleSet');
         $this->render('/Elements/search_results_modal');
     }

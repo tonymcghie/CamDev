@@ -61,6 +61,7 @@ class CompoundpfrDataController extends AppController{
 
         $this->set('cols', $this->Compoundpfr_data->getDisplayFields());             
         $this->set('results', $resultObjects);
+        $this->set('num', $this->Compoundpfr_data->find('count', ['conditions' => $query])); //passes the number of results to the view
         $this->set('model', 'Compoundpfr_data');
         $this->render('/Elements/search_results_modal');
         //var_export($results);

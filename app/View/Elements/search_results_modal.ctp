@@ -9,13 +9,13 @@
         <div class="modal-dialog table-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h2>Search Results</h2>
+                    <h2>Search Results (n=<?php echo $num; ?>)</h2>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
                     <ul class="nav nav-tabs">
                         <li class="active"><a data-toggle="tab" href="#table-tab">Table</a></li>
-                        <li><a data-toggle="tab" href="#graph-tab">Graph</a></li>
+                        <li><a data-toggle="tab" href="#adduct-tab">Ion-adducts</a></li>
                     </ul>
                     <div class="tab-content">
                         <div id="table-tab" class="tab-pane fade in active">
@@ -34,8 +34,12 @@
                                 </span>
                             </div>
                         </div>
-                        <div id="graph-tab" class="tab-pane fade">
-                            <h2>// TODO make graphs here</h2>
+                        <div id="adduct-tab" class="tab-pane fade">
+                            <div class="results-table">
+                                <?php var_dump($ion_results[0]['Compound']['exact_mass']);
+                                //To do: make and element to calculate the ion adducts so that they can be displayed as a table?>                                
+                                <?= $this->element('compound_ion_adduct_table', ['cols' => $ion_cols, 'results' => $results, 'model' => $model]) ?>
+                            </div>
                         </div>
                     </div>
                 </div>

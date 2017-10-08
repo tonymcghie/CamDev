@@ -143,13 +143,15 @@ class CompoundsController extends AppController{
         //var_export($criteria);var_export($value);var_export($match);var_export($logic);
         $query = $this->Search->build_query($this->Compound, $criteria, $value, $logic, $match);
         $results = $this->paginate('Compound', $query);
-        //var_export($results);
-        
+        var_dump($results[0]['Compound']['exact_mass']); //test to get that indexes sorted for the array of results
+                
         $resultObjects = $this->Compound->buildObjects($results);
                 
         $this->set('cols', $this->Compound->getDisplayFields());
+        $this->set('ion_cols', $this->Compound->getIonAdductFields());
         $this->set('results', $resultObjects);
-        //$this->set('results', $results);
+        $this->set('ion_results', $results);  //pass results to view so the ion adducts values can be calculated and then displayed
+        $this->set('num', $this->Compound->find('count', ['conditions' => $query])); //passes the number of results to the view
         $this->set('model', 'Compound');
         $this->render('/Elements/search_results_modal');
         //$this->render('/Elements/compound_results_table');

@@ -154,6 +154,7 @@ class MetabolitesController extends AppController{
 
         $this->set('cols', $this->Metabolite->getDisplayFields());             
         $this->set('results', $resultObjects);
+        $this->set('num', $this->Metabolite->find('count', ['conditions' => $query])); //passes the number of results to the view
         $this->set('model', 'Metabolite');
         $this->render('/Elements/search_results_modal');
         

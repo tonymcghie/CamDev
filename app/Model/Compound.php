@@ -29,4 +29,15 @@ class Compound extends AppModel{
             'comment'];
     }
     
+    public function getIonAdductFields() {
+        return ['compound_name',
+            'formula',
+            'exact_mass',
+            'cas',
+            '[M-H]-',
+            '[M+COOH-H]-',
+            '[M+H]+',
+            '[M+Na]+'];
+    }
+    
 }

@@ -62,8 +62,9 @@ class MolecularFeaturesController extends AppController{
         
         $resultObjects = $this->Molecular_feature->buildObjects($results);
         $this->set('cols', $this->Molecular_feature->getDisplayFields());
-        
+        $this->set('num', $this->Molecular_feature->find('count', ['conditions' => $query])); //passes the number of results to the view
         $this->set('results', $resultObjects);
+        
         $this->set('model', 'Molecular_feature');
         $this->render('/Elements/search_results_modal');
         //var_export($results);
