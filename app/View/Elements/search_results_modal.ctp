@@ -35,10 +35,8 @@
                             </div>
                         </div>
                         <div id="adduct-tab" class="tab-pane fade">
-                            <div class="results-table">
-                                <?php var_dump($ion_results[0]['Compound']['exact_mass']);
-                                //To do: make and element to calculate the ion adducts so that they can be displayed as a table?>                                
-                                <?= $this->element('compound_ion_adduct_table', ['cols' => $ion_cols, 'results' => $results, 'model' => $model]) ?>
+                            <div class="results-table">                       
+                                <?= $this->element('compound_ion_adduct_table', ['cols' => $ion_cols, 'ion_adducts' => $ion_adducts, 'model' => $model]) ?>
                             </div>
                         </div>
                     </div>

@@ -143,14 +143,16 @@ class CompoundsController extends AppController{
         //var_export($criteria);var_export($value);var_export($match);var_export($logic);
         $query = $this->Search->build_query($this->Compound, $criteria, $value, $logic, $match);
         $results = $this->paginate('Compound', $query);
-        var_dump($results[0]['Compound']['exact_mass']); //test to get that indexes sorted for the array of results
+        //var_dump($results[0]['Compound']['exact_mass']); //test to get that indexes sorted for the array of results
                 
         $resultObjects = $this->Compound->buildObjects($results);
                 
         $this->set('cols', $this->Compound->getDisplayFields());
         $this->set('ion_cols', $this->Compound->getIonAdductFields());
         $this->set('results', $resultObjects);
-        $this->set('ion_results', $results);  //pass results to view so the ion adducts values can be calculated and then displayed
+        $ion_adducts = $this->getIonAdducts($results);  //make a new array with ion adduct m/z values
+        //var_dump($ion_adducts);
+        $this->set('ion_adducts', $ion_adducts);  //pass results to view so the ion adducts values can be displayed
         $this->set('num', $this->Compound->find('count', ['conditions' => $query])); //passes the number of results to the view
         $this->set('model', 'Compound');
         $this->render('/Elements/search_results_modal');
@@ -238,6 +240,26 @@ class CompoundsController extends AppController{
     public function reagentsCompound($id = null) {
         $compound = $this->Compound->findById($id); //find a compound by id
         $this->set('info', $compound);// passes the compound info to the view
-    }    
+    } 
+    /**
+     * A function to an results array into an ion_results array containing
+     * exact masses for adduct ions
+     */
+    public function getIonAdducts($data) {
+        $ion_adducts = [];
+        foreach ($data as $row){//cycle through all the compounds and do the calculations and add the required data
+            $new_data = array('compound_name' => $row['Compound']['compound_name'],
+                'formula' => $row['Compound']['formula'],
+                'cas' => $row['Compound']['cas'],
+                'exact_mass' => $row['Compound']['exact_mass'],
+                '[M-H]-' => $row['Compound']['exact_mass'] - 1.00794,
+                '[M+COOH-H]-' => $row['Compound']['exact_mass'] + 44.9977,
+                '[M+H]+' => $row['Compound']['exact_mass'] + 1.0078,
+                '[M+Na]+' => $row['Compound']['exact_mass'] + 22.9898);
+            array_push($ion_adducts, $new_data);
+            //var_dump($row['Compound']['exact_mass']);
+        }
+        return $ion_adducts;
+    }
 }
 

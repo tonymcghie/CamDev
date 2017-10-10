@@ -32,8 +32,8 @@ class Compound extends AppModel{
     public function getIonAdductFields() {
         return ['compound_name',
             'formula',
-            'exact_mass',
             'cas',
+            'exact_mass',
             '[M-H]-',
             '[M+COOH-H]-',
             '[M+H]+',
