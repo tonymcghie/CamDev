@@ -6,10 +6,10 @@ if (!empty($title))echo '<h1>'.$title.'</h1>';?>
 <?= $this->BootstrapForm->create($model, ['action' => 'search', 'class' => 'search-form']); ?>
 
 <?= $this->BootstrapForm->start_group(['id' => 'search-set', 'class' => 'search-set']); ?>
-<?= $this->BootstrapForm->input_maker('criteria', ['type' => 'select', 'options' => $category_options, 'div' => ['class' => 'col-lg-3']]); ?>
-<?= $this->BootstrapForm->input_maker('value', ['type' => 'text', 'div' => ['class' => 'col-lg-3']]); ?>
-<?= $this->BootstrapForm->input_maker('match', ['type' => 'select', 'options' => $match_options, 'div' => ['class' => 'col-lg-3']]); ?>
-<?= $this->BootstrapForm->input_maker('logic', ['type' => 'select', 'options' => $logic_options, 'div' => ['class' => 'col-lg-2']]); ?>
+<?= $this->BootstrapForm->input_maker('criteria', ['label' => 'Criteria','type' => 'select', 'options' => $category_options, 'div' => ['class' => 'col-lg-3']]); ?>
+<?= $this->BootstrapForm->input_maker('value', ['label' => 'Value', 'type' => 'text', 'div' => ['class' => 'col-lg-3']]); ?>
+<?= $this->BootstrapForm->input_maker('match', ['label' => 'Match','type' => 'select', 'options' => $match_options, 'div' => ['class' => 'col-lg-3']]); ?>
+<?= $this->BootstrapForm->input_maker('logic', ['label' => 'Logic','type' => 'select', 'options' => $logic_options, 'div' => ['class' => 'col-lg-2']]); ?>
 <?= $this->BootstrapForm->single_button('x', ['onclick' => 'remove_search_set(this);return false;', 'div' => ['class' => 'col-lg-1']], ['class' => 'btn-danger']); ?>
 <?= $this->BootstrapForm->end_group(); ?>
 

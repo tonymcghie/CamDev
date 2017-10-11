@@ -186,15 +186,18 @@ class CompoundpfrDataController extends AppController{
         extract($this->request->data['Compoundpfr_data']);
         if ($this->request->is('post')){
             $review_options = $this->request->data;
-            
-            if ($review_options['review']['match'] == 'contain')$review_by_value = '%'.$review_options['review']['by'].'%';
-            if ($review_options['review']['match'] == 'exact')$review_by_value = $review_options['review']['by'];
-            if ($review_options['review']['match'] == 'starts_with')$review_by_value = $review_options['review']['by'].'%';
-            
-            $db_name = ConnectionManager::getDataSource('default')->config['database'];
-            $results = $this->Compoundpfr_data->query("SELECT DISTINCT {$review_options['review']['for']} "
+            var_dump($review_options);
+            if ($review_options['Compoundpfr_data']['match'] == 'contain')$review_by_value = '%'.$review_options['Compoundpfr_data']['value'].'%';
+            if ($review_options['Compoundpfr_data']['match'] == 'exact')$review_by_value = $review_options['Compoundpfr_data']['value'];
+            if ($review_options['Compoundpfr_data']['match'] == 'starts')$review_by_value = $review_options['Compoundpfr_data']['value'].'%';
+            $query = "SELECT DISTINCT {$review_options['Compoundpfr_data']['for']} "
                     . "FROM {$db_name}.compoundpfr_data as Compoundpfr_data"
-                    . " WHERE {$review_options['review']['cri']} LIKE '{$review_by_value}';");
+                    . " WHERE {$review_options['Compoundpfr_data']['by']} LIKE '{$review_by_value}';";
+            var_dump($query);
+            //$db_name = ConnectionManager::getDataSource('default')->config['database'];
+            $results = $this->Compoundpfr_data->query("SELECT DISTINCT {$review_options['Compoundpfr_data']['for']} "
+                    . "FROM {$db_name}.compoundpfr_data as Compoundpfr_data"
+                    . " WHERE {$review_options['Compoundpfr_data']['by']} LIKE '{$review_by_value}';");
                     
             // Makes the result array a 1 dimentional indexed array ie.            
             $squash_function = function($carry = [], $item) use ($review_options){

@@ -26,7 +26,7 @@
     <?php elseif ($this->Session->read('Auth.User')['location'] == 'Otago University'): ?>
         div.content_container {background-image: url('img/chemlab_otago.jpg');}
     <?php else: ?>
-        div.content_container {background-image: url('img/vineyard-blenheim.jpg');}
+        div.content_container {background-image: url('img/palmy_town50scale.jpg');}
     <?php endif; ?>
 
 </style>

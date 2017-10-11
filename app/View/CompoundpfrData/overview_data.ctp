@@ -15,6 +15,7 @@ $by_options = array(
     'intensity_description' => 'Units');
 
 $for_options = array(
+    'assigned_name' => 'Compound',
     'crop' => 'Crop',
     'genotype' => 'Genotype',
     'tissue' => 'Tissue',
@@ -22,7 +23,6 @@ $for_options = array(
     'reference' => 'Experiment Reference',
     'analyst' => 'Analyst',
     'sample_ref' => 'Sample Reference',
-    'assigned_name' => 'Compound',
     'cas' => 'CAS',
     'exact_mass' => 'Exact Mass',
     'intensity_description' => 'Units');
