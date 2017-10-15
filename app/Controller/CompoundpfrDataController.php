@@ -182,34 +182,42 @@ class CompoundpfrDataController extends AppController{
         $this->layout = 'ajax';
         $this->autoRender = false;
         // Listed these here for auto complete reasons and to stop the IDE displaying errors
-        $criteria = null;$value = null;$logic = null;$match = null;
+        $by = null;$value = null;$match = null;$for = null; $review_options=null;
         extract($this->request->data['Compoundpfr_data']);
-        if ($this->request->is('post')){
-            $review_options = $this->request->data;
-            var_dump($review_options);
-            if ($review_options['Compoundpfr_data']['match'] == 'contain')$review_by_value = '%'.$review_options['Compoundpfr_data']['value'].'%';
-            if ($review_options['Compoundpfr_data']['match'] == 'exact')$review_by_value = $review_options['Compoundpfr_data']['value'];
-            if ($review_options['Compoundpfr_data']['match'] == 'starts')$review_by_value = $review_options['Compoundpfr_data']['value'].'%';
-            $query = "SELECT DISTINCT {$review_options['Compoundpfr_data']['for']} "
-                    . "FROM {$db_name}.compoundpfr_data as Compoundpfr_data"
-                    . " WHERE {$review_options['Compoundpfr_data']['by']} LIKE '{$review_by_value}';";
-            var_dump($query);
-            //$db_name = ConnectionManager::getDataSource('default')->config['database'];
-            $results = $this->Compoundpfr_data->query("SELECT DISTINCT {$review_options['Compoundpfr_data']['for']} "
-                    . "FROM {$db_name}.compoundpfr_data as Compoundpfr_data"
-                    . " WHERE {$review_options['Compoundpfr_data']['by']} LIKE '{$review_by_value}';");
-                    
-            // Makes the result array a 1 dimentional indexed array ie.            
-            $squash_function = function($carry = [], $item) use ($review_options){
-                if (empty($carry))$carry = [];
-                $carry[] = $item['Compoundpfr_data'][$review_options['review']['for']];
-                return $carry;
-            };           
-            $output = array_reduce($results, $squash_function);
+        //extract returns arrays with numeric indexes, use implode to convert the arrays to strings
+        $by = implode($by); $value = implode($value); $match = implode($match); $for = implode($for);
+        //pr($by); pr ($value); pr($match); pr($for);
+        if ($match == 'contains')$review_by_value = '%'.$value.'%';
+        if ($match == 'exact')$review_by_value = $value;
+        if ($match == 'starts')$review_by_value = $value.'%';
+        $query = "SELECT DISTINCT {$for} "
+                . "FROM cam_data.compoundpfr_data as Compoundpfr_data"
+                . " WHERE {$by} LIKE '{$review_by_value}';";
+        //var_dump($query);
+        //$db_name = ConnectionManager::getDataSource('default')->config['database'];
+        $results = $this->Compoundpfr_data->query("SELECT DISTINCT {$for} "
+                . "FROM cam_data.compoundpfr_data as Compoundpfr_data"
+                    . " WHERE {$by} LIKE '{$review_by_value}';");
+        //var_dump($results);        
+        // Makes the result array a 1 dimensional indexed array ie.            
+        $squash_function = function($carry = [], $item) use ($for){
+            if (empty($carry))$carry = [];
+            $carry[] = $item['Compoundpfr_data'][$for];
+            return $carry;
+        };           
+        $output = array_reduce($results, $squash_function);
+        //var_dump($output);
             
-            $this->set('output', $output);
-            $this->set('data', $this->request->data); //sends all the data(search criteria) to the view so it can be added to the ajax links
-        }
+        $this->set('results', $results);
+        $this->set('for', $for);
+        $this->set('value', $value);
+        $this->set('by', $by);
+        //$this->set('num', $this->Compoundpfr_data->find('count', ['conditions' => $query])); //passes the number of results to the view
+        $this->set('model', 'Compoundpfr_data');
+        $this->render('/Elements/overview_results_modal');
+            
+        //$this->set('output', $output);
+        //$this->set('data', $this->request->data); //sends all the data(search criteria) to the view so it can be added to the ajax links
     }
     
     
