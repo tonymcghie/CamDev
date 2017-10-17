@@ -219,6 +219,11 @@
                     </button>
                     <button type="button"
                             class="list-group-item"
+                            onclick="load_page('<?php echo $this->Html->url(['controller' => 'General', 'action' => 'templates'], true) ?>', $('#main_content'))">
+                        Data Templates
+                    </button>
+                    <button type="button"
+                            class="list-group-item"
                             onclick="load_page('<?php echo $this->Html->url(['controller' => 'Projects', 'action' => 'addProject'], true) ?>', $('#main_content'))">
                         New Project
                     </button>

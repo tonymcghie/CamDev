@@ -99,6 +99,14 @@ class GeneralController extends AppController {
     }
     
     /**
+     * Allows the user to download template .xlxs files for specific tasks
+     * Template must be loaded into /output/chemistry/cam... or a local drive if testing
+     */
+    public function templates(){  
+        
+    } 
+    
+    /**
      * This will start a download of a file
      * @return type
      */
