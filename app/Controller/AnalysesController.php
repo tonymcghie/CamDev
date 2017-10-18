@@ -41,7 +41,8 @@ class AnalysesController extends AppController{
      * @param type $set_code
      */
     public function editAnalysis($set_code = null){                    
-        $data = $this->request->data;        
+        $data = $this->request->data;
+        var_dump($data);
         if ($set_code == null){
             $set_code = $this->params['url']['set_code'];
         } //gets the set_code

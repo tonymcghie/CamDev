@@ -21,9 +21,10 @@
 
             echo $this->Form->input($form_model.'method', array('label' => 'Method File:', 'value' => $row['Analysis']['method']));
             echo $this->Form->input($form_model.'labbook_ref', array('label' => 'Reference:', 'value' => $row['Analysis']['labbook_ref'], 'placeholder' => 'Lab Book/ MS #/ Job #'));
-            echo $this->My->makeInputTextEd($form_model.'prep', []);
-            //echo $this->Form->input($form_model.'prep', array('label' => 'Sample Preparation:', 'value' => $row['Analysis']['prep'], 'rows' => '5', 'cols' => '100'));
+            //echo $this->My->makeInputTextEd($form_model.'prep', []);  //trying to add in CKEditor - but not working
+            echo $this->Form->input($form_model.'prep', array('label' => 'Sample Preparation:', 'value' => $row['Analysis']['prep'], 'rows' => '5', 'cols' => '100'));
             echo $this->Form->input($form_model.'details', array('label' => 'Analysis Details:', 'value' => $row['Analysis']['details'], 'rows' => '5', 'cols' => '100'));
+            echo $this->Form->input($form_model.'results', array('label' => 'Results:', 'value' => $row['Analysis']['results'], 'rows' => '5', 'cols' => '100'));
         }
         ?>
         </fieldset>
