@@ -208,10 +208,35 @@
 
         <div class="panel panel-default">
             <div class="panel-heading light-green lighten-3" data-toggle="collapse" data-parent="#nav_accordion" href="#general_menu">
-                <span>General</span>
+                <span>Getting Started</span>
             </div>
             <div class="panel-collapse collapse" id="general_menu">
                 <div class="panel-body light-blue lighten-3">
+                    <button type="button"
+                            class="list-group-item"
+                            onclick="load_page('<?php echo $this->Html->url(['controller' => 'General', 'action' => 'info'], true) ?>', $('#main_content'))">
+                        Info
+                    </button>
+                    <button type="button"
+                            class="list-group-item"
+                            onclick="load_page('<?php echo $this->Html->url(['controller' => 'General', 'action' => 'howto'], true) ?>', $('#main_content'))">
+                        How To
+                    </button>
+                    <?php
+                    /*if ($this->Session->read('Auth.User')!==null && in_array("PFR-GP-Biological Chemistry and Bioactives Group", $this->Session->read('Auth.User')['groups'])){
+                        echo '<li>'.$this->Html->link('Scripts', ['controller' => 'General','action' => 'scripts'], ['target' => 'mainFrame', 'class' => 'btn btn-link']).'</li>';
+                    }*/
+                    ?>
+                </div>
+            </div>
+        </div>
+
+                <div class="panel panel-default">
+            <div class="panel-heading light-green darken-1" data-toggle="collapse" data-parent="#nav_accordion" href="#tools_menu">
+                <span>Tools</span>
+            </div>
+            <div class="panel-collapse collapse" id="tools_menu">
+                <div class="panel-body" style ='background-color: #990033;'>
                     <button type="button"
                             class="list-group-item"
                             onclick="load_page('<?php echo $this->Html->url(['controller' => 'General', 'action' => 'scripts'], true) ?>', $('#main_content'))">
@@ -226,16 +251,6 @@
                             class="list-group-item"
                             onclick="load_page('<?php echo $this->Html->url(['controller' => 'Projects', 'action' => 'addProject'], true) ?>', $('#main_content'))">
                         New Project
-                    </button>
-                    <button type="button"
-                            class="list-group-item"
-                            onclick="load_page('<?php echo $this->Html->url(['controller' => 'General', 'action' => 'info'], true) ?>', $('#main_content'))">
-                        Info
-                    </button>
-                    <button type="button"
-                            class="list-group-item"
-                            onclick="load_page('<?php echo $this->Html->url(['controller' => 'General', 'action' => 'howto'], true) ?>', $('#main_content'))">
-                        How To
                     </button>
                     <button type="button"
                             class="list-group-item"
