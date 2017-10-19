@@ -24,7 +24,7 @@
             //echo $this->My->makeInputTextEd($form_model.'prep', []);  //trying to add in CKEditor - but not working
             echo $this->Form->input($form_model.'prep', array('label' => 'Sample Preparation:', 'value' => $row['Analysis']['prep'], 'rows' => '5', 'cols' => '100'));
             echo $this->Form->input($form_model.'details', array('label' => 'Analysis Details:', 'value' => $row['Analysis']['details'], 'rows' => '5', 'cols' => '100'));
-            echo $this->Form->input($form_model.'results', array('label' => 'Results:', 'value' => $row['Analysis']['results'], 'rows' => '5', 'cols' => '100'));
+            echo $this->Form->input($form_model.'result_summary', array('label' => 'Results:', 'value' => $row['Analysis']['result_summary'], 'rows' => '5', 'cols' => '100'));
         }
         ?>
         </fieldset>
