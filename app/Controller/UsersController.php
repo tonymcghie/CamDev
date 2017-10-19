@@ -32,6 +32,8 @@ class UsersController extends AppController {
         
     }
     
+    public function cam4_login() {
+    }
     /**
      * Logs a user in. Commented out when login not wanted
      */
