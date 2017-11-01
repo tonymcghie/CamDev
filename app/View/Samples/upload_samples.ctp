@@ -1,26 +1,5 @@
-<?php
-echo $this->Html->css('tabs_'.getenv('CSS_VERSION'), null, array('inline' => false));
-echo $this->Html->script(array('base'), array('inline' => false));
-?>
-<header>
-<h1>Sample Upload Workspace</h1>
-<h2>Set Code: <?php echo $info['SampleSet']['set_code'] ?></h2>
-<p>Crop: <?php echo $info['SampleSet']['crop'] ?></p>
-<p>Type: <?php echo $info['SampleSet']['type'] ?></p>
-
-</header>
-
-<table class="noFormat">
-    <tr>
-        <td style="width: 92%;">
-            <iframe id="csvFileFrame" class="iframeNoformat" src="<?php echo $this->Html->url(['controller' => 'CompoundpfrData', 'action' => 'getCsv']);?>"></iframe>
-        </td>
-        <td style="width: 20%;">
-            <span id="importData" class="find-button anySizeButton green-button">Import</span>
-        </td>
-    </tr>
-</table>
-
+<h1>CSV File Mapping View</h1>
+<iframe id="csvFileFrame" class="iframeNoformat"></iframe>
 <div id="csvTableDiv">    
     <?php
     if (isset($message)){

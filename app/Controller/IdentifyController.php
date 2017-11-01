@@ -33,7 +33,7 @@ class IdentifyController extends AppController{
     /**
      * This function contains the code for identifying unknown compounds by accurate mass.
      * 1) a csv file containing accurate masses is read;
-     * 2) each mass is conpared with entries in the compound table;
+     * 2) each mass is compared with entries in the compound table;
      * 3) successful hits are written into an output file that is sent to Downloads
      */
     public function SelectFile(){

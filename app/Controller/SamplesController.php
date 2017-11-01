@@ -54,6 +54,7 @@ class SamplesController extends AppController{
 	public function importSamples($id = null) {
 		if($this->request->is('post')){ 
             $data = $this->request->data['Samples'];
+            //var_dump($data);
             $cols = array();
             for($i = 0;isset($data[$i]);$i++){
                 if ($data[$i] != 'none'){
@@ -91,12 +92,16 @@ class SamplesController extends AppController{
      * Uploads a CSV file from a iFrame within a page
      */
     public function getCsv(){
-        $this->layout = 'MinLayout'; //minimilistic layout that has no formating
-        if ($this->request->is('post')){            
-            $newURL = $this->file_URL.'files/Samples/temp'.rand().'.csv'; //adds a random number to the end of the file name to avoid clashes           
-            move_uploaded_file($this->request->data['Samples']['csv_file']['tmp_name'], $newURL); //uploads the file
+        //$this->layout = 'MinLayout'; //minimilistic layout that has no formating
+        if ($this->request->is('post')){
+            $data = $this->request->data['Samples'];
+            //var_dump($data);
+            $newURL = $this->file_URL.'files/samples/temp'.rand().'.csv'; //adds a random number to the end of the file name to avoid clashes  
+            //var_dump($newURL);
+            move_uploaded_file($this->request->data['Samples']['csv_path']['tmp_name'], $newURL); //uploads the file
             $this->set('fileUrl', $newURL); //passes the new URL to the view
-            $this->set('fileName', $this->request->data['Samples']['csv_file']['name']); //passes the filename to the view so it can be later added to the table
+            $this->set('fileName', $this->request->data['Samples']['csv_path']['name']); //passes the filename to the view so it can be later added to the table
+            $this->render('upload_samples');
         } //if the form is submitted then upload the csv file
     }
     
