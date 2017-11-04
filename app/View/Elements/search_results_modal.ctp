@@ -9,8 +9,14 @@
         <div class="modal-dialog table-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h2>Search Results (n=<?php echo $num; ?>)</h2>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h2>Search Results (n=<?php echo $num; ?>)</h2>
+                <?php 
+                    //echo $this->Html->link('Export to CSV',['controller' => 'Compounds', 'action' => 'export'],['class' => 'btn btn-info', 'role' => 'button']);
+                    echo $this->Form->postLink('Export to CSV', ['action' => 'export', http_build_query($data)], ['class' => 'btn-xs btn-info', 'role' => 'button']);
+                    var_dump($data);
+                    //echo $this->Form->postLink('Add', $this->Html->url($data['viewURL']),true, ['class' => 'btn-xs btn-primary']);
+                ?>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
                     <ul class="nav nav-tabs">

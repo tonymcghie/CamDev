@@ -152,6 +152,7 @@ class MyComponent extends Component{
     }
     
     public function exportCSV($modelstr, $model, $controller, $allColums, $data = null, $allORSearch = FALSE){
+        var_dump($data);
         if ($data==null){
             return;
         }

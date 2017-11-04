@@ -45,7 +45,7 @@
                 <span>Sample Sets</span>
             </div>
             <div class="panel-collapse collapse in" id="sample_sets_menu">
-                <div class="panel-body light-blue lighten-3">
+                <div class="panel-body" style ='background-color: #c35994;'>
                     <button type="button"
                             class="list-group-item"
                             onclick="load_page('<?php echo $this->Html->url(['controller' => 'SampleSets', 'action' => 'newSet'], true) ?>', $('#main_content'))">
@@ -74,7 +74,7 @@
                 <span>Compounds</span>
             </div>
             <div class="panel-collapse collapse" id="compounds_menu">
-                <div class="panel-body light-blue lighten-3">
+                <div class="panel-body" style ='background-color: #98376d;'>
                     <button type="button"
                             class="list-group-item"
                             onclick="load_page('<?php echo $this->Html->url(['controller' => 'Compounds', 'action' => 'searchCompound'], true) ?>', $('#main_content'))">
@@ -112,7 +112,7 @@
                 <span>PFR Compound Data</span>
             </div>
             <div class="panel-collapse collapse" id="pfr_data_menu">
-                <div class="panel-body light-blue lighten-3">
+                <div class="panel-body" style ='background-color: #98376d;'>
                     <button type="button"
                             class="list-group-item"
                             onclick="load_page('<?php echo $this->Html->url(['controller' => 'Compoundpfr_data', 'action' => 'findData'], true) ?>', $('#main_content'))">
@@ -153,7 +153,7 @@
                 <span>Metabolomic Data</span>
             </div>
             <div class="panel-collapse collapse" id="metabolomic_menu">
-                <div class="panel-body light-blue lighten-3">
+                <div class="panel-body" style ='background-color: #98376d;'>
                     <button type="button"
                             class="list-group-item"
                             onclick="load_page('<?php echo $this->Html->url(['controller' => 'Molecular_features', 'action' => 'findData'], true) ?>', $('#main_content'))">
@@ -186,7 +186,7 @@
                 <span>Unknown Compounds</span>
             </div>
             <div class="panel-collapse collapse" id="unknown_compounds_menu">
-                <div class="panel-body light-blue lighten-3">
+                <div class="panel-body" style ='background-color: #98376d;'>
                     <button type="button"
                             class="list-group-item"
                             onclick="load_page('<?php echo $this->Html->url(['controller' => 'Metabolites', 'action' => 'searchMetabolite'], true) ?>', $('#main_content'))">
@@ -211,7 +211,7 @@
                 <span>Getting Started</span>
             </div>
             <div class="panel-collapse collapse" id="general_menu">
-                <div class="panel-body light-blue lighten-3">
+                <div class="panel-body" style ='background-color: #98376d;'>
                     <button type="button"
                             class="list-group-item"
                             onclick="load_page('<?php echo $this->Html->url(['controller' => 'General', 'action' => 'info'], true) ?>', $('#main_content'))">
@@ -232,11 +232,11 @@
         </div>
 
                 <div class="panel panel-default">
-            <div class="panel-heading light-green darken-1" data-toggle="collapse" data-parent="#nav_accordion" href="#tools_menu">
+            <div class="panel-heading light-green lighten-3" data-toggle="collapse" data-parent="#nav_accordion" href="#tools_menu">
                 <span>Tools</span>
             </div>
             <div class="panel-collapse collapse" id="tools_menu">
-                <div class="panel-body" style ='background-color: #990033;'>
+                <div class="panel-body" style ='background-color: #98376d;'>
                     <button type="button"
                             class="list-group-item"
                             onclick="load_page('<?php echo $this->Html->url(['controller' => 'General', 'action' => 'scripts'], true) ?>', $('#main_content'))">

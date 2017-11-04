@@ -155,6 +155,7 @@ class CompoundsController extends AppController{
         $this->set('ion_adducts', $ion_adducts);  //pass results to view so the ion adducts values can be displayed
         $this->set('num', $this->Compound->find('count', ['conditions' => $query])); //passes the number of results to the view
         $this->set('model', 'Compound');
+        $this->set('data', $data); //pass the search data to view so that is can get passed back to controller for action=>export
         $this->render('/Elements/search_results_modal');
         //$this->render('/Elements/compound_results_table');
     }
@@ -179,6 +180,7 @@ class CompoundsController extends AppController{
      * @param type $data
      */
     public function export($data = null){
+        //var_dump($data);
         $this->My->exportCSV('Compound', $this->Compound, $this, [], $data); //removed ',true' to make export work
     }
     
