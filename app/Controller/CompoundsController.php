@@ -179,9 +179,11 @@ class CompoundsController extends AppController{
      * Exports the search results to a CSV file
      * @param type $data
      */
-    public function export($data = null){
-        //var_dump($data);
-        $this->My->exportCSV('Compound', $this->Compound, $this, [], $data); //removed ',true' to make export work
+    public function export($datastr = null){
+        //var_dump($datastr);
+        //parse_str($datastr, $data);  
+        //var_dump($data); 
+        $this->My->exportCSV('Compound', $this->Compound, $this, [], $datastr); //removed ',true' to make export work
     }
     
     /**

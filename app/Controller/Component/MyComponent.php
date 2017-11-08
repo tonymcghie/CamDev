@@ -151,24 +151,47 @@ class MyComponent extends Component{
         return $data;
     }
     
-    public function exportCSV($modelstr, $model, $controller, $allColums, $data = null, $allORSearch = FALSE){
+    public function exportCSV($modelstr, $model, $controller, $allColums, $datastr = null, $allORSearch = FALSE){
+        var_dump($modelstr);
+        //var_dump($model);
+        //var_dump($controller);
+        //var_dump($allColumns);
+        var_dump($datastr); 
+        parse_str($datastr, $data);  
         var_dump($data);
         if ($data==null){
             return;
         }
-        parse_str($data);
-        $data = array();
-        $data[$modelstr] = $$modelstr;
+        //$data = array();
+        //$data[$modelstr] = $modelstr;
+        var_dump($data);
         if ($allORSearch){
             $search = $controller->buildConditionsArray($data);
         } else {
-            $data[$modelstr]['num_boxes'] = (isset($data[$modelstr]['num_boxes']) ? $data[$modelstr]['num_boxes'] : 1);  
-            $search = $controller->My->extractSearchTerm($data, $allColums, $modelstr); 
+            //extract($data['Compound']);
+            //var_dump($criteria);var_dump($value);var_dump($match);var_dump($logic);
+            //extract() function does not work on $data so have to set the search data values manually before making the query
+            $model = 'Compound'; 
+            $criteria = $data['Compound']['criteria'][0];
+            $value = $data['Compound']['value'][0];
+            $logic = $data['Compound']['logic'][0];
+            $match = $data['Compound']['match'][0];
+            //$model = 'Compound'; $criteria = 'compound_name'; $value = 'quercetin'; $logic = 'AND'; $match = 'contains';
+            //var_dump(array_keys($data));
+            //extract($data);  //function does not place values variables
+            var_dump($criteria);var_dump($value);var_dump($match);var_dump($logic);
+            var_dump($model);
+            $query = $this->Search->build_query($model, $criteria, $value, $logic, $match);  //this throws a fatal error; build_query is in SearchComponents
+            //$query = $this->Search->build_query($this->Compound, $criteria, $value, $logic, $match);
+            var_dump($query);
+            //$results = $this->paginate('Compound', $query);
+            //$data[$modelstr]['num_boxes'] = (isset($data[$modelstr]['num_boxes']) ? $data[$modelstr]['num_boxes'] : 1);  
+            //$search = $controller->My->extractSearchTerm($data, $allColums, $modelstr); 
         }
-        $data = $model->find('all', ['conditions' => $search]);
-        $controller->set('data', $data);
-        $controller->response->download("export.csv");
-        $controller->layout = 'ajax';  
+        //$data = $model->find('all', ['conditions' => $query]);
+        //$controller->set('data', $data);
+        //$controller->response->download("export.csv");
+        //$controller->layout = 'ajax';  
     }
 
     
