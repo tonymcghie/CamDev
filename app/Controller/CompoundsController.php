@@ -138,6 +138,7 @@ class CompoundsController extends AppController{
             'order' => array('Compound.compound_name' => 'asc')
         ];
         // Listed these here for auto complete reasons and to stop the IDE displaying errors
+        //var_dump($data);
         $criteria = null;$value = null;$logic = null;$match = null;
         extract($this->request->data['Compound']);
         //var_export($criteria);var_export($value);var_export($match);var_export($logic);
@@ -155,7 +156,7 @@ class CompoundsController extends AppController{
         $this->set('ion_adducts', $ion_adducts);  //pass results to view so the ion adducts values can be displayed
         $this->set('num', $this->Compound->find('count', ['conditions' => $query])); //passes the number of results to the view
         $this->set('model', 'Compound');
-        $this->set('data', $data); //pass the search data to view so that is can get passed back to controller for action=>export
+        $this->set('data', $data); //pass the search parameters to view so that is can get passed back to controller for action=>export
         $this->render('/Elements/search_results_modal');
         //$this->render('/Elements/compound_results_table');
     }
@@ -181,9 +182,14 @@ class CompoundsController extends AppController{
      */
     public function export($datastr = null){
         //var_dump($datastr);
-        //parse_str($datastr, $data);  
-        //var_dump($data); 
-        $this->My->exportCSV('Compound', $this->Compound, $this, [], $datastr); //removed ',true' to make export work
+        parse_str($datastr, $data);  //extract search parameters from the url
+        $criteria = null;$value = null;$logic = null;$match = null;
+        extract($data['Compound']);
+        $query = $this->Search->build_query($this->Compound, $criteria, $value, $logic, $match); //build the search query
+        $search_results = $this->Compound->find('all', ['conditions' => $query]);  //find the data
+        $this->set('data', $search_results); //send data to export view
+        $this->response->download("export_compounds.csv"); //download the named csv file
+        $this->layout = 'ajax';
     }
     
     /**

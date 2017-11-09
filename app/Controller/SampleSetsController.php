@@ -212,6 +212,7 @@ class SampleSetsController extends AppController{
      * Search results are displayed as a modal as defined by /Elements/results table
      */
     public function search(){
+        $data = $this->request->data;
         $this->layout = 'ajax';
         $this->autoRender = false;
         $this->paginate = [
@@ -231,6 +232,7 @@ class SampleSetsController extends AppController{
         $this->set('results', $resultObjects);
         $this->set('num', $this->SampleSet->find('count', ['conditions' => $query])); //passes the number of results to the view
         $this->set('model', 'SampleSet');
+        $this->set('data', $data); //pass the search parameters to view so that is can get passed back to controller for action=>export
         $this->render('/Elements/search_results_modal');
     }
     
@@ -286,8 +288,16 @@ class SampleSetsController extends AppController{
      * Creates and exports a CSV file from a search
      * @param type $data
      */
-    public function export($data = null){
-        $this->My->exportCSV('SampleSet', $this->SampleSet, $this, ['set_code', 'submitter', 'chemist', 'crop', 'type', 'number', 'compounds','comments'], $data);  //exports the data to an csv file
+    public function export($datastr = null){
+        parse_str($datastr, $data);  //extract search parameters from the url
+        $criteria = null;$value = null;$logic = null;$match = null;
+        extract($data['SampleSet']);
+        $query = $this->Search->build_query($this->SampleSet, $criteria, $value, $logic, $match); //build the search query
+        $search_results = $this->SampleSet->find('all', ['conditions' => $query]);  //find the data
+        $this->set('data', $search_results); //send data to export view
+        $this->response->download("export_samplesets.csv"); //download the named csv file
+        $this->layout = 'ajax';
+        //$this->My->exportCSV('SampleSet', $this->SampleSet, $this, ['set_code', 'submitter', 'chemist', 'crop', 'type', 'number', 'compounds','comments'], $data);  //exports the data to an csv file
     }
 
     /**

@@ -46,6 +46,7 @@ class CompoundpfrDataController extends AppController{
     }
     
     public function search(){
+        $data = $this->request->data;
         $this->layout = 'ajax';
         $this->autoRender = false;
         $this->paginate = [
@@ -63,6 +64,7 @@ class CompoundpfrDataController extends AppController{
         $this->set('results', $resultObjects);
         $this->set('num', $this->Compoundpfr_data->find('count', ['conditions' => $query])); //passes the number of results to the view
         $this->set('model', 'Compoundpfr_data');
+        $this->set('data', $data); //pass the search parameters to view so that is can get passed back to controller for action=>export
         $this->render('/Elements/search_results_modal');
         //var_export($results);
     }
@@ -71,8 +73,16 @@ class CompoundpfrDataController extends AppController{
      * extorts the current search data as a csv file
      * @param type $data
      */
-    public function export($data = null){
-        $this->My->exportCSV('Compoundpfr_data', $this->Compoundpfr_data, $this, ['assigned_name', 'assigned_confid', 'exact_mass', 'intensity_description', 'reference', 'sample_ref', 'crop', 'species', 'tissue', 'genotype', 'analyst'], $data);  
+    public function export($datastr = null){
+        parse_str($datastr, $data);  //extract search parameters from the url
+        $criteria = null;$value = null;$logic = null;$match = null;
+        extract($data['Compoundpfr_data']);
+        $query = $this->Search->build_query($this->Compoundpfr_data, $criteria, $value, $logic, $match); //build the search query
+        $search_results = $this->Compoundpfr_data->find('all', ['conditions' => $query]);  //find the data
+        $this->set('data', $search_results); //send data to export view
+        $this->response->download("export_pfrdata.csv"); //download the named csv file
+        $this->layout = 'ajax';
+        //$this->My->exportCSV('Compoundpfr_data', $this->Compoundpfr_data, $this, ['assigned_name', 'assigned_confid', 'exact_mass', 'intensity_description', 'reference', 'sample_ref', 'crop', 'species', 'tissue', 'genotype', 'analyst'], $data);  
     }
     
     /**

@@ -48,6 +48,7 @@ class MolecularFeaturesController extends AppController{
     
     
     public function search(){
+        $data = $this->request->data;
         $this->layout = 'ajax';
         $this->autoRender = false;
         $this->paginate = [
@@ -66,6 +67,7 @@ class MolecularFeaturesController extends AppController{
         $this->set('results', $resultObjects);
         
         $this->set('model', 'Molecular_feature');
+        $this->set('data', $data); //pass the search parameters to view so that is can get passed back to controller for action=>export
         $this->render('/Elements/search_results_modal');
         //var_export($results);
     }
