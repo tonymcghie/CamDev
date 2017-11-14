@@ -5,12 +5,12 @@ $this->assign('title', 'New Sample Set');
 $versionOptions = array();
 foreach($versions as $version){
     $versionOptions[$version['SampleSet']['version']] = 'Version '.$version['SampleSet']['version'];
-    $latestVersion = $version['SampleSet']['version'];
+    $latestVersion = $version['SampleSet']['version'];  //on the last iteration sets the $latestVersion 
 }
 //setup process for displaying multiple version of the sample set info
 ?>
 <header>
-<h1><?php echo $this->String->get_string('title', 'SampleSet_form'); ?></h1>
+<h1><?php echo $this->String->get_string('edit_title', 'SampleSet_form'); ?></h1>
 
 <?php
 if (isset($set_code)){
@@ -25,6 +25,7 @@ echo '<table class="noFormat editSampleVersion">';
 echo $this->Html->tableCells([$this->Form->input('versions',['options' => $versionOptions, 'selected' => $latestVersion, 'id' => 'switcher']), //displayes the version select
     (($this->Session->read('Auth.User')!==null && in_array("PFR-GP-Biological Chemistry and Bioactives Group", $this->Session->read('Auth.User')['groups'])) ? $this->Html->link('Analysis', array('controller' => 'Analyses', 'action' => 'editAnalysis', '?' => 'set_code='.$set_code), array('class' => 'find-button anySizeButton')) : '')]); //displays the analyses button if uer is chemist
 echo '</table>';
+var_dump($versions);
 ?>
 </header>
 
@@ -33,15 +34,13 @@ foreach($versions as $version){
 echo $this->BootstrapForm->create_horizontal('SampleSet', ['type' => 'file' ,'action' => 'createSampleSet']);
 //to do make a clone button in the table
 
-echo $this->BootstrapForm->input_horizontal('version', ['label' => $this->String->get_string('version', 'SampleSet_form'),
-    ]);
+echo $this->BootstrapForm->input_horizontal('version', ['label' => $this->String->get_string('version', 'SampleSet_form')]);
 
 echo $this->BootstrapForm->input_horizontal('confidential', ['type' => 'checkbox',
     'label' => $this->String->get_string('confidential', 'SampleSet_form')]);
 
-echo $this->BootstrapForm->input_horizontal('submitter', ['label' => ['text' => $this->String->get_string('collaborator', 'SampleSet_form')],
-    'value' => (isset($user['name']) ? $user['name'] : ''),
-    'required',]);
+echo $this->BootstrapForm->input_horizontal('submitter', ['label' => ['text' => $this->String->get_string('submitter', 'SampleSet_form')],
+     'readonly',]);
 
 echo $this->BootstrapForm->input_horizontal('p_name', ['label' => $this->String->get_string('p_name', 'SampleSet_form'),
     'placeholder' => $this->String->get_string('p_name_ph', 'SampleSet_form'),
@@ -51,7 +50,7 @@ echo $this->BootstrapForm->input_horizontal('exp_reference', ['label' => $this->
     'placeholder' => $this->String->get_string('exp_reference_ph', 'SampleSet_form')]);
 
 echo $this->BootstrapForm->input_horizontal('chemist', ['label' => $this->String->get_string('chemist_name', 'SampleSet_form'),
-    'autocomplete' => 'off']);
+    'readonly']);
 
 echo $this->BootstrapForm->input_horizontal('crop', ['label' => $this->String->get_string('crop', 'SampleSet_form'),
     'required', 'options' => $this->My->getCropOptions()]);
@@ -81,6 +80,9 @@ echo $this->BootstrapForm->input_horizontal('containment_details', ['label' => $
 echo $this->BootstrapForm->input_horizontal('comments', ['label' => $this->String->get_string('comments', 'SampleSet_form'),
     'placeholder' => $this->String->get_string('comments_ph', 'SampleSet_form'),
     'rows' => '3']);
+
+echo $this->BootstrapForm->input_horizontal('status', ['label' => $this->String->get_string('status', 'SampleSet_form'),
+    'options' => $this->My->getSampleSetStatusOptions()]);
 
 echo $this->BootstrapForm->input_horizontal('metadataFile', ['label' => $this->String->get_string('metafile', 'SampleSet_form'),
     'type' => 'file']);

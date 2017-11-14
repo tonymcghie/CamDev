@@ -253,4 +253,13 @@ class MyHelper extends AppHelper{
         return ['[M-H]-' => '[M-H]-', '[2M-H]-' => '[2M-H]-', '[M+HCOOH-H]-' => '[M+HCOOH-H]-','[M+H]+' => '[M+H]+',
     '[2M+H]+' => '[2M+H]+', '[M+Na]+' => '[M+Na]+','[M+K]+' => '[M+K]+'];
     }
+    
+    /**
+     * returns the option value pairs for the type of MS ion to select for input
+     * @return type
+     */
+	public function getSampleSetStatusOptions(){
+        return ['submitted' => 'submitted', 'in progress' => 'in progress', 'data available' => 'data available','completed' => 'completed',
+    'completed & samples discarded' => 'completed & samples discarded'];
+    }
 }

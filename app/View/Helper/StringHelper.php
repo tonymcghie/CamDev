@@ -10,16 +10,17 @@ class StringHelper extends AppHelper{
     private $strings = [
         'SampleSet_form' => [
             'title' => 'PFR Chemistry: Sample Set Collaboration Workspace',
+            'edit_title' => 'PFR Chemistry: Sample Set Edit Workspace',
             'sub_title' => 'Enter/Edit the relevant metadata information about the Sample Set (* required) and then click Save Set',
             'from_setcode' => 'From Previous Set Code',
             'previous_setcode' => 'Previouse Sample Set',
             'previous_setcode_ph' => 'Create Sample Set Similar to previouse Sample Set',
             'confidential' => 'Confidential',
-            'collaborator' => 'PFR Collaborator',
+            'submitter' => 'PFR Collaborator',
             'p_name' => 'Project Name',
             'p_name_ph' => 'Start typing - registered projects will autocomplete',
             'p_code' => 'Project Code',
-            'exp_reference' => 'Eperiment Reference',
+            'exp_reference' => 'Experiment Reference',
             'exp_reference_ph' => 'Describe the experiment that produced the sample set',
             'chemist_name' => 'Chemist Name',
             'crop' => 'Crop',
@@ -36,6 +37,7 @@ class StringHelper extends AppHelper{
             'version' => 'Version #',
             'comments' => 'Additional Comments',
             'comments_ph' => 'Insert any additional information. For example, copy/past a table of sample identities (labels) from a spreadsheet',
+            'status' => 'Status',
             'metafile' => 'Upload Metadata File'],
         'Compound_form' => [
             'title' => 'Add New Compound to CAM',
