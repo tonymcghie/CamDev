@@ -158,7 +158,7 @@ class SampleSetsController extends AppController{
             throw new NotFoundExcpetion(__('Invalid Sample Set'));
         } //makes sure that the set exists                
         $this->set('versions', $this->SampleSet->find('allVersions', ['conditions' => ['set_code' => $set['SampleSet']['set_code']]])); 
-        //sets all the versions so that the view can diplsay them
+        //sets all the versions so that the view can display them
         $this->set('set_code', $set['SampleSet']['set_code']); //sets the setcode for the sample set this means that the view can pass it back
         if (isset($this->request->data['SampleSet'])){
             $this->request->data['SampleSet']['version'] = $set['SampleSet']['version'] + 1; 

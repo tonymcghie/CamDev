@@ -22,6 +22,7 @@
 
 <div class="tab-content">
     <div id="general_tab" class="tab-pane fade in active">
+        Github branch: CAM4-overview
         <h2>General</h2>
 
         <p>Use your PFR username and password to login into CAM.</p>

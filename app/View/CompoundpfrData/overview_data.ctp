@@ -1,5 +1,5 @@
 <?php
-$title = "Review PFR Compound Data";
+$title = "Overview PFR Compound Data";
 $model = "Compoundpfr_data";
 $by_options = array(
     'crop' => 'Crop',

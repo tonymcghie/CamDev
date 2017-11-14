@@ -161,7 +161,7 @@
                     </button>
                     <button type="button"
                             class="list-group-item"
-                            onclick="load_page('<?php echo $this->Html->url(['controller' => 'Molecular_features', 'action' => 'reviewData'], true) ?>', $('#main_content'))">
+                            onclick="load_page('<?php echo $this->Html->url(['controller' => 'Molecular_features', 'action' => 'overviewData'], true) ?>', $('#main_content'))">
                         Overview
                     </button>
                     <button type="button"
