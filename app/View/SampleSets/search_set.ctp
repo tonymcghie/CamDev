@@ -1,64 +1,43 @@
-
 <?php
-$title = "Find Sample Set";
-$model = "SampleSet";
-$options = ['set_code' => 'Set Code',
-'all' => 'All',
-'set_code' => 'Set Code',
-'submitter' => 'PFR Collaborator',
-'chemist' => 'Chemist',
-'p_name' => 'Project Name',
-//'p_name' => $this->String->get_string('p_name', 'SampleSet'),
-'p_code' => 'Project Code',
-'crop' => 'Crop',
-'compounds' => 'Compounds',
-'comments' => 'Comments',
-'exp_reference' => 'Experiment Reference',
-'team' => 'Team'];
 //'start_date' => ((isset($data[$model]['isDate'])&&$data[$model]['isDate']==='1') ? $data['SampleSet']['start_date'] : '2000-01-01'));
-
-echo $this->element('search_form', ['model' => $model, 'title' => $title, 'category_options' => $options]); ?>
-
-<div id="search-results">
-
-</div>
-<?php
-/*$this->Html->script('HelperScripts_'.getenv('CSS_VERSION'), array('inline' => false));
-if (!isset($box_nums)){$box_nums=1;} //sets the box nums for the first time
-    echo $this->element('search_form', ['title' => $title, 'model' => $model, 'options' => $options, 'box_nums' => $box_nums]);*/
+// //'p_name' => $this->String->get_string('p_name', 'SampleSet'),
+echo $this->element('search_form', ['model' => $model,
+        'title' => 'Find Sample Set',
+        'category_options' =>  ['set_code' => 'Set Code',
+            'all' => 'All',
+            'submitter' => 'PFR Collaborator',
+            'chemist' => 'Chemist',
+            'p_name' => 'Project Name',
+            'p_code' => 'Project Code',
+            'crop' => 'Crop',
+            'compounds' => 'Compounds',
+            'comments' => 'Comments',
+            'exp_reference' => 'Experiment Reference',
+            'team' => 'Team']]);
 ?>
-<script>
-//    var boxnum=<?php //echo $box_nums; ?>//;
-//    var cols =<?php //echo json_encode(array_keys($options)); ?>//;
-//    var names = <?php //echo json_encode(array_values($options)); ?>//;
-//    cols.splice(cols.length-1,1);  //removes the date option
-//    names.splice(names.length-1,1); //removes the date option
-//    /!**
-//     * adds another input pair
-//     *!/
-//    function add(){
-//        $('#boxes').append(getNewBox(boxnum, cols,names,'<?php //echo $model; ?>//')); //adds the new boxes the the section
-//        boxnum++; //increases the number of boxes passed to and from the view and controller
-//        $('#box_nums').val(boxnum); //updates the hidden input
-//    }
-</script>
-<?php
-//    echo '<div  id="resultsTable">';
-//    if (isset($results[0]['SampleSet'])){
-//       $names = array( $this->Paginator->sort('set_code', 'Code', ['data' => $data]),
-//           array('Actions' => ['class' => 'Buttons']),
-//           $this->Paginator->sort('submitter', 'PFR Collaborator', ['data' => $data]),
-//           $this->Paginator->sort('chemist', 'Chemist', ['data' => $data]),
-//           $this->Paginator->sort('crop', 'Crop', ['data' => $data]),
-//           $this->Paginator->sort('type', 'Type', ['data' => $data]),
-//           $this->Paginator->sort('number', 'Number', ['data' => $data]),
-//           $this->Paginator->sort('compounds', 'Compounds', ['data' => $data]),
-//           $this->Paginator->sort('comments', 'Comments', ['data' => $data]));
-//       $cols = array('set_code', 'Actions', 'submitter', 'chemist', 'crop', 'type', 'number', 'compounds','comments');
-//       $type = 'SampleSet';
-//       echo $this->element('results_table', ['results' => $results, 'names' => $names, 'cols' => $cols, 'model' => $model, 'type' => $type, 'data' => $data, 'num' => $num, 'isTablet' => $isTablet]);
-//    } else if (isset($results)){
-//        echo "No Sample Sets Found";
-//    }
-//    echo '</div>';
+<?php if (isset($cols) && !empty($results)): ?>
+    <div id="search-results">
+        <?= $this->Form->postLink('Export to CSV', ['action' => 'export', http_build_query($data)], ['class' => 'btn-xs btn-info', 'role' => 'button']);?>
+        <div class="results-table">
+            <?= $this->element('search_results_table', ['cols' => $cols, 'results' => $results, 'model' => $model]) ?>
+            <div class="table-page-nums">
+                <span>
+                    // TODO make pagination work
+                    <?= $this->Paginator->first('First', ['data' => $results]); ?>
+                    <?php if($this->Paginator->hasPrev())echo $this->Paginator->prev('Prev', ['data' => $results]); ?>
+                    <?= $this->Paginator->numbers(['modulus' => 4, 'data' => $results]); ?>
+                    <?php if ($this->Paginator->hasNext())echo $this->Paginator->next('Next' ,['data' => $results]); ?>
+                    <?=  $this->Paginator->last('Last', ['data' => $results]); ?>
+                </span>
+            </div>
+        </div>
 
+        <div id="adduct-tab" class="tab-pane fade">
+            <div class="results-table">
+                <?= $this->element('compound_ion_adduct_table', ['cols' => $ion_cols, 'ion_adducts' => $ion_adducts, 'model' => $model]) ?>
+            </div>
+        </div>
+    </div>
+<?php elseif (isset($results)): ?>
+    There were no results // TODO use string helper
+<?php endif; ?>

@@ -12,7 +12,7 @@ App::uses('AppController', 'Controller');
 class SampleSetsController extends AppController{
     public $helpers = ['Html' , 'Form' , 'My' , 'Js', 'Time', 'String', 'BootstrapForm'];
     public $uses = ['Analysis' , 'SampleSet' , 'Chemist', 'Project'];
-    public $layout = 'main';
+    public $layout = 'PageLayout';
     public $components = ['Paginator', 'RequestHandler', 'My', 'Session', 'Cookie', 'Auth', 'File', 'Search'];
 
     // Define models for code completion perposes
@@ -195,45 +195,32 @@ class SampleSetsController extends AppController{
     }    
     
     /**
-     * TODO remove
-     * OLD SEARCH
-     * This will search the the sample sets
+     * This will search the the sample sets if their is data posted
      * @param type $data
      * @return type
      */
     public function searchSet(){
-
-    }
-
-    /**
-     * Entry point for Sample Sets -> Find
-     * Control transfers to the search_set view and onto to /Elements/search_form
-     * and then back to the search() function below.
-     * Search results are displayed as a modal as defined by /Elements/results table
-     */
-    public function search(){
-        $data = $this->request->data;
-        $this->layout = 'ajax';
-        $this->autoRender = false;
-        $this->paginate = [
-            'limit' => 30,
-            'order' => array('SampleSet.date' => 'asc')
-        ];
-        // Listed these here for auto complete reasons and to stop the IDE displaying errors
-        $criteria = null;$value = null;$logic = null;$match = null;
-        extract($this->request->data['SampleSet']);
-
-        $query = $this->Search->build_query($this->SampleSet, $criteria, $value, $logic, $match);
-        $results = $this->paginate('SampleSet', $query);
-
-        $resultObjects = $this->SampleSet->buildObjects($results);
-
-        $this->set('cols', $this->SampleSet->getDisplayFields());
-        $this->set('results', $resultObjects);
-        $this->set('num', $this->SampleSet->find('count', ['conditions' => $query])); //passes the number of results to the view
         $this->set('model', 'SampleSet');
-        $this->set('data', $data); //pass the search parameters to view so that is can get passed back to controller for action=>export
-        $this->render('/Elements/search_results_modal');
+        if (!empty($this->request->query)) {
+            $data = $this->request->query;
+            $this->paginate = [
+                'limit' => 30,
+                'order' => array('SampleSet.date' => 'asc')
+            ];
+            // Listed these here for auto complete reasons and to stop the IDE displaying errors
+            $criteria = null;$value = null;$logic = null;$match = null;
+            extract($this->request->data['SampleSet']);
+
+            $query = $this->Search->build_query($this->SampleSet, $criteria, $value, $logic, $match);
+            $results = $this->paginate('SampleSet', $query);
+
+            $resultObjects = $this->SampleSet->buildObjects($results);
+
+            $this->set('cols', $this->SampleSet->getDisplayFields());
+            $this->set('results', $resultObjects);
+            $this->set('num', $this->SampleSet->find('count', ['conditions' => $query])); //passes the number of results to the view
+            $this->set('data', $data); //pass the search parameters to view so that is can get passed back to controller for action=>export
+        }
     }
     
     /**
