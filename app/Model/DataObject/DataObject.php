@@ -3,24 +3,34 @@
 namespace Model\DataObject;
 
 /**
- * Created by PhpStorm.
- * User: mgoo
- * Date: 31/08/17
- * Time: 11:30 AM
+ * This is a object that represent a row in the database table
+ * @author Andrew McGhie
  */
 abstract class DataObject {
 
+    /** @var \AppModel $model related model */
     protected $model;
+    /** @var array $immutableFields fields that cannot be changed*/
     protected $immutableFields;
+    /** @var array $data */
     protected $data;
 
     public function __construct($model, $data) {
         $this->model = $model;
         $this->data = $data;
+
+        // Set the default to empty string.
+        foreach ($this->data as $key => $value) {
+            if ($value == null) {
+                $this->data[$key] = '';
+            }
+        }
     }
 
     function __set($name, $value) {
         if (in_array($name, $this->immutableFields)) {
+            assert(false,
+                "You should not be changing the immutable field '$name'");
             return;
         }
         $this->data[$name] = $value;
