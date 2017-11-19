@@ -27,7 +27,6 @@ class SampleSet extends DataObject {
      * @return array
      */
     public function getActionData() {
-        //var_export();
         return [
             'viewURL' => ['controller' => 'SampleSets', 'action' => 'details', '?' => ['id' => $this->id]],
             'editURL' => ['controller' => 'SampleSets', 'action' => 'editSet', '?' => ['id' => $this->id]],
