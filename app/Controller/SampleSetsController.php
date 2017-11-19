@@ -10,7 +10,7 @@ App::uses('CakeEmail', 'Network/Email');
 App::uses('AppController', 'Controller');
 
 class SampleSetsController extends AppController{
-    public $helpers = ['Html' , 'Form' , 'My' , 'Js', 'Time', 'String', 'BootstrapForm'];
+    public $helpers = ['Html' , 'Form' , 'My' , 'Js', 'Time', 'String', 'BootstrapForm', 'Mustache.Mustache'];
     public $uses = ['Analysis' , 'SampleSet' , 'Chemist', 'Project'];
     public $layout = 'PageLayout';
     public $components = ['Paginator', 'RequestHandler', 'My', 'Session', 'Cookie', 'Auth', 'File', 'Search'];
@@ -209,7 +209,7 @@ class SampleSetsController extends AppController{
             ];
             // Listed these here for auto complete reasons and to stop the IDE displaying errors
             $criteria = null;$value = null;$logic = null;$match = null;
-            extract($this->request->data['SampleSet']);
+            extract($data);
 
             $query = $this->Search->build_query($this->SampleSet, $criteria, $value, $logic, $match);
             $results = $this->paginate('SampleSet', $query);

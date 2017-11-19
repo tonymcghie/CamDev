@@ -19,7 +19,7 @@ ini_set('memory_limit', '1024M');
 class GeneralController extends AppController {
     public $helpers = array('Html' , 'Form' , 'My' , 'Js', 'Time');
     public $uses = array();
-    public $layout = 'content';
+    public $layout = 'PageLayout';
     public $components = array('Paginator', 'RequestHandler', 'My', 'Session', 'Cookie', 'Auth');  
     
     //@LIVE swap the URLS for both of them
@@ -61,12 +61,12 @@ class GeneralController extends AppController {
      * These should be deleted or commented out when going live
      */
     public function info(){
-        $this->layout = 'content';
+        $this->layout = 'PageLayout';
     } 
  
 	public function howto(){  
         // added to implement howtos, functions with no commands execute defaults
-        $this->layout = 'content';
+        $this->layout = 'PageLayout';
     }    
     /**
      * almost a blank page
@@ -84,7 +84,7 @@ class GeneralController extends AppController {
      * updates the isTablet cookie
      */
     public function main(){
-        $this->layout = 'MainLayout'; //sets the layout to be different from the pages
+        $this->layout = 'PageLayout'; //sets the layout to be different from the pages
         $isTablet = isset($this->params['url']['isTablet']) ? $this->params['url']['isTablet'] : ''; //gets isTablet value from the URL 
         if ($this->Cookie->check('View.isTablet') && $isTablet === ''){ 
             $isTablet = $this->Cookie->read('View.isTablet');
@@ -141,7 +141,7 @@ class GeneralController extends AppController {
      * The Controller method for an iframe that looks like part of the page used to submit files with out submitting the whole page
      */
     public function getCsv(){
-        $this->layout = 'MinLayout'; //sets the layout to a minimal layout that contains almost no formating so looks invisible
+        $this->layout = 'PageLayout'; //sets the layout to a minimal layout that contains almost no formating so looks invisible
         if ($this->request->is('post')){            
             $newURL = $this->file_URL.'files/samplesets/temp'.rand().'.csv';               
             move_uploaded_file($this->request->data['General']['csv_file']['tmp_name'], $newURL); //upload file

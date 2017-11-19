@@ -1,19 +1,23 @@
 <?php
 //'start_date' => ((isset($data[$model]['isDate'])&&$data[$model]['isDate']==='1') ? $data['SampleSet']['start_date'] : '2000-01-01'));
 // //'p_name' => $this->String->get_string('p_name', 'SampleSet'),
+
+$criteria_options = [
+    ['value' => 'set_code', 'text' => 'Set Code'],
+    ['value' => 'all', 'text' => 'All'],
+    ['value' => 'submitter', 'text' => 'PFR Collaborator'],
+    ['value' => 'chemist', 'text' => 'Chemist'],
+    ['value' => 'p_name', 'text' => 'Project Name'],
+    ['value' => 'p_code', 'text' => 'Project Code'],
+    ['value' => 'crop', 'text' => 'Crop'],
+    ['value' => 'compounds', 'text' => 'Compounds'],
+    ['value' => 'comments', 'text' => 'Comments'],
+    ['value' => 'exp_reference', 'text' => 'Experiment Reference'],
+    ['value' => 'team', 'text' => 'Team']];
+
 echo $this->element('search_form', ['model' => $model,
         'title' => 'Find Sample Set',
-        'category_options' =>  ['set_code' => 'Set Code',
-            'all' => 'All',
-            'submitter' => 'PFR Collaborator',
-            'chemist' => 'Chemist',
-            'p_name' => 'Project Name',
-            'p_code' => 'Project Code',
-            'crop' => 'Crop',
-            'compounds' => 'Compounds',
-            'comments' => 'Comments',
-            'exp_reference' => 'Experiment Reference',
-            'team' => 'Team']]);
+        'criteria_options' => $criteria_options]);
 ?>
 <?php if (isset($cols) && !empty($results)): ?>
     <div id="search-results">
