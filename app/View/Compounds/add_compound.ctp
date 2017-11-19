@@ -24,6 +24,8 @@ echo $this->BootstrapForm->input_horizontal('exact_mass', ['label' => $this->Str
     'required']);
 echo $this->BootstrapForm->input_horizontal('chemspider_id', ['label' => $this->String->get_string('chemspider_id', 'Compound_form'),
     'autocomplete' => 'off']);
+echo $this->BootstrapForm->input_horizontal('canonical_smiles', ['label' => $this->String->get_string('canonical_smiles', 'Compound_form'),
+    'autocomplete' => 'off']);
 echo $this->BootstrapForm->input_horizontal('metlin_id', ['label' => $this->String->get_string('metlin_id', 'Compound_form'),
     'autocomplete' => 'off']);
 echo $this->BootstrapForm->input_horizontal('compound_type', ['label' => $this->String->get_string('compound_type', 'Compound_form'),

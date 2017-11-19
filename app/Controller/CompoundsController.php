@@ -64,15 +64,15 @@ class CompoundsController extends AppController{
      */
     public function editCompound($id = null){
         $this->layout = 'main';
-        $data = $this->request->data;        
         if ($id == null){
             $id = $this->params['url']['id'];
         } // gets $id from the url
-        var_dum($id);
-        $set = $this->Compound->findById($id);
-        if (!$set){
+        var_dump($id);
+        $compound = $this->Compound->findById($id);
+        var_dump($compound);
+        if (!$compound){
             throw new NotFoundExcpetion(__('Invalid Compound'));
-        } //throw error if the id does not belong to a compound     
+        } //throw error if the id does not belong to a compound 
         if ($this->request->is(array('post', 'put'))){
             $this->Compound->id = $id;
             if ($this->Compound->save($this->request->data)){
@@ -80,7 +80,7 @@ class CompoundsController extends AppController{
             } //return if saved successfully
         } //save data if the form is being submitted
         if (!$this->request->data){
-            $this->request->data = $set;
+            $this->request->data = $compound;
         }//update the data to display
     }
     
