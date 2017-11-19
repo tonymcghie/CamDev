@@ -10,7 +10,7 @@ App::uses('CakeEmail', 'Network/Email');
 App::uses('AppController', 'Controller');
 
 class SampleSetsController extends AppController{
-    public $helpers = ['Html' , 'Form' , 'My' , 'Js', 'Time', 'String', 'BootstrapForm', 'Mustache.Mustache'];
+    public $helpers = ['Html' , 'Form' , 'My' , 'Js', 'Time', 'String', 'BootstrapForm'];
     public $uses = ['Analysis' , 'SampleSet' , 'Chemist', 'Project'];
     public $layout = 'PageLayout';
     public $components = ['Paginator', 'RequestHandler', 'My', 'Session', 'Cookie', 'Auth', 'File', 'Search'];
@@ -196,11 +196,12 @@ class SampleSetsController extends AppController{
     
     /**
      * This will search the the sample sets if their is data posted
-     * @param type $data
      * @return type
      */
     public function searchSet(){
         $this->set('model', 'SampleSet');
+        $this->helpers[] = 'Mustache.Mustache';
+        $this->helpers[] = 'SearchForm';
         if (!empty($this->request->query)) {
             $data = $this->request->query;
             $this->paginate = [
@@ -250,7 +251,6 @@ class SampleSetsController extends AppController{
      * Sample Set data is found using the ID and uploaded files specified in the Analysis tabs are added to the view.
      * @param type $id
      */
-    
     public function details($id = null) {
         $this->layout = 'main';
         $data = $this->request->data;        

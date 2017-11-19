@@ -2,24 +2,24 @@
     <div class="col-lg-3">
         <select name="criteria[{{index}}]" class="form-control">
             {{#criteriaOptions}}
-                <option value="{{value}}">{{text}}</option>
+                <option value="{{value}}" {{#selected}}selected="selected"{{/selected}}>{{text}}</option>
             {{/criteriaOptions}}
         </select>
     </div>
     <div class="col-lg-3">
-        <input name="value[{{index}}]" class="form-control" type="text">
+        <input name="value[{{index}}]" class="form-control" type="text" {{#valueDefault}}value="{{valueDefault}}"{{/valueDefault}}>
     </div>
     <div class="col-lg-3">
         <select name="match[{{index}}]" class="form-control">
             {{#matchOptions}}
-                <option value="{{value}}">{{text}}</option>
+                <option value="{{value}}" {{#selected}}selected="selected"{{/selected}}>{{text}}</option>
             {{/matchOptions}}
         </select>
     </div>
     <div class="col-lg-2">
         <select name="logic[{{index}}]" class="form-control">
             {{#logicOptions}}
-                <option value="{{value}}">{{text}}</option>
+                <option value="{{value}}" {{#selected}}selected="selected"{{/selected}}>{{text}}</option>
             {{/logicOptions}}
         </select>
     </div>

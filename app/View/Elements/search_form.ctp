@@ -9,8 +9,10 @@ $match_options = [
     ['value' => 'exact', 'text' => 'Exactly'],
     ['value' => 'starts', 'text' => 'Starts with']];
 $index = 0;
-assert(isset($criteria_options), 'You must set the array variable \'criteria_options\' in the controller');
-assert(isset($model), 'The Model that this form is for must be passed in as \'model\' variable');
+assert(isset($criteria_options),
+    'You must set the array variable \'criteria_options\' in the view calling this element');
+assert(isset($model),
+    'The Model that this form is for must be passed in as \'model\' variable');
 
 if (!empty($title))echo '<h1>'.$title.'</h1>';?>
 
@@ -33,10 +35,11 @@ if (!empty($title))echo '<h1>'.$title.'</h1>';?>
 <?php else:
     for ($index = 0; $index < count($data['criteria']); $index++): ?>
         <?= $this->Mustache->render('form/search_form_row', [
-            'criteriaOptions' => $criteria_options,
-            'matchOptions' => $match_options,
-            'logicOptions' => $logic_options,
-            'closeable' => false,
+            'criteriaOptions' => $this->SearchForm->setSelectedValue($criteria_options, $data['criteria'][$index]),
+            'matchOptions' => $this->SearchForm->setSelectedValue($match_options, $data['match'][$index]),
+            'logicOptions' => $this->SearchForm->setSelectedValue($logic_options, $data['logic'][$index]),
+            'valueDefault' => $data['value'][$index],
+            'closeable' => $index != 0,
             'index' => $index]); ?>
     <?php endfor; ?>
 <?php endif;?>
@@ -53,7 +56,7 @@ if (!empty($title))echo '<h1>'.$title.'</h1>';?>
 
 <script>
     var rowTemplate = <?= $this->Mustache->getJSONPTemplates('form/search_form_row') ?>;
-    var options = <?= json_encode(['criteriaOptions' => false,
+    var options = <?= json_encode(['criteriaOptions' => $criteria_options,
         'matchOptions' => $match_options,
         'logicOptions' => $logic_options,
         'closeable' => true]) ?>;
