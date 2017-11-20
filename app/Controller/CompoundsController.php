@@ -42,7 +42,6 @@ class CompoundsController extends AppController{
      * @return type
      */
     public function addCompound(){
-        $this->layout = 'content';
         if ($this->request->is('post')){ //check if the save button has being clicked            
             $data = $this->request->data; //gets the data
             if ($data['Compound']['cas'] != '' && $this->Compound->find('count', ['conditions' => ['cas' => $data['Compound']['cas']]]) > 0){
@@ -52,7 +51,7 @@ class CompoundsController extends AppController{
             $this->Compound->create(); //adds the compound
             if ($this->Compound->save($data)){                 //saves the Compound
                 return $this->redirect(['controller' => 'General', 'action' => 'blank', '?' => ['alert' => 'Compound Saved']]);
-            } //if successful then reditrect to blank           
+            } //if successful then redirect to blank with a message         
         }  //makes sure that the form was submitted
     }
     
@@ -67,9 +66,9 @@ class CompoundsController extends AppController{
         if ($id == null){
             $id = $this->params['url']['id'];
         } // gets $id from the url
-        var_dump($id);
+        //var_dump($id);
         $compound = $this->Compound->findById($id);
-        var_dump($compound);
+        //var_dump($compound);
         if (!$compound){
             throw new NotFoundExcpetion(__('Invalid Compound'));
         } //throw error if the id does not belong to a compound 

@@ -9,7 +9,7 @@ $this->assign('title', 'Edit Compound Information');
 
 <?php
 //echo $this->BootstrapForm->create_horizontal('SampleSet', ['type' => 'file' ,'action' => 'createSampleSet']);
-echo $this->BootstrapForm->create_horizontal('Compound', ['type' => 'file' ,'action' => 'createCompound']);
+echo $this->BootstrapForm->create_horizontal('Compound', ['type' => 'file' ,'action' => 'addCompound']);
 //to do make a clone button in the table
 
 echo $this->BootstrapForm->input_horizontal('cas', ['label' => ['text' => $this->String->get_string('cas', 'Compound_form')],
