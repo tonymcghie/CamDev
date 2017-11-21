@@ -8,6 +8,13 @@
  */
 class StringHelper extends AppHelper{
     private $strings = [
+        'Search_form' => [
+            'criteria' => 'Criteria',
+            'value' => 'Value',
+            'match' => 'Match',
+            'logic' => 'Logic',
+            'noresults' => 'There was matching Sample Sets'
+        ],
         'SampleSet_form' => [
             'title' => 'PFR Chemistry: Sample Set Collaboration Workspace',
             'sub_title' => 'Enter/Edit the relevant metadata information about the Sample Set (* required) and then click Save Set',
