@@ -17,6 +17,11 @@ class InDevController extends AppController {
     public $uses = array();
     public $layout = 'PageLayout';
 
+    public function beforeFilter(){
+        parent::beforeFilter();
+        $this->set('group', 'inDev');
+    }
+
     public function index($id) {
         
     }

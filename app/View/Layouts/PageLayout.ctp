@@ -1,7 +1,27 @@
 <?php
 $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework');
-$cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
+$cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version());
+
+assert(isset($group),
+    'The \'$group\' variable is required for the menu to maintain state. Please set it in the controller.');
+
+$sampleSetGroup = 'sampleSets';
+$compoundsGroup = 'compounds';
+$pfrDataGroup = 'pfrData';
+$unknowCompoundsGroup = 'unknowCompounds';
+$generalGroup = 'general';
+$preReleaseGroup = 'preRelease';
+
+// Set the group to sample set by default.
+if (!isset($group)) {
+    $group = $sampleSetGroup;
+}
+assert($group == $sampleSetGroup || $group == $compoundsGroup ||
+    $group == $pfrDataGroup || $group == $unknowCompoundsGroup ||
+    $group == $generalGroup || $group == $preReleaseGroup,
+    "The group '$group' was not recognised.");
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,11 +33,9 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
     echo $this->Html->css(['bootstrap.min', 'styles_required', 'materialize_colors', 'styles_content']);
     echo $this->Html->script('lib/jquery-3.1.1.min', ['inline' => true]);
     echo $this->Html->script('lib/bootstrap.min', ['inline' => false, 'async' => 'async']);
-    echo $this->Html->script('ajax_helper.min', ['inline' => false, 'async' => 'async']);
 
     echo $this->Html->script('typescript/validator/validator.min', ['inline' => false, 'async' => 'async']);
     echo $this->Html->script('typescript/form_rules/displayif.min', ['inline' => false, 'async' => 'async']);
-    echo $this->Html->script('search_helper.min', ['inline' => false, 'async' => 'async']);
 
     echo $this->Html->script('lib/jquery-ui-1.12.1/jquery-ui', ['inline' => false, 'async' => 'async']);
 
@@ -62,7 +80,8 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                 <div class="panel-heading light-green lighten-3" data-toggle="collapse" data-parent="#nav_accordion" href="#sample_sets_menu">
                     <span>Sample Sets</span>
                 </div>
-                <div class="panel-collapse collapse in" id="sample_sets_menu">
+                <div class="panel-collapse collapse <?php if ($group == $sampleSetGroup)echo 'in'; ?>"
+                     id="sample_sets_menu">
                     <div class="panel-body light-blue lighten-3">
                         <?= $this->Html->link('New', ['controller' => 'SampleSets', 'action' => 'newSet'], ['class' => 'list-group-item']) ?>
                         <?= $this->Html->link('Find', ['controller' => 'SampleSets', 'action' => 'searchSet'], ['class' => 'list-group-item']) ?>
@@ -79,7 +98,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                 <div class="panel-heading light-green lighten-3" data-toggle="collapse" data-parent="#nav_accordion" href="#compounds_menu">
                     <span>Compounds</span>
                 </div>
-                <div class="panel-collapse collapse" id="compounds_menu">
+                <div class="panel-collapse collapse <?php if ($group == $compoundsGroup)echo 'in'; ?>" id="compounds_menu">
                     <div class="panel-body light-blue lighten-3">
                         <?= $this->Html->link('Search', ['controller' => 'Compounds', 'action' => 'subSearch'], ['class' => 'list-group-item']) ?>
                         <?= $this->Html->link('Add', ['controller' => 'addCompound', 'action' => 'addCompound'], ['class' => 'list-group-item']) ?>
@@ -101,29 +120,12 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                 <div class="panel-heading light-green lighten-3" data-toggle="collapse" data-parent="#nav_accordion" href="#pfr_data_menu">
                     <span>PFR Data</span>
                 </div>
-                <div class="panel-collapse collapse" id="pfr_data_menu">
+                <div class="panel-collapse collapse <?php if ($group == $pfrDataGroup)echo 'in'; ?>" id="pfr_data_menu">
                     <div class="panel-body light-blue lighten-3">
-                        <button type="button"
-                                class="list-group-item"
-                                onclick="load_page('<?php echo $this->Html->url(['controller' => 'Compoundpfr_data', 'action' => 'findData'], true) ?>', $('#main_content'))">
-                            Chemical
-                        </button>
-                        <button type="button"
-                                class="list-group-item"
-                                onclick="load_page('<?php echo $this->Html->url(['controller' => 'Bioactivitypfr_data', 'action' => 'findData'], true) ?>', $('#main_content'))">
-                            Bioactivity
-                        </button>
-                        <button type="button"
-                                class="list-group-item"
-                                onclick="load_page('<?php echo $this->Html->url(['controller' => 'Compoundpfr_data', 'action' => 'graphData'], true) ?>', $('#main_content'))">
-                            Graph
-                        </button>
-                        <button type="button"
-                                class="list-group-item"
-                                onclick="load_page('<?php echo $this->Html->url(['controller' => 'Compoundpfr_data', 'action' => 'import'], true) ?>', $('#main_content'))">
-                            Import
-                        </button>
-
+                        <?= $this->Html->link('Chemical', ['controller' => 'Compoundpfr_data', 'action' => 'findData'], ['class' => 'list-group-item']) ?>
+                        <?= $this->Html->link('Bioactivity', ['controller' => 'Bioactivitypfr_data', 'action' => 'findData'], ['class' => 'list-group-item']) ?>
+                        <?= $this->Html->link('Graph', ['controller' => 'Compoundpfr_data', 'action' => 'graphData'], ['class' => 'list-group-item']) ?>
+                        <?= $this->Html->link('Import', ['controller' => 'Compoundpfr_data', 'action' => 'import'], ['class' => 'list-group-item']) ?>
                         <?php
                         /*if ($this->Session->read('Auth.User')!==null && in_array("PFR-GP-Biological Chemistry and Bioactives Group", $this->Session->read('Auth.User')['groups'])) {
                         echo '<li>'.$this->Html->link('Import', array('controller' => 'Compoundpfr_data','action' => 'import'), array('target' => 'mainFrame' , 'class' => 'none')).'</li>';
@@ -137,18 +139,10 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                 <div class="panel-heading light-green lighten-3" data-toggle="collapse" data-parent="#nav_accordion" href="#unknown_compounds_menu">
                     <span>Unknown Compounds</span>
                 </div>
-                <div class="panel-collapse collapse" id="unknown_compounds_menu">
+                <div class="panel-collapse collapse <?php if ($group == $unknowCompoundsGroup)echo 'in'; ?>" id="unknown_compounds_menu">
                     <div class="panel-body light-blue lighten-3">
-                        <button type="button"
-                                class="list-group-item"
-                                onclick="load_page('<?php echo $this->Html->url(['controller' => 'Metabolites', 'action' => 'addMetabolite'], true) ?>', $('#main_content'))">
-                            Add
-                        </button>
-                        <button type="button"
-                                class="list-group-item"
-                                onclick="load_page('<?php echo $this->Html->url(['controller' => 'Metabolites', 'action' => 'searchMetabolite'], true) ?>', $('#main_content'))">
-                            Search
-                        </button>
+                        <?= $this->Html->link('Add', ['controller' => 'Metabolites', 'action' => 'addMetabolite'], ['class' => 'list-group-item']) ?>
+                        <?= $this->Html->link('Search', ['controller' => 'Metabolites', 'action' => 'searchMetabolite'], ['class' => 'list-group-item']) ?>
                         <?php
                         /*if ($this->Session->read('Auth.User')!==null && in_array("PFR-GP-Biological Chemistry and Bioactives Group", $this->Session->read('Auth.User')['groups'])){
                             echo '<li>'.$this->Html->link('Add', ['controller' => 'Metabolites','action' => 'addMetabolite'], ['target' => 'mainFrame', 'class' => 'btn btn-link']).'</li>';
@@ -162,33 +156,13 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                 <div class="panel-heading light-green lighten-3" data-toggle="collapse" data-parent="#nav_accordion" href="#general_menu">
                     <span>General</span>
                 </div>
-                <div class="panel-collapse collapse" id="general_menu">
+                <div class="panel-collapse collapse <?php if ($group == $generalGroup)echo 'in'; ?>" id="general_menu">
                     <div class="panel-body light-blue lighten-3">
-                        <button type="button"
-                                class="list-group-item"
-                                onclick="load_page('<?php echo $this->Html->url(['controller' => 'General', 'action' => 'scripts'], true) ?>', $('#main_content'))">
-                            Scripts
-                        </button>
-                        <button type="button"
-                                class="list-group-item"
-                                onclick="load_page('<?php echo $this->Html->url(['controller' => 'Projects', 'action' => 'addProject'], true) ?>', $('#main_content'))">
-                            New Project
-                        </button>
-                        <button type="button"
-                                class="list-group-item"
-                                onclick="load_page('<?php echo $this->Html->url(['controller' => 'General', 'action' => 'info'], true) ?>', $('#main_content'))">
-                            Info
-                        </button>
-                        <button type="button"
-                                class="list-group-item"
-                                onclick="load_page('<?php echo $this->Html->url(['controller' => 'General', 'action' => 'howto'], true) ?>', $('#main_content'))">
-                            How To
-                        </button>
-                        <button type="button"
-                                class="list-group-item"
-                                onclick="$('#main_content').html('');">
-                            Clear Workbench
-                        </button>
+                        <?= $this->Html->link('Scripts', ['controller' => 'General', 'action' => 'scripts'], ['class' => 'list-group-item']) ?>
+                        <?= $this->Html->link('New Project', ['controller' => 'Projects', 'action' => 'addProject'], ['class' => 'list-group-item']) ?>
+                        <?= $this->Html->link('Info', ['controller' => 'General', 'action' => 'info'], ['class' => 'list-group-item']) ?>
+                        <?= $this->Html->link('How To', ['controller' => 'General', 'action' => 'howto'], ['class' => 'list-group-item']) ?>
+                        <?= $this->Html->link('Clear Workbench', [], ['class' => 'list-group-item']) ?>
                         <?php
                         /*if ($this->Session->read('Auth.User')!==null && in_array("PFR-GP-Biological Chemistry and Bioactives Group", $this->Session->read('Auth.User')['groups'])){
                             echo '<li>'.$this->Html->link('Scripts', ['controller' => 'General','action' => 'scripts'], ['target' => 'mainFrame', 'class' => 'btn btn-link']).'</li>';
@@ -202,13 +176,9 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                 <div class="panel-heading light-green lighten-3" data-toggle="collapse" data-parent="#nav_accordion" href="#pre_release_menu">
                     <span>Pre Relase</span>
                 </div>
-                <div class="panel-collapse collapse" id="pre_release_menu">
+                <div class="panel-collapse collapse <?php if ($group == $preReleaseGroup)echo 'in'; ?>" id="pre_release_menu">
                     <div class="panel-body light-blue lighten-3">
-                        <button type="button"
-                                class="list-group-item"
-                                onclick="load_page('<?php echo $this->Html->url(['controller' => 'SampleSets', 'action' => 'newSet'], true) ?>', $('#main_content'))">
-                            Plates
-                        </button>
+                        <?= $this->Html->link('Plates', ['controller' => 'SampleSets', 'action' => 'newSet'], ['class' => 'list-group-item']) ?>
                     </div>
                 </div>
             </div>

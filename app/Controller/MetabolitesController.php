@@ -24,6 +24,7 @@ class MetabolitesController extends AppController{
      */
     public function beforeFilter() {
         parent::beforeFilter();
+        $this->set('group', 'unknowCompounds');
         //$this->Auth->deny('addMetabolite','editMetabolite','editProposedMetabolite','editMsmsMetabolite');
         $this->Auth->allow('addMetabolite','editMetabolite','editProposedMetabolite','editMsmsMetabolite');
     }
@@ -44,7 +45,7 @@ class MetabolitesController extends AppController{
     public function addMetabolite(){
         $this->layout = 'PageLayout';
         $this->set('names', $this->Chemist->find('list', ['fields' => 'name']));
-        /**if (isset($this->request->data['Metabolite'])){ //check if the save button has being clicked            
+        if (isset($this->request->data['Metabolite'])){ //check if the save button has being clicked
             $data = $this->request->data;      //gets the data
             $this->Metabolite->create();            //Need to add
             if ($this->Metabolite->save($data)){                 //saves the Compound
@@ -63,8 +64,6 @@ class MetabolitesController extends AppController{
                 return $this->redirect(['controller' => 'General', 'action' => 'blank', '?' => ['alert' => 'Msms Unknown Compound Saved']]);
             }
         } //adds which ever one was pressed
-         * 
-         */
     }
     
     /**

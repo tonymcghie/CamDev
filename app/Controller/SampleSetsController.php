@@ -23,6 +23,7 @@ class SampleSetsController extends AppController{
      */
     public function beforeFilter() {
         parent::beforeFilter();
+        $this->set('group', 'sampleSets');
         $file_URL = Configure::read('live') ? '/app/app/webroot/data/' : 'data/';
 
 //        if (isset($this->Auth->Session->read($this->Auth->sessionKey)['Auth']['User']['name'])){

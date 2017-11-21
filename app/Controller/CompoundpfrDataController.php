@@ -25,6 +25,11 @@ class CompoundpfrDataController extends AppController{
      */
     //private $file_URL = '/app/app/webroot/data/'; //Live
     private $file_URL = 'data/';  //testing
+
+    public function beforeFilter() {
+        $this->set('group', 'pfrData');
+        parent::beforeFilter();
+    }
     
     /**
      * returns weather the the user is authorised to access the functions

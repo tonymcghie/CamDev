@@ -46,6 +46,7 @@ class GeneralController extends AppController {
         parent::beforeFilter();
         $this->Cookie->name = 'View'; //sets a cookie with the name view
         $this->Cookie->time = '365 days'; //sets the time till it expires to be really long
+        $this->set('group', 'general');
     }
     
     /**

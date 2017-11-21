@@ -35,9 +35,9 @@ if (!empty($title))echo '<h1>'.$title.'</h1>';?>
 <?php else:
     for ($index = 0; $index < count($data['criteria']); $index++): ?>
         <?= $this->Mustache->render('form/search_form_row', [
-            'criteriaOptions' => $this->SearchForm->setSelectedValue($criteria_options, $data['criteria'][$index]),
-            'matchOptions' => $this->SearchForm->setSelectedValue($match_options, $data['match'][$index]),
-            'logicOptions' => $this->SearchForm->setSelectedValue($logic_options, $data['logic'][$index]),
+            'criteriaOptions' => $this->BootstrapForm->setSelectedValue($criteria_options, $data['criteria'][$index]),
+            'matchOptions' => $this->BootstrapForm->setSelectedValue($match_options, $data['match'][$index]),
+            'logicOptions' => $this->BootstrapForm->setSelectedValue($logic_options, $data['logic'][$index]),
             'valueDefault' => $data['value'][$index],
             'closeable' => $index != 0,
             'index' => $index]); ?>
@@ -81,6 +81,5 @@ if (!empty($title))echo '<h1>'.$title.'</h1>';?>
         $(element).closest('.search-set').slideUp(400, function(){
             $(this).remove();
         });
-//        options.index = options.index - 1;
     }
 </script>
