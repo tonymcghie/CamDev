@@ -72,14 +72,14 @@ class CompoundsController extends AppController{
         if (!$compound){
             throw new NotFoundExcpetion(__('Invalid Compound'));
         } //throw error if the id does not belong to a compound 
-        if ($this->request->is(array('post', 'put'))){
+        if ($this->request->is(array('post', 'put'))){ //gets edited data from the view
             $this->Compound->id = $id;
             if ($this->Compound->save($this->request->data)){
                 return;
             } //return if saved successfully
         } //save data if the form is being submitted
         if (!$this->request->data){
-            $this->request->data = $compound;
+           $this->request->data = $compound;
         }//update the data to display
     }
     
