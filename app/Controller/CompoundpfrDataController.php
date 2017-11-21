@@ -9,7 +9,7 @@
 class CompoundpfrDataController extends AppController{
     public $helpers = array('Html' , 'Form' , 'My', 'Js', 'Time', 'String', 'BootstrapForm');
     public $uses = array('Compoundpfr_data','PubChemModel', 'Compound');
-    public $layout = 'content';
+    public $layout = 'PageLayout';
     public $components = array('Paginator', 'My', 'Pivot', 'RequestHandler', 'Session', 'Cookie', 'Auth', 'File', 'Search');
     
     //sets the values for the pagination
@@ -47,7 +47,6 @@ class CompoundpfrDataController extends AppController{
     
     public function search(){
         $data = $this->request->data;
-        $this->layout = 'ajax';
         $this->autoRender = false;
         $this->paginate = [
             'limit' => 30,
@@ -189,7 +188,6 @@ class CompoundpfrDataController extends AppController{
      * for getting an overview of the data in the table 
      */
     public function overview(){
-        $this->layout = 'ajax';
         $this->autoRender = false;
         // Listed these here for auto complete reasons and to stop the IDE displaying errors
         $by = null;$value = null;$match = null;$for = null; $review_options=null;
@@ -273,7 +271,7 @@ class CompoundpfrDataController extends AppController{
      * Uploads a CSV file from a iFrame within a page
      */
     public function getCsv(){
-        $this->layout = 'MinLayout'; //minimilistic layout that has no formating
+        $this->layout = 'ajax'; //minimilistic layout that has no formating
         if ($this->request->is('post')){            
             $newURL = $this->file_URL.'files/compoundpfrData/temp'.rand().'.csv'; //adds a random number to the end of the file name to avoid clashes           
             move_uploaded_file($this->request->data['CompoundpfrData']['csv_file']['tmp_name'], $newURL); //uploads the file

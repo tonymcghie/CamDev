@@ -9,7 +9,7 @@
 class MetabolitesController extends AppController{
     public $helpers = array('Html' , 'Form' , 'My' , 'Js', 'Time', 'String', 'BootstrapForm');
     public $uses = array('Metabolite','Msms_Metabolite','Proposed_Metabolite');
-    public $layout = 'content';
+    public $layout = 'PageLayout';
     public $components = array('Paginator', 'RequestHandler', 'My', 'Session', 'Cookie', 'Auth', 'File', 'Search');
     
     public $paginate = array(
@@ -42,7 +42,7 @@ class MetabolitesController extends AppController{
      * @return null
      */
     public function addMetabolite(){
-        $this->layout = 'content'; 
+        $this->layout = 'PageLayout';
         $this->set('names', $this->Chemist->find('list', ['fields' => 'name']));
         /**if (isset($this->request->data['Metabolite'])){ //check if the save button has being clicked            
             $data = $this->request->data;      //gets the data

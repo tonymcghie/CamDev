@@ -61,12 +61,12 @@ class GeneralController extends AppController {
      * These should be deleted or commented out when going live
      */
     public function info(){
-        $this->layout = 'PageLayout';
+//        $this->layout = 'PageLayout';
     } 
  
 	public function howto(){  
         // added to implement howtos, functions with no commands execute defaults
-        $this->layout = 'PageLayout';
+//        $this->layout = 'PageLayout';
     }    
     /**
      * almost a blank page
@@ -76,7 +76,7 @@ class GeneralController extends AppController {
         if ($this->Session->read('Auth.User')== null && $this->Session->read('first') != true){
             $this->redirect(['controller' => 'users', 'action' => 'login']); //redirects to the login page
         } //checks if there is no one logged in
-        $this->layout = ''; //sets the layout to blank so there is no divs or anything so the page looks blank
+//        $this->layout = ''; //sets the layout to blank so there is no divs or anything so the page looks blank
     }
     
     /**

@@ -9,7 +9,7 @@
 class CompoundsController extends AppController{
     public $helpers = array('Html' , 'Form' , 'My', 'Js', 'Time', 'String', 'BootstrapForm');
     public $uses = array('Compound');
-    public $layout = 'content';
+    public $layout = 'PageLayout';
     public $components = array('Paginator', 'RequestHandler', 'My', 'Session', 'Cookie', 'Auth', 'File', 'Search');
     
    /** Sets the options for pagination */
@@ -42,7 +42,7 @@ class CompoundsController extends AppController{
      * @return type
      */
     public function addCompound(){
-        $this->layout = 'content';
+        $this->layout = 'PageLayout';
         if ($this->request->is('post')){ //check if the save button has being clicked            
             $data = $this->request->data; //gets the data
             if ($data['Compound']['cas'] != '' && $this->Compound->find('count', ['conditions' => ['cas' => $data['Compound']['cas']]]) > 0){

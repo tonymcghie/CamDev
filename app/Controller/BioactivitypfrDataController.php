@@ -9,7 +9,7 @@
 class BioactivitypfrDataController extends AppController{
     public $helpers = array('Html' , 'Form' , 'My', 'Js');
     public $uses = array('Bioactivitypfr_data','PubChemModel', 'Compound');
-    public $layout = 'content';
+    public $layout = 'PageLayout';
     public $components = array('Paginator', 'My', 'Pivot');
     
     //sets the values for the pagination
@@ -153,7 +153,7 @@ class BioactivitypfrDataController extends AppController{
      * Uploads a CSV file from a iFrame within a page
      */
     public function getCsv(){
-        $this->layout = 'MinLayout'; //minimilistic layout that has no formating
+        $this->layout = 'ajax'; //minimilistic layout that has no formating
         if ($this->request->is('post')){            
             $newURL = $this->file_URL.'files/compoundpfrData/temp'.rand().'.csv'; //adds a random number to the end of the file name to avoid clashes           
             move_uploaded_file($this->request->data['CompoundpfrData']['csv_file']['tmp_name'], $newURL); //uploads the file

@@ -9,7 +9,7 @@
 class IdentifyController extends AppController{
     public $helpers = array('Html' , 'Form' , 'My', 'Js');
     public $uses = array('Compound');
-    public $layout = 'content';
+    public $layout = 'PageLayout';
     public $components = array('Paginator', 'My');
         
     /**
@@ -115,7 +115,6 @@ class IdentifyController extends AppController{
     }
     
     public function SearchMasses(){
-        $this->layout = 'MinLayout'; //minimilistic layout that has no formating
         if ($this->request->is('post')){
             //$file = fopen($this->request->data['Identify']['csv_file']['tmp_name'],"r"); //sets up the file for reading
             $dataUrl="/home/tony/temp/TK151_apple_dissect.csv";
