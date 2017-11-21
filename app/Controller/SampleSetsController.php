@@ -14,9 +14,6 @@ class SampleSetsController extends AppController{
     public $uses = ['Analysis' , 'SampleSet' , 'Chemist', 'Project'];
     public $layout = 'PageLayout';
     public $components = ['Paginator', 'RequestHandler', 'My', 'Session', 'Cookie', 'Auth', 'File', 'Search'];
-
-    // Define models for code completion perposes
-    //private $Analysis, $SampleSet, $Chemist, $Project;
     
     /** @var string $file_URL sets the location to save files to */
     private $file_URL;
@@ -201,13 +198,15 @@ class SampleSetsController extends AppController{
     public function searchSet(){
         $this->set('model', 'SampleSet');
         $this->helpers[] = 'Mustache.Mustache';
-        $this->helpers[] = 'SearchForm';
+        $this->Paginator->settings= [
+            'limit'=>10,
+            'order' => [
+                'SampleSet.date' => 'asc'
+            ]
+        ];
+
         if (!empty($this->request->query)) {
             $data = $this->request->query;
-            $this->paginate = [
-                'limit' => 30,
-                'order' => array('SampleSet.date' => 'asc')
-            ];
             // Listed these here for auto complete reasons and to stop the IDE displaying errors
             $criteria = null;$value = null;$logic = null;$match = null;
             extract($data);
