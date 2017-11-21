@@ -11,13 +11,13 @@ assert(isset($results), '\'$results\' is required by this element');
     assert(isset($initialColumns), '\'$initialColumns\' is required when \'$results\' is not empty');
     /** @var array $initialColumns */
     assert(isset($model), '\'$model\' is required when \'$results\' is not empty');
-    /** @var AppModel $model */
+    /** @var string $model */
     ?>
 
 
     <div id="search-results">
         <h2>Search Results (n=<?php echo $num; ?>)</h2>
-        <?= $this->Form->postLink('Export to CSV', ['action' => 'export', http_build_query($data)], ['class' => 'btn-xs btn-info', 'role' => 'button']);?>
+        <?= $this->Html->link('Export to CSV', ['action' => 'export', '?' => http_build_query($data)], ['class' => 'btn-xs btn-info', 'role' => 'button']);?>
         <div class="results-table">
 
             <table class="table table-striped table-hover">

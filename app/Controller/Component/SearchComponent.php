@@ -20,7 +20,12 @@ class SearchComponent extends Component{
      * @return array the array that can be used by the query builder to search the database
      * @throws Exception
      */
-    public function build_query($model, $criteria, $value, $logic, $match) {
+    public function build_query($model, $searchParams) {
+        $criteria = $searchParams['criteria'];
+        $value = $searchParams['value'];
+        $logic = $searchParams['logic'];
+        $match = $searchParams['match'];
+
         $query = [];
         foreach ($criteria as $index => $criteria_value) { //TODO there is a problem here: sometime the value is not passed to this function ????
             $value_value = $value[$index];

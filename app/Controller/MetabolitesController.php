@@ -144,9 +144,9 @@ class MetabolitesController extends AppController{
         // Listed these here for auto complete reasons and to stop the IDE displaying errors
         $criteria = null;$value = null;$logic = null;$match = null;
         extract($this->request->data['Metabolite']);
-        //var_export($criteria);var_export($value);var_export($match);var_export($logic);
+
         $query = $this->Search->build_query($this->Metabolite, $criteria, $value, $logic, $match);
-        //var_export($query);
+
         $results = $this->paginate('Metabolite', $query);
         
         $resultObjects = $this->Metabolite->buildObjects($results);
@@ -157,7 +157,7 @@ class MetabolitesController extends AppController{
         $this->set('model', 'Metabolite');
         $this->render('/Elements/search_results_modal');
         
-        //var_export($results);
+
         //$this->set('results', $results);
         //$this->set('model', 'Metabolite');
         //$this->render('/Elements/results_table');

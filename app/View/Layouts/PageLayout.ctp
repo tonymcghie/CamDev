@@ -84,7 +84,7 @@ assert($group == $sampleSetGroup || $group == $compoundsGroup ||
                      id="sample_sets_menu">
                     <div class="panel-body light-blue lighten-3">
                         <?= $this->Html->link('New', ['controller' => 'SampleSets', 'action' => 'newSet'], ['class' => 'list-group-item']) ?>
-                        <?= $this->Html->link('Find', ['controller' => 'SampleSets', 'action' => 'searchSet'], ['class' => 'list-group-item']) ?>
+                        <?= $this->Html->link('Find', ['controller' => 'SampleSets', 'action' => 'search'], ['class' => 'list-group-item']) ?>
                         <?= $this->Html->link('Import Samples', ['controller' => 'Samples', 'action' => 'importSamples'], ['class' => 'list-group-item']) ?>
                         <!--links go here
                         if ($this->Session->read('Auth.User')!==null){-->
@@ -100,8 +100,9 @@ assert($group == $sampleSetGroup || $group == $compoundsGroup ||
                 </div>
                 <div class="panel-collapse collapse <?php if ($group == $compoundsGroup)echo 'in'; ?>" id="compounds_menu">
                     <div class="panel-body light-blue lighten-3">
+                        <?= $this->Html->link('Find', ['controller' => 'Compounds', 'action' => 'search'], ['class' => 'list-group-item']) ?>
                         <?= $this->Html->link('Search', ['controller' => 'Compounds', 'action' => 'subSearch'], ['class' => 'list-group-item']) ?>
-                        <?= $this->Html->link('Add', ['controller' => 'addCompound', 'action' => 'addCompound'], ['class' => 'list-group-item']) ?>
+                        <?= $this->Html->link('Add', ['controller' => 'Compounds', 'action' => 'addCompound'], ['class' => 'list-group-item']) ?>
                         <?= $this->Html->link('ID by Mass', ['controller' => 'Identify', 'action' => 'idMass'], ['class' => 'list-group-item']) ?>
                         <?= $this->Html->link('ID by Mass(ac)', ['controller' => 'Identify', 'action' => 'IdByMass'], ['class' => 'list-group-item']) ?>
 

@@ -54,7 +54,7 @@ class SamplesController extends AppController{
 	public function importSamples($id = null) {
 		if($this->request->is('post')){ 
             $data = $this->request->data['Samples'];
-            //var_dump($data);
+
             $cols = array();
             for($i = 0;isset($data[$i]);$i++){
                 if ($data[$i] != 'none'){

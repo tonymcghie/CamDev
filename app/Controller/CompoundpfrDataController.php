@@ -70,7 +70,7 @@ class CompoundpfrDataController extends AppController{
         $this->set('model', 'Compoundpfr_data');
         $this->set('data', $data); //pass the search parameters to view so that is can get passed back to controller for action=>export
         $this->render('/Elements/search_results_modal');
-        //var_export($results);
+
     }
     
     /**
@@ -100,10 +100,10 @@ class CompoundpfrDataController extends AppController{
     /**
      * Displays all the field entries for a selected record in the CompoundpfrData table
      *
-     */        
-        public function viewData($id = null) {
+     */
+    public function viewData($id = null) {
         $this->layout = 'main';
-        $data = $this->request->data;        
+        $data = $this->request->data;
         if ($id == null){
             $id = $this->params['url']['id'];
         } // gets $id from the url
@@ -111,14 +111,12 @@ class CompoundpfrDataController extends AppController{
             $this->set('error', 'Invalid Sample Set');
             return;
         }
-        $CompoundData = $this->Compoundpfr_data->findById($id); 
+        $CompoundData = $this->Compoundpfr_data->findById($id);
         if (empty($CompoundData)) {
             $this->set('error', 'Compound data not found');
             return;
         }
-        //var_dump($sampleSet);
         $this->set('info', $CompoundData); //passes the set information to the view and renders
-        //$this->view = 'view_set';
     }
     
     /**
@@ -127,12 +125,10 @@ class CompoundpfrDataController extends AppController{
      */        
         public function viewSet($reference = null) {
         $this->layout = 'main';
-        $data = $this->request->data; 
-        var_dump($data);
+        $data = $this->request->data;
         if ($reference == null){
             $reference = $this->params['url']['reference'];
         } // gets $id from the url
-        var_dump($reference);
         if (empty($id)) {
             $this->set('error', 'Invalid Sample Set');
             return;
@@ -142,7 +138,6 @@ class CompoundpfrDataController extends AppController{
             $this->set('error', 'Sample Set not found');
             return;
         }
-        //var_dump($sampleSet);
         $this->set('info', $SetData); //passes the set information to the view and renders
     }
 
@@ -206,12 +201,12 @@ class CompoundpfrDataController extends AppController{
         $query = "SELECT DISTINCT {$for} "
                 . "FROM cam_data.compoundpfr_data as Compoundpfr_data"
                 . " WHERE {$by} LIKE '{$review_by_value}';";
-        //var_dump($query);
+
         //$db_name = ConnectionManager::getDataSource('default')->config['database'];
         $results = $this->Compoundpfr_data->query("SELECT DISTINCT {$for} "
                 . "FROM cam_data.compoundpfr_data as Compoundpfr_data"
                     . " WHERE {$by} LIKE '{$review_by_value}';");
-        //var_dump($results);        
+
         // Makes the result array a 1 dimensional indexed array ie.            
         $squash_function = function($carry = [], $item) use ($for){
             if (empty($carry))$carry = [];
@@ -219,7 +214,7 @@ class CompoundpfrDataController extends AppController{
             return $carry;
         };           
         $output = array_reduce($results, $squash_function);
-        //var_dump($output);
+
             
         $this->set('results', $results);
         $this->set('for', $for);

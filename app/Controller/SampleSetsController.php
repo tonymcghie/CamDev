@@ -151,7 +151,7 @@ class SampleSetsController extends AppController{
             throw new NotFoundExcpetion(__('Invalid Sample Set'));
         } //makes sure that the id is set
         $set = $this->SampleSet->findById($id);
-        //var_dump($set);
+
         if (!$set){
             throw new NotFoundExcpetion(__('Invalid Sample Set'));
         } //makes sure that the set exists                
@@ -196,7 +196,7 @@ class SampleSetsController extends AppController{
      * This will search the the sample sets if their is data posted
      * @return type
      */
-    public function searchSet(){
+    public function search(){
         $this->set('model', 'SampleSet');
         $this->helpers[] = 'Mustache.Mustache';
         $this->Paginator->settings= [
@@ -207,12 +207,7 @@ class SampleSetsController extends AppController{
         ];
 
         if (!empty($this->request->query)) {
-            $data = $this->request->query;
-            // Listed these here for auto complete reasons and to stop the IDE displaying errors
-            $criteria = null;$value = null;$logic = null;$match = null;
-            extract($data);
-
-            $query = $this->Search->build_query($this->SampleSet, $criteria, $value, $logic, $match);
+            $query = $this->Search->build_query($this->SampleSet, $this->request->query);
             $results = $this->paginate('SampleSet', $query);
 
             $resultObjects = $this->SampleSet->buildObjects($results);
@@ -220,7 +215,7 @@ class SampleSetsController extends AppController{
             $this->set('cols', $this->SampleSet->getDisplayFields());
             $this->set('results', $resultObjects);
             $this->set('num', $this->SampleSet->find('count', ['conditions' => $query])); //passes the number of results to the view
-            $this->set('data', $data); //pass the search parameters to view so that is can get passed back to controller for action=>export
+            $this->set('data', $this->request->query);
         }
     }
     
@@ -266,25 +261,21 @@ class SampleSetsController extends AppController{
             $this->set('error', 'Sample Set not found');
             return;
         }
-        //var_dump($sampleSet);
+
         $this->set('info', $sampleSet);
         $this->view = 'view_set';
     }
-    
+
     /**
      * Creates and exports a CSV file from a search
      * @param type $data
      */
-    public function export($datastr = null){
-        parse_str($datastr, $data);  //extract search parameters from the url
-        $criteria = null;$value = null;$logic = null;$match = null;
-        extract($data['SampleSet']);
-        $query = $this->Search->build_query($this->SampleSet, $criteria, $value, $logic, $match); //build the search query
-        $search_results = $this->SampleSet->find('all', ['conditions' => $query]);  //find the data
-        $this->set('data', $search_results); //send data to export view
-        $this->response->download("export_samplesets.csv"); //download the named csv file
+    public function export(){
+        $query = $this->Search->build_query($this->SampleSet, $this->request->query);
+        $search_results = $this->SampleSet->find('all', ['conditions' => $query]);
+        $this->set('data', $search_results);
+        $this->response->download("export_samplesets.csv");
         $this->layout = 'ajax';
-        //$this->My->exportCSV('SampleSet', $this->SampleSet, $this, ['set_code', 'submitter', 'chemist', 'crop', 'type', 'number', 'compounds','comments'], $data);  //exports the data to an csv file
     }
 
     /**
