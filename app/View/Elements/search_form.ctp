@@ -19,10 +19,10 @@ if (!empty($title))echo '<h1>'.$title.'</h1>';?>
 <?= $this->BootstrapForm->create($model, ['action' => 'searchSet', 'type' => 'get', 'class' => 'search-form']); ?>
 
 <div class="search-set form-group row">
-    <div class="col-lg-3">Criteria</div> <!--TODO use get string-->
-    <div class="col-lg-3">Value</div>
-    <div class="col-lg-3">Match</div>
-    <div class="col-lg-2">Logic</div>
+    <div class="col-lg-3"><?= $this->String->get_string('criteria', 'Search_form')?></div> <!--TODO use get string-->
+    <div class="col-lg-3"><?= $this->String->get_string('value', 'Search_form')?></div>
+    <div class="col-lg-3"><?= $this->String->get_string('match', 'Search_form')?></div>
+    <div class="col-lg-2"><?= $this->String->get_string('logic', 'Search_form')?></div>
 </div>
 <?php if (!isset($data)): ?>
     <?= $this->Mustache->render('form/search_form_row', [
