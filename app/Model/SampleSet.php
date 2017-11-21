@@ -98,6 +98,11 @@ class SampleSet extends AppModel{
         return $this->query($sql);
     }
 
+    /**
+     * Turns query results into an array of objects of type {@link \Model\DataObject\SampleSet}
+     * @param array $queryResults
+     * @return array
+     */
     public function buildObjects($queryResults){
         $sampleSetObjects = [];
         foreach ($queryResults as $data) {
