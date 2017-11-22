@@ -110,3 +110,5 @@ CakeLog::config('error', array(
 	'types' => array('warning', 'error', 'critical', 'alert', 'emergency'),
 	'file' => 'error',
 ));
+
+App::build(['Controller/Behavior' => [APP . 'Controller' . DS . 'Behavior' . DS]], App::REGISTER);

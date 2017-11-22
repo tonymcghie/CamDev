@@ -1,7 +1,8 @@
 <?php
 $title = "Find PFR Compound Data";
 $model = "Compoundpfr_data";
-$options = ['assigned_name' => 'Compound Name',
+$options = [
+        'assigned_name' => 'Compound Name',
     'all' => 'All',
     'assigned_confid' => 'Id Confidence (1-5)',
     'exact_mass' => 'Exact Mass',

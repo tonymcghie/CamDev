@@ -8,23 +8,43 @@
 
 App::uses('CakeEmail', 'Network/Email');
 App::uses('AppController', 'Controller');
+App::uses('Searchable', 'Controller/Behavior');
 
 class SampleSetsController extends AppController{
+    use Searchable {
+        Searchable::getComponents as public getSearchableComponents;
+    }
+
     public $helpers = ['Html' , 'Form' , 'My' , 'Js', 'Time', 'String', 'BootstrapForm'];
     public $uses = ['Analysis' , 'SampleSet' , 'Chemist', 'Project'];
     public $layout = 'PageLayout';
-    public $components = ['Paginator', 'RequestHandler', 'My', 'Session', 'Cookie', 'Auth', 'File', 'Search'];
-    
+
+    public $components = ['Paginator', 'RequestHandler', 'My', 'Session', 'Cookie', 'Auth', 'File'];
+
     /** @var string $file_URL sets the location to save files to */
     private $file_URL;
-    
+
+    public function __construct($request = null, $response = null) {
+        parent::__construct($request, $response);
+        $this->components = array_merge($this->components, $this->getSearchableComponents());
+    }
+
     /**
      * stuff that happens before everything
      */
     public function beforeFilter() {
-        parent::beforeFilter();
+
         $this->set('group', 'sampleSets');
         $file_URL = Configure::read('live') ? '/app/app/webroot/data/' : 'data/';
+
+        $this->Paginator->settings= [
+            'limit'=>10,
+            'order' => [
+                'SampleSet.date' => 'asc'
+            ]
+        ];
+
+        parent::beforeFilter();
 
 //        if (isset($this->Auth->Session->read($this->Auth->sessionKey)['Auth']['User']['name'])){
 //            $this->SampleSet->username = $this->Auth->Session->read($this->Auth->sessionKey)['Auth']['User']['name'];
@@ -190,33 +210,6 @@ class SampleSetsController extends AppController{
         if (!$this->request->data){
             $this->request->data = $set; //makes sure all the inputs get updated
         } //update the values that should be showing in the form after its being submitted and updated
-    }    
-    
-    /**
-     * This will search the the sample sets if their is data posted
-     * @return type
-     */
-    public function search(){
-        $this->set('model', 'SampleSet');
-        $this->helpers[] = 'Mustache.Mustache';
-        $this->Paginator->settings= [
-            'limit'=>10,
-            'order' => [
-                'SampleSet.date' => 'asc'
-            ]
-        ];
-
-        if (!empty($this->request->query)) {
-            $query = $this->Search->build_query($this->SampleSet, $this->request->query);
-            $results = $this->paginate('SampleSet', $query);
-
-            $resultObjects = $this->SampleSet->buildObjects($results);
-
-            $this->set('cols', $this->SampleSet->getDisplayFields());
-            $this->set('results', $resultObjects);
-            $this->set('num', $this->SampleSet->find('count', ['conditions' => $query])); //passes the number of results to the view
-            $this->set('data', $this->request->query);
-        }
     }
     
     /**
@@ -305,6 +298,24 @@ class SampleSetsController extends AppController{
         $results = $this->SampleSet->find('all', ['conditions' => [ 'AND' => [ '0' => [ 'SampleSet.set_code' => $set_code]]]]); //finds the sample set 
         $results = [$results[0]]; //return only the first result
         echo json_encode($results);
+    }
+
+    public function search() {
+        $this->set('criteria_options', [
+            ['value' => 'set_code', 'text' => 'Set Code'],
+            ['value' => 'all', 'text' => 'All'],
+            ['value' => 'submitter', 'text' => 'PFR Collaborator'],
+            ['value' => 'chemist', 'text' => 'Chemist'],
+            ['value' => 'p_name', 'text' => 'Project Name'],
+            ['value' => 'p_code', 'text' => 'Project Code'],
+            ['value' => 'crop', 'text' => 'Crop'],
+            ['value' => 'compounds', 'text' => 'Compounds'],
+            ['value' => 'comments', 'text' => 'Comments'],
+            ['value' => 'exp_reference', 'text' => 'Experiment Reference'],
+            ['value' => 'team', 'text' => 'Team']]);
+
+        $this->set('title', 'Find Sample Set');
+        $this->doSearch($this, $this->SampleSet);
     }
 }
 

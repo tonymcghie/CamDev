@@ -39,38 +39,24 @@ class CompoundpfrDataController extends AppController{
     public function isAuthorized($user) {
         return $this->My->isAuthorizedPFRData($user, $this);
     }
-    
-    /**
-     * Entry point for PFR Compound Data -> Find
-     * Control transfers to the find_data view and onto to /Elements/search_form
-     * and then back to the search() function below.
-     * Search results are displayed as a modal as defined by /Elements/results table_modal 
-     */
-    public function findData(){   
-      
-    }
-    
-    public function search(){
-        $data = $this->request->data;
-        $this->autoRender = false;
+
+    public function search() {
         $this->paginate = [
             'limit' => 30,
             'order' => array('Compoundpfr_data.date' => 'asc')
         ];
-        // Listed these here for auto complete reasons and to stop the IDE displaying errors
-        $criteria = null;$value = null;$logic = null;$match = null;
-        extract($this->request->data['Compoundpfr_data']);
-        $query = $this->Search->build_query($this->Compoundpfr_data, $criteria, $value, $logic, $match);
-        $results = $this->paginate('Compoundpfr_data', $query);
-        $resultObjects = $this->Compoundpfr_data->buildObjects($results);
-
-        $this->set('cols', $this->Compoundpfr_data->getDisplayFields());             
-        $this->set('results', $resultObjects);
-        $this->set('num', $this->Compoundpfr_data->find('count', ['conditions' => $query])); //passes the number of results to the view
         $this->set('model', 'Compoundpfr_data');
-        $this->set('data', $data); //pass the search parameters to view so that is can get passed back to controller for action=>export
-        $this->render('/Elements/search_results_modal');
 
+        if (!empty($this->request->query)){
+            $query = $this->Search->build_query($this->Compoundpfr_data, $this->request->query);
+            $results = $this->paginate('Compoundpfr_data', $query);
+            $resultObjects = $this->Compoundpfr_data->buildObjects($results);
+
+            $this->set('cols', $this->Compoundpfr_data->getDisplayFields());
+            $this->set('results', $resultObjects);
+            $this->set('num', $this->Compoundpfr_data->find('count', ['conditions' => $query])); //passes the number of results to the view
+            $this->set('data', $this->request->query);
+        }
     }
     
     /**
@@ -123,7 +109,7 @@ class CompoundpfrDataController extends AppController{
      * Displays the metadata for the Sample Set that the CompoundpfrData record is derived from
      *
      */        
-        public function viewSet($reference = null) {
+    public function viewSet($reference = null) {
         $this->layout = 'main';
         $data = $this->request->data;
         if ($reference == null){
@@ -178,7 +164,6 @@ class CompoundpfrDataController extends AppController{
      * and then back to the overview() function below.
      * Search results are displayed as a modal as defined by /Elements/results table
      */
-    
     public function overviewData(){
         
     }
@@ -227,8 +212,6 @@ class CompoundpfrDataController extends AppController{
         //$this->set('output', $output);
         //$this->set('data', $this->request->data); //sends all the data(search criteria) to the view so it can be added to the ajax links
     }
-    
-    
     
     /**
      * This handles the importing of data
