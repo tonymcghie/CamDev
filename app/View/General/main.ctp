@@ -82,11 +82,6 @@
                     </button>
                     <button type="button"
                             class="list-group-item"
-                            onclick="load_page('<?php echo $this->Html->url(['controller' => 'Compounds', 'action' => 'subSearch'], true) ?>', $('#main_content'))">
-                        Sub Structure Search
-                    </button>
-                    <button type="button"
-                            class="list-group-item"
                             onclick="load_page('<?php echo $this->Html->url(['controller' => 'Compounds', 'action' => 'addCompound'], true) ?>', $('#main_content'))">
                         New
                     </button>
@@ -95,7 +90,12 @@
                             onclick="load_page('<?php echo $this->Html->url(['controller' => 'Identify','action' => 'SelectFile'], true) ?>', $('#main_content'))">
                         ID by Mass
                     </button>
-
+                    <button type="button"
+                            class="list-group-item"
+                            onclick="load_page('<?php echo $this->Html->url(['controller' => 'Compounds', 'action' => 'subSearch'], true) ?>', $('#main_content'))">
+                        Sub Structure Search
+                    </button>
+                    
                     <?php
                     /*//if ($this->Session->read('Auth.User')!==null && in_array("PFR-GP-Biological Chemistry and Bioactives Group", $this->Session->read('Auth.User')['groups'])){
                     echo '<li>'. $this->Html->link('Add', ['controller' => 'Compounds','action' => 'addCompound'], ['target' => 'mainFrame', 'class' => 'btn btn-link']).'</li>';
