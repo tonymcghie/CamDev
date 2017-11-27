@@ -1,12 +1,6 @@
 <?php
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-class CompoundsController extends AppController{
+class CompoundsController extends AppController {
     public $helpers = array('Html' , 'Form' , 'My', 'Js', 'Time', 'String', 'BootstrapForm');
     public $uses = array('Compound');
     public $layout = 'PageLayout';
@@ -93,6 +87,7 @@ class CompoundsController extends AppController{
      */
     public function search(){
         $this->set('model', 'Compound');
+        $this->set('options', $this->Compound->getSearchOptions());
         $this->helpers[] = 'Mustache.Mustache';
         $this->Paginator->settings= [
             'limit'=>10,
@@ -107,7 +102,7 @@ class CompoundsController extends AppController{
 
             $resultObjects = $this->Compound->buildObjects($results);
 
-            $this->set('cols', $this->Compound->getDisplayFields());
+            $this->set('cols', $this->Compound->getDisplayColumns());
             $this->set('ion_cols', $this->Compound->getIonAdductFields());
             $this->set('results', $resultObjects);
             $ion_adducts = $this->getIonAdducts($results);  //make a new array with ion adduct m/z values

@@ -1,16 +1,8 @@
 <?php
 
-namespace Model\DataObject;
+App::uses('DataObject', 'Model/DataObject');
 
-require_once 'DataObject.php';
-
-/**
- * Created by PhpStorm.
- * User: mgoo
- * Date: 31/08/17
- * Time: 11:23 AM
- */
-class SampleSet extends DataObject {
+class SampleSetDataObject extends DataObject {
 
     /** @var string $actions HTML string of the actions to display in table */
     public $actions;
@@ -32,14 +24,6 @@ class SampleSet extends DataObject {
             'editURL' => ['controller' => 'SampleSets', 'action' => 'editSet', '?' => ['id' => $this->id]],
             'analysisURL' => ['controller' => 'Analyses', 'action' => 'editAnalysis','?' => ['set_code' =>  $this->set_code]]
         ];
-    }
-
-    public function getTableRowData() {
-        $rowData = [];
-        foreach ($this->model->getDisplayFields() as $field) {
-            $rowData[$field] = $this->$field;
-        }
-        return $rowData;
     }
 
     // BACKEND

@@ -1,16 +1,10 @@
 <?php
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 App::uses('CakeEmail', 'Network/Email');
 App::uses('AppController', 'Controller');
 App::uses('Searchable', 'Controller/Behavior');
 
-class SampleSetsController extends AppController{
+class SampleSetsController extends AppController {
     use Searchable {
         Searchable::getComponents as public getSearchableComponents;
     }
@@ -29,12 +23,16 @@ class SampleSetsController extends AppController{
         $this->components = array_merge($this->components, $this->getSearchableComponents());
     }
 
+    protected function getModel() {
+        return $this->SampleSet;
+    }
+
     /**
      * stuff that happens before everything
      */
     public function beforeFilter() {
-
         $this->set('group', 'sampleSets');
+
         $file_URL = Configure::read('live') ? '/app/app/webroot/data/' : 'data/';
 
         $this->Paginator->settings= [
@@ -300,22 +298,22 @@ class SampleSetsController extends AppController{
         echo json_encode($results);
     }
 
-    public function search() {
-        $this->set('criteria_options', [
-            ['value' => 'set_code', 'text' => 'Set Code'],
-            ['value' => 'all', 'text' => 'All'],
-            ['value' => 'submitter', 'text' => 'PFR Collaborator'],
-            ['value' => 'chemist', 'text' => 'Chemist'],
-            ['value' => 'p_name', 'text' => 'Project Name'],
-            ['value' => 'p_code', 'text' => 'Project Code'],
-            ['value' => 'crop', 'text' => 'Crop'],
-            ['value' => 'compounds', 'text' => 'Compounds'],
-            ['value' => 'comments', 'text' => 'Comments'],
-            ['value' => 'exp_reference', 'text' => 'Experiment Reference'],
-            ['value' => 'team', 'text' => 'Team']]);
-
-        $this->set('title', 'Find Sample Set');
-        $this->doSearch($this, $this->SampleSet);
-    }
+//    public function search() {
+//        $this->set('criteria_options', [
+//            ['value' => 'set_code', 'text' => 'Set Code'],
+//            ['value' => 'all', 'text' => 'All'],
+//            ['value' => 'submitter', 'text' => 'PFR Collaborator'],
+//            ['value' => 'chemist', 'text' => 'Chemist'],
+//            ['value' => 'p_name', 'text' => 'Project Name'],
+//            ['value' => 'p_code', 'text' => 'Project Code'],
+//            ['value' => 'crop', 'text' => 'Crop'],
+//            ['value' => 'compounds', 'text' => 'Compounds'],
+//            ['value' => 'comments', 'text' => 'Comments'],
+//            ['value' => 'exp_reference', 'text' => 'Experiment Reference'],
+//            ['value' => 'team', 'text' => 'Team']]);
+//
+//        $this->set('title', 'Find Sample Set');
+//        $this->doSearch($this, $this->SampleSet);
+//    }
 }
 

@@ -124,7 +124,7 @@ assert($group == $sampleSetGroup || $group == $compoundsGroup ||
                 <div class="panel-collapse collapse <?php if ($group == $pfrDataGroup)echo 'in'; ?>" id="pfr_data_menu">
                     <div class="panel-body light-blue lighten-3">
                         <?= $this->Html->link('Chemical', ['controller' => 'Compoundpfr_data', 'action' => 'search'], ['class' => 'list-group-item']) ?>
-                        <?= $this->Html->link('Bioactivity', ['controller' => 'Bioactivitypfr_data', 'action' => 'findData'], ['class' => 'list-group-item']) ?>
+                        <?= $this->Html->link('Bioactivity', ['controller' => 'Bioactivitypfr_data', 'action' => 'search'], ['class' => 'list-group-item']) ?>
                         <?= $this->Html->link('Graph', ['controller' => 'Compoundpfr_data', 'action' => 'graphData'], ['class' => 'list-group-item']) ?>
                         <?= $this->Html->link('Import', ['controller' => 'Compoundpfr_data', 'action' => 'import'], ['class' => 'list-group-item']) ?>
                         <?php
@@ -143,7 +143,7 @@ assert($group == $sampleSetGroup || $group == $compoundsGroup ||
                 <div class="panel-collapse collapse <?php if ($group == $unknowCompoundsGroup)echo 'in'; ?>" id="unknown_compounds_menu">
                     <div class="panel-body light-blue lighten-3">
                         <?= $this->Html->link('Add', ['controller' => 'Metabolites', 'action' => 'addMetabolite'], ['class' => 'list-group-item']) ?>
-                        <?= $this->Html->link('Search', ['controller' => 'Metabolites', 'action' => 'searchMetabolite'], ['class' => 'list-group-item']) ?>
+                        <?= $this->Html->link('Search', ['controller' => 'Metabolites', 'action' => 'search'], ['class' => 'list-group-item']) ?>
                         <?php
                         /*if ($this->Session->read('Auth.User')!==null && in_array("PFR-GP-Biological Chemistry and Bioactives Group", $this->Session->read('Auth.User')['groups'])){
                             echo '<li>'.$this->Html->link('Add', ['controller' => 'Metabolites','action' => 'addMetabolite'], ['target' => 'mainFrame', 'class' => 'btn btn-link']).'</li>';

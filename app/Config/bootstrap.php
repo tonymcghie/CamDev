@@ -112,3 +112,4 @@ CakeLog::config('error', array(
 ));
 
 App::build(['Controller/Behavior' => [APP . 'Controller' . DS . 'Behavior' . DS]], App::REGISTER);
+App::build(['Model/DataObject' => [APP . 'Model' . DS . 'DataObject' . DS]], App::REGISTER);

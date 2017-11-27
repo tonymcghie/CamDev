@@ -1,16 +1,8 @@
 <?php
 
-namespace Model\DataObject;
+App::uses('DataObject', 'Model/DataObject');
 
-require_once 'DataObject.php';
-
-/**
- * Created by PhpStorm.
- * User: tony
- * Date: 26/9/17
- * Time: 10:30 PM
- */
-class Molecular_feature extends DataObject {
+class MolecularFeatureDataObject extends DataObject {
 
     /** @var string $actions HTML string of the actions to display in table */
     public $actions;
@@ -31,14 +23,6 @@ class Molecular_feature extends DataObject {
             'viewURL' => ['controller' => 'Compound', 'action' => 'viewSet', 100],
             'editURL' => ['controller' => 'Compound', 'action' => 'details', 'id' => $this->id]
         ];
-    }
-
-    public function getTableRowData() {
-        $rowData = [];
-        foreach ($this->model->getDisplayFields() as $field) {
-            $rowData[$field] = $this->$field;
-        }
-        return $rowData;
     }
 
     // BACKEND

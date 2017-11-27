@@ -30,4 +30,7 @@ App::uses('Model', 'Model');
  * @package       app.Model
  */
 class AppModel extends Model {
+    public function buildObjects(array $queryResults) {
+        throw new Exception('buildObjects is not yet implemented');
+    }
 }

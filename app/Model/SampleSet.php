@@ -1,11 +1,11 @@
 <?php
 
 App::import('model', 'Chemist');
-App::uses('AppModel', 'Model');
 
-require_once 'DataObject/SampleSet.php';
+App::uses('SearchableModel', 'Model/Behavior');
+App::uses('SampleSetDataObject', 'Model/DataObject');
 
-class SampleSet extends AppModel{
+class SampleSet extends AppModel implements SearchableModel {
     public $findMethods = array('available' =>  true);
     public $validate = array(
         'submitter' => array(
@@ -103,17 +103,17 @@ class SampleSet extends AppModel{
      * @param array $queryResults
      * @return array
      */
-    public function buildObjects($queryResults){
+    public function buildObjects(array $queryResults){
         $sampleSetObjects = [];
         foreach ($queryResults as $data) {
-            $sampleSetObjects[] = new Model\DataObject\SampleSet($this, $data['SampleSet']);
+            $sampleSetObjects[] = new SampleSetDataObject($this, $data['SampleSet']);
         }
         return $sampleSetObjects;
     }
-
-    public function getSearchableFields() {
-        return ['id',
-            'set_code',
+    public function getSearchOptions() {
+        return ['set_code',
+            'all',
+            'id',
             'chemist',
             'submitter',
             'p_name',
@@ -124,7 +124,8 @@ class SampleSet extends AppModel{
             'team'];
     }
 
-    public function getDisplayFields() {
+
+    public function getDisplayColumns() {
         return ['actions',
             'id',
             'set_code',

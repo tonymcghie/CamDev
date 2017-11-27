@@ -1,16 +1,16 @@
 <?php
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+App::uses('Searchable', 'Controller/Behavior');
 
-class CompoundpfrDataController extends AppController{
+class CompoundpfrDataController extends AppController {
+    use Searchable {
+        Searchable::getComponents as public getSearchableComponents;
+    }
+
     public $helpers = array('Html' , 'Form' , 'My', 'Js', 'Time', 'String', 'BootstrapForm');
     public $uses = array('Compoundpfr_data','PubChemModel', 'Compound');
     public $layout = 'PageLayout';
-    public $components = array('Paginator', 'My', 'Pivot', 'RequestHandler', 'Session', 'Cookie', 'Auth', 'File', 'Search');
+    public $components = array('Paginator', 'My', 'Pivot', 'RequestHandler', 'Session', 'Cookie', 'Auth', 'File');
     
     //sets the values for the pagination
     public $paginate = array(
@@ -26,8 +26,18 @@ class CompoundpfrDataController extends AppController{
     //private $file_URL = '/app/app/webroot/data/'; //Live
     private $file_URL = 'data/';  //testing
 
+    public function __construct($request = null, $response = null) {
+        parent::__construct($request, $response);
+        $this->components = array_merge($this->components, $this->getSearchableComponents());
+    }
+
     public function beforeFilter() {
         $this->set('group', 'pfrData');
+
+        $this->paginate = [
+            'limit' => 30,
+            'order' => array('Compoundpfr_data.date' => 'asc')
+        ];
         parent::beforeFilter();
     }
     
@@ -40,23 +50,8 @@ class CompoundpfrDataController extends AppController{
         return $this->My->isAuthorizedPFRData($user, $this);
     }
 
-    public function search() {
-        $this->paginate = [
-            'limit' => 30,
-            'order' => array('Compoundpfr_data.date' => 'asc')
-        ];
-        $this->set('model', 'Compoundpfr_data');
-
-        if (!empty($this->request->query)){
-            $query = $this->Search->build_query($this->Compoundpfr_data, $this->request->query);
-            $results = $this->paginate('Compoundpfr_data', $query);
-            $resultObjects = $this->Compoundpfr_data->buildObjects($results);
-
-            $this->set('cols', $this->Compoundpfr_data->getDisplayFields());
-            $this->set('results', $resultObjects);
-            $this->set('num', $this->Compoundpfr_data->find('count', ['conditions' => $query])); //passes the number of results to the view
-            $this->set('data', $this->request->query);
-        }
+    function getModel() {
+        return $this->Compoundpfr_data;
     }
     
     /**

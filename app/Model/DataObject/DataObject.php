@@ -1,7 +1,5 @@
 <?php
 
-namespace Model\DataObject;
-
 /**
  * This is a object that represent a row in the database table
  * @author Andrew McGhie
@@ -53,7 +51,19 @@ abstract class DataObject {
      * @return array
      */
     public abstract function getActionData();
-    public abstract function getTableRowData();
+
+    /**
+     * TODO shift to searchable something as the model has to implement searcable model for
+     * this to work
+     * @return array
+     */
+    public function getTableRowData() {
+        $rowData = [];
+        foreach ($this->model->getDisplayColumns() as $field) {
+            $rowData[$field] = $this->$field;
+        }
+        return $rowData;
+    }
 
     // BACK END HELPERS
 
