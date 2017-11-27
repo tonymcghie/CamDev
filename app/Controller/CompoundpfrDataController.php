@@ -187,7 +187,8 @@ class CompoundpfrDataController extends AppController {
                 . "FROM cam_data.compoundpfr_data as Compoundpfr_data"
                     . " WHERE {$by} LIKE '{$review_by_value}';");
 
-        // Makes the result array a 1 dimensional indexed array ie.            
+        // Makes the result array a 1 dimensional indexed array ie.
+        //// does not seem to be needed but left in at present
         $squash_function = function($carry = [], $item) use ($for){
             if (empty($carry))$carry = [];
             $carry[] = $item['Compoundpfr_data'][$for];

@@ -37,7 +37,6 @@ class CompoundsController extends AppController {
      * @return type
      */
     public function addCompound(){
-        $this->layout = 'PageLayout';
         if ($this->request->is('post')){ //check if the save button has being clicked            
             $data = $this->request->data; //gets the data
             if ($data['Compound']['cas'] != '' && $this->Compound->find('count', ['conditions' => ['cas' => $data['Compound']['cas']]]) > 0){
@@ -47,7 +46,7 @@ class CompoundsController extends AppController {
             $this->Compound->create(); //adds the compound
             if ($this->Compound->save($data)){                 //saves the Compound
                 return $this->redirect(['controller' => 'General', 'action' => 'blank', '?' => ['alert' => 'Compound Saved']]);
-            } //if successful then reditrect to blank           
+            } //if successful then redirect to blank with a message
         }  //makes sure that the form was submitted
     }
     
@@ -59,23 +58,21 @@ class CompoundsController extends AppController {
      */
     public function editCompound($id = null){
         $this->layout = 'main';
-        $data = $this->request->data;        
         if ($id == null){
             $id = $this->params['url']['id'];
         } // gets $id from the url
-        var_dum($id);
-        $set = $this->Compound->findById($id);
-        if (!$set){
+        $compound = $this->Compound->findById($id);
+        if (!$compound){
             throw new NotFoundExcpetion(__('Invalid Compound'));
-        } //throw error if the id does not belong to a compound     
-        if ($this->request->is(array('post', 'put'))){
+        } //throw error if the id does not belong to a compound
+        if ($this->request->is(array('post', 'put'))){ //gets edited data from the view
             $this->Compound->id = $id;
             if ($this->Compound->save($this->request->data)){
                 return;
             } //return if saved successfully
         } //save data if the form is being submitted
         if (!$this->request->data){
-            $this->request->data = $set;
+           $this->request->data = $compound;
         }//update the data to display
     }
     
