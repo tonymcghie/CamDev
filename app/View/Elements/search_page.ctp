@@ -16,7 +16,7 @@ foreach ($options as $option) {
 }
 
 echo  $this->element('search_form', ['model' => $model,
-    'data' => $data,
+    'data' => isset($data) ? $data : null,
     'criteria_options' => $criteria_options]);
 if (isset($results)) {
     assert(isset($num), '\'$num\' the number of resutls must be set');

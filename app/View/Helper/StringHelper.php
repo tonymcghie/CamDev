@@ -181,7 +181,9 @@ class StringHelper extends AppHelper{
             'pseudonyms' => 'Symonyms',
             'comment' => 'Comment',
             'actions' => 'Actions',
-            'searchTitle' => 'Find Compounds'],
+            'searchTitle' => 'Find Compounds',
+            'pub_chem' => 'Pub Chem',
+            'chemspider_id' => 'ChemSpider id'],
         'IonAdducts' => [
             'compound_name' => 'Name',
             'exact_mass' => 'Exact Mass',
