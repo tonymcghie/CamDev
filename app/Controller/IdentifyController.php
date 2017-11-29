@@ -9,7 +9,7 @@
 class IdentifyController extends AppController{
     public $helpers = array('Html' , 'Form' , 'My', 'Js');
     public $uses = array('Compound');
-    public $layout = 'content';
+    public $layout = 'PageLayout';
     public $components = array('Paginator', 'My');
         
     /**
@@ -40,10 +40,10 @@ class IdentifyController extends AppController{
         $filename = '';
         if ($this->request->is('post')) { // checks for the post values
             $uploadData = $this->data['Upload']['csv_path'];
-            //var_dump($uploadData);
+
             $mass_tolerance = $this->data['Upload']['mass_tolerance']/1000;
             $ion_type = $this->data['Upload']['ion_type'];
-            //var_dump($mass_tolerance, $ion_type);
+
             if ( $uploadData['size'] == 0 || $uploadData['error'] !== 0) { // checks for the errors and size of the uploaded file
                 return false;
                 }
@@ -115,7 +115,6 @@ class IdentifyController extends AppController{
     }
     
     public function SearchMasses(){
-        $this->layout = 'MinLayout'; //minimilistic layout that has no formating
         if ($this->request->is('post')){
             //$file = fopen($this->request->data['Identify']['csv_file']['tmp_name'],"r"); //sets up the file for reading
             $dataUrl="/home/tony/temp/TK151_apple_dissect.csv";
@@ -131,17 +130,17 @@ class IdentifyController extends AppController{
                 if ($line=== false){
                     break;
                 } //when there are no more lines exit the loop               
-                //var_dump($line);
+
                 $mass = $line[3] + 1.00794; //for [M-H] data add the mass of hydrogen to get monoisotopic MW
                 $low_mass = $mass - 0.01; //calculate lower and upper limits of the acurate mass window
                 $high_mass = $mass + 0.01;
                 $search =  array("Compound.exact_mass BETWEEN ? AND ?" => array($low_mass, $high_mass));
-                //var_dump($search);
+
                 $foundcmpd = $this->Compound->find('first', ['conditions' =>$search]);
                 if (isset($foundcmpd["Compound"])){ 
                     array_push($line, $foundcmpd["Compound"]["compound_name"]);
                 }
-                //var_dump($foundcmpd);
+
                 array_push($massdata, $line); //adds the array contining the values to an array containing all values to save
                 array_push($compounds, $foundcmpd); //adds the array containing the found compounds  to an array containing all values to save
                 $n = $n + 1;
@@ -150,7 +149,7 @@ class IdentifyController extends AppController{
             $this->set('compounds', $compounds); // pass to the view 
             $this->set('head', $head); // pass table headings to the view 
             $this->set('masses', $massdata); // pass array with the mass data from file to the view 
-            //var_dump($massdata);
+
         }
     }
 }

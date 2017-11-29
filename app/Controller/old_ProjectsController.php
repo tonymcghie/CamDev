@@ -38,16 +38,6 @@ class ProjectsController extends AppController{
      * @return null
      */
     public function addProject(){
-        if (isset($this->params['url']['isTablet']) && $this->params['url']['isTablet']==='true'){
-            $this->autoRender = false;
-            $this->set('tabletView', 'true');
-            $this->layout= 'TabletLayout';
-            $this->render('add_metabolite_tablet');
-        } else {
-            $this->set('tabletView', 'false');
-            $this->autoRender = true;
-        } //sets the view (tablet or not tablet)
-        
         if (isset($this->request->data['Project'])){ //check if the save button has being clicked            
             $data = $this->request->data;      //gets the data
             $this->Project->create();            //Need to add

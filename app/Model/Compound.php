@@ -1,24 +1,19 @@
 <?php
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+App::uses('CompoundDataObject', 'Model/DataObject');
+App::uses('SearchableModel', 'Model/Behavior');
 
-require_once 'DataObject/Compound.php';
-
-class Compound extends AppModel{
+class Compound extends AppModel implements SearchableModel {
     
-    public function buildObjects($queryResults){
+    public function buildObjects(array $queryResults){
         $compoundObjects = [];
         foreach ($queryResults as $data) {
-            $compoundObjects[] = new Model\DataObject\Compound($this, $data['Compound']);
+            $compoundObjects[] = new CompoundDataObject($this, $data['Compound']);
         }
         return $compoundObjects;
     }
     
-    public function getDisplayFields() {
+    public function getDisplayColumns() {
         return ['actions',
             'compound_name',
             'pseudonyms',
@@ -39,5 +34,19 @@ class Compound extends AppModel{
             '[M+H]+',
             '[M+Na]+'];
     }
-    
+
+    public function getSearchOptions() {
+        return ['compound_name',
+            'all',
+            'cas',
+            'compound_type',
+            'exact_mass',
+            '[M-H]-',
+            '[M+COOH-H]-',
+            '[M+H]+',
+            '[M+Na]+',
+            'pub_chem',
+            'chemspider_id',
+            'comment'];
+    }
 }

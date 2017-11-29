@@ -9,7 +9,7 @@
 class ItemsController extends AppController{
     public $helpers = array('Html' , 'Form' , 'My');
     public $uses = array('Analysis', 'SampleSet');
-    public $layout = 'content';
+    public $layout = 'PageLayout';
     public $components = ['My', 'RequestHandler', 'PhpExcel'];
     
     /**
@@ -104,15 +104,7 @@ class ItemsController extends AppController{
             $this->set('results', $results);
             $this->set('set_code', $set_code);
         } //updates the values showing
-        if (isset($this->params['url']['isTablet']) && $this->params['url']['isTablet']==='true'){
-            $this->autoRender = false;
-            $this->set('tabletView', 'true');
-            $this->layout= 'TabletLayout';
-            $this->render('edit_analysis_tablet');
-        } else {
-            $this->set('tabletView', 'false');
-            $this->autoRender = true;
-        } //choose weather to render the tablet view or the desktop view
+        $this->autoRender = true;
     }
     
     /**
@@ -120,7 +112,7 @@ class ItemsController extends AppController{
      * @return type
      */
     public function uploadNewImg(){                
-        $this->layout = 'MinLayout'; //sets the layout to a minimilistic one contains the bear minimum with as little formating as possible.
+        $this->layout = 'ajax'; //sets the layout to a minimilistic one contains the bear minimum with as little formating as possible.
         $id = $this->params['url']['id'];
         $imgURL = $this->Analysis->find('first', ['feilds' => ['imgURL'], 'conditions' => ['id' => $id]])['Analysis']['imgURL']; //finds the current imgURL for the row
         $this->set('id', $id);

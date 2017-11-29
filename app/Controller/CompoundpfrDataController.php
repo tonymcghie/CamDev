@@ -1,16 +1,16 @@
 <?php
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+App::uses('Searchable', 'Controller/Behavior');
 
-class CompoundpfrDataController extends AppController{
+class CompoundpfrDataController extends AppController {
+    use Searchable {
+        Searchable::getComponents as public getSearchableComponents;
+    }
+
     public $helpers = array('Html' , 'Form' , 'My', 'Js', 'Time', 'String', 'BootstrapForm');
     public $uses = array('Compoundpfr_data','PubChemModel', 'Compound');
-    public $layout = 'content';
-    public $components = array('Paginator', 'My', 'Pivot', 'RequestHandler', 'Session', 'Cookie', 'Auth', 'File', 'Search');
+    public $layout = 'PageLayout';
+    public $components = array('Paginator', 'My', 'Pivot', 'RequestHandler', 'Session', 'Cookie', 'Auth', 'File');
     
     //sets the values for the pagination
     public $paginate = array(
@@ -25,6 +25,21 @@ class CompoundpfrDataController extends AppController{
      */
     //private $file_URL = '/app/app/webroot/data/'; //Live
     private $file_URL = 'data/';  //testing
+
+    public function __construct($request = null, $response = null) {
+        parent::__construct($request, $response);
+        $this->components = array_merge($this->components, $this->getSearchableComponents());
+    }
+
+    public function beforeFilter() {
+        $this->set('group', 'pfrData');
+
+        $this->paginate = [
+            'limit' => 30,
+            'order' => array('Compoundpfr_data.date' => 'asc')
+        ];
+        parent::beforeFilter();
+    }
     
     /**
      * returns weather the the user is authorised to access the functions
@@ -34,39 +49,9 @@ class CompoundpfrDataController extends AppController{
     public function isAuthorized($user) {
         return $this->My->isAuthorizedPFRData($user, $this);
     }
-    
-    /**
-     * Entry point for PFR Compound Data -> Find
-     * Control transfers to the find_data view and onto to /Elements/search_form
-     * and then back to the search() function below.
-     * Search results are displayed as a modal as defined by /Elements/results table_modal 
-     */
-    public function findData(){   
-      
-    }
-    
-    public function search(){
-        $data = $this->request->data;
-        $this->layout = 'ajax';
-        $this->autoRender = false;
-        $this->paginate = [
-            'limit' => 30,
-            'order' => array('Compoundpfr_data.date' => 'asc')
-        ];
-        // Listed these here for auto complete reasons and to stop the IDE displaying errors
-        $criteria = null;$value = null;$logic = null;$match = null;
-        extract($this->request->data['Compoundpfr_data']);
-        $query = $this->Search->build_query($this->Compoundpfr_data, $criteria, $value, $logic, $match);
-        $results = $this->paginate('Compoundpfr_data', $query);
-        $resultObjects = $this->Compoundpfr_data->buildObjects($results);
 
-        $this->set('cols', $this->Compoundpfr_data->getDisplayFields());             
-        $this->set('results', $resultObjects);
-        $this->set('num', $this->Compoundpfr_data->find('count', ['conditions' => $query])); //passes the number of results to the view
-        $this->set('model', 'Compoundpfr_data');
-        $this->set('data', $data); //pass the search parameters to view so that is can get passed back to controller for action=>export
-        $this->render('/Elements/search_results_modal');
-        //var_export($results);
+    function getModel() {
+        return $this->Compoundpfr_data;
     }
     
     /**
@@ -96,10 +81,10 @@ class CompoundpfrDataController extends AppController{
     /**
      * Displays all the field entries for a selected record in the CompoundpfrData table
      *
-     */        
-        public function viewData($id = null) {
+     */
+    public function viewData($id = null) {
         $this->layout = 'main';
-        $data = $this->request->data;        
+        $data = $this->request->data;
         if ($id == null){
             $id = $this->params['url']['id'];
         } // gets $id from the url
@@ -107,28 +92,24 @@ class CompoundpfrDataController extends AppController{
             $this->set('error', 'Invalid Sample Set');
             return;
         }
-        $CompoundData = $this->Compoundpfr_data->findById($id); 
+        $CompoundData = $this->Compoundpfr_data->findById($id);
         if (empty($CompoundData)) {
             $this->set('error', 'Compound data not found');
             return;
         }
-        //var_dump($sampleSet);
         $this->set('info', $CompoundData); //passes the set information to the view and renders
-        //$this->view = 'view_set';
     }
     
     /**
      * Displays the metadata for the Sample Set that the CompoundpfrData record is derived from
      *
      */        
-        public function viewSet($reference = null) {
+    public function viewSet($reference = null) {
         $this->layout = 'main';
-        $data = $this->request->data; 
-        var_dump($data);
+        $data = $this->request->data;
         if ($reference == null){
             $reference = $this->params['url']['reference'];
         } // gets $id from the url
-        var_dump($reference);
         if (empty($id)) {
             $this->set('error', 'Invalid Sample Set');
             return;
@@ -138,7 +119,6 @@ class CompoundpfrDataController extends AppController{
             $this->set('error', 'Sample Set not found');
             return;
         }
-        //var_dump($sampleSet);
         $this->set('info', $SetData); //passes the set information to the view and renders
     }
 
@@ -179,7 +159,6 @@ class CompoundpfrDataController extends AppController{
      * and then back to the overview() function below.
      * Search results are displayed as a modal as defined by /Elements/results table
      */
-    
     public function overviewData(){
         
     }
@@ -189,7 +168,6 @@ class CompoundpfrDataController extends AppController{
      * for getting an overview of the data in the table 
      */
     public function overview(){
-        $this->layout = 'ajax';
         $this->autoRender = false;
         // Listed these here for auto complete reasons and to stop the IDE displaying errors
         $by = null;$value = null;$match = null;$for = null; $review_options=null;
@@ -203,21 +181,21 @@ class CompoundpfrDataController extends AppController{
         $query = "SELECT DISTINCT {$for} "
                 . "FROM cam_data.compoundpfr_data as Compoundpfr_data"
                 . " WHERE {$by} LIKE '{$review_by_value}';";
-        //var_dump($query);
+
         //$db_name = ConnectionManager::getDataSource('default')->config['database'];
         $results = $this->Compoundpfr_data->query("SELECT DISTINCT {$for} "
                 . "FROM cam_data.compoundpfr_data as Compoundpfr_data"
                     . " WHERE {$by} LIKE '{$review_by_value}';");
-        //var_dump($results);        
+
         // Makes the result array a 1 dimensional indexed array ie.
-        // does not seem to be needed but left in at present
+        //// does not seem to be needed but left in at present
         $squash_function = function($carry = [], $item) use ($for){
             if (empty($carry))$carry = [];
             $carry[] = $item['Compoundpfr_data'][$for];
             return $carry;
         };           
         $output = array_reduce($results, $squash_function);
-        //var_dump($output);
+
             
         $this->set('results', $results);
         $this->set('for', $for);
@@ -230,8 +208,6 @@ class CompoundpfrDataController extends AppController{
         //$this->set('output', $output);
         //$this->set('data', $this->request->data); //sends all the data(search criteria) to the view so it can be added to the ajax links
     }
-    
-    
     
     /**
      * This handles the importing of data
@@ -274,7 +250,7 @@ class CompoundpfrDataController extends AppController{
      * Uploads a CSV file from a iFrame within a page
      */
     public function getCsv(){
-        $this->layout = 'MinLayout'; //minimilistic layout that has no formating
+        $this->layout = 'ajax'; //minimilistic layout that has no formating
         if ($this->request->is('post')){            
             $newURL = $this->file_URL.'files/compoundpfrData/temp'.rand().'.csv'; //adds a random number to the end of the file name to avoid clashes           
             move_uploaded_file($this->request->data['CompoundpfrData']['csv_file']['tmp_name'], $newURL); //uploads the file

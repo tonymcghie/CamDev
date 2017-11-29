@@ -62,14 +62,14 @@ class MolecularFeaturesController extends AppController{
         $results = $this->paginate('Molecular_feature', $query);
         
         $resultObjects = $this->Molecular_feature->buildObjects($results);
-        $this->set('cols', $this->Molecular_feature->getDisplayFields());
+        $this->set('cols', $this->Molecular_feature->getDisplayColumns());
         $this->set('num', $this->Molecular_feature->find('count', ['conditions' => $query])); //passes the number of results to the view
         $this->set('results', $resultObjects);
         
         $this->set('model', 'Molecular_feature');
         $this->set('data', $data); //pass the search parameters to view so that is can get passed back to controller for action=>export
         $this->render('/Elements/search_results_modal');
-        //var_export($results);
+
     }
     
     
@@ -221,9 +221,7 @@ class MolecularFeaturesController extends AppController{
     public function getCsv(){
         $this->layout = 'MinLayout'; //minimilistic layout that has no formating
         if ($this->request->is('post')){            
-            $newURL = $this->file_URL.'files/molecularfeatures/temp'.rand().'.csv'; //adds a random number to the end of the file name to avoid clashes 
-            //echo $newURL, "<br>";
-            //echo var_dump($this->request->data['Molecular_feature']['csv_file']),"<br>";
+            $newURL = $this->file_URL.'files/molecularfeatures/temp'.rand().'.csv'; //adds a random number to the end of the file name to avoid clashes
             move_uploaded_file($this->request->data['Molecular_feature']['csv_file']['tmp_name'], $newURL); //uploads the file
             $this->set('fileUrl', $newURL); //passes the new URL to the view
             $this->set('fileName', $this->request->data['Molecular_feature']['csv_file']['name']); //passes the filename to the view so it can be later added to the table

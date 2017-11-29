@@ -96,12 +96,8 @@ class MyComponent extends Component{
     }
     
     public function IdentifyMass($DataFile, $mass_tolerance, $ion_type){
-        //print $DataFile."\n";
-        //print $mass_tolerance."\n";
-        //print $ion_type."\n";
         $foundcmpd=array(); $data=array();
         $model = ClassRegistry::init('Compound');
-        //$DataFile="/home/tony/temp/".$DataFile;
         $file = fopen($DataFile,"r"); //sets up the file for reading
         $head = fgetcsv($file); //read the first line (column headers) from the datafile and ignore in this function
         $n = 0;
@@ -110,7 +106,7 @@ class MyComponent extends Component{
             if ($line=== false){
                 break;
             } //when there are no more lines exit the loop               
-            //var_dump($line);
+
             if ($ion_type==='[M-H]-'){
                 $mass = $line[3] + 1.00794; //for [M-H] data add the mass of hydrogen to get monoisotopic MW
             }
@@ -120,11 +116,8 @@ class MyComponent extends Component{
             $low_mass = $mass - $mass_tolerance; //calculate lower and upper limits of the acurate mass window
             $high_mass = $mass + $mass_tolerance;
             $search =  array("Compound.exact_mass BETWEEN ? AND ?" => array($low_mass, $high_mass));
-            //var_dump($search);
+
             $foundallcmpd = $model->find('all', ['conditions' =>$search]);
-            foreach ($foundallcmpd as $cmpd) {
-                //echo var_dump($cmpd['Compound']['exact_mass']), $mass, $mass-$cmpd['Compound']['exact_mass'], "<br>";
-            }
             $foundcmpd = $model->find('first', ['conditions' =>$search]);  //search compounds table for match and add to the $linae array if found
             if (isset($foundcmpd["Compound"])){ 
                 array_push($line, $foundcmpd["Compound"]["compound_name"]);
@@ -135,7 +128,7 @@ class MyComponent extends Component{
             //if (isset($numberofcmpd["Compound"])){ 
                 array_push($line, $numberofcmpd);
             //}
-            //var_dump($foundcmpd);
+
             array_push($data, $line); //adds the array contining the values to an array containing all values to save
             //array_push($found, $foundcmpd); //adds the array containing the found compounds  to an array containing all values to save
             $n = $n + 1;
@@ -150,50 +143,6 @@ class MyComponent extends Component{
         }
         return $data;
     }
-    
-    public function exportCSV($modelstr, $model, $controller, $allColums, $datastr = null, $allORSearch = FALSE){
-        var_dump($modelstr);
-        //var_dump($model);
-        //var_dump($controller);
-        //var_dump($allColumns);
-        var_dump($datastr); 
-        parse_str($datastr, $data);  
-        var_dump($data);
-        if ($data==null){
-            return;
-        }
-        //$data = array();
-        //$data[$modelstr] = $modelstr;
-        var_dump($data);
-        if ($allORSearch){
-            $search = $controller->buildConditionsArray($data);
-        } else {
-            //extract($data['Compound']);
-            //var_dump($criteria);var_dump($value);var_dump($match);var_dump($logic);
-            //extract() function does not work on $data so have to set the search data values manually before making the query
-            $model = 'Compound'; 
-            $criteria = $data['Compound']['criteria'][0];
-            $value = $data['Compound']['value'][0];
-            $logic = $data['Compound']['logic'][0];
-            $match = $data['Compound']['match'][0];
-            //$model = 'Compound'; $criteria = 'compound_name'; $value = 'quercetin'; $logic = 'AND'; $match = 'contains';
-            //var_dump(array_keys($data));
-            //extract($data);  //function does not place values variables
-            var_dump($criteria);var_dump($value);var_dump($match);var_dump($logic);
-            var_dump($model);
-            $query = $this->Search->build_query($model, $criteria, $value, $logic, $match);  //this throws a fatal error; build_query is in SearchComponents
-            //$query = $this->Search->build_query($this->Compound, $criteria, $value, $logic, $match);
-            var_dump($query);
-            //$results = $this->paginate('Compound', $query);
-            //$data[$modelstr]['num_boxes'] = (isset($data[$modelstr]['num_boxes']) ? $data[$modelstr]['num_boxes'] : 1);  
-            //$search = $controller->My->extractSearchTerm($data, $allColums, $modelstr); 
-        }
-        //$data = $model->find('all', ['conditions' => $query]);
-        //$controller->set('data', $data);
-        //$controller->response->download("export.csv");
-        //$controller->layout = 'ajax';  
-    }
-
     
     /*
      * Functions for authorisation *************************

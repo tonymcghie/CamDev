@@ -1,22 +1,20 @@
 <?php
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+App::uses('Searchable', 'Controller/Behavior');
 
-class MetabolitesController extends AppController{
+class MetabolitesController extends AppController {
+    use Searchable {
+        Searchable::getComponents as public getSearchableComponents;
+    }
     public $helpers = array('Html' , 'Form' , 'My' , 'Js', 'Time', 'String', 'BootstrapForm');
     public $uses = array('Metabolite','Msms_Metabolite','Proposed_Metabolite');
-    public $layout = 'content';
+    public $layout = 'PageLayout';
     public $components = array('Paginator', 'RequestHandler', 'My', 'Session', 'Cookie', 'Auth', 'File', 'Search');
-    
-    public $paginate = array(
-        'limit' => 2,
-        'order' => array(
-            'Metabolite.exact_mass' => 'asc'
-        ));
+
+    public function __construct($request = null, $response = null) {
+        parent::__construct($request, $response);
+        $this->components = array_merge($this->components, $this->getSearchableComponents());
+    }
     
     /**
      * Happens before stuff is called
@@ -24,6 +22,14 @@ class MetabolitesController extends AppController{
      */
     public function beforeFilter() {
         parent::beforeFilter();
+
+        $this->Paginator->settings= [
+            'limit'=>10,
+            'order' => [
+                'Metabolite.exact_mass' => 'asc'
+            ]
+        ];
+        $this->set('group', 'unknowCompounds');
         //$this->Auth->deny('addMetabolite','editMetabolite','editProposedMetabolite','editMsmsMetabolite');
         $this->Auth->allow('addMetabolite','editMetabolite','editProposedMetabolite','editMsmsMetabolite');
     }
@@ -42,9 +48,9 @@ class MetabolitesController extends AppController{
      * @return null
      */
     public function addMetabolite(){
-        $this->layout = 'content'; 
+        $this->layout = 'PageLayout';
         $this->set('names', $this->Chemist->find('list', ['fields' => 'name']));
-        /**if (isset($this->request->data['Metabolite'])){ //check if the save button has being clicked            
+        if (isset($this->request->data['Metabolite'])){ //check if the save button has being clicked
             $data = $this->request->data;      //gets the data
             $this->Metabolite->create();            //Need to add
             if ($this->Metabolite->save($data)){                 //saves the Compound
@@ -63,8 +69,6 @@ class MetabolitesController extends AppController{
                 return $this->redirect(['controller' => 'General', 'action' => 'blank', '?' => ['alert' => 'Msms Unknown Compound Saved']]);
             }
         } //adds which ever one was pressed
-         * 
-         */
     }
     
     /**
@@ -124,45 +128,6 @@ class MetabolitesController extends AppController{
             $this->request->data = $set;
         }     
     }
-
-    /**
-     * Entry point for Unknown -> Find
-     * Control transfers to the search_compound view and onto to /Elements/search_form
-     * and then back to the search() function below.
-     * Search results are displayed as a modal as defined by /Elements/results table 
-     */
-    public function searchMetabolite(){   
-                     
-    }
-    
-    public function search(){
-        $this->layout = 'ajax';
-        $this->autoRender = false;
-        $this->paginate = [
-            'limit' => 30,
-            'order' => array('SampleSet.date' => 'asc')
-        ];
-        // Listed these here for auto complete reasons and to stop the IDE displaying errors
-        $criteria = null;$value = null;$logic = null;$match = null;
-        extract($this->request->data['Metabolite']);
-        //var_export($criteria);var_export($value);var_export($match);var_export($logic);
-        $query = $this->Search->build_query($this->Metabolite, $criteria, $value, $logic, $match);
-        //var_export($query);
-        $results = $this->paginate('Metabolite', $query);
-        
-        $resultObjects = $this->Metabolite->buildObjects($results);
-
-        $this->set('cols', $this->Metabolite->getDisplayFields());             
-        $this->set('results', $resultObjects);
-        $this->set('num', $this->Metabolite->find('count', ['conditions' => $query])); //passes the number of results to the view
-        $this->set('model', 'Metabolite');
-        $this->render('/Elements/search_results_modal');
-        
-        //var_export($results);
-        //$this->set('results', $results);
-        //$this->set('model', 'Metabolite');
-        //$this->render('/Elements/results_table');
-    }
     
     /**
      * Passes values the view to display them
@@ -184,5 +149,9 @@ class MetabolitesController extends AppController{
      */
     public function export($data = null){
         $this->My->exportCSV('Metabolite', $this->Metabolite, $this, ['exact_mass', 'ion_type', 'rt_value', 'rt_description','sources','tissue','chemist','experiment_ref','spectra_uv','spectra_nmr','date'], $data, true);  
+    }
+
+    function getModel() {
+        return $this->Metabolite;
     }
 }

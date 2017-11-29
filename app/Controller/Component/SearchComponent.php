@@ -20,10 +20,13 @@ class SearchComponent extends Component{
      * @return array the array that can be used by the query builder to search the database
      * @throws Exception
      */
-    public function build_query($model, $criteria, $value, $logic, $match) {
+    public function build_query($model, $searchParams) {
+        $criteria = $searchParams['criteria'];
+        $value = $searchParams['value'];
+        $logic = $searchParams['logic'];
+        $match = $searchParams['match'];
+
         $query = [];
-        //var_dump($criteria);var_dump($value);var_dump($match);var_dump($logic);
-        //var_dump($model);
         foreach ($criteria as $index => $criteria_value) { //TODO there is a problem here: sometime the value is not passed to this function ????
             $value_value = $value[$index];
             $logic_value = $logic[$index];
@@ -40,7 +43,7 @@ class SearchComponent extends Component{
                     $value_value .= '%';
                     break;
                 default:
-                    throw new Exception('There was a match value that was not found if you are modifying the code please add it to this statment');
+                    throw new Exception('There was a match value that was not found if you are modifying the code please add it to this statement');
                     break;
             }
             if ($criteria_value == 'all') {

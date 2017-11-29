@@ -1,32 +1,48 @@
 <?php
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 App::uses('CakeEmail', 'Network/Email');
 App::uses('AppController', 'Controller');
+App::uses('Searchable', 'Controller/Behavior');
 
-class SampleSetsController extends AppController{
+class SampleSetsController extends AppController {
+    use Searchable {
+        Searchable::getComponents as public getSearchableComponents;
+    }
+
     public $helpers = ['Html' , 'Form' , 'My' , 'Js', 'Time', 'String', 'BootstrapForm'];
     public $uses = ['Analysis' , 'SampleSet' , 'Chemist', 'Project'];
-    public $layout = 'main';
-    public $components = ['Paginator', 'RequestHandler', 'My', 'Session', 'Cookie', 'Auth', 'File', 'Search'];
+    public $layout = 'PageLayout';
 
-    // Define models for code completion perposes
-    //private $Analysis, $SampleSet, $Chemist, $Project;
-    
+    public $components = ['Paginator', 'RequestHandler', 'My', 'Session', 'Cookie', 'Auth', 'File'];
+
     /** @var string $file_URL sets the location to save files to */
     private $file_URL;
-    
+
+    public function __construct($request = null, $response = null) {
+        parent::__construct($request, $response);
+        $this->components = array_merge($this->components, $this->getSearchableComponents());
+    }
+
+    protected function getModel() {
+        return $this->SampleSet;
+    }
+
     /**
      * stuff that happens before everything
      */
     public function beforeFilter() {
-        parent::beforeFilter();
+        $this->set('group', 'sampleSets');
+
         $file_URL = Configure::read('live') ? '/app/app/webroot/data/' : 'data/';
+
+        $this->Paginator->settings= [
+            'limit'=>10,
+            'order' => [
+                'SampleSet.date' => 'asc'
+            ]
+        ];
+
+        parent::beforeFilter();
 
 //        if (isset($this->Auth->Session->read($this->Auth->sessionKey)['Auth']['User']['name'])){
 //            $this->SampleSet->username = $this->Auth->Session->read($this->Auth->sessionKey)['Auth']['User']['name'];
@@ -153,7 +169,7 @@ class SampleSetsController extends AppController{
             throw new NotFoundExcpetion(__('Invalid Sample Set'));
         } //makes sure that the id is set
         $set = $this->SampleSet->findById($id);
-        //var_dump($set);
+
         if (!$set){
             throw new NotFoundExcpetion(__('Invalid Sample Set'));
         } //makes sure that the set exists                
@@ -192,48 +208,6 @@ class SampleSetsController extends AppController{
         if (!$this->request->data){
             $this->request->data = $set; //makes sure all the inputs get updated
         } //update the values that should be showing in the form after its being submitted and updated
-    }    
-    
-    /**
-     * TODO remove
-     * OLD SEARCH
-     * This will search the the sample sets
-     * @param type $data
-     * @return type
-     */
-    public function searchSet(){
-
-    }
-
-    /**
-     * Entry point for Sample Sets -> Find
-     * Control transfers to the search_set view and onto to /Elements/search_form
-     * and then back to the search() function below.
-     * Search results are displayed as a modal as defined by /Elements/results table
-     */
-    public function search(){
-        $data = $this->request->data;
-        $this->layout = 'ajax';
-        $this->autoRender = false;
-        $this->paginate = [
-            'limit' => 30,
-            'order' => array('SampleSet.date' => 'asc')
-        ];
-        // Listed these here for auto complete reasons and to stop the IDE displaying errors
-        $criteria = null;$value = null;$logic = null;$match = null;
-        extract($this->request->data['SampleSet']);
-
-        $query = $this->Search->build_query($this->SampleSet, $criteria, $value, $logic, $match);
-        $results = $this->paginate('SampleSet', $query);
-
-        $resultObjects = $this->SampleSet->buildObjects($results);
-
-        $this->set('cols', $this->SampleSet->getDisplayFields());
-        $this->set('results', $resultObjects);
-        $this->set('num', $this->SampleSet->find('count', ['conditions' => $query])); //passes the number of results to the view
-        $this->set('model', 'SampleSet');
-        $this->set('data', $data); //pass the search parameters to view so that is can get passed back to controller for action=>export
-        $this->render('/Elements/search_results_modal');
     }
     
     /**
@@ -263,7 +237,6 @@ class SampleSetsController extends AppController{
      * Sample Set data is found using the ID and uploaded files specified in the Analysis tabs are added to the view.
      * @param type $id
      */
-    
     public function details($id = null) {
         $this->layout = 'main';
         $data = $this->request->data;        
@@ -279,25 +252,21 @@ class SampleSetsController extends AppController{
             $this->set('error', 'Sample Set not found');
             return;
         }
-        //var_dump($sampleSet);
+
         $this->set('info', $sampleSet);
         $this->view = 'view_set';
     }
-    
+
     /**
      * Creates and exports a CSV file from a search
      * @param type $data
      */
-    public function export($datastr = null){
-        parse_str($datastr, $data);  //extract search parameters from the url
-        $criteria = null;$value = null;$logic = null;$match = null;
-        extract($data['SampleSet']);
-        $query = $this->Search->build_query($this->SampleSet, $criteria, $value, $logic, $match); //build the search query
-        $search_results = $this->SampleSet->find('all', ['conditions' => $query]);  //find the data
-        $this->set('data', $search_results); //send data to export view
-        $this->response->download("export_samplesets.csv"); //download the named csv file
+    public function export(){
+        $query = $this->Search->build_query($this->SampleSet, $this->request->query);
+        $search_results = $this->SampleSet->find('all', ['conditions' => $query]);
+        $this->set('data', $search_results);
+        $this->response->download("export_samplesets.csv");
         $this->layout = 'ajax';
-        //$this->My->exportCSV('SampleSet', $this->SampleSet, $this, ['set_code', 'submitter', 'chemist', 'crop', 'type', 'number', 'compounds','comments'], $data);  //exports the data to an csv file
     }
 
     /**
@@ -328,5 +297,23 @@ class SampleSetsController extends AppController{
         $results = [$results[0]]; //return only the first result
         echo json_encode($results);
     }
+
+//    public function search() {
+//        $this->set('criteria_options', [
+//            ['value' => 'set_code', 'text' => 'Set Code'],
+//            ['value' => 'all', 'text' => 'All'],
+//            ['value' => 'submitter', 'text' => 'PFR Collaborator'],
+//            ['value' => 'chemist', 'text' => 'Chemist'],
+//            ['value' => 'p_name', 'text' => 'Project Name'],
+//            ['value' => 'p_code', 'text' => 'Project Code'],
+//            ['value' => 'crop', 'text' => 'Crop'],
+//            ['value' => 'compounds', 'text' => 'Compounds'],
+//            ['value' => 'comments', 'text' => 'Comments'],
+//            ['value' => 'exp_reference', 'text' => 'Experiment Reference'],
+//            ['value' => 'team', 'text' => 'Team']]);
+//
+//        $this->set('title', 'Find Sample Set');
+//        $this->doSearch($this, $this->SampleSet);
+//    }
 }
 

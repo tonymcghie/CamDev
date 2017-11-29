@@ -66,6 +66,7 @@ Cache::config('default', array('engine' => 'File'));
  * CakePlugin::loadAll(); // Loads all plugins at once
  * CakePlugin::load('DebugKit'); // Loads a single plugin named DebugKit
  */
+CakePlugin::load('Mustache');
 
 /**
  * To prefer app translation over plugin translation, you can set
@@ -109,3 +110,6 @@ CakeLog::config('error', array(
 	'types' => array('warning', 'error', 'critical', 'alert', 'emergency'),
 	'file' => 'error',
 ));
+
+App::build(['Controller/Behavior' => [APP . 'Controller' . DS . 'Behavior' . DS]], App::REGISTER);
+App::build(['Model/DataObject' => [APP . 'Model' . DS . 'DataObject' . DS]], App::REGISTER);

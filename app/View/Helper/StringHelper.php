@@ -8,6 +8,13 @@
  */
 class StringHelper extends AppHelper{
     private $strings = [
+        'Search_form' => [
+            'criteria' => 'Criteria',
+            'value' => 'Value',
+            'match' => 'Match',
+            'logic' => 'Logic',
+            'noresults' => 'There was matching Sample Sets'
+        ],
         'SampleSet_form' => [
             'title' => 'PFR Chemistry: Sample Set Collaboration Workspace',
             'edit_title' => 'PFR Chemistry: Sample Set Edit Workspace',
@@ -106,6 +113,7 @@ class StringHelper extends AppHelper{
             'spectra_msms' => 'MSMS Spectrum',
             'comment' => 'Comment'],
         'SampleSet' => [
+            'all' => 'All',
             'id' => 'ID',
             'set_code' => 'Set Code',
             'submitter' => 'PFR Collabotator',
@@ -118,7 +126,8 @@ class StringHelper extends AppHelper{
             'team' => 'Team',
             'p_name' => 'Project Name',
             'p_code' => 'Project Code',
-            'actions' => 'Actions'],
+            'actions' => 'Actions',
+            'searchTitle' => 'Find Sample Set'],
         'Compoundpfr_data' => [
             'assigned_name' => 'Compound',
             'exact_mass' => 'Exact Mass',
@@ -132,7 +141,13 @@ class StringHelper extends AppHelper{
             'crop' => 'Crop',
             'species' => 'Species',
             'analyst' => 'Analyst',
-            'actions' => 'Actions'],
+            'actions' => 'Actions',
+            'all' => 'All',
+            'assigned_confid' => 'Id Confidence (1-5)',
+            'exact_mass_10mDa' => 'Exact Mass +- 10 mDa',
+            'exact_mass_50mDa' => 'Exact Mass +- 50 mDa',
+            'file' => 'File',
+            'searchTitle' => 'Find PFR Compound Data'],
         'Molecular_feature' => [
             'feature_tag' => 'Metabolite Tag',
             'feature_id' => 'Metabolite ID',
@@ -153,6 +168,7 @@ class StringHelper extends AppHelper{
             'analyst' => 'Analyst',
             'actions' => 'Actions'],
         'Compound' => [
+            'all' => 'All',
             'compound_name' => 'Name',
             'formula' => 'Formula',
             'exact_mass' => 'Exact Mass',
@@ -164,7 +180,10 @@ class StringHelper extends AppHelper{
             'compound_type' => 'Class',
             'pseudonyms' => 'Symonyms',
             'comment' => 'Comment',
-            'actions' => 'Actions'],
+            'actions' => 'Actions',
+            'searchTitle' => 'Find Compounds',
+            'pub_chem' => 'Pub Chem',
+            'chemspider_id' => 'ChemSpider id'],
         'IonAdducts' => [
             'compound_name' => 'Name',
             'exact_mass' => 'Exact Mass',
@@ -180,7 +199,28 @@ class StringHelper extends AppHelper{
             'chemist' => 'Chemist',
             'experiment_ref' => 'Experiment Reference',
             'date' => 'Start Date',
-            'actions' => 'Actions']
+            'actions' => 'Actions',
+            'all' => 'All',
+            'searchTitle' => 'Find Unknown Compounds'],
+        'Bioactivitypfr_data' => [
+            'empty' => 'Select Criteria',
+            'all' => 'All',
+            'bioactivity_name' => 'Bioactivity Name',
+            'value' => 'Value',
+            'unit_description' => 'Units',
+            'bioassay_description' => 'Bioassay Description',
+            'bioassay_ref' => 'Bioassay ref.',
+            'sample_ref' => 'Sample ref.',
+            'reference' => 'Experiment Reference',
+            'sample_description' => 'Sample Description',
+            'crop' => 'Crop',
+            'species' => 'Species',
+            'tissue' => 'Tissue',
+            'genotype' => 'Genotype',
+            'analyst' => 'Analyst',
+            'file' => 'File',
+            'searchTitle' => 'Search PFR Bioactivity Data'
+        ]
     ];
 
     public function get_string($identifier, $set){

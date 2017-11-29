@@ -1,24 +1,19 @@
 <?php
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+App::uses('CompoundPfrDataObject', 'Model/DataObject');
+App::uses('SearchableModel', 'Model/Behavior');
 
-require_once 'DataObject/Compoundpfr_data.php';
-
-class Compoundpfr_data extends AppModel{
+class Compoundpfr_data extends AppModel implements SearchableModel {
     
-    public function buildObjects($queryResults){
+    public function buildObjects(array $queryResults){
         $compoundpfrDataObjects = [];
         foreach ($queryResults as $data) {
-            $compoundpfrDataObjects[] = new Model\DataObject\Compoundpfr_data($this, $data['Compoundpfr_data']);
+            $compoundpfrDataObjects[] = new Model\DataObject\CompoundPfrDataObject($this, $data['Compoundpfr_data']);
         }
         return $compoundpfrDataObjects;
     }
     
-    public function getDisplayFields() {
+    public function getDisplayColumns() {
         return ['actions',
             'assigned_name',
             'sample_ref',
@@ -31,5 +26,24 @@ class Compoundpfr_data extends AppModel{
             'tissue',
             'analyst'];
     }
-    
+
+    public function getSearchOptions() {
+        return [
+            'assigned_name',
+            'all',
+            'assigned_confid',
+            'exact_mass',
+            'exact_mass_10mDa',
+            'exact_mass_50mDa',
+            'intensity_description',
+            'reference',
+            'sample_ref',
+            'sample_description',
+            'crop',
+            'species',
+            'tissue',
+            'genotype',
+            'analyst',
+            'file'];
+    }
 }
