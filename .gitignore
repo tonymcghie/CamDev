@@ -3,6 +3,7 @@
 /app/webroot/data/
 /app/tmp/
 *.mo
+BehatFailures/
 
 # IDE and editor specific files #
 #################################

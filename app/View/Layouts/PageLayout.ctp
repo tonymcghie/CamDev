@@ -70,7 +70,7 @@ assert($group == $sampleSetGroup || $group == $compoundsGroup ||
     </style>
 </head>
 <body>
-    <nav class="col-lg-2 col-md-3 layer-2" style="height: 100vh;overflow: auto;">
+    <nav class="col-lg-2 col-md-2 layer-2" style="height: 100vh;overflow: auto;">
         <p><?php echo $this->Html->image('cam.png', array('alt' => 'CAM Logo', 'width' => '140')); ?> </p>
         <?php echo $this->Html->link('login', ['controller' => 'users', 'action' => 'login'], ['target' => 'mainFrame', 'class' => 'btn btn-link']); ?>|
         <?php echo $this->Html->link('logout',['controller' => 'users', 'action' => 'logout'], ['target' => 'mainFrame', 'class' => 'btn btn-link']); ?>
@@ -186,14 +186,13 @@ assert($group == $sampleSetGroup || $group == $compoundsGroup ||
         </div>
     </nav>
 
-	<div class="background"></div>
-
-    <div class="col-lg-10 container" id="container">
-        <div class="content layer-2 col-xs-12" id="content">
+    <div class="col-lg-10 col-md-10 container" id="container">
+        <div class="content layer-2 col-lg-10 col-md-10" id="content">
             <?php echo $this->Flash->render(); ?>
             <?php echo $this->fetch('content'); ?>
         </div>
     </div>
 
+    <div class="background"></div>
 </body>
 </html>
