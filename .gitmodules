@@ -1,0 +1,3 @@
+[submodule "Behat"]
+	path = Behat
+	url = git://github.com/Behat/Behat.git

@@ -1,0 +1,9 @@
+default:
+  extensions:
+    Behat\MinkExtension:
+      base_url: 'http://localhost/CamDev'
+      default_session: selenium2
+#      javascript_session: selenium2
+      browser_name: "chrome"
+      selenium2:
+#        capabilities: { "browser": "firefox", "version": "57"}
