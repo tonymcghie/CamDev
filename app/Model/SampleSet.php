@@ -1,11 +1,11 @@
 <?php
 
 App::import('model', 'Chemist');
-App::uses('AppModel', 'Model');
 
-require_once 'DataObject/SampleSet.php';
+App::uses('SearchableModel', 'Model/Behavior');
+App::uses('SampleSetDataObject', 'Model/DataObject');
 
-class SampleSet extends AppModel{
+class SampleSet extends AppModel implements SearchableModel {
     public $findMethods = array('available' =>  true);
     public $validate = array(
         'submitter' => array(
@@ -75,17 +75,17 @@ class SampleSet extends AppModel{
         $parsedConditions = end($temp);
 
         $sql = "SELECT *
-                          FROM sample_sets AS SampleSet 
-                         INNER JOIN (SELECT sample_sets.set_code sc, max(version) as maxrev
-                          FROM sample_sets 
-                         WHERE sample_sets.version 
-                      GROUP BY sample_sets.set_code) AS child 
-                               ON (SampleSet.set_code = child.sc)
-                          AND (SampleSet.version = maxrev)
-                          AND (({$parsedConditions})
-                          AND ((SampleSet.confidential = 1 
-                              AND (SampleSet.chemist = '{$this->username}' OR SampleSet.submitter = '{$this->username}')) 
-                           OR SampleSet.confidential = 0))";
+                  FROM sample_sets AS SampleSet 
+                 INNER JOIN (SELECT sample_sets.set_code sc, max(version) as maxrev
+                  FROM sample_sets 
+                 WHERE sample_sets.version 
+              GROUP BY sample_sets.set_code) AS child 
+                       ON (SampleSet.set_code = child.sc)
+                  AND (SampleSet.version = maxrev)
+                  AND (({$parsedConditions})
+                  AND ((SampleSet.confidential = 1 
+                      AND (SampleSet.chemist = '{$this->username}' OR SampleSet.submitter = '{$this->username}')) 
+                   OR SampleSet.confidential = 0))";
         if (isset($query['order'])){
             $key = current(array_keys($query['order']));
             $sql .= " ORDER BY ".$key." ".$query['order'][$key];
@@ -98,17 +98,22 @@ class SampleSet extends AppModel{
         return $this->query($sql);
     }
 
-    public function buildObjects($queryResults){
+    /**
+     * Turns query results into an array of objects of type {@link \Model\DataObject\SampleSet}
+     * @param array $queryResults
+     * @return array
+     */
+    public function buildObjects(array $queryResults){
         $sampleSetObjects = [];
         foreach ($queryResults as $data) {
-            $sampleSetObjects[] = new Model\DataObject\SampleSet($this, $data['SampleSet']);
+            $sampleSetObjects[] = new SampleSetDataObject($this, $data['SampleSet']);
         }
         return $sampleSetObjects;
     }
-
-    public function getSearchableFields() {
-        return ['id',
-            'set_code',
+    public function getSearchOptions() {
+        return ['set_code',
+            'all',
+            'id',
             'chemist',
             'submitter',
             'p_name',
@@ -119,7 +124,8 @@ class SampleSet extends AppModel{
             'team'];
     }
 
-    public function getDisplayFields() {
+
+    public function getDisplayColumns() {
         return ['actions',
             'id',
             'set_code',

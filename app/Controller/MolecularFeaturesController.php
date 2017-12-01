@@ -62,14 +62,14 @@ class MolecularFeaturesController extends AppController{
         $results = $this->paginate('Molecular_feature', $query);
         
         $resultObjects = $this->Molecular_feature->buildObjects($results);
-        $this->set('cols', $this->Molecular_feature->getDisplayFields());
+        $this->set('cols', $this->Molecular_feature->getDisplayColumns());
         $this->set('num', $this->Molecular_feature->find('count', ['conditions' => $query])); //passes the number of results to the view
         $this->set('results', $resultObjects);
         
         $this->set('model', 'Molecular_feature');
         $this->set('data', $data); //pass the search parameters to view so that is can get passed back to controller for action=>export
         $this->render('/Elements/search_results_modal');
-        //var_export($results);
+
     }
     
     
@@ -133,36 +133,49 @@ class MolecularFeaturesController extends AppController{
     }
     
     /**
-     * Enables the user to obtain a summary review of the data in the Metabolomics data table.  This is a large table and this tool is useful 
+     * Entry point for CompoundspfrData -> overview
+     * Control transfers to the overview_data view and onto to /Elements/overview_form
+     * and then back to the overview() function below.
+     * Search results are displayed as a modal as defined by /Elements/results table
+     */
+    
+    public function overviewData(){
+        
+    }
+    
+    /**
+     * Enables the user to obtain a summary review of the data in the CompoundPFR data table.  This is a large table and this tool is useful 
      * for getting an overview of the data in the table 
      */
-    public function reviewData(){
-        if (!isset($this->request->data['review'])){
-            return;
-        } // if no data is passed return and dont search
-        if ($this->request->is('post')){
-            $review_options = $this->request->data;
-            
-            if ($review_options['review']['match'] == 'contain')$review_by_value = '%'.$review_options['review']['by'].'%';
-            if ($review_options['review']['match'] == 'exact')$review_by_value = $review_options['review']['by'];
-            if ($review_options['review']['match'] == 'starts_with')$review_by_value = $review_options['review']['by'].'%';
-            
-            $db_name = ConnectionManager::getDataSource('default')->config['database'];
-            $results = $this->Molecular_feature->query("SELECT DISTINCT {$review_options['review']['for']} "
-                    . "FROM {$db_name}.molecular_features as Molecular_feature"
-                    . " WHERE {$review_options['review']['cri']} LIKE '{$review_by_value}';");
-                    
-            // Makes the result array a 1 dimentional indexed array ie.            
-            $squash_function = function($carry = [], $item) use ($review_options){
-                if (empty($carry))$carry = [];
-                $carry[] = $item['Molecular_feature'][$review_options['review']['for']];
-                return $carry;
-            };           
-            $output = array_reduce($results, $squash_function);
-            
-            $this->set('output', $output);
-            $this->set('data', $this->request->data); //sends all the data(search criteria) to the view so it can be added to the ajax links
-        }
+    public function overview(){
+        $this->layout = 'ajax';
+        $this->autoRender = false;
+        // Listed these here for auto complete reasons and to stop the IDE displaying errors
+        $by = null;$value = null;$match = null;$for = null; $review_options=null;
+        extract($this->request->data['molecular_features']);
+        //extract returns arrays with numeric indexes, use implode to convert the arrays to strings
+        $by = implode($by); $value = implode($value); $match = implode($match); $for = implode($for);
+        //pr($by); pr ($value); pr($match); pr($for);
+        if ($match == 'contains')$review_by_value = '%'.$value.'%';
+        if ($match == 'exact')$review_by_value = $value;
+        if ($match == 'starts')$review_by_value = $value.'%';
+        //pr($review_by_value);
+        $query = "SELECT DISTINCT {$for} "
+                . "FROM cam_data.molecular_features as Molecular_feature"
+                . " WHERE {$by} LIKE '{$review_by_value}';";
+        //var_dump($query);
+        //$db_name = ConnectionManager::getDataSource('default')->config['database'];
+        $results = $this->Molecular_feature->query("SELECT DISTINCT {$for} "
+                . "FROM cam_data.molecular_features as Molecular_feature"
+                . " WHERE {$by} LIKE '{$review_by_value}';");
+        //var_dump($results);        
+        //send everything to the view and display as a modal            
+        $this->set('results', $results);
+        $this->set('for', $for);
+        $this->set('value', $value);
+        $this->set('by', $by);
+        $this->set('model', 'Molecular_feature');
+        $this->render('/Elements/overview_results_modal');    
     }
     
     /**
@@ -208,9 +221,7 @@ class MolecularFeaturesController extends AppController{
     public function getCsv(){
         $this->layout = 'MinLayout'; //minimilistic layout that has no formating
         if ($this->request->is('post')){            
-            $newURL = $this->file_URL.'files/molecularfeatures/temp'.rand().'.csv'; //adds a random number to the end of the file name to avoid clashes 
-            //echo $newURL, "<br>";
-            //echo var_dump($this->request->data['Molecular_feature']['csv_file']),"<br>";
+            $newURL = $this->file_URL.'files/molecularfeatures/temp'.rand().'.csv'; //adds a random number to the end of the file name to avoid clashes
             move_uploaded_file($this->request->data['Molecular_feature']['csv_file']['tmp_name'], $newURL); //uploads the file
             $this->set('fileUrl', $newURL); //passes the new URL to the view
             $this->set('fileName', $this->request->data['Molecular_feature']['csv_file']['name']); //passes the filename to the view so it can be later added to the table

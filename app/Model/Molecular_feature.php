@@ -6,19 +6,19 @@
  * and open the template in the editor.
  */
 
-require_once 'DataObject/Molecular_feature.php';
+App::uses('MolecularFeatureDataObject', 'Model/DataObject');
 
 class Molecular_feature extends AppModel{
     
-     public function buildObjects($queryResults){
+     public function buildObjects(array $queryResults){
         $molecular_featureDataObjects = [];
         foreach ($queryResults as $data) {
-            $molecular_featureDataObjects[] = new Model\DataObject\Molecular_feature($this, $data['Molecular_feature']);
+            $molecular_featureDataObjects[] = new Model\DataObject\MolecularFeatureDataObject($this, $data['Molecular_feature']);
         }
         return $molecular_featureDataObjects;
     }
     
-    public function getDisplayFields() {
+    public function getDisplayColumns() {
         return ['actions',
             'feature_tag',
             'feature_id',

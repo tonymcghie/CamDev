@@ -9,7 +9,7 @@
 class ProjectsController extends AppController{
     public $helpers = array('Html' , 'Form' , 'My', 'Js', 'Time', 'String', 'BootstrapForm');
     public $uses = array('Project');
-    public $layout = 'content';
+    public $layout = 'PageLayout';
     public $components = array('Paginator', 'RequestHandler', 'My');
     
     public $paginate = array(
@@ -42,7 +42,7 @@ class ProjectsController extends AppController{
      * @return null
      */
     public function addProject(){
-        $this->layout = 'content';
+        $this->layout = 'PageLayout';
         if (isset($this->request->data['Project'])){ //check if the save button has being clicked            
             $data = $this->request->data;      //gets the data
             $this->Project->create();            //Need to add

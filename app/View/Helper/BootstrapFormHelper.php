@@ -262,4 +262,21 @@ class BootstrapFormHelper extends FormHelper{
         }
         return parent::end($options, $secureAttributes);
     }
+
+    /**
+     * Takes an array of options for a drop down and sets the one that should be selected.
+     * @param array $options
+     * @param string $initalValue
+     * @return array
+     */
+    public function setSelectedValue($options, $initalValue) {
+        assert(array_filter($options, function ($row) use ($initalValue) {return $row['value'] == $initalValue;}),
+            'The inital value was not found in the options or there were duplaicated');
+        foreach ($options as &$option) {
+            if ($initalValue == $option['value']) {
+                $option['selected'] = true;
+            }
+        }
+        return $options;
+    }
 }

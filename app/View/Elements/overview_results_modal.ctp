@@ -15,7 +15,7 @@
                 <div class="modal-body">
                     <ul class="nav nav-tabs">
                         <li class="active"><a data-toggle="tab" href="#table-tab">Table</a></li>
-                        <li><a data-toggle="tab" href="#adduct-tab">Ion-adducts</a></li>
+                        <li><a data-toggle="tab" href="#adduct-tab">Blank</a></li>
                     </ul>
                     <div class="tab-content">
                         <div id="table-tab" class="tab-pane fade in active">

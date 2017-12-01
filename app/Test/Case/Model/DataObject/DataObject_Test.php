@@ -10,7 +10,7 @@ require_once APP.'Model/DataObject/SampleSet.php';
 class DataObject_Test extends CakeTestCase {
 
     public function test_getData() {
-        $sampleSetDataObject = new Model\DataObject\SampleSet('model', ['id' => 1, 't1' => 'a', 't2' => 'c']);
+        $sampleSetDataObject = new Model\DataObject\SampleSetDataObject('model', ['id' => 1, 't1' => 'a', 't2' => 'c']);
 
         $this->assertEquals(1, $sampleSetDataObject->id);
         $this->assertEquals('a', $sampleSetDataObject->t1);
@@ -18,7 +18,7 @@ class DataObject_Test extends CakeTestCase {
     }
 
     public function test_throwExceptionOn_dataNotExisting() {
-        $sampleSetDataObject = new Model\DataObject\SampleSet('model', ['id' => 1, 'chemist' => 'chem1']);
+        $sampleSetDataObject = new Model\DataObject\SampleSetDataObject('model', ['id' => 1, 'chemist' => 'chem1']);
 
         try {
             $sampleSetDataObject->doesntExist;
@@ -29,7 +29,7 @@ class DataObject_Test extends CakeTestCase {
     }
 
     public function test_immutableFields_cannotBeChanged() {
-        $sampleSetDataObject = new Model\DataObject\SampleSet('model', ['id' => 1]);
+        $sampleSetDataObject = new Model\DataObject\SampleSetDataObject('model', ['id' => 1]);
 
         $this->assertEquals(1, $sampleSetDataObject->id);
         $sampleSetDataObject->id = 2;
@@ -37,7 +37,7 @@ class DataObject_Test extends CakeTestCase {
     }
 
     public function test_notImmutableFields_canBeChanged() {
-        $sampleSetDataObject = new Model\DataObject\SampleSet('model', ['id' => 1, 'chemist' => 'chem1']);
+        $sampleSetDataObject = new Model\DataObject\SampleSetDataObject('model', ['id' => 1, 'chemist' => 'chem1']);
 
         $this->assertEquals('chem1', $sampleSetDataObject->chemist);
         $sampleSetDataObject->chemist = 'chem2';

@@ -1,14 +1,9 @@
 <?php
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+App::uses('MetaboliteDataObject', 'Model/DataObject');
+App::uses('SearchableModel', 'Model/Behavior');
 
-require_once 'DataObject/Metabolite.php';
-
-class Metabolite extends AppModel{
+class Metabolite extends AppModel implements SearchableModel {
     public $validate = array(
     'exact_mass' => array(
         'rule' => 'notBlank'
@@ -38,15 +33,15 @@ class Metabolite extends AppModel{
         'rule' => 'notBlank'
     ));
 
-    public function buildObjects($queryResults){
+    public function buildObjects(array $queryResults){
         $metaboliteObjects = [];
         foreach ($queryResults as $data) {
-            $metaboliteObjects[] = new Model\DataObject\Metabolite($this, $data['Metabolite']);
+            $metaboliteObjects[] = new Model\DataObject\MetaboliteDataObject($this, $data['Metabolite']);
         }
         return $metaboliteObjects;
     }
     
-    public function getDisplayFields() {
+    public function getDisplayColumns() {
         return ['actions',
             'id',
             'exact_mass',
@@ -58,5 +53,14 @@ class Metabolite extends AppModel{
             'chemist',
             'experiment_ref'];
     }
-    
+
+    public function getSearchOptions() {
+        return ['sources',
+        'all',
+        'exact_mass',
+        'experiment_ref',
+        'sources',
+        'tissue',
+        'chemist'];
+    }
 }

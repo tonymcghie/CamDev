@@ -1,15 +1,9 @@
 <?php
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-class CompoundsController extends AppController{
+class CompoundsController extends AppController {
     public $helpers = array('Html' , 'Form' , 'My', 'Js', 'Time', 'String', 'BootstrapForm');
     public $uses = array('Compound');
-    public $layout = 'content';
+    public $layout = 'PageLayout';
     public $components = array('Paginator', 'RequestHandler', 'My', 'Session', 'Cookie', 'Auth', 'File', 'Search');
     
    /** Sets the options for pagination */
@@ -25,6 +19,7 @@ class CompoundsController extends AppController{
      */
     public function beforeFilter() {
         parent::beforeFilter();
+        $this->set('group', 'compounds');
         //$this->Auth->deny('addCompound', 'editCompound'); //deny access from addCompound and editCompound by default
     }
     
@@ -42,7 +37,6 @@ class CompoundsController extends AppController{
      * @return type
      */
     public function addCompound(){
-        $this->layout = 'content';
         if ($this->request->is('post')){ //check if the save button has being clicked            
             $data = $this->request->data; //gets the data
             if ($data['Compound']['cas'] != '' && $this->Compound->find('count', ['conditions' => ['cas' => $data['Compound']['cas']]]) > 0){
@@ -52,7 +46,7 @@ class CompoundsController extends AppController{
             $this->Compound->create(); //adds the compound
             if ($this->Compound->save($data)){                 //saves the Compound
                 return $this->redirect(['controller' => 'General', 'action' => 'blank', '?' => ['alert' => 'Compound Saved']]);
-            } //if successful then reditrect to blank           
+            } //if successful then redirect to blank with a message
         }  //makes sure that the form was submitted
     }
     
@@ -64,23 +58,21 @@ class CompoundsController extends AppController{
      */
     public function editCompound($id = null){
         $this->layout = 'main';
-        $data = $this->request->data;        
         if ($id == null){
             $id = $this->params['url']['id'];
         } // gets $id from the url
-        var_dum($id);
-        $set = $this->Compound->findById($id);
-        if (!$set){
+        $compound = $this->Compound->findById($id);
+        if (!$compound){
             throw new NotFoundExcpetion(__('Invalid Compound'));
-        } //throw error if the id does not belong to a compound     
-        if ($this->request->is(array('post', 'put'))){
+        } //throw error if the id does not belong to a compound
+        if ($this->request->is(array('post', 'put'))){ //gets edited data from the view
             $this->Compound->id = $id;
             if ($this->Compound->save($this->request->data)){
                 return;
             } //return if saved successfully
         } //save data if the form is being submitted
         if (!$this->request->data){
-            $this->request->data = $set;
+           $this->request->data = $compound;
         }//update the data to display
     }
     
@@ -90,75 +82,32 @@ class CompoundsController extends AppController{
      * and then back to the search() function below.
      * Search results are displayed as a modal as defined by /Elements/compound_results table 
      */
-    public function searchCompound($data = null){
-        /**if ($data!=null&&!isset($this->request->data['Compound'])){
-            parse_str($data);
-            $this->request->data['Compound'] = $Compound;
-        } //sets the data
-        if (!isset($this->request->data['Compound'])){
-            return;
-        } //if compound is not set then exit
-        $this->paginate = array(
-        'limit' => 20,
-        'order' => array('Compound.compound_name' => 'asc')); //sets the pagination values
-        $this->request->data['Compound']['num_boxes'] = (isset($this->request->data['Compound']['num_boxes']) ? $this->request->data['Compound']['num_boxes'] : 1); //sets boxnum to 1 if its not already set
-        $this->set('box_nums',$this->request->data['Compound']['num_boxes']);  //passes the box num to the view 
-        $data = $this->request->data;
-        for($i = 0;isset($data['Compound']['cri_'.$i]);$i++){
-            $precision = count(explode('.', $data['Compound']['val_'.$i]))==2 ? strlen(explode('.', $data['Compound']['val_'.$i])[1]) : 0;            
-            if ($data['Compound']['cri_'.$i] == '[M-H]-'){
-                $data['Compound']['val_'.$i] = round(floatval($data['Compound']['val_'.$i]) + 1.0078, $precision);
-                $data['Compound']['cri_'.$i] = 'exact_mass';
-            } //adjusts mass
-            if ($data['Compound']['cri_'.$i] == '[M+COOH-H]-'){
-                $data['Compound']['val_'.$i] = round(floatval($data['Compound']['val_'.$i]) - 44.9977, $precision);
-                $data['Compound']['cri_'.$i] = 'exact_mass';
-            }//adjusts mass
-            if ($data['Compound']['cri_'.$i] == '[M+H]+'){
-                $data['Compound']['val_'.$i] = round(floatval($data['Compound']['val_'.$i]) - 1.0078, $precision);
-                $data['Compound']['cri_'.$i] = 'exact_mass';
-            }//adjusts mass
-            if ($data['Compound']['cri_'.$i] == '[M+Na]+'){
-                $data['Compound']['val_'.$i] = round(floatval($data['Compound']['val_'.$i]) - 22.9898, $precision);
-                $data['Compound']['cri_'.$i] = 'exact_mass';
-            }//adjusts mass
-        } //adjust the mass and the names 
-        $search = $this->My->extractSearchTerm($data, ['cas', 'compound_name', 'exact_mass', 'comment'], 'Compound'); //makes search term
-        $this->set('results', $this->paginate('Compound', $search)); //gets the results
-        $this->set('num', $this->Compound->find('count', ['conditions' =>$search])); //passes the number of results to the view
-        $this->set('data', $this->request->data);*/
-    }
-    
     public function search(){
-        $data = $this->request->data;
-        $this->layout = 'ajax';
-        $this->autoRender = false;
-        $this->paginate = [
-            'limit' => 30,
-            'order' => array('Compound.compound_name' => 'asc')
-        ];
-        // Listed these here for auto complete reasons and to stop the IDE displaying errors
-        //var_dump($data);
-        $criteria = null;$value = null;$logic = null;$match = null;
-        extract($this->request->data['Compound']);
-        //var_export($criteria);var_export($value);var_export($match);var_export($logic);
-        $query = $this->Search->build_query($this->Compound, $criteria, $value, $logic, $match);
-        $results = $this->paginate('Compound', $query);
-        //var_dump($results[0]['Compound']['exact_mass']); //test to get that indexes sorted for the array of results
-                
-        $resultObjects = $this->Compound->buildObjects($results);
-                
-        $this->set('cols', $this->Compound->getDisplayFields());
-        $this->set('ion_cols', $this->Compound->getIonAdductFields());
-        $this->set('results', $resultObjects);
-        $ion_adducts = $this->getIonAdducts($results);  //make a new array with ion adduct m/z values
-        //var_dump($ion_adducts);
-        $this->set('ion_adducts', $ion_adducts);  //pass results to view so the ion adducts values can be displayed
-        $this->set('num', $this->Compound->find('count', ['conditions' => $query])); //passes the number of results to the view
         $this->set('model', 'Compound');
-        $this->set('data', $data); //pass the search parameters to view so that is can get passed back to controller for action=>export
-        $this->render('/Elements/search_results_modal');
-        //$this->render('/Elements/compound_results_table');
+        $this->set('options', $this->Compound->getSearchOptions());
+        $this->helpers[] = 'Mustache.Mustache';
+        $this->Paginator->settings= [
+            'limit'=>10,
+            'order' => [
+                'SampleSet.date' => 'asc'
+            ]
+        ];
+
+        if (!empty($this->request->query)) {
+            $query = $this->Search->build_query($this->Compound, $this->request->query);
+            $results = $this->paginate('Compound', $query);
+
+            $resultObjects = $this->Compound->buildObjects($results);
+
+            $this->set('cols', $this->Compound->getDisplayColumns());
+            $this->set('ion_cols', $this->Compound->getIonAdductFields());
+            $this->set('results', $resultObjects);
+            $ion_adducts = $this->getIonAdducts($results);  //make a new array with ion adduct m/z values
+
+            $this->set('ion_adducts', $ion_adducts);  //pass results to view so the ion adducts values can be displayed
+            $this->set('num', $this->Compound->find('count', ['conditions' => $query])); //passes the number of results to the view
+            $this->set('data', $this->request->query);
+        }
     }
     
     /**
@@ -181,7 +130,7 @@ class CompoundsController extends AppController{
      * @param type $data
      */
     public function export($datastr = null){
-        //var_dump($datastr);
+
         parse_str($datastr, $data);  //extract search parameters from the url
         $criteria = null;$value = null;$logic = null;$match = null;
         extract($data['Compound']);
@@ -267,7 +216,7 @@ class CompoundsController extends AppController{
                 '[M+H]+' => $row['Compound']['exact_mass'] + 1.0078,
                 '[M+Na]+' => $row['Compound']['exact_mass'] + 22.9898);
             array_push($ion_adducts, $new_data);
-            //var_dump($row['Compound']['exact_mass']);
+
         }
         return $ion_adducts;
     }

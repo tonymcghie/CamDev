@@ -9,7 +9,7 @@
 class SamplesController extends AppController{
     public $helpers = array('Html' , 'Form' , 'My', 'Js');
     public $uses = array('Analysis', 'SampleSet', 'Sample');
-    public $layout = 'content';
+    public $layout = 'PageLayout';
     //public $components = ['My', 'RequestHandler', 'PhpExcel'];
 	public $components = array('Paginator', 'My', 'Pivot', 'RequestHandler', 'PhpExcel');
     
@@ -54,7 +54,7 @@ class SamplesController extends AppController{
 	public function importSamples($id = null) {
 		if($this->request->is('post')){ 
             $data = $this->request->data['Samples'];
-            //var_dump($data);
+
             $cols = array();
             for($i = 0;isset($data[$i]);$i++){
                 if ($data[$i] != 'none'){
@@ -92,12 +92,9 @@ class SamplesController extends AppController{
      * Uploads a CSV file from a iFrame within a page
      */
     public function getCsv(){
-        //$this->layout = 'MinLayout'; //minimilistic layout that has no formating
+        $this->layout = 'ajax'; //minimilistic layout that has no formating
         if ($this->request->is('post')){
-            $data = $this->request->data['Samples'];
-            //var_dump($data);
-            $newURL = $this->file_URL.'files/samples/temp'.rand().'.csv'; //adds a random number to the end of the file name to avoid clashes  
-            //var_dump($newURL);
+            $newURL = $this->file_URL.'files/samples/temp'.rand().'.csv'; //adds a random number to the end of the file name to avoid clashes
             move_uploaded_file($this->request->data['Samples']['csv_path']['tmp_name'], $newURL); //uploads the file
             $this->set('fileUrl', $newURL); //passes the new URL to the view
             $this->set('fileName', $this->request->data['Samples']['csv_path']['name']); //passes the filename to the view so it can be later added to the table
@@ -181,15 +178,6 @@ class SamplesController extends AppController{
             $this->set('results', $results);
             $this->set('set_code', $set_code);
         } //updates the values showing
-        if (isset($this->params['url']['isTablet']) && $this->params['url']['isTablet']==='true'){
-            $this->autoRender = false;
-            $this->set('tabletView', 'true');
-            $this->layout= 'TabletLayout';
-            $this->render('edit_analysis_tablet');
-        } else {
-            $this->set('tabletView', 'false');
-            $this->autoRender = true;
-        } //choose weather to render the tablet view or the desktop view
     }
     
     /**
@@ -197,7 +185,7 @@ class SamplesController extends AppController{
      * @return type
      */
     public function uploadNewImg(){                
-        $this->layout = 'MinLayout'; //sets the layout to a minimilistic one contains the bear minimum with as little formating as possible.
+        $this->layout = 'ajax'; //sets the layout to a minimilistic one contains the bear minimum with as little formating as possible.
         $id = $this->params['url']['id'];
         $imgURL = $this->Analysis->find('first', ['feilds' => ['imgURL'], 'conditions' => ['id' => $id]])['Analysis']['imgURL']; //finds the current imgURL for the row
         $this->set('id', $id);

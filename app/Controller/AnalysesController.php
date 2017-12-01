@@ -9,7 +9,7 @@
 class AnalysesController extends AppController{
     public $helpers = array('Html' , 'Form' , 'My');
     public $uses = array('Analysis', 'SampleSet');
-    public $layout = 'AnalysisLayout';
+    public $layout = 'PageLayout';
     public $components = ['My', 'RequestHandler', 'PhpExcel'];
     
     /**
@@ -86,15 +86,6 @@ class AnalysesController extends AppController{
             $this->set('results', $results);
             $this->set('set_code', $set_code);
         } //updates the values showing
-        if (isset($this->params['url']['isTablet']) && $this->params['url']['isTablet']==='true'){
-            $this->autoRender = false;
-            $this->set('tabletView', 'true');
-            $this->layout= 'TabletLayout';
-            $this->render('edit_analysis_tablet');
-        } else {
-            $this->set('tabletView', 'false');
-            $this->autoRender = true;
-        } //choose weather to render the tablet view or the desktop view
     }
     
     /**

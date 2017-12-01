@@ -1,10 +1,10 @@
-#CAMcake [![Build Status](https://travis-ci.com/mgoo/CAMCake.svg?token=tbnT8qsz25VqZAj9gn4Q&branch=master)](https://travis-ci.com/mgoo/CAMCake)
+# CAMcake [![Build Status](https://travis-ci.com/mgoo/CAMCake.svg?token=tbnT8qsz25VqZAj9gn4Q&branch=master)](https://travis-ci.com/mgoo/CAMCake)
 
 the same as CAM but build in the Cake framework
 
 made with CakePHP version 2.7.6, php 5.5.12, mysql 5.6.17
 
-##Cake Overview
+## Cake Overview
 
 
 The [Cake cookbook](http://book.cakephp.org/2.0/en/index.html) is a good resource to use to learn how to use Cake php.
@@ -17,7 +17,7 @@ This image shows the structure of a cake project a common MVC structure (Model V
 
 ![alt tag](http://book.cakephp.org/2.0/en/_images/typical-cake-request.png)
 
-##Installation
+## Installation
 
 Cake makes self contained projects so if you clone the project you should be able to edit it just fine.
 However if you want to make new projects with cake refer to the installation section.
@@ -43,7 +43,7 @@ then from the [MySQL work bench](https://dev.mysql.com/downloads/workbench/5.2.h
 The configuration to connect cake to the database is in app/config/database.php set the username and password as required.
 Make sure the project is in your www director under CAMcake then the url to test it will be localhost/CAMcake
 
-##Run Config
+## Run Config
 The Live Version of CAM is run from a Docker image this is a Virtual Machine on a server. The advantage of using docker over other similar
 software is that the docker images does not contain a full operating system only what it needs to run the server.
 More information can be found [here](https://docs.docker.com/v1.8/).
@@ -67,7 +67,7 @@ the database is separate from the docker container config for this is:
 
     database = cam_data
 
-##Extensions/Plugins/API's used
+## Extensions/Plugins/API's used
 
 * [PHPExcel Cake Component](https://github.com/segy/PhpExcel) This is an adaption of the [PHPExcel](https://phpexcel.codeplex.com/) extension for CakePHP
 * [Google Charts](https://developers.google.com/chart/)
@@ -75,7 +75,7 @@ the database is separate from the docker container config for this is:
 * [Ketcher](http://lifescience.opensource.epam.com/ketcher/) This is a javascript based page that allows people to draw chemical structures and get the smili keys from them
 * [Pub Chem PUG REST](https://pubchem.ncbi.nlm.nih.gov/pug_rest/PUG_REST_Tutorial.html) This is a URL based API for Pub Chem that allows searching the Pub Chem database
 
-##Scripts
+## Scripts
 
 To add a python script to the list of scripts add it to the webroot/files/pythonScripts folder the name of the file is what will be displayed in the select box. By default the script will be passed the location
 of the uploaded file as arguments 2 and 3 from the command line. Here is an example of how to access these ``` name, file_location_in, file_location_out = argv ``` name will be the name of the file and the file_location_in
@@ -101,12 +101,12 @@ echo $this->Form->end(['label' => 'Template', 'class' => 'large-button anySizeBu
 
 this is there the value for the hidden input name is what you want the name of the file will be when someone downloads it and the path is the path to the file so you should only have to change the file name.
 
-##Contact
+## Contact
 For Usage issues Tony McGhie
 
 For Outages Helge Dzierzon
 
-##Contributors
+## Contributors
 Andrew McGhie - writing it
 
 Helge Dzierzon - helping Andrew write it professionally

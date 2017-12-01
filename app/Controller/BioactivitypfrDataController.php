@@ -1,31 +1,39 @@
 <?php
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+App::uses('Searchable', 'Controller/Behavior');
 
-class BioactivitypfrDataController extends AppController{
+class BioactivitypfrDataController extends AppController {
+    use Searchable {
+        Searchable::getComponents as public getSearchableComponents;
+    }
     public $helpers = array('Html' , 'Form' , 'My', 'Js');
     public $uses = array('Bioactivitypfr_data','PubChemModel', 'Compound');
-    public $layout = 'content';
+    public $layout = 'PageLayout';
     public $components = array('Paginator', 'My', 'Pivot');
-    
-    //sets the values for the pagination
-    public $paginate = array(
-        'limit' => 30,
-        'order' => array(
-            'Bioactivitypfr_data.bioactivity_name' => 'asc'
-        )
-    );
     
     /*
      *  @LIVE swap file url 
      */
     private $file_URL = '/app/app/webroot/data/'; //Live
     //private $file_URL = 'data/';  //testing
-    
+
+    public function __construct($request = null, $response = null) {
+        parent::__construct($request, $response);
+        $this->components = array_merge($this->components, $this->getSearchableComponents());
+    }
+
+    public function beforeFilter() {
+        //sets the values for the pagination
+        $this->Paginator->settings= [
+            'limit' => 30,
+            'order' => [
+                'Bioactivitypfr_data.bioactivity_name' => 'asc'
+            ]
+        ];
+        $this->set('group', 'pfrData');
+        parent::beforeFilter();
+    }
+
     /**
      * returns weather the the user is authorised to access the functions
      * @param type $user
@@ -34,37 +42,6 @@ class BioactivitypfrDataController extends AppController{
     public function isAuthorized($user) {
         return $this->My->isAuthorizedPFRData($user, $this);
     }
-    
-    /**
-     * this is the search funciton for the pfr data
-     * its similar the the basic one where is adds everything together but it also adds synonims from the Compound table to the search
-     * @param type $data
-     * @return type
-     */
-    public function findData($data = null){   
-        if ($data!=null&&!isset($this->request->data['Bioactivitypfr_data'])){
-            parse_str($data);
-            $this->request->data['Bioactivitypfr_data'] = $Bioactivitypfr_data;
-        }//if no data is passed get the data from the set params
-        if (!isset($this->request->data['Bioactivitypfr_data'])){
-            return;
-        }//if no data is passed return and dont search
-        $this->paginate = array(
-        'limit' => 30,
-        'order' => array('Bioactivitypfr_data.bioactivity_name' => 'asc'));           
-        $this->request->data['Bioactivitypfr_data']['num_boxes'] = (isset($this->request->data['Bioactivitypfr_data']['num_boxes']) ? $this->request->data['Bioactivitypfr_data']['num_boxes'] : 1); //sets boxnum to 1 if its not already set
-        $this->set('box_nums',$this->request->data['Bioactivitypfr_data']['num_boxes']); //passes the number of boxes from the old form to the new form
-        if ($this->request->data['Bioactivitypfr_data']['isDate']==='1'){
-            $this->request->data['Bioactivitypfr_data']['start_date'] = $this->request->data['Bioactivitypfr_data']['start_date']['year'].'-'.$this->request->data['Bioactivitypfr_data']['start_date']['month'].'-'.$this->request->data['Bioactivitypfr_data']['start_date']['day'];//makes date in  format where sql can compare time helper
-            $this->request->data['Bioactivitypfr_data']['end_date'] = $this->request->data['Bioactivitypfr_data']['end_date']['year'].'-'.$this->request->data['Bioactivitypfr_data']['end_date']['month'].'-'.$this->request->data['Bioactivitypfr_data']['end_date']['day'];
-        } //if the date is set then add the date to the search query
-        //gets an array of the criteria for the search
-        $search = $this->My->extractSearchTerm($this->request->data, ['bioactivity_name', 'value', 'unit_description', 'bioassay_description' , 'bioassay_ref' ,'reference', 'sample_ref', 'crop', 'species', 'tissue', 'genotype', 'analyst', 'file'], 'Bioactivitypfr_data');    
-        //$search = $this->addPsu($this->request->data, $search); //adds the synonims to the search array //disabled because synonums not needed for bioactivity
-        $this->set('results' ,$this->paginate('Bioactivitypfr_data', $search)); //sets the results from the cake pagination helper
-        $this->set('num', $this->Bioactivitypfr_data->find('count', ['conditions' =>$search]));
-        $this->set('data', $this->request->data); //sends all the data(search criteria) to the view so it can be added to the ajax links
-    } 
     
     /**
      * extorts the current search data as a csv file
@@ -153,7 +130,7 @@ class BioactivitypfrDataController extends AppController{
      * Uploads a CSV file from a iFrame within a page
      */
     public function getCsv(){
-        $this->layout = 'MinLayout'; //minimilistic layout that has no formating
+        $this->layout = 'ajax'; //minimilistic layout that has no formating
         if ($this->request->is('post')){            
             $newURL = $this->file_URL.'files/compoundpfrData/temp'.rand().'.csv'; //adds a random number to the end of the file name to avoid clashes           
             move_uploaded_file($this->request->data['CompoundpfrData']['csv_file']['tmp_name'], $newURL); //uploads the file
@@ -247,5 +224,9 @@ class BioactivitypfrDataController extends AppController{
             } //if serarching using assined name then add the sydonims
         } //adds synonims from compund table to the search in OR array
         return $search;
+    }
+
+    function getModel() {
+        return $this->Bioactivitypfr_data;
     }
 }
