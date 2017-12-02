@@ -17,7 +17,10 @@ class IdentifyController extends AppController{
      */
     public function beforeFilter() {
         parent::beforeFilter();
-        $this->Auth->deny('addCompound', 'editCompound'); //deny access from addCompound and editCompound by default
+
+        //deny access from addCompound and editCompound by default
+        $this->Auth->deny('addCompound', 'editCompound');
+        $this->set('group', 'compounds');
     }
     
     /**
