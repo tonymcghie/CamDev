@@ -7,7 +7,7 @@ class MetabolitesController extends AppController {
         Searchable::getComponents as public getSearchableComponents;
     }
     public $helpers = array('Html' , 'Form' , 'My' , 'Js', 'Time', 'String', 'BootstrapForm');
-    public $uses = array('Metabolite','Msms_Metabolite','Proposed_Metabolite');
+    public $uses = array('Metabolite','Msms_Metabolite','Proposed_Metabolite', 'Chemist');
     public $layout = 'PageLayout';
     public $components = array('Paginator', 'RequestHandler', 'My', 'Session', 'Cookie', 'Auth', 'File', 'Search');
 
