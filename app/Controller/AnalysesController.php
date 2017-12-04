@@ -7,7 +7,7 @@
  */
 
 class AnalysesController extends AppController{
-    public $helpers = array('Html' , 'Form' , 'My');
+    public $helpers = ['Html' , 'Form' , 'My' , 'Js', 'Time', 'String', 'BootstrapForm'];
     public $uses = array('Analysis', 'SampleSet');
     public $layout = 'PageLayout';
     public $components = ['My', 'RequestHandler', 'PhpExcel'];
@@ -25,6 +25,7 @@ class AnalysesController extends AppController{
         parent::beforeFilter();
         //by default users are not allowed
         $this->Auth->allow('editAnalysis');
+        $this->set('group', 'sampleSets');
     }
     
     /**
@@ -40,15 +41,12 @@ class AnalysesController extends AppController{
      * this is called when the save or create button is pressed. It will update the values in the database and/or create a new row
      * @param type $set_code
      */
-    public function editAnalysis($set_code = null){
+    public function editAnalysis($set_code = null, $id = null){
         $data = $this->request->data;        
         if ($set_code == null){
             $set_code = $this->params['url']['set_code'];
-        } //gets the set_code
-        if (isset($data['Analysis']['key'])){ 
-            $this->Analysis->create();
-            $this->Analysis->save($data);
-        }//creates a new row
+        }
+
         if (isset($data['Analysis'][0])){
             $set_code = $data['Analysis']['set_code'];
             unset($data['Analysis']['set_code']); //makes sure the set_code doesnt change
@@ -87,13 +85,26 @@ class AnalysesController extends AppController{
             $this->set('set_code', $set_code);
         } //updates the values showing
     }
+
+    /**
+     * Ajax fucntion for creating a new analysis
+     */
+    public function newAnalysis() {
+        $this->autoRender = false;
+        $this->Analysis->create();
+        $this->Analysis->save($this->request->data);
+        $newId = $this->Analysis->id;
+        // Get default values from database
+        $analysis = $this->Analysis->find('first', ['conditions' => ['id' => $newId]]);
+        echo json_encode($analysis);
+    }
     
     /**
      * function to be called by Ajax that uploads a new image
      * @return type
      */
     public function uploadNewImg(){                
-        $this->layout = 'MinLayout'; //sets the layout to a minimilistic one contains the bear minimum with as little formating as possible.
+        $this->layout = 'ajax';
         $id = $this->params['url']['id'];
         $imgURL = $this->Analysis->find('first', ['feilds' => ['imgURL'], 'conditions' => ['id' => $id]])['Analysis']['imgURL']; //finds the current imgURL for the row
         $this->set('id', $id);

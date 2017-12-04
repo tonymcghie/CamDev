@@ -82,52 +82,7 @@ class MyHelper extends AppHelper{
         $row .= '</div>';
         return $row;
     }
-    /**
-     * returns a table of the results.
-     * @param type $results
-     * @param type $options
-     * possible options <br>
-     * <b>names</b> (of colums) <br>
-     * <b>cols</b> (in the database Action will create a link) <br>
-     * <b>model</b> (model that for the database)<br>
-     * <b>link</b> ('' => [text , [options]]) always green
-     * @return string
-     */
-    public function makeResultsTable($results, $options, $type = null, $isTablet = 'false'){
-        $table = '<table class="table-striped">';
-        $table .= $this->Html->tableHeaders($options['names']);
-        foreach($results as $row){
-            $tableCells = array();
-            foreach($options['cols'] as $col){
-                if ($col=='Actions'){
-                    $links = '';
-                    if ($type=='SampleSet'){
-                        $links .= $this->sampleSetActions($row['SampleSet']['id'], $row['SampleSet']['set_code'], $isTablet);
-                    } else if ($type=='Compound'){
-                        $links .= $this->compoundActions($row[$options['model']]['id'], $row[$options['model']]['chemspider_id'], $row[$options['model']]['metlin_id'],$row[$options['model']]['pub_chem'],$row[$options['model']]['cas'],$this->checkFlavVol($row[$options['model']]['comment']));
-                    } else if ($type=='Metabolite'){
-                        $links .= $this->metaboliteActions($row[$options['model']]['id']);
-                    } else if ($type=='Proposed_Metabolite'){
-                        $links .= $this->proposedMetaboliteActions($row[$options['model']]['id']);
-                    } else if ($type=='Msms_Metabolite'){
-                        $links .= $this->msmsMetaboliteActions($row[$options['model']]['id']);
-					} else if ($type=='CompoundpfrData'){
-                        $links .= $this->compoundpfrDataActions($row[$options['model']]['id']);
-                    }
-                    array_push($tableCells, $links);
-                } else {
-                    if (isset($row[$options['model']][$col])){
-                        array_push($tableCells,$row[$options['model']][$col]);
-                    } else {
-                        array_push($tableCells, '');
-                    }
-                }
-            }
-            $table .= $this->Html->tableCells($tableCells);
-        }
-        $table .= '</table>';
-        return $table;
-    }
+
     /**
      * helper method for making the links for makeResultsTable if its a sample set table
      */
