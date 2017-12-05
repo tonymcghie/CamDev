@@ -26,6 +26,7 @@ class ProjectsController extends AppController{
         parent::beforeFilter();
         //$this->Auth->deny('addMetabolite','editMetabolite','editProposedMetabolite','editMsmsMetabolite');
         $this->Auth->allow('addProject','addMetabolite');
+        $this->set('group', 'tools');
     }
     
     /**
@@ -42,7 +43,6 @@ class ProjectsController extends AppController{
      * @return null
      */
     public function addProject(){
-        $this->layout = 'PageLayout';
         if (isset($this->request->data['Project'])){ //check if the save button has being clicked            
             $data = $this->request->data;      //gets the data
             $this->Project->create();            //Need to add

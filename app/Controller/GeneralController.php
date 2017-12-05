@@ -46,7 +46,7 @@ class GeneralController extends AppController {
         parent::beforeFilter();
         $this->Cookie->name = 'View'; //sets a cookie with the name view
         $this->Cookie->time = '365 days'; //sets the time till it expires to be really long
-        $this->set('group', 'general');
+        $this->set('group', 'tools');
     }
     
     /**
@@ -62,12 +62,11 @@ class GeneralController extends AppController {
      * These should be deleted or commented out when going live
      */
     public function info(){
-//        $this->layout = 'PageLayout';
+        $this->set('group', 'help');
     } 
  
-	public function howto(){  
-        // added to implement howtos, functions with no commands execute defaults
-//        $this->layout = 'PageLayout';
+	public function howto(){
+        $this->set('group', 'help');
     }    
     /**
      * almost a blank page

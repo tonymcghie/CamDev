@@ -26,6 +26,11 @@ class MolecularFeaturesController extends AppController{
      */
     //private $file_URL = '/app/app/webroot/data/'; //Live
     private $file_URL = 'data/';  //testing
+
+    public function beforeFilter() {
+        parent::beforeFilter();
+        $this->set('group', 'metabolomicData');
+    }
     
     /**
      * returns weather the the user is authorised to access the functions

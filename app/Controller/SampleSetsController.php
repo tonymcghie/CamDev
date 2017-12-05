@@ -238,7 +238,6 @@ class SampleSetsController extends AppController {
      * @param type $id
      */
     public function details($id = null) {
-        $this->layout = 'main';
         $data = $this->request->data;        
         if ($id == null){
             $id = $this->params['url']['id'];
