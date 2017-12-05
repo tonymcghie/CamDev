@@ -10,7 +10,9 @@ echo $this->BootstrapForm->create_horizontal('Analysis', ['type' => 'file']);
 echo $this->BootstrapForm->input_horizontal('title',
     ['type' => 'text', 'label' => 'Edit Title:', 'value' => $analysis['Analysis']['title']]);
 echo $this->BootstrapForm->input_horizontal('id',
-    ['label' => '', 'type' => 'hidden', 'value' => $analysis['Analysis']['id'], 'class' => 'ids']); ?>
+    ['label' => '', 'type' => 'hidden', 'value' => $analysis['Analysis']['id']]);
+echo $this->BootstrapForm->input_horizontal('set_code',
+['label' => '', 'type' => 'hidden', 'value' => $analysis['Analysis']['set_code']]); ?>
 <fieldset>
     <legend>Analysis Info</legend>
 

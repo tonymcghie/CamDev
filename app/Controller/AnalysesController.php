@@ -49,38 +49,34 @@ class AnalysesController extends AppController{
         if ($this->request->is('post')) {
             $data = $this->request->data;
             $set_code = $data['Analysis']['set_code'];
-            unset($data['Analysis']['set_code']); //makes sure the set_code doesnt change
-            foreach ($data['Analysis'] as &$row){ 
-                //File upload stuff
-                if (isset($row['newImg'])){
-                    unset($row['newImg']);                    
-                } //unsets the newImg value as the images are uplaoded through a separate iFrame      
-                if (isset($row['p_data']['error'])&&$row['p_data']['error']=='0'){ //uplaods an img if there is one to upload
-                    $row['processed'] = $this->uploadFile($row['p_data'],
-                            $set_code.'_'.$row['title'].'_'.'additionalData'.'_'.$row['id'].'.'.substr(strtolower(strrchr($row['p_data']['name'], '.')), 1));
-                }   //calls the functoin to upload a new additional data file and sets the name variable           
-                if (isset($row['d_data']['error'])&&$row['d_data']['error']=='0'){ //uplaods an img if there is one to upload
-                    $row['derived_results'] = $this->uploadDataFile($row['d_data'],
-                            $set_code.'_'.$row['title'].'_'.'processedData'.'_'.$row['id'].'.xlsx',
-                            $row,
-                            $set_code);
-                }   //calls the function to upload a new processed data file and sets the name variable
-                if(isset($row['d_data'])){
-                    unset($row['d_data']);
-                } //unsets d_data as its not a column in the table
-                if(isset($row['p_data'])){
-                    unset($row['p_data']);
-                } //unsets p_data as its not a column in the table
-                //end file uploading stuff
-                if (!isset($row['id'])){continue;}
-                unset($row['imgURL']);
-                
-                $this->Analysis->id=$row['id']; //sets the row to save to 
-                $this->Analysis->save($row);    //saves the row
-            }           
+            $id = $data['Analysis']['id'];
+            //File upload stuff
+//            if (isset($data['Analysis']['newImg'])){
+//                unset($data['Analysis']['newImg']);
+//            } //unsets the newImg value as the images are uplaoded through a separate iFrame
+//            if (isset($data['Analysis']['p_data']['error']) && $data['Analysis']['p_data']['error']=='0'){ //uplaods an img if there is one to upload
+//                $data['Analysis']['processed'] = $this->uploadFile($data['Analysis']['p_data'],
+//                        $set_code.'_'.$data['Analysis']['title'].'_'.'additionalData'.'_'.$data['id'].'.'.substr(strtolower(strrchr($data['p_data']['name'], '.')), 1));
+//            }   //calls the functoin to upload a new additional data file and sets the name variable
+//            if (isset($data['Analysis']['d_data']['error']) && $data['Analysis']['d_data']['error']=='0'){ //uplaods an img if there is one to upload
+//                $data['Analysis']['derived_results'] = $this->uploadDataFile($data['Analysis']['d_data'],
+//                        $set_code.'_'.$data['Analysis']['title'].'_'.'processedData'.'_'.$data['Analysis']['id'].'.xlsx',
+//                        $data,
+//                        $set_code);
+//            }   //calls the function to upload a new processed data file and sets the name variable
+//            if(isset($data['Analysis']['d_data'])){
+//                unset($data['Analysis']['d_data']);
+//            } //unsets d_data as its not a column in the table
+//            if(isset($data['Analysis']['p_data'])){
+//                unset($data['Analysis']['p_data']);
+//            } //unsets p_data as its not a column in the table
+//            unset($data['imgURL']);
+//
+            $this->Analysis->id=$data['Analysis']['id']; //sets the data to save to
+            $this->Analysis->save($data);    //saves the data
         } //check to make sure that the analysis exists before trying to save it
 
-        if (!isset($this->params['url']['id'])) {
+        if (!isset($id) && !isset($this->params['url']['id'])) {
             $analysis = $this->Analysis->find('first', ['conditions' => ['set_code' => $set_code]]);
         } else {
             $analysis = $this->Analysis->find('first', ['conditions' => ['id' => $this->params['url']['id']]]);
