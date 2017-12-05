@@ -39,15 +39,15 @@ class AnalysesController extends AppController{
     
     /**
      * this is called when the save or create button is pressed. It will update the values in the database and/or create a new row
-     * @param type $set_code
      */
-    public function editAnalysis($set_code = null, $id = null){
-        $data = $this->request->data;        
-        if ($set_code == null){
-            $set_code = $this->params['url']['set_code'];
+    public function editAnalysis() {
+        $set_code = $this->params['url']['set_code'];
+        if (!isset($set_code)) {
+            throw new Exception('the set_code parameter was not passed');
         }
 
-        if (isset($data['Analysis'][0])){
+        if ($this->request->is('post')) {
+            $data = $this->request->data;
             $set_code = $data['Analysis']['set_code'];
             unset($data['Analysis']['set_code']); //makes sure the set_code doesnt change
             foreach ($data['Analysis'] as &$row){ 
@@ -79,24 +79,32 @@ class AnalysesController extends AppController{
                 $this->Analysis->save($row);    //saves the row
             }           
         } //check to make sure that the analysis exists before trying to save it
-        if (isset($set_code)){         
-            $results = $this->Analysis->find('all', array('conditions' => array('set_code' => $set_code)));
-            $this->set('results', $results);
-            $this->set('set_code', $set_code);
-        } //updates the values showing
+
+        if (!isset($this->params['url']['id'])) {
+            $analysis = $this->Analysis->find('first', ['conditions' => ['set_code' => $set_code]]);
+        } else {
+            $analysis = $this->Analysis->find('first', ['conditions' => ['id' => $this->params['url']['id']]]);
+        }
+
+        $titles = $this->Analysis->find('all', ['conditions' => ['set_code' => $set_code], 'fields' => ['Analysis.id', 'Analysis.title']]);
+        $this->set('titles', $titles);
+        $this->set('currentAnalysis', $analysis);
+        $this->set('set_code', $set_code);
     }
 
-    /**
-     * Ajax fucntion for creating a new analysis
-     */
     public function newAnalysis() {
-        $this->autoRender = false;
-        $this->Analysis->create();
-        $this->Analysis->save($this->request->data);
-        $newId = $this->Analysis->id;
-        // Get default values from database
-        $analysis = $this->Analysis->find('first', ['conditions' => ['id' => $newId]]);
-        echo json_encode($analysis);
+        $set_code = isset($this->params['url']['set_code']) ? $this->params['url']['set_code'] : $this->request->data['Analysis']['set_code'];
+        $this->set('set_code', $set_code);
+        $titles = $this->Analysis->find('all', ['conditions' => ['set_code' => $set_code], 'fields' => ['Analysis.id', 'Analysis.title']]);
+        $this->set('titles', $titles);
+        if ($this->request->is('post')) {
+            $this->Analysis->create();
+            $this->Analysis->save($this->request->data);
+            $newId = $this->Analysis->id;
+
+            $this->redirect(['controller' => 'Analyses', 'action' => 'editAnalysis', '?' => ['set_code' => $set_code, 'id' => $newId]]);
+        }
+
     }
     
     /**
