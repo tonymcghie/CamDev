@@ -1,0 +1,29 @@
+<div class="form-group row">
+    {{#label}}
+    <div class="col-lg-3">
+        <label for="{{name}}">{{label}}</label>
+    </div>
+    {{/label}}
+    <div class="{{#label}}col-lg-9{{/label}}{{^label}}col-lg-12{{/label}}">
+        <input name="{{name}}" type="file">
+    </div>
+</div>
+
+<script>
+    var form = $('form')[0];
+    $(form).find('input[name="{{name}}"]').change(function() {
+        $.ajax({
+            type: "POST",
+            url: '{{url}}',
+            data: new FormData(form),
+            processData: false,
+            contentType: false,
+            error: function(jqXHR, textStatus, errorMessage) {
+                console.log(errorMessage);
+            },
+            success: function (data) {
+                {{#callback}}{{callback}}(data);{{/callback}}
+            }
+        });
+    });
+</script>

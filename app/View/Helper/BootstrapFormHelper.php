@@ -10,6 +10,7 @@ class BootstrapFormHelper extends FormHelper{
     private $model;
     private $currently_grouping = false;
     private $js = '';
+    public $helpers = ['Mustache.Mustache', 'Html'];
 
     /**
      * Starts a new standard form
@@ -133,6 +134,17 @@ class BootstrapFormHelper extends FormHelper{
     public function make_checkbox($fieldName, $options = array()) {
         $options['checkbox'] = parent::input($fieldName, ['type' => 'checkbox', 'label' => false, 'div' => false]);
         return $this->_View->Element('form/checkbox', ['options' => $options]);
+    }
+
+    public function immediateUpload($fieldName, $options) {
+        assert(isset($options['url']), 'The url to send the image to must be set');
+
+        return $this->Mustache->render('form/immediateUpload', [
+            'name' => $fieldName,
+            'label' => $options['label'],
+            'url' => $options['url'],
+            'callback' => $options['callback']
+            ]);
     }
 
     /**
