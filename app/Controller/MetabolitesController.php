@@ -24,7 +24,7 @@ class MetabolitesController extends AppController {
         parent::beforeFilter();
 
         $this->Paginator->settings= [
-            'limit'=>10,
+            'limit'=>50,
             'order' => [
                 'Metabolite.exact_mass' => 'asc'
             ]
@@ -134,7 +134,13 @@ class MetabolitesController extends AppController {
      * @param String $id
      */
     public function viewMetabolite($id = null){
-        if ($id==null){echo "Metabolite is not found";}
+        if ($id == null){
+            $id = $this->params['url']['id'];
+        } // gets $id from the url
+        if (empty($id)) {
+            $this->set('error', 'Invalid Unknown');
+            return;
+        }
         $meta = $this->Metabolite->find('first', ['conditions' => ['id' => $id]]);
         $msms = $this->Msms_Metabolite->find('all' , ['conditions' => ['metabolite_id' => $id]]);
         $proposed = $this->Proposed_Metabolite->find('all' , ['conditions' => ['metabolite_id' => $id]]);

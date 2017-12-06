@@ -36,7 +36,7 @@ class Metabolite extends AppModel implements SearchableModel {
     public function buildObjects(array $queryResults){
         $metaboliteObjects = [];
         foreach ($queryResults as $data) {
-            $metaboliteObjects[] = new Model\DataObject\MetaboliteDataObject($this, $data['Metabolite']);
+            $metaboliteObjects[] = new MetaboliteDataObject($this, $data['Metabolite']);
         }
         return $metaboliteObjects;
     }
@@ -56,6 +56,7 @@ class Metabolite extends AppModel implements SearchableModel {
 
     public function getSearchOptions() {
         return ['sources',
+        'id',
         'all',
         'exact_mass',
         'experiment_ref',

@@ -189,7 +189,7 @@ class StringHelper extends AppHelper{
             'exact_mass' => 'Exact Mass',
             'cas' => 'CAS'],
         'Metabolite' => [
-            'id' => 'ID',
+            'id' => 'CAM Uknown ID',
             'exact_mass' => 'Exact Mass',
             'ion_type' => 'Ion Type',
             'rt_value' => 'Retention Time',

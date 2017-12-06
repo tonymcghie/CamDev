@@ -8,7 +8,7 @@ class Compoundpfr_data extends AppModel implements SearchableModel {
     public function buildObjects(array $queryResults){
         $compoundpfrDataObjects = [];
         foreach ($queryResults as $data) {
-            $compoundpfrDataObjects[] = new Model\DataObject\CompoundPfrDataObject($this, $data['Compoundpfr_data']);
+            $compoundpfrDataObjects[] = new CompoundPfrDataObject($this, $data['Compoundpfr_data']);
         }
         return $compoundpfrDataObjects;
     }

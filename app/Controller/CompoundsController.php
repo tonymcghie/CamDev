@@ -87,7 +87,7 @@ class CompoundsController extends AppController {
         $this->set('options', $this->Compound->getSearchOptions());
         $this->helpers[] = 'Mustache.Mustache';
         $this->Paginator->settings= [
-            'limit'=>10,
+            'limit'=>50,
             'order' => [
                 'SampleSet.date' => 'asc'
             ]

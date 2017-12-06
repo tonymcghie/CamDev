@@ -1,10 +1,10 @@
 <header>
-<h1>View Unknown Compounds data</h1>
+<h1>View Unknown Compounds Data</h1>
 </header>
 <div class="unknown-compounds">
 <?php
 if (!isset($meta)){
-    echo '<h2>Unknown Compound Not found</h2>';
+    echo '<Unknown Compound Not found';
 } else {
     $results['Metabolite'] = $meta;
     echo $this->My->makeResultsTable($results, array(
