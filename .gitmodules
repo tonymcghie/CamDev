@@ -1,9 +1,6 @@
 [submodule "Behat"]
 	path = Behat
 	url = git://github.com/Behat/Behat.git
-[submodule "app/Plugin/Mustache"]
-	path = app/Plugin/Mustache
-	url = git@github.com:electblake/CakePHP-Mustache-Plugin.git
 [submodule "app/Plugin/DebugKit"]
 	path = app/Plugin/DebugKit
 	url = git://github.com/cakephp/debug_kit.git

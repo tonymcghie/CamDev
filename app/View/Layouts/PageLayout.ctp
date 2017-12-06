@@ -8,17 +8,20 @@ assert(isset($group),
 $sampleSetGroup = 'sampleSets';
 $compoundsGroup = 'compounds';
 $pfrDataGroup = 'pfrData';
+$metabolomicDataGroup = 'metabolomicData';
 $unknowCompoundsGroup = 'unknowCompounds';
-$generalGroup = 'general';
+$helpGroup = 'help';
+$toolsGroup = 'tools';
 $preReleaseGroup = 'preRelease';
+$inDevGroup = 'inDev';
 
 // Set the group to sample set by default.
 if (!isset($group)) {
     $group = $sampleSetGroup;
 }
-assert($group == $sampleSetGroup || $group == $compoundsGroup ||
-    $group == $pfrDataGroup || $group == $unknowCompoundsGroup ||
-    $group == $generalGroup || $group == $preReleaseGroup,
+assert(in_array($group, [$sampleSetGroup,
+    $compoundsGroup, $pfrDataGroup, $unknowCompoundsGroup, $helpGroup,
+    $preReleaseGroup, $toolsGroup, $metabolomicDataGroup, $inDevGroup]),
     "The group '$group' was not recognised.");
 ?>
 
@@ -101,10 +104,8 @@ assert($group == $sampleSetGroup || $group == $compoundsGroup ||
                 <div class="panel-collapse collapse <?php if ($group == $compoundsGroup)echo 'in'; ?>" id="compounds_menu">
                     <div class="panel-body light-blue lighten-3">
                         <?= $this->Html->link('Find', ['controller' => 'Compounds', 'action' => 'search'], ['class' => 'list-group-item']) ?>
-                        <?= $this->Html->link('Search', ['controller' => 'Compounds', 'action' => 'subSearch'], ['class' => 'list-group-item']) ?>
-                        <?= $this->Html->link('Add', ['controller' => 'Compounds', 'action' => 'addCompound'], ['class' => 'list-group-item']) ?>
-                        <?= $this->Html->link('ID by Mass', ['controller' => 'Identify', 'action' => 'idMass'], ['class' => 'list-group-item']) ?>
-                        <?= $this->Html->link('ID by Mass(ac)', ['controller' => 'Identify', 'action' => 'IdByMass'], ['class' => 'list-group-item']) ?>
+                        <?= $this->Html->link('New', ['controller' => 'Compounds', 'action' => 'addCompound'], ['class' => 'list-group-item']) ?>
+                        <?= $this->Html->link('ID by Mass', ['controller' => 'Identify', 'action' => 'SelectFile'], ['class' => 'list-group-item']) ?>
 
                         <?php
                         /*//if ($this->Session->read('Auth.User')!==null && in_array("PFR-GP-Biological Chemistry and Bioactives Group", $this->Session->read('Auth.User')['groups'])){
@@ -123,13 +124,32 @@ assert($group == $sampleSetGroup || $group == $compoundsGroup ||
                 </div>
                 <div class="panel-collapse collapse <?php if ($group == $pfrDataGroup)echo 'in'; ?>" id="pfr_data_menu">
                     <div class="panel-body light-blue lighten-3">
-                        <?= $this->Html->link('Chemical', ['controller' => 'Compoundpfr_data', 'action' => 'search'], ['class' => 'list-group-item']) ?>
-                        <?= $this->Html->link('Bioactivity', ['controller' => 'Bioactivitypfr_data', 'action' => 'search'], ['class' => 'list-group-item']) ?>
+                        <?= $this->Html->link('Find', ['controller' => 'Compoundpfr_data', 'action' => 'search'], ['class' => 'list-group-item']) ?>
+                        <?= $this->Html->link('Overview', ['controller' => 'Compoundpfr_data', 'action' => 'overviewData'], ['class' => 'list-group-item']) ?>
                         <?= $this->Html->link('Graph', ['controller' => 'Compoundpfr_data', 'action' => 'graphData'], ['class' => 'list-group-item']) ?>
                         <?= $this->Html->link('Import', ['controller' => 'Compoundpfr_data', 'action' => 'import'], ['class' => 'list-group-item']) ?>
+                        <?= $this->Html->link('Find-Bioactivity', ['controller' => 'Bioactivitypfr_data', 'action' => 'search'], ['class' => 'list-group-item']) ?>
                         <?php
                         /*if ($this->Session->read('Auth.User')!==null && in_array("PFR-GP-Biological Chemistry and Bioactives Group", $this->Session->read('Auth.User')['groups'])) {
                         echo '<li>'.$this->Html->link('Import', array('controller' => 'Compoundpfr_data','action' => 'import'), array('target' => 'mainFrame' , 'class' => 'none')).'</li>';
+                        }*/
+                        ?>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading light-green lighten-3" data-toggle="collapse" data-parent="#nav_accordion" href="#metabolomic_data_menu">
+                    <span>Metabolomic Data</span>
+                </div>
+                <div class="panel-collapse collapse <?php if ($group == $metabolomicDataGroup )echo 'in'; ?>" id="metabolomic_data_menu">
+                    <div class="panel-body light-blue lighten-3">
+                        <?= $this->Html->link('Find', ['controller' => 'Molecular_features', 'action' => 'search'], ['class' => 'list-group-item']) ?>
+                        <?= $this->Html->link('Overview', ['controller' => 'Molecular_features', 'action' => 'overviewData'], ['class' => 'list-group-item']) ?>
+                        <?= $this->Html->link('Import', ['controller' => 'Molecular_features', 'action' => 'import'], ['class' => 'list-group-item']) ?>
+                        <?php
+                        /*if ($this->Session->read('Auth.User')!==null && in_array("PFR-GP-Biological Chemistry and Bioactives Group", $this->Session->read('Auth.User')['groups'])){
+                            echo '<li>'.$this->Html->link('Add', ['controller' => 'Metabolites','action' => 'addMetabolite'], ['target' => 'mainFrame', 'class' => 'btn btn-link']).'</li>';
                         }*/
                         ?>
                     </div>
@@ -142,8 +162,8 @@ assert($group == $sampleSetGroup || $group == $compoundsGroup ||
                 </div>
                 <div class="panel-collapse collapse <?php if ($group == $unknowCompoundsGroup)echo 'in'; ?>" id="unknown_compounds_menu">
                     <div class="panel-body light-blue lighten-3">
-                        <?= $this->Html->link('Add', ['controller' => 'Metabolites', 'action' => 'addMetabolite'], ['class' => 'list-group-item']) ?>
-                        <?= $this->Html->link('Search', ['controller' => 'Metabolites', 'action' => 'search'], ['class' => 'list-group-item']) ?>
+                        <?= $this->Html->link('Find', ['controller' => 'Metabolites', 'action' => 'search'], ['class' => 'list-group-item']) ?>
+                        <?= $this->Html->link('New', ['controller' => 'Metabolites', 'action' => 'addMetabolite'], ['class' => 'list-group-item']) ?>
                         <?php
                         /*if ($this->Session->read('Auth.User')!==null && in_array("PFR-GP-Biological Chemistry and Bioactives Group", $this->Session->read('Auth.User')['groups'])){
                             echo '<li>'.$this->Html->link('Add', ['controller' => 'Metabolites','action' => 'addMetabolite'], ['target' => 'mainFrame', 'class' => 'btn btn-link']).'</li>';
@@ -155,14 +175,30 @@ assert($group == $sampleSetGroup || $group == $compoundsGroup ||
 
             <div class="panel panel-default">
                 <div class="panel-heading light-green lighten-3" data-toggle="collapse" data-parent="#nav_accordion" href="#general_menu">
-                    <span>General</span>
+                    <span>Getting Started</span>
                 </div>
-                <div class="panel-collapse collapse <?php if ($group == $generalGroup)echo 'in'; ?>" id="general_menu">
+                <div class="panel-collapse collapse <?php if ($group == $helpGroup)echo 'in'; ?>" id="general_menu">
                     <div class="panel-body light-blue lighten-3">
-                        <?= $this->Html->link('Scripts', ['controller' => 'General', 'action' => 'scripts'], ['class' => 'list-group-item']) ?>
-                        <?= $this->Html->link('New Project', ['controller' => 'Projects', 'action' => 'addProject'], ['class' => 'list-group-item']) ?>
                         <?= $this->Html->link('Info', ['controller' => 'General', 'action' => 'info'], ['class' => 'list-group-item']) ?>
                         <?= $this->Html->link('How To', ['controller' => 'General', 'action' => 'howto'], ['class' => 'list-group-item']) ?>
+                        <?php
+                        /*if ($this->Session->read('Auth.User')!==null && in_array("PFR-GP-Biological Chemistry and Bioactives Group", $this->Session->read('Auth.User')['groups'])){
+                            echo '<li>'.$this->Html->link('Scripts', ['controller' => 'General','action' => 'scripts'], ['target' => 'mainFrame', 'class' => 'btn btn-link']).'</li>';
+                        }*/
+                        ?>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading light-green lighten-3" data-toggle="collapse" data-parent="#nav_accordion" href="#help_menu">
+                    <span>Tools</span>
+                </div>
+                <div class="panel-collapse collapse <?php if ($group == $toolsGroup)echo 'in'; ?>" id="help_menu">
+                    <div class="panel-body light-blue lighten-3">
+                        <?= $this->Html->link('Scripts', ['controller' => 'General', 'action' => 'scripts'], ['class' => 'list-group-item']) ?>
+                        <?= $this->Html->link('Data Templates', ['controller' => 'General', 'action' => 'templates'], ['class' => 'list-group-item']) ?>
+                        <?= $this->Html->link('New Project', ['controller' => 'Projects', 'action' => 'addProject'], ['class' => 'list-group-item']) ?>
                         <?= $this->Html->link('Clear Workbench', [], ['class' => 'list-group-item']) ?>
                         <?php
                         /*if ($this->Session->read('Auth.User')!==null && in_array("PFR-GP-Biological Chemistry and Bioactives Group", $this->Session->read('Auth.User')['groups'])){
@@ -179,7 +215,7 @@ assert($group == $sampleSetGroup || $group == $compoundsGroup ||
                 </div>
                 <div class="panel-collapse collapse <?php if ($group == $preReleaseGroup)echo 'in'; ?>" id="pre_release_menu">
                     <div class="panel-body light-blue lighten-3">
-                        <?= $this->Html->link('Plates', ['controller' => 'SampleSets', 'action' => 'newSet'], ['class' => 'list-group-item']) ?>
+                        <?= $this->Html->link('Plates', ['controller' => 'inDev', 'action' => 'plates'], ['class' => 'list-group-item']) ?>
                     </div>
                 </div>
             </div>

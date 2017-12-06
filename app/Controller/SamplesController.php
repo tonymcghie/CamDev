@@ -26,8 +26,9 @@ class SamplesController extends AppController{
         parent::beforeFilter();
         //by default users are not allowed
         $this->Auth->allow('editAnalysis');
+        $this->set('group', 'sampleSets');
     }
-    
+
     /**
      * returns weather the user is authorised to access this controller
      * @param type $user
