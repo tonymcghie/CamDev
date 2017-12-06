@@ -97,7 +97,6 @@ class AnalysesController extends AppController{
             $this->Analysis->create();
             $this->Analysis->save($this->request->data);
             $newId = $this->Analysis->id;
-
             $this->redirect(['controller' => 'Analyses', 'action' => 'editAnalysis', '?' => ['set_code' => $set_code, 'id' => $newId]]);
         }
 

@@ -129,32 +129,6 @@ class MyHelper extends AppHelper{
         }*/
         return $temp;
     }
-    /**
-     * helper method for making the links for makeResultsTable if its a metabolite table
-     */
-    protected function metaboliteActions($id){
-        $temp = $this->Form->postLink('Edit', array('controller' => 'Metabolites', 'action' => 'editMetabolite', $id), array('class' => 'find-button abbr-button'));
-        $temp .= $this->Form->postLink('View', array('controller' => 'Metabolites', 'action' => 'viewMetabolite', $id), array('class' => 'find-button abbr-button'));
-        return $temp;
-    }
-    /**
-     * helper method for making edit link for resulttable
-     */
-    protected function proposedMetaboliteActions($id){
-        return $this->Form->postLink('Edit', array('controller' => 'Metabolites', 'action' => 'editProposedMetabolite', $id), array('class' => 'find-button anySizeButton'));
-    }
-    /**
-     * helper method for making edit link for resulttable
-     */
-    protected function msmsMetaboliteActions($id){
-        return $this->Form->postLink('Edit', array('controller' => 'Metabolites', 'action' => 'editMsmsMetabolite', $id), array('class' => 'find-button green-button'));
-    }
-	/**
-     * helper method for making edit link for resulttable
-     */
-    protected function compoundpfrDataActions($id){
-        return $this->Form->postLink('View', array('controller' => 'CompoundpfrData', 'action' => 'viewData', $id), array('class' => 'find-button abbr-button'));
-    }    
 	/**
      * makes a Url that points to an iplant file that can be open in browser
      * @param type $url
