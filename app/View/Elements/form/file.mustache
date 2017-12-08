@@ -1,0 +1,53 @@
+<div class="form-group row">
+    {{#label}}
+        <div class="col-lg-3">
+            <label for="{{name}}">{{label}}</label>
+        </div>
+    {{/label}}
+    <div class="{{#label}}col-lg-9{{/label}}{{^label}}col-lg-12{{/label}}">
+        <input name="data[{{model}}][{{name}}]"
+               id="{{name}}-input"
+               type="text"
+               {{#value}}value="{{value}}"{{/value}}
+               class="form-control col-lg-5 filename-input"
+                readonly
+               >
+        <a class="col-lg-1 btn btn-default" id="{{name}}-download">
+            <span class="glyphicon glyphicon-download-alt"></span>
+        </a>
+        <a class="col-lg-1 btn btn-default" id="{{name}}-upload">
+            <span class="glyphicon glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>
+        </a>
+        <div class="hide-file">
+            <input name="{{name}}_file" id="{{name}}-file" type="file" class="file-upload">
+        </div>
+    </div>
+</div>
+
+<script>
+    $('#{{name}}-upload').click(function() {
+        $('#{{name}}-file').trigger('click');
+    });
+    $('#{{name}}-download').click(function() {
+        window.location.href = $('#{{name}}-input').val();
+    });
+
+    var form = $('form')[0];
+    $(form).find('input[name="{{name}}_file"]').change(function() {
+        $.ajax({
+            type: "POST",
+            url: '{{url}}',
+            data: new FormData(form),
+            processData: false,
+            contentType: false,
+            error: function(jqXHR, textStatus, errorMessage) {
+                console.log(errorMessage);
+            },
+            success: function (data) {
+                var filedata = JSON.parse(data);
+                console.log(filedata.filename);
+                $('#{{name}}-input').val(filedata.filename);
+            }
+        });
+    });
+</script>

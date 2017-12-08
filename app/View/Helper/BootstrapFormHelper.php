@@ -148,6 +148,24 @@ class BootstrapFormHelper extends FormHelper{
     }
 
     /**
+     * A form item that displays the current file as well as having a button to uplaod and download
+     * Imediatly uploads the file.
+     * @param $fieldName
+     * @param $options ['url', 'label', 'value']
+     */
+    public function fileUpload($fieldName, $options) {
+        assert(isset($options['url']), 'The url to send the image to must be set');
+
+        return $this->Mustache->render('form/file', [
+            'name' => $fieldName,
+            'label' => $options['label'],
+            'url' => $options['url'],
+            'value' => $options['value'],
+            'model' => $this->model
+        ]);
+    }
+
+    /**
      * this creates a button for an inline or normal form
      * @param string $fieldName
      * @param array $options

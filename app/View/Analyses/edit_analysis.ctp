@@ -7,3 +7,5 @@
 <div class="tab-content">
     <?= $this->element('Analysis/tab_content', ['analysis' => $currentAnalysis, 'set_code' => $set_code]); ?>
 </div>
+
+<?= $this->element('image_modal'); ?>

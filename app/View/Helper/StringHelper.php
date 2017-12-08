@@ -219,8 +219,12 @@ class StringHelper extends AppHelper{
             'genotype' => 'Genotype',
             'analyst' => 'Analyst',
             'file' => 'File',
-            'searchTitle' => 'Search PFR Bioactivity Data'
-        ]
+            'searchTitle' => 'Search PFR Bioactivity Data'],
+        'Analysis' => [
+            'rawData' => 'Raw Data',
+            'processedData' => 'Processed Data',
+            'resultsData' => 'Additional Data',
+            'uploadImage' => 'Upload new image']
     ];
 
     public function get_string($identifier, $set){

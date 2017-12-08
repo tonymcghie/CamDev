@@ -138,9 +138,6 @@ class MyHelper extends AppHelper{
     public function makeDataURL($name){
         return '/data/files/analysis/'.$name;
     }
-    public function makeImgURL($name){
-        return '/data/images/analysis/'.$name.'?stopCahce='.rand();
-    }
     public function makeSSmetaURL($name){
         return '/data/files/samplesets/'.$name;
     }

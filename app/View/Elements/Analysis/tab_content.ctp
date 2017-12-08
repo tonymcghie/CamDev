@@ -37,74 +37,78 @@ echo $this->BootstrapForm->input_horizontal('set_code',
         <span>(files stored in http://storage.powerplant.pfr.co.nz/output/chemistry/cam/...)</span>
     </legend>
     <?php
-    $urlAnalysis = $analysis['Analysis']['raw_data'];
-    $urlProcessed = $this->My->makeDataURL($analysis['Analysis']['processed']);
-    $urlResults = $this->My->makeDataURL($analysis['Analysis']['derived_results']);
+    echo $this->BootstrapForm->input_horizontal('raw_data', [
+            'label' => $this->String->get_string('rawData', 'Analysis'),
+            'value' => $analysis['Analysis']['raw_data']]);
+    echo $this->BootstrapForm->fileUpload('processed', [
+        'label' => $this->String->get_string('processedData', 'Analysis'),
+        'url' => $this->Html->url(['action' => 'uploadProcessedData'], true),
+        'value' => $analysis['Analysis']['processed']]);
+    echo $this->BootstrapForm->fileUpload('derived_results', [
+        'label' => $this->String->get_string('resultsData', 'Analysis'),
+        'url' => $this->Html->url(['action' => 'uploadResultsData'], true),
+        'value' => $analysis['Analysis']['derived_results']]);
     ?>
-    <table class="noFormat"> <!--//makes the table of files and open buttons-->
-        <?php
-//                echo $this->Html->tableCells([[$this->Form->input($form_model . 'raw_data', array('label' => 'Raw Data Location:', 'value' => $row['Analysis']['raw_data'])),
-//                    ''],
-//                    [$this->Form->input($form_model . 'derived_results', array('label' => 'Processed Data:', 'value' => $row['Analysis']['derived_results'])),
-//                        $this->Html->link('open', $urlResults, ['target' => '_blank', 'class' => 'find-button anySizeButton']),
-//                        '<label for="' . $form_model . 'd_data">Upload New xlsx File</label>' . $this->Form->file($form_model . 'd_data', [])],
-//                    [$this->Form->input($form_model . 'processed', array('label' => 'Additional Data: ', 'value' => $row['Analysis']['processed'])),
-//                        $this->Html->link('open', $urlProcessed, ['target' => '_blank', 'class' => 'find-button anySizeButton']),
-//                        '<label for="' . $form_model . 'p_data">Upload New Any File</label>' . $this->Form->file($form_model . 'p_data', [])]]);
-        ?>
-    </table>
 </fieldset>
 <?php endif; /* The file inputs */ ?>
 <?php if ($analysis['Analysis']['workflow'] == 'chem_everything'
         || $analysis['Analysis']['workflow'] == 'chem_pictures'
         || $analysis['Analysis']['workflow'] == 'bio_everything'
         || $analysis['Analysis']['workflow'] == 'bio_pictures'): ?>
-    <h2>Upload an Image</h2>
-    <?php
-//        echo $this->Form->hidden($form_model . 'imgURL', ['value' => $currentAnalysis['Analysis']['imgURL'], 'id' => $currentAnalysis['Analysis']['id'] . 'imgURL']);
-    ?>
-    <!--        <iframe id="--><?php //echo $row['Analysis']['id'];?><!--" class="iframeNoformat" src="--><?php //echo $this->Html->url(['controller' => 'Analyses', 'action' => 'uploadNewImg', '?' => ['id' => $row['Analysis']['id']]]);?><!--"></iframe>-->
-    <!---->
-    <!--        <div id="imagesCarousel" class="carousel slide" data-ride="carousel">-->
-    <!--            <ol class="carousel-indicators">-->
-    <!--                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>-->
-    <!--                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>-->
-    <!--                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>-->
-    <!--            </ol>-->
-    <!--            <div class="carousel-inner" role="listbox">-->
-    <!--                <div class="carousel-item active">-->
-    <!--                    <img class="d-block img-fluid" src="..." alt="First slide">-->
-    <!--                </div>-->
-    <!--                <div class="carousel-item">-->
-    <!--                    <img class="d-block img-fluid" src="..." alt="Second slide">-->
-    <!--                </div>-->
-    <!--                <div class="carousel-item">-->
-    <!--                    <img class="d-block img-fluid" src="..." alt="Third slide">-->
-    <!--                </div>-->
-    <!--            </div>-->
-    <!--            <a class="carousel-control-prev" href="#imagesCarousel" role="button" data-slide="prev">-->
-    <!--                <span class="carousel-control-prev-icon" aria-hidden="true"></span>-->
-    <!--                <span class="sr-only">Previous</span>-->
-    <!--            </a>-->
-    <!--            <a class="carousel-control-next" href="#imagesCarousel" role="button" data-slide="next">-->
-    <!--                <span class="carousel-control-next-icon" aria-hidden="true"></span>-->
-    <!--                <span class="sr-only">Next</span>-->
-    <!--            </a>-->
-    <!--        </div>-->
+    <fieldset>
+        <legend>Upload an Image</legend>
+        <?= $this->BootstrapForm->immediateUpload('newImage', [
+                'label' => $this->String->get_string('uploadImage', 'Analysis'),
+                'callback' => 'addNewImageToGallery',
+                'url' => $this->Html->url(['action' => 'uploadNewImage'], true)
+            ]); ?>
+        <div id="images-carousel" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner" role="listbox" id="images-carousel-items">
 
-    <?php
-    //echo $this->Form->file($form_model.'newImg', ['class' => 'take-picture', 'accept' => 'image/*;capture=camera', 'id' => $row['Analysis']['id'], 'value' => $row['Analysis']['imgURL']]);
-//        echo '<div class="imgDiv" style="background-color: #000;" id="imgDiv'.$row['Analysis']['id'].'">';
-//        echo $this->Html->image(((intval($row['Analysis']['imgURL']) != 0) ? $this->My->makeImgURL($row['Analysis']['id'].'_0') : 'about:blank'), [
-//            'alt' => 'img',
-//            'id' => 'show-picture'.$row['Analysis']['id'],
-//            'height' => '300px',
-//            'style' => 'background-color: #FFFFFF;'
-//            ]);
-//        echo '</div>';
-//        echo $this->Form->input($form_model . 'blobURL', ['id' => 'url' . $currentAnalysis['Analysis']['id'], 'type' => 'hidden']);
-    ?>
-<?php endif; /* The piture input */ ?>
+            </div>
+            <ol class="carousel-indicators" id="images-carousel-indicators">
+
+            </ol>
+            <a class="carousel-control left" href="#images-carousel" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control right" href="#images-carousel" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+        <?= $this->Html->script('lib/mustache.min'); ?>
+        <script>
+            var indicatorTemplate = <?= $this->Mustache->getJSONPTemplates('Analysis/carousel_indicator') ?>;
+            var itemTemplate = <?= $this->Mustache->getJSONPTemplates('Analysis/carousel_item') ?>;
+
+            var carouselIndicators = $('#images-carousel-indicators');
+            var carouselItems = $('#images-carousel-items');
+            var i = 0;
+            for (i = 0; i < <?= $analysis['Analysis']['imgURL']?>; i++) {
+                addGalleryItem(i);
+            }
+
+            function addNewImageToGallery(filepath) {
+                addGalleryItem(i);
+                i = i + 1;
+            }
+
+            function addGalleryItem(index) {
+                carouselIndicators.append(
+                    Mustache.render(indicatorTemplate["Analysis/carousel_indicator"],
+                        {"index": i, "active": index === 0})
+                );
+                carouselItems.append(
+                    Mustache.render(itemTemplate["Analysis/carousel_item"],
+                        {"url": '<?= $this->webroot?>data/images/analysis/<?=$analysis['Analysis']['id']?>_'+ index,
+                        "active": index === 0})
+                );
+            }
+        </script>
+    </fieldset>
+<?php endif; ?>
 <?php
 echo $this->BootstrapForm->addActionButtons();
 echo $this->BootstrapForm->get_js();
