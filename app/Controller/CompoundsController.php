@@ -57,7 +57,7 @@ class CompoundsController extends AppController {
      * @throws NotFoundExcpetion
      */
     public function editCompound($id = null){
-        $this->layout = 'main';
+        //$this->layout = 'main';
         if ($id == null){
             $id = $this->params['url']['id'];
         } // gets $id from the url

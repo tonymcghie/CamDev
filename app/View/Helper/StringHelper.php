@@ -77,7 +77,8 @@ class StringHelper extends AppHelper{
             'owner' => 'Owner'],
         'Metabolite_form' => [
             'title' => 'Add New Unknown Compound',
-            'sub_title' => 'not required at present',
+            'edit_title' => 'PFR Chemistry: Edit Unknown Compound',
+            'sub_title' => 'Enter/Edit information about the Unknown Compound (* required) and then click Save',
             'exact_mass' => 'Exact Mass',
             'ion_type' => 'Ion Type',
             'rt_value' => 'Retention Value',
@@ -90,7 +91,7 @@ class StringHelper extends AppHelper{
             'spectra_nmr' => 'NMR Spectrum',
             'date' => 'Date'],
         'Proposed_Metabolite_form' => [
-            'title' => 'Enter Possible Chemical Identity of an Uknown',
+            'title' => 'Enter Proposed Chemical Identity for an Uknown Compound',
             'sub_title' => 'Enter the CAM Unknown ID',
             'metabolite_id' => 'Unknown ID',
             'name' => 'Suggested Chemical Name',

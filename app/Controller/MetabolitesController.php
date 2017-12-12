@@ -44,7 +44,7 @@ class MetabolitesController extends AppController {
     //}
 
     /**
-     * adds a meatbolite
+     * adds a Metabolite
      * @return null
      */
     public function addMetabolite(){
@@ -84,11 +84,42 @@ class MetabolitesController extends AppController {
     }
     
     /**
+     * saves the proposed ID for a metabolite to the database
+     * @return null
+     */
+    public function addProposedid(){         
+        $data = $this->request->data;      //gets the data
+        $this->Proposed_Metabolite->create();            //Need to add
+        if ($this->Proposed_Metabolite->save($data)){                 //saves the Compound
+            return $this->redirect(['controller' => 'General', 'action' => 'blank', '?' => ['alert' => 'Proposed Unknown Compound Saved']]);
+        }
+    }
+    
+    /**
      * updates a row in the metabolite table
      * @param String $id
      */
     public function editMetabolite($id = null){
-        $this->save($this->Metabolite, $id);        
+        if ($id == null){
+            $id = $this->params['url']['id'];
+        } // gets $id from the url
+        if (empty($id)) {
+            $this->set('error', 'Invalid Unknown');
+            return;
+        }
+        $metabolite = $this->Metabolite->findById($id);
+        if (!$metabolite){
+            throw new NotFoundExcpetion(__('Invalid Unknown Compound'));
+        } //throw error if the id does not belong to a compound
+        if ($this->request->is(array('post', 'put'))){ //gets edited data from the view
+            //$this->Metabolite->id = $id;
+            if ($this->Metabolite->save($this->request->data)){
+                return;
+            } //return if saved successfully
+        } //save data if the form is being submitted
+        if (!$this->request->data){
+           $this->request->data = $metabolite;
+        }//update the data to display
     }
     
     /**
