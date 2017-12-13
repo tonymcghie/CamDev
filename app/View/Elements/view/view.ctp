@@ -10,7 +10,7 @@
     $displayData = $dataObject->getViewData();
     // Remove empty elements.
     $displayData = array_filter($displayData, function($item) {
-        return !empty($item) && !empty($item['text']);
+        return !empty($item) && isset($item['text']);
     });
     // Get the headings from the string helper.
     $displayData = array_map(function($key, $item) {
