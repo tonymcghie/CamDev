@@ -84,13 +84,25 @@ class MetabolitesController extends AppController {
     }
     
     /**
-     * saves the proposed ID for a metabolite to the database
+     * adds a new proposed to an Unknown Compound (Metabolite)
      * @return null
      */
     public function addProposedid(){         
         $data = $this->request->data;      //gets the data
         $this->Proposed_Metabolite->create();            //Need to add
         if ($this->Proposed_Metabolite->save($data)){                 //saves the Compound
+            return $this->redirect(['controller' => 'General', 'action' => 'blank', '?' => ['alert' => 'Proposed Unknown Compound Saved']]);
+        }
+    }
+    
+    /**
+     * adds a new msms spectrum to an Unknown Compound (Metabolite)
+     * @return null
+     */
+    public function addMsms(){         
+        $data = $this->request->data;      //gets the data
+        $this->Msms_Metabolite->create();            //Need to add
+        if ($this->Msms_Metabolite->save($data)){                 //saves the Compound
             return $this->redirect(['controller' => 'General', 'action' => 'blank', '?' => ['alert' => 'Proposed Unknown Compound Saved']]);
         }
     }

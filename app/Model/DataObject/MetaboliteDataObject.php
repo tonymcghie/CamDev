@@ -23,7 +23,7 @@ class MetaboliteDataObject extends DataObject {
             'viewURL' => ['controller' => 'Metabolites', 'action' => 'viewMetabolite', '?' => ['id' => $this->id]],
             'editURL' => ['controller' => 'Metabolites', 'action' => 'editMetabolite', '?' => ['id' => $this->id]],
             'loaddocURL' => ['controller' => 'Metabolites', 'action' => 'details', '?' => ['id' => $this->id]],
-            'msmsURL' => ['controller' => 'Metabolites', 'action' => 'details', '?' => ['id' => $this->id]],
+            'msmsURL' => ['controller' => 'Metabolites', 'action' => 'addMsms', '?' => ['id' => $this->id]],
             'proposed_idURL' => ['controller' => 'Metabolites', 'action' => 'addProposedid', '?' => ['id' => $this->id]]
         ];
     }
