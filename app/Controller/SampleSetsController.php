@@ -3,13 +3,15 @@
 App::uses('CakeEmail', 'Network/Email');
 App::uses('AppController', 'Controller');
 App::uses('Searchable', 'Controller/Behavior');
+App::uses('Viewable', 'Controller/Behavior');
 
 class SampleSetsController extends AppController {
     use Searchable {
         Searchable::getComponents as public getSearchableComponents;
     }
+    use Viewable;
 
-    public $helpers = ['Html' , 'Form' , 'My' , 'Js', 'Time', 'String', 'BootstrapForm'];
+    public $helpers = ['Html' , 'Form' , 'My' , 'Js', 'Time', 'String', 'BootstrapForm', 'Mustache.Mustache'];
     public $uses = ['Analysis' , 'SampleSet' , 'Chemist', 'Project'];
     public $layout = 'PageLayout';
 
@@ -209,52 +211,6 @@ class SampleSetsController extends AppController {
             $this->request->data = $set; //makes sure all the inputs get updated
         } //update the values that should be showing in the form after its being submitted and updated
     }
-    
-    /**
-     * The Controller function for viewing the sample sets
-     * this bassically adds the derived data from the analysis to the view
-     * @param type $id
-     * @throws NotFoundExcpetion
-     * Old function no longer used, but retained because it is an example of how to find the most recent version of the Sample Set
-     */
-    public function viewSet($id = null){
-        $id = 363;
-        $set = $this->SampleSet->findById($id); //if the id is passed then find on that
-        if (!$set){ //if the set does not exist
-            throw new NotFoundExcpetion(__('Invalid Sample Set'));
-        } //if the sample set with that id exists
-        $this->set('info', $set);// passes the set to the page
-        $deRes = $this->Analysis->find('all', ['fields' => ['Analysis.derived_results', 'Analysis.title'], 'conditions' => ['set_code' => $set['SampleSet']['set_code']]]); //finds the most recent version
-        $this->set('deRes', $deRes); //passes the version to the page
-        if (!$this->request->data){
-            $this->request->data = $set;
-        } //sets the data to go into the hidden inputs
-    }
-
-    /**
-     * The Controller function for viewing the sample set information
-     * and accessing the uploaded files.
-     * Sample Set data is found using the ID and uploaded files specified in the Analysis tabs are added to the view.
-     * @param type $id
-     */
-    public function details($id = null) {
-        $data = $this->request->data;        
-        if ($id == null){
-            $id = $this->params['url']['id'];
-        } // gets $id from the url
-        if (empty($id)) {
-            $this->set('error', 'Invalid Sample Set');
-            return;
-        }
-        $sampleSet = $this->SampleSet->findById($id); 
-        if (empty($sampleSet)) {
-            $this->set('error', 'Sample Set not found');
-            return;
-        }
-
-        $this->set('info', $sampleSet);
-        $this->view = 'view_set';
-    }
 
     /**
      * Creates and exports a CSV file from a search
@@ -296,23 +252,5 @@ class SampleSetsController extends AppController {
         $results = [$results[0]]; //return only the first result
         echo json_encode($results);
     }
-
-//    public function search() {
-//        $this->set('criteria_options', [
-//            ['value' => 'set_code', 'text' => 'Set Code'],
-//            ['value' => 'all', 'text' => 'All'],
-//            ['value' => 'submitter', 'text' => 'PFR Collaborator'],
-//            ['value' => 'chemist', 'text' => 'Chemist'],
-//            ['value' => 'p_name', 'text' => 'Project Name'],
-//            ['value' => 'p_code', 'text' => 'Project Code'],
-//            ['value' => 'crop', 'text' => 'Crop'],
-//            ['value' => 'compounds', 'text' => 'Compounds'],
-//            ['value' => 'comments', 'text' => 'Comments'],
-//            ['value' => 'exp_reference', 'text' => 'Experiment Reference'],
-//            ['value' => 'team', 'text' => 'Team']]);
-//
-//        $this->set('title', 'Find Sample Set');
-//        $this->doSearch($this, $this->SampleSet);
-//    }
 }
 
