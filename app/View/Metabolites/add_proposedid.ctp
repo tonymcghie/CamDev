@@ -1,13 +1,16 @@
 <?php
 $this->assign('title', 'New Proposed Unknown ID');
+var_dump($id);
 ?>
 <header>
 <h1><?php echo $this->String->get_string('title', 'Proposed_Metabolite_form'); ?></h1>
-<p><?php echo $this->String->get_string('sub_title', 'Proposed_Metabolite_form'); ?></p>
 </header>
 <?php
 
-echo $this->BootstrapForm->create_horizontal('Proposed_Metabolite', ['action' => 'addProposedid']);
+echo $this->BootstrapForm->create_horizontal('Metabolite', ['action' => 'addProposedid']);
+echo $this->BootstrapForm->input_horizontal('metabolite_id', ['label' => ['text' => $this->String->get_string('metabolite_id', 'Proposed_Metabolite_form')],
+    'placeholder' => $this->String->get_string('metabolite_id_ph', 'Proposed_Metabolite_form'),
+    'required']);
 echo $this->BootstrapForm->input_horizontal('name', ['label' => ['text' => $this->String->get_string('name', 'Proposed_Metabolite_form')],
     'required']);
 echo $this->BootstrapForm->input_horizontal('formula', ['label' => ['text' => $this->String->get_string('formula', 'Proposed_Metabolite_form')],
@@ -20,8 +23,7 @@ echo $this->BootstrapForm->input_horizontal('msigma', ['label' => ['text' => $th
     'placeholder' => $this->String->get_string('msigma_ph', 'Proposed_Metabolite_form'),
     'required']);
 echo $this->BootstrapForm->input_horizontal('data_file', ['label' => $this->String->get_string('data_file', 'Proposed_Metabolite_form')]);
-echo $this->BootstrapForm->input_horizontal('comment', ['label' => ['text' => $this->String->get_string('comment', 'Proposed_Metabolite_form')],
-    'required']);
+echo $this->BootstrapForm->input_horizontal('comment', ['label' => ['text' => $this->String->get_string('comment', 'Proposed_Metabolite_form')]]);
 
 echo $this->BootstrapForm->addActionButtons();
 
@@ -32,11 +34,3 @@ echo $this->BootstrapForm->get_js();
 echo $this->BootstrapForm->end();
 ?>  
 
-<script>
-    $(function() {
-        $('#MetaboliteChemist').autocomplete({
-            source: Object.values(JSON.parse('<?php echo json_encode($names); ?>')),
-            appendTo: $('#MetaboliteChemist').closest('div')
-        });
-    });
-</script>

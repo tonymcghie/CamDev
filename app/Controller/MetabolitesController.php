@@ -87,7 +87,16 @@ class MetabolitesController extends AppController {
      * adds a new proposed to an Unknown Compound (Metabolite)
      * @return null
      */
-    public function addProposedid(){         
+    public function addProposedid($id = null){
+        if ($id == null){
+            $id = $this->params['url']['id'];
+        } // gets $id from the url
+        if (empty($id)) {
+            $this->set('error', 'Invalid Unknown');
+            return;
+        }
+        var_dump($id);
+        $this->set('id', $id);
         $data = $this->request->data;      //gets the data
         $this->Proposed_Metabolite->create();            //Need to add
         if ($this->Proposed_Metabolite->save($data)){                 //saves the Compound
@@ -124,7 +133,7 @@ class MetabolitesController extends AppController {
             throw new NotFoundExcpetion(__('Invalid Unknown Compound'));
         } //throw error if the id does not belong to a compound
         if ($this->request->is(array('post', 'put'))){ //gets edited data from the view
-            //$this->Metabolite->id = $id;
+            $this->Metabolite->id = $id;
             if ($this->Metabolite->save($this->request->data)){
                 return;
             } //return if saved successfully

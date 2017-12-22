@@ -7,7 +7,9 @@ $this->assign('title', 'New Unknown msms');
 </header>
 <?php
 
-echo $this->BootstrapForm->create_horizontal('Msms_Metabolite', ['action' => 'addMsms']);
+echo $this->BootstrapForm->create_horizontal('Metabolite', ['action' => 'addMsms']);
+echo $this->BootstrapForm->input_horizontal('metabolite_id', ['label' => ['text' => $this->String->get_string('metabolite_id', 'Msms_Metabolite_form')],
+    'readonly']);
 echo $this->BootstrapForm->input_horizontal('name', ['label' => ['text' => $this->String->get_string('name', 'Msms_Metabolite_form')],
     'required']);
 echo $this->BootstrapForm->input_horizontal('parent_mz', ['label' => ['text' => $this->String->get_string('parent_mz', 'Msms_Metabolite_form')],
@@ -21,18 +23,12 @@ echo $this->BootstrapForm->input_horizontal('msms_level', ['label' => ['text' =>
     'required']);
 echo $this->BootstrapForm->input_horizontal('spectra_msms', ['label' => ['text' => $this->String->get_string('spectra_msms', 'Msms_Metabolite_form')],
     'required']);
-echo $this->BootstrapForm->input_horizontal('comment', ['label' => ['text' => $this->String->get_string('comment', 'Msms_Metabolite_form')],
-    'required']);
+echo $this->BootstrapForm->input_horizontal('comment', ['label' => ['text' => $this->String->get_string('comment', 'Msms_Metabolite_form')]]);
+
+echo $this->BootstrapForm->addActionButtons();
 
 //$this->BootstrapForm->add_validator('requires', 'short_name');
 //$this->BootstrapForm->add_validator('requires', 'code');
-
-echo $this->BootstrapForm->input_maker('save', [
-        'onclick' => 'submit_first_form(\'main_content\'); return false;'
-    ], [
-        'horizontal' => true,
-        'type' => 'button'
-]);
 
 echo $this->BootstrapForm->get_js();
 echo $this->BootstrapForm->end();

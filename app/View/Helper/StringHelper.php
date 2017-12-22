@@ -93,7 +93,8 @@ class StringHelper extends AppHelper{
         'Proposed_Metabolite_form' => [
             'title' => 'Enter Proposed Chemical Identity for an Unknown Compound',
             'sub_title' => 'Enter the CAM Unknown ID',
-            'metabolite_id' => 'Unknown ID',
+            'metabolite_id' => 'CAM Unknown ID',
+            'metabolite_id_ph' => 'Enter CAM Unknown ID',
             'name' => 'Suggested Compound Name',
             'formula' => 'Formula',
             'formula_ph' => 'CHNO...',
@@ -106,7 +107,7 @@ class StringHelper extends AppHelper{
         'Msms_Metabolite_form' => [
             'title' => 'Enter MSMS spectrum of an Uknown',
             'sub_title' => 'Enter the CAM Unknown ID',
-            'metabolite_id' => 'Unknown ID',
+            'metabolite_id' => 'CAM Unknown ID',
             'name' => 'Suggested Compound Name',
             'parent_mz' => 'Parent m/z',
             'energy_ev' => 'Energy (eV)',
@@ -192,7 +193,7 @@ class StringHelper extends AppHelper{
             'exact_mass' => 'Exact Mass',
             'cas' => 'CAS'],
         'Metabolite' => [
-            'id' => 'CAM Uknown ID',
+            'id' => 'CAM Unknown ID',
             'exact_mass' => 'Exact Mass',
             'ion_type' => 'Ion Type',
             'rt_value' => 'Retention Time',
