@@ -10,7 +10,10 @@ var_dump($id);
 echo $this->BootstrapForm->create_horizontal('Metabolite', ['action' => 'addProposedid']);
 echo $this->BootstrapForm->input_horizontal('metabolite_id', ['label' => ['text' => $this->String->get_string('metabolite_id', 'Proposed_Metabolite_form')],
     'placeholder' => $this->String->get_string('metabolite_id_ph', 'Proposed_Metabolite_form'),
-    'required']);
+    'required',
+    'readonly',
+    'type' => 'text',
+    'default' => $id]);
 echo $this->BootstrapForm->input_horizontal('name', ['label' => ['text' => $this->String->get_string('name', 'Proposed_Metabolite_form')],
     'required']);
 echo $this->BootstrapForm->input_horizontal('formula', ['label' => ['text' => $this->String->get_string('formula', 'Proposed_Metabolite_form')],
