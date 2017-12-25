@@ -1,5 +1,5 @@
 <header>
-<h1><?= $this->String->get_string($this->name, 'view')?></h1>
+<h1><?= $this->String->get_string('view', $this->name)?></h1>
 </header>
 
 <?php
@@ -14,7 +14,7 @@
     });
     // Get the headings from the string helper.
     $displayData = array_map(function($key, $item) {
-        return array_merge($item, ['heading' => $this->String->get_string($this->name, $key)]);
+        return array_merge($item, ['heading' => $this->String->get_string($key, $this->name)]);
     }, array_keys($displayData), $displayData);
 
     $shotItemFilter = function($item) {
