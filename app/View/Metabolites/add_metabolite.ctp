@@ -26,10 +26,8 @@ echo $this->BootstrapForm->input_horizontal('chemist', ['label' => $this->String
     'autocomplete' => 'off']);
 echo $this->BootstrapForm->input_horizontal('experiment_ref', ['label' => ['text' => $this->String->get_string('experiment_ref', 'Metabolite_form')],
     'required',]);
-echo $this->BootstrapForm->input_horizontal('spectra_uv', ['label' => ['text' => $this->String->get_string('spectra_uv', 'Metabolite_form')],
-    'required',]);
-echo $this->BootstrapForm->input_horizontal('spectra_nmr', ['label' => ['text' => $this->String->get_string('spectra_nmr', 'Metabolite_form')],
-    'required',]);
+echo $this->BootstrapForm->input_horizontal('spectra_uv', ['label' => ['text' => $this->String->get_string('spectra_uv', 'Metabolite_form')]]);
+echo $this->BootstrapForm->input_horizontal('spectra_nmr', ['label' => ['text' => $this->String->get_string('spectra_nmr', 'Metabolite_form')]]);
 
 $this->BootstrapForm->add_validator('requires', 'short_name');
 $this->BootstrapForm->add_validator('requires', 'code');

@@ -57,7 +57,7 @@ class CompoundsController extends AppController {
      * @throws NotFoundExcpetion
      */
     public function editCompound($id = null){
-        $this->layout = 'main';
+        //$this->layout = 'main';
         if ($id == null){
             $id = $this->params['url']['id'];
         } // gets $id from the url
@@ -87,7 +87,7 @@ class CompoundsController extends AppController {
         $this->set('options', $this->Compound->getSearchOptions());
         $this->helpers[] = 'Mustache.Mustache';
         $this->Paginator->settings= [
-            'limit'=>10,
+            'limit'=>50,
             'order' => [
                 'SampleSet.date' => 'asc'
             ]

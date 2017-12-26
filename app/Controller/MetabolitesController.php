@@ -24,7 +24,7 @@ class MetabolitesController extends AppController {
         parent::beforeFilter();
 
         $this->Paginator->settings= [
-            'limit'=>10,
+            'limit'=>50,
             'order' => [
                 'Metabolite.exact_mass' => 'asc'
             ]
@@ -44,7 +44,7 @@ class MetabolitesController extends AppController {
     //}
 
     /**
-     * adds a meatbolite
+     * adds a Metabolite
      * @return null
      */
     public function addMetabolite(){
@@ -84,11 +84,63 @@ class MetabolitesController extends AppController {
     }
     
     /**
+     * adds a new proposed to an Unknown Compound (Metabolite)
+     * @return null
+     */
+    public function addProposedid($id = null){
+        if ($id == null){
+            $id = $this->params['url']['id'];
+        } // gets $id from the url
+        if (empty($id)) {
+            $this->set('error', 'Invalid Unknown');
+            return;
+        }
+        var_dump($id);
+        $this->set('id', $id);
+        $data = $this->request->data;      //gets the data
+        $this->Proposed_Metabolite->create();            //Need to add
+        if ($this->Proposed_Metabolite->save($data)){                 //saves the Compound
+            return $this->redirect(['controller' => 'General', 'action' => 'blank', '?' => ['alert' => 'Proposed Unknown Compound Saved']]);
+        }
+    }
+    
+    /**
+     * adds a new msms spectrum to an Unknown Compound (Metabolite)
+     * @return null
+     */
+    public function addMsms(){         
+        $data = $this->request->data;      //gets the data
+        $this->Msms_Metabolite->create();            //Need to add
+        if ($this->Msms_Metabolite->save($data)){                 //saves the Compound
+            return $this->redirect(['controller' => 'General', 'action' => 'blank', '?' => ['alert' => 'Proposed Unknown Compound Saved']]);
+        }
+    }
+    
+    /**
      * updates a row in the metabolite table
      * @param String $id
      */
     public function editMetabolite($id = null){
-        $this->save($this->Metabolite, $id);        
+        if ($id == null){
+            $id = $this->params['url']['id'];
+        } // gets $id from the url
+        if (empty($id)) {
+            $this->set('error', 'Invalid Unknown');
+            return;
+        }
+        $metabolite = $this->Metabolite->findById($id);
+        if (!$metabolite){
+            throw new NotFoundExcpetion(__('Invalid Unknown Compound'));
+        } //throw error if the id does not belong to a compound
+        if ($this->request->is(array('post', 'put'))){ //gets edited data from the view
+            $this->Metabolite->id = $id;
+            if ($this->Metabolite->save($this->request->data)){
+                return;
+            } //return if saved successfully
+        } //save data if the form is being submitted
+        if (!$this->request->data){
+           $this->request->data = $metabolite;
+        }//update the data to display
     }
     
     /**
@@ -134,7 +186,13 @@ class MetabolitesController extends AppController {
      * @param String $id
      */
     public function viewMetabolite($id = null){
-        if ($id==null){echo "Metabolite is not found";}
+        if ($id == null){
+            $id = $this->params['url']['id'];
+        } // gets $id from the url
+        if (empty($id)) {
+            $this->set('error', 'Invalid Unknown');
+            return;
+        }
         $meta = $this->Metabolite->find('first', ['conditions' => ['id' => $id]]);
         $msms = $this->Msms_Metabolite->find('all' , ['conditions' => ['metabolite_id' => $id]]);
         $proposed = $this->Proposed_Metabolite->find('all' , ['conditions' => ['metabolite_id' => $id]]);

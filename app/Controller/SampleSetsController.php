@@ -162,7 +162,7 @@ class SampleSetsController extends AppController {
         //if (isset($this->request->data['SampleSet']['id'])){ //updates the id to the provious one when editing twice
             //$id = $this->request->data['SampleSet']['id'];
         //}
-        $this->layout = 'main';
+        //$this->layout = 'main';
         $data = $this->request->data;        
         if ($id == null){
             $id = $this->params['url']['id'];

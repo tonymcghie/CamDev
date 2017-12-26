@@ -8,7 +8,6 @@ $this->assign('title', 'Edit Compound Information');
 </header>
 
 <?php
-//echo $this->BootstrapForm->create_horizontal('SampleSet', ['type' => 'file' ,'action' => 'createSampleSet']);
 echo $this->BootstrapForm->create_horizontal('Compound', ['type' => 'file' ,'action' => 'editCompound']);
 //to do make a clone button in the table
 
