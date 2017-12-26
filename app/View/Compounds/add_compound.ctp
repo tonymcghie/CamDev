@@ -14,6 +14,7 @@ echo $this->BootstrapForm->input_horizontal('cas', ['label' => ['text' => $this-
 echo $this->BootstrapForm->input_horizontal('pub_chem', ['label' => $this->String->get_string('pub_chem', 'Compound_form'),
     'autocomplete' => 'off']);
 echo $this->BootstrapForm->input_horizontal('compound_name', ['label' => $this->String->get_string('compound_name', 'Compound_form'),
+    'required',
     'autocomplete' => 'off']);
 echo $this->BootstrapForm->input_horizontal('pseudonyms', ['label' => $this->String->get_string('pseudonyms', 'Compound_form'),
     'placeholder' => $this->String->get_string('pseudonyms_ph', 'Compound_form')]);
@@ -24,10 +25,12 @@ echo $this->BootstrapForm->input_horizontal('formula', ['label' => $this->String
 echo $this->BootstrapForm->input_horizontal('exact_mass', ['label' => $this->String->get_string('exact_mass', 'Compound_form'),
     'required']);
 echo $this->BootstrapForm->input_horizontal('chemspider_id', ['label' => $this->String->get_string('chemspider_id', 'Compound_form'),
+    'type' => 'text',
     'autocomplete' => 'off']);
 echo $this->BootstrapForm->input_horizontal('canonical_smiles', ['label' => $this->String->get_string('canonical_smiles', 'Compound_form'),
     'autocomplete' => 'off']);
 echo $this->BootstrapForm->input_horizontal('metlin_id', ['label' => $this->String->get_string('metlin_id', 'Compound_form'),
+    'type' => 'text',
     'autocomplete' => 'off']);
 echo $this->BootstrapForm->input_horizontal('compound_type', ['label' => $this->String->get_string('compound_type', 'Compound_form'),
     'required', 'options' => $this->My->getChemicalClassOptions()]);

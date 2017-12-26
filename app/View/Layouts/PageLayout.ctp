@@ -197,6 +197,7 @@ assert(in_array($group, [$sampleSetGroup,
                 <div class="panel-collapse collapse <?php if ($group == $toolsGroup)echo 'in'; ?>" id="help_menu">
                     <div class="panel-body light-blue lighten-3">
                         <?= $this->Html->link('Scripts', ['controller' => 'General', 'action' => 'scripts'], ['class' => 'list-group-item']) ?>
+                        <?= $this->Html->link('GCMS Utilities', ['controller' => 'General', 'action' => 'templates'], ['class' => 'list-group-item']) ?>
                         <?= $this->Html->link('Data Templates', ['controller' => 'General', 'action' => 'templates'], ['class' => 'list-group-item']) ?>
                         <?= $this->Html->link('New Project', ['controller' => 'Projects', 'action' => 'addProject'], ['class' => 'list-group-item']) ?>
                         <?= $this->Html->link('Clear Workbench', [], ['class' => 'list-group-item']) ?>

@@ -107,6 +107,14 @@ class GeneralController extends AppController {
     } 
     
     /**
+     * Allows the user to use links that open pages with utilities for
+     * processing gcms data, especially from the Akl Leco gcms
+     */
+    public function gcms(){  
+        
+    } 
+    
+    /**
      * This will start a download of a file
      * @return type
      */
