@@ -13,7 +13,7 @@ class Molecular_feature extends AppModel{
      public function buildObjects(array $queryResults){
         $molecular_featureDataObjects = [];
         foreach ($queryResults as $data) {
-            $molecular_featureDataObjects[] = new Model\DataObject\MolecularFeatureDataObject($this, $data['Molecular_feature']);
+            $molecular_featureDataObjects[] = new MolecularFeatureDataObject($this, $data['Molecular_feature']);
         }
         return $molecular_featureDataObjects;
     }
