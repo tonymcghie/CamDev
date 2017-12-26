@@ -17,14 +17,14 @@
         return array_merge($item, ['heading' => $this->String->get_string($key, $this->name)]);
     }, array_keys($displayData), $displayData);
 
-    $shotItemFilter = function($item) {
+    $shortItemFilter = function($item) {
         return strlen(strval($item['text'])) < 100;
     };
-    $longItemFilter = function ($item) use ($shotItemFilter) {
-        return !$shotItemFilter($item);
+    $longItemFilter = function ($item) use ($shortItemFilter) {
+        return !$shortItemFilter($item);
     };
 ?>
-<?php foreach (array_filter($displayData, $shotItemFilter) as $item): ?>
+<?php foreach (array_filter($displayData, $shortItemFilter) as $item): ?>
     <div class="col-lg-4 col-md-6 col-sm-12 details-item">
         <?=  $this->Mustache->render('view/item',
             ['item' => $item])?>
