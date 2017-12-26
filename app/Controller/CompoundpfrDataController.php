@@ -105,7 +105,6 @@ class CompoundpfrDataController extends AppController {
      *
      */        
     public function viewSet($reference = null) {
-        $this->layout = 'main';
         $data = $this->request->data;
         if ($reference == null){
             $reference = $this->params['url']['reference'];
