@@ -47,7 +47,9 @@ assert(isset($model),
 <?php endif;?>
 
 <?= $this->BootstrapForm->start_group(['id' => 'action-buttons', 'class' => 'action-buttons']); ?>
-<?= $this->BootstrapForm->single_button('Add Set', ['onclick' => 'add_search_set();return false;'], ['class' => 'btn-success offset-lg-9 col-lg-1']); ?>
+<div>
+    <span onclick="add_search_set();" class="btn btn-success offset-lg-9 col-lg-1 form-control" type="submit">Add Set</span>
+</div>
 <?= $this->BootstrapForm->single_button('Find', [], ['class' => 'btn-primary col-lg-1']); ?>
 <?= $this->BootstrapForm->end_group(); ?>
 <?= $this->BootstrapForm->end(); ?>
