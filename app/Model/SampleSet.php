@@ -113,12 +113,13 @@ class SampleSet extends AppModel implements SearchableModel {
     public function getSearchOptions() {
         return ['set_code',
             'all',
-            'id',
+            'crop',
             'chemist',
             'submitter',
+            'status',
             'p_name',
             'p_code',
-            'crop',
+            'set_reason',
             'compounds',
             'comments',
             'team'];
@@ -131,11 +132,11 @@ class SampleSet extends AppModel implements SearchableModel {
             'set_code',
             'chemist',
             'submitter',
+            'status',
             'p_name',
             'p_code',
             'crop',
             'compounds',
-            'comments',
-            'team'];
+            'comments'];
     }
 }

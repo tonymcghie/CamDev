@@ -1,5 +1,5 @@
 <header>
-<h1>Data Template Download Area</h1>
+<h1>Links to GCMS Utilities</h1>
 </header>
 
 <div class="table-responsive">
@@ -10,29 +10,22 @@
         <th style="width:40%"></th>
     </tr>
     <tr>
-        <td><h3>Sample Info Upload:</h3></td>
+        <td><h3>Convert Excel file to a new layout:</h3></td>
         <td class="text-center" style = "vertical-align: middle"><button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#smplModal"><span class="glyphicon glyphicon-info-sign"></span></button></td>
         <td style = "vertical-align: middle"><button type="button" class="btn"><span class="glyphicon glyphicon-download-alt"></span> Download Template</button></td>
+        <td><?php  echo $this->Html->link('Start',  'https://genome.plantandfood.co.nz/cgi-bin/cmp_convert_xls.cgi',  array('style'=>'width: 120px','class' => 'find-button abbr-button', 'target' => '_blank')); ?></td>
     </tr>
     <tr>
-        <td><h3>Compound Data Summary Table:</h3></td>
+        <td><h3>Combines data from multiple GCMS text file into an Excel files:</h3></td>
         <td class="text-center" style = "vertical-align: middle"><button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#cdstModal"><span class="glyphicon glyphicon-info-sign"></button></td>
-        <td style = "vertical-align: middle"><button type="button" class="btn"><span class="glyphicon glyphicon-download-alt"></span> Download Template</button></td>    
-    </tr>
-    <tr>
-        <td><h3>PFR Compound Data Upload Specifications:</h3></td>
-        <td class="text-center" style = "vertical-align: middle"><button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#cmpdModal"><span class="glyphicon glyphicon-info-sign"></button></td>
-        <td style = "vertical-align: middle"><button type="button" class="btn"><span class="glyphicon glyphicon-download-alt"></span> Download Template</button></td>  
-    </tr>
-    <tr>
-        <td><h3>Metabolomics Data Upload Specifications:</h3></td>
-        <td class="text-center" style = "vertical-align: middle"><button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#metaModal"><span class="glyphicon glyphicon-info-sign"></button></td>
         <td style = "vertical-align: middle"><button type="button" class="btn"><span class="glyphicon glyphicon-download-alt"></span> Download Template</button></td>
+        <td><?php  echo $this->Html->link('Start',  'https://genome.plantandfood.co.nz/cgi-bin/txt2xlsHM.cgi',  array('style'=>'width: 120px','class' => 'find-button abbr-button', 'target' => '_blank')); ?></td>
     </tr>
     <tr>
-        <td><h3>Data Processing:</h3></td>
-        <td class="text-center" style = "vertical-align: middle"><button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#dpModal"><span class="glyphicon glyphicon-info-sign"></button></td>
-        <td style = "vertical-align: middle"><button type="button" class="btn"><span class="glyphicon glyphicon-download-alt"></span> Download Template</button></td>    
+        <td><h3>GCMS text file to Excel converter:</h3></td>
+        <td class="text-center" style = "vertical-align: middle"><button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#cmpdModal"><span class="glyphicon glyphicon-info-sign"></button></td>
+        <td style = "vertical-align: middle"><button type="button" class="btn"><span class="glyphicon glyphicon-download-alt"></span> Download Template</button></td>
+        <td><?php  echo $this->Html->link('Start',  'https://genome.plantandfood.co.nz/cgi-bin/txt2xls.cgi',  array('style'=>'width: 120px','class' => 'find-button abbr-button', 'target' => '_blank')); ?></td>
     </tr>
 </table>
 </div>

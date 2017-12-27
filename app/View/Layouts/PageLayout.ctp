@@ -120,7 +120,7 @@ assert(in_array($group, [$sampleSetGroup,
 
             <div class="panel panel-default">
                 <div class="panel-heading light-green lighten-3" data-toggle="collapse" data-parent="#nav_accordion" href="#pfr_data_menu">
-                    <span>PFR Data</span>
+                    <span>PFR Compound Data</span>
                 </div>
                 <div class="panel-collapse collapse <?php if ($group == $pfrDataGroup)echo 'in'; ?>" id="pfr_data_menu">
                     <div class="panel-body light-blue lighten-3">
@@ -128,7 +128,7 @@ assert(in_array($group, [$sampleSetGroup,
                         <?= $this->Html->link('Overview', ['controller' => 'Compoundpfr_data', 'action' => 'overviewData'], ['class' => 'list-group-item']) ?>
                         <?= $this->Html->link('Graph', ['controller' => 'Compoundpfr_data', 'action' => 'graphData'], ['class' => 'list-group-item']) ?>
                         <?= $this->Html->link('Import', ['controller' => 'Compoundpfr_data', 'action' => 'import'], ['class' => 'list-group-item']) ?>
-                        <?= $this->Html->link('Find-Bioactivity', ['controller' => 'Bioactivitypfr_data', 'action' => 'search'], ['class' => 'list-group-item']) ?>
+                        <?= ''//$this->Html->link('Find-Bioactivity', ['controller' => 'Bioactivitypfr_data', 'action' => 'search'], ['class' => 'list-group-item']) ?>
                         <?php
                         /*if ($this->Session->read('Auth.User')!==null && in_array("PFR-GP-Biological Chemistry and Bioactives Group", $this->Session->read('Auth.User')['groups'])) {
                         echo '<li>'.$this->Html->link('Import', array('controller' => 'Compoundpfr_data','action' => 'import'), array('target' => 'mainFrame' , 'class' => 'none')).'</li>';
@@ -197,7 +197,7 @@ assert(in_array($group, [$sampleSetGroup,
                 <div class="panel-collapse collapse <?php if ($group == $toolsGroup)echo 'in'; ?>" id="help_menu">
                     <div class="panel-body light-blue lighten-3">
                         <?= $this->Html->link('Scripts', ['controller' => 'General', 'action' => 'scripts'], ['class' => 'list-group-item']) ?>
-                        <?= $this->Html->link('GCMS Utilities', ['controller' => 'General', 'action' => 'templates'], ['class' => 'list-group-item']) ?>
+                        <?= $this->Html->link('GCMS Utilities', ['controller' => 'General', 'action' => 'gcms'], ['class' => 'list-group-item']) ?>
                         <?= $this->Html->link('Data Templates', ['controller' => 'General', 'action' => 'templates'], ['class' => 'list-group-item']) ?>
                         <?= $this->Html->link('New Project', ['controller' => 'Projects', 'action' => 'addProject'], ['class' => 'list-group-item']) ?>
                         <?= $this->Html->link('Clear Workbench', [], ['class' => 'list-group-item']) ?>
@@ -209,7 +209,7 @@ assert(in_array($group, [$sampleSetGroup,
                     </div>
                 </div>
             </div>
-
+            <!--
             <div class="panel panel-default">
                 <div class="panel-heading light-green lighten-3" data-toggle="collapse" data-parent="#nav_accordion" href="#pre_release_menu">
                     <span>Pre Relase</span>
@@ -220,6 +220,7 @@ assert(in_array($group, [$sampleSetGroup,
                     </div>
                 </div>
             </div>
+            -->
         </div>
     </nav>
 
