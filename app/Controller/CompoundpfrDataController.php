@@ -171,9 +171,6 @@ class CompoundpfrDataController extends AppController {
         // Listed these here for auto complete reasons and to stop the IDE displaying errors
         $by = null;$value = null;$match = null;$for = null; $review_options=null;
         extract($this->request->data['Compoundpfr_data']);
-        //extract returns arrays with numeric indexes, use implode to convert the arrays to strings
-        $by = implode($by); $value = implode($value); $match = implode($match); $for = implode($for);
-        //pr($by); pr ($value); pr($match); pr($for);
         if ($match == 'contains')$review_by_value = '%'.$value.'%';
         if ($match == 'exact')$review_by_value = $value;
         if ($match == 'starts')$review_by_value = $value.'%';
