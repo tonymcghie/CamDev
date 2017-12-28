@@ -8,6 +8,9 @@
  */
 class StringHelper extends AppHelper{
     private $strings = [
+        'Edit_form' => [
+            'title' => 'Edit'
+        ],
         'Search_form' => [
             'criteria' => 'Criteria',
             'value' => 'Value',

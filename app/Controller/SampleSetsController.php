@@ -4,12 +4,14 @@ App::uses('CakeEmail', 'Network/Email');
 App::uses('AppController', 'Controller');
 App::uses('Searchable', 'Controller/Behavior');
 App::uses('Viewable', 'Controller/Behavior');
+App::uses('EditableVersions', 'Controller/Behavior');
 
 class SampleSetsController extends AppController {
     use Searchable {
         Searchable::getComponents as public getSearchableComponents;
     }
     use Viewable;
+    use EditableVersions;
 
     public $helpers = ['Html' , 'Form' , 'My' , 'Js', 'Time', 'String', 'BootstrapForm', 'Mustache.Mustache'];
     public $uses = ['Analysis' , 'SampleSet' , 'Chemist', 'Project'];
@@ -251,6 +253,14 @@ class SampleSetsController extends AppController {
         $results = $this->SampleSet->find('all', ['conditions' => [ 'AND' => [ '0' => [ 'SampleSet.set_code' => $set_code]]]]); //finds the sample set 
         $results = [$results[0]]; //return only the first result
         echo json_encode($results);
+    }
+
+    protected function setEditFormRequirements() {
+        $this->set('names', $this->Chemist->find('list', ['fields' => 'name']));
+    }
+
+    protected function doSave($item) {
+        // TODO: Implement doSave() method.
     }
 }
 

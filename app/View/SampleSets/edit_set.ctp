@@ -129,35 +129,5 @@ echo $this->BootstrapForm->end();
         $("#" + $("#switcher :selected").val()+"form").show();
         currentForm = $("#switcher :selected").val()+"form";
     });
-
-
-    /**
-     * takes an array and sets all the values in the form from that array
-     * @param {array} data in the form data[0]["SampleSet"][values]
-     * @returns {null}
-     */
-/*    function setValues(data){
-        if (typeof data[0] !== 'undefined') {
-            $("[name='data[SampleSet][submitter]']").val(data[0]["SampleSet"]["submitter"]);
-            $("[name='data[SampleSet][p_name]']").val(data[0]["SampleSet"]["p_name"]);
-            $("[name='data[SampleSet][p_code]']").val(data[0]["SampleSet"]["p_code"]);
-            $("[name='data[SampleSet][exp_reference]']").val(data[0]["SampleSet"]["exp_reference"]);
-            $("[name='data[SampleSet][chemist]']").val(data[0]["SampleSet"]["chemist"]);
-            $("[name='data[SampleSet][crop]']").val(data[0]["SampleSet"]["crop"]);
-            $("[name='data[SampleSet][type]']").val(data[0]["SampleSet"]["type"]);
-            $("[name='data[SampleSet][number]']").val(data[0]["SampleSet"]["number"]);
-            $("[name='data[SampleSet][sample_loc]']").val(data[0]["SampleSet"]["sample_loc"]);
-            $("[name='data[SampleSet][set_reason]']").val(data[0]["SampleSet"]["set_reason"]);
-            $("[name='data[SampleSet][compounds]']").val(data[0]["SampleSet"]["compounds"]);
-            $("[name='data[SampleSet][containment]']").prop('checked', data[0]["SampleSet"]["containment"]);            
-            $("[name='data[SampleSet][containment_details]']").val(data[0]["SampleSet"]["containment_details"]);
-            if ($("[name='data[SampleSet][containment_details]']").val() !== ''){
-                $("#containment_details").show();
-            } else {
-                $("[#containment_details").hide();
-            }
-            $("[name='data[SampleSet][comments]']").val(data[0]["SampleSet"]["comments"]);  
-        }
-    }*/
 </script>
 

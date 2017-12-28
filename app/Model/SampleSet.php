@@ -3,9 +3,10 @@
 App::import('model', 'Chemist');
 
 App::uses('SearchableModel', 'Model/Behavior');
+App::uses('VersionableModel', 'Model/Behavior');
 App::uses('SampleSetDataObject', 'Model/DataObject');
 
-class SampleSet extends AppModel implements SearchableModel {
+class SampleSet extends AppModel implements SearchableModel, VersionableModel {
     public $findMethods = array('available' =>  true);
     public $validate = array(
         'submitter' => array(
@@ -110,6 +111,7 @@ class SampleSet extends AppModel implements SearchableModel {
         }
         return $sampleSetObjects;
     }
+
     public function getSearchOptions() {
         return ['set_code',
             'all',
@@ -138,5 +140,16 @@ class SampleSet extends AppModel implements SearchableModel {
             'crop',
             'compounds',
             'comments'];
+    }
+
+    function getVersionKeyColumn() {
+        return 'set_code';
+    }
+
+    function getVersionIds($key) {
+        $sql = "SELECT id, version
+                  FROM sample_sets as SampleSet
+                 WHERE {$this->getVersionKeyColumn()} = '{$key}'";
+        return $this->query($sql);
     }
 }
