@@ -1,7 +1,19 @@
 <?php
 
-echo $this->BootstrapForm->create($model, ['action' => 'edit']);
+/**
+ * Fields in the database that should be passed through but not edited or displayed.
+ * @var array $hiddenFields
+ */
+$hiddenFields = ['id', 'set_code', 'submitter_email', 'date'];
 
+foreach ($hiddenFields as $hiddenField) {
+    echo $this->BootstrapForm->input_horizontal($hiddenField,
+        [
+            'type' => 'hidden',
+            'default' => $item['SampleSet'][$hiddenField]
+        ]
+    );
+}
 echo $this->BootstrapForm->input_horizontal('version',
     [
         'label' => $this->String->get_string('version', 'SampleSet_form'),
@@ -129,8 +141,6 @@ echo $this->BootstrapForm->input_horizontal('metadataFile',
     ]
 );
 
-echo $this->BootstrapForm->addActionButtons('Save as new version');
-
 $this->BootstrapForm->add_validator('requires', 'submitter');
 $this->BootstrapForm->add_validator('requires', 'chemist');
 $this->BootstrapForm->add_validator('requires', 'number');
@@ -138,6 +148,3 @@ $this->BootstrapForm->add_validator('requires', 'compounds');
 $this->BootstrapForm->add_validator('match_validator', 'chemist', ['data' => $names]);
 
 $this->BootstrapForm->new_rule('display_if_checked', 'containment_details', 'containment' , null, ['transition' => 'slide_down']);
-
-echo $this->BootstrapForm->get_js();
-echo $this->BootstrapForm->end();

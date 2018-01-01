@@ -16,4 +16,10 @@
     <?php endforeach; ?>
 </ul>
 
-<?= $this->element($model.'/edit_form', ['item' => $item]);
+<?= $this->BootstrapForm->create($model, ['action' => 'edit']); ?>
+g
+<?= $this->element($model.'/edit_form', ['item' => $item]); ?>
+
+<?= $this->BootstrapForm->addActionButtons('Save as new version'); ?>
+<?= $this->BootstrapForm->get_js(); ?>
+<?= $this->BootstrapForm->end(); ?>
