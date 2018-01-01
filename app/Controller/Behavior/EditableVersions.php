@@ -1,23 +1,20 @@
 <?php
 
+App::uses('Editable', 'Controller/Behavior');
+
 /**
- * Description of Editable
- *
+ * Class EditVersions
  * @author Andrew McGhie
  */
-trait Editable {
+trait EditableVersions {
 
-    protected abstract function setEditFormRequirements();
+    use Editable {
+        Editable::edit as parentEdit;
+    }
 
-    /**
-     * @param $item
-     * @return int the id of the row that the data was saved to
-     */
-    protected abstract function doSave($item);
-
-    protected abstract function getModel();
-    
     public function edit() {
+        assert($this->getModel() instanceof VersionableModel,
+            'The Model has to implement VersionableModel');
         if ($this->request->is('post')) {
             $id = $this->doSave($this->request->data);
             assert (filter_var($id, FILTER_VALIDATE_INT) && $id > 0,
@@ -32,11 +29,13 @@ trait Editable {
 
         $model = $this->getModel();
         $item = $model->find('first', ['conditions' => ['id' => $id]]);
+        $versions = $model->getVersionIds($item['SampleSet']['set_code']);
 
         $this->set('item', $item);
+        $this->set('versions', $versions);
         $this->set('model', get_class($model));
         $this->setEditFormRequirements();
 
-        $this->render('/Elements/edit');
+        $this->render('/Elements/edit_versions');
     }
 }

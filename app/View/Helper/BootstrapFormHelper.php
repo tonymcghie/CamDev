@@ -199,11 +199,11 @@ class BootstrapFormHelper extends FormHelper{
     /**
      * Creates a save and cancel button
      */
-    public function addActionButtons() {
+    public function addActionButtons($save = 'Save', $cancel = 'Cancel') {
         $html = '';
         $html .= $this->start_group();
-        $html .= $this->single_button('Cancel', ['onclick' => 'window.history.back();', 'div' => ['class' => 'offset-lg-4 col-lg-1']], ['class' => 'btn-default']);
-        $html .= $this->single_button('Save', ['div' => ['class' => 'col-lg-1']], ['class' => 'btn-primary']);
+        $html .= $this->single_button($cancel, ['onclick' => 'window.history.back();', 'div' => ['class' => 'offset-lg-4 col-lg-1']], ['class' => 'btn-default']);
+        $html .= $this->single_button($save, ['div' => ['class' => 'col-lg-1']], ['class' => 'btn-primary']);
         $html .= $this->end_group();
         return $html;
     }

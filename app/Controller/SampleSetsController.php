@@ -4,12 +4,14 @@ App::uses('CakeEmail', 'Network/Email');
 App::uses('AppController', 'Controller');
 App::uses('Searchable', 'Controller/Behavior');
 App::uses('Viewable', 'Controller/Behavior');
+App::uses('EditableVersions', 'Controller/Behavior');
 
 class SampleSetsController extends AppController {
     use Searchable {
         Searchable::getComponents as public getSearchableComponents;
     }
     use Viewable;
+    use EditableVersions;
 
     public $helpers = ['Html' , 'Form' , 'My' , 'Js', 'Time', 'String', 'BootstrapForm', 'Mustache.Mustache'];
     public $uses = ['Analysis' , 'SampleSet' , 'Chemist', 'Project'];
@@ -151,66 +153,6 @@ class SampleSetsController extends AppController {
             $this->set('user', $this->Auth->Session->read($this->Auth->sessionKey)['Auth']['User']);
         }
     }
-    
-    /**
-     * Updates a sample set
-     * @param type $id
-     * @return type
-     * @throws NotFoundExcpetion
-     */
-    public function editSet($id = null){
-        //if (isset($this->request->data['SampleSet']['id'])){ //updates the id to the provious one when editing twice
-            //$id = $this->request->data['SampleSet']['id'];
-        //}
-        //$this->layout = 'main';
-        $data = $this->request->data;        
-        if ($id == null){
-            $id = $this->params['url']['id'];
-        } // gets $id from the url
-        if (!$id){
-            throw new NotFoundExcpetion(__('Invalid Sample Set'));
-        } //makes sure that the id is set
-        $set = $this->SampleSet->findById($id);
-
-        if (!$set){
-            throw new NotFoundExcpetion(__('Invalid Sample Set'));
-        } //makes sure that the set exists                
-        $this->set('versions', $this->SampleSet->find('allVersions', ['conditions' => ['set_code' => $set['SampleSet']['set_code']]])); 
-        //sets all the versions so that the view can display them
-        $this->set('set_code', $set['SampleSet']['set_code']); //sets the setcode for the sample set this means that the view can pass it back
-        if (isset($this->request->data['SampleSet'])){
-            $this->request->data['SampleSet']['version'] = $set['SampleSet']['version'] + 1; 
-            //makes a new version with a version number 1 greater than the current highest version number
-            $this->request->data['SampleSet']['date'] = $set['SampleSet']['date'];//keeps the submit date the same
-            if(isset($data['SampleSet']['metadataFile']['error'])&&$data['SampleSet']['metadataFile']['error']=='0'){
-                $data['SampleSet']['metaFile'] = $this->uploadFile($data['SampleSet']['metadataFile'], $data['SampleSet']['set_code'].'_Metadata.'.substr(strtolower(strrchr($data['SampleSet']['metadataFile']['name'], '.')), 1));
-                unset($data['SampleSet']['metadataFile']); 
-            } //uploads metadata file
-            unset($this->request->data['SampleSet']['id']); //unsets the id so the new version is saved as a new row
-            $this->SampleSet->create(); //create a new version
-            if ($this->SampleSet->save($this->request->data)){ //saves the new version
-                $this->set('versions', $this->SampleSet->find('allVersions', ['conditions' => ['set_code' => $set['SampleSet']['set_code']]]));  //updates the version shown on the page
-                $set = $this->SampleSet->find('all', ['conditions' => ['SampleSet.set_code LIKE' => $set['SampleSet']['set_code']]]); //updates $set to be the most recent version
-                $this->set('newId', $set[0]['SampleSet']['id']); //passes the new ID to the view               
-                
-                $this->send_editSS_email(['from' => 'no_reply@plantandfood.co.nz',
-                    'to' => $this->Chemist->find('first', array('fields' => array('Chemist.email'),  'conditions' => array('name' => $set[0]['SampleSet']['chemist'])))['Chemist']['email'],
-                    'editor' => $this->Auth->Session->read($this->Auth->sessionKey)['Auth']['User']['name'],
-                    'set_code' => $set[0]['SampleSet']['set_code']]); //send email to the Chemist when the samplt set is updated
-                if ($set[0]['SampleSet']['submitter_email'] != ''){
-                    $this->send_editSS_email(['from' => 'no_reply@plantandfood.co.nz',
-                        'to' => $set[0]['SampleSet']['submitter_email'],
-                        'editor' => $this->Auth->Session->read($this->Auth->sessionKey)['Auth']['User']['name'],
-                        'set_code' => $set[0]['SampleSet']['set_code']]);
-                } //send email to the submitter if their email is recoded along with the sample set
-                
-                return;
-            }
-        } //update the Sample Set
-        if (!$this->request->data){
-            $this->request->data = $set; //makes sure all the inputs get updated
-        } //update the values that should be showing in the form after its being submitted and updated
-    }
 
     /**
      * Creates and exports a CSV file from a search
@@ -224,33 +166,44 @@ class SampleSetsController extends AppController {
         $this->layout = 'ajax';
     }
 
-    /**
-     * Ajax function that returns list items the have the chemist details in
-     */
-    public function nameAutoComplete(){
-        $this->autoRender=false; //stops the page from rendering as this is ajax so it outputs data
-        $this->layout = 'ajax';     //ajax layout is blank
-        $query = $this->request->data['name']; //gets the part name of the name that has being entered
-        $results = $this->Chemist->find('all' , array('conditions' => array('name LIKE' => $query.'%')));//gets all names that start with that part of the name
-        $elements = '';
-        foreach($results as $row){
-            $elements .= "<li class='ui-menu-item' role='menuitem'><a class='ui-corner-all' tabindex='-1'";
-            $elements .= 'onclick="change(\''.$row['Chemist']['name'].'\')"';
-            $elements .= ">".$row['Chemist']['name']." - ".$row['Chemist']['team']." - ".$row['Chemist']['name_code']."</a></li>";
-        } //makes the list of possible names
-        echo $elements;
+    protected function setEditFormRequirements() {
+        $this->set('names', $this->Chemist->find('list', ['fields' => 'name']));
     }
-    /**
-     * Ajax function that return json array of data if it finds only one sample set for the set code
-     */
-    public function getSetCode(){
-        $this->autoRender=false;
-        $this->layout = 'ajax'; 
-        
-        $set_code = $this->request->data['setCode']; //gets the set coed to search on
-        $results = $this->SampleSet->find('all', ['conditions' => [ 'AND' => [ '0' => [ 'SampleSet.set_code' => $set_code]]]]); //finds the sample set 
-        $results = [$results[0]]; //return only the first result
-        echo json_encode($results);
+
+    protected function doSave($item) {
+        if(isset($item['SampleSet']['metadataFile']['error']) && $item['SampleSet']['metadataFile']['error']=='0'){
+            $item['SampleSet']['metaFile'] = $this->uploadFile(
+                $item['SampleSet']['metadataFile'],
+                $item['SampleSet']['set_code'].'_Metadata.'.substr(strtolower(strrchr($item['SampleSet']['metadataFile']['name'], '.')), 1)
+            );
+            unset($item['SampleSet']['metadataFile']);
+        }
+
+        $maxVersion = $this->SampleSet->find(
+            'all',
+                [
+                    'fields' => ['SampleSet.version'],
+                    'conditions' => ['set_code' => $item['SampleSet']['set_code']]
+                ]
+        )[0]['SampleSet']['version'];
+        $item['SampleSet']['version'] = $maxVersion + 1;
+
+        unset($item['SampleSet']['id']); //unsets the id so the new version is saved as a new row
+
+        $this->SampleSet->create();
+        $newItem = $this->SampleSet->save($item);
+        assert($newItem, 'The SampleSet failed to be saved');
+        $this->send_editSS_email(['from' => 'no_reply@plantandfood.co.nz',
+            'to' => $this->Chemist->find('first', ['fields' => ['Chemist.email'],  'conditions' => ['name' => $item['SampleSet']['chemist']]])['Chemist']['email'],
+            'editor' => $this->Auth->Session->read($this->Auth->sessionKey)['Auth']['User']['name'],
+            'set_code' => $item['SampleSet']['set_code']]);
+        if (isset($item['SampleSet']['submitter_email'])){
+            $this->send_editSS_email(['from' => 'no_reply@plantandfood.co.nz',
+                'to' => $item['SampleSet']['submitter_email'],
+                'editor' => $this->Auth->Session->read($this->Auth->sessionKey)['Auth']['User']['name'],
+                'set_code' => $item['SampleSet']['set_code']]);
+        } //send email to the submitter if their email is recoded along with the sample set
+        return $newItem['SampleSet']['id'];
     }
 }
 
