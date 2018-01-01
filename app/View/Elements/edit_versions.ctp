@@ -17,7 +17,7 @@
 </ul>
 
 <?= $this->BootstrapForm->create($model, ['action' => 'edit']); ?>
-g
+
 <?= $this->element($model.'/edit_form', ['item' => $item]); ?>
 
 <?= $this->BootstrapForm->addActionButtons('Save as new version'); ?>
