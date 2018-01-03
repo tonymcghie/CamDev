@@ -1,13 +1,15 @@
 <?php
 
 App::uses('Searchable', 'Controller/Behavior');
+App::uses('Viewable', 'Controller/Behavior');
 
 class CompoundpfrDataController extends AppController {
     use Searchable {
         Searchable::getComponents as public getSearchableComponents;
     }
+    use Viewable;
 
-    public $helpers = array('Html' , 'Form' , 'My', 'Js', 'Time', 'String', 'BootstrapForm');
+    public $helpers = array('Html' , 'Form' , 'My', 'Js', 'Time', 'String', 'BootstrapForm', 'Mustache.Mustache');
     public $uses = array('Compoundpfr_data','PubChemModel', 'Compound');
     public $layout = 'PageLayout';
     public $components = array('Paginator', 'My', 'Pivot', 'RequestHandler', 'Session', 'Cookie', 'Auth', 'File');
