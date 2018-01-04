@@ -22,7 +22,7 @@ class SampleSetDataObject extends DataObject implements ViewableModel {
     public function getActionData() {
         return [
             'viewURL' => ['controller' => 'SampleSets', 'action' => 'view', '?' => ['id' => $this->id]],
-            'editURL' => ['controller' => 'SampleSets', 'action' => 'editSet', '?' => ['id' => $this->id]],
+            'editURL' => ['controller' => 'SampleSets', 'action' => 'edit', '?' => ['id' => $this->id]],
             'analysisURL' => ['controller' => 'Analyses', 'action' => 'editAnalysis','?' => ['set_code' =>  $this->set_code]]
         ];
     }
