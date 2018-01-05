@@ -15,7 +15,7 @@ class MolecularFeaturesController extends AppController{
     }
     use Viewable;
     
-    public $helpers = array('Html' , 'Form' , 'My', 'Js', 'Time', 'String', 'BootstrapForm');
+    public $helpers = array('Html' , 'Form' , 'My', 'Js', 'Time', 'String', 'BootstrapForm', 'Mustache.Mustache');
     public $uses = array('Molecular_feature','PubChemModel', 'Compound');
     public $layout = 'PageLayout';
     public $components = array('Paginator', 'My', 'Pivot', 'RequestHandler', 'Session', 'Cookie', 'Auth', 'File', 'Search');

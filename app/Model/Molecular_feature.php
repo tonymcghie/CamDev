@@ -29,6 +29,7 @@ class Molecular_feature extends AppModel implements SearchableModel{
             'sample_reference',
             'experiment_reference',
             'crop',
+            'genus_species',
             'genotype',
             'tissue'];
     }
@@ -43,7 +44,7 @@ class Molecular_feature extends AppModel implements SearchableModel{
             'sample_reference',
             'experiment_reference',
             'crop',
-            'species',
+            'genus_species',
             'tissue',
             'genotype',
             'analyst'];
