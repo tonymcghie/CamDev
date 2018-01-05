@@ -223,7 +223,8 @@ class StringHelper extends AppHelper{
             'crop' => 'Crop',
             'species' => 'Species',
             'analyst' => 'Analyst',
-            'actions' => 'Actions'],
+            'actions' => 'Actions',
+            'searchTitle' => 'Find Metabolomic Data'],
         'Compound' => [
             'all' => 'All',
             'compound_name' => 'Name',

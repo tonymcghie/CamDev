@@ -1,6 +1,8 @@
 <?php
 
 App::uses('ConnectionManager', 'Model');
+App::uses('Searchable', 'Controller/Behavior');
+App::uses('Viewable', 'Controller/Behavior');
 
 /* 
  * To change this license header, choose License Headers in Project Properties.
@@ -8,6 +10,11 @@ App::uses('ConnectionManager', 'Model');
  * and open the template in the editor.
  */
 class MolecularFeaturesController extends AppController{
+    use Searchable {
+        Searchable::getComponents as public getSearchableComponents;
+    }
+    use Viewable;
+    
     public $helpers = array('Html' , 'Form' , 'My', 'Js', 'Time', 'String', 'BootstrapForm');
     public $uses = array('Molecular_feature','PubChemModel', 'Compound');
     public $layout = 'PageLayout';
@@ -41,6 +48,10 @@ class MolecularFeaturesController extends AppController{
         return $this->My->isAuthorizedPFRData($user, $this);
     }
     
+    function getModel() {
+        return $this->Molecular_feature;
+    }
+    
     /**
      * Entry point for Metabolomic Data -> Find
      * Control transfers to the find_data view and onto to /Elements/search_form
@@ -51,7 +62,7 @@ class MolecularFeaturesController extends AppController{
         
     } 
     
-    
+    /**
     public function search(){
         $data = $this->request->data;
         $this->layout = 'ajax';
@@ -76,7 +87,7 @@ class MolecularFeaturesController extends AppController{
         $this->render('/Elements/search_results_modal');
 
     }
-    
+    */
     
     
     /**

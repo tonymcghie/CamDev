@@ -1,6 +1,7 @@
 <?php
 
 App::uses('DataObject', 'Model/DataObject');
+App::uses('ViewableModel', 'Model/Behavior');
 
 class MolecularFeatureDataObject extends DataObject {
 
