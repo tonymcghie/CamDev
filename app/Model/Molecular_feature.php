@@ -7,8 +7,9 @@
  */
 
 App::uses('MolecularFeatureDataObject', 'Model/DataObject');
+App::uses('SearchableModel', 'Model/Behavior');
 
-class Molecular_feature extends AppModel{
+class Molecular_feature extends AppModel implements SearchableModel{
     
      public function buildObjects(array $queryResults){
         $molecular_featureDataObjects = [];
@@ -28,8 +29,25 @@ class Molecular_feature extends AppModel{
             'sample_reference',
             'experiment_reference',
             'crop',
+            'genus_species',
             'genotype',
             'tissue'];
+    }
+    
+    public function getSearchOptions() {
+        return [
+            'feature_tag',
+            'feature_id',
+            'mz',
+            'ion_polarity',
+            'intensity',
+            'sample_reference',
+            'experiment_reference',
+            'crop',
+            'genus_species',
+            'tissue',
+            'genotype',
+            'analyst'];
     }
     
 }

@@ -61,7 +61,7 @@ assert(in_array($group, [$sampleSetGroup,
         }
 
         .background {
-            background-image: url('../img/vineyard-blenheim.jpg');
+            background-image: url('../img/plamy_town50.jpg');
             background-size: cover;
             position: fixed;
             width: 100vw;
