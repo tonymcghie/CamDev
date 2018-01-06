@@ -8,10 +8,10 @@ class CompoundsController extends AppController {
     }
 
 
-    public $helpers = array('Html' , 'Form' , 'My', 'Js', 'Time', 'String', 'BootstrapForm');
-    public $uses = array('Compound');
+    public $helpers = ['Html' , 'Form' , 'My', 'Js', 'Time', 'String', 'BootstrapForm'];
+    public $uses = ['Compound'];
     public $layout = 'PageLayout';
-    public $components = array('Paginator', 'RequestHandler', 'My', 'Session', 'Cookie', 'Auth', 'File', 'Search');
+    public $components = ['RequestHandler', 'My', 'Session', 'Cookie', 'Auth', 'File', 'Search'];
     
    /** Sets the options for pagination */
     public $paginate = array(
@@ -117,27 +117,7 @@ class CompoundsController extends AppController {
         $this->response->download("export_compounds.csv"); //download the named csv file
         $this->layout = 'ajax';
     }
-    
-    /**
-     * Adds a search set to the data array
-     * This will make it the same as if it was passed from the form
-     * @param Array $data The data array to be changed
-     * @param String $cri The criteria to be added
-     * @param String $val The value to be added
-     * @param String $log The logic of the criteria and value
-     * @return Array The new Data Array
-     */
-    public function addSearchCondition($data, $cri, $val, $log){
-        $i = 0;
-        while (isset($data['Compound']['cri_'.$i])){
-            $i++;
-        } //loop untill there is no more pairs to find where to add the next one
-        $data['Compound'][('cri_'.$i)] = $cri;
-        $data['Compound']['val_'.$i] = $val;
-        $data['Compound']['log_'.$i] = $log;
-        return $data;
-    }       
-    
+
     /**
      * This is the function for the substructre search
      */

@@ -6,10 +6,17 @@ class MetabolitesController extends AppController {
     use Searchable {
         Searchable::getComponents as public getSearchableComponents;
     }
-    public $helpers = array('Html' , 'Form' , 'My' , 'Js', 'Time', 'String', 'BootstrapForm');
-    public $uses = array('Metabolite','Msms_Metabolite','Proposed_Metabolite', 'Chemist');
+    public $helpers = ['Html' , 'Form' , 'My' , 'Js', 'Time', 'String', 'BootstrapForm'];
+    public $uses = ['Metabolite','Msms_Metabolite','Proposed_Metabolite', 'Chemist'];
     public $layout = 'PageLayout';
-    public $components = array('Paginator', 'RequestHandler', 'My', 'Session', 'Cookie', 'Auth', 'File', 'Search');
+    public $components = ['RequestHandler', 'My', 'Session', 'Cookie', 'Auth', 'File', 'Search'];
+
+    public $paginate = [
+        'limit' => 50,
+        'order' => [
+            'Metabolite.exact_mass' => 'asc'
+        ]
+    ];
 
     public function __construct($request = null, $response = null) {
         parent::__construct($request, $response);
@@ -23,12 +30,7 @@ class MetabolitesController extends AppController {
     public function beforeFilter() {
         parent::beforeFilter();
 
-        $this->Paginator->settings= [
-            'limit'=>50,
-            'order' => [
-                'Metabolite.exact_mass' => 'asc'
-            ]
-        ];
+
         $this->set('group', 'unknowCompounds');
         //$this->Auth->deny('addMetabolite','editMetabolite','editProposedMetabolite','editMsmsMetabolite');
         $this->Auth->allow('addMetabolite','editMetabolite','editProposedMetabolite','editMsmsMetabolite');

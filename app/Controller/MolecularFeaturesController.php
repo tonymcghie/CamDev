@@ -15,18 +15,18 @@ class MolecularFeaturesController extends AppController{
     }
     use Viewable;
     
-    public $helpers = array('Html' , 'Form' , 'My', 'Js', 'Time', 'String', 'BootstrapForm', 'Mustache.Mustache');
-    public $uses = array('Molecular_feature','PubChemModel', 'Compound');
+    public $helpers = ['Html' , 'Form' , 'My', 'Js', 'Time', 'String', 'BootstrapForm', 'Mustache.Mustache'];
+    public $uses = ['Molecular_feature','PubChemModel', 'Compound'];
     public $layout = 'PageLayout';
-    public $components = array('Paginator', 'My', 'Pivot', 'RequestHandler', 'Session', 'Cookie', 'Auth', 'File', 'Search');
+    public $components = ['My', 'Pivot', 'RequestHandler', 'Session', 'Cookie', 'Auth', 'File', 'Search'];
     
     //sets the values for the pagination
-    public $paginate = array(
+    public $paginate = [
         'limit' => 30,
-        'order' => array(
+        'order' => [
             'Compoundpfr_data.assigned_name' => 'asc'
-        )
-    );
+        ]
+    ];
     
     /*
      *  @LIVE swap file url 

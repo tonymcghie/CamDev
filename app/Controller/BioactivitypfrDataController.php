@@ -6,10 +6,18 @@ class BioactivitypfrDataController extends AppController {
     use Searchable {
         Searchable::getComponents as public getSearchableComponents;
     }
-    public $helpers = array('Html' , 'Form' , 'My', 'Js');
-    public $uses = array('Bioactivitypfr_data','PubChemModel', 'Compound');
+    public $helpers = ['Html' , 'Form' , 'My', 'Js'];
+    public $uses = ['Bioactivitypfr_data','PubChemModel', 'Compound'];
     public $layout = 'PageLayout';
-    public $components = array('Paginator', 'My', 'Pivot');
+    public $components = ['My', 'Pivot'];
+
+    //sets the values for the pagination
+    public $paginate = [
+        'limit' => 30,
+        'order' => [
+            'Bioactivitypfr_data.bioactivity_name' => 'asc'
+        ]
+    ];
     
     /*
      *  @LIVE swap file url 
@@ -23,13 +31,6 @@ class BioactivitypfrDataController extends AppController {
     }
 
     public function beforeFilter() {
-        //sets the values for the pagination
-        $this->Paginator->settings= [
-            'limit' => 30,
-            'order' => [
-                'Bioactivitypfr_data.bioactivity_name' => 'asc'
-            ]
-        ];
         $this->set('group', 'pfrData');
         parent::beforeFilter();
     }

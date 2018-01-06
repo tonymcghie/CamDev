@@ -17,7 +17,14 @@ class SampleSetsController extends AppController {
     public $uses = ['Analysis' , 'SampleSet' , 'Chemist', 'Project'];
     public $layout = 'PageLayout';
 
-    public $components = ['Paginator', 'RequestHandler', 'My', 'Session', 'Cookie', 'Auth', 'File'];
+    public $components = ['RequestHandler', 'My', 'Session', 'Cookie', 'Auth', 'File'];
+
+    public $paginate = [
+        'limit' => 10,
+        'order' => [
+            'SampleSet.date' => 'desc'
+        ]
+    ];
 
     /** @var string $file_URL sets the location to save files to */
     private $file_URL;
@@ -38,13 +45,6 @@ class SampleSetsController extends AppController {
         $this->set('group', 'sampleSets');
 
         $file_URL = Configure::read('live') ? '/app/app/webroot/data/' : 'data/';
-
-        $this->Paginator->settings= [
-            'limit'=>10,
-            'order' => [
-                'SampleSet.date' => 'asc'
-            ]
-        ];
 
         parent::beforeFilter();
 
