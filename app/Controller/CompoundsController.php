@@ -1,6 +1,13 @@
 <?php
 
+App::uses('Searchable', 'Controller/Behavior');
+
 class CompoundsController extends AppController {
+    use Searchable {
+        Searchable::getComponents as public getSearchableComponents;
+    }
+
+
     public $helpers = array('Html' , 'Form' , 'My', 'Js', 'Time', 'String', 'BootstrapForm');
     public $uses = array('Compound');
     public $layout = 'PageLayout';
@@ -8,7 +15,7 @@ class CompoundsController extends AppController {
     
    /** Sets the options for pagination */
     public $paginate = array(
-        'limit' => 25,
+        'limit' => 50,
         'order' => array(
             'Compound.compound_name' => 'asc'
         )
@@ -30,6 +37,10 @@ class CompoundsController extends AppController {
      */
     public function isAuthorized($user) {
         return $this->My->isAuthorizedCompound($user, $this);
+    }
+
+    protected function getModel() {
+        return $this->Compound;
     }
     
     /**
@@ -74,40 +85,6 @@ class CompoundsController extends AppController {
         if (!$this->request->data){
            $this->request->data = $compound;
         }//update the data to display
-    }
-    
-    /**
-     * Entry point for Compounds -> Find
-     * Control transfers to the search_compound view and onto to /Elements/search_form
-     * and then back to the search() function below.
-     * Search results are displayed as a modal as defined by /Elements/compound_results table 
-     */
-    public function search(){
-        $this->set('model', 'Compound');
-        $this->set('options', $this->Compound->getSearchOptions());
-        $this->helpers[] = 'Mustache.Mustache';
-        $this->Paginator->settings= [
-            'limit'=>50,
-            'order' => [
-                'SampleSet.date' => 'asc'
-            ]
-        ];
-
-        if (!empty($this->request->query)) {
-            $query = $this->Search->build_query($this->Compound, $this->request->query);
-            $results = $this->paginate('Compound', $query);
-
-            $resultObjects = $this->Compound->buildObjects($results);
-
-            $this->set('cols', $this->Compound->getDisplayColumns());
-            $this->set('ion_cols', $this->Compound->getIonAdductFields());
-            $this->set('results', $resultObjects);
-            $ion_adducts = $this->getIonAdducts($results);  //make a new array with ion adduct m/z values
-
-            $this->set('ion_adducts', $ion_adducts);  //pass results to view so the ion adducts values can be displayed
-            $this->set('num', $this->Compound->find('count', ['conditions' => $query])); //passes the number of results to the view
-            $this->set('data', $this->request->query);
-        }
     }
     
     /**
@@ -199,26 +176,6 @@ class CompoundsController extends AppController {
     public function reagentsCompound($id = null) {
         $compound = $this->Compound->findById($id); //find a compound by id
         $this->set('info', $compound);// passes the compound info to the view
-    } 
-    /**
-     * A function to an results array into an ion_results array containing
-     * exact masses for adduct ions
-     */
-    public function getIonAdducts($data) {
-        $ion_adducts = [];
-        foreach ($data as $row){//cycle through all the compounds and do the calculations and add the required data
-            $new_data = array('compound_name' => $row['Compound']['compound_name'],
-                'formula' => $row['Compound']['formula'],
-                'cas' => $row['Compound']['cas'],
-                'exact_mass' => $row['Compound']['exact_mass'],
-                '[M-H]-' => $row['Compound']['exact_mass'] - 1.00794,
-                '[M+COOH-H]-' => $row['Compound']['exact_mass'] + 44.9977,
-                '[M+H]+' => $row['Compound']['exact_mass'] + 1.0078,
-                '[M+Na]+' => $row['Compound']['exact_mass'] + 22.9898);
-            array_push($ion_adducts, $new_data);
-
-        }
-        return $ion_adducts;
     }
 }
 

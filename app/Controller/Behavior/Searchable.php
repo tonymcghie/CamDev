@@ -10,7 +10,7 @@ trait Searchable {
     protected abstract function getModel();
 
     private function getComponents() {
-        return ['Search'];
+        return ['Search', 'Paginator'];
     }
 
 
@@ -22,28 +22,32 @@ trait Searchable {
             'This method must be attacked to a controller');
         assert(in_array('SearchableModel', class_implements($this->getModel())),
             'The model needs to implement SearchableModel');
-        $this->doSearch($this, $this->getModel());
-    }
 
-    private function doSearch(AppController $controller,
-                              AppModel $model) {
-        $controller->set('model', get_class($model));
-        $controller->helpers[] = 'Mustache.Mustache';
-        $controller->set('options', $model->getSearchOptions());
+        $this->set('model', get_class($this->getModel()));
+        $this->set('options', $this->getModel()->getSearchOptions());
+        $this->helpers[] = 'Mustache.Mustache';
 
-        if (!empty($controller->request->query)) {
-            $query = $controller->Search->build_query($model, $controller->request->query);
-            $results = $controller->paginate($model, $query);
+        if (!empty($this->request->query)) {
+            $this->Paginator->settings = $this->paginate;
+            list($resultObjects, $numResults) = $this->doSearch();
 
-            $resultObjects = $model->buildObjects($results);
-
-            $controller->set('results', $resultObjects);
-            $controller->set('num', $model->find('count', ['conditions' => $query]));
-            $controller->set('data', $controller->request->query);
-            $controller->set('cols', $model->getDisplayColumns());
+            $this->set('results', $resultObjects);
+            $this->set('num', $numResults);
+            $this->set('data', $this->request->query);
+            $this->set('cols', $this->getModel()->getDisplayColumns());
         }
 
-        $controller->autoRender = false;
-        $controller->render('/Elements/search_page');
+        $this->autoRender = false;
+        $this->render('/Elements/search_page');
+    }
+
+    private function doSearch() {
+        $query = $this->Search->build_query($this->getModel(), $this->request->query);
+        $results = $this->paginate($this->getModel(), $query);
+
+        $resultObjects = $this->getModel()->buildObjects($results);
+        $numResults = $this->getModel()->find('count', ['conditions' => $query]);
+
+        return [$resultObjects, $numResults];
     }
 }

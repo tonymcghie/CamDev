@@ -9,6 +9,16 @@ class CompoundDataObject extends DataObject {
 
     protected $immutableFields = ['id'];
 
+    public function __construct($model, $data) {
+        parent::__construct($model, $data);
+        if (isset($data['exact_mass'])) {
+            $this->data['[M-H]-'] = $data['exact_mass'] - 1.00794;
+            $this->data['[M+COOH-H]-'] = $data['exact_mass'] + 44.9977;
+            $this->data['[M+H]+'] = $data['exact_mass'] + 1.0078;
+            $this->data['[M+Na]+'] = $data['exact_mass'] + 22.9898;
+        }
+    }
+
     // FRONT END DATA HELPERS
 
     /**

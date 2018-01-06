@@ -19,20 +19,13 @@ class Compound extends AppModel implements SearchableModel {
             'pseudonyms',
             'formula',
             'exact_mass',
-            'cas',
-            'compound_type',
-            'comment'];
-    }
-    
-    public function getIonAdductFields() {
-        return ['compound_name',
-            'formula',
-            'cas',
-            'exact_mass',
             '[M-H]-',
             '[M+COOH-H]-',
             '[M+H]+',
-            '[M+Na]+'];
+            '[M+Na]+',
+            'cas',
+            'compound_type',
+            'comment'];
     }
 
     public function getSearchOptions() {
