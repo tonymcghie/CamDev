@@ -422,6 +422,8 @@ class PaginatorHelper extends AppHelper {
                     $post = true;
                     array_push($url,  http_build_query($options['data']));
                     unset($options['data']);
+                } else {
+                    $post = false;
                 }
                                                    
 		  
