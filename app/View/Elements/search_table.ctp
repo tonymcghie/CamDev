@@ -31,12 +31,11 @@
 
             <div class="table-page-nums">
                 <span>
-                    // TODO make pagination work
-                    <?= $this->Paginator->first('First', ['data' => $results]); ?>
-                    <?php if($this->Paginator->hasPrev())echo $this->Paginator->prev('Prev', ['data' => $results]); ?>
-                    <?= $this->Paginator->numbers(['modulus' => 4, 'data' => $results]); ?>
-                    <?php if ($this->Paginator->hasNext())echo $this->Paginator->next('Next' ,['data' => $results]); ?>
-                    <?=  $this->Paginator->last('Last', ['data' => $results]); ?>
+                    <?= $this->Paginator->first('First'); ?>
+                    <?php if($this->Paginator->hasPrev())echo $this->Paginator->prev('Prev'); ?>
+                    <?= $this->Paginator->numbers(['modulus' => 4]); ?>
+                    <?php if ($this->Paginator->hasNext())echo $this->Paginator->next('Next'); ?>
+                    <?=  $this->Paginator->last('Last'); ?>
                 </span>
             </div>
         </div>

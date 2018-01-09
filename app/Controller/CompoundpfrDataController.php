@@ -9,18 +9,18 @@ class CompoundpfrDataController extends AppController {
     }
     use Viewable;
 
-    public $helpers = array('Html' , 'Form' , 'My', 'Js', 'Time', 'String', 'BootstrapForm', 'Mustache.Mustache');
-    public $uses = array('Compoundpfr_data','PubChemModel', 'Compound');
+    public $helpers = ['Html' , 'Form' , 'My', 'Js', 'Time', 'String', 'BootstrapForm', 'Mustache.Mustache'];
+    public $uses = ['Compoundpfr_data','PubChemModel', 'Compound'];
     public $layout = 'PageLayout';
-    public $components = array('Paginator', 'My', 'Pivot', 'RequestHandler', 'Session', 'Cookie', 'Auth', 'File');
+    public $components = ['My', 'Pivot', 'RequestHandler', 'Session', 'Cookie', 'Auth', 'File'];
     
     //sets the values for the pagination
-    public $paginate = array(
+    public $paginate = [
         'limit' => 30,
-        'order' => array(
-            'Compoundpfr_data.assigned_name' => 'asc'
-        )
-    );
+        'order' => [
+            'Compoundpfr_data.exact_mass' => 'asc'
+        ]
+    ];
     
     /*
      *  @LIVE swap file url 
@@ -35,11 +35,6 @@ class CompoundpfrDataController extends AppController {
 
     public function beforeFilter() {
         $this->set('group', 'pfrData');
-
-        $this->paginate = [
-            'limit' => 30,
-            'order' => array('Compoundpfr_data.date' => 'asc')
-        ];
         parent::beforeFilter();
     }
     
