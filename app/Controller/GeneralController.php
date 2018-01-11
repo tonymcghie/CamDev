@@ -23,8 +23,8 @@ class GeneralController extends AppController {
     public $components = array('Paginator', 'RequestHandler', 'My', 'Session', 'Cookie', 'Auth');  
     
     //@LIVE swap the URLS for both of them
-    private $file_URL = '/app/app/webroot/data/'; //live
-    //private $file_URL = 'data/';        //testing
+    //private $file_URL = '/app/app/webroot/data/'; //live
+    private $file_URL = 'data/';        //testing
     
     private $python_location = '/app/app/webroot/files/pythonScripts/'; //live
     //private $python_location = 'C:/wamp/www/CAMcake/app/webroot/files/pythonScripts/'; //testing

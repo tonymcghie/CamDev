@@ -22,7 +22,7 @@ class MolecularFeatureDataObject extends DataObject implements ViewableModel {
     public function getActionData() {
         return [
             'DataViewURL' => ['controller' => 'MolecularFeatures', 'action' => 'view', '?' => ['id' => $this->id]],
-            'SetViewURL' => ['controller' => 'MolecularFeatures', 'action' => 'viewSet', '?' => ['reference' => $this->reference]]
+            'SetViewURL' => ['controller' => 'MolecularFeatures', 'action' => 'viewSet', '?' => ['experiment_reference' => $this->experiment_reference]]
         ];
     }
 
