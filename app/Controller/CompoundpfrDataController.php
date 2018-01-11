@@ -16,7 +16,7 @@ class CompoundpfrDataController extends AppController {
     
     //sets the values for the pagination
     public $paginate = [
-        'limit' => 30,
+        'limit' => 100,
         'order' => [
             'Compoundpfr_data.exact_mass' => 'asc'
         ]

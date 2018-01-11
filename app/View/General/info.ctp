@@ -22,7 +22,6 @@
 
 <div class="tab-content">
     <div id="general_tab" class="tab-pane fade in active">
-        Github branch: CAM4-overview
         <h2>General</h2>
 
         <p>Use your PFR username and password to login into CAM.</p>
@@ -35,12 +34,14 @@
         <h3>Find (Searching)</h3>
         <p>Most CAM Actions start by initiating a Find page, which is used for searching the database.  The Find page contains four inputs: 1) Criteria - a drop down list of fields relevant to the type of data you are searching for; 2) a search value that has to be entered; 3) logic operator; and 4) selection for how the entered search value is treated.  </p>
 
-                <h3>Created By</h3>
+        <h3>Created By</h3>
         <ol>
             <li>Andrew McGhie</li>
             <li>Tony McGhie</li>
             <li>Helge Dzierzon</li>
         </ol>
+        <h3>Version: 4.0.beta</h3>
+                
     </div>
     <div id="tips_tab" class="tab-pane fade">
         <h2>CAM Tips</h2>

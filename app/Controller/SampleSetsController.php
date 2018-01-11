@@ -20,7 +20,7 @@ class SampleSetsController extends AppController {
     public $components = ['RequestHandler', 'My', 'Session', 'Cookie', 'Auth', 'File'];
 
     public $paginate = [
-        'limit' => 10,
+        'limit' => 20,
         'order' => [
             'SampleSet.date' => 'desc'
         ]

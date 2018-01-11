@@ -12,8 +12,8 @@ $searchOptions = array( //this has the options that go in the search criteria se
     'assigned_confid' => 'Id Confidence (1-5)',
     'exact_mass' => 'Exact Mass',
     'intensity_description' => 'Units',
-    'reference' => 'Experiment Ref.',
-    'sample_ref' => 'Sample Ref.',
+    'reference' => 'Experiment Reference',
+    'sample_ref' => 'Sample Reference',
     'sample_description' => 'Sample Description',
     'crop' => 'Crop',
     'species' => 'Species',
@@ -26,8 +26,8 @@ $axisOptions = [ //this has the options that go in each of the axis select
     'assigned_name' => 'Compound Name',
     'intensity_value' => 'Intensity Value',
     'intensity_description' => 'Intensity Units',
-    'reference' => 'Experiment Ref.',
-    'sample_ref' => 'Sample Ref.',    
+    'reference' => 'Experiment Reference',
+    'sample_ref' => 'Sample Reference',    
     'exact_mass' => 'Exact Mass',
     'rt_value' => 'Retention Value',
     'crop' => 'Crop',
@@ -38,8 +38,8 @@ $pivotOptions = [ //this has the options that go into what the data can be pivot
     'none' => 'No Pivot',
     'assigned_name' => 'Compound Name',
     'exact_mass' => 'Exact Mass',
-    'reference' => 'Experiment Ref.',
-    'sample_ref' => 'Sample Ref.',
+    'reference' => 'Experiment Reference',
+    'sample_ref' => 'Sample Reference',
     'crop' => 'Crop',
     'genotype' => 'Genotype',
     'tissue' => 'Tissue'];
@@ -47,7 +47,7 @@ $pivotOptions = [ //this has the options that go into what the data can be pivot
 echo '<table class="noFormat search">'; //formatting needs to be looked at and add ing search boxes
 echo $this->Html->tableCells([$this->Form->input('x_axis:', ['label' => 'X-axis', 'id' => 'x_axis', 'options' => $axisOptions]),
         $this->Form->input('y_axis', ['label' => 'Y-axis:', 'id' => 'y_axis', 'options' => $axisOptions]),
-        $this->Form->input('chartType', ['label' => 'Chart Type:', 'id' => 'chartType', 'options' => ['pie' => '2D Pie', 'pie3d' => '3D Pie', 'bar' => 'Bar', 'line' => 'Line', 'scatter' => 'Scatter', 'table' => 'Table']]),    
+        $this->Form->input('chartType', ['label' => 'Type:', 'id' => 'chartType', 'options' => ['pie' => '2D Pie', 'pie3d' => '3D Pie', 'bar' => 'Bar', 'line' => 'Line', 'scatter' => 'Scatter', 'table' => 'Table']]),    
     $this->Form->input('Pivot_by(average):', ['id' => 'Pivot_By', 'options' => $pivotOptions])]);
 echo $this->Html->tableCells([
     '<span id="addSet" class="large-button anySizeButton" style="padding: 5px;height: 30px;margin-top:10px">Add Set</span>']);

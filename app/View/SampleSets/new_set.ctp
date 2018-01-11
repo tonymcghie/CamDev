@@ -18,7 +18,7 @@ echo $this->BootstrapForm->create_horizontal('SampleSet', ['type' => 'file' ,'ac
 echo $this->BootstrapForm->input_horizontal('confidential', ['type' => 'checkbox',
     'label' => $this->String->get_string('confidential', 'SampleSet_form')]);
 
-echo $this->BootstrapForm->input_horizontal('submitter', ['label' => ['text' => $this->String->get_string('collaborator', 'SampleSet_form')],
+echo $this->BootstrapForm->input_horizontal('submitter', ['label' => ['text' => $this->String->get_string('submitter', 'SampleSet_form')],
     'value' => (isset($user['name']) ? $user['name'] : ''),
     'required',]);
 

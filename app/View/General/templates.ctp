@@ -12,27 +12,27 @@
     <tr>
         <td><h3>Sample Info Upload:</h3></td>
         <td class="text-center" style = "vertical-align: middle"><button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#smplModal"><span class="glyphicon glyphicon-info-sign"></span></button></td>
-        <td style = "vertical-align: middle"><button type="button" class="btn"><span class="glyphicon glyphicon-download-alt"></span> Download Template</button></td>
+        <td style = "vertical-align: middle"><button type="button" class="btn"><span class="glyphicon glyphicon-download-alt"></span> <?php  echo $this->Html->link('DownLoad Template',$this->My->makeTemplateURL('sample_info.csv'),['target'=>'_blank']); ?></td>
     </tr>
     <tr>
         <td><h3>Compound Data Summary Table:</h3></td>
         <td class="text-center" style = "vertical-align: middle"><button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#cdstModal"><span class="glyphicon glyphicon-info-sign"></button></td>
-        <td style = "vertical-align: middle"><button type="button" class="btn"><span class="glyphicon glyphicon-download-alt"></span> Download Template</button></td>    
+        <td style = "vertical-align: middle"><button type="button" class="btn"><span class="glyphicon glyphicon-download-alt"></span> <?php  echo $this->Html->link('DownLoad Template',$this->My->makeTemplateURL('compound_summary_table.csv'),['target'=>'_blank']); ?></td>
     </tr>
     <tr>
         <td><h3>PFR Compound Data Upload Specifications:</h3></td>
         <td class="text-center" style = "vertical-align: middle"><button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#cmpdModal"><span class="glyphicon glyphicon-info-sign"></button></td>
-        <td style = "vertical-align: middle"><button type="button" class="btn"><span class="glyphicon glyphicon-download-alt"></span> Download Template</button></td>  
+        <td style = "vertical-align: middle"><button type="button" class="btn"><span class="glyphicon glyphicon-download-alt"></span> <?php  echo $this->Html->link('DownLoad Template',$this->My->makeTemplateURL('pfr_compound_specifications.xlsx'),['target'=>'_blank']); ?></td> 
     </tr>
     <tr>
         <td><h3>Metabolomics Data Upload Specifications:</h3></td>
         <td class="text-center" style = "vertical-align: middle"><button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#metaModal"><span class="glyphicon glyphicon-info-sign"></button></td>
-        <td style = "vertical-align: middle"><button type="button" class="btn"><span class="glyphicon glyphicon-download-alt"></span> Download Template</button></td>
+        <td style = "vertical-align: middle"><button type="button" class="btn"><span class="glyphicon glyphicon-download-alt"></span> <?php  echo $this->Html->link('DownLoad Template',$this->My->makeTemplateURL('molecular_features_specifications.xlsx'),['target'=>'_blank']); ?></td> 
     </tr>
     <tr>
         <td><h3>Data Processing:</h3></td>
         <td class="text-center" style = "vertical-align: middle"><button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#dpModal"><span class="glyphicon glyphicon-info-sign"></button></td>
-        <td style = "vertical-align: middle"><button type="button" class="btn"><span class="glyphicon glyphicon-download-alt"></span> Download Template</button></td>    
+        <td style = "vertical-align: middle"><button type="button" class="btn"><span class="glyphicon glyphicon-download-alt"></span> <?php  echo $this->Html->link('DownLoad Template',$this->My->makeTemplateURL('data_processing.xlsx'),['target'=>'_blank']); ?></td>    
     </tr>
 </table>
 </div>
@@ -121,28 +121,7 @@
         </div>
     </div>
 </div>
-<!--<table class="noFormat viewSampleSet">
-    <tr>
-        <td><h2>Sample Info Upload:</h2></td>
-        <td><?php  echo $this->Html->link('DownLoad Template',$this->My->makeTemplateURL('sample_info.csv'),['target'=>'_blank', 'class' => 'find-button anySizeButton']); ?></td
-    </tr>
-	<tr>
-        <td><h2>Compound Data Summary Table:</h2></td>
-        <td><?php  echo $this->Html->link('DownLoad Template',$this->My->makeTemplateURL('summary_table.xlsx'),['target'=>'_blank', 'class' => 'find-button anySizeButton']); ?></td
-    </tr>
-    <tr>
-        <td><h2>PFR Compound Data Upload Specifications:</h2></td>
-        <td><?php  echo $this->Html->link('DownLoad Template',$this->My->makeTemplateURL('pfr_compound_specifications.xlsx'),['target'=>'_blank', 'class' => 'find-button anySizeButton']); ?></td
-    </tr>
-    <tr>
-        <td><h2>Metabolomics Data Upload Specifications:</h2></td>
-        <td><?php  echo $this->Html->link('DownLoad Template',$this->My->makeTemplateURL('molecular_features_specifications.xlsx'),['target'=>'_blank', 'class' => 'find-button anySizeButton']); ?></td
-    </tr>
-    <tr>
-        <td><h2>Data Processing:</h2></td>
-        <td><?php  echo $this->Html->link('DownLoad Template',$this->My->makeTemplateURL('data_processing.xlsx'),['target'=>'_blank', 'class' => 'find-button anySizeButton']); ?></td
-    </tr>
-</table>-->
+
 
 
 

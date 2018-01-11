@@ -22,12 +22,12 @@ class MolecularFeaturesController extends AppController{
     
     //sets the values for the pagination
     public $paginate = [
-        'limit' => 30,
+        'limit' => 10,
         'order' => [
             'Compoundpfr_data.assigned_name' => 'asc'
         ]
-    ];
-    
+    ];    
+        
     /*
      *  @LIVE swap file url 
      */
