@@ -23,6 +23,7 @@ class UsersController extends AppController {
     public function beforeFilter() {
         parent::beforeFilter();
         $this->Auth->allow(); //allow all access by default
+        $this->set('group', 'sampleSets');
         
         $this->Cookie->name = 'User'; //set the User cookie
         $this->Cookie->time = '365 days'; //long expiration time

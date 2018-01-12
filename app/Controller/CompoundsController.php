@@ -14,15 +14,20 @@ class CompoundsController extends AppController {
     public $components = ['RequestHandler', 'My', 'Session', 'Cookie', 'Auth', 'File', 'Search'];
     
    /** Sets the options for pagination */
-    public $paginate = array(
+    public $paginate = [
         'limit' => 25,
-        'order' => array(
+        'order' => [
             'Compound.compound_name' => 'asc'
-        )
-    );
+        ]
+    ];
+    
+     public function __construct($request = null, $response = null) {
+        parent::__construct($request, $response);
+        $this->components = array_merge($this->components, $this->getSearchableComponents());
+    }
     
     /**
-     * What to do before funcitons are called
+     * What to do before functions are called
      */
     public function beforeFilter() {
         parent::beforeFilter();
@@ -31,7 +36,7 @@ class CompoundsController extends AppController {
     }
     
     /**
-     * Return weather the user is authorised to access the function
+     * Return weather the user is authorized to access the function
      * @param type $user
      * @return type
      */
@@ -44,7 +49,7 @@ class CompoundsController extends AppController {
     }
     
     /**
-     * This funciton adds a Compound to the table
+     * This function adds a Compound to the table
      * @return type
      */
     public function addCompound(){
