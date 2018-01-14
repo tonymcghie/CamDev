@@ -32,7 +32,7 @@ class CompoundDataObject extends DataObject {
         return [
             'pubchemLink' => ['https://pubchem.ncbi.nlm.nih.gov/compound/'.$this->pub_chem],
             'chemspiderLink' => ['http://www.chemspider.com/Chemical-Structure.'.$this->chemspider_id.'.html'],
-            'viewURL' => ['controller' => 'Compounds', 'action' => 'addCompound', '?' => ['id' => $this->id]],
+            'viewURL' => ['https://pubchem.ncbi.nlm.nih.gov/compound/'.$this->pub_chem],
             'editURL' => ['controller' => 'Compounds', 'action' => 'editCompound', '?' => ['id' => $this->id]]
         ];
     }
