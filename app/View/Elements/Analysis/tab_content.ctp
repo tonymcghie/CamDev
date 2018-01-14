@@ -26,15 +26,17 @@ echo $this->BootstrapForm->input_horizontal('set_code',
         <?=  $this->BootstrapForm->input_horizontal('method',
             ['label' => 'Method File:', 'value' => $analysis['Analysis']['method']]) ?>
         <?=  $this->BootstrapForm->input_horizontal('labbook_ref',
-            ['label' => 'Reference:', 'value' => $analysis['Analysis']['labbook_ref'], 'placeholder' => 'Lab Book/ MS #/ Job #']) ?>
+            ['label' => 'Reference:', 'value' => $analysis['Analysis']['labbook_ref'], 'placeholder' => 'Lab Book/MS #/Job # etc']) ?>
         <?=  $this->BootstrapForm->input_horizontal('prep',
             ['label' => 'Sample Preparation:', 'value' => $analysis['Analysis']['prep'], 'rows' => '5', 'cols' => '100']) ?>
         <?=  $this->BootstrapForm->input_horizontal( 'details',
             ['label' => 'Analysis Details:', 'value' => $analysis['Analysis']['details'], 'rows' => '5', 'cols' => '100']) ?>
+        <?=  $this->BootstrapForm->input_horizontal( 'details',
+            ['label' => 'Results:', 'value' => $analysis['Analysis']['result_summary'], 'rows' => '5', 'cols' => '100']) ?>
 </fieldset>
 <fieldset>
     <legend>File Locations
-        <span>(files stored in http://storage.powerplant.pfr.co.nz/output/chemistry/cam/...)</span>
+        <span>(files uploaded to PowerPlant)</span>
     </legend>
     <?php
     echo $this->BootstrapForm->input_horizontal('raw_data', [
