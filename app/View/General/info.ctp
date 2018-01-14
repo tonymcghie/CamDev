@@ -39,6 +39,8 @@
             <li>Andrew McGhie</li>
             <li>Tony McGhie</li>
             <li>Helge Dzierzon</li>
+            <li>Eric Burgueño</li>
+            <li>Jack McKenzie</li>
         </ol>
         <h3>Version: 4.0.beta</h3>
                 
