@@ -22,11 +22,16 @@ class MolecularFeaturesController extends AppController{
     
     //sets the values for the pagination
     public $paginate = [
-        'limit' => 10,
+        'limit' => 100,
         'order' => [
-            'Compoundpfr_data.assigned_name' => 'asc'
+            'Molecular_feature.sample_reference' => 'asc'
         ]
-    ];    
+    ]; 
+    
+     public function __construct($request = null, $response = null) {
+        parent::__construct($request, $response);
+        $this->components = array_merge($this->components, $this->getSearchableComponents());
+    }
         
     /*
      *  @LIVE swap file url 

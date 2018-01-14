@@ -50,7 +50,7 @@ class GeneralController extends AppController {
     }
     
     /**
-     * defualt function and is unused
+     * default function and is unused
      * @param type $id
      */
     public function index($id) {
@@ -78,26 +78,7 @@ class GeneralController extends AppController {
         } //checks if there is no one logged in
 //        $this->layout = ''; //sets the layout to blank so there is no divs or anything so the page looks blank
     }
-    
-    /**
-     * the main page that contains the sidebar and the iFrame
-     * updates the isTablet cookie
-     */
-    public function main(){
-        $this->layout = 'PageLayout'; //sets the layout to be different from the pages
-        $isTablet = isset($this->params['url']['isTablet']) ? $this->params['url']['isTablet'] : ''; //gets isTablet value from the URL 
-        if ($this->Cookie->check('View.isTablet') && $isTablet === ''){ 
-            $isTablet = $this->Cookie->read('View.isTablet');
-        } //if isTablet is not in the URL and its in the Cookie then read it from the cookie
-        if ($isTablet != ''){
-            $this->set('isTablet', $isTablet);
-            $this->Cookie->write('View.isTablet', $isTablet);
-        } else {
-            $this->set('isTablet', 'false');
-            $this->Cookie->write('View.isTablet', 'false');
-        } //sets the view to use 
-    }
-    
+        
     /**
      * Allows the user to download template .xlxs files for specific tasks
      * Template must be loaded into /output/chemistry/cam... or a local drive if testing
