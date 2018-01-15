@@ -64,17 +64,9 @@ class BootstrapFormHelper extends FormHelper{
      */
     public function input_maker($fieldName, $options = [], $bs_form_options = []){
         if (isset($bs_form_options['horizontal']) && $bs_form_options['horizontal']){
-            if (isset($bs_form_options['type']) && $bs_form_options['type'] == 'button'){
-                return $this->single_button($fieldName, $options, ['horizontal' => true, 'class' => 'btn-primary']);
-            } else {
-                return $this->input_horizontal($fieldName, $options);
-            }
+            return $this->input_horizontal($fieldName, $options);
         }
-        if (isset($bs_form_options['type']) && $bs_form_options['type'] == 'button'){
-            return $this->single_button($fieldName, $options,  ['horizontal' => false, 'class' => 'btn-primary']);
-        } else {
-            return $this->input($fieldName, $options);
-        }
+        return $this->input($fieldName, $options);
     }
 
     /**
@@ -171,15 +163,14 @@ class BootstrapFormHelper extends FormHelper{
      * @param array $options
      * @return string HTML code for the button
      */
-    public function single_button($fieldName, $options = [], $button_options = []) {
-        $options['type'] = 'button';
-        $options['class'] = 'btn '.$button_options['class'];
-        $options['label'] = false;
-        if (isset($button_options['horizontal']) && $button_options['horizontal']) {
-            return $this->input_horizontal($fieldName, $options);
-        } else {
-            return $this->input($fieldName, $options);
-        }
+    public function single_button($options = []) {
+        return $this->Mustache->render('form/button', [
+            'divClass' => isset($options['divClass']) ? $options['divClass'] : null,
+            'type' => isset($options['type']) ? $options['type'] : null,
+            'class' => isset($options['class']) ? $options['class'] : null,
+            'onClick' => isset($options['onClick']) ? $options['onClick'] : null,
+            'text' => isset($options['text']) ? $options['text'] : null
+        ]);
     }
 
     /**
@@ -201,10 +192,18 @@ class BootstrapFormHelper extends FormHelper{
      */
     public function addActionButtons($save = 'Save', $cancel = 'Cancel', $cancelAction = 'window.history.back();return false;') {
         $html = '';
-        $html .= $this->start_group(['class' => 'offset-lg-8']);
-        $html .= '<div class="col-lg-4"></div>';
-        $html .= $this->single_button($cancel, ['onclick' => $cancelAction, 'div' => ['class' => 'col-lg-1']], ['class' => 'btn-default', 'type' => 'button']);
-        $html .= $this->single_button($save, ['div' => ['class' => 'col-lg-1']], ['class' => 'btn-primary']);
+        $html .= $this->start_group();
+        $html .= '<div class="col-lg-4"></div>'; // Spacer.
+        $html .= $this->single_button([
+            'onClick' => $cancelAction,
+            'class' => 'btn-default',
+            'text' => $cancel,
+            'type' => 'button'
+        ]);
+        $html .= $this->single_button([
+            'class' => 'btn-primary',
+            'text' => $save
+        ]);
         $html .= $this->end_group();
         return $html;
     }
