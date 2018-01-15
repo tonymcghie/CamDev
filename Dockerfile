@@ -32,6 +32,7 @@ RUN apt-get update ;\
     apt-get install -y python2.7-dev
     
 ##copies the files in the Git Repo to the /app dir
+## curl -u 25ba19d202ee4bd8bf360be4f2d5fc0944c86954:x-oauth-basic -O -L https://github.com/PlantandFoodResearch/CAMCake/archive/CAM-4.tar.gz
 RUN set -xe ;\
     rm -fr /app; \
     curl -u $GITHUB_TOKEN:x-oauth-basic \ 
