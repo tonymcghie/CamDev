@@ -88,7 +88,7 @@ assert(in_array($group, [$sampleSetGroup,
                     <div class="panel-body light-blue lighten-3">
                         <?= $this->Html->link('New', ['controller' => 'SampleSets', 'action' => 'newSet'], ['class' => 'list-group-item']) ?>
                         <?= $this->Html->link('Find', ['controller' => 'SampleSets', 'action' => 'search'], ['class' => 'list-group-item']) ?>
-                        <?= $this->Html->link('Import Samples', ['controller' => 'Samples', 'action' => 'importSamples'], ['class' => 'list-group-item']) ?>
+                        <?= $this->Html->link('Import Samples', ['controller' => 'SampleSets', 'action' => 'import'], ['class' => 'list-group-item']) ?>
                         <!--links go here
                         if ($this->Session->read('Auth.User')!==null){-->
                         <?php /*echo $this->Html->link('New', ['controller' => 'SampleSets', 'action' => 'newSet'], ['target' => 'mainFrame', 'class' => 'btn btn-link']) */?>

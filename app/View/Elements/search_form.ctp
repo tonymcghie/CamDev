@@ -46,13 +46,8 @@ assert(isset($model),
     <?php endfor; ?>
 <?php endif;?>
 
-<?= $this->BootstrapForm->start_group(['id' => 'action-buttons', 'class' => 'action-buttons']); ?>
-<div>
-    <span onclick="add_search_set();" class="btn btn-success offset-lg-9 col-lg-1 form-control" type="submit">Add Set</span>
-</div>
-<?= $this->BootstrapForm->single_button('Find', [], ['class' => 'btn-primary col-lg-1']); ?>
-<?= $this->BootstrapForm->end_group(); ?>
-<?= $this->BootstrapForm->end(); ?>
+
+<?= $this->BootstrapForm->addActionButtons('Find', 'Add Set', 'add_search_set();return false;'); ?>
 
 <?= $this->BootstrapForm->get_js(); ?>
 
@@ -73,7 +68,7 @@ assert(isset($model),
     function add_search_set() {
         let newRow = $(Mustache.render(rowTemplate["form/search_form_row"], options));
         newRow.hide();
-        newRow.insertBefore($('#action-buttons'));
+        newRow.insertAfter($('.search-set').last());
         newRow.slideDown(400);
         options.index = options.index + 1;
     }

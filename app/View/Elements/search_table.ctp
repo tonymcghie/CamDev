@@ -12,7 +12,21 @@
 
     <div id="search-results">
         <h2>Search Results (n=<?php echo $num; ?>)</h2>
-        <?= $this->Html->link('Export to CSV', ['action' => 'export', '?' => http_build_query($data)], ['class' => 'btn-xs btn-info', 'role' => 'button']);?>
+        <?php
+        if(in_array('Exportable', $behaviour)) {
+            echo $this->Html->link(
+                    'Export to CSV',
+                    [
+                        'action' => 'export',
+                        '?' => http_build_query($data)
+                    ],
+                    [
+                        'class' => 'btn-xs btn-info',
+                        'role' => 'button'
+                    ]
+            );
+        }
+        ?>
 
         <div class="results-table">
             <table class="table table-striped table-hover">
