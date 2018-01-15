@@ -31,7 +31,7 @@ echo $this->BootstrapForm->input_horizontal('set_code',
             ['label' => 'Sample Preparation:', 'value' => $analysis['Analysis']['prep'], 'rows' => '5', 'cols' => '100']) ?>
         <?=  $this->BootstrapForm->input_horizontal( 'details',
             ['label' => 'Analysis Details:', 'value' => $analysis['Analysis']['details'], 'rows' => '5', 'cols' => '100']) ?>
-        <?=  $this->BootstrapForm->input_horizontal( 'details',
+        <?=  $this->BootstrapForm->input_horizontal( 'result_summary',
             ['label' => 'Results:', 'value' => $analysis['Analysis']['result_summary'], 'rows' => '5', 'cols' => '100']) ?>
 </fieldset>
 <fieldset>
