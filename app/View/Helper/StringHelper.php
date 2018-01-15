@@ -120,6 +120,8 @@ class StringHelper extends AppHelper{
             'spectra_msms' => 'MSMS Spectrum',
             'comment' => 'Comment'],
         'SampleSet' => [ // TODO need to combined SampleSet and SampleSets
+            'SampleSet' => 'Sample Set',
+            'importInfo' => 'Samples can only be imported to an existing Sample Set.',
             'all' => 'All',
             'id' => 'CAM ID',
             'set_code' => 'Set Code',
@@ -303,7 +305,18 @@ class StringHelper extends AppHelper{
             'rawData' => 'Raw Data',
             'processedData' => 'Processed Data',
             'resultsData' => 'Additional Data',
-            'uploadImage' => 'Upload new image']
+            'uploadImage' => 'Upload new image'],
+        'Import' => [
+            'import' => 'Import',
+            'importFile' => 'Upload CSV file',
+            'exclude' => 'Exclude'
+        ],
+        'General' => [
+            'save' => 'Save',
+            'cancel' => 'Cancel',
+            'back' => 'Back',
+            'clear' => 'Clear'
+        ]
     ];
 
     public function get_string($identifier, $set){

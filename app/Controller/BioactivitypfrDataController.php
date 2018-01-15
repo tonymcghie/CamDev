@@ -1,11 +1,12 @@
 <?php
 
 App::uses('Searchable', 'Controller/Behavior');
+App::uses('Exportable', 'Controller/Behavior');
 
 class BioactivitypfrDataController extends AppController {
-    use Searchable {
-        Searchable::getComponents as public getSearchableComponents;
-    }
+    use Searchable;
+    use Exportable;
+
     public $helpers = ['Html' , 'Form' , 'My', 'Js'];
     public $uses = ['Bioactivitypfr_data','PubChemModel', 'Compound'];
     public $layout = 'PageLayout';
@@ -28,6 +29,8 @@ class BioactivitypfrDataController extends AppController {
     public function __construct($request = null, $response = null) {
         parent::__construct($request, $response);
         $this->components = array_merge($this->components, $this->getSearchableComponents());
+        $this->components = array_merge($this->components, $this->getExportableComponents());
+        $this->components = array_unique($this->components);
     }
 
     public function beforeFilter() {
@@ -43,15 +46,7 @@ class BioactivitypfrDataController extends AppController {
     public function isAuthorized($user) {
         return $this->My->isAuthorizedPFRData($user, $this);
     }
-    
-    /**
-     * extorts the current search data as a csv file
-     * @param type $data
-     */
-    public function export($data = null){
-        $this->My->exportCSV('Compoundpfr_data', $this->Bioactivitypfr_data, $this, ['bioactivity_name', 'value', 'unit_description', 'bioassay_description' , 'bioassay_ref' , 'reference', 'sample_ref', 'crop', 'species', 'tissue', 'genotype', 'analyst'], $data);  
-    }
-    
+
     /**
      * this has graphs the data sinces everything is hadled through ajax and javascript it is empty
      * @param type $data

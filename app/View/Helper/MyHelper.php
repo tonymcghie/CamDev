@@ -10,49 +10,6 @@ App::uses('AppHelper', 'View/Helper');
 
 class MyHelper extends AppHelper{
     public $helpers = array('Html' , 'Form' , 'Js', 'Pagination', 'Session');
-
-    /**
-     * Draws a CSV file so it can be doqnloaded
-     * @param type $data
-     * @param type $model
-     */
-    public function drawCSV($data, $model){
-        array_unshift($data,[$model => array_keys($data[0][$model])]);
-        foreach ($data as $row):
-            foreach ($row[$model] as &$cell):
-                // Escape double quotation marks
-                $cell = '"' . preg_replace('/"/','""',$cell) . '"';
-            endforeach;
-            echo implode(',', $row[$model]) . "\n";
-        endforeach;
-    }
-    
-    public function searchPair($count, $options){
-        $temp = '<table class="noFormat search">';
-        $temp .= $this->Html->tableCells([$this->Form->input('cri_'.$count, ['options' => $options, 'label' => '']),
-            $this->Form->input('val_'.$count, array('label' => '')),
-            $this->Form->input('log_'.$count, ['label' => '' ,'options' => ['AND' => 'AND', 'OR' => 'mOR', 'XOR' => 'XOR', 'NOT' => 'NOT']]),
-            $this->Form->input('match_'.$count, array('label' => '','options' => ['contain' => 'Contains', 'exact' => 'Exactly', 'starts_with' => 'Starts with']))]);
-            //$this->Form->input('log_'.$count, ['label' => '' ,'options' => ['AND' => 'AND', 'OR' => 'OR', 'XOR' => 'XOR', 'NOT' => 'NOT']])]);
-        $temp .= '</table>';
-        return $temp;
-    }
-    
-    /**
-     * echos a select and text feild for searching
-     * @param type $count
-     *
-    public function searchPair($count, $options){
-        $temp = '<table class="noFormat search">';
-        $temp .= $this->Html->tableCells([$this->Form->input('cri_'.$count, ['options' => $options, 'label' => '']),
-            $this->Form->input('val_'.$count, array('label' => '')),
-            $this->Form->input('log_'.$count, ['label' => '' ,'options' => ['AND' => 'AND', 'OR' => 'OR', 'XOR' => 'XOR', 'NOT' => 'NOT']]),
-            $$this->Form->input('match_'.$count, array('label' => '','options' => ['contain' => 'Contains', 'exact' => 'Exactly', 'starts_with' => 'Starts with']))]);
-        $temp .= '</table>';
-        return $temp;
-    }
-    * temporarily disabled for testing
-    */ 
     
     /**
      * will create a div containg a span with the text in it
@@ -83,52 +40,10 @@ class MyHelper extends AppHelper{
         return $row;
     }
 
-    /**
-     * helper method for making the links for makeResultsTable if its a sample set table
-     */
-    protected function sampleSetActions($id, $set_code, $isTablet = 'false'){
-        $temp = $this->Form->postLink('Edit', array('controller' => 'SampleSets', 'action' => 'editSet', $id), array('class' => 'find-button abbr-button', 'title'=>'Edit'));
-        $temp .= $this->Form->postLink('View', array('controller' => 'SampleSets', 'action' => 'viewSet', $id), array('class' => 'find-button abbr-button', 'title'=>'View'));
-        //check if user is in bio chemistry before showing the analysis button //comment out if statment to show the analysis button
-        //if ($this->Session->read('Auth.User')!==null && in_array("PFR-GP-Biological Chemistry and Bioactives Group", $this->Session->read('Auth.User')['groups'])){
-            $temp .= $this->Form->postLink('Analyse', array('controller' => 'Analyses', 'action' => 'editAnalysis','?' => ['isTablet' => $isTablet, 'set_code' =>  $set_code]), array('style'=>'width: 60px','class' => 'find-button abbr-button', 'title'=>'Analyse'));
-			$temp .= $this->Form->postLink('Samples', array('controller' => 'Samples', 'action' => 'viewSamples', $id), array('style'=>'width: 55px','class' => 'find-button abbr-button', 'title'=>'View sample list'));
-			$temp .= $this->Form->postLink('ImportSamples', array('controller' => 'Samples', 'action' => 'importSamples', $id), array('style'=>'width: 90px','class' => 'find-button abbr-button', 'title'=>'Import sample list from a .csv file'));
-		//}
-        return $temp;
-    }
     protected function checkFlavVol($comment){
         return (strpos($comment, 'flavour volatile') !== FALSE);
     }
-    /**
-     * helper method for making the links for makeResultsTable if its a compund table
-     */
-    protected function compoundActions($id, $chemLink = null, $metlinLink = null, $pubChemLink = null, $cas = null, $isFlav = false){
-        $temp = $this->Form->postLink('Edit', array('controller' => 'Compounds', 'action' => 'editCompound', $id), array('class' => 'find-button abbr-button'));
-        $temp .= $this->Form->postLink('Reagent', array('controller' => 'Compounds', 'action' => 'reagentsCompound', $id), array('style'=>'width: 90px', 'class' => 'find-button abbr-button'));
-        if ($pubChemLink!=null){
-            $temp .= '<span onclick="popUp('.$pubChemLink.')" class="find-button abbr-button">View</span>';
-            $temp .= $this->Html->link('Pub Chem', 'https://pubchem.ncbi.nlm.nih.gov/compound/'.$pubChemLink,  array('style'=>'width: 70px','class' => 'find-button abbr-button', 'target' => '_blank'));
-        }
-        if ($chemLink!=null && $chemLink != '0' && $chemLink != ''){
-            $temp .= $this->Html->link('Chem Spider',  'http://www.chemspider.com/Chemical-Structure.'.$chemLink.'.html',  array('style'=>'width: 80px','class' => 'find-button abbr-button', 'target' => '_blank'));
-        }
-        if ($metlinLink!=null && $metlinLink != '0' && $metlinLink != ''){
-            $temp .= $this->Html->link('MetLin', 'https://metlin.scripps.edu/metabo_info.php?molid='.$metlinLink,  array('style'=>'width: 50px','class' => 'find-button abbr-button', 'target' => '_blank'));
-        }
-        if ($isFlav){
-            $temp .= $this->Html->link('Flavornet', 'http://www.flavornet.org/info/'.$cas.'.html',  array('style'=>'width: 70px','class' => 'find-button abbr-button', 'target' => '_blank'));
-        }
-        /*$file = 'http://www.flavornet.org/info/'.$cas.'.html';
-        $file_headers = get_headers($file);
-        if($file_headers[0] == 'HTTP/1.1 404 Not Found' || $file_headers[0] == '') {
 
-        }
-        else {
-
-        }*/
-        return $temp;
-    }
 	/**
      * makes a Url that points to an iplant file that can be open in browser
      * @param type $url

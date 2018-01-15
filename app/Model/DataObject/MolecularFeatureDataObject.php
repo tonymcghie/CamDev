@@ -27,8 +27,6 @@ class MolecularFeatureDataObject extends DataObject implements ViewableModel {
     }
 
     public function getViewData() {
-
-
         return [
             'feature_tag' => [
                 'text' => $this->feature_tag],

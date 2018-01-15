@@ -1,11 +1,12 @@
 <?php
 
 App::uses('Searchable', 'Controller/Behavior');
+App::uses('Exportable', 'Controller/Behavior');
 
 class MetabolitesController extends AppController {
-    use Searchable {
-        Searchable::getComponents as public getSearchableComponents;
-    }
+    use Searchable;
+    use Exportable;
+
     public $helpers = ['Html' , 'Form' , 'My' , 'Js', 'Time', 'String', 'BootstrapForm'];
     public $uses = ['Metabolite','Msms_Metabolite','Proposed_Metabolite', 'Chemist'];
     public $layout = 'PageLayout';
@@ -21,6 +22,8 @@ class MetabolitesController extends AppController {
     public function __construct($request = null, $response = null) {
         parent::__construct($request, $response);
         $this->components = array_merge($this->components, $this->getSearchableComponents());
+        $this->components = array_merge($this->components, $this->getExportableComponents());
+        $this->components = array_unique($this->components);
     }
     
     /**
@@ -201,14 +204,6 @@ class MetabolitesController extends AppController {
         $this->set('meta', $meta);
         $this->set('msms', $msms);
         $this->set('proposed' , $proposed);
-    }
-    
-    /**
-     * exports a search to a CSV file
-     * @param array $data
-     */
-    public function export($data = null){
-        $this->My->exportCSV('Metabolite', $this->Metabolite, $this, ['exact_mass', 'ion_type', 'rt_value', 'rt_description','sources','tissue','chemist','experiment_ref','spectra_uv','spectra_nmr','date'], $data, true);  
     }
 
     function getModel() {
