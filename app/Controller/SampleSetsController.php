@@ -5,13 +5,15 @@ App::uses('AppController', 'Controller');
 App::uses('Searchable', 'Controller/Behavior');
 App::uses('Viewable', 'Controller/Behavior');
 App::uses('EditableVersions', 'Controller/Behavior');
+App::uses('Exportable', 'Controller/Behavior');
+App::uses('Importable', 'Controller/Behavior');
 
 class SampleSetsController extends AppController {
-    use Searchable {
-        Searchable::getComponents as public getSearchableComponents;
-    }
+    use Searchable;
     use Viewable;
     use EditableVersions;
+    use Exportable;
+    use Importable;
 
     public $helpers = ['Html' , 'Form' , 'My' , 'Js', 'Time', 'String', 'BootstrapForm', 'Mustache.Mustache'];
     public $uses = ['Analysis' , 'SampleSet' , 'Chemist', 'Project'];
@@ -32,6 +34,9 @@ class SampleSetsController extends AppController {
     public function __construct($request = null, $response = null) {
         parent::__construct($request, $response);
         $this->components = array_merge($this->components, $this->getSearchableComponents());
+        $this->components = array_merge($this->components, $this->getExportableComponents());
+        $this->components = array_merge($this->components, $this->getImportableComponents());
+        $this->components = array_unique($this->components);
     }
 
     protected function getModel() {
@@ -44,7 +49,7 @@ class SampleSetsController extends AppController {
     public function beforeFilter() {
         $this->set('group', 'sampleSets');
 
-        $file_URL = Configure::read('live') ? '/app/app/webroot/data/' : 'data/';
+        $this->file_URL = Configure::read('live') ? '/app/app/webroot/data/' : 'data/';
 
         parent::beforeFilter();
 
@@ -152,18 +157,6 @@ class SampleSetsController extends AppController {
         if (isset($this->Auth->Session->read($this->Auth->sessionKey)['Auth']['User']['name'])){
             $this->set('user', $this->Auth->Session->read($this->Auth->sessionKey)['Auth']['User']);
         }
-    }
-
-    /**
-     * Creates and exports a CSV file from a search
-     * @param type $data
-     */
-    public function export(){
-        $query = $this->Search->build_query($this->SampleSet, $this->request->query);
-        $search_results = $this->SampleSet->find('all', ['conditions' => $query]);
-        $this->set('data', $search_results);
-        $this->response->download("export_samplesets.csv");
-        $this->layout = 'ajax';
     }
 
     protected function setEditFormRequirements() {

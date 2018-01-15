@@ -9,7 +9,7 @@ trait Searchable {
 
     protected abstract function getModel();
 
-    private function getComponents() {
+    private function getSearchableComponents() {
         return ['Search', 'Paginator'];
     }
 

@@ -1,12 +1,11 @@
 <?php
 
 App::uses('Searchable', 'Controller/Behavior');
+App::uses('Exportable', 'Controller/Behavior');
 
 class CompoundsController extends AppController {
-    use Searchable {
-        Searchable::getComponents as public getSearchableComponents;
-    }
-
+    use Searchable;
+    use Exportable;
 
     public $helpers = ['Html' , 'Form' , 'My', 'Js', 'Time', 'String', 'BootstrapForm'];
     public $uses = ['Compound'];
@@ -20,10 +19,16 @@ class CompoundsController extends AppController {
             'Compound.compound_name' => 'asc'
         ]
     ];
-    
-     public function __construct($request = null, $response = null) {
+
+    public function __construct($request = null, $response = null) {
         parent::__construct($request, $response);
         $this->components = array_merge($this->components, $this->getSearchableComponents());
+        $this->components = array_merge($this->components, $this->getExportableComponents());
+        $this->components = array_unique($this->components);
+    }
+
+    protected function getModel() {
+        return $this->Compound;
     }
     
     /**
@@ -44,10 +49,6 @@ class CompoundsController extends AppController {
         return $this->My->isAuthorizedCompound($user, $this);
     }
 
-    protected function getModel() {
-        return $this->Compound;
-    }
-    
     /**
      * This function adds a Compound to the table
      * @return type
@@ -91,7 +92,7 @@ class CompoundsController extends AppController {
            $this->request->data = $compound;
         }//update the data to display
     }
-    
+
     /**
      * This function contains the code for identifying unknown compounds by accurate mass.
      * 1) a csv file containing accurate masses is read;
@@ -105,22 +106,6 @@ class CompoundsController extends AppController {
      * This function displays a message describing the process for identifying unknown compounds by accurate mass
      */
     public function idMass(){
-    } 
-    
-    /**
-     * Exports the search results to a CSV file
-     * @param type $data
-     */
-    public function export($datastr = null){
-
-        parse_str($datastr, $data);  //extract search parameters from the url
-        $criteria = null;$value = null;$logic = null;$match = null;
-        extract($data['Compound']);
-        $query = $this->Search->build_query($this->Compound, $criteria, $value, $logic, $match); //build the search query
-        $search_results = $this->Compound->find('all', ['conditions' => $query]);  //find the data
-        $this->set('data', $search_results); //send data to export view
-        $this->response->download("export_compounds.csv"); //download the named csv file
-        $this->layout = 'ajax';
     }
 
     /**
