@@ -1,0 +1,10 @@
+<div class="col-lg-1 {{#divClass}}{{divClass}}{{/divClass}}">
+    <button
+            {{#type}}type="{{type}}"{{/type}}
+            {{^type}}type="submit"{{/type}}
+            class="form-control btn {{#class}}{{class}}{{/class}}"
+            {{#onClick}}onclick="{{onClick}}"{{/onClick}}
+    >
+        {{text}}
+    </button>
+</div>
