@@ -42,14 +42,14 @@ echo $this->BootstrapForm->input_horizontal('set_code',
     echo $this->BootstrapForm->input_horizontal('raw_data', [
             'label' => $this->String->get_string('rawData', 'Analysis'),
             'value' => $analysis['Analysis']['raw_data']]);
-    echo $this->BootstrapForm->fileUpload('processed', [
+    echo $this->BootstrapForm->fileUpload('derived_results', [
         'label' => $this->String->get_string('processedData', 'Analysis'),
         'url' => $this->Html->url(['action' => 'uploadProcessedData'], true),
-        'value' => $analysis['Analysis']['processed']]);
-    echo $this->BootstrapForm->fileUpload('derived_results', [
+        'value' => $analysis['Analysis']['derived_results']]);
+    echo $this->BootstrapForm->fileUpload('processed', [
         'label' => $this->String->get_string('resultsData', 'Analysis'),
         'url' => $this->Html->url(['action' => 'uploadResultsData'], true),
-        'value' => $analysis['Analysis']['derived_results']]);
+        'value' => $analysis['Analysis']['processed']]);
     ?>
 </fieldset>
 <?php endif; /* The file inputs */ ?>

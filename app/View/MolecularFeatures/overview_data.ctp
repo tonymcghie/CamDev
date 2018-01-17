@@ -6,7 +6,7 @@ $by_options = array(
     'genotype' => 'Genotype',
     'tissue' => 'Tissue',
     'genus_species' => 'Species',
-    'experiment_reference' => 'Experiment Reference',
+    'experiment_reference' => 'Experiment Reference (eg Set Code)',
     'sample_reference' => 'Sample Reference',
     'analyst' => 'Analyst',
     'feature_tag' => 'Feature Tag',
@@ -14,7 +14,7 @@ $by_options = array(
     'ion_polarity' => 'Ion Polarity');
 
 $for_options = array(
-    'experiment_reference' => 'Experiment Reference',
+    'experiment_reference' => 'Experiment Reference (eg Set Code)',
     'crop' => 'Crop',
     'genotype' => 'Genotype',
     'tissue' => 'Tissue',
