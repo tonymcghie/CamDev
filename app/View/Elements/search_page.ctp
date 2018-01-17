@@ -19,7 +19,7 @@ echo  $this->element('search_form', ['model' => $model,
     'data' => isset($data) ? $data : null,
     'criteria_options' => $criteria_options]);
 if (isset($results)) {
-    assert(isset($num), '\'$num\' the number of resutls must be set');
+    assert(isset($num), '\'$num\' the number of results must be set');
     assert(isset($cols), '\'$cols\' the initial columns to display must be set');
 
     echo $this->element('search_table', ['results' => $results,
