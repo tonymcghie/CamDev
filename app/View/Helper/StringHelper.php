@@ -305,7 +305,9 @@ class StringHelper extends AppHelper{
             'rawData' => 'Raw Data',
             'processedData' => 'Processed Data',
             'resultsData' => 'Additional Data',
-            'uploadImage' => 'Upload new image'],
+            'uploadImage' => 'Upload new image',
+            'processedDataFile' => 'Processed Data File',
+            'resultsDataFile' => ' Additional Data File'],
         'Import' => [
             'import' => 'Import',
             'importFile' => 'Upload CSV file',
@@ -319,14 +321,22 @@ class StringHelper extends AppHelper{
         ]
     ];
 
-    public function get_string($identifier, $set){
+    public function get_string($identifier, $set, $parameter = null){
         if ($string = $this->get_string_bool($identifier, $set)){
-            return $string;
+            if (isset($parameter)) {
+                return preg_replace('\\$a', $parameter, $string);
+            } else {
+                return $string;
+            }
         }
         return "[[ The String: '$identifier' in the set: '$set' was not found. ]]";
     }
 
-    public function get_string_bool($identifier, $set){
+    public function string_exists($identifier, $set) {
+        return isset($this->strings[$set][$identifier]);
+    }
+
+    private function get_string_bool($identifier, $set){
         if (!isset($this->strings[$set][$identifier])){
             return false;
         }

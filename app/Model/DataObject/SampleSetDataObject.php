@@ -28,9 +28,31 @@ class SampleSetDataObject extends DataObject implements ViewableModel {
     }
 
     public function getViewData() {
+        // Hack cause the model associations wont work canse the sampleSets table is not setup right
+        $analyses = $this->model->Analysis->find('all', ['conditions' => ['set_code' => $this->set_code]]);
+        $analysisItems = [];
+        foreach ($analyses as $index => $analysis) {
+            $analysisItems[$analysis['Analysis']['title']] = [
+                'links' => [
+                    [
+                        'text' => [
+                            'id' => 'processedDataFile',
+                            'set' => 'Analysis'
+                        ],
+                        'url' => 'data/files/analysis/' . $analysis['Analysis']['processed']
+                    ],
+                    [
+                        'text' => [
+                            'id' => 'resultsDataFile',
+                            'set' => 'Analysis'
+                        ],
+                        'url' => 'data/files/analysis/' . $analysis['Analysis']['derived_results']
+                    ]
+                ]
+            ];
+        }
 
-
-        return [
+        $data = [
             'submitter' => [
                 'text' => $this->submitter],
             'submitter_email' => [
@@ -68,7 +90,9 @@ class SampleSetDataObject extends DataObject implements ViewableModel {
             'metaFile' => [
                 'text' => $this->metaFile],
             'status' => [
-                'text' => $this->status]];
+                'text' => $this->status]
+        ];
+        return array_merge($data, $analysisItems);
     }
 
     // BACKEND
