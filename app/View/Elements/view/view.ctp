@@ -10,15 +10,35 @@
     $displayData = $dataObject->getViewData();
     // Remove empty elements.
     $displayData = array_filter($displayData, function($item) {
-        return !empty($item) && isset($item['text']);
+        return !empty($item);
     });
     // Get the headings from the string helper.
     $displayData = array_map(function($key, $item) {
-        return array_merge($item, ['heading' => $this->String->get_string($key, $this->name)]);
+        if ($this->String->string_exists($key, $this->name)) {
+            $heading = $this->String->get_string($key, $this->name);
+        } else {
+            $heading = $key;
+        }
+        if (isset($item['text']) && is_array($item['text'])) {
+            $item['text'] = $this->String->get_string($item['text']['id'], $item['text']['set']);
+        }
+        if (isset($item['links'])) {
+            foreach ($item['links'] as &$link) {
+                if (is_array($link['text'])) {
+                    $link['text'] = $this->String->get_string($link['text']['id'], $link['text']['set']);
+                }
+                if (is_array($link['url'])) {
+                    $link['url'] = $this->Html->url($link['url']);
+                } else {
+                    $link['url'] = $this->webroot.$link['url'];
+                }
+            }
+        }
+        return array_merge($item, ['heading' => $heading]);
     }, array_keys($displayData), $displayData);
 
     $shortItemFilter = function($item) {
-        return strlen(strval($item['text'])) < 100;
+        return !isset($item['text']) || strlen(strval($item['text'])) < 100;
     };
     $longItemFilter = function ($item) use ($shortItemFilter) {
         return !$shortItemFilter($item);

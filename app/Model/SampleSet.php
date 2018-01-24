@@ -33,6 +33,20 @@ class SampleSet extends AppModel implements SearchableModel, VersionableModel {
     );
     public $username = '';
 
+    // This would technically work of samplesets were normal
+    public $hasMany = [
+        'Analysis' => [
+            'className' => 'Analysis',
+            'foreignKey' => 'set_code',
+            'finderQuery' => '
+                SELECT Analysis.* 
+                FROM analyses as Analysis 
+                JOIN sample_sets as SampleSet
+                   ON SampleSet.id = {$__cakeID__$}
+                WHERE Analysis.set_code = SampleSet.set_code'
+        ]
+    ];
+
     /**
      * This overrides the built in find method so that the query all will exclude old versions
      * allVersions will return what the all type query used to
