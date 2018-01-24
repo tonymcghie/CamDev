@@ -210,10 +210,39 @@ class MetabolitesController extends AppController {
         return $this->Metabolite;
     }
     
+    public function docsMetabolite($id = null){
+        if ($id == null){
+            $id = $this->params['url']['id'];
+            
+        } // gets $id from the url
+        if (empty($id)) {
+            $this->set('error', 'Invalid Unknown');
+            return;
+        }
+        $metabolite = $this->Metabolite->findById($id);
+        if (!$metabolite){
+            throw new NotFoundExcpetion(__('Invalid Unknown Compound'));
+        } //throw error if the id does not belong to a compound
+        //var_dump($metabolite);
+        $this->set('metabolite', $metabolite);
+        
+        $filename = '';
+        $uploadFile = $this->request->params['form']['document_file'];
+        var_dump($uploadFile);
+        var_dump($this->request->params);
+        
+        //$filename = basename($uploadData['name']); // gets the base name of the uploaded file
+        $newName = pathinfo($uploadFile['name'])['extension'];
+        $filename = 'Unknown_'.$id.'_'.$newName;
+        $newPath = 'data/files/unknowns/' . $newName;
+        var_dump($filename);
+        
+    }
+    
     /**
      * attaches a document to an Unknown Compounds and uploads to Powerplant
      * @param type $id
-     */
+     
     public function docsMetabolite($id = null){
         if ($id == null){
             $id = $this->params['url']['id'];
@@ -258,5 +287,5 @@ class MetabolitesController extends AppController {
         $this->Metabolite->id=$meta['Metabolite']['id']; //sets the record to save by ID
         $this->Metabolite->save($meta);    //saves the updated metabolite metadata, which now includes the filename
         }
-    }
+    }*/
 }

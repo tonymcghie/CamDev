@@ -141,7 +141,7 @@ class BootstrapFormHelper extends FormHelper{
 
     /**
      * A form item that displays the current file as well as having a button to uplaod and download
-     * Imediatly uploads the file.
+     * Immediately uploads the file.
      * @param $fieldName
      * @param $options ['url', 'label', 'value']
      */

@@ -33,15 +33,18 @@ echo $this->BootstrapForm->input_horizontal('set_code',
             ['label' => 'Analysis Details:', 'value' => $analysis['Analysis']['details'], 'rows' => '5', 'cols' => '100']) ?>
         <?=  $this->BootstrapForm->input_horizontal( 'result_summary',
             ['label' => 'Results:', 'value' => $analysis['Analysis']['result_summary'], 'rows' => '5', 'cols' => '100']) ?>
+        <?=  $this->BootstrapForm->input_horizontal( 'raw_data',
+            ['label' => $this->String->get_string('rawData', 'Analysis'),
+            'value' => $analysis['Analysis']['raw_data']]) ?>
 </fieldset>
 <fieldset>
-    <legend>File Locations
-        <span>(files uploaded to PowerPlant)</span>
+    <legend>File Uploads
+        <span>(to PowerPlant)</span>
     </legend>
     <?php
-    echo $this->BootstrapForm->input_horizontal('raw_data', [
-            'label' => $this->String->get_string('rawData', 'Analysis'),
-            'value' => $analysis['Analysis']['raw_data']]);
+    //echo $this->BootstrapForm->input_horizontal('raw_data', [
+    //        'label' => $this->String->get_string('rawData', 'Analysis'),
+    //        'value' => $analysis['Analysis']['raw_data']]);
     echo $this->BootstrapForm->fileUpload('derived_results', [
         'label' => $this->String->get_string('processedData', 'Analysis'),
         'url' => $this->Html->url(['action' => 'uploadProcessedData'], true),

@@ -282,6 +282,7 @@ class StringHelper extends AppHelper{
             'date' => 'Start Date',
             'actions' => 'Actions',
             'all' => 'All',
+            'document'=> 'Document',
             'searchTitle' => 'Find Unknown Compounds'],
         'Bioactivitypfr_data' => [
             'empty' => 'Select Criteria',
@@ -302,9 +303,9 @@ class StringHelper extends AppHelper{
             'file' => 'File',
             'searchTitle' => 'Search PFR Bioactivity Data'],
         'Analysis' => [
-            'rawData' => 'Raw Data',
-            'processedData' => 'Processed Data',
-            'resultsData' => 'Additional Data',
+            'rawData' => 'Raw Data Location',
+            'processedData' => 'Processed Data (xlsx file):',
+            'resultsData' => 'Additional Data (any file type):',
             'uploadImage' => 'Upload new image'],
         'Import' => [
             'import' => 'Import',
