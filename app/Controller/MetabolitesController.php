@@ -54,7 +54,7 @@ class MetabolitesController extends AppController {
      * adds a Metabolite
      * @return null
      */
-    public function addMetabolite(){
+    public function newMetabolite(){
         $this->layout = 'PageLayout';
         $this->set('names', $this->Chemist->find('list', ['fields' => 'name']));
         if (isset($this->request->data['Metabolite'])){ //check if the save button has being clicked
@@ -79,13 +79,17 @@ class MetabolitesController extends AppController {
     }
     
     /**
-     * saves the unknown metabolite to the database
+     * saves a new Unknown Compound (metabolite) to the database
      * @return null
      */
     public function createMetabolite(){         
         $data = $this->request->data;      //gets the data
+        
+        //sets the date that the sample set was submitted
+        $data['Metabolite']['date'] = date('Y-m-d');
+        
         $this->Metabolite->create();            //Need to add
-        if ($this->Metabolite->save($data)){                 //saves the Compound
+        if ($this->Metabolite->save($data)){                 //saves the new Unknown Compound
             return $this->redirect(['controller' => 'General', 'action' => 'blank', '?' => ['alert' => 'Unknown Compound Saved']]);
         }
     }

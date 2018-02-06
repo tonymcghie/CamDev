@@ -105,7 +105,7 @@ class SampleSetsController extends AppController {
             $errors[] = "No Chemist was found with the name {$data['SampleSet']['chemist']}";
         }
 
-        //sets the date that the sample sets was submitted
+        //sets the date that the sample set was submitted
         $data['SampleSet']['date'] = date('Y-m-d');
 
         //sets the email of the user who submitted the sample set
