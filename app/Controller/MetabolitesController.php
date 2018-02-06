@@ -1,13 +1,15 @@
 <?php
 
 App::uses('Searchable', 'Controller/Behavior');
+App::uses('Viewable', 'Controller/Behavior');
 App::uses('Exportable', 'Controller/Behavior');
 
 class MetabolitesController extends AppController {
     use Searchable;
+    use Viewable;
     use Exportable;
 
-    public $helpers = ['Html' , 'Form' , 'My' , 'Js', 'Time', 'String', 'BootstrapForm'];
+    public $helpers = ['Html' , 'Form' , 'My' , 'Js', 'Time', 'String', 'BootstrapForm', 'Mustache.Mustache'];
     public $uses = ['Metabolite','Msms_Metabolite','Proposed_Metabolite', 'Chemist'];
     public $layout = 'PageLayout';
     public $components = ['RequestHandler', 'My', 'Session', 'Cookie', 'Auth', 'File', 'Search'];
