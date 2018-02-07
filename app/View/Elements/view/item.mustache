@@ -1,5 +1,5 @@
 {{#item}}
     <span class="heading">{{heading}}</span>:
-    {{^url}}<span class="data">{{text}}</span>{{/url}}
-    {{#url}}<a class="data" href="{{url}}">{{text}}</a>{{/url}}
+    {{#text}}<span class="data">{{text}}</span>{{/text}}
+    {{#links}}<br><a class="data" href="{{url}}">{{text}}</a>{{/links}}
 {{/item}}
