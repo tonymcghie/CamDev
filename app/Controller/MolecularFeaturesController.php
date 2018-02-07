@@ -168,7 +168,7 @@ class MolecularFeaturesController extends AppController{
      */
     public function overview(){
         $this->layout = 'ajax';
-        $this->autoRender = false;
+        //$this->autoRender = false;
         // Listed these here for auto complete reasons and to stop the IDE displaying errors
         $by = null;$value = null;$match = null;$for = null; $review_options=null;
         extract($this->request->data['molecular_features']);
