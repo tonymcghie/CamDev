@@ -133,7 +133,7 @@ class AnalysesController extends AppController{
         $set_code = $this->request->data['Analysis']['set_code'];
         $title = $this->request->data['Analysis']['title'];
         $id = $this->request->data['Analysis']['id'];
-
+        
         if ($uploadedDerivedData['error'] != 0) {
             $this->response->statusCode(418);
             $this->response->send();
@@ -148,7 +148,7 @@ class AnalysesController extends AppController{
     }
 
     /**
-     * Adds a cover sheet to the execl file. if there is alreadt on a cover sheet will not be added.
+     * Adds a cover sheet to the excel file. if there is already on a cover sheet will not be added.
      * The cover sheet contains all the data in the analysis textfields.
      * only use of the phpExcel extension
      * It then calls the function to upload a file.
