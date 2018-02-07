@@ -322,15 +322,13 @@ class StringHelper extends AppHelper{
             'rawData' => 'Raw Data Location',
             'processedData' => 'Processed Data (xlsx file):',
             'resultsData' => 'Additional Data (any file type):',
-            'uploadImage' => 'Upload new image'],           
-            'uploadImage' => 'Upload new image',
+            'uploadImage' => 'Upload new image',           
             'processedDataFile' => 'Processed Data File',
             'resultsDataFile' => ' Additional Data File'],
         'Import' => [
             'import' => 'Import',
             'importFile' => 'Upload CSV file',
-            'exclude' => 'Exclude'
-        ],
+            'exclude' => 'Exclude'],
         'General' => [
             'save' => 'Save',
             'cancel' => 'Cancel',
