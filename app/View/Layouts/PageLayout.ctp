@@ -146,7 +146,7 @@ assert(in_array($group, [$sampleSetGroup,
                 <div class="panel-collapse collapse <?php if ($group == $metabolomicDataGroup )echo 'in'; ?>" id="metabolomic_data_menu">
                     <div class="panel-body light-blue lighten-3">
                         <?= $this->Html->link('Find', ['controller' => 'Molecular_features', 'action' => 'search'], ['class' => 'list-group-item']) ?>
-                        <?= $this->Html->link('Overview', ['controller' => 'Molecular_features', 'action' => 'overviewData'], ['class' => 'list-group-item']) ?>
+                        <?= $this->Html->link('Overview', ['controller' => 'Molecular_features', 'action' => 'overview'], ['class' => 'list-group-item']) ?>
                         <?= $this->Html->link('Import', ['controller' => 'Molecular_features', 'action' => 'import'], ['class' => 'list-group-item']) ?>
                         <?php
                         /*if ($this->Session->read('Auth.User')!==null && in_array("PFR-GP-Biological Chemistry and Bioactives Group", $this->Session->read('Auth.User')['groups'])){

@@ -8,8 +8,9 @@
 
 App::uses('MolecularFeatureDataObject', 'Model/DataObject');
 App::uses('SearchableModel', 'Model/Behavior');
+App::uses('OverviewableModel', 'Model/Behavior');
 
-class Molecular_feature extends AppModel implements SearchableModel{
+class Molecular_feature extends AppModel implements SearchableModel, OverviewableModel{
     
      public function buildObjects(array $queryResults){
         $molecular_featureDataObjects = [];
@@ -50,4 +51,31 @@ class Molecular_feature extends AppModel implements SearchableModel{
             'analyst'];
     }
     
+    public function getOverviewOptions() {
+        return [
+            'crop',
+            'genotype',
+            'tissue',
+            'genus_species',
+            'experiment_reference',
+            'sample_reference',
+            'analyst',
+            'feature_tag',
+            'ms_instrument_loc',
+            'ion_polarity'];
+    }
+    
+    public function getOverviewDisplayColumns() {
+        return [
+            'crop',
+            'genotype',
+            'tissue',
+            'genus_species',
+            'experiment_reference',
+            'sample_reference',
+            'analyst',
+            'feature_tag',
+            'ms_instrument_loc',
+            'ion_polarity'];
+    }
 }

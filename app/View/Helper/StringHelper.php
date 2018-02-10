@@ -16,7 +16,14 @@ class StringHelper extends AppHelper{
             'value' => 'Value',
             'match' => 'Match',
             'logic' => 'Logic',
-            'noresults' => 'There was matching Sample Sets'
+            'noresults' => 'There were no matching Sample Sets in the database'
+        ],
+        'Overview_form' => [
+            'by' => 'By',
+            'value' => 'Value',
+            'match' => 'Match',
+            'for' => 'For',
+            'noresults' => 'No results were found in the database'
         ],
         'SampleSet_form' => [
             'title' => 'PFR Chemistry: Sample Set Collaboration Workspace',
@@ -226,7 +233,8 @@ class StringHelper extends AppHelper{
             'genus_species' => 'Species',
             'analyst' => 'Analyst',
             'actions' => 'Actions',
-            'searchTitle' => 'Find Metabolomic Data'],
+            'searchTitle' => 'Find Metabolomic Data',
+            'overviewTitle' => 'Overview Metabolomic Data'],
         'MolecularFeatures' => [ //hack to get the MetabolomicData View working
             'view' => 'Metabolomic Data Viewer',
             'feature_tag' => 'Metabolite Tag',

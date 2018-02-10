@@ -207,6 +207,21 @@ class BootstrapFormHelper extends FormHelper{
         $html .= $this->end_group();
         return $html;
     }
+    
+    /**
+     * Creates a single button for Overview
+     */
+    public function addOverviewButton($save = 'Save', $cancel = 'Cancel', $cancelAction = 'window.history.back();return false;') {
+        $html = '';
+        $html .= $this->start_group();
+        $html .= '<div class="col-lg-4"></div>'; // Spacer.
+        $html .= $this->single_button([
+            'class' => 'btn-primary',
+            'text' => $save
+        ]);
+        $html .= $this->end_group();
+        return $html;
+    }
 
     /**
      * Adds the javascript for adding a validator
