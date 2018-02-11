@@ -111,7 +111,8 @@ class SearchComponent extends Component{
                 throw new Exception('There was a match value that was not found if you are modifying the code please add it to this statement');
                 break;
             }      
-        $query = [$model->name . '.' . $by . ' LIKE' => $value];
+        //$query = [$model->name . '.' . $by . ' LIKE' => $value];
+        $query = "SELECT DISTINCT experiment_reference FROM cam_data.molecular_features as Molecular_features WHERE crop LIKE '%kiwi%';";
         return $query;
     }
 }

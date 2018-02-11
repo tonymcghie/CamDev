@@ -34,6 +34,7 @@ class Compound extends AppModel implements SearchableModel {
             'cas',
             'compound_type',
             'exact_mass',
+            'formula',
             '[M-H]-',
             '[M+COOH-H]-',
             '[M+H]+',
@@ -42,4 +43,21 @@ class Compound extends AppModel implements SearchableModel {
             'chemspider_id',
             'comment'];
     }
+    
+    public function getSearchableFields() {
+        return ['compound_name',
+            'cas',
+            'compound_type',
+            'exact_mass',
+            'pub_chem',
+            'chemspider_id',
+            'comment',
+            'pseudonyms',
+            'sys_name',
+            'formula',
+            'compound_type',
+            'canonical_smiles',
+            'isomeric_smiles'];
+    }
+    
 }

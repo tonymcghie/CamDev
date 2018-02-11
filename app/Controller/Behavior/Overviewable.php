@@ -26,10 +26,12 @@ trait Overviewable {
         $this->set('model', get_class($this->getModel()));
         $this->set('options', $this->getModel()->getOverviewOptions());
         $this->helpers[] = 'Mustache.Mustache';
-
+        $this->doOverview(); //this should be in the if statment below; moved here for testing
+        var_dump($this->request->query);  //this seems to be empty - need to find out why?
         if (!empty($this->request->query)) {
-            $this->Paginator->settings = $this->paginate;
-            list($resultObjects, $numResults) = $this->doOverview();
+            //$this->Paginator->settings = $this->paginate;
+            //list($resultObjects, $numResults) = $this->doOverview();
+            $this->doOverview();
 
             $this->set('results', $resultObjects);
             $this->set('num', $numResults);
@@ -42,12 +44,17 @@ trait Overviewable {
     }
 
     private function doOverview() {
-        $query = $this->Search->build_overview_query($this->getModel(), $this->request->query);
-        var_dump($query);
-        //$results = $this->paginate($this->getModel(), $query);
+        $query = "SELECT DISTINCT experiment_reference FROM cam_data.molecular_features as Molecular_features WHERE crop LIKE '%kiwi%';";
+        //$query = $this->Search->build_overview_query($this->getModel(), $this->request->query);
+        var_dump('Overviewable ',$query);
+        //$results = $this->LogfileRecord->find('all',
+    //array('fields'=>array('DISTINCT date'), 
+          //'order'=>array('date DESC'))
+//);
+        $results = $this->paginate($this->getModel(), $query);
 
         //$resultObjects = $this->getModel()->buildObjects($results);
-        //$numResults = $this->getModel()->find('count', ['conditions' => $query]);
+        $numResults = $this->getModel()->find('count', ['conditions' => $query]);
 
         return [$resultObjects, $numResults];
     }
