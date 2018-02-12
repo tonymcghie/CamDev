@@ -68,11 +68,11 @@ class SearchComponent extends Component{
      * @return array the array that can be used by the query builder to search the database
      * @throws Exception
      */
-    public function build_overview_query($model, $searchParams) {
-        $by = $searchParams['by'];
-        $value = $searchParams['value'];
-        $match = $searchParams['match'];
-        $for = $searchParams['for'];
+    public function build_overview_query($model, $overviewParams) {
+        $by = $overviewParams['by'][0];
+        $value = $overviewParams['value'][0];
+        $match = $overviewParams['match'][0];
+        $for = $overviewParams['for'][0];
         /**
         if ($match == 'contains')$review_by_value = '%'.$value.'%';
         if ($match == 'exact')$review_by_value = $value;
@@ -96,8 +96,7 @@ class SearchComponent extends Component{
         $this->render('/Elements/overview_results_modal');
         */
         $query = [];
-        if (empty($value))continue;
-        switch ($match_value) {
+        switch ($match) {
             case 'contains':
                 $value = '%'.$value.'%';
                 break;
@@ -108,11 +107,13 @@ class SearchComponent extends Component{
                 $value = '%'.$value;
                 break;
             default:
-                throw new Exception('There was a match value that was not found if you are modifying the code please add it to this statement');
+                //throw new Exception('The match value was not found, if you are modifying the code please add it to this statement');
                 break;
-            }      
-        //$query = [$model->name . '.' . $by . ' LIKE' => $value];
-        $query = "SELECT DISTINCT experiment_reference FROM cam_data.molecular_features as Molecular_features WHERE crop LIKE '%kiwi%';";
+        }
+        //var_dump($value);
+        $query = [$model->name . '.' . $by . ' LIKE' => $value];
+        var_dump($query);
+        //$query = "SELECT DISTINCT experiment_reference FROM cam_data.molecular_features as Molecular_features WHERE crop LIKE '%kiwi%';";
         return $query;
     }
 }

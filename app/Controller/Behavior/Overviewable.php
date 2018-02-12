@@ -26,14 +26,14 @@ trait Overviewable {
         $this->set('model', get_class($this->getModel()));
         $this->set('options', $this->getModel()->getOverviewOptions());
         $this->helpers[] = 'Mustache.Mustache';
-        $this->doOverview(); //this should be in the if statment below; moved here for testing
-        var_dump($this->request->query);  //this seems to be empty - need to find out why?
-        if (!empty($this->request->query)) {
-            //$this->Paginator->settings = $this->paginate;
-            //list($resultObjects, $numResults) = $this->doOverview();
-            $this->doOverview();
 
-            $this->set('results', $resultObjects);
+        if (!empty($this->request->query)) {
+            var_dump($this->request->query);
+            $this->Paginator->settings = $this->paginate;
+            list($numResults) = $this->doOverview();
+            //$this->doOverview();
+
+            //$this->set('results', $resultObjects);
             $this->set('num', $numResults);
             $this->set('data', $this->request->query);
             $this->set('cols', $this->getModel()->getOverviewDisplayColumns());
@@ -44,18 +44,28 @@ trait Overviewable {
     }
 
     private function doOverview() {
-        $query = "SELECT DISTINCT experiment_reference FROM cam_data.molecular_features as Molecular_features WHERE crop LIKE '%kiwi%';";
+        //$query = "SELECT DISTINCT experiment_reference FROM cam_data.molecular_features as Molecular_features WHERE crop LIKE '%kiwi%';";
         //$query = $this->Search->build_overview_query($this->getModel(), $this->request->query);
-        var_dump('Overviewable ',$query);
+        //var_dump('Overviewable ',$query);
         //$results = $this->LogfileRecord->find('all',
-    //array('fields'=>array('DISTINCT date'), 
-          //'order'=>array('date DESC'))
-//);
-        $results = $this->paginate($this->getModel(), $query);
+        //array('fields'=>array('DISTINCT date'), 
+        //'order'=>array('date DESC'))
+        //);
+        
+        // Cannot get the SQL working correclty
+        // the second statment finds records but with no conditions
+        //$results = $this->getModel()->find('all', array(
+       //'fields' => 'DISTINCT experiment_reference',
+       //'conditions' => array('crop' => '%kiwi%')
+    //));
+        $results = $this->getModel()->find('all',
+                array('fields'=>array('DISTINCT experiment_reference')));
+        //$results = $this->paginate($this->getModel(), $query);
+        var_dump('Results: ', $results);
 
         //$resultObjects = $this->getModel()->buildObjects($results);
         $numResults = $this->getModel()->find('count', ['conditions' => $query]);
 
-        return [$resultObjects, $numResults];
+        return [$numResults];
     }
 }

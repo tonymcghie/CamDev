@@ -18,28 +18,28 @@ assert(isset($model),
 
 <h1><?= $this->String->get_string('overviewTitle', $model);?></h1>
 
-<?= $this->BootstrapForm->create($model, ['action' => 'search', 'type' => 'get', 'class' => 'search-form']); ?>
+<?= $this->BootstrapForm->create($model, ['action' => 'overview', 'type' => 'get', 'class' => 'overview-form']); ?>
 
 <div class="search-set form-group row">
-    <div class="col-lg-3"><?= $this->String->get_string('by', 'Overview_form')?></div> <!--TODO use get string-->
+    <div class="col-lg-3"><?= $this->String->get_string('by', 'Overview_form')?></div> 
     <div class="col-lg-3"><?= $this->String->get_string('value', 'Overview_form')?></div>
     <div class="col-lg-3"><?= $this->String->get_string('match', 'Overview_form')?></div>
     <div class="col-lg-2"><?= $this->String->get_string('for', 'Overview_form')?></div>
 </div>
 <?php if (!isset($data)): ?>
-    <?= $this->Mustache->render('form/search_form_row', [
-            'criteriaOptions' => $criteria_options,
+    <?= $this->Mustache->render('form/overview_form_row', [
+            'byOptions' => $criteria_options,
             'matchOptions' => $match_options,
-            'logicOptions' => $criteria_options,
+            'forOptions' => $criteria_options,
             'closeable' => false,
             'index' => $index]); ?>
     <?php $index = $index + 1; ?>
 <?php else:
-    for ($index = 0; $index < count($data['criteria']); $index++): ?>
-        <?= $this->Mustache->render('form/search_form_row', [
-            'criteriaOptions' => $this->BootstrapForm->setSelectedValue($criteria_options, $data['criteria'][$index]),
+    for ($index = 0; $index < count($data['by']); $index++): ?>
+        <?= $this->Mustache->render('form/overview_form_row', [
+            'byOptions' => $this->BootstrapForm->setSelectedValue($criteria_options, $data['by'][$index]),
             'matchOptions' => $this->BootstrapForm->setSelectedValue($match_options, $data['match'][$index]),
-            'logicOptions' => $this->BootstrapForm->setSelectedValue($logic_options, $data['logic'][$index]),
+            'forOptions' => $this->BootstrapForm->setSelectedValue($logic_options, $data['for'][$index]),
             'valueDefault' => $data['value'][$index],
             'closeable' => $index != 0,
             'index' => $index]); ?>
