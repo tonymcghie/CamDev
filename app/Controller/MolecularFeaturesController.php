@@ -5,6 +5,7 @@ App::uses('Searchable', 'Controller/Behavior');
 App::uses('Viewable', 'Controller/Behavior');
 App::uses('Exportable', 'Controller/Behavior');
 App::uses('Importable', 'Controller/Behavior');
+App::uses('Overviewable', 'Controller/Behavior');
 
 /* 
  * To change this license header, choose License Headers in Project Properties.
@@ -16,6 +17,7 @@ class MolecularFeaturesController extends AppController{
     use Viewable;
     use Exportable;
     use Importable;
+    use Overviewable;
     
     public $helpers = ['Html' , 'Form' , 'My', 'Js', 'Time', 'String', 'BootstrapForm', 'Mustache.Mustache'];
     public $uses = ['Molecular_feature','PubChemModel', 'Compound'];
@@ -165,7 +167,7 @@ class MolecularFeaturesController extends AppController{
     /**
      * Enables the user to obtain a summary review of the data in the CompoundPFR data table.  This is a large table and this tool is useful 
      * for getting an overview of the data in the table 
-     */
+     *
     public function overview(){
         $this->layout = 'ajax';
         //$this->autoRender = false;
@@ -192,5 +194,5 @@ class MolecularFeaturesController extends AppController{
         $this->set('by', $by);
         $this->set('model', 'Molecular_feature');
         $this->render('/Elements/overview_results_modal');    
-    }
+    }*/
 }

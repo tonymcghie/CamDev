@@ -141,6 +141,19 @@ class SampleSet extends AppModel implements SearchableModel, VersionableModel {
             'team'];
     }
 
+    public function getSearchableFields() {
+        return ['set_code',
+            'crop',
+            'chemist',
+            'submitter',
+            'status',
+            'p_name',
+            'p_code',
+            'set_reason',
+            'compounds',
+            'comments',
+            'team'];
+    }
 
     public function getDisplayColumns() {
         return ['actions',

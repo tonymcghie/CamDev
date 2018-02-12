@@ -12,7 +12,7 @@ class SearchComponent extends Component{
     public $excluded_fields = ['id'];
 
     /**
-     * @param $model AppModel the name of the modle to search in
+     * @param $model AppModel the name of the model to search in
      * @param $criteria array the array of the criteria from the search form
      * @param $value array the array of the values from the search form
      * @param $logic array the array of the logic values from the search form
@@ -57,5 +57,63 @@ class SearchComponent extends Component{
         }
         return $query;
     }
-
+    
+    /**
+     * build a query specifically for the Overview action using a SELECT DISTINCT SQL query
+     * @param $model AppModel the name of the model to search in
+     * @param $criteria array the array of the criteria from the search form
+     * @param $value array the array of the values from the search form
+     * @param $logic array the array of the logic values from the search form
+     * @param $match array the array of the match options from the search form
+     * @return array the array that can be used by the query builder to search the database
+     * @throws Exception
+     */
+    public function build_overview_query($model, $overviewParams) {
+        $by = $overviewParams['by'][0];
+        $value = $overviewParams['value'][0];
+        $match = $overviewParams['match'][0];
+        $for = $overviewParams['for'][0];
+        /**
+        if ($match == 'contains')$review_by_value = '%'.$value.'%';
+        if ($match == 'exact')$review_by_value = $value;
+        if ($match == 'starts')$review_by_value = $value.'%';
+        //pr($review_by_value);
+        $query = "SELECT DISTINCT {$for} "
+                . "FROM cam_data.molecular_features as Molecular_feature"
+                . " WHERE {$by} LIKE '{$review_by_value}';";
+        //var_dump($query);
+        //$db_name = ConnectionManager::getDataSource('default')->config['database'];
+        $results = $this->Molecular_feature->query("SELECT DISTINCT {$for} "
+                . "FROM cam_data.molecular_features as Molecular_feature"
+                . " WHERE {$by} LIKE '{$review_by_value}';");
+        //var_dump($results);        
+        //send everything to the view and display as a modal            
+        $this->set('results', $results);
+        $this->set('for', $for);
+        $this->set('value', $value);
+        $this->set('by', $by);
+        $this->set('model', 'Molecular_feature');
+        $this->render('/Elements/overview_results_modal');
+        */
+        $query = [];
+        switch ($match) {
+            case 'contains':
+                $value = '%'.$value.'%';
+                break;
+            case 'exact':
+                // Do not change the value
+                break;
+            case 'starts':
+                $value = '%'.$value;
+                break;
+            default:
+                //throw new Exception('The match value was not found, if you are modifying the code please add it to this statement');
+                break;
+        }
+        //var_dump($value);
+        $query = [$model->name . '.' . $by . ' LIKE' => $value];
+        var_dump($query);
+        //$query = "SELECT DISTINCT experiment_reference FROM cam_data.molecular_features as Molecular_features WHERE crop LIKE '%kiwi%';";
+        return $query;
+    }
 }
