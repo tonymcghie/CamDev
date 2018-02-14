@@ -11,7 +11,7 @@
 
 
     <div id="search-results">
-        <h2>Search Results (n=<?php echo $num; ?>)</h2>
+        <h2>Results found (n=<?php echo $num; ?>)</h2>
         <?php
         if(in_array('Exportable', $behaviour)) {
             echo $this->Html->link(

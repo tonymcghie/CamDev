@@ -2,8 +2,9 @@
 
 App::uses('CompoundPfrDataObject', 'Model/DataObject');
 App::uses('SearchableModel', 'Model/Behavior');
+App::uses('OverviewableModel', 'Model/Behavior');
 
-class Compoundpfr_data extends AppModel implements SearchableModel {
+class Compoundpfr_data extends AppModel implements SearchableModel, OverviewableModel {
     
     public function buildObjects(array $queryResults){
         $compoundpfrDataObjects = [];
@@ -32,6 +33,7 @@ class Compoundpfr_data extends AppModel implements SearchableModel {
             'assigned_name',
             'all',
             'assigned_confid',
+            'cas',
             'exact_mass',
             'exact_mass_10mDa',
             'exact_mass_50mDa',
@@ -45,5 +47,55 @@ class Compoundpfr_data extends AppModel implements SearchableModel {
             'genotype',
             'analyst',
             'file'];
+    }
+    
+    public function getSearchableFields() {
+        return [
+            'assigned_name',
+            'assigned_confid',
+            'cas',
+            'exact_mass',
+            'exact_mass_10mDa',
+            'exact_mass_50mDa',
+            'intensity_description',
+            'reference',
+            'sample_ref',
+            'sample_description',
+            'crop',
+            'species',
+            'tissue',
+            'genotype',
+            'analyst',
+            'file'];
+    }
+    
+    public function getOverviewOptions() {
+        return [
+            'crop',
+            'genotype',
+            'tissue',
+            'species',
+            'reference',
+            'sample_ref',
+            'analyst',
+            'assigned_name',
+            'cas',
+            'exact_mass',
+            'intensity_description'];
+    }
+    
+    public function getOverviewDisplayColumns() {
+        return [
+            'crop',
+            'genotype',
+            'tissue',
+            'species',
+            'reference',
+            'sample_ref',
+            'analyst',
+            'assigned_name',
+            'cas',
+            'exact_mass',
+            'intensity_description'];
     }
 }

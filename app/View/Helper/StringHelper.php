@@ -16,14 +16,14 @@ class StringHelper extends AppHelper{
             'value' => 'Value',
             'match' => 'Match',
             'logic' => 'Logic',
-            'noresults' => 'There were no matching Sample Sets in the database'
+            'noresults' => 'There is nothing in the database that matches your search criteria!'
         ],
         'Overview_form' => [
             'by' => 'By',
             'value' => 'Value',
             'match' => 'Match',
             'for' => 'For',
-            'noresults' => 'No results were found in the database'
+            'noresults' => 'No results were found in the database!'
         ],
         'SampleSet_form' => [
             'title' => 'PFR Chemistry: Sample Set Collaboration Workspace',
@@ -173,6 +173,7 @@ class StringHelper extends AppHelper{
             'searchTitle' => 'Find Sample Set'],
         'Compoundpfr_data' => [
             'assigned_name' => 'Compound',
+            'cas' =>'CAS #',
             'exact_mass' => 'Exact Mass',
             'intensity_value' => 'Intensity',
             'intensity_description' => 'Units',
@@ -190,10 +191,12 @@ class StringHelper extends AppHelper{
             'exact_mass_10mDa' => 'Exact Mass +- 10 mDa',
             'exact_mass_50mDa' => 'Exact Mass +- 50 mDa',
             'file' => 'File',
-            'searchTitle' => 'Find PFR Compound Data'],
+            'searchTitle' => 'Find PFR Compound Data',
+            'overviewTitle' => 'Overview PFR Compound Data'],
         'CompoundpfrData' => [ //hack to get the CompoundpfrData View working
             'view' => 'Compound PFR Data Viewer',
             'assigned_name' => 'Compound',
+            'cas' =>'CAS #',
             'cas' => 'CAS #',
             'exact_mass' => 'Exact Mass',
             'intensity_value' => 'Intensity',
@@ -233,6 +236,7 @@ class StringHelper extends AppHelper{
             'genus_species' => 'Species',
             'analyst' => 'Analyst',
             'actions' => 'Actions',
+            'all' => 'All',
             'searchTitle' => 'Find Metabolomic Data',
             'overviewTitle' => 'Overview Metabolomic Data'],
         'MolecularFeatures' => [ //hack to get the MetabolomicData View working
@@ -255,6 +259,7 @@ class StringHelper extends AppHelper{
             'genus_species' => 'Species',
             'analyst' => 'Analyst',
             'actions' => 'Actions',
+            'all' => 'All',
             'data_location'=>'Raw Data Location'],
         'Compound' => [
             'all' => 'All',
