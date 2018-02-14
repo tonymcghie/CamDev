@@ -21,10 +21,12 @@ echo  $this->element('overview_form', ['model' => $model,
 if (isset($results)) {
     assert(isset($num), '\'$num\' the number of results must be set');
     assert(isset($cols), '\'$cols\' the initial columns to display must be set');
-
-    echo $this->element('search_table', ['results' => $results,
+    //var_dump($results);
+    //var_dump($num);
+    //var_dump($data['for']);
+    echo $this->element('overview_table', ['results' => $results,
         'model' => $model,
         'num' => $num,
-        'initialColumns' => $cols]);
+        'column' => $data['for'][0]]);
 }
 ?>

@@ -126,7 +126,7 @@ assert(in_array($group, [$sampleSetGroup,
                 <div class="panel-collapse collapse <?php if ($group == $pfrDataGroup)echo 'in'; ?>" id="pfr_data_menu">
                     <div class="panel-body light-blue lighten-3">
                         <?= $this->Html->link('Find', ['controller' => 'Compoundpfr_data', 'action' => 'search'], ['class' => 'list-group-item']) ?>
-                        <?= $this->Html->link('Overview', ['controller' => 'Compoundpfr_data', 'action' => 'overviewData'], ['class' => 'list-group-item']) ?>
+                        <?= $this->Html->link('Overview', ['controller' => 'Compoundpfr_data', 'action' => 'overview'], ['class' => 'list-group-item']) ?>
                         <?= $this->Html->link('Graph', ['controller' => 'Compoundpfr_data', 'action' => 'graphData'], ['class' => 'list-group-item']) ?>
                         <?= $this->Html->link('Import', ['controller' => 'Compoundpfr_data', 'action' => 'import'], ['class' => 'list-group-item']) ?>
                         <?= ''//$this->Html->link('Find-Bioactivity', ['controller' => 'Bioactivitypfr_data', 'action' => 'search'], ['class' => 'list-group-item']) ?>

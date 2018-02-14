@@ -39,7 +39,7 @@ assert(isset($model),
         <?= $this->Mustache->render('form/overview_form_row', [
             'byOptions' => $this->BootstrapForm->setSelectedValue($criteria_options, $data['by'][$index]),
             'matchOptions' => $this->BootstrapForm->setSelectedValue($match_options, $data['match'][$index]),
-            'forOptions' => $this->BootstrapForm->setSelectedValue($logic_options, $data['for'][$index]),
+            'forOptions' => $this->BootstrapForm->setSelectedValue($criteria_options, $data['for'][$index]),
             'valueDefault' => $data['value'][$index],
             'closeable' => $index != 0,
             'index' => $index]); ?>

@@ -64,6 +64,17 @@ abstract class DataObject {
         }
         return $rowData;
     }
+    
+    /**
+     * finds a single value for the Overview table
+     * @return string
+     */
+    public function getSpecifiedTableRowData($for) {
+        //var_dump($for);
+        $rowData = $this->$for;
+        //var_dump($rowData);
+        return $rowData;
+    }
 
     // BACK END HELPERS
 

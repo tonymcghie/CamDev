@@ -4,12 +4,14 @@ App::uses('Searchable', 'Controller/Behavior');
 App::uses('Viewable', 'Controller/Behavior');
 App::uses('Exportable', 'Controller/Behavior');
 App::uses('Importable', 'Controller/Behavior');
+App::uses('Overviewable', 'Controller/Behavior');
 
 class CompoundpfrDataController extends AppController {
     use Searchable;
     use Viewable;
     use Exportable;
     use Importable;
+    use Overviewable;
 
     public $helpers = ['Html' , 'Form' , 'My', 'Js', 'Time', 'String', 'BootstrapForm', 'Mustache.Mustache'];
     public $uses = ['Compoundpfr_data','PubChemModel', 'Compound'];
@@ -151,7 +153,7 @@ class CompoundpfrDataController extends AppController {
     /**
      * Enables the user to obtain a summary review of the data in the CompoundPFR data table.  This is a large table and this tool is useful 
      * for getting an overview of the data in the table 
-     */
+     *
     public function overview(){
         $this->autoRender = false;
         // Listed these here for auto complete reasons and to stop the IDE displaying errors
@@ -189,7 +191,7 @@ class CompoundpfrDataController extends AppController {
             
         //$this->set('output', $output);
         //$this->set('data', $this->request->data); //sends all the data(search criteria) to the view so it can be added to the ajax links
-    }
+    }*/
     
     /**
      * This will search the Compounds table with the name supplied and addes any synonims it finds to the conditions array

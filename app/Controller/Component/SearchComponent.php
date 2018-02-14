@@ -73,29 +73,8 @@ class SearchComponent extends Component{
         $value = $overviewParams['value'][0];
         $match = $overviewParams['match'][0];
         $for = $overviewParams['for'][0];
-        /**
-        if ($match == 'contains')$review_by_value = '%'.$value.'%';
-        if ($match == 'exact')$review_by_value = $value;
-        if ($match == 'starts')$review_by_value = $value.'%';
-        //pr($review_by_value);
-        $query = "SELECT DISTINCT {$for} "
-                . "FROM cam_data.molecular_features as Molecular_feature"
-                . " WHERE {$by} LIKE '{$review_by_value}';";
-        //var_dump($query);
-        //$db_name = ConnectionManager::getDataSource('default')->config['database'];
-        $results = $this->Molecular_feature->query("SELECT DISTINCT {$for} "
-                . "FROM cam_data.molecular_features as Molecular_feature"
-                . " WHERE {$by} LIKE '{$review_by_value}';");
-        //var_dump($results);        
-        //send everything to the view and display as a modal            
-        $this->set('results', $results);
-        $this->set('for', $for);
-        $this->set('value', $value);
-        $this->set('by', $by);
-        $this->set('model', 'Molecular_feature');
-        $this->render('/Elements/overview_results_modal');
-        */
         $query = [];
+        
         switch ($match) {
             case 'contains':
                 $value = '%'.$value.'%';
@@ -107,13 +86,12 @@ class SearchComponent extends Component{
                 $value = '%'.$value;
                 break;
             default:
-                //throw new Exception('The match value was not found, if you are modifying the code please add it to this statement');
+                throw new Exception('The match value was not found, if you are modifying the code please add it to this statement');
                 break;
         }
-        //var_dump($value);
-        $query = [$model->name . '.' . $by . ' LIKE' => $value];
-        var_dump($query);
-        //$query = "SELECT DISTINCT experiment_reference FROM cam_data.molecular_features as Molecular_features WHERE crop LIKE '%kiwi%';";
+        
+        $query = array('fields' => 'DISTINCT ' . $for,
+       'conditions' => array($by . ' LIKE' => $value));
         return $query;
     }
 }
