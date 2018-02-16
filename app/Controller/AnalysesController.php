@@ -106,7 +106,7 @@ class AnalysesController extends AppController{
     public function uploadProcessedData() {
         $this->layout = 'ajax';
         $this->autoRender = false;
-        $uploadedProcessedData = $this->request->params['form']['processed_file'];
+        $uploadedProcessedData = $this->request->params['form']['derived_results_file'];
         $set_code = $this->request->data['Analysis']['set_code'];
         $title = $this->request->data['Analysis']['title'];
         $id = $this->request->data['Analysis']['id'];
@@ -129,7 +129,7 @@ class AnalysesController extends AppController{
     public function uploadResultsData() {
         $this->layout = 'ajax';
         $this->autoRender = false;
-        $uploadedDerivedData = $this->request->params['form']['derived_results_file'];
+        $uploadedDerivedData = $this->request->params['form']['processed_file'];
         $set_code = $this->request->data['Analysis']['set_code'];
         $title = $this->request->data['Analysis']['title'];
         $id = $this->request->data['Analysis']['id'];
