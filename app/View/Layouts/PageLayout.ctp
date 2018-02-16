@@ -35,12 +35,12 @@ assert(in_array($group, [$sampleSetGroup,
     <?php
     echo $this->Html->css(['bootstrap.min', 'styles_required', 'materialize_colors', 'styles_content']);
     echo $this->Html->script('lib/jquery-3.1.1.min', ['inline' => true]);
-    echo $this->Html->script('lib/bootstrap.min', ['inline' => false, 'async' => 'async']);
+    echo $this->Html->script('lib/jquery-ui-1.12.1/jquery-ui', ['inline' => true]);
+    echo $this->Html->script('lib/bootstrap.min', ['inline' => true]);
 
     echo $this->Html->script('typescript/validator/validator.min', ['inline' => false, 'async' => 'async']);
     echo $this->Html->script('typescript/form_rules/displayif.min', ['inline' => false, 'async' => 'async']);
 
-    echo $this->Html->script('lib/jquery-ui-1.12.1/jquery-ui', ['inline' => false, 'async' => 'async']);
 
     echo $this->fetch('meta');
     echo $this->fetch('css');
