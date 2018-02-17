@@ -141,59 +141,6 @@ class CompoundpfrDataController extends AppController {
     }
     
     /**
-     * Entry point for CompoundspfrData -> overview
-     * Control transfers to the soverview_data view and onto to /Elements/overview_form
-     * and then back to the overview() function below.
-     * Search results are displayed as a modal as defined by /Elements/results table
-     */
-    public function overviewData(){
-        
-    }
-    
-    /**
-     * Enables the user to obtain a summary review of the data in the CompoundPFR data table.  This is a large table and this tool is useful 
-     * for getting an overview of the data in the table 
-     *
-    public function overview(){
-        $this->autoRender = false;
-        // Listed these here for auto complete reasons and to stop the IDE displaying errors
-        $by = null;$value = null;$match = null;$for = null; $review_options=null;
-        extract($this->request->data['Compoundpfr_data']);
-        if ($match == 'contains')$review_by_value = '%'.$value.'%';
-        if ($match == 'exact')$review_by_value = $value;
-        if ($match == 'starts')$review_by_value = $value.'%';
-        $query = "SELECT DISTINCT {$for} "
-                . "FROM cam_data.compoundpfr_data as Compoundpfr_data"
-                . " WHERE {$by} LIKE '{$review_by_value}';";
-
-        //$db_name = ConnectionManager::getDataSource('default')->config['database'];
-        $results = $this->Compoundpfr_data->query("SELECT DISTINCT {$for} "
-                . "FROM cam_data.compoundpfr_data as Compoundpfr_data"
-                    . " WHERE {$by} LIKE '{$review_by_value}';");
-
-        // Makes the result array a 1 dimensional indexed array ie.
-        //// does not seem to be needed but left in at present
-        $squash_function = function($carry = [], $item) use ($for){
-            if (empty($carry))$carry = [];
-            $carry[] = $item['Compoundpfr_data'][$for];
-            return $carry;
-        };           
-        $output = array_reduce($results, $squash_function);
-
-            
-        $this->set('results', $results);
-        $this->set('for', $for);
-        $this->set('value', $value);
-        $this->set('by', $by);
-        //$this->set('num', $this->Compoundpfr_data->find('count', ['conditions' => $query])); //passes the number of results to the view
-        $this->set('model', 'Compoundpfr_data');
-        $this->render('/Elements/overview_results_modal');
-            
-        //$this->set('output', $output);
-        //$this->set('data', $this->request->data); //sends all the data(search criteria) to the view so it can be added to the ajax links
-    }*/
-    
-    /**
      * This will search the Compounds table with the name supplied and addes any synonims it finds to the conditions array
      * @param type $data (the data that was used to create the old search conditions)
      * @param array $search (old search conditions)

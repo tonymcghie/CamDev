@@ -17,14 +17,14 @@ class Compound extends AppModel implements SearchableModel {
         return ['actions',
             'compound_name',
             'pseudonyms',
+            'cas',
+            'compound_type',
             'formula',
             'exact_mass',
             '[M-H]-',
-            '[M+COOH-H]-',
+            '[M+HCOOH-H]-',
             '[M+H]+',
             '[M+Na]+',
-            'cas',
-            'compound_type',
             'comment'];
     }
 
@@ -36,7 +36,7 @@ class Compound extends AppModel implements SearchableModel {
             'exact_mass',
             'formula',
             '[M-H]-',
-            '[M+COOH-H]-',
+            '[M+HCOOH-H]-',
             '[M+H]+',
             '[M+Na]+',
             'pub_chem',

@@ -268,7 +268,7 @@ class StringHelper extends AppHelper{
             'exact_mass' => 'Exact Mass',
             'cas' => 'CAS',
             '[M-H]-' => '[M-H]-',
-            '[M+COOH-H]-' => '[M+COOH-H]-',
+            '[M+HCOOH-H]-' => '[M+HCOOH-H]-',
             '[M+H]+' => '[M+H]+',
             '[M+Na]+' => '[M+Na]+',
             'compound_type' => 'Class',
