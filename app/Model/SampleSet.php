@@ -157,13 +157,13 @@ class SampleSet extends AppModel implements SearchableModel, VersionableModel {
 
     public function getDisplayColumns() {
         return ['actions',
-            'id',
             'set_code',
             'chemist',
             'submitter',
             'status',
             'p_name',
             'p_code',
+            'number',
             'crop',
             'compounds',
             'comments'];

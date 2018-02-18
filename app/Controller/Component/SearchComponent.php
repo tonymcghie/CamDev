@@ -31,7 +31,40 @@ class SearchComponent extends Component{
             $value_value = $value[$index];
             $logic_value = $logic[$index];
             $match_value = $match[$index];
+            
             if (empty($value_value))continue;
+            
+            echo $criteria_value;
+            
+            if ($criteria_value=='[M-H]-'){
+                
+                $precision = count(explode('.', $value_value))==2 ? strlen(explode('.', $value_value)[1]) : 0;
+            
+                switch ($criteria_value) {            
+                    case '[M-H]-':
+                        $value_value = round(floatval($value_value) + 1.007276, $precision);
+                        $criteria_value = 'exact_mass';
+                        break;
+                    case '[M+HCOOH-H]-':
+                        $$value_value = round(floatval($value_value) - 44.998201, $precision);
+                        $criteria_value = 'exact_mass';
+                        break;
+                    case '[M+H]+':
+                        $value_value = round(floatval($value_value) - 1.007276, $precision);
+                        $criteria_value = 'exact_mass';
+                        break;
+                    case '[M+Na]+':
+                        $value_value = round(floatval($value_value) -  22.989218, $precision);
+                        $criteria_value = 'exact_mass';
+                        break;
+                    default:
+                        throw new Exception('Specified adduct not found');
+                        break;
+                }
+            }
+            echo $criteria_value;
+            echo $value_value;
+            
             switch ($match_value) {
                 case 'contains':
                     $value_value = '%'.$value_value.'%';
@@ -49,7 +82,7 @@ class SearchComponent extends Component{
             if ($criteria_value == 'all') {
                 $query[$logic_value]['OR'] = [];
                 foreach ($model->getSearchableFields() as $column_name) {
-                    $query[$logic_value]['OR'][] = [$model->name . '.' . $column_name . ' LIKE' => $value_value];
+                    $query[$logic_value]['OR'][] = [$model->name . '.' . $column_name . ' LIKE' => $value_value];  
                 }
             } else {
                 $query[$logic_value][] = [$model->name . '.' . $criteria_value . ' LIKE' => $value_value];

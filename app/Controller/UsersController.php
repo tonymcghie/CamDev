@@ -35,14 +35,14 @@ class UsersController extends AppController {
     
     public function cam4_login() {
         $data = $this->request->data;
-        var_dump($data);
+        //var_dump($data);
     }
     /**
      * Logs a user in. Commented out when login not wanted
      */
     public function login() { 
         $data = $this->request->data;
-        var_dump($data);
+        //var_dump($data);
 	/**            
     if ($this->Session->read('Auth.User')) {
         $data = http_build_query(['alert' => 'You are already Logged in as '.$this->Session->read('Auth.User')['name']]);        
