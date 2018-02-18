@@ -13,7 +13,7 @@ class CompoundDataObject extends DataObject {
         parent::__construct($model, $data);
         if (isset($data['exact_mass'])) {
             $this->data['[M-H]-'] = $data['exact_mass'] - 1.007276;
-            $this->data['[M+COOH-H]-'] = $data['exact_mass'] + 44.998201;
+            $this->data['[M+HCOOH-H]-'] = $data['exact_mass'] + 44.998201;
             $this->data['[M+H]+'] = $data['exact_mass'] + 1.007276;
             $this->data['[M+Na]+'] = $data['exact_mass'] + 22.989218;
         }

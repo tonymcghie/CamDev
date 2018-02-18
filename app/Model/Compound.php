@@ -36,9 +36,9 @@ class Compound extends AppModel implements SearchableModel {
             'exact_mass',
             'formula',
             '[M-H]-',
-            '[M+HCOOH-H]-',
-            '[M+H]+',
-            '[M+Na]+',
+            //'[M+HCOOH-H]-',
+            //'[M+H]+',
+            //'[M+Na]+',
             'pub_chem',
             'chemspider_id',
             'comment'];
