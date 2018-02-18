@@ -30,9 +30,10 @@ assert(in_array($group, [$sampleSetGroup,
 <head>
     <?php echo $this->Html->charset(); ?>
     <title><?= $this->fetch('title'); ?></title>
-    <link rel="shortcut icon" href="img/cam.ico"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?php
+    echo $this->Html->meta('favicon.ico','img/cam.ico',array('type' => 'icon'));
+
     echo $this->Html->css(['bootstrap.min', 'styles_required', 'materialize_colors', 'styles_content']);
     echo $this->Html->script('lib/jquery-3.1.1.min', ['inline' => true]);
     echo $this->Html->script('lib/bootstrap.min', ['inline' => false, 'async' => 'async']);
