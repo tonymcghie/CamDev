@@ -20,9 +20,7 @@
             'bio_everything' => 'Bio: all sections',
             'bio_details' => 'Bio: analysis details only',
             'bio_files' => 'Bio: files only',
-            'bio_pictures' => 'Bio: pictures only',
-            'reagents' => 'reagents',
-            'plates' => 'plates'
+            'bio_pictures' => 'Bio: pictures only'
         ]]);
     echo $this->BootstrapForm->addActionButtons();
     echo $this->BootstrapForm->get_js();

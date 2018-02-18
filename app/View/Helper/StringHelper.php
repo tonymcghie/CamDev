@@ -332,6 +332,8 @@ class StringHelper extends AppHelper{
             'file' => 'File',
             'searchTitle' => 'Search PFR Bioactivity Data'],
         'Analysis' => [
+            'title' => 'Analysis Title',
+            'workflow' => 'Select Workflow',
             'rawData' => 'Raw Data Location',
             'processedData' => 'Processed Data (xlsx file):',
             'resultsData' => 'Additional Data (any file type):',
