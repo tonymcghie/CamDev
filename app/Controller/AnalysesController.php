@@ -119,6 +119,7 @@ class AnalysesController extends AppController{
         }
 
         $newPath = 'data/files/analysis/' . $set_code . '_' . $title . '_' . 'processedData' . '_' . $id . '.xlsx';
+        //$res = move_uploaded_file($uploadedProcessedData['tmp_name'], $newPath); //upload file without adding cover tab
         $data['Analysis']['derived_results'] = $this->uploadDataFile($uploadedProcessedData,
             $newPath,
             $set_code);
@@ -127,7 +128,7 @@ class AnalysesController extends AppController{
     }
 
     public function uploadResultsData() {
-        $this->layout = 'ajax';
+        $this->layout = 'ajax';  //nothing visiable on screen
         $this->autoRender = false;
         $uploadedDerivedData = $this->request->params['form']['processed_file'];
         $set_code = $this->request->data['Analysis']['set_code'];
@@ -159,7 +160,7 @@ class AnalysesController extends AppController{
     private function uploadDataFile($file, $newPath, $set_code){
         $this->PhpExcel->loadWorksheet($file['tmp_name']);
         $this->PhpExcel->setActiveSheet(0);
-        if($this->PhpExcel->getSheetByName('Cover Sheet') == null){            
+        if($this->PhpExcel->getSheetByName('CoverSheet') == null){            
             $this->PhpExcel->createSheet(0);  
             $this->PhpExcel->setActiveSheet(0);
             $SSData = $this->SampleSet->find('all', ['conditions' => ['SampleSet.set_code' => $set_code]]);
@@ -178,7 +179,7 @@ class AnalysesController extends AppController{
             if(isset($SSData[0]['SampleSet']['containment_details'])){$this->PhpExcel->addData(['Containment Details: ',$SSData[0]['SampleSet']['containment_details']]);}
             if(isset($SSData[0]['SampleSet']['confidential'])){$this->PhpExcel->addData(['Confidential: ',($SSData[0]['SampleSet']['confidential']==0 ? 'No' : 'Yes')]);}
             if(isset($SSData[0]['SampleSet']['comments'])){$this->PhpExcel->addData(['Additional Comments: ',$SSData[0]['SampleSet']['comments']]);}
-            $this->PhpExcel->setSheetName('Cover Sheet');
+            $this->PhpExcel->setSheetName('CoverSheet');
             $this->PhpExcel->save($file['tmp_name']);
         } //edits the  file
         move_uploaded_file($file['tmp_name'], $newPath);
