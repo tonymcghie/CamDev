@@ -107,6 +107,9 @@ class SampleSetsController extends AppController {
 
         //sets the date that the sample set was submitted
         $data['SampleSet']['date'] = date('Y-m-d');
+        
+        //sets the initial status fo the sample set to 'submitted'
+        $data['SampleSet']['status'] = 'submitted';
 
         //sets the email of the user who submitted the sample set
         $data['SampleSet']['submitter_email'] = $this->Auth->Session->read($this->Auth->sessionKey)['Auth']['User']['email'];
@@ -131,8 +134,9 @@ class SampleSetsController extends AppController {
                 'to' =>  $data['SampleSet']['submitter_email'],
                 'submitter' => $data['SampleSet']['submitter'],
                 'set_code' => $data['SampleSet']['set_code']]); //sets the values for the email to the submitter
-            $this->set('sampleSet', $sampleSet);
-            $this->render('details');
+            $this->set('sampleSet', $data['SampleSet']);
+            $this->set('error', false);
+            $this->render('create_sample_set');
         } else {
             $this->set('error', true);
         }
