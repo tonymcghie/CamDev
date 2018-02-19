@@ -28,7 +28,7 @@ class StringHelper extends AppHelper{
         'SampleSet_form' => [
             'title' => 'PFR Chemistry: Sample Set Collaboration Workspace',
             'edit_title' => 'PFR Chemistry: Sample Set Edit Workspace',
-            'sub_title' => 'Enter/Edit the relevant metadata information about the Sample Set (* required) and then click Save Set',
+            'sub_title' => 'Enter/Edit the relevant metadata information about the Sample Set (* required) and then click Save',
             'from_setcode' => 'From Previous Set Code',
             'previous_setcode' => 'Previouse Sample Set',
             'previous_setcode_ph' => 'Create Sample Set Similar to previouse Sample Set',
@@ -55,7 +55,8 @@ class StringHelper extends AppHelper{
             'comments' => 'Additional Comments',
             'comments_ph' => 'Insert any additional information. For example, copy/past a table of sample identities (labels) from a spreadsheet',
             'status' => 'Status',
-            'metafile' => 'Upload Metadata File'],
+            'metafile' => 'Upload Metadata File',
+            'confirm_new_sampleset' => 'The new Sample Set has been successfully saved!'],
         'Compound_form' => [
             'title' => 'PFR Chemistry: Add New Compound',
             'edit_title' => 'PFR Chemistry: Edit Compound Information',
