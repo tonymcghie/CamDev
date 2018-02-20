@@ -39,14 +39,16 @@ class SampleSetDataObject extends DataObject implements ViewableModel {
                             'id' => 'processedDataFile',
                             'set' => 'Analysis'
                         ],
-                        'url' => 'data/files/analysis/' . $analysis['Analysis']['processed']
+                        'url' => $analysis['Analysis']['derived_results']
+                        //'url' => 'data/files/analysis/' . $analysis['Analysis']['derived_results'] //removed to get correct urls for processedDataFile
                     ],
                     [
                         'text' => [
                             'id' => 'resultsDataFile',
                             'set' => 'Analysis'
                         ],
-                        'url' => 'data/files/analysis/' . $analysis['Analysis']['derived_results']
+                        'url' => $analysis['Analysis']['processed']
+                        //'url' => 'data/files/analysis/' . $analysis['Analysis']['processed'] //removed to get correct urls for resultsDataFile (Additional)
                     ]
                 ]
             ];
