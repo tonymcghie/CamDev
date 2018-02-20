@@ -27,11 +27,12 @@
                 if (is_array($link['text'])) {
                     $link['text'] = $this->String->get_string($link['text']['id'], $link['text']['set']);
                 }
-                if (is_array($link['url'])) {
+                //this seems to be unecessary and doubles up parts of the url
+                /*if (is_array($link['url'])) {
                     $link['url'] = $this->Html->url($link['url']);
                 } else {
                     $link['url'] = $this->webroot.$link['url'];
-                }
+                } */
             }
         }
         return array_merge($item, ['heading' => $heading]);
