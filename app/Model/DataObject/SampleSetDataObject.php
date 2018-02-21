@@ -23,7 +23,7 @@ class SampleSetDataObject extends DataObject implements ViewableModel {
         return [
             'viewURL' => ['controller' => 'SampleSets', 'action' => 'view', '?' => ['id' => $this->id]],
             'editURL' => ['controller' => 'SampleSets', 'action' => 'edit', '?' => ['id' => $this->id]],
-            'analysisURL' => ['controller' => 'Analyses', 'action' => 'editAnalysis','?' => ['set_code' =>  $this->set_code]]
+            'analysisURL' => ['controller' => 'Analyses', 'action' => 'newAnalysis','?' => ['set_code' =>  $this->set_code]]
         ];
     }
 
