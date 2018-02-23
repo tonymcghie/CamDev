@@ -46,7 +46,7 @@ class GeneralController extends AppController {
         parent::beforeFilter();
         $this->Cookie->name = 'View'; //sets a cookie with the name view
         $this->Cookie->time = '365 days'; //sets the time till it expires to be really long
-        $this->set('group', 'tools');
+        $this->set('group', 'sampleSets');
     }
     
     /**
@@ -78,7 +78,16 @@ class GeneralController extends AppController {
         } //checks if there is no one logged in
 //        $this->layout = ''; //sets the layout to blank so there is no divs or anything so the page looks blank
     }
-        
+    
+     /**
+     * Clears the work area and displays the background image, ie a blank page
+     * Use as the place to return to when an action is finished
+     */
+    public function welcome(){ 
+        $this->layout = 'PageLayout';        
+    } 
+
+    
     /**
      * Allows the user to download template .xlxs files for specific tasks
      * Template must be loaded into /output/chemistry/cam... or a local drive if testing

@@ -26,6 +26,9 @@ echo $this->BootstrapForm->input_horizontal('p_name', ['label' => $this->String-
     'placeholder' => $this->String->get_string('p_name_ph', 'SampleSet_form'),
     'autocomplete' => 'off']);
 
+echo $this->BootstrapForm->input_horizontal('p_code', ['label' => $this->String->get_string('p_code', 'SampleSet_form'),
+    'autocomplete' => 'off']);
+
 echo $this->BootstrapForm->input_horizontal('exp_reference', ['label' => $this->String->get_string('exp_reference', 'SampleSet_form'),
     'placeholder' => $this->String->get_string('exp_reference_ph', 'SampleSet_form')]);
 
