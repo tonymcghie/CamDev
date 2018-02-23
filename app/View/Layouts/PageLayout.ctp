@@ -63,7 +63,7 @@ assert(in_array($group, [$sampleSetGroup,
         }
 
         .background {
-            background-image: url('../img/plamy_town50.jpg');
+            background-image: url('../img/vineyard-blenheim.jpg');
             background-size: cover;
             position: fixed;
             width: 100vw;
@@ -150,11 +150,6 @@ assert(in_array($group, [$sampleSetGroup,
                         <?= $this->Html->link('Find', ['controller' => 'Molecular_features', 'action' => 'search'], ['class' => 'list-group-item']) ?>
                         <?= $this->Html->link('Overview', ['controller' => 'Molecular_features', 'action' => 'overview'], ['class' => 'list-group-item']) ?>
                         <?= $this->Html->link('Import', ['controller' => 'Molecular_features', 'action' => 'import'], ['class' => 'list-group-item']) ?>
-                        <?php
-                        /*if ($this->Session->read('Auth.User')!==null && in_array("PFR-GP-Biological Chemistry and Bioactives Group", $this->Session->read('Auth.User')['groups'])){
-                            echo '<li>'.$this->Html->link('Add', ['controller' => 'Metabolites','action' => 'addMetabolite'], ['target' => 'mainFrame', 'class' => 'btn btn-link']).'</li>';
-                        }*/
-                        ?>
                     </div>
                 </div>
             </div>
@@ -184,11 +179,6 @@ assert(in_array($group, [$sampleSetGroup,
                     <div class="panel-body light-blue lighten-3">
                         <?= $this->Html->link('Info', ['controller' => 'General', 'action' => 'info'], ['class' => 'list-group-item']) ?>
                         <?= $this->Html->link('How To', ['controller' => 'General', 'action' => 'howto'], ['class' => 'list-group-item']) ?>
-                        <?php
-                        /*if ($this->Session->read('Auth.User')!==null && in_array("PFR-GP-Biological Chemistry and Bioactives Group", $this->Session->read('Auth.User')['groups'])){
-                            echo '<li>'.$this->Html->link('Scripts', ['controller' => 'General','action' => 'scripts'], ['target' => 'mainFrame', 'class' => 'btn btn-link']).'</li>';
-                        }*/
-                        ?>
                     </div>
                 </div>
             </div>
@@ -203,7 +193,7 @@ assert(in_array($group, [$sampleSetGroup,
                         <?= $this->Html->link('GCMS Utilities', ['controller' => 'General', 'action' => 'gcms'], ['class' => 'list-group-item']) ?>
                         <?= $this->Html->link('Data Templates', ['controller' => 'General', 'action' => 'templates'], ['class' => 'list-group-item']) ?>
                         <?= $this->Html->link('New Project', ['controller' => 'Projects', 'action' => 'addProject'], ['class' => 'list-group-item']) ?>
-                        <?= $this->Html->link('Clear Workbench', [], ['class' => 'list-group-item']) ?>
+                        <?= $this->Html->link('Clear Workbench', ['controller' => 'General', 'action' => 'welcome'], ['class' => 'list-group-item']) ?>
                         <?php
                         /*if ($this->Session->read('Auth.User')!==null && in_array("PFR-GP-Biological Chemistry and Bioactives Group", $this->Session->read('Auth.User')['groups'])){
                             echo '<li>'.$this->Html->link('Scripts', ['controller' => 'General','action' => 'scripts'], ['target' => 'mainFrame', 'class' => 'btn btn-link']).'</li>';
