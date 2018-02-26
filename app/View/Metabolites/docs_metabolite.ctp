@@ -7,10 +7,16 @@
     //echo $this->Form->create('Upload', array( 'type' => 'file'));
     //echo $this->Form->input('doc_path', array('type' => 'file','label' => 'Select document to Upload'));
     //echo $this->Form->end('Upload');
+    echo $this->BootstrapForm->create_horizontal('Document', ['type' => 'file']);                   
     echo $this->BootstrapForm->fileUpload('document', [
         'label' => $this->String->get_string('document', 'Metabolite'),
-        'url' => $this->Html->url(['action' => 'docsMetabolite'], true),
-       'value' => $metabolite['Metabolite']['document']]);
+        'url' => $this->Html->url(['action' => 'uploadDocument'], true),
+        'value' => $metabolite['Metabolite']['document']]);
+    
+    echo $this->BootstrapForm->addActionButtons();
+
+    echo $this->BootstrapForm->get_js();
+    echo $this->BootstrapForm->end();
     
 ?>
 <script>

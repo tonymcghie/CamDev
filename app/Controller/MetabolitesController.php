@@ -218,20 +218,53 @@ class MetabolitesController extends AppController {
     
     public function docsMetabolite($id = null){
         if ($id == null){
-            $id = $this->params['url']['id'];
-            
+            $id = $this->params['url']['id'];            
         } // gets $id from the url
+        
         if (empty($id)) {
             $this->set('error', 'Invalid Unknown');
             return;
         }
         $metabolite = $this->Metabolite->findById($id);
+        //var_dump($metabolite);
         if (!$metabolite){
             throw new NotFoundExcpetion(__('Invalid Unknown Compound'));
         } //throw error if the id does not belong to a compound
         //var_dump($metabolite);
         $this->set('metabolite', $metabolite);
         
+        if ($this->request->is(['post', 'put'])) {
+            $data = $this->request->data;
+            //var_dump($data);            
+            $metabolite['Metabolite']['document'] = $data['Document']['document'];
+            
+            $this->Metabolite->id=$metabolite['Metabolite']['id']; //sets the record to save by ID
+            $this->Metabolite->save($metabolite);    //saves the updated metabolite metadata (document), which now includes the filename
+            //$this->redirect(['controller' => 'General', 'action' => 'welcome']);
+        }
+        
+        if (!$this->request->data){
+           $this->request->data = $metabolite;
+        } //update filename to the view
+        
+    /**           
+        if ($this->request->is(['post', 'put'])) {
+            $data = $this->request->data;
+            $set_code = $data['Analysis']['set_code'];
+            $id = $data['Analysis']['id'];
+
+            $this->Analysis->id = $data['Analysis']['id'];
+            $this->Analysis->save($data);
+        }
+        
+        
+        $meta['Metabolite']['document'] = $filename;
+        //var_dump($meta);
+        $this->Metabolite->id=$metabolite['Metabolite']['id']; //sets the record to save by ID
+        $this->Metabolite->save($metabolite);    //saves the updated metabolite metadata (document), which now includes the filename
+        
+    */    
+    /**    
         $filename = '';
         $uploadFile = $this->request->params['form']['document_file'];
         var_dump($uploadFile);
@@ -242,7 +275,27 @@ class MetabolitesController extends AppController {
         $filename = 'Unknown_'.$id.'_'.$newName;
         $newPath = 'data/files/unknowns/' . $newName;
         var_dump($filename);
+    */   
+    }
+    
+    public function uploadDocument() {
+        $this->layout = 'ajax';  //nothing visiable on screen
+        $this->autoRender = false;
+        $uploadedDocument = $this->request->params['form']['document_file'];
+        //$id = $this->request->$metabolite['Metabolite']['id'];
+        $id = '30';
         
+        if ($uploadedDocument['error'] != 0) {
+            $this->response->statusCode(418);
+            $this->response->send();
+            return;
+        }
+
+        $newName = 'Unknown_' . $id . '_document' . '.' . pathinfo($uploadedDocument['name'])['extension'];
+        $newPath = 'data/files/unknowns/' . $newName;
+        $res = move_uploaded_file($uploadedDocument['tmp_name'], $newPath);
+
+        echo json_encode(['filename' => Router::getPaths()['base'] . '/' . $newPath]);
     }
     
     /**

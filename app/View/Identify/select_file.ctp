@@ -5,7 +5,7 @@
 <?php $message = "This is a message - Hello World"; ?>
 <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal">Display Message</button>
 <p> 1) Generate a .csv file where the fourth column contains accurate masses.</p>
-<p> 2) Select a mass tolerance (eg +/- 10 mDa) and the ion type;  select tyour input data file.</p>
+<p> 2) Select a mass tolerance (eg +/- 10 mDa) and the ion type;  select your input data file.</p>
 <p> 3) The compounds that are present in the Compounds database, and that match your accurate mass data will be displayed.  This table can be exported.</p>
 </header>
 <div id="myModal" class="modal fade" role="dialog">

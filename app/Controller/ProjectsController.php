@@ -46,8 +46,8 @@ class ProjectsController extends AppController{
         if (isset($this->request->data['Project'])){ //check if the save button has being clicked            
             $data = $this->request->data;      //gets the data
             $this->Project->create();            //Need to add
-            if ($this->Project->save($data)){                 //saves the Compound
-                return $this->redirect(['controller' => 'General', 'action' => 'blank', '?' => ['alert' => 'New Project Saved']]);
+            if ($this->Project->save($data)){                 //saves the Project
+                return $this->redirect(['controller' => 'General', 'action' => 'welcome']);
             }
         } 
     }

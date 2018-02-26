@@ -1,4 +1,5 @@
-<h1><?= $this->String->get_string($model, $model); ?> Upload Workspace</h1>
+<h1> Data Upload Workspace</h1>
+
 <?php if (!empty($message)):?>
     <div class="<?= $class; ?> alert alert-dismissible show" role="alert">
         <?= $message; ?>
@@ -7,7 +8,6 @@
         </button>
     </div>
 <?php endif; ?>
-<p><?= $this->String->get_string('importInfo', $model); ?></p>
 <p>The process is:</p>
 <p> 1) Generate a flat .csv file containing sample and treatment or attribute information.</p>
 <p> 2) Click on Choose File and select the .csv file. The first 5 rows of the .csv sample table will be displayed.  </p>

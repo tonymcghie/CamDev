@@ -1,4 +1,4 @@
-<?php $this->layout = 'MinLayout'; //minimilistic layout that has no formating ?>
+<?php //$this->layout = 'MinLayout'; //minimilistic layout that has no formating ?>
 <style type="text/css">
       .scrollable {
         height: 800px;
