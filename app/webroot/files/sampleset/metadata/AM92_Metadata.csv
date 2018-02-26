@@ -1,0 +1,123 @@
+Compound,RT(s),RI,CAS,formula
+Dimethyl sulfide,157,749,75-18-3,C2H6S
+"Acetic acid, methyl ester",186,827,79-20-9,C3H6O2
+Isobutyraldehyde,213,876,78-84-2,C4H8O
+"Acetic acid, ethyl ester",219,888,141-78-6,C4H8O2
+"Propanoic acid, methyl ester",233,908,554-12-1,C4H8O2
+"Propanoic acid, 2-methyl-, methyl ester",246,923,547-63-7,C5H10O2
+Ethanol,258,936,64-17-5,C2H6O
+"Furan, 2-ethyl-",272,952,3208-16-0,C6H8O
+"Propanoic acid, ethyl ester",276,957,105-37-3,C5H10O2
+"Propanoic acid, 2-methyl-, ethyl ester",284,966,97-62-1,C6H12O2
+"Acetic acid, propyl ester",292,975,109-60-4,C5H10O2
+Pentanal,296,980,110-62-3,C5H10O
+3-Pentanone,296,979,96-22-0,C5H10O
+"Butanoic acid, methyl ester",303,987,623-42-7,C5H10O2
+"Butanoic acid, 2-methyl-, methyl ester",328,1012,868-57-5,C6H12O2
+1-Penten-3-one,339,1022,1629-58-9,C5H8O
+alpha-Pinene,342,1024,80-56-8,C10H16
+"Butanoic acid, ethyl ester",358,1039,105-54-4,C6H12O2
+"Butanoic acid, 2-methyl-, ethyl ester",377,1056,7452-79-1,C7H14O2
+Camphene,391,1068,79-92-5,C10H16
+Hexanal,410,1086,66-25-1,C6H12O
+"Pentanoic acid, methyl ester",415,1090,624-24-8,C6H12O2
+beta-PINENE,437,1108,127-91-3,C10H16
+alpha-Phellandrene,454,1120,127-91-3,C10H16
+"Butanoic acid, propyl ester",461,1126,105-66-8,C7H14O2
+"2-Pentenal, (E)-",472,1133,1576-87-0,C5H8O
+"Pentanoic acid, ethyl ester",477,1137,539-82-2,C7H14O2
+"3-Hexenal, (E)-",481,1140,4440-65-7,C6H10O
+"3-Hexenal, (Z)-",488,1145,4440-65-7,C6H10O
+1-Butanol,496,1151,71-36-3,C4H10O
+"Butanoic acid, 2-methylpropyl ester",510,1161,539-90-2,C8H16O2
+beta-Myrcene,511,1162,123-35-3,C10H16
+1-Penten-3-ol,514,1164,616-25-1,C5H10O
+"2-Butenoic acid, ethyl ester",516,1165,6776-19-8,C6H10O2
+"2-Butenoic acid, 3-methyl-, methyl ester",522,1170,924-50-5,C6H10O2
+alpha-Terpinene,535,1179,99-85-4,C10H16
+Heptanal,545,1187,111-71-7,C7H14O
+"Hexanoic acid, methyl ester",547,1188,106-70-7,C7H14O2
+l-Limonene,561,1198,5989-54-8,C10H16
+"2-Hexenal,(Z)-",568,1204,505-57-7,C6H10O
+Eucalyptol,581,1214,470-82-6,C10H18O
+"2-Hexenal, (E)-",592,1224,6728-26-3,C6H10O
+"Furan, 2-pentyl-",604,1233,3777-69-3,C9H14O
+"Hexanoic acid, ethyl ester",609,1237,123-66-0,C8H16O2
+gamma-Terpinene,623,1248,99-85-4,C10H16
+1-Pentanol,632,1255,71-41-0,C5H12O
+3-Octanone,636,1259,106-68-3,C8H16O
+"3-Hexenoic acid, methyl ester, (E)-",639,1261,13894-61-6,C7H12O2
+"Butanoic acid, 3-methylbutyl ester",648,1269,106-27-4,C9H18O2
+p-Cymene,653,1273,527-84-4,C10H14
+"Acetic acid, hexyl ester",656,1275,142-92-7,C8H16O2
+Terpinolene,669,1285,586-62-9,C10H16
+Octanal,675,1290,124-13-0,C8H16O
+"3-Hexenoic acid, ethyl ester, (Z)-",689,1302,64187-83-3,C8H14O2
+1-Octen-3-one,689,1302,4312-99-6,C8H14O
+"2-Penten-1-ol, (Z)-",710,1322,1576-95-0,C5H10O
+"2,3-Octanedione",711,1323,585-25-1,C8H14O2
+"2-Heptenal, (Z)-",715,1327,57266-86-1,C7H12O
+6-Methyl-5-hepten-2-one,728,1340,110-93-0,C8H14O
+Anisole,734,1345,100-66-3,C7H8O
+1-Hexanol,745,1355,111-27-3,C6H14O
+"3-Hexen-1-ol, (E)-",756,1367,928-97-2,C6H12O
+"3-Hexen-1-ol, (Z)-",776,1386,928-96-1,C6H12O
+"Octanoic acid, methyl ester",780,1390,111-11-5,C9H18O2
+Nonanal,785,1394,124-19-6,C9H18O
+"2,4-Hexadienal, (E,E)-",789,1398,142-83-6,C6H8O
+"2,4-Hexadienal, (E,E)-?",794,1404,4488-48-6,C6H8O
+"2-Hexen-1-ol, (E)-",796,1406,928-95-0,C6H12O
+"Butanoic acid, hexyl ester",805,1416,2639-63-6,C10H20O2
+(E)-oct-2-enal,820,1433,2548-87-0,C8H14O
+"Octanoic acid, ethyl ester",822,1436,106-32-1,C10H20O2
+1-Octen-3-ol,835,1450,3391-86-4,C8H16O
+1-Heptanol,840,1456,111-70-6,C7H16O
+Acetic acid,842,1458,64-19-7,C2H4O2
+"2,4-Heptadienal, (E,E)-",850,1467,4313-03-5,C7H10O
+"1,5-Octadien-3-ol, (Z)-",865,1484,50306-18-8,C8H14O
+"1-Hexanol, 2-ethyl-",870,1489,104-76-7,C8H18O
+"2,4-Heptadienal, (E,E)-?",876,1496,4313-03-5,C7H10O
+Decanal,879,1499,112-31-2,C10H20O
+Benzaldehyde,902,1529,100-52-7,C7H6O
+Bornylene,907,1535,464-17-5,C10H16
+"2-Nonenal, (E)-",911,1540,18829-56-6,C9H16O
+"1,6-Octadien-3-ol, 3,7-dimethyl-, (.+-.)-",915,1545,22564-99-4,C10H18O
+1-Octanol,925,1558,111-87-5,C8H18O
+Methyl 2-furoate,942,1579,611-13-2,C6H6O3
+"2,6-Nonadienal, (E,Z)-",951,1591,557-48-2,C9H14O
+"2(5H)-Furanone, 5-ethyl-",954,1594,2407-43-4,C6H8O2
+"Decanoic acid, methyl ester",955,1596,110-42-9,C11H22O2
+mesifurane,957,1599,4077-47-8,C7H10O3
+Terpene-4-ol,965,1609,562-74-3,C10H18O
+"2-Octen-1-ol, (E)-",969,1615,18409-17-1,C8H16O
+"2-Furancarboxylic acid, ethyl ester",976,1624,614-99-3,C7H8O3
+"Benzoic acid, methyl ester",980,1630,93-58-3,C8H8O2
+Butyrolactone,986,1639,96-48-0,C4H6O2
+"Decanoic acid, ethyl ester",987,1640,110-38-3,C12H24O2
+Benzeneacetaldehyde,993,1649,122-78-1,C8H8O
+"2-Decenal, (Z)-",994,1650,2497-25-8,C10H18O
+1-nonanol,1001,1660,143-08-8,C9H20O
+"Benzoic acid, ethyl ester",1012,1675,93-89-0,C9H10O2
+Terpineol,1033,1704,98-55-5,C10H18O
+"2,4-Nonadienal, (E,E)-",1036,1708,5910-87-2,C9H14O
+2-Nonen-1-ol,1039,1714,22104-79-6,C9H18O
+"2(3H)-Furanone, 5-ethyldihydro-",1040,1715,695-06-7,C6H10O2
+E-Citral,1070,1761,141-27-5,C10H16O
+2-Undecenal,1071,1761,2463-77-6,C11H20O
+"2(5H)-Furanone, 5-ethyl- :2",1078,1772,2407-43-4,C6H8O2
+"Benzoic acid, 2-hydroxy-, methyl ester",1091,1792,119-36-8,C8H8O3
+"2,4-Decadienal",1109,1821,2363-88-4,C10H16O
+DAMASCENONE A,1120,1837,23726-93-4,C13H18O
+"Dodecanoic acid, ethyl ester",1126,1848,106-33-2,C14H28O2
+trans-Geraniol,1128,1851,106-24-1,C10H18O
+Hexanoic acid,1133,1858,142-62-1,C6H12O2
+"5,9-Undecadien-2-one, 6,10-dimethyl-, (E)-",1136,1863,3796-70-1,C13H22O
+"Methane, sulfonylbis-",1166,1913,67-71-0,C2H6O2S
+Benzeneethanol,1173,1924,60-12-8,C8H10O
+"2(3H)-Furanone, 5-butyldihydro- :2",1181,1937,104-50-7,C8H14O2
+"trans-4,5-Epoxy-(E)-2-decenal",1228,2019,0-00-0,C10H16O2
+Furaneol,1244,2048,3658-77-3,C6H8O3
+"Pentadecanoic acid, ethyl ester",1249,2057,41114-00-5,C17H34O2
+Octanoic acid,1261,2079,124-07-2,C8H16O2
+"Heptadecanoic acid, methyl ester",1328,2226,112-39-0,C17H34O2
+"Hexadecanoic acid, ethyl ester",1343,2263,628-97-7,C18H36O2

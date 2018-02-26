@@ -192,6 +192,7 @@ class StringHelper extends AppHelper{
             'exact_mass_10mDa' => 'Exact Mass +- 10 mDa',
             'exact_mass_50mDa' => 'Exact Mass +- 50 mDa',
             'file' => 'File',
+            'model' => 'Compound PFR Data',
             'searchTitle' => 'Find PFR Compound Data',
             'overviewTitle' => 'Overview PFR Compound Data'],
         'CompoundpfrData' => [ //hack to get the CompoundpfrData View working

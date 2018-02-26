@@ -51,7 +51,7 @@ class IdentifyController extends AppController{
                 return false;
                 }
             $filename = basename($uploadData['name']); // gets the base name of the uploaded file
-            $uploadFolder = WWW_ROOT. 'data/files/Identify';  // path where the uploaded file has to be saved
+            $uploadFolder = WWW_ROOT. 'data/files/identify';  // path where the uploaded file has to be saved
             $uploadPath =  $uploadFolder . DS . $filename;
             if( !file_exists($uploadFolder) ){
                 mkdir($uploadFolder); // creates folder if  not found
