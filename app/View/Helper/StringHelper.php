@@ -56,7 +56,8 @@ class StringHelper extends AppHelper{
             'comments_ph' => 'Insert any additional information. For example, copy/past a table of sample identities (labels) from a spreadsheet',
             'status' => 'Status',
             'metafile' => 'Upload Metadata File',
-            'confirm_new_sampleset' => 'The new Sample Set has been successfully saved!'],
+            'confirm_new_sampleset' => 'The new Sample Set has been successfully saved!',
+            'error_new_sampleset' => 'Unfortunately there is a problem - Sample Set has not been saved!'],
         'Compound_form' => [
             'title' => 'PFR Chemistry: Add New Compound',
             'edit_title' => 'PFR Chemistry: Edit Compound Information',

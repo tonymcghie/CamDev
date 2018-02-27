@@ -65,7 +65,7 @@ class GeneralController extends AppController {
         $this->set('group', 'help');
     } 
  
-	public function howto(){
+    public function howto(){
         $this->set('group', 'help');
     }    
     /**
@@ -92,16 +92,16 @@ class GeneralController extends AppController {
      * Allows the user to download template .xlxs files for specific tasks
      * Template must be loaded into /output/chemistry/cam... or a local drive if testing
      */
-    public function templates(){  
-        
+    public function templates(){ 
+        $this->set('group', 'tools');        
     } 
     
     /**
      * Allows the user to use links that open pages with utilities for
      * processing gcms data, especially from the Akl Leco gcms
      */
-    public function gcms(){  
-        
+    public function gcms(){
+        $this->set('group', 'tools');        
     } 
     
     /**

@@ -34,7 +34,7 @@ class SearchComponent extends Component{
             
             if (empty($value_value))continue;
             
-            echo $criteria_value;
+            //echo $criteria_value;
             
             if ($criteria_value=='[M-H]-'){
                 
@@ -62,8 +62,8 @@ class SearchComponent extends Component{
                         break;
                 }
             }
-            echo $criteria_value;
-            echo $value_value;
+            //echo $criteria_value;
+            //echo $value_value;
             
             switch ($match_value) {
                 case 'contains':
