@@ -59,7 +59,7 @@ class CompoundpfrDataController extends AppController {
     }
     
     /**
-     * this has graphs the data sinces everything is hadled through ajax and javascript it is empty
+     * this has graphs the data as everything is handled through ajax and javascript it is empty
      * @param type $data
      */
     public function graphData($data = null){        
