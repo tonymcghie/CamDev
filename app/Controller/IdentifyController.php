@@ -71,52 +71,6 @@ class IdentifyController extends AppController{
         }  
     }
         
-    public function IdByMass() {
-        $this->layout = 'ajax';
-    }
-
-
-    /**
-    public function ReadFile(){
-        if($this->request->is('post')){ 
-            $data = $this->request->data['Identify'];
-            $cols = array();
-            for($i = 0;isset($data[$i]);$i++){
-                if ($data[$i] != 'none'){
-                    array_push($cols, ['colNum' => $i, 'colName' => $data[$i]]);
-                    unset($data[$i]);
-                }
-            } //creates array of column names and columns numbers that is used to match csv columns to table columns
-            $file = fopen($this->request->data['Identify']['fileUrl'],"r"); //gets the file
-            fgetcsv($file); //skips the titles             
-            $toSave = [];
-            while (1==1){
-                $line = fgetcsv($file);
-                if ($line=== false){
-                    break;
-                } //when there are no more lines exit the loop               
-                $newRow = [];
-                foreach($cols as $pair){
-                    $newRow[$pair['colName']] = $line[$pair['colNum']];
-                } //adds the values from the CSV file into an array to save to the table
-                $newRow['file'] = $data['fileName']; //adds the file name that it came from so all data from the file can be tracked together
-                array_push($toSave, $newRow); //adds the array contining the values to save to an array containing all vlaues to save                
-            } //loops through the CSV file an adds the appropriate values to an array
-            if ($this->Compoundpfr_data->saveMany($toSave)){
-                $this->set('message', 'Import Successful');
-            } else {
-                $this->set('message', 'Something went wrong');
-            } // saves all the values and sets a success or failure message
-        }
-    } 
-    */   
-    /**
-     * This function displays a message describing the process for identifying unknown compounds by accurate mass
-     */
-    public function idMass(){
-        $this->layout = 'ajax';
-    }
-    
     public function SearchMasses(){
         if ($this->request->is('post')){
             //$file = fopen($this->request->data['Identify']['csv_file']['tmp_name'],"r"); //sets up the file for reading

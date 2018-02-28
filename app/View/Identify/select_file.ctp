@@ -1,6 +1,5 @@
 <header>
 <h1>Identify Compounds by Accurate Mass Matching</h1>
-<?php //echo $this->Html->image('underconstruction.png', array('alt' => 'CAM Logo', 'width' => '140')); ?>
 <p id="one">  The process is:</p>
 <?php $message = "This is a message - Hello World"; ?>
 <!--<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal">Display Message</button>-->
