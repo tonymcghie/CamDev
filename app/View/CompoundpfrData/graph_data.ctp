@@ -50,7 +50,7 @@ echo $this->Html->tableCells([$this->Form->input('x_axis:', ['label' => 'X-axis'
         $this->Form->input('chartType', ['label' => 'Type:', 'id' => 'chartType', 'options' => ['pie' => '2D Pie', 'pie3d' => '3D Pie', 'bar' => 'Bar', 'line' => 'Line', 'scatter' => 'Scatter', 'table' => 'Table']]),    
     $this->Form->input('Pivot_by(average):', ['id' => 'Pivot_By', 'options' => $pivotOptions])]);
 echo $this->Html->tableCells([
-    '<span id="addSet" class="large-button anySizeButton" style="padding: 5px;height: 30px;margin-top:10px">Add Set</span>']);
+    '<span id="addSet" class="btn btn-info btn-sm">Add Data Set</span>']);
 echo '</table>';
 ?>
 </header>
@@ -58,9 +58,9 @@ echo '</table>';
 
   
 </div>
-<div id="graph-view"><span id="view" class="large-button anySizeButton"  style="padding-top: 10px;height: 30px;margin-top: 10px">View Graph</span></div>
+<div id="graph-view"><span id="view" class="btn btn-success btn-sm">Show Graph>></span></div>
 <div id="overlay" class="noFormat overlay">
-    <img class="closeButton" id="closeButton" src="../img/close.png">
+    <!--<img class="closeButton" id="closeButton" src="../img/close.png">-->
     <div id="chart_div"></div>
 </div>  
 
@@ -115,7 +115,7 @@ echo '</table>';
     function newSet(count){
         boxnum.push(0);
         var newSetStr = '<h2 id="title'+count+'">Set '+count+'</h2>';
-        newSetStr += '<span id="boxesButton'+count+'" class="large-button anySizeButton" style="paddingchlorogenic acidview: 10px;height: 40px;margin-bottom: 10px">Add Search Criteria</span>';
+        newSetStr += '<span id="boxesButton'+count+'" class="btn btn-info btn-sm">Add Search Criteria</span>';
         newSetStr += '<div id="boxes'+count+'"></div>';
         return newSetStr;
     }

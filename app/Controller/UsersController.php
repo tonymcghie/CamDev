@@ -73,6 +73,7 @@ class UsersController extends AppController {
         } //if login successful then set session cookie and redirect if not then display error
     } //if user is laready logged in then redirect if not try to log the user in
 	*/
+        $this->redirect(['controller' => 'general', 'action' => 'welcome']);
     }
     
     /**
