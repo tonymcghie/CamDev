@@ -155,4 +155,23 @@ class IdentifyController extends AppController{
 
         }
     }
+    
+    /**
+     * Exports the search results to a CSV file
+     * @param type $data
+     */
+    public function export($filename, $mass_tolerance, $ion_type){
+        //if ($identify_parms==null){
+            //return;
+        //}
+        $filename= urldecode($filename);
+        $filename=WWW_ROOT. 'data/files/identify'. DS . $filename; //set the correct path to the datafile
+        $head=$this->My->IdentifyHeadings($filename); //get the headings from the datafile
+        $massdata=$this->My->IdentifyMass($filename, $mass_tolerance, $ion_type); //get the masses from the data file; search compounds and return a compound name
+        $this->set('head', $head); //send to view
+        $this->set('masses', $massdata); //send to view
+        $this->response->download("export.csv");
+        $this->layout = 'ajax';
+    }
+    
 }
