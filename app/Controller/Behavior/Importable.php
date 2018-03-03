@@ -63,6 +63,7 @@ trait Importable {
         }
 
         $modelname = get_class($this->getModel());
+        $newFilePath = 'data/files/compoundpfrData/' . $modelname . '_' . time() . '.csv';
         $newFilePath = 'data/tmp/' . $modelname . '_' . time() . '.csv';
         $success = move_uploaded_file($uploadedImageData['tmp_name'], $newFilePath);
 
