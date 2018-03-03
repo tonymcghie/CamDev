@@ -278,12 +278,12 @@ class MetabolitesController extends AppController {
     */   
     }
     
-    public function uploadDocument() {
+    public function uploadDocument($id) {
         $this->layout = 'ajax';  //nothing visiable on screen
         $this->autoRender = false;
         $uploadedDocument = $this->request->params['form']['document_file'];
         //$id = $this->request->$metabolite['Metabolite']['id'];
-        $id = '30';
+        //$id = '30';
         
         if ($uploadedDocument['error'] != 0) {
             $this->response->statusCode(418);

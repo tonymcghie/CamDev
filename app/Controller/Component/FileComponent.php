@@ -18,8 +18,8 @@ class FileComponent extends Component {
      * @param Controller $controller
      */
     public function initialize(Controller $controller){
-        $this->file_areas['SampleSet_Metadata'] = WWW_ROOT.'files'.DS.'sampleset'.DS.'metadata'.DS;
-        $this->file_areas['Metabolites_Document'] = WWW_ROOT.'files'.DS.'unknowns'.DS;
+        $this->file_areas['SampleSet_Metadata'] = WWW_ROOT.'data'.DS.'files'.DS.'samplesets'.DS;
+        $this->file_areas['Metabolites_Document'] = WWW_ROOT.'data'.DS.'files'.DS.'unknowns'.DS;
         // Define more file areas here.
 
         // Creates the file areas if the do not exist.
