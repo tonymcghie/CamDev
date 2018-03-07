@@ -235,12 +235,15 @@ class MetabolitesController extends AppController {
         
         if ($this->request->is(['post', 'put'])) {
             $data = $this->request->data;
-            //var_dump($data);            
-            $metabolite['Metabolite']['document'] = $data['Document']['document'];
+            //var_dump($data);
+            //var_dump($id);
+            if ($this->request->data){
+                $metabolite['Metabolite']['document'] = $data['Document']['document'];
+                $this->Metabolite->id=$metabolite['Metabolite']['id']; //sets the record to save by ID
+                $this->Metabolite->save($metabolite);    //saves the updated metabolite metadata (document), which now includes the filename
+                $this->redirect(['controller' => 'Metabolites', 'action' => 'search']);
+            }  //if a file has been selected and the Save button clicked update $metabolite['Metabolite']['document'] and save the record
             
-            $this->Metabolite->id=$metabolite['Metabolite']['id']; //sets the record to save by ID
-            $this->Metabolite->save($metabolite);    //saves the updated metabolite metadata (document), which now includes the filename
-            //$this->redirect(['controller' => 'General', 'action' => 'welcome']);
         }
         
         if (!$this->request->data){
