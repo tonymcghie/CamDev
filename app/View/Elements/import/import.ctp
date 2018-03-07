@@ -1,5 +1,5 @@
-<h1> Data Upload Workspace</h1>
-
+<h1><?= $this->String->get_string('importTitle', $model);?></h1>
+<?php echo $model; ?>
 <?php if (!empty($message)):?>
     <div class="<?= $class; ?> alert alert-dismissible show" role="alert">
         <?= $message; ?>
@@ -9,7 +9,7 @@
     </div>
 <?php endif; ?>
 <p>The process is:</p>
-<p> 1) Generate a flat .csv file containing sample and treatment or attribute information.</p>
+<p><?= $this->String->get_string('importMessage1', $model);?></p>
 <p> 2) Click on Choose File and select the .csv file. The first 5 rows of the .csv sample table will be displayed.  </p>
 <p> 3) Select the database fields (top row) to match the table column headings (second row) of the incoming .csv file.</p>
 <p> 4) Click on Import button to upload the sample data into the database.</p>

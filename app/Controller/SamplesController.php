@@ -1,23 +1,34 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+App::uses('AppController', 'Controller');
+App::uses('Importable', 'Controller/Behavior');
 
 class SamplesController extends AppController{
+    
+    use Importable;
+    
     public $helpers = array('Html' , 'Form' , 'My', 'Js');
     public $uses = array('Analysis', 'SampleSet', 'Sample');
     public $layout = 'PageLayout';
-    //public $components = ['My', 'RequestHandler', 'PhpExcel'];
-	public $components = array('Paginator', 'My', 'Pivot', 'RequestHandler', 'PhpExcel');
+    public $components = array('Paginator', 'My', 'Pivot', 'RequestHandler', 'PhpExcel');
     
     /**
      * @LIVE swap file URL
      */
     //private $file_URL = '/app/app/webroot/data/'; //live
     private $file_URL = 'data/';        //testing
+    
+    
+    public function __construct($request = null, $response = null) {
+        parent::__construct($request, $response);
+        $this->components = array_merge($this->components, $this->getImportableComponents());
+        $this->components = array_unique($this->components);
+    }
+
+    protected function getModel() {
+        return $this->Sample;
+    }
+    
     
     /**
      * this happens before everything else
@@ -38,7 +49,7 @@ class SamplesController extends AppController{
         return $this->My->isAuthorizedAnalysis($user, $this); //returns false if the user is not a chemist
     }
 
-	public function viewSamples($id = null) {
+    public function viewSamples($id = null) {
 		
 		$this->paginate = array(
         'limit' => 20,
