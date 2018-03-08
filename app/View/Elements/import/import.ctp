@@ -1,5 +1,4 @@
 <h1><?= $this->String->get_string('importTitle', $model);?></h1>
-<?php echo $model; ?>
 <?php if (!empty($message)):?>
     <div class="<?= $class; ?> alert alert-dismissible show" role="alert">
         <?= $message; ?>

@@ -63,8 +63,12 @@ trait Importable {
         }
 
         $modelname = get_class($this->getModel());
-        $newFilePath = 'data/files/compoundpfrData/' . $modelname . '_' . time() . '.csv';
-        $newFilePath = 'data/tmp/' . $modelname . '_' . time() . '.csv';
+        if ($modelname = 'Compoundpfr_data') {
+            $newFilePath = 'data/files/compoundpfrData/' . $uploadedImageData['name'] . '_' . time() . '.csv';
+        }
+        if ($modelname = 'Molecular_feature') {
+            $newFilePath = 'data/files/molecularfeatures/' . $uploadedImageData['name'] . '_' . time() . '.csv';
+        }
         $success = move_uploaded_file($uploadedImageData['tmp_name'], $newFilePath);
 
         if (!$success) {
