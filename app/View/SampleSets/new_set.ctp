@@ -64,7 +64,7 @@ echo $this->BootstrapForm->input_horizontal('comments', ['label' => $this->Strin
     'placeholder' => $this->String->get_string('comments_ph', 'SampleSet_form'),
     'rows' => '3']);
 
-echo $this->BootstrapForm->input_horizontal('metadataFile', ['label' => $this->String->get_string('metafile', 'SampleSet_form'),
+echo $this->BootstrapForm->input_horizontal('metadataFile', ['label' => $this->String->get_string('metaFile', 'SampleSet_form'),
     'type' => 'file']);
 
 echo $this->BootstrapForm->addActionButtons();

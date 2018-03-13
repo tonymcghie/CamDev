@@ -53,7 +53,17 @@ class SampleSetDataObject extends DataObject implements ViewableModel {
                 ]
             ];
         }
-
+        
+        $DataFileLink =[];
+        $DataFileLink['metaData'] = [
+            'links' => [
+                    'text' => 'metaData File',
+                    'url' =>$this->metaFile
+            ]
+        ];
+        //var_dump($analysisItems['Analysis_One']);
+        //var_dump($metaDataFileLink);
+        
         $data = [
             'submitter' => [
                 'text' => $this->submitter],
@@ -89,12 +99,12 @@ class SampleSetDataObject extends DataObject implements ViewableModel {
                 'text' => $this->containment],
             'containment_details' => [
                 'text' => $this->containment_details],
-            'metaFile' => [
-                'text' => $this->metaFile],
+            //'metaFile' => [
+            //    'text' => $this->metaFile],
             'status' => [
                 'text' => $this->status]
         ];
-        return array_merge($data, $analysisItems);
+        return array_merge($data, $analysisItems, $DataFileLink);
     }
 
     // BACKEND

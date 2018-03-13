@@ -55,7 +55,9 @@ class StringHelper extends AppHelper{
             'comments' => 'Additional Comments',
             'comments_ph' => 'Insert any additional information. For example, copy/past a table of sample identities (labels) from a spreadsheet',
             'status' => 'Status',
-            'metafile' => 'Upload Metadata File',
+            'metaFile' => 'Upload Metadata File',
+            'metaFile_new' => 'Upload & Replace Metadata File',
+            'metaFile_current' => 'Current Metadata File',
             'confirm_new_sampleset' => 'The new Sample Set has been successfully saved!',
             'error_new_sampleset' => 'Unfortunately there is a problem - Sample Set has not been saved!'],
         'Compound_form' => [
@@ -146,6 +148,7 @@ class StringHelper extends AppHelper{
             'p_code' => 'Project Code',
             'set_reason' => 'Reason for Analysis',
             'status' => 'Status',
+            'metaFile' => 'metaData File',
             'actions' => 'Actions',
             'searchTitle' => 'Find Sample Set'],
         'SampleSets' => [  //hack to get the SampleSet View working

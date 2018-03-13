@@ -65,9 +65,9 @@ class FileComponent extends Component {
         if (strpos($new_name, '..') !== false){
             throw new Exception('Please do not use .. in a file name');
         }
-        if (!$overwrite && file_exists($this->get_file_area($file_area).$new_name)){
-            throw new Exception('The file that as tried to be uploaded already exists. File: '.$this->get_file_area($file_area).$new_name);
-        }
+        //if (!$overwrite && file_exists($this->get_file_area($file_area).$new_name)){
+        //    throw new Exception('The file that you tried to load, already exists! File: '.$this->get_file_area($file_area).$new_name);
+        //}
         if (move_uploaded_file($file['tmp_name'],  $this->get_file_area($file_area).$new_name)){
             chmod($this->get_file_area($file_area).$new_name, 0777);
             return $new_name;
@@ -82,7 +82,7 @@ class FileComponent extends Component {
      * @return mixed
      * @throws Exception
      */
-    private function get_file_area($area_name){
+    public function get_file_area($area_name){
         if (empty($this->file_areas[$area_name])){
             throw new Exception('The file area with the name \''.$area_name.'\' does not exist');
         } else {
