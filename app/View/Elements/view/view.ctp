@@ -12,6 +12,8 @@
     $displayData = array_filter($displayData, function($item) {
         return !empty($item);
     });
+    //var_dump($displayData['Analysis_One']);
+    //var_dump($displayData['metaData']);
     // Get the headings from the string helper.
     $displayData = array_map(function($key, $item) {
         if ($this->String->string_exists($key, $this->name)) {
@@ -22,8 +24,10 @@
         if (isset($item['text']) && is_array($item['text'])) {
             $item['text'] = $this->String->get_string($item['text']['id'], $item['text']['set']);
         }
-        if (isset($item['links'])) {
+        
+        if (isset($item['links']) && isset($item['links']['0'])) { //execute if these are Analysis links
             foreach ($item['links'] as &$link) {
+                //var_dump($link['text']);
                 if (is_array($link['text'])) {
                     $link['text'] = $this->String->get_string($link['text']['id'], $link['text']['set']);
                 }
@@ -37,6 +41,9 @@
         }
         return array_merge($item, ['heading' => $heading]);
     }, array_keys($displayData), $displayData);
+    //var_dump($displayData['17']);
+    //var_dump($displayData['18']);
+    //var_dump($displayData['19']);
 
     $shortItemFilter = function($item) {
         return !isset($item['text']) || strlen(strval($item['text'])) < 100;

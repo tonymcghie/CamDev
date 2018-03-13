@@ -4,7 +4,7 @@
  * Fields in the database that should be passed through but not edited or displayed.
  * @var array $hiddenFields
  */
-$hiddenFields = ['id', 'set_code', 'submitter_email', 'date'];
+$hiddenFields = ['id', 'set_code', 'submitter_email', 'date', 'team', 'p_code'];
 
 foreach ($hiddenFields as $hiddenField) {
     echo $this->BootstrapForm->input_horizontal($hiddenField,
@@ -133,13 +133,26 @@ echo $this->BootstrapForm->input_horizontal('status',
         'default' => isset($item['SampleSet']['status']) ? $item['SampleSet']['status'] : ''
     ]
 );
-echo $this->BootstrapForm->input_horizontal('metadataFile',
+echo $this->BootstrapForm->input_horizontal('metaFile',
     [
-        'label' => $this->String->get_string('metafile', 'SampleSet_form'),
-        'type' => 'file',
-        'default' => isset($item['SampleSet']['metafile']) ? $item['SampleSet']['metafile'] : 0
+        'label' => $this->String->get_string('metaFile_current', 'SampleSet_form'),
+        'readonly',
+        'default' => isset($item['SampleSet']['metaFile']) ? $item['SampleSet']['metaFile'] : ''
     ]
 );
+
+//echo $this->BootstrapForm->input_horizontal('metadataFile', ['label' => $this->String->get_string('metaFile', 'SampleSet_form'),
+//    'type' => 'file']);
+// pasted form the new_set view for reference becasue the code below does not provide an array for file upload
+
+echo $this->BootstrapForm->input_horizontal('metadataFile',
+    [
+        'label' => $this->String->get_string('metaFile_new', 'SampleSet_form'),
+        'type' => 'file'
+    ]
+);
+//echo $item['SampleSet']['metaFile'];
+//var_dump($item);
 
 $this->BootstrapForm->add_validator('requires', 'submitter');
 $this->BootstrapForm->add_validator('requires', 'chemist');
