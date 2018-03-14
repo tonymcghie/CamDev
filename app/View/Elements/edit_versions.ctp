@@ -16,7 +16,7 @@
     <?php endforeach; ?>
 </ul>
 
-<?= $this->BootstrapForm->create($model, ['action' => 'edit']); ?>
+<?= $this->BootstrapForm->create($model, ['type' => 'file', 'action' => 'edit']); ?>
 
 <?= $this->element($model.'/edit_form', ['item' => $item]); ?>
 

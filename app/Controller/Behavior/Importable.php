@@ -46,7 +46,7 @@ trait Importable {
         $this->render('/Elements/import/import');
     }
 
-    public function uploadcsv() {
+    public function uploadcsv($model) {
         $this->layout = 'ajax';
         $this->autoRender = false;
 
@@ -58,17 +58,24 @@ trait Importable {
         }
 
         $extension = pathinfo($uploadedImageData['name'])['extension'];
+        $filename = pathinfo($uploadedImageData['name'])['filename'];
+        
         if ($extension != 'csv') {
             throw new Exception("The File Uploaded was not a csv file");
         }
-
-        $modelname = get_class($this->getModel());
-        if ($modelname = 'Compoundpfr_data') {
-            $newFilePath = 'data/files/compoundpfrData/' . $uploadedImageData['name'] . '_' . time() . '.csv';
+        //set the path depending on which model is being used
+        switch ($model) {
+            case "Sample":
+                $newFilePath = 'data/files/samples/' . $filename . '_' . time() . '.csv';
+                break;
+            case "Compoundpfr_data":
+                $newFilePath = 'data/files/compoundpfrData/' . $filename . '_' . time() . '.csv';
+                break;
+            case "Molecular_feature":
+                $newFilePath = 'data/files/molecularfeatures/' . $filename . '_' . time() . '.csv';
+                break;
         }
-        if ($modelname = 'Molecular_feature') {
-            $newFilePath = 'data/files/molecularfeatures/' . $uploadedImageData['name'] . '_' . time() . '.csv';
-        }
+        
         $success = move_uploaded_file($uploadedImageData['tmp_name'], $newFilePath);
 
         if (!$success) {

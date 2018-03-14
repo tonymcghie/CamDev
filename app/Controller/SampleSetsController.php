@@ -114,16 +114,18 @@ class SampleSetsController extends AppController {
         //sets the email of the user who submitted the sample set
         $data['SampleSet']['submitter_email'] = $this->Auth->Session->read($this->Auth->sessionKey)['Auth']['User']['email'];
 
-        //set up the metaFile name, and uploads to th data/files/samplesets/ folder
+        //set up the metaFile name, and uploads to the data/files/samplesets/ folder
         //var_dump($data);
         if(isset($data['SampleSet']['metadataFile']['error']) && $data['SampleSet']['metadataFile']['error']=='0'){
-            $newName = $data['SampleSet']['set_code']. '_Metadata' . '.' . pathinfo($data['SampleSet']['metadataFile']['name'])['extension'];
+            $newName = $data['SampleSet']['set_code']. '_Metadata_' . time() . '.' . pathinfo($data['SampleSet']['metadataFile']['name'])['extension'];
             $newPath = 'data/files/samplesets/' . $newName;
             $res = move_uploaded_file($data['SampleSet']['metadataFile']['tmp_name'], $newPath);
 
-            echo json_encode(['filename' => Router::getPaths()['base'] . '/' . $newPath]);
+            //echo json_encode(['filename' => Router::getPaths()['base'] . '/' . $newPath]);
             
-            $data['SampleSet']['metaFile'] = $newPath;
+            $data['SampleSet']['metaFile'] = Router::getPaths()['base'] . '/' . $newPath;
+            
+            
            // $new_name =
            //     $this->File->uploadFile($data['SampleSet']['metadataFile'],
            //         'SampleSet_Metadata',
@@ -181,17 +183,14 @@ class SampleSetsController extends AppController {
     protected function doSave($item) {
         //var_dump($item);
         if(isset($item['SampleSet']['metadataFile']['error']) && $item['SampleSet']['metadataFile']['error']=='0'){
-            $newName = $item['SampleSet']['set_code']. '_Metadata' . '.' . pathinfo($item['SampleSet']['metadataFile']['name'])['extension'];
+            $newName = $item['SampleSet']['set_code']. '_Metadata_' . time() . '.' . pathinfo($item['SampleSet']['metadataFile']['name'])['extension'];
             $newPath = 'data/files/samplesets/' . $newName;
             $res = move_uploaded_file($item['SampleSet']['metadataFile']['tmp_name'], $newPath);
 
-            echo json_encode(['filename' => Router::getPaths()['base'] . '/' . $newPath]);
+            //echo json_encode(['filename' => Router::getPaths()['base'] . '/' . $newPath]);
             
-            $item['SampleSet']['metaFile'] = $newPath;
-            //$item['SampleSet']['metaFile'] = $this->uploadFile(
-            //    $item['SampleSet']['metadataFile'],
-            //    $item['SampleSet']['set_code'].'_Metadata.'.substr(strtolower(strrchr($item['SampleSet']['metadataFile']['name'], '.')), 1)
-            //);
+            $item['SampleSet']['metaFile'] = Router::getPaths()['base'] . '/' . $newPath;
+            
             unset($item['SampleSet']['metadataFile']);
         }
 

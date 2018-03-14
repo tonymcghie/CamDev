@@ -10,6 +10,7 @@
         </button>
     </div>
 <?php endif; ?>
+<?php echo $model; ?>
 <p>The process is:</p>
 <p><?= $this->String->get_string('importMessage1', $model);?></p>
 <p> 2) Click on Choose File and select the .csv file. The first 5 rows of the .csv sample table will be displayed.  </p>
@@ -26,7 +27,8 @@
         [
             'label' => $this->String->get_string('importFile', 'Import'),
             'callback' => 'handleFileUpload',
-            'url' => $this->Html->url(['action' => 'uploadcsv'], true)
+            'url' => $this->Html->url(['action' => 'uploadcsv'.'/'.$model], true)
+            //pass the model name in the url
         ]
     );
 
