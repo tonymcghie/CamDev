@@ -21,6 +21,20 @@
  */
  
 /**
+ * When CAM is used in a container on PowerPlant, issues arose with the baseURL sometimes
+ * being set to 127.0.0.1; resulting in an error.
+ * The fix is to set the 'fullBaseUrl' to the base url require in routes using the following
+ * statement.
+ * Note this will be disable for local testing, and will need to be adjusted depending on whether
+ * the container is being used in cam-dev or cam production.
+ */
+	//Configure::write('App.fullBaseUrl', 'http://cam.powerplant.pfr.co.nz');
+	//Configure::write('App.fullBaseUrl', 'http://cam.powerplant.dev.pfr.co.nz');
+	//Configure::write('App.fullBaseUrl', 'http://cam3.powerplant.pfr.co.nz');
+	//Configure::write('App.fullBaseUrl', 'http://cam3.powerplant.dev.pfr.co.nz');
+/**
+
+/**
  * Here, we are connecting '/' (base path) to controller called 'Pages',
  * its action called 'display', and we pass a param to select the view file
  * to use (in this case, /app/View/Pages/home.ctp)...
