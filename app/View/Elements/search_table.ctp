@@ -7,8 +7,14 @@
     /** @var array $initialColumns */
     assert(isset($model), '\'$model\' is required when \'$results\' is not empty');
     /** @var string $model */
-    ?>
+    
+    
+    $sort_options = array(
+        'compound_name',
+        'cas',
+        'exact_mass');
 
+    ?>
 
     <div id="search-results">
         <h2>Results found (n=<?php echo $num; ?>)</h2>
@@ -33,8 +39,14 @@
                 <?php
                 $headings = [];
                 foreach ($initialColumns as $column){
-                    $headings[] = $this->String->get_string($column, $model);
+                    if (in_array($column, $sort_options)) {
+                        $headings[] = $this->Paginator->sort($column, $this->String->get_string($column, $model)).'+';
+                    } else {
+                        $headings[] = $this->String->get_string($column, $model);
+                    }
                 }
+                //$headings = ['Actions', $this->Paginator->sort('compound_name', 'Name'), 'Synonyms', $this->Paginator->sort('cas', 'CAS'), 'Class', 'Formula', $this->Paginator->sort('exact_mass', 'Exact Mass'), '[M-H]-', '[M+HCOOH]-', '[M+H]+', '[M+Na]+', 'Comment'];
+                var_dump($headings);
                 echo $this->Html->tableHeaders($headings, null, ['scope' => 'col']);
                 foreach ($results as $row){
                     $row->actions = $this->element($model.DS.'actions', ['data' => $row->getActionData()]);
