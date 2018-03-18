@@ -26,6 +26,7 @@ if (isset($results)) {
     echo $this->element('search_table', ['results' => $results,
         'model' => $model,
         'num' => $num,
+        'sort_cols' => $sort_cols,
         'initialColumns' => $cols]);
 }
 ?>

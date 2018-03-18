@@ -168,6 +168,15 @@ class SampleSet extends AppModel implements SearchableModel, VersionableModel {
             'compounds',
             'comments'];
     }
+    
+    public function getSortableResultColumns() {
+        return ['set_code',
+            'chemist',
+            'submitter',
+            'p_code',
+            'number',
+            'crop'];
+    }
 
     function getVersionKeyColumn() {
         return 'set_code';

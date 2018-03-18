@@ -35,6 +35,18 @@ class Molecular_feature extends AppModel implements SearchableModel, Overviewabl
             'tissue'];
     }
     
+    public function getSortableResultColumns() {
+        return ['feature_tag',
+            'sample_reference',
+            'experiment_reference',
+            'mz',
+            'intensity',
+            'crop',
+            'genotype',
+            'tissue',
+            'genus_species'];
+    }
+    
     public function getSearchOptions() {
         return [
             'feature_tag',

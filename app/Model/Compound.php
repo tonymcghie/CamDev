@@ -60,4 +60,11 @@ class Compound extends AppModel implements SearchableModel {
             'isomeric_smiles'];
     }
     
+    public function getSortableResultColumns() {
+        return ['compound_name',
+            'cas',
+            'exact_mass',
+            'formula'];
+    }
+    
 }

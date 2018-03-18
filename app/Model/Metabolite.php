@@ -54,6 +54,16 @@ class Metabolite extends AppModel implements SearchableModel {
             'experiment_ref'];
     }
 
+    public function getSortableResultColumns() {
+        return ['id',
+            'exact_mass',
+            'rt_value',
+            'sources',
+            'tissue',
+            'chemist',
+            'experiment_ref'];
+    }
+    
     public function getSearchOptions() {
         return ['sources',
         'id',

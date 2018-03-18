@@ -35,6 +35,7 @@ trait Searchable {
             $this->set('num', $numResults);
             $this->set('data', $this->request->query);
             $this->set('cols', $this->getModel()->getDisplayColumns());
+            $this->set('sort_cols', $this->getModel()->getSortableResultColumns());
         }
 
         $this->autoRender = false;
