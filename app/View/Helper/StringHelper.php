@@ -322,7 +322,7 @@ class StringHelper extends AppHelper{
             '[M+H]+' => '[M+H]+',
             '[M+Na]+' => '[M+Na]+',
             'compound_type' => 'Class',
-            'pseudonyms' => 'Symonyms',
+            'pseudonyms' => 'Synonyms',
             'comment' => 'Comment',
             'actions' => 'Actions',
             'searchTitle' => 'Find Compounds',

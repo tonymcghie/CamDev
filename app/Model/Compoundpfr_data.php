@@ -28,6 +28,18 @@ class Compoundpfr_data extends AppModel implements SearchableModel, Overviewable
             'analyst'];
     }
 
+    public function getSortableResultColumns() {
+        return ['assigned_name',
+            'sample_ref',
+            'reference',
+            'exact_mass',
+            'intensity_value',
+            'crop',
+            'genotype',
+            'tissue',
+            'analyst'];
+    }
+    
     public function getSearchOptions() {
         return [
             'assigned_name',

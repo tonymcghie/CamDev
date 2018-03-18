@@ -119,21 +119,12 @@ class SampleSetsController extends AppController {
         if(isset($data['SampleSet']['metadataFile']['error']) && $data['SampleSet']['metadataFile']['error']=='0'){
             $newName = $data['SampleSet']['set_code']. '_Metadata_' . time() . '.' . pathinfo($data['SampleSet']['metadataFile']['name'])['extension'];
             $newPath = 'data/files/samplesets/' . $newName;
-            $res = move_uploaded_file($data['SampleSet']['metadataFile']['tmp_name'], $newPath);
-
-            //echo json_encode(['filename' => Router::getPaths()['base'] . '/' . $newPath]);
+            $res = move_uploaded_file($data['SampleSet']['metadataFile']['tmp_name'], $newPath
             
             $data['SampleSet']['metaFile'] = Router::getPaths()['base'] . '/' . $newPath;
             
-            
-           // $new_name =
-           //     $this->File->uploadFile($data['SampleSet']['metadataFile'],
-           //         'SampleSet_Metadata',
-           //         $data['SampleSet']['set_code'].'_Metadata.'.substr(strtolower(strrchr($data['SampleSet']['metadataFile']['name'], '.')), 1));
-           // $data['SampleSet']['metaFile'] = 'data/files/samplesets/'.$new_name;
         }
         unset($data['SampleSet']['metadataFile']);
-        //var_dump($data);
 
         $this->SampleSet->create();
         if ($sampleSet = $this->SampleSet->save($data['SampleSet'])){ //saves the sample set
@@ -141,12 +132,13 @@ class SampleSetsController extends AppController {
             $this->send_newSS_email(['from' => 'no_reply@plantandfood.co.nz',
                 'to' => $chemist->email,
                 'submitter' => $data['SampleSet']['submitter'],
-                'set_code' => $data['SampleSet']['set_code'],
-                'attachments' => isset($data['SampleSet']['metaFile']) ? $this->file_URL.'files/samplesets/'.$data['SampleSet']['metaFile'] : '']); //sets the values for the email to the chemist
+                'set_code' => $data['SampleSet']['set_code']]);
+                //sets the values for the email to the analyst
             $this->send_newSS_email(['from' => 'no_reply@plantandfood.co.nz',
                 'to' =>  $data['SampleSet']['submitter_email'],
                 'submitter' => $data['SampleSet']['submitter'],
-                'set_code' => $data['SampleSet']['set_code']]); //sets the values for the email to the submitter
+                'set_code' => $data['SampleSet']['set_code']]); 
+                //sets the values for the email to the submitter
             $this->set('sampleSet', $data['SampleSet']);
             $this->set('error', false);
             $this->render('create_sample_set');
