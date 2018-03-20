@@ -115,10 +115,11 @@ class SampleSetsController extends AppController {
         $data['SampleSet']['submitter_email'] = $this->Auth->Session->read($this->Auth->sessionKey)['Auth']['User']['email'];
 
         //set up the metaFile name, and uploads to the data/files/samplesets/ folder
+        //var_dump($data);
         if(isset($data['SampleSet']['metadataFile']['error']) && $data['SampleSet']['metadataFile']['error']=='0'){
             $newName = $data['SampleSet']['set_code']. '_Metadata_' . time() . '.' . pathinfo($data['SampleSet']['metadataFile']['name'])['extension'];
             $newPath = 'data/files/samplesets/' . $newName;
-            $res = move_uploaded_file($data['SampleSet']['metadataFile']['tmp_name'], $newPath);
+            $res = move_uploaded_file($data['SampleSet']['metadataFile']['tmp_name'], $newPath
             
             $data['SampleSet']['metaFile'] = Router::getPaths()['base'] . '/' . $newPath;
             
