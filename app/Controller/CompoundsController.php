@@ -85,8 +85,9 @@ class CompoundsController extends AppController {
         if ($this->request->is(array('post', 'put'))){ //gets edited data from the view
             $this->Compound->id = $id;
             if ($this->Compound->save($this->request->data)){
-                return;
-            } //return if saved successfully
+                //$this->redirect(['controller' => 'Compounds', 'action' => 'search']);
+                echo "<script>window.close();</script>";
+            } //if saved successfully redirect to Compounds->search
         } //save data if the form is being submitted
         if (!$this->request->data){
            $this->request->data = $compound;

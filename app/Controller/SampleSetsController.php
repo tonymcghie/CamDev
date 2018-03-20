@@ -134,11 +134,13 @@ class SampleSetsController extends AppController {
                 'submitter' => $data['SampleSet']['submitter'],
                 'set_code' => $data['SampleSet']['set_code']]);
                 //sets the values for the email to the analyst
-            $this->send_newSS_email(['from' => 'no_reply@plantandfood.co.nz',
-                'to' =>  $data['SampleSet']['submitter_email'],
-                'submitter' => $data['SampleSet']['submitter'],
-                'set_code' => $data['SampleSet']['set_code']]); 
-                //sets the values for the email to the submitter
+            if (isset($data['SampleSet']['submitter_email'])) { //send email to submitter if an email address has been set
+                $this->send_newSS_email(['from' => 'no_reply@plantandfood.co.nz',
+                    'to' =>  $data['SampleSet']['submitter_email'],
+                    'submitter' => $data['SampleSet']['submitter'],
+                    'set_code' => $data['SampleSet']['set_code']]); 
+                    //sets the values for the email to the submitter
+            }
             $this->set('sampleSet', $data['SampleSet']);
             $this->set('error', false);
             $this->render('create_sample_set');
