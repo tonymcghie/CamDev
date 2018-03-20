@@ -30,15 +30,16 @@ class Compound extends AppModel implements SearchableModel {
 
     public function getSearchOptions() {
         return ['compound_name',
+            'pseudonyms',
             'all',
             'cas',
             'compound_type',
             'exact_mass',
             'formula',
             '[M-H]-',
-            //'[M+HCOOH-H]-',
-            //'[M+H]+',
-            //'[M+Na]+',
+            '[M+HCOOH-H]-',
+            '[M+H]+',
+            '[M+Na]+',
             'pub_chem',
             'chemspider_id',
             'comment'];

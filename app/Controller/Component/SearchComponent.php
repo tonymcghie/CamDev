@@ -25,6 +25,7 @@ class SearchComponent extends Component{
         $value = $searchParams['value'];
         $logic = $searchParams['logic'];
         $match = $searchParams['match'];
+        //var_dump($searchParams);
 
         $query = [];
         foreach ($criteria as $index => $criteria_value) { //TODO there is a problem here: sometime the value is not passed to this function ????
@@ -33,10 +34,8 @@ class SearchComponent extends Component{
             $match_value = $match[$index];
             
             if (empty($value_value))continue;
-            
-            //echo $criteria_value;
-            
-            if ($criteria_value=='[M-H]-'){
+            //if searching for an adduct then adjust the enter mass value for the adduct type            
+            if (($criteria_value=='[M-H]-') || ($criteria_value=='[M+H]+') || ($criteria_value=='[M+HCOOH-H]-') || ($criteria_value=='[M+Na]+'))  {
                 
                 $precision = count(explode('.', $value_value))==2 ? strlen(explode('.', $value_value)[1]) : 0;
             
@@ -46,7 +45,7 @@ class SearchComponent extends Component{
                         $criteria_value = 'exact_mass';
                         break;
                     case '[M+HCOOH-H]-':
-                        $$value_value = round(floatval($value_value) - 44.998201, $precision);
+                        $value_value = round(floatval($value_value) - 44.998201, $precision);
                         $criteria_value = 'exact_mass';
                         break;
                     case '[M+H]+':
@@ -62,9 +61,7 @@ class SearchComponent extends Component{
                         break;
                 }
             }
-            //echo $criteria_value;
-            //echo $value_value;
-            
+            // adjust the value according to the match required
             switch ($match_value) {
                 case 'contains':
                     $value_value = '%'.$value_value.'%';
@@ -79,14 +76,23 @@ class SearchComponent extends Component{
                     throw new Exception('There was a match value that was not found if you are modifying the code please add it to this statement');
                     break;
             }
-            if ($criteria_value == 'all') {
-                $query[$logic_value]['OR'] = [];
-                foreach ($model->getSearchableFields() as $column_name) {
-                    $query[$logic_value]['OR'][] = [$model->name . '.' . $column_name . ' LIKE' => $value_value];  
-                }
-            } else {
-                $query[$logic_value][] = [$model->name . '.' . $criteria_value . ' LIKE' => $value_value];
-            }
+            // construct the query array using the default or a specifc search type as specified
+            switch ($criteria_value) {
+                case 'all': //search all field a given model (database table)
+                    $query[$logic_value]['OR'] = [];
+                    foreach ($model->getSearchableFields() as $column_name) {
+                        $query[$logic_value]['OR'][] = [$model->name . '.' . $column_name . ' LIKE' => $value_value];  
+                    }
+                    break;
+                case 'compound_name':  //search both compound.compound_name and compound.pseudonyms 
+                    $query[$logic_value]['OR'] = [];
+                    $query[$logic_value]['OR'][] = [$model->name . '.' . $criteria_value . ' LIKE' => $value_value];
+                    $query[$logic_value]['OR'][] = [$model->name . '.' . 'pseudonyms' . ' LIKE' => $value_value];                  
+                    break;
+                default:
+                    $query[$logic_value][] = [$model->name . '.' . $criteria_value . ' LIKE' => $value_value];
+                    break;
+            } 
         }
         return $query;
     }

@@ -44,6 +44,7 @@ trait Searchable {
 
     private function doSearch() {
         $query = $this->Search->build_query($this->getModel(), $this->request->query);
+        //var_dump($query);
         $results = $this->paginate($this->getModel(), $query);
 
         $resultObjects = $this->getModel()->buildObjects($results);
