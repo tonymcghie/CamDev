@@ -19,6 +19,7 @@ echo $this->BootstrapForm->input_horizontal('confidential', ['type' => 'checkbox
     'label' => $this->String->get_string('confidential', 'SampleSet_form')]);
 
 echo $this->BootstrapForm->input_horizontal('submitter', ['label' => ['text' => $this->String->get_string('submitter', 'SampleSet_form')],
+    'placeholder' => $this->String->get_string('submitter_ph', 'SampleSet_form'),
     'value' => (isset($user['name']) ? $user['name'] : ''),
     'required',]);
 

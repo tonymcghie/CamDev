@@ -35,14 +35,16 @@ class UsersController extends AppController {
     
     public function cam4_login() {
         $data = $this->request->data;
-        //var_dump($data);
+        var_dump($data);
     }
+    
+    
     /**
      * Logs a user in. Commented out when login not wanted
      */
     public function login() { 
         $data = $this->request->data;
-        //var_dump($data);
+        var_dump($data);
 	/**            
     if ($this->Session->read('Auth.User')) {
         $data = http_build_query(['alert' => 'You are already Logged in as '.$this->Session->read('Auth.User')['name']]);        
@@ -73,7 +75,7 @@ class UsersController extends AppController {
         } //if login successful then set session cookie and redirect if not then display error
     } //if user is laready logged in then redirect if not try to log the user in
 	*/
-        $this->redirect(['controller' => 'general', 'action' => 'welcome']);
+        //$this->redirect(['controller' => 'general', 'action' => 'welcome']);
     }
     
     /**

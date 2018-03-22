@@ -78,7 +78,7 @@ assert(in_array($group, [$sampleSetGroup,
     <nav class="col-lg-2 col-md-2 layer-2" style="height: 100vh;overflow: auto;">
         <p><?php echo $this->Html->image('cam.png', array('alt' => 'CAM Logo', 'width' => '140')); ?> </p>
         <?php echo $this->Html->link('login', ['controller' => 'users', 'action' => 'login'], ['target' => 'mainFrame', 'class' => 'btn btn-link']); ?>|
-        <?php //echo $this->Html->link('CAM4login',['controller' => 'users', 'action' => 'cam4_login'], ['target' => 'mainFrame', 'class' => 'btn btn-link']); ?>
+        <?php echo $this->Html->link('CAM4login',['controller' => 'users', 'action' => 'cam4_login'], ['target' => 'mainFrame', 'class' => 'btn btn-link']); ?>
         <?php echo $this->Html->link('logout',['controller' => 'users', 'action' => 'logout'], ['target' => 'mainFrame', 'class' => 'btn btn-link']); ?>
 
         <div class="panel-group" id="nav_accordion">

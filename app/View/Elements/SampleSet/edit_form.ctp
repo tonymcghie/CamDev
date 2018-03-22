@@ -32,7 +32,6 @@ echo $this->BootstrapForm->input_horizontal('confidential',
 echo $this->BootstrapForm->input_horizontal('submitter',
     [
         'label' => ['text' => $this->String->get_string('submitter', 'SampleSet_form')],
-        'readonly',
         'default' => isset($item['SampleSet']['submitter']) ? $item['SampleSet']['submitter'] : ''
     ]
 );
