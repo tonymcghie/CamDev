@@ -6,9 +6,9 @@ body {
 }
 
 .wrapper {	
-	margin-top: 80px;
+  margin-top: 80px;
   margin-bottom: 80px;
-}
+  }
 
 .form-signin {
   max-width: 380px;
@@ -53,13 +53,15 @@ body {
 
 </style>
   <div class="wrapper">
-    <form class="form-signin">       
+      <?php echo $this->Form->create('User', array('action' => 'cam4_login', 'class' => 'form-signin')); ?>
+    <!--<form class="form-signin" action="/users/cam4_login" method="post">  -->    
       <h2 class="form-signin-heading">Please Login</h2>
-      <input type="text" class="form-control" name="username" placeholder="Enter PFR Username" required="" autofocus="" />
-      <input type="password" class="form-control" name="password" placeholder="Password" required=""/>      
+      <input type="text" class="form-control" name="username" placeholder="enter PFR username" required="" autofocus="" />
+      <input type="password" class="form-control" name="password" placeholder="password" required=""/>      
       <label class="checkbox">
         <input type="checkbox" value="remember-me" id="rememberMe" name="rememberMe"> Remember me
       </label>
-      <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>   
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+     <?php ''//echo $this->Form->end(['label' => 'Login', 'class' => 'btn btn-lg btn-primary btn-block']); ?>
     </form>
   </div>
