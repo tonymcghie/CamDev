@@ -57,6 +57,13 @@ echo $this->BootstrapForm->input_horizontal('chemist',
         'default' => isset($item['SampleSet']['chemist']) ? $item['SampleSet']['chemist'] : ''
     ]
 );
+echo $this->BootstrapForm->input_horizontal('associate_analyst',
+    [
+        'label' => $this->String->get_string('associate_analyst_name', 'SampleSet_form'),
+        'autocomplete' => 'on',
+        'default' => isset($item['SampleSet']['associate_analyst']) ? $item['SampleSet']['associate_analyst'] : ''
+    ]
+);
 echo $this->BootstrapForm->input_horizontal('crop',
     [
         'label' => $this->String->get_string('crop', 'SampleSet_form'),

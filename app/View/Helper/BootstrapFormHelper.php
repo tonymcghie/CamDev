@@ -95,7 +95,7 @@ class BootstrapFormHelper extends FormHelper{
     }
 
     /**
-     * Creats a form element where the label is beside the input
+     * Creates a form element where the label is beside the input
      * This should be used in a horizontal form
      * @param $fieldName
      * @param array $options
@@ -111,7 +111,7 @@ class BootstrapFormHelper extends FormHelper{
             $options['label']['class'] = '';
             $options['label']['text'] = $label_text;
         } else if(gettype($options['label']) !== 'boolean') {
-            throw new Exception('You are passing somethign that isnt a string or array or false in the $options[\'label\'] index');
+            throw new Exception('You are passing something that isnt a string or array or false in the $options[\'label\'] index');
         }$options['label']['class'] .= ' control-label col-lg-4';
 
         if (!isset($options['between']))$options['between'] = '';

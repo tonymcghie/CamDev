@@ -150,7 +150,7 @@ class SampleSetsController extends AppController {
     }
 
     /**
-     * Makes a new set and sends emails makes set code
+     * Makes a new set and sends emails and makes a new set code
      * @return type
      */
     public function newSet(){
