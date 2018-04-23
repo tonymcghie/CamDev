@@ -3,13 +3,16 @@
 class Chemist extends AppModel{
 
     /**
-     * Finds the id of the chemist their team and their next setcode
+     * Finds the id of the Analyst and generates a new setcode based on
+     * the Analysts name_code and an incrementing number.
+     * Ensures that all setcode are unique.
      * If no chemist is found then it will return false
      *
      * @param string $chemistName the name of the chemist to search the database for
      *
      * @return stdClass|False [id, name, team, email, setcode]
      */
+    
     public function nextSamplesetInfo($chemistName) {
         $chemist = $this->find('first', ['fields' => ['Chemist.id', 'Chemist.team', 'Chemist.name_code', 'Chemist.email'],
             'conditions' => ['name' => $chemistName]]);
