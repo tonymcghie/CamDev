@@ -23,3 +23,12 @@
 <?= $this->BootstrapForm->addActionButtons('Save as new version'); ?>
 <?= $this->BootstrapForm->get_js(); ?>
 <?= $this->BootstrapForm->end(); ?>
+
+<script>
+    $(function() {
+        $('#SampleSetAssociateAnalyst').autocomplete({
+            source: Object.values(JSON.parse('<?php echo json_encode($names); ?>')),
+            appendTo: $('#SampleSetAssociateAnalyst').closest('div')
+        });
+    });
+</script>
