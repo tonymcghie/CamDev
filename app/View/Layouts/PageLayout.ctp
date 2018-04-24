@@ -10,8 +10,9 @@ $sampleSetGroup = 'sampleSets';
 $compoundsGroup = 'compounds';
 $pfrDataGroup = 'pfrData';
 $metabolomicDataGroup = 'metabolomicData';
-$unknowCompoundsGroup = 'unknowCompounds';
+$unknownCompoundsGroup = 'unknownCompounds';
 $helpGroup = 'help';
+$adminGroup = 'admin';
 $toolsGroup = 'tools';
 $preReleaseGroup = 'preRelease';
 $inDevGroup = 'inDev';
@@ -21,8 +22,8 @@ if (!isset($group)) {
     $group = $sampleSetGroup;
 }
 assert(in_array($group, [$sampleSetGroup,
-    $compoundsGroup, $pfrDataGroup, $unknowCompoundsGroup, $helpGroup,
-    $preReleaseGroup, $toolsGroup, $metabolomicDataGroup, $inDevGroup]),
+    $compoundsGroup, $pfrDataGroup, $unknownCompoundsGroup, $helpGroup,
+    $preReleaseGroup, $adminGroup, $toolsGroup, $metabolomicDataGroup, $inDevGroup]),
     "The group '$group' was not recognised.");
 ?>
 
@@ -159,7 +160,7 @@ assert(in_array($group, [$sampleSetGroup,
                 <div class="panel-heading light-green lighten-3" data-toggle="collapse" data-parent="#nav_accordion" href="#unknown_compounds_menu">
                     <span>Unknown Compounds</span>
                 </div>
-                <div class="panel-collapse collapse <?php if ($group == $unknowCompoundsGroup)echo 'in'; ?>" id="unknown_compounds_menu">
+                <div class="panel-collapse collapse <?php if ($group == $unknownCompoundsGroup)echo 'in'; ?>" id="unknown_compounds_menu">
                     <div class="panel-body light-blue lighten-3">
                         <?= $this->Html->link('Find', ['controller' => 'Metabolites', 'action' => 'search'], ['class' => 'list-group-item']) ?>
                         <?= $this->Html->link('New', ['controller' => 'Metabolites', 'action' => 'newMetabolite'], ['class' => 'list-group-item']) ?>
@@ -183,10 +184,10 @@ assert(in_array($group, [$sampleSetGroup,
                     </div>
                 </div>
             </div>
-            
+
             <div class="panel panel-default">
                 <div class="panel-heading light-green lighten-3" data-toggle="collapse" data-parent="#nav_accordion" href="#help_menu">
-                    <span>Administration</span>
+                    <span>Tools</span>
                 </div>
                 <div class="panel-collapse collapse <?php if ($group == $toolsGroup)echo 'in'; ?>" id="help_menu">
                     <div class="panel-body light-blue lighten-3">
@@ -203,18 +204,17 @@ assert(in_array($group, [$sampleSetGroup,
                     </div>
                 </div>
             </div>
-
+            
             <div class="panel panel-default">
-                <div class="panel-heading light-green lighten-3" data-toggle="collapse" data-parent="#nav_accordion" href="#help_menu">
-                    <span>Tools</span>
+                <div class="panel-heading light-green lighten-3" data-toggle="collapse" data-parent="#nav_accordion" href="#admin_menu">
+                    <span>Administration</span>
                 </div>
-                <div class="panel-collapse collapse <?php if ($group == $toolsGroup)echo 'in'; ?>" id="help_menu">
+                <div class="panel-collapse collapse <?php if ($group == $adminGroup)echo 'in'; ?>" id="admin_menu">
                     <div class="panel-body light-blue lighten-3">
                         <?= ''//$this->Html->link('Scripts', ['controller' => 'General', 'action' => 'scripts'], ['class' => 'list-group-item']) ?>
                         <?= $this->Html->link('GCMS Utilities', ['controller' => 'General', 'action' => 'gcms'], ['class' => 'list-group-item']) ?>
                         <?= $this->Html->link('Data Templates', ['controller' => 'General', 'action' => 'templates'], ['class' => 'list-group-item']) ?>
-                        <?= $this->Html->link('New Project', ['controller' => 'Projects', 'action' => 'addProject'], ['class' => 'list-group-item']) ?>
-                        <?= $this->Html->link('Clear Workbench', ['controller' => 'General', 'action' => 'welcome'], ['class' => 'list-group-item']) ?>
+                        <?= $this->Html->link('New Analyst', ['controller' => 'Admins', 'action' => 'newAnalyst'], ['class' => 'list-group-item']) ?>
                         <?php
                         /*if ($this->Session->read('Auth.User')!==null && in_array("PFR-GP-Biological Chemistry and Bioactives Group", $this->Session->read('Auth.User')['groups'])){
                             echo '<li>'.$this->Html->link('Scripts', ['controller' => 'General','action' => 'scripts'], ['target' => 'mainFrame', 'class' => 'btn btn-link']).'</li>';
