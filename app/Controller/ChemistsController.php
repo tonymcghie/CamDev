@@ -6,9 +6,9 @@
  * and open the template in the editor.
  */
 
-class AdminsController extends AppController{
+class ChemistsController extends AppController{
     public $helpers = array('Html' , 'Form' , 'My', 'Js', 'Time', 'String', 'BootstrapForm');
-    public $uses = array('Admin');
+    public $uses = array('Chemist');
     public $layout = 'PageLayout';
     public $components = array('Paginator', 'RequestHandler', 'My');
     
@@ -44,7 +44,7 @@ class AdminsController extends AppController{
      * @return null
      */
     public function newAnalyst(){
-        if (isset($this->request->data['Admin'])){ //check if the save button has being clicked            
+        if (isset($this->request->data['Chemist'])){ //check if the save button has being clicked            
             $data = $this->request->data;      //gets the data
             var_dump($data);
             $this->Chemist->create();            //Need to add

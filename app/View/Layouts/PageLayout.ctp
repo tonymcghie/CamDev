@@ -214,7 +214,7 @@ assert(in_array($group, [$sampleSetGroup,
                         <?= ''//$this->Html->link('Scripts', ['controller' => 'General', 'action' => 'scripts'], ['class' => 'list-group-item']) ?>
                         <?= $this->Html->link('GCMS Utilities', ['controller' => 'General', 'action' => 'gcms'], ['class' => 'list-group-item']) ?>
                         <?= $this->Html->link('Data Templates', ['controller' => 'General', 'action' => 'templates'], ['class' => 'list-group-item']) ?>
-                        <?= $this->Html->link('New Analyst', ['controller' => 'Admins', 'action' => 'newAnalyst'], ['class' => 'list-group-item']) ?>
+                        <?= $this->Html->link('New Analyst', ['controller' => 'Chemists', 'action' => 'newAnalyst'], ['class' => 'list-group-item']) ?>
                         <?php
                         /*if ($this->Session->read('Auth.User')!==null && in_array("PFR-GP-Biological Chemistry and Bioactives Group", $this->Session->read('Auth.User')['groups'])){
                             echo '<li>'.$this->Html->link('Scripts', ['controller' => 'General','action' => 'scripts'], ['target' => 'mainFrame', 'class' => 'btn btn-link']).'</li>';
