@@ -1,15 +1,17 @@
- 
- <?php
-$this->assign('title', 'New Analyst');
+<?php
+$this->assign('title', 'Edit Analyst Information');
+
 ?>
 <header>
-<h1><?php echo $this->String->get_string('title', 'Analyst_form'); ?></h1>
-<p><?php echo $this->String->get_string('sub_title', 'Analyst_form'); ?></p>
+<h1><?php echo $this->String->get_string('edit_title', 'Analyst_form'); ?></h1>
 </header>
+
 <?php
 echo $this->BootstrapForm->create_horizontal('Chemist', ['action' => 'newAnalyst']);
 echo $this->BootstrapForm->input_horizontal('name', ['label' => ['text' => $this->String->get_string('name', 'Analyst_form')],
-    'required',]);
+    'readonly',
+    'default' => isset($item['Chemist']['name']) ? $item['Chemist']['name'] : '',
+    'required']);
 echo $this->BootstrapForm->input_horizontal('team', ['label' => $this->String->get_string('team', 'Analyst_form'),
     'autocomplete' => 'off']);
 echo $this->BootstrapForm->input_horizontal('name_code', ['label' => $this->String->get_string('name_code', 'Analyst_form'),
@@ -26,5 +28,5 @@ echo $this->BootstrapForm->addActionButtons();
 
 echo $this->BootstrapForm->get_js();
 echo $this->BootstrapForm->end();
-?>   
 
+?>

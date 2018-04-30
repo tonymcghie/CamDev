@@ -102,11 +102,20 @@ class MyHelper extends AppHelper{
     }
     
     /**
-     * returns the option value pairs for the type of MS ion to select for input
+     * returns the option value pairs for the status of the sample set
      * @return type
      */
 	public function getSampleSetStatusOptions(){
         return ['submitted' => 'submitted', 'in progress' => 'in progress', 'data available' => 'data available','completed' => 'completed',
     'completed & samples discarded' => 'completed & samples discarded'];
+    }
+    
+    /**
+     * returns the option value pairs for the status of the sample set
+     * @return type
+     */
+	public function getAnalystTypeOptions(){
+        return ['BCB Analyst' => 'BCB Analyst', 'PFR Analyst' => 'PFR Analyst', 'Visitor' => 'Visitor', 'Student' => 'Student',
+    'IT' => 'IT'];
     }
 }

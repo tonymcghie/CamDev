@@ -1,22 +1,37 @@
 <?php
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+App::uses('Searchable', 'Controller/Behavior');
+App::uses('Viewable', 'Controller/Behavior');
+App::uses('Exportable', 'Controller/Behavior');
 
-class ChemistsController extends AppController{
-    public $helpers = array('Html' , 'Form' , 'My', 'Js', 'Time', 'String', 'BootstrapForm');
+class ChemistsController extends AppController {
+    
+    use Searchable;
+    use Viewable;
+    use Exportable;
+    
+    public $helpers = array('Html' , 'Form' , 'My', 'Js', 'Time', 'String', 'BootstrapForm', 'Html' , 'Mustache.Mustache');
     public $uses = array('Chemist');
     public $layout = 'PageLayout';
-    public $components = array('Paginator', 'RequestHandler', 'My');
+    public $components = array('Paginator', 'RequestHandler', 'My', 'Session', 'Cookie', 'Auth', 'File', 'Search');
+    
+    function getModel() {
+        return $this->Chemist;
+    }
     
     public $paginate = array(
-        'limit' => 2,
+        'limit' => 20,
         'order' => array(
-            'Metabolite.exact_mass' => 'asc'
+            'Chemist.name' => 'asc'
         ));
+    
+    
+    public function __construct($request = null, $response = null) {
+        parent::__construct($request, $response);
+        $this->components = array_merge($this->components, $this->getSearchableComponents());
+        $this->components = array_merge($this->components, $this->getExportableComponents());
+        $this->components = array_unique($this->components);
+    }
     
     /**
      * Happens before stuff is called
@@ -40,7 +55,7 @@ class ChemistsController extends AppController{
     //}
 
     /**
-     * adds a project
+     * adds a new Analyst to the Chemists table
      * @return null
      */
     public function newAnalyst(){
@@ -52,5 +67,49 @@ class ChemistsController extends AppController{
                 return $this->redirect(['controller' => 'General', 'action' => 'welcome']);
             }
         } 
+    }
+    
+    /**
+     * Edit an existing Analyst and saves the results to the Chemists table
+     * @param type $id
+     * @return type
+     * @throws NotFoundExcpetion
+     */
+    public function editAnalyst($id = null){
+        //$this->layout = 'main';
+        if ($id == null){
+            $id = $this->params['url']['id'];
+        } // gets $id from the url
+        $analyst = $this->Chemist->findById($id);
+        if (!$analyst){
+            throw new NotFoundExcpetion(__('Invalid Analyst'));
+        } //throw error if the id does not belong to a compound
+        if ($this->request->is(array('post', 'put'))){ //gets edited data from the view
+            $this->Chemist->id = $id;
+            if ($this->Chemist->save($this->request->data)){
+                //$this->redirect(['controller' => 'Compounds', 'action' => 'search']);
+                echo "<script>window.close();</script>";
+            } //if saved successfully redirect to Compounds->search
+        } //save data if the form is being submitted
+        if (!$this->request->data){
+           $this->request->data = $analyst;
+        }//update the data to display
+    }
+    
+    /**
+     * Delete an existing Analyst and saves the results to the Chemists table
+     * @param type $id
+     * @return type
+     * @throws NotFoundExcpetion
+     */
+    public function deleteAnalyst($id = null){
+        //$this->layout = 'main';
+        if ($id == null){
+            $id = $this->params['url']['id'];
+        } // gets $id from the url
+        $analyst = $this->Chemist->findById($id);
+        if (!$analyst){
+            throw new NotFoundExcpetion(__('Invalid Analyst'));
+        } //throw error if the id does not belong to a compound
     }
 }

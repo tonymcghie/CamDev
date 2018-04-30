@@ -1,6 +1,9 @@
 <?php
 
-class Chemist extends AppModel{
+App::uses('ChemistDataObject', 'Model/DataObject');
+App::uses('SearchableModel', 'Model/Behavior');
+
+class Chemist extends AppModel implements SearchableModel {
 
     /**
      * Finds the id of the Analyst and generates a new setcode based on
@@ -31,5 +34,45 @@ class Chemist extends AppModel{
         $chemistData->email = $chemist['Chemist']['email'];
         $chemistData->nextSetCode = $chemist['Chemist']['name_code'].$numOfNextSetCode;
         return $chemistData;
+    }
+    
+    public function buildObjects(array $queryResults){
+        $chemistObjects = [];
+        foreach ($queryResults as $data) {
+            $chemistObjects[] = new ChemistDataObject($this, $data['Chemist']);
+        }
+        return $chemistObjects;
+    }
+    
+    public function getDisplayColumns() {
+        return ['actions',
+            'id',
+            'name',
+            'name_code',
+            'type',
+            'team',
+            'location',
+            'ext_number',
+            'email'];
+    }
+
+    public function getSortableResultColumns() {
+        return ['id',
+            'exact_mass',
+            'rt_value',
+            'sources',
+            'tissue',
+            'chemist',
+            'experiment_ref'];
+    }
+    
+    public function getSearchOptions() {
+        return ['name',
+        'name_code',
+        'type',
+        'team',
+        'location',
+        'ext_number',
+        'email'];
     }
 }

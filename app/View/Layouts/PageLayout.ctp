@@ -211,9 +211,7 @@ assert(in_array($group, [$sampleSetGroup,
                 </div>
                 <div class="panel-collapse collapse <?php if ($group == $adminGroup)echo 'in'; ?>" id="admin_menu">
                     <div class="panel-body light-blue lighten-3">
-                        <?= ''//$this->Html->link('Scripts', ['controller' => 'General', 'action' => 'scripts'], ['class' => 'list-group-item']) ?>
-                        <?= $this->Html->link('GCMS Utilities', ['controller' => 'General', 'action' => 'gcms'], ['class' => 'list-group-item']) ?>
-                        <?= $this->Html->link('Data Templates', ['controller' => 'General', 'action' => 'templates'], ['class' => 'list-group-item']) ?>
+                        <?= $this->Html->link('Find Analyst', ['controller' => 'Chemists', 'action' => 'search'], ['class' => 'list-group-item']) ?>
                         <?= $this->Html->link('New Analyst', ['controller' => 'Chemists', 'action' => 'newAnalyst'], ['class' => 'list-group-item']) ?>
                         <?php
                         /*if ($this->Session->read('Auth.User')!==null && in_array("PFR-GP-Biological Chemistry and Bioactives Group", $this->Session->read('Auth.User')['groups'])){
