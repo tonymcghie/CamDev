@@ -1,15 +1,21 @@
 <?php
 
-class Chemist extends AppModel{
+App::uses('ChemistDataObject', 'Model/DataObject');
+App::uses('SearchableModel', 'Model/Behavior');
+
+class Chemist extends AppModel implements SearchableModel {
 
     /**
-     * Finds the id of the chemist their team and their next setcode
+     * Finds the id of the Analyst and generates a new setcode based on
+     * the Analysts name_code and an incrementing number.
+     * Ensures that all setcode are unique.
      * If no chemist is found then it will return false
      *
      * @param string $chemistName the name of the chemist to search the database for
      *
      * @return stdClass|False [id, name, team, email, setcode]
      */
+    
     public function nextSamplesetInfo($chemistName) {
         $chemist = $this->find('first', ['fields' => ['Chemist.id', 'Chemist.team', 'Chemist.name_code', 'Chemist.email'],
             'conditions' => ['name' => $chemistName]]);
@@ -28,5 +34,45 @@ class Chemist extends AppModel{
         $chemistData->email = $chemist['Chemist']['email'];
         $chemistData->nextSetCode = $chemist['Chemist']['name_code'].$numOfNextSetCode;
         return $chemistData;
+    }
+    
+    public function buildObjects(array $queryResults){
+        $chemistObjects = [];
+        foreach ($queryResults as $data) {
+            $chemistObjects[] = new ChemistDataObject($this, $data['Chemist']);
+        }
+        return $chemistObjects;
+    }
+    
+    public function getDisplayColumns() {
+        return ['actions',
+            'id',
+            'name',
+            'name_code',
+            'type',
+            'team',
+            'location',
+            'ext_number',
+            'email'];
+    }
+
+    public function getSortableResultColumns() {
+        return ['id',
+            'exact_mass',
+            'rt_value',
+            'sources',
+            'tissue',
+            'chemist',
+            'experiment_ref'];
+    }
+    
+    public function getSearchOptions() {
+        return ['name',
+        'name_code',
+        'type',
+        'team',
+        'location',
+        'ext_number',
+        'email'];
     }
 }
