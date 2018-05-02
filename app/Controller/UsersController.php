@@ -16,6 +16,7 @@ class UsersController extends AppController {
     public $components = ['Session', 'LDAP', 'Cookie'];
     public $uses = ['Contact', 'SampleSet', 'Chemist'];
     public $layout = 'PageLayout';
+   
 
     /**
      * Stuff that happens before other functions are called
@@ -35,7 +36,7 @@ class UsersController extends AppController {
     
     public function cam4_login() {
         $data = $this->request->data;
-        var_dump($data);
+        var_dump($data);   
     }
     
     
@@ -43,8 +44,40 @@ class UsersController extends AppController {
      * Logs a user in. Commented out when login not wanted
      */
     public function login() { 
-        $data = $this->request->data;
-        //var_dump($data);
+        // sets the $user array with values normally obtained from LDAP.
+        // For use in home dev.  Comment out when using on PFR systems with  LDAP.
+        $user['first_name'] = 'Tony';
+        $user['last_name'] = 'McGhie';
+        $user['name'] = 'Tony McGhie';
+        $user['user'] = 'HRPTKM';
+        $user['location'] = 'Palmerston North Research Centre';
+        //var_dump($user);
+        
+        $User = $this->request->data;
+        //var_dump($User);
+        //var_dump($User['username']);
+        
+        
+        if ($this->request->data) {
+            // comment out LDAP access for home dev
+            //if ($this->LDAP->auth($User['username'], $User['password'])) {
+            //    $user = $this->findByUsername($User['username']); //gets the user data from LDAP
+            //}
+            $this->Auth->Session->write($this->Auth->sessionKey, $user); //sets the session
+            $this->Auth->_loggedIn = true; //sets the user to be logged in
+            $this->Auth->login($user); //logs in the user
+        }
+        
+        if ($this->Auth->loggedIn()) {
+            $user_data = $this->Session->read('Auth.User');
+            print_r('Authorised and Logged In. Hello '. $user_data['name'].'.');
+            //var_dump($user_data);
+        } elseif (!$this->Auth->loggedIn()) {
+           print_r('Logged Out');
+        }
+        
+        //var_dump($_SESSION);
+        
 	/**            
     if ($this->Session->read('Auth.User')) {
         $data = http_build_query(['alert' => 'You are already Logged in as '.$this->Session->read('Auth.User')['name']]);        
