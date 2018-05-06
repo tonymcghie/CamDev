@@ -44,7 +44,12 @@ class UsersController extends AppController {
     /**
      * Logs a user in. Commented out when login not wanted
      */
-    public function login() { 
+    public function login() {
+        // if already logged in display a message
+        if ($this->Auth->loggedIn()) {
+            //return to main page -i.e nothing happpens
+        return $this->redirect(['controller' => 'general', 'action' => 'welcome']);       
+        }
         // sets the $user array with values normally obtained from LDAP.
         // For use in home dev.  Comment out when using on PFR systems with  LDAP.
         $user['first_name'] = 'Tony';
@@ -67,8 +72,11 @@ class UsersController extends AppController {
             $this->Auth->Session->write($this->Auth->sessionKey, $user); //sets the session
             $this->Auth->_loggedIn = true; //sets the user to be logged in
             $this->Auth->login($user); //logs in the user
+            //clear login form page
+            $this->redirect(['controller' => 'general', 'action' => 'welcome']);
         }
-        
+    /** 
+     * Moved to AppController so that mesaage can be added to the PageLayout   
         if ($this->Auth->loggedIn()) {
             $user_data = $this->Session->read('Auth.User');
             print_r('Authorised and Logged In. Hello '. $user_data['name'].'.');
@@ -76,7 +84,7 @@ class UsersController extends AppController {
         } elseif (!$this->Auth->loggedIn()) {
            print_r('Logged Out');
         }
-        
+    */    
         //var_dump($_SESSION);
         
 	/**            
@@ -122,14 +130,15 @@ class UsersController extends AppController {
     }    
     
     /**
-     * logsout the current user and desroys the cookie
+     * logsout the current user and destroys the cookie
      * @return type
      */
     public function logout() {        
-        $this->Cookie->destroy();
+        $this->Cookie->destroy();  //destroy the cookie
         $this->Session->write('first', true); //makes the while page refesh once       
-        $this->Auth->logoutRedirect = ['controller' => 'General', 'action' => 'blank', '?' => ['alert' => 'You haved logged out']];        
-        return $this->redirect($this->Auth->logout());
+        //$this->Auth->logoutRedirect = ['controller' => 'General', 'action' => 'blank', '?' => ['alert' => 'You haved logged out']];        
+        $this->Auth->logout();
+    return $this->redirect(['controller' => 'general', 'action' => 'welcome']);
     }    
     
     /**

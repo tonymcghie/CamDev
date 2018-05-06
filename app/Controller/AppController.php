@@ -62,6 +62,20 @@ class AppController extends Controller {
         // Allow users to register and logout.
         $this->Auth->allow();
         $this->set('behaviour', class_uses($this));
+        // setup Login message
+        $login_message = '';
+        $login_name = '';
+        if ($this->Auth->loggedIn()) {
+            $user_data = $this->Session->read('Auth.User');
+            $login_message = 'Logged In. Hello '. $user_data['name'];
+            $login_name = $user_data['name'];
+            //var_dump($user_data);
+        } else {
+           $login_message = 'Logged Out';
+           $login_name = 'no one logged in';
+        }
+        $this->set('login_message', $login_message);
+        $this->set('login_name', $login_name);
     }
     
     /**
