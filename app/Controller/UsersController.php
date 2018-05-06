@@ -36,7 +36,8 @@ class UsersController extends AppController {
     
     public function cam4_login() {
         $data = $this->request->data;
-        var_dump($data);   
+        //var_dump($data);   
+        //var_dump($data);
     }
     
     
