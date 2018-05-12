@@ -23,7 +23,6 @@ class ChemistDataObject extends DataObject implements ViewableModel {
         return [
             'viewURL' => ['controller' => 'Chemists', 'action' => 'view', '?' => ['id' => $this->id]],
             'editURL' => ['controller' => 'Chemists', 'action' => 'editAnalyst', '?' => ['id' => $this->id]],
-            'deleteURL' => ['controller' => 'Chemists', 'action' => 'deleteAnalyst', '?' => ['id' => $this->id]],
         ];
     }
     

@@ -12,6 +12,8 @@ echo $this->BootstrapForm->input_horizontal('name', ['label' => ['text' => $this
     'readonly',
     'default' => isset($item['Chemist']['name']) ? $item['Chemist']['name'] : '',
     'required']);
+echo $this->BootstrapForm->input_horizontal('id', ['label' => $this->String->get_string('id', 'Analyst_form'),
+    'autocomplete' => 'off']);
 echo $this->BootstrapForm->input_horizontal('team', ['label' => $this->String->get_string('team', 'Analyst_form'),
     'autocomplete' => 'off']);
 echo $this->BootstrapForm->input_horizontal('name_code', ['label' => $this->String->get_string('name_code', 'Analyst_form'),
@@ -23,6 +25,8 @@ echo $this->BootstrapForm->input_horizontal('location', ['label' => $this->Strin
 echo $this->BootstrapForm->input_horizontal('ext_number', ['label' => $this->String->get_string('ext_number', 'Analyst_form'),
     'autocomplete' => 'off']);
 echo $this->BootstrapForm->input_horizontal('email', ['label' => $this->String->get_string('email', 'Analyst_form')]);
+echo $this->BootstrapForm->input_horizontal('status', ['label' => $this->String->get_string('status', 'Analyst_form'),
+    'required', 'options' => $this->My->getAnalystStatusOptions()]);
 
 echo $this->BootstrapForm->addActionButtons();
 
