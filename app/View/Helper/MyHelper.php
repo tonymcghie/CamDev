@@ -111,11 +111,19 @@ class MyHelper extends AppHelper{
     }
     
     /**
-     * returns the option value pairs for the status of the sample set
+     * returns the option value pairs for the type for an Analyst
      * @return type
      */
 	public function getAnalystTypeOptions(){
         return ['BCB Analyst' => 'BCB Analyst', 'PFR Analyst' => 'PFR Analyst', 'Visitor' => 'Visitor', 'Student' => 'Student',
     'IT' => 'IT'];
+    }
+    
+    /**
+     * returns the option value pairs for the status of an Analyst
+     * @return type
+     */
+	public function getAnalystStatusOptions(){
+        return ['Operational' => 'Operational', 'Not Operational' => 'Not Operational'];
     }
 }

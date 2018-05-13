@@ -42,7 +42,7 @@ class ChemistsController extends AppController {
         parent::beforeFilter();
         //$this->Auth->deny('addMetabolite','editMetabolite','editProposedMetabolite','editMsmsMetabolite');
         $this->Auth->allow('newAnalyst','addMetabolite');
-        $this->set('group', 'admin');
+        $this->set('group', 'tools');
     }
     
     /**
@@ -76,18 +76,16 @@ class ChemistsController extends AppController {
      * @throws NotFoundExcpetion
      */
     public function editAnalyst($id = null){
-        //$this->layout = 'main';
         if ($id == null){
             $id = $this->params['url']['id'];
         } // gets $id from the url
         $analyst = $this->Chemist->findById($id);
         if (!$analyst){
             throw new NotFoundExcpetion(__('Invalid Analyst'));
-        } //throw error if the id does not belong to a compound
+        } //throw error if the id does not belong to an Analyst
         if ($this->request->is(array('post', 'put'))){ //gets edited data from the view
             $this->Chemist->id = $id;
             if ($this->Chemist->save($this->request->data)){
-                //$this->redirect(['controller' => 'Compounds', 'action' => 'search']);
                 echo "<script>window.close();</script>";
             } //if saved successfully redirect to Compounds->search
         } //save data if the form is being submitted
@@ -96,20 +94,4 @@ class ChemistsController extends AppController {
         }//update the data to display
     }
     
-    /**
-     * Delete an existing Analyst and saves the results to the Chemists table
-     * @param type $id
-     * @return type
-     * @throws NotFoundExcpetion
-     */
-    public function deleteAnalyst($id = null){
-        //$this->layout = 'main';
-        if ($id == null){
-            $id = $this->params['url']['id'];
-        } // gets $id from the url
-        $analyst = $this->Chemist->findById($id);
-        if (!$analyst){
-            throw new NotFoundExcpetion(__('Invalid Analyst'));
-        } //throw error if the id does not belong to a compound
-    }
 }
