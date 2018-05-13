@@ -37,11 +37,11 @@ class Chemist extends AppModel implements SearchableModel {
     }
     
     public function buildObjects(array $queryResults){
-        $chemistObjects = [];
+        $chemistDataObjects = [];
         foreach ($queryResults as $data) {
-            $chemistObjects[] = new ChemistDataObject($this, $data['Chemist']);
+            $chemistDataObjects[] = new ChemistDataObject($this, $data['Chemist']);
         }
-        return $chemistObjects;
+        return $chemistDataObjects;
     }
     
     public function getDisplayColumns() {

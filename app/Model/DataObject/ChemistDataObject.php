@@ -30,26 +30,22 @@ class ChemistDataObject extends DataObject implements ViewableModel {
         return [
             'id' => [
                 'text' => $this->id],
-            'exact_mass' => [
-                'text' => $this->exact_mass],
-            'ion_type' => [
-                'text' => $this->ion_type],
-            'rt_value' => [
-                'text' => $this->rt_value],
-            'rt_description' => [
-                'text' => $this->rt_description],
-            'sources' => [
-                'text' => $this->sources],
-            'tissue' => [
-                'text' => $this->tissue],
-            'chemist' => [
-                'text' => $this->chemist],
-            'experiment_ref' => [
-                'text' => $this->experiment_ref],
-            'document' => [
-                'text' => $this->document],
-            'date' => [
-                'text' => $this->date]];
+            'name' => [
+                'text' => $this->name],
+            'type' => [
+                'text' => $this->type],
+            'team' => [
+                'text' => $this->team],
+            'name_code' => [
+                'text' => $this->name_code],
+            'location' => [
+                'text' => $this->location],
+            'ext_number' => [
+                'text' => $this->ext_number],
+            'email' => [
+                'text' => $this->email],
+            'status' => [
+                'text' => $this->status]];
     }
     // BACKEND
 
