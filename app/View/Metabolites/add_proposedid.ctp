@@ -1,6 +1,5 @@
 <?php
 $this->assign('title', 'New Proposed Unknown ID');
-var_dump($id);
 ?>
 <header>
 <h1><?php echo $this->String->get_string('title', 'Proposed_Metabolite_form'); ?></h1>
