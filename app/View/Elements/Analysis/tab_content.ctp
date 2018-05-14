@@ -5,6 +5,28 @@
  * @return string
  */
 ?>
+
+<?php
+/**
+ * code to initiate TinyMCE ex www.davidtan.org/cakephp-how-to-add-advanced-tinymce-textarea/
+ */
+echo $javascript->link('tiny_mce/tiny_mce.js', false);
+        ?>
+        <script type="text/javascript">
+            tinyMCE.init({
+                theme : "advanced",
+                mode : "textareas",
+                convert_urls : false,
+                theme_advanced_buttons1 : "bold,italic,underline,blockquote,separator,strikethrough,justifyleft,justifycenter,justifyright, justifyfull,bullist,numlist,undo,redo,link,unlink",
+                theme_advanced_buttons2: "",
+                theme_advanced_buttons3: "",
+                theme_advanced_buttons4: "",
+                theme_advanced_toolbar_location : "top",
+                theme_advanced_toolbar_align : "left"
+            });
+        </script>
+?>
+
 <?php
 echo $this->BootstrapForm->create_horizontal('Analysis', ['type' => 'file']);
 echo $this->BootstrapForm->input_horizontal('title',
