@@ -232,10 +232,9 @@ assert(in_array($group, [$sampleSetGroup,
                     </div>
                 </div>
             </div>
-
+            -->    
             <p><br><?php echo $login_message; ?> </p>
-            <p><?php //echo $login_name; ?> </p>
-            
+           
             <!--
             <div class="panel panel-default">
                 <div class="panel-heading light-green lighten-3" data-toggle="collapse" data-parent="#nav_accordion" href="#pre_release_menu">
