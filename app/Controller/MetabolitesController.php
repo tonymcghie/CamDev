@@ -36,7 +36,7 @@ class MetabolitesController extends AppController {
         parent::beforeFilter();
 
 
-        $this->set('group', 'unknowCompounds');
+        $this->set('group', 'unknownCompounds');
         //$this->Auth->deny('addMetabolite','editMetabolite','editProposedMetabolite','editMsmsMetabolite');
         $this->Auth->allow('addMetabolite','editMetabolite','editProposedMetabolite','editMsmsMetabolite');
     }
@@ -106,7 +106,7 @@ class MetabolitesController extends AppController {
             $this->set('error', 'Invalid Unknown');
             return;
         }
-        var_dump($id);
+        //var_dump($id);
         $this->set('id', $id);
         $data = $this->request->data;      //gets the data
         $this->Proposed_Metabolite->create();            //Need to add

@@ -10,7 +10,7 @@ class AnalysesController extends AppController{
     public $helpers = ['Html' , 'Form' , 'My' , 'Js', 'Time', 'String', 'BootstrapForm'];
     public $uses = array('Analysis', 'SampleSet');
     public $layout = 'PageLayout';
-    public $components = ['My', 'RequestHandler', 'PhpExcel'];
+    public $components = ['My', 'RequestHandler', 'PhpExcel', 'Session'];
     
     /**
      * this happens before everything else
