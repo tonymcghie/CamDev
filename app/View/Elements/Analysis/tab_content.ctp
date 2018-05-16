@@ -10,8 +10,10 @@
 /**
  * code to initiate TinyMCE ex www.davidtan.org/cakephp-how-to-add-advanced-tinymce-textarea/
  */
+
+echo $javascript->link('jquery-1.3.2.min', false);
 echo $javascript->link('tiny_mce/tiny_mce.js', false);
-        ?>
+?>
         <script type="text/javascript">
             tinyMCE.init({
                 theme : "advanced",
@@ -25,8 +27,11 @@ echo $javascript->link('tiny_mce/tiny_mce.js', false);
                 theme_advanced_toolbar_align : "left"
             });
         </script>
-?>
 
+<textarea rows="4" cols="50">
+At w3schools.com you will learn how to make a website. We offer free tutorials in all web development technologies.
+</textarea>
+        
 <?php
 echo $this->BootstrapForm->create_horizontal('Analysis', ['type' => 'file']);
 echo $this->BootstrapForm->input_horizontal('title',
