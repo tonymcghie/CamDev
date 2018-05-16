@@ -111,6 +111,7 @@ assert(in_array($group, [$sampleSetGroup,
                         <?= $this->Html->link('Find', ['controller' => 'Compounds', 'action' => 'search'], ['class' => 'list-group-item']) ?>
                         <?= $this->Html->link('New', ['controller' => 'Compounds', 'action' => 'addCompound'], ['class' => 'list-group-item']) ?>
                         <?= $this->Html->link('Identify by Mass', ['controller' => 'Identify', 'action' => 'SelectFile'], ['class' => 'list-group-item']) ?>
+                        <?= $this->Html->link('Name Changer', ['controller' => 'Namechanger', 'action' => 'SelectFile'], ['class' => 'list-group-item']) ?>
 
                         <?php
                         /*//if ($this->Session->read('Auth.User')!==null && in_array("PFR-GP-Biological Chemistry and Bioactives Group", $this->Session->read('Auth.User')['groups'])){

@@ -88,6 +88,53 @@ class MyComponent extends Component{
      * Adds two new column headings
      * Returns the array of headings
      */  
+     public function NamechangeHeadings($DataFile){
+        $file = fopen($DataFile,"r"); //sets up the file for reading
+        $heading = fgetcsv($file); //read the column headers from the datafile
+        array_push($heading, "CAM Compound Name", "CAS #"); //add another column for search hits to the column headers
+        return $heading;
+    }
+    
+    public function Namechange($DataFile){
+        $foundcmpd=array(); $data=array();
+        $model = ClassRegistry::init('Compound');
+        $file = fopen($DataFile,"r"); //sets up the file for reading
+        $head = fgetcsv($file); //read the first line (column headers) from the datafile and ignore in this function
+        $n = 0;
+        while (1==1){
+            $line = fgetcsv($file);
+            if ($line=== false){
+                break;
+            } //when there are no more lines exit the loop               
+            
+            $search = array('OR' => array(
+                'Compound.pseudonyms LIKE' => "% " . $line[3] . ";%",
+                'Compound.compound_name LIKE' => "%" . $line[3] . "%"));
+
+            $foundallcmpd = $model->find('all', ['conditions' =>$search]);
+            $foundcmpd = $model->find('first', ['conditions' =>$search]);  //search compounds table for match and add to the $linae array if found
+            if (isset($foundcmpd["Compound"])){ 
+                array_push($line, $foundcmpd["Compound"]["compound_name"], $foundcmpd["Compound"]["cas"]);
+            } else {
+                array_push($line, ' '); //insert a blank
+            }
+            //$numberofcmpd = $model->find('count', ['conditions' =>$search]);
+            //if (isset($numberofcmpd["Compound"])){ 
+                //array_push($line, $numberofcmpd);
+            //}
+
+            array_push($data, $line); //adds the array contining the values to an array containing all values to save
+            //array_push($found, $foundcmpd); //adds the array containing the found compounds  to an array containing all values to save
+            $n = $n + 1;
+            } //loops through the CSV file an adds the appropriate values to an array
+        return $data;             
+    }
+    
+    /**
+     * Opens a .csv file and reads the first line into an array of column headings
+     * Adds two new column headings
+     * Returns the array of headings
+     */  
      public function IdentifyHeadings($DataFile){
         $file = fopen($DataFile,"r"); //sets up the file for reading
         $heading = fgetcsv($file); //read the column headers from the datafile

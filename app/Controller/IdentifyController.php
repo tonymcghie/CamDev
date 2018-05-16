@@ -10,7 +10,7 @@ class IdentifyController extends AppController{
     public $helpers = array('Html' , 'Form' , 'My', 'Js');
     public $uses = array('Compound');
     public $layout = 'PageLayout';
-    public $components = array('Paginator', 'My');
+    public $components = array('Paginator', 'My', 'Session');
         
     /**
      * What to do before funcitons are called
