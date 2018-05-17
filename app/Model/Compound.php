@@ -21,6 +21,7 @@ class Compound extends AppModel implements SearchableModel {
             'compound_type',
             'formula',
             'exact_mass',
+            'RMD',
             '[M-H]-',
             '[M+HCOOH-H]-',
             '[M+H]+',
@@ -65,6 +66,7 @@ class Compound extends AppModel implements SearchableModel {
         return ['compound_name',
             'cas',
             'exact_mass',
+            'RMD',
             'formula'];
     }
     

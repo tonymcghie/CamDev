@@ -16,6 +16,7 @@ class CompoundDataObject extends DataObject {
             $this->data['[M+HCOOH-H]-'] = $data['exact_mass'] + 44.998201;
             $this->data['[M+H]+'] = $data['exact_mass'] + 1.007276;
             $this->data['[M+Na]+'] = $data['exact_mass'] + 22.989218;
+            $this->data['RMD'] = $this->getRMD($data['exact_mass']);
         }
     }
 
@@ -35,6 +36,12 @@ class CompoundDataObject extends DataObject {
             'viewURL' => ['https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/'.$this->pub_chem. '/PNG'],
             'editURL' => ['controller' => 'Compounds', 'action' => 'editCompound', '?' => ['id' => $this->id]]
         ];
+    }
+    
+    public function getRMD($exact_mass){
+        $mass_deficit = $exact_mass - intval($exact_mass);
+        $RMD = intval($mass_deficit/$exact_mass*1000000);
+    return $RMD;
     }
 
     // BACKEND
