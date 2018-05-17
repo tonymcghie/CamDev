@@ -339,6 +339,7 @@ class StringHelper extends AppHelper{
             '[M+HCOOH-H]-' => '[M+HCOOH-H]-',
             '[M+H]+' => '[M+H]+',
             '[M+Na]+' => '[M+Na]+',
+            'RMD' => 'RMD',
             'compound_type' => 'Class',
             'pseudonyms' => 'Synonym',
             'comment' => 'Comment',

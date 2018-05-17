@@ -14,7 +14,7 @@ class CompoundsController extends AppController {
     
    /** Sets the options for pagination */
     public $paginate = [
-        'limit' => 25,
+        'limit' => 50,
         'order' => [
             'Compound.compound_name' => 'asc'
         ]
