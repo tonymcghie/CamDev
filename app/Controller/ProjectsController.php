@@ -10,7 +10,7 @@ class ProjectsController extends AppController{
     public $helpers = array('Html' , 'Form' , 'My', 'Js', 'Time', 'String', 'BootstrapForm');
     public $uses = array('Project');
     public $layout = 'PageLayout';
-    public $components = array('Paginator', 'RequestHandler', 'My');
+    public $components = array('Paginator', 'RequestHandler', 'My', 'Session');
     
     public $paginate = array(
         'limit' => 2,

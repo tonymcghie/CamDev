@@ -13,7 +13,7 @@ class NamechangerController extends AppController{
     public $components = array('Paginator', 'My', 'Session');
         
     /**
-     * What to do before funcitons are called
+     * What to do before functions are called
      */
     public function beforeFilter() {
         parent::beforeFilter();
@@ -77,7 +77,7 @@ class NamechangerController extends AppController{
             //return;
         //}
         $filename= urldecode($filename) . '.csv';
-        var_dump($filename);
+        //var_dump($filename);
         $filename=WWW_ROOT. 'data/files/namechanger'. DS . $filename; //set the correct path to the datafile
         $head=$this->My->NamechangeHeadings($filename); //get the headings from the datafile
         $data=$this->My->Namechange($filename); //get the masses from the data file; search compounds and return a compound name

@@ -107,17 +107,32 @@ class MyComponent extends Component{
                 break;
             } //when there are no more lines exit the loop               
             
-            $search = array('OR' => array(
-                'Compound.pseudonyms LIKE' => "% " . $line[3] . ";%",
-                'Compound.compound_name LIKE' => "%" . $line[3] . "%"));
+            //remove non-printable characters from the inputed name string
+            $name_string = preg_replace('/[[:^print:]]/', "", $line[3]);
+            //$name_string = $line[3];
+            
+            //$search = array('OR' => array(
+            //    'Compound.pseudonyms LIKE' => "% " . $line[3] . ";%",
+            //    'Compound.compound_name LIKE' => "%" . $line[3] . "%"));
+            
+            $search_name = array('OR' => array(
+                'Compound.compound_name LIKE' => "%" . $name_string . "%"));
+            
+            $search_pseudonyms = array('OR' => array(
+                'Compound.pseudonyms LIKE' => "% " . $name_string . ";%"));
 
-            $foundallcmpd = $model->find('all', ['conditions' =>$search]);
-            $foundcmpd = $model->find('first', ['conditions' =>$search]);  //search compounds table for match and add to the $linae array if found
-            if (isset($foundcmpd["Compound"])){ 
+            //$foundallcmpd = $model->find('all', ['conditions' =>$search]);
+            $foundcmpd = $model->find('first', ['conditions' =>$search_name]);  //search compounds table for match and add to the $line array if found
+            $foundpseudonym = $model->find('first', ['conditions' =>$search_pseudonyms]); //search compounds table for match and add to the $line array if found
+            
+            if (isset($foundcmpd["Compound"])){ //if compounds name found push compound name and CAS to line
                 array_push($line, $foundcmpd["Compound"]["compound_name"], $foundcmpd["Compound"]["cas"]);
+            } else if (isset($foundpseudonym["Compound"])) { //if pseudonym found push compound name and CAS to line
+               array_push($line, $foundpseudonym["Compound"]["compound_name"], $foundpseudonym["Compound"]["cas"]); 
             } else {
-                array_push($line, ' '); //insert a blank
+                array_push($line, ' '); // if neither compound name or pseudonoym found insert a blank
             }
+            
             //$numberofcmpd = $model->find('count', ['conditions' =>$search]);
             //if (isset($numberofcmpd["Compound"])){ 
                 //array_push($line, $numberofcmpd);

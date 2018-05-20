@@ -4,8 +4,9 @@
 <?php $message = "This is a message - Hello World"; ?>
 <!--<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal">Display Message</button>-->
 <p> 1) Generate a .csv file where the fourth column contains compound names.</p>
-<p> 1) The name in each row of the .csv file will be compared with the synonyms on the CAM->Compound database.</p>
-<p> 2) When a compound names matches a Compound->Synonym name, the CAM compound name will be added to the table. This table can be exported.</p>
+<p> 2) The compound name in each row of the .csv file will be compared with the compound name and the synonyms in the CAM->Compound database.</p>
+<p> 3) When a match is found with the input compound name, the CAM compound name and CAS # will be added to the row in the table.</p>
+<p> This table can be exported.</p>
 </header>
 <div id="myModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
