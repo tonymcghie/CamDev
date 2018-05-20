@@ -10,7 +10,7 @@ class SamplesController extends AppController{
     public $helpers = array('Html' , 'Form' , 'My', 'Js');
     public $uses = array('Analysis', 'SampleSet', 'Sample');
     public $layout = 'PageLayout';
-    public $components = array('Paginator', 'My', 'Pivot', 'RequestHandler', 'PhpExcel');
+    public $components = array('Paginator', 'My', 'Pivot', 'RequestHandler', 'PhpExcel', 'Session');
     
     /**
      * @LIVE swap file URL
