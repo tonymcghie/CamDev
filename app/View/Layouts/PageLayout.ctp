@@ -104,7 +104,7 @@ assert(in_array($group, [$sampleSetGroup,
 
             <div class="panel panel-default">
                 <div class="panel-heading light-green lighten-3" data-toggle="collapse" data-parent="#nav_accordion" href="#compounds_menu">
-                    <span>Compounds</span>
+                    <span>Compounds (Reference)</span>
                 </div>
                 <div class="panel-collapse collapse <?php if ($group == $compoundsGroup)echo 'in'; ?>" id="compounds_menu">
                     <div class="panel-body light-blue lighten-3">
@@ -126,7 +126,7 @@ assert(in_array($group, [$sampleSetGroup,
 
             <div class="panel panel-default">
                 <div class="panel-heading light-green lighten-3" data-toggle="collapse" data-parent="#nav_accordion" href="#pfr_data_menu">
-                    <span>PFR Compound Data</span>
+                    <span>PFR Compound Analytical Data</span>
                 </div>
                 <div class="panel-collapse collapse <?php if ($group == $pfrDataGroup)echo 'in'; ?>" id="pfr_data_menu">
                     <div class="panel-body light-blue lighten-3">

@@ -107,9 +107,11 @@ class MyComponent extends Component{
                 break;
             } //when there are no more lines exit the loop               
             
+            //replace < and > if present in the string with the entities &lt and &gt
+            $line[3] = str_replace("<","&lt;",str_replace(">","&gt;",$line[3]));
+            
             //remove non-printable characters from the inputed name string
             $name_string = preg_replace('/[[:^print:]]/', "", $line[3]);
-            //$name_string = $line[3];
             
             //$search = array('OR' => array(
             //    'Compound.pseudonyms LIKE' => "% " . $line[3] . ";%",
@@ -129,6 +131,8 @@ class MyComponent extends Component{
                 array_push($line, $foundcmpd["Compound"]["compound_name"], $foundcmpd["Compound"]["cas"]);
             } else if (isset($foundpseudonym["Compound"])) { //if pseudonym found push compound name and CAS to line
                array_push($line, $foundpseudonym["Compound"]["compound_name"], $foundpseudonym["Compound"]["cas"]); 
+            } else if ($name_string <> $line[3]) { //if a non prinatable cahracter has been removed
+               array_push($line, 'Your compound name contains an unrecognised character - please remove!');
             } else {
                 array_push($line, ' '); // if neither compound name or pseudonoym found insert a blank
             }
@@ -142,6 +146,7 @@ class MyComponent extends Component{
             //array_push($found, $foundcmpd); //adds the array containing the found compounds  to an array containing all values to save
             $n = $n + 1;
             } //loops through the CSV file an adds the appropriate values to an array
+            fclose($file);
         return $data;             
     }
     
