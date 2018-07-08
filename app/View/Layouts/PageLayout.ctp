@@ -194,7 +194,7 @@ assert(in_array($group, [$sampleSetGroup,
                     <div class="panel-body light-blue lighten-3">
                         <?= ''//$this->Html->link('Scripts', ['controller' => 'General', 'action' => 'scripts'], ['class' => 'list-group-item']) ?>
                         <?= $this->Html->link('GCMS Utilities', ['controller' => 'General', 'action' => 'gcms'], ['class' => 'list-group-item']) ?>
-                        <?= $this->Html->link('Data Templates', ['controller' => 'General', 'action' => 'templates'], ['class' => 'list-group-item']) ?>
+                        <?= $this->Html->link('Templates & Reference Info', ['controller' => 'General', 'action' => 'templates'], ['class' => 'list-group-item']) ?>
                         <?= $this->Html->link('New Project', ['controller' => 'Projects', 'action' => 'addProject'], ['class' => 'list-group-item']) ?>
                         <?= ''//$this->Html->link('Find Analyst', ['controller' => 'Chemists', 'action' => 'search'], ['class' => 'list-group-item']) ?>
                         <?php

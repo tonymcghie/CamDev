@@ -1,5 +1,5 @@
 <header>
-<h1>Data Template Download Area</h1>
+<h1>Template and Reference Info Download Area</h1>
 </header>
 
 <div class="table-responsive">
@@ -17,17 +17,17 @@
     <tr>
         <td><h3>Compound Data Summary Table:</h3></td>
         <td class="text-center" style = "vertical-align: middle"><button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#cdstModal"><span class="glyphicon glyphicon-info-sign"></button></td>
-        <td style = "vertical-align: middle"><button type="button" class="btn"><span class="glyphicon glyphicon-download-alt"></span> <?php  echo $this->Html->link('DownLoad Template',$this->My->makeTemplateURL('compound_summary_table.csv'),['target'=>'_blank']); ?></td>
+        <td style = "vertical-align: middle"><button type="button" class="btn"><span class="glyphicon glyphicon-download-alt"></span> <?php  echo $this->Html->link('DownLoad Table',$this->My->makeTemplateURL('compound_summary_table.csv'),['target'=>'_blank']); ?></td>
     </tr>
     <tr>
         <td><h3>PFR Compound Data Upload Specifications:</h3></td>
         <td class="text-center" style = "vertical-align: middle"><button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#cmpdModal"><span class="glyphicon glyphicon-info-sign"></button></td>
-        <td style = "vertical-align: middle"><button type="button" class="btn"><span class="glyphicon glyphicon-download-alt"></span> <?php  echo $this->Html->link('DownLoad Template',$this->My->makeTemplateURL('pfr_compound_specifications.xlsx'),['target'=>'_blank']); ?></td> 
+        <td style = "vertical-align: middle"><button type="button" class="btn"><span class="glyphicon glyphicon-download-alt"></span> <?php  echo $this->Html->link('DownLoad Specifications',$this->My->makeTemplateURL('pfr_compound_specifications.xlsx'),['target'=>'_blank']); ?></td> 
     </tr>
     <tr>
         <td><h3>Metabolomics Data Upload Specifications:</h3></td>
         <td class="text-center" style = "vertical-align: middle"><button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#metaModal"><span class="glyphicon glyphicon-info-sign"></button></td>
-        <td style = "vertical-align: middle"><button type="button" class="btn"><span class="glyphicon glyphicon-download-alt"></span> <?php  echo $this->Html->link('DownLoad Template',$this->My->makeTemplateURL('molecular_features_specifications.xlsx'),['target'=>'_blank']); ?></td> 
+        <td style = "vertical-align: middle"><button type="button" class="btn"><span class="glyphicon glyphicon-download-alt"></span> <?php  echo $this->Html->link('DownLoad Specifications',$this->My->makeTemplateURL('molecular_features_specifications.xlsx'),['target'=>'_blank']); ?></td> 
     </tr>
     <tr>
         <td><h3>Data Processing:</h3></td>
@@ -38,6 +38,11 @@
         <td><h3>Data Processing (TASQ):</h3></td>
         <td class="text-center" style = "vertical-align: middle"><button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#dptModal"><span class="glyphicon glyphicon-info-sign"></button></td>
         <td style = "vertical-align: middle"><button type="button" class="btn"><span class="glyphicon glyphicon-download-alt"></span> <?php  echo $this->Html->link('DownLoad Template',$this->My->makeTemplateURL('data_processing_tasq.xlsm'),['target'=>'_blank']); ?></td>    
+    </tr>
+    <tr>
+        <td><h3>Flavour Volatile RI Reference:</h3></td>
+        <td class="text-center" style = "vertical-align: middle"><button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#vol_riModal"><span class="glyphicon glyphicon-info-sign"></button></td>
+        <td style = "vertical-align: middle"><button type="button" class="btn"><span class="glyphicon glyphicon-download-alt"></span> <?php  echo $this->Html->link('DownLoad Reference Data',$this->My->makeTemplateURL('flavour_volatile_RI.xlsx'),['target'=>'_blank']); ?></td>    
     </tr>
 </table>
 </div>
@@ -181,6 +186,26 @@
     </div>
 </div>
 
+<div id="vol_riModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Flavour Volatile Retention Indices</h4>
+            </div>
+            <div class="modal-body">
+                <?php echo 'This file (excel spreadsheet) contains a table of retention indices (RI) for flavour compounds.' ?><br><br>
+                <?php echo 'The list is in two parts:' ?><br>
+                <?php echo '1) Compounds where there is confident chemcial identification of the compound.' ?><br>
+                <?php echo '2) Compounds where the chemical identification is uncertain and possibly the data should not be reported.' ?><br><br>
+                <?php echo 'At present only RIs for wax GC column are contained in the table.  The table will be updated as more data becomes available.' ?>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 
