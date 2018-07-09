@@ -134,6 +134,7 @@ assert(in_array($group, [$sampleSetGroup,
                         <?= $this->Html->link('Overview', ['controller' => 'Compoundpfr_data', 'action' => 'overview'], ['class' => 'list-group-item']) ?>
                         <?= $this->Html->link('Graph', ['controller' => 'Compoundpfr_data', 'action' => 'graphData'], ['class' => 'list-group-item']) ?>
                         <?= $this->Html->link('Import', ['controller' => 'Compoundpfr_data', 'action' => 'import'], ['class' => 'list-group-item']) ?>
+                        <?= $this->Html->link('dB Curation', ['controller' => 'Compoundpfr_data', 'action' => 'curateData'], ['class' => 'list-group-item']) ?>
                         <?= ''//$this->Html->link('Find-Bioactivity', ['controller' => 'Bioactivitypfr_data', 'action' => 'search'], ['class' => 'list-group-item']) ?>
                         <?php
                         /*if ($this->Session->read('Auth.User')!==null && in_array("PFR-GP-Biological Chemistry and Bioactives Group", $this->Session->read('Auth.User')['groups'])) {
@@ -206,7 +207,6 @@ assert(in_array($group, [$sampleSetGroup,
                             echo $this->Html->link('New Analyst', ['controller' => 'Chemists', 'action' => 'newAnalyst'], ['class' => 'list-group-item']);
                         }
                         ?>
-                        <?= ''//$this->Html->link('New Analyst', ['controller' => 'Chemists', 'action' => 'newAnalyst'], ['class' => 'list-group-item']) ?>
                         <?= $this->Html->link('Clear Workbench', ['controller' => 'General', 'action' => 'welcome'], ['class' => 'list-group-item']) ?>
                         <?php
                         /*if ($this->Session->read('Auth.User')!==null && in_array("PFR-GP-Biological Chemistry and Bioactives Group", $this->Session->read('Auth.User')['groups'])){

@@ -12,7 +12,7 @@ class CompoundpfrDataController extends AppController {
     use Exportable;
     use Importable;
     use Overviewable;
-
+   
     public $helpers = ['Html' , 'Form' , 'My', 'Js', 'Time', 'String', 'BootstrapForm', 'Mustache.Mustache'];
     public $uses = ['Compoundpfr_data','PubChemModel', 'Compound'];
     public $layout = 'PageLayout';
@@ -86,6 +86,14 @@ class CompoundpfrDataController extends AppController {
             return;
         }
         $this->set('info', $CompoundData); //passes the set information to the view and renders
+    }
+    
+    /**
+     * Displays all the field entries for a selected record in the CompoundpfrData table
+     *
+     */
+    public function curateData($id = null) {
+        
     }
     
     /**
