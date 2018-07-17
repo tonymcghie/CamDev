@@ -41,6 +41,7 @@ class StringHelper extends AppHelper{
             'exp_reference' => 'Experiment Reference',
             'exp_reference_ph' => 'Describe the experiment that produced the sample set',
             'chemist_name' => 'Analyst Name',
+            'chemist_name_ph' => 'Start typing - Analyst names will autocomplete',
             'associate_analyst_name' => 'Assoc. Analyst Name',
             'crop' => 'Crop',
             'sample_type' => 'Sample Type',
