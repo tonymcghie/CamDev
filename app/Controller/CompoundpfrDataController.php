@@ -14,7 +14,7 @@ class CompoundpfrDataController extends AppController {
     use Overviewable;
    
     public $helpers = ['Html' , 'Form' , 'My', 'Js', 'Time', 'String', 'BootstrapForm', 'Mustache.Mustache'];
-    public $uses = ['Compoundpfr_data','PubChemModel', 'Compound'];
+    public $uses = ['Compoundpfr_data','PubChemModel', 'SampleSet' , 'Chemist', 'Compound'];
     public $layout = 'PageLayout';
     public $components = ['My', 'Pivot', 'RequestHandler', 'Session', 'Cookie', 'Auth', 'File'];
     
@@ -89,11 +89,45 @@ class CompoundpfrDataController extends AppController {
     }
     
     /**
-     * Displays all the field entries for a selected record in the CompoundpfrData table
+     * allows specific curation of data in the CompoundpfrData table
      *
      */
-    public function curateData($id = null) {
+    public function curate_getParam() {
+        $this->set('names', $this->Chemist->find('list', ['fields' => 'name']));
+        $this->set('set_codes', $this->SampleSet->find('list', ['fields' => 'set_code']));
+        $this->set('cas_nums', $this->Compound->find('list', ['fields' => 'cas']));
+        //var_dump($this->Compound->find('list', ['fields' => 'cas']));
+    }
+    
+    public function doCurate() {
+        $errors = [];
+        $data = $this->request->data;
+        //var_dump($data);
         
+        //get compound data for the entered cas #
+        $num = $this->Compound->find('count', array(
+        'conditions' => array('cas' => $data['Compoundpfr_data']['cas'])));
+        if ($num ==1) {
+            $compound = $this->Compound->find('first', array(
+        'conditions' => array('cas' => $data['Compoundpfr_data']['cas'])));
+        } else {
+          $errors[] = 'There is more than one entry for this CAS # - curation cannot proceed!';  
+        }
+        var_dump($data['Compoundpfr_data']['cas']);
+        //var_dump($compound);
+        var_dump($compound['Compound']['compound_name']);
+        var_dump($this->Compoundpfr_data->find('count', array(
+        'conditions' => array('cas' => $data['Compoundpfr_data']['cas'], 'reference' => $data['Compoundpfr_data']['set_code']))));
+        
+        //now update the assigned name in Compoundpfr_data with the compound name
+        //when the CAS # number matches the input CAS # 
+        //$this->Compoundpfr_data->updateAll(
+        //    array('Compoundpfr_data.assigned_name' => $compound['compound_name']),
+        //    array('cas' => $data['Compoundpfr_data']['cas'],
+        //    'reference' => $data['Compoundpfr_data']['set_code'])
+        //);
+        
+        //$this->Pool->updateAll(array('status'=>2), array('Pool.pid'=>1,'Pool.uid' => 2));
     }
     
     /**
