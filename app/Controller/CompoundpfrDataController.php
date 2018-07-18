@@ -104,10 +104,10 @@ class CompoundpfrDataController extends AppController {
         $data = $this->request->data;
         //var_dump($data);
         
-        //get compound data for the entered cas #
+        //get compound data for the entered CAS #
         $num = $this->Compound->find('count', array(
         'conditions' => array('cas' => $data['Compoundpfr_data']['cas'])));
-        if ($num ==1) {
+        if ($num == 1) {
             $compound = $this->Compound->find('first', array(
         'conditions' => array('cas' => $data['Compoundpfr_data']['cas'])));
         } else {
@@ -121,13 +121,11 @@ class CompoundpfrDataController extends AppController {
         
         //now update the assigned name in Compoundpfr_data with the compound name
         //when the CAS # number matches the input CAS # 
-        //$this->Compoundpfr_data->updateAll(
-        //    array('Compoundpfr_data.assigned_name' => $compound['compound_name']),
-        //    array('cas' => $data['Compoundpfr_data']['cas'],
-        //    'reference' => $data['Compoundpfr_data']['set_code'])
-        //);
-        
-        //$this->Pool->updateAll(array('status'=>2), array('Pool.pid'=>1,'Pool.uid' => 2));
+        $this->Compoundpfr_data->updateAll(
+            array('Compoundpfr_data.assigned_name' => "'".$compound['Compound']['compound_name']."'"),
+            array('cas' => $data['Compoundpfr_data']['cas'],
+            'reference' => $data['Compoundpfr_data']['set_code'])
+        );
     }
     
     /**
