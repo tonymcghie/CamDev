@@ -99,6 +99,8 @@ class CompoundpfrDataController extends AppController {
         //var_dump($this->Compound->find('list', ['fields' => 'cas']));
     }
     
+    
+    
     public function doCurate() {
         $errors = [];
         $data = $this->request->data;

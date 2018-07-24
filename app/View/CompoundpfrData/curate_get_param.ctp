@@ -4,7 +4,10 @@
 <p> For example correct compound names using a CAS match with the Compounds Table</p>
 <p> The process is ....</p>
 <?php $message = "This is a message - Hello World"; ?>
-<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal">Check?</button>
+<button type="button" class="btn btn-info btn-sm" id = "getRecNum" >Check (ajax)?</button>
+<p>
+<div id="record"></div>
+</p>
 </header>
 
 <?php
@@ -23,14 +26,15 @@
     
     echo $this->BootstrapForm->input_horizontal('cas', ['label' => $this->String->get_string('cas', 'Compound_form'),
     'autocomplete' => 'off',
+    'onchange' => 'getRecordNum(this.value)',
     'id' => 'Compoundpfr_dataCas']);
     
     echo $this->BootstrapForm->executeCurateButton();
            
-    echo $this->BootstrapForm->get_js();
+    echo $this->BootstrapForm->get_js();  
     echo $this->BootstrapForm->end();
 ?>
-
+     
 <div id="myModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -62,5 +66,5 @@
             source: Object.values(JSON.parse('<?php echo json_encode($cas_nums); ?>')),
             appendTo: $('#Compoundpfr_dataCas').closest('div')
         });
-    });
+});
 </script>

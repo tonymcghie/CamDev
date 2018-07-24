@@ -5,6 +5,33 @@ App::uses('SearchableModel', 'Model/Behavior');
 
 class Compound extends AppModel implements SearchableModel {
     
+    public $validate = array(
+        'cas' => array(
+            'rule' => 'notBlank',
+            'rule' => 'isUnique',
+            'message' => 'That CAS already exists in the database!',
+            'last' => true
+        ),
+        'formula' => array(
+            'rule' => 'notBlank'
+        ),
+        'exact_mass' => array(
+            'rule' => 'notBlank'
+        ),
+        'sys_name' => array(
+            'rule' => 'notBlank'
+        ),
+        'compound_type' => array(
+            'rule' => 'notBlank'
+        ),
+        'compound_name' => array(
+            'rule' => 'notBlank',
+            'rule' => 'isUnique',
+            'message' => 'That CAS already exists in the database!',
+            'last' => true
+        )
+    );
+    
     public function buildObjects(array $queryResults){
         $compoundObjects = [];
         foreach ($queryResults as $data) {

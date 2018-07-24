@@ -6,11 +6,13 @@ $this->assign('title', 'New Compound');
 <br>
 <!--<p><?php echo $this->String->get_string('sub_title', 'Compound_form'); ?></p>-->
 </header>
+<div id="unique"> </div>
 <?php
 echo $this->BootstrapForm->create_horizontal('Compound', ['type' => 'file' ,'action' => 'addCompound']);
 //to do make a clone button in the table
 echo $this->BootstrapForm->input_horizontal('cas', ['label' => ['text' => $this->String->get_string('cas', 'Compound_form')],
-    'required',]);
+    'required',
+    'id' => 'CompoundCas']);
 echo $this->BootstrapForm->input_horizontal('pub_chem', ['label' => $this->String->get_string('pub_chem', 'Compound_form'),
     'autocomplete' => 'off']);
 echo $this->BootstrapForm->input_horizontal('compound_name', ['label' => $this->String->get_string('compound_name', 'Compound_form'),
@@ -53,28 +55,24 @@ echo $this->BootstrapForm->end();
     <?php if (isset($alert)) :?>
         alert('<?php echo $alert;?>');
     <?php endif; ?>
-    $('#cas').on('input',function(event){
-        <?php
-        echo $this->Js->request(['controller' => 'Compounds', 'action' => 'checkCAS'], [
-            'async' => true,
-            'method' => 'post',
-            'data' => '{CAS: $("#cas").val()}',
-            'dataExpression' => true,
-            'success'=> ' 
-                //$("#unique").html(data);
-                    if (data === "true"){
+    $('#CompoundCas').on('input',function(event){
+        $.ajax({
+            data:{value_to_send: $("#CompoundCas").val()},
+            url: 'http://localhost/CAM4-test/Compounds/checkCAS/cas',
+            cache: false,
+            type: 'post',
+            dataType: 'HTML',
+            success: function (data) {
+                //$('#unique').html(data);
+                 if (data === "true"){
                         $("#unique").attr("style", "color: green");
                         $("#unique").html("Compound is not in Database");                        
                     } else {
                         $("#unique").attr("style", "color: red");
                         $("#unique").html("Compound is already in Database");
                     }
-                    ',
-            'error' => '
-                        alert(errorThrown);
-                '
-            ]);
-        ?>
+            }
+        });
     });
     $('#cid').focusout(function(){
         $.ajax({async:true,
