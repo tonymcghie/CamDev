@@ -133,7 +133,11 @@ class CompoundsController extends AppController {
     public function checkCAS(){
         $this->autoRender=false; //stops the page from rendering as this is ajax so it outputs data
         $this->layout = 'ajax';     //ajax layout is blank
-        $CAS = $this->request->data['CAS'];
+        //$CAS = $this->request->data['CAS'];
+        if ($this->request->is('ajax')) {
+            $CAS = $this->request->data('value_to_send');
+        }
+        //echo $CAS;  //check the variable has been sent correctly
         $num = $this->Compound->find('count', ['conditions' => ['cas' => $CAS]]);        
         if ($num == 0){
             echo 'true';    

@@ -15,6 +15,9 @@ class SampleSet extends AppModel implements SearchableModel, VersionableModel {
         'chemist' => array(
             'rule' => 'notBlank'
         ),
+        'p_code' => array(
+            'rule' => 'notBlank'
+        ),
         'set_code' => array(
             'rule' => 'notBlank'
         ),
