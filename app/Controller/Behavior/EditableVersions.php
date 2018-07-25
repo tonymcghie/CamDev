@@ -36,6 +36,8 @@ trait EditableVersions {
         $this->set('model', get_class($model));
         $this->setEditFormRequirements();
         $this->set('names', $this->Chemist->find('list', ['fields' => 'name']));
+        $this->set('p_names', $this->Project->find('list' , ['fields' => 'short_name']));
+        $this->set('crops', $this->Crop->find('list' , ['fields' => 'name']));
 
         $this->render('/Elements/edit_versions');
     }

@@ -156,7 +156,7 @@ class SampleSetsController extends AppController {
     public function newSet(){
         $this->set('names', $this->Chemist->find('list', ['fields' => 'name']));
         $this->set('p_names', $this->Project->find('list' , ['fields' => 'short_name']));
-        $this->set('crops', $this->Crop->find('list' , ['fields' => 'name']));
+        $this->set('crop_names', $this->Crop->find('list' , ['fields' => 'crop_name']));
         // TODO test this should set the values in the form
         if (isset($this->request->data['id'])){
             $this->set('SampleSet', $this->SampleSet->find('list', ['id' => $this->request->data['id']]));

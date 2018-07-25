@@ -66,7 +66,7 @@ class MyHelper extends AppHelper{
      * returns the option value pairs for the crop select input
      * @return type
      */
-    public function getCropOptions(){
+    /**public function getCropOptions(){
         return ['apple' => 'apple' , 'arabidopsis' => 'arabidopsis',
             'avocado' => 'avocado' , 'blackcurrant' => 'blackcurrant' , 'boysenberry' => 'boysenberry',
             'broccoli' => 'broccoli' , 'carrot' => 'carrot' , 'feijoa' => 'feijoa' , 'grape' => 'grape' , 'honey' => 'honey', 'hops' => 'hops',

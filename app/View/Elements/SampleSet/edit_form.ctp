@@ -60,6 +60,7 @@ echo $this->BootstrapForm->input_horizontal('chemist',
 echo $this->BootstrapForm->input_horizontal('associate_analyst',
     [
         'label' => $this->String->get_string('associate_analyst_name', 'SampleSet_form'),
+        'placeholder' => $this->String->get_string('chemist_name_ph', 'SampleSet_form'),
         'autocomplete' => 'on',
         'default' => isset($item['SampleSet']['associate_analyst']) ? $item['SampleSet']['associate_analyst'] : ''
     ]
@@ -67,8 +68,8 @@ echo $this->BootstrapForm->input_horizontal('associate_analyst',
 echo $this->BootstrapForm->input_horizontal('crop',
     [
         'label' => $this->String->get_string('crop', 'SampleSet_form'),
-        'required',
-        'options' => $this->My->getCropOptions(),
+        'placeholder' => $this->String->get_string('crop_name_ph', 'SampleSet_form'),
+        //'options' => $this->My->getCropOptions(),
         'default' => isset($item['SampleSet']['crop']) ? $item['SampleSet']['crop'] : ''
     ]
 );
