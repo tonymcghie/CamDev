@@ -99,7 +99,23 @@ class CompoundpfrDataController extends AppController {
         //var_dump($this->Compound->find('list', ['fields' => 'cas']));
     }
     
-    
+    /**
+     * An Ajax function that checks the number of records that will be updated
+     * given the parameters entered.  Used to check how extensive the curation 
+     * will be.
+     */
+    public function checkRecord(){
+        $this->autoRender=false; //stops the page from rendering as this is ajax so it outputs data
+        $this->layout = 'ajax';     //ajax layout is blank
+        if ($this->request->is('ajax')) {
+            $CAS = $this->request->data('cas_value');
+            $SETCODE = $this->request->data('setcode_value');
+        }
+        //echo $CAS;  //check the variable has been sent correctly
+        //echo $SETCODE;  //check the variable has been sent correctly
+        $num = $this->Compoundpfr_data->find('count', ['conditions' => ['cas' => $CAS, 'reference' => $SETCODE]]); 
+        echo $num, ' records will be updated';  //check the number of records that will be updated
+    }
     
     public function doCurate() {
         $errors = [];

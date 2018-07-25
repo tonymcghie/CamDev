@@ -58,7 +58,7 @@ echo $this->BootstrapForm->end();
     $('#CompoundCas').on('input',function(event){
         $.ajax({
             data:{value_to_send: $("#CompoundCas").val()},
-            url: 'http://localhost/CAM4-test/Compounds/checkCAS/cas',
+            url: 'http://localhost/CAM4-test/Compounds/checkCAS',
             cache: false,
             type: 'post',
             dataType: 'HTML',

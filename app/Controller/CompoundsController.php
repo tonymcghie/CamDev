@@ -145,6 +145,7 @@ class CompoundsController extends AppController {
             echo 'false';
         }//returns true if unique and false if not
     }
+    
     /**
      * A function to get input and compute the amounts of compound required to make a solution of a given concentration
      */
