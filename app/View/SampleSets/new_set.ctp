@@ -37,8 +37,12 @@ echo $this->BootstrapForm->input_horizontal('chemist', ['label' => $this->String
     'placeholder' => $this->String->get_string('chemist_name_ph', 'SampleSet_form'),
     'autocomplete' => 'on']);
 
+//echo $this->BootstrapForm->input_horizontal('crop', ['label' => $this->String->get_string('crop', 'SampleSet_form'),
+//    'required', 'options' => $this->My->getCropOptions()]);
+
 echo $this->BootstrapForm->input_horizontal('crop', ['label' => $this->String->get_string('crop', 'SampleSet_form'),
-    'required', 'options' => $this->My->getCropOptions()]);
+    'placeholder' => $this->String->get_string('crop_name_ph', 'SampleSet_form'),
+    'autocomplete' => 'on']);
 
 echo $this->BootstrapForm->input_horizontal('type', ['label' => $this->String->get_string('sample_type', 'SampleSet_form'),
     'placeholder' => $this->String->get_string('sample_type_ph', 'SampleSet_form')]);

@@ -16,7 +16,7 @@ class SampleSetsController extends AppController {
     use Importable;
 
     public $helpers = ['Html' , 'Form' , 'My' , 'Js', 'Time', 'String', 'BootstrapForm', 'Mustache.Mustache'];
-    public $uses = ['Analysis' , 'SampleSet' , 'Chemist', 'Project'];
+    public $uses = ['Analysis' , 'SampleSet' , 'Chemist', 'Project', 'Crop'];
     public $layout = 'PageLayout';
 
     public $components = ['RequestHandler', 'My', 'Session', 'Cookie', 'Auth', 'File'];
@@ -156,6 +156,7 @@ class SampleSetsController extends AppController {
     public function newSet(){
         $this->set('names', $this->Chemist->find('list', ['fields' => 'name']));
         $this->set('p_names', $this->Project->find('list' , ['fields' => 'short_name']));
+        $this->set('crops', $this->Crop->find('list' , ['fields' => 'name']));
         // TODO test this should set the values in the form
         if (isset($this->request->data['id'])){
             $this->set('SampleSet', $this->SampleSet->find('list', ['id' => $this->request->data['id']]));
