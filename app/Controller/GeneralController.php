@@ -173,4 +173,19 @@ class GeneralController extends AppController {
     public function QunitTests(){
         $this->layout = 'QUnitLayout';
     }
+    
+    /**
+     * A method for viewing variable associated with login, authentication and authorization.
+     */
+    public function loginVar(){
+        $session_user = $this->Session->read('Auth.User');
+        $session_config = $this->Session->read('Config');
+        $this->set('session_user', $session_user);
+        $this->set('session_config', $session_config);
+        
+        $cookie_username = $this->Cookie->read('User.username');
+        $cookie_password = $this->Cookie->read('User.password');
+        $this->set('cookie_username', $cookie_username);
+        $this->set('cookie_password', $cookie_password);
+    }
 }

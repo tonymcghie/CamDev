@@ -66,7 +66,7 @@ class AppController extends Controller {
         $login_message = '';
         $login_name = '';
         if ($this->Auth->loggedIn()) {
-            //$user_data = $this->Session->read('Auth.User');
+            $user_data = $this->Session->read('Auth.User');
             $login_message = 'Logged In. Hello '. $user_data['name'];
             $login_name = $user_data['name'];
             //var_dump($user_data);

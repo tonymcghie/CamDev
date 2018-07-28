@@ -28,7 +28,8 @@ class UsersController extends AppController {
         
         $this->Cookie->name = 'User'; //set the User cookie
         $this->Cookie->time = '365 days'; //long expiration time
-        $this->Cookie->key = getenv('COOKIE_KEY'); //set the security key
+        //$this->Cookie->key = getenv('COOKIE_KEY'); //set the security key
+        $this->Cookie->key = 'qSI232qs*&sXOw!adre@34SAv!@*(XSL#$%)asGb$@11~_+!@#HKis~#^';
         $this->Cookie->type('aes'); //sets the encription type
         
         
@@ -57,6 +58,7 @@ class UsersController extends AppController {
         $user['name'] = 'Tony McGhie';
         $user['user'] = 'HRPTKM';
         $user['location'] = 'Palmerston North Research Centre';
+        $user['groups'] = 'PFR-GP-Biological Chemistry and Bioactives Group';
         //var_dump($user);
         
         $User = $this->request->data;
@@ -64,7 +66,11 @@ class UsersController extends AppController {
         //var_dump($User['username']);
         
         
-        if ($this->request->data) {
+        if ($this->request->data) { //set Cookie if 'RememberMe is checked
+            if ($User['rememberMe'] ==='remember-me') {
+                $this->Cookie->write('User.username', $User['username'], true);
+                $this->Cookie->write('User.password', $User['password'], true);                
+            }  
             // comment out LDAP access for home dev
             //if ($this->LDAP->auth($User['username'], $User['password'])) {
             //    $user = $this->findByUsername($User['username']); //gets the user data from LDAP
