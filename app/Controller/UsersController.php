@@ -65,21 +65,28 @@ class UsersController extends AppController {
         //var_dump($User);
         //var_dump($User['username']);
         
+        /**
+         * cannot get cookies to save due to encryption problems
+         * so commented out to stop errors from showing
         
         if ($this->request->data) { //set Cookie if 'RememberMe is checked
             if ($User['rememberMe'] ==='remember-me') {
                 $this->Cookie->write('User.username', $User['username'], true);
                 $this->Cookie->write('User.password', $User['password'], true);                
-            }  
+            }
+         * 
+         */
+        
             // comment out LDAP access for home dev
             //if ($this->LDAP->auth($User['username'], $User['password'])) {
             //    $user = $this->findByUsername($User['username']); //gets the user data from LDAP
             //}
             $this->Auth->Session->write($this->Auth->sessionKey, $user); //sets the session
-            $this->Auth->_loggedIn = true; //sets the user to be logged in
+            //$this->Auth->_loggedIn = true; //sets the user to be logged in
+            $this->Auth->loggedIn = true; //sets the user to be logged in
             $this->Auth->login($user); //logs in the user
             //clear login form page
-            $this->redirect(['controller' => 'general', 'action' => 'welcome']);
+            //$this->redirect(['controller' => 'general', 'action' => 'welcome']);
         }
     /** 
      * Moved to AppController so that mesaage can be added to the PageLayout   
@@ -124,7 +131,7 @@ class UsersController extends AppController {
     } //if user is laready logged in then redirect if not try to log the user in
 	*/
         //$this->redirect(['controller' => 'general', 'action' => 'welcome']);
-    }
+    //}
     
     /**
      * Gets the User info from a user name
