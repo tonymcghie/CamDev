@@ -30,5 +30,13 @@
             source: Object.values(JSON.parse('<?php echo json_encode($names); ?>')),
             appendTo: $('#SampleSetAssociateAnalyst').closest('div')
         });
+        $('#SampleSetPName').autocomplete({
+            source: Object.values(JSON.parse('<?php echo json_encode($p_names); ?>')),
+            appendTo: $('#SampleSetPName').closest('div')
+        });
+        $('#SampleSetCrop').autocomplete({
+            source: Object.values(JSON.parse('<?php echo json_encode($crops); ?>')),
+            appendTo: $('#SampleSetCrop').closest('div')
+        });
     });
 </script>

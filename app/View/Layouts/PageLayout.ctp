@@ -208,6 +208,7 @@ assert(in_array($group, [$sampleSetGroup,
                         }
                         ?>
                         <?= $this->Html->link('Clear Workbench', ['controller' => 'General', 'action' => 'welcome'], ['class' => 'list-group-item']) ?>
+                        <?= $this->Html->link('View Variables', ['controller' => 'General', 'action' => 'loginVar'], ['class' => 'list-group-item']) ?>
                         <?php
                         /*if ($this->Session->read('Auth.User')!==null && in_array("PFR-GP-Biological Chemistry and Bioactives Group", $this->Session->read('Auth.User')['groups'])){
                             echo '<li>'.$this->Html->link('Scripts', ['controller' => 'General','action' => 'scripts'], ['target' => 'mainFrame', 'class' => 'btn btn-link']).'</li>';

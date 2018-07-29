@@ -44,6 +44,7 @@ class StringHelper extends AppHelper{
             'chemist_name_ph' => 'Start typing - Analyst names will autocomplete',
             'associate_analyst_name' => 'Assoc. Analyst Name',
             'crop' => 'Crop',
+            'crop_name_ph' => 'Start typing - Crop names will autocomplete',
             'sample_type' => 'Sample Type',
             'sample_type_ph' => 'Fruit, leaf, skin etc...',
             'sample_number' => 'Number of Samples',

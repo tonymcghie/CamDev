@@ -32,6 +32,11 @@ App::uses('Controller', 'Controller');
  */
 class AppController extends Controller {
     
+    public $components = array('Auth', 'Session');
+    
+    /**
+     * legacy function to remove when edit are proven to work correctly
+     * 29 July 2018
     public $components = array(
     'Auth' => array(
         'loginAction' => array(
@@ -56,9 +61,15 @@ class AppController extends Controller {
         'redirect' => array('controller' => 'Users', 'action' => 'noPerm'),
         )
     );
-    
+    */
     public function beforeFilter() {
         parent::beforeFilter();
+        //added 29 July 2018
+        $this->Auth->authError = 'Please login to view that page';
+        $this->Auth->loginError = 'Incorrect username/password combination';
+        $this->Auth->loginRedirect = array('controller' => 'general', 'action' => 'welcome');
+        $this->Auth->logoutRedirect = array('controller' => 'general', 'action' => 'welcome');
+        // end added
         // Allow users to register and logout.
         $this->Auth->allow();
         $this->set('behaviour', class_uses($this));

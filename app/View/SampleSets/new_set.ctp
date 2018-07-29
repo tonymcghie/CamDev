@@ -25,7 +25,7 @@ echo $this->BootstrapForm->input_horizontal('submitter', ['label' => ['text' => 
 
 echo $this->BootstrapForm->input_horizontal('p_name', ['label' => $this->String->get_string('p_name', 'SampleSet_form'),
     'placeholder' => $this->String->get_string('p_name_ph', 'SampleSet_form'),
-    'autocomplete' => 'off']);
+    'id' => 'SampleSetPName']);
 
 echo $this->BootstrapForm->input_horizontal('p_code', ['label' => $this->String->get_string('p_code', 'SampleSet_form'),
     'autocomplete' => 'off']);
@@ -35,10 +35,11 @@ echo $this->BootstrapForm->input_horizontal('exp_reference', ['label' => $this->
 
 echo $this->BootstrapForm->input_horizontal('chemist', ['label' => $this->String->get_string('chemist_name', 'SampleSet_form'),
     'placeholder' => $this->String->get_string('chemist_name_ph', 'SampleSet_form'),
-    'autocomplete' => 'on']);
+    'id' => 'SampleSetChemist']);
 
 echo $this->BootstrapForm->input_horizontal('crop', ['label' => $this->String->get_string('crop', 'SampleSet_form'),
-    'required', 'options' => $this->My->getCropOptions()]);
+    'placeholder' => $this->String->get_string('crop_name_ph', 'SampleSet_form'),
+    'id' => 'SampleSetCrop']);
 
 echo $this->BootstrapForm->input_horizontal('type', ['label' => $this->String->get_string('sample_type', 'SampleSet_form'),
     'placeholder' => $this->String->get_string('sample_type_ph', 'SampleSet_form')]);
@@ -91,6 +92,10 @@ echo $this->BootstrapForm->end();
         $('#SampleSetPName').autocomplete({
             source: Object.values(JSON.parse('<?php echo json_encode($p_names); ?>')),
             appendTo: $('#SampleSetPName').closest('div')
+        });
+        $('#SampleSetCrop').autocomplete({
+            source: Object.values(JSON.parse('<?php echo json_encode($crop_names); ?>')),
+            appendTo: $('#SampleSetCrop').closest('div')
         });
     });
 </script>
