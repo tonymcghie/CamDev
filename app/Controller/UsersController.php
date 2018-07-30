@@ -23,7 +23,7 @@ class UsersController extends AppController {
      */
     public function beforeFilter() {
         parent::beforeFilter();
-        $this->Auth->allow(); //allow all access by default
+        //$this->Auth->allow('login', 'logout'); //allow all access by default
         $this->set('group', 'sampleSets');
         
         $this->Cookie->name = 'User'; //set the User cookie
@@ -85,8 +85,9 @@ class UsersController extends AppController {
             //$this->Auth->_loggedIn = true; //sets the user to be logged in
             $this->Auth->loggedIn = true; //sets the user to be logged in
             $this->Auth->login($user); //logs in the user
-            //clear login form page
-            //$this->redirect(['controller' => 'general', 'action' => 'welcome']);
+            //Find the CAMuserType from the Chemists table and write the userType 
+            //to the Session variable
+            $this->Session->write('Auth.User.CAMuserType', $this->findCAMUserType($user));
         }
     /** 
      * Moved to AppController so that mesaage can be added to the PageLayout   
@@ -140,7 +141,20 @@ class UsersController extends AppController {
      */
     private function findByUsername($username){
         return $this->LDAP->getInfo($username);
-    }    
+    } 
+    
+    /**
+     * Gets the User Type from the Chemists Table
+     * @param type $user
+     * @return type
+     */
+    private function findCAMUserType($user){
+        $data = $this->Chemist->find('first',
+        array('conditions' => array('Chemist.name' => $user['name'])
+        ));
+        $userType = $data['Chemist']['type'];
+        return $userType;
+    } 
     
     /**
      * logsout the current user and destroys the cookie
@@ -150,6 +164,7 @@ class UsersController extends AppController {
         $this->Cookie->destroy();  //destroy the cookie
         $this->Session->write('first', true); //makes the while page refesh once       
         //$this->Auth->logoutRedirect = ['controller' => 'General', 'action' => 'blank', '?' => ['alert' => 'You haved logged out']];        
+        session_destroy();  //remove a session variables
         $this->Auth->logout();
     return $this->redirect(['controller' => 'general', 'action' => 'welcome']);
     }    
