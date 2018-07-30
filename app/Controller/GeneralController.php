@@ -182,7 +182,7 @@ class GeneralController extends AppController {
         $auth_user = $this->Auth->user;
         $session_auth = $this->Session->read('Auth');
         $session_config = $this->Session->read('Config');
-        $loggedIn = $this->Session->_loggedIn;
+        $loggedIn = $this->Auth->loggedIn();
         $this->set('session_user', $session_user);
         $this->set('auth_user', $auth_user);
         $this->set('session_auth', $session_auth);

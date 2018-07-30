@@ -72,6 +72,7 @@ class AppController extends Controller {
         // end added
         // Allow users to register and logout.
         $this->Auth->allow();
+        //$this->Auth->allow('login', 'logout');
         $this->set('behaviour', class_uses($this));
         // setup Login status message
         $login_message = '';
