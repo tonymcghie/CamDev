@@ -52,6 +52,14 @@ class SampleSetsController extends AppController {
         $this->file_URL = Configure::read('live') ? '/app/app/webroot/data/' : 'data/';
 
         parent::beforeFilter();
+        
+        //$this->My->isLoggedIn($this->Auth->loggedIn());
+        
+        if (!$this->Auth->loggedIn()) {
+            //echo "loggedOut";
+            $this->Session->setFlash('Please Login to use Sample Set actions','popup_message');
+            $this->redirect(['controller' => 'General', 'action' => 'welcome']);
+        }
 
         //if (isset($this->Auth->Session->read($this->Auth->sessionKey)['Auth']['User']['name'])){
         //    $this->SampleSet->username = $this->Auth->Session->read($this->Auth->sessionKey)['Auth']['User']['name'];

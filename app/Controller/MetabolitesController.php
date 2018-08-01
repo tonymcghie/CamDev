@@ -61,19 +61,19 @@ class MetabolitesController extends AppController {
             $data = $this->request->data;      //gets the data
             $this->Metabolite->create();            //Need to add
             if ($this->Metabolite->save($data)){                 //saves the Compound
-                return $this->redirect(['controller' => 'General', 'action' => 'blank', '?' => ['alert' => 'Unknown Compound Saved']]);
+                return $this->redirect(['controller' => 'General', 'action' => 'welcome', '?' => ['alert' => 'Unknown Compound Saved']]);
             }
         } else if (isset($this->request->data['Proposed_Metabolite'])){
             $data = $this->request->data;      //gets the data
             $this->Proposed_Metabolite->create();            //Need to add
             if ($this->Proposed_Metabolite->save($data)){                 //saves the Compound
-                return $this->redirect(['controller' => 'General', 'action' => 'blank', '?' => ['alert' => 'Proposed Unknown Compound Saved']]);
+                return $this->redirect(['controller' => 'General', 'action' => 'welcome', '?' => ['alert' => 'Proposed Unknown Compound Saved']]);
             }
         } else if (isset($this->request->data['Msms_Metabolite'])){
             $data = $this->request->data;      //gets the data
             $this->Msms_Metabolite->create();            //Need to add
             if ($this->Msms_Metabolite->save($data)){                 //saves the Compound
-                return $this->redirect(['controller' => 'General', 'action' => 'blank', '?' => ['alert' => 'Msms Unknown Compound Saved']]);
+                return $this->redirect(['controller' => 'General', 'action' => 'welcome', '?' => ['alert' => 'Msms Unknown Compound Saved']]);
             }
         } //adds which ever one was pressed
     }
@@ -90,7 +90,7 @@ class MetabolitesController extends AppController {
         
         $this->Metabolite->create();            //Need to add
         if ($this->Metabolite->save($data)){                 //saves the new Unknown Compound
-            return $this->redirect(['controller' => 'General', 'action' => 'blank', '?' => ['alert' => 'Unknown Compound Saved']]);
+            return $this->redirect(['controller' => 'General', 'action' => 'welcome', '?' => ['alert' => 'Unknown Compound Saved']]);
         }
     }
     
