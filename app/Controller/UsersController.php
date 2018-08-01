@@ -49,7 +49,7 @@ class UsersController extends AppController {
         // if already logged in display a message
         if ($this->Auth->loggedIn()) {
             //return to main page -i.e nothing happpens
-        return $this->redirect(['controller' => 'general', 'action' => 'welcome']);       
+            return $this->redirect(['controller' => 'general', 'action' => 'welcome']);       
         }
         // sets the $user array with values normally obtained from LDAP.
         // For use in home dev.  Comment out when using on PFR systems with  LDAP.
@@ -77,17 +77,19 @@ class UsersController extends AppController {
          * 
          */
         
-            // comment out LDAP access for home dev
-            //if ($this->LDAP->auth($User['username'], $User['password'])) {
-            //    $user = $this->findByUsername($User['username']); //gets the user data from LDAP
-            //}
+        // comment out LDAP access for home dev
+        // if ($this->request->data) {  //access LDAP if form has been posted
+        //if ($this->LDAP->auth($User['username'], $User['password'])) {
+        //    $user = $this->findByUsername($User['username']); //gets the user data from LDAP
+        //}
+        if (isset($user['name'])) {  //complete the login to CAM if a named user has been found
             $this->Auth->Session->write($this->Auth->sessionKey, $user); //sets the session
-            //$this->Auth->_loggedIn = true; //sets the user to be logged in
             $this->Auth->loggedIn = true; //sets the user to be logged in
             $this->Auth->login($user); //logs in the user
             //Find the CAMuserType from the Chemists table and write the userType 
             //to the Session variable
             $this->Session->write('Auth.User.CAMuserType', $this->findCAMUserType($user));
+            }
         }
     /** 
      * Moved to AppController so that mesaage can be added to the PageLayout   

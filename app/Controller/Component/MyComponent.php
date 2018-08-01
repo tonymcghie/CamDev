@@ -211,6 +211,14 @@ class MyComponent extends Component{
         return $data;
     }
     
+    public function isLoggedIn($logIn){
+        if (!$logIn) {
+            //echo "loggedOut";
+            $this->Session->setFlash('Please Login to use Sample Set actions','popup_message');
+            $this->redirect(['controller' => 'General', 'action' => 'welcome']);
+        }
+    }
+    
     /*
      * Functions for authorisation *************************
      */
