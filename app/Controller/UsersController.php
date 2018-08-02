@@ -92,9 +92,7 @@ class UsersController extends AppController {
             //Find the CAMuserType from the Chemists table and write the userType 
             //to the Session variable
             $this->Session->write('Auth.User.CAMuserType', $this->findCAMUserType($user));
-            //return $this->redirect(['controller' => 'general', 'action' => 'welcome']);
-            }
-        }  
+        }
         //var_dump($_SESSION);
         
 	/**            
