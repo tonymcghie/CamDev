@@ -61,7 +61,9 @@ class UsersController extends AppController {
         $user['groups'] = 'PFR-GP-Biological Chemistry and Bioactives Group';
         //var_dump($user);
         
-        $User = $this->request->data;
+        if (!$this->Auth->loggedIn()) {
+            $User = $this->request->data;   //get data from login form
+        }
         //var_dump($User);
         //var_dump($User['username']);
         
@@ -78,7 +80,7 @@ class UsersController extends AppController {
          */
         
         // comment out LDAP access for home dev
-        // if ($this->request->data) {  //access LDAP if form has been posted
+        //if ($this->request->data) {  //access LDAP if form has been posted
         //if ($this->LDAP->auth($User['username'], $User['password'])) {
         //    $user = $this->findByUsername($User['username']); //gets the user data from LDAP
         //}
@@ -86,21 +88,13 @@ class UsersController extends AppController {
             $this->Auth->Session->write($this->Auth->sessionKey, $user); //sets the session
             $this->Auth->loggedIn = true; //sets the user to be logged in
             $this->Auth->login($user); //logs in the user
+            $this->Session->write('first', true); //set the session first to true to stop an infinite loop
             //Find the CAMuserType from the Chemists table and write the userType 
             //to the Session variable
             $this->Session->write('Auth.User.CAMuserType', $this->findCAMUserType($user));
+            //return $this->redirect(['controller' => 'general', 'action' => 'welcome']);
             }
-        }
-    /** 
-     * Moved to AppController so that mesaage can be added to the PageLayout   
-        if ($this->Auth->loggedIn()) {
-            $user_data = $this->Session->read('Auth.User');
-            print_r('Authorised and Logged In. Hello '. $user_data['name'].'.');
-            //var_dump($user_data);
-        } elseif (!$this->Auth->loggedIn()) {
-           print_r('Logged Out');
-        }
-    */    
+        }  
         //var_dump($_SESSION);
         
 	/**            
@@ -164,9 +158,9 @@ class UsersController extends AppController {
      */
     public function logout() {        
         $this->Cookie->destroy();  //destroy the cookie
-        $this->Session->write('first', true); //makes the while page refesh once       
         //$this->Auth->logoutRedirect = ['controller' => 'General', 'action' => 'blank', '?' => ['alert' => 'You haved logged out']];        
         session_destroy();  //remove a session variables
+        $this->Session->write('first', true); //makes the while page refesh once  
         $this->Auth->logout();
     return $this->redirect(['controller' => 'general', 'action' => 'welcome']);
     }    

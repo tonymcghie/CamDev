@@ -80,7 +80,8 @@ assert(in_array($group, [$sampleSetGroup,
         <p><?php echo $this->Html->image('cam.png', array('alt' => 'CAM Logo', 'width' => '140')); ?> </p>
         <?php echo $this->Html->link('login', ['controller' => 'users', 'action' => 'login'], ['class' => 'btn btn-link']); ?>|
         <?php //echo $this->Html->link('CAM4login',['controller' => 'users', 'action' => 'cam4_login'], ['target' => 'mainFrame', 'class' => 'btn btn-link']); ?>
-        <?php echo $this->Html->link('logout',['controller' => 'users', 'action' => 'logout'], ['class' => 'btn btn-link']); ?>
+        <?php echo $this->Html->link('logout',['controller' => 'users', 'action' => 'logout'], ['class' => 'btn btn-link']); ?>|
+        <?php echo $this->Html->link('Clear Workbench', ['controller' => 'General', 'action' => 'welcome'], ['class' => 'btn btn-link']); ?>
 
         <div class="panel-group" id="nav_accordion">
             <div class="panel panel-default">
