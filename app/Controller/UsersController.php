@@ -14,7 +14,7 @@ App::uses('AppController', 'Controller');
  */
 class UsersController extends AppController {
     public $components = ['Session', 'LDAP', 'Cookie'];
-    public $uses = ['Contact', 'SampleSet', 'Chemist'];
+    public $uses = ['Contact', 'SampleSet', 'Chemist', 'Login'];
     public $layout = 'PageLayout';
    
 
@@ -43,27 +43,30 @@ class UsersController extends AppController {
     
     
     /**
-     * Logs a user in. Commented out when login not wanted
+     * Logs a user in. Comment out when login is not required
      */
     public function login() {
-        // if already logged in display a message
-        if ($this->Auth->loggedIn()) {
-            //return to main page -i.e nothing happpens
-            return $this->redirect(['controller' => 'general', 'action' => 'welcome']);       
-        }
+        // if logged in then force a logout before starting the login function
+        $this->Auth->logout();
+        $loggedIn = $this->Auth->loggedIn();
+        $this->set('loggedIn', $loggedIn);
+       
+        if ($this->request->is('post')){ //check if the save button has being clicked            
+            $User = $this->request->data; //gets the data
+        } 
         // sets the $user array with values normally obtained from LDAP.
         // For use in home dev.  Comment out when using on PFR systems with  LDAP.
         $user['first_name'] = 'Tony';
         $user['last_name'] = 'McGhie';
         $user['name'] = 'Tony McGhie';
-        $user['user'] = 'HRPTKM';
+        $user['user'] = 'hrptkm';
         $user['location'] = 'Palmerston North Research Centre';
         $user['groups'] = 'PFR-GP-Biological Chemistry and Bioactives Group';
         //var_dump($user);
         
-        if (!$this->Auth->loggedIn()) {
-            $User = $this->request->data;   //get data from login form
-        }
+        //if (!$this->Auth->loggedIn()) {
+            //$User = $this->request->data;   //get data from login form
+        //}
         //var_dump($User);
         //var_dump($User['username']);
         
@@ -84,17 +87,20 @@ class UsersController extends AppController {
         //if ($this->LDAP->auth($User['username'], $User['password'])) {
         //    $user = $this->findByUsername($User['username']); //gets the user data from LDAP
         //}
-        if (isset($user['name'])) {  //complete the login to CAM if a named user has been found
-            $this->Auth->Session->write($this->Auth->sessionKey, $user); //sets the session
-            $this->Auth->loggedIn = true; //sets the user to be logged in
-            $this->Auth->login($user); //logs in the user
-            $this->Session->write('first', true); //set the session first to true to stop an infinite loop
-            //Find the CAMuserType from the Chemists table and write the userType 
-            //to the Session variable
-            $this->Session->write('Auth.User.CAMuserType', $this->findCAMUserType($user));
-            //return $this->redirect(['controller' => 'general', 'action' => 'welcome']);
-            }
-        }  
+        $this->Auth->Session->write($this->Auth->sessionKey, $user); //sets the session
+        $this->Auth->loggedIn = true; //sets the user to be logged in
+        $this->Auth->login($user); //logs in the user
+        $this->Session->write('first', true); //set the session first to true to stop an infinite loop
+        $this->recordLogin($user);  //add login entry to login table
+        //$$user['date'] = date('Y-m-d');
+        //var_dump($user);
+        //$this->Login->create();
+        //$this->Login->save($user);
+        //Find the CAMuserType from the Chemists table and write the userType 
+        //to the Session variable
+        $this->Session->write('Auth.User.CAMuserType', $this->findCAMUserType($user));
+        //$this->redirect(['controller' => 'general', 'action' => 'welcome']);
+    }  
         //var_dump($_SESSION);
         
 	/**            
@@ -137,6 +143,18 @@ class UsersController extends AppController {
      */
     private function findByUsername($username){
         return $this->LDAP->getInfo($username);
+    }
+    
+    /**
+     * makes an entry into the login table
+     * to record the login
+     * @param type $data
+     */
+    private function recordLogin($data){
+        //sets the date that the login occurred
+        $data['datetime'] = date('Y-m-d H:i:s');
+        $this->Login->create();
+        $this->Login->save($data);
     } 
     
     /**
