@@ -87,15 +87,12 @@ class UsersController extends AppController {
         //if ($this->LDAP->auth($User['username'], $User['password'])) {
         //    $user = $this->findByUsername($User['username']); //gets the user data from LDAP
         //}
+        
         $this->Auth->Session->write($this->Auth->sessionKey, $user); //sets the session
         $this->Auth->loggedIn = true; //sets the user to be logged in
         $this->Auth->login($user); //logs in the user
         $this->Session->write('first', true); //set the session first to true to stop an infinite loop
         $this->recordLogin($user);  //add login entry to login table
-        //$$user['date'] = date('Y-m-d');
-        //var_dump($user);
-        //$this->Login->create();
-        //$this->Login->save($user);
         //Find the CAMuserType from the Chemists table and write the userType 
         //to the Session variable
         $this->Session->write('Auth.User.CAMuserType', $this->findCAMUserType($user));
