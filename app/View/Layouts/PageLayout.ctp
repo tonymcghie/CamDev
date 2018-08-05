@@ -209,9 +209,9 @@ assert(in_array($group, [$sampleSetGroup,
                         ?><?php
                         if (($login_name = 'Tony McGhie') && ($this->Session->read('Auth.User')!==null)) {
                             echo $this->Html->link('New Analyst', ['controller' => 'Chemists', 'action' => 'newAnalyst'], ['class' => 'list-group-item']);
+                            echo $this->Html->link('View Variables', ['controller' => 'General', 'action' => 'loginVar'], ['class' => 'list-group-item']);
                         }
                         ?>
-                        <?= $this->Html->link('Clear Workbench', ['controller' => 'General', 'action' => 'welcome'], ['class' => 'list-group-item']) ?>
                         <?= $this->Html->link('View Variables', ['controller' => 'General', 'action' => 'loginVar'], ['class' => 'list-group-item']) ?>
                         <?php
                         /*if ($this->Session->read('Auth.User')!==null && in_array("PFR-GP-Biological Chemistry and Bioactives Group", $this->Session->read('Auth.User')['groups'])){

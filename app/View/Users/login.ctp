@@ -53,10 +53,6 @@ body {
 
 </style>
   <div class="wrapper">
-      <?php
-      echo 'loggedIn';
-      var_dump($loggedIn);
-      ?>
       <?php echo $this->Form->create('User', array('action' => 'login', 'class' => 'form-signin')); ?>
       <h2 class="form-signin-heading">Please Login</h2>
       <input type="text" class="form-control" name="username" placeholder="enter PFR username" required="" autofocus="" />

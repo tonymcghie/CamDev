@@ -48,55 +48,44 @@ class UsersController extends AppController {
     public function login() {
         // if logged in then force a logout before starting the login function
         $this->Auth->logout();
-        $loggedIn = $this->Auth->loggedIn();
-        $this->set('loggedIn', $loggedIn);
        
         if ($this->request->is('post')){ //check if the save button has being clicked            
             $User = $this->request->data; //gets the data
-        } 
-        // sets the $user array with values normally obtained from LDAP.
-        // For use in home dev.  Comment out when using on PFR systems with  LDAP.
-        $user['first_name'] = 'Tony';
-        $user['last_name'] = 'McGhie';
-        $user['name'] = 'Tony McGhie';
-        $user['user'] = 'hrptkm';
-        $user['location'] = 'Palmerston North Research Centre';
-        $user['groups'] = 'PFR-GP-Biological Chemistry and Bioactives Group';
-        //var_dump($user);
+            
+            // sets the $user array with values normally obtained from LDAP.
+            // For use in home dev.  Comment out when using on PFR systems with  LDAP.
+            $user['first_name'] = 'Tony';
+            $user['last_name'] = 'McGhie';
+            $user['name'] = 'Tony McGhie';
+            $user['user'] = 'hrptkm';
+            $user['location'] = 'Palmerston North Research Centre';
+            $user['groups'] = 'PFR-GP-Biological Chemistry and Bioactives Group';
+            
+            /**
+            * cannot get cookies to save due to encryption problems
+            * so commented out to stop errors from showing
         
-        //if (!$this->Auth->loggedIn()) {
-            //$User = $this->request->data;   //get data from login form
-        //}
-        //var_dump($User);
-        //var_dump($User['username']);
-        
-        /**
-         * cannot get cookies to save due to encryption problems
-         * so commented out to stop errors from showing
-        
-        if ($this->request->data) { //set Cookie if 'RememberMe is checked
             if ($User['rememberMe'] ==='remember-me') {
                 $this->Cookie->write('User.username', $User['username'], true);
                 $this->Cookie->write('User.password', $User['password'], true);                
             }
-         * 
-         */
-        
-        // comment out LDAP access for home dev
-        //if ($this->request->data) {  //access LDAP if form has been posted
-        //if ($this->LDAP->auth($User['username'], $User['password'])) {
-        //    $user = $this->findByUsername($User['username']); //gets the user data from LDAP
-        //}
-        
-        $this->Auth->Session->write($this->Auth->sessionKey, $user); //sets the session
-        $this->Auth->loggedIn = true; //sets the user to be logged in
-        $this->Auth->login($user); //logs in the user
-        $this->Session->write('first', true); //set the session first to true to stop an infinite loop
-        $this->recordLogin($user);  //add login entry to login table
-        //Find the CAMuserType from the Chemists table and write the userType 
-        //to the Session variable
-        $this->Session->write('Auth.User.CAMuserType', $this->findCAMUserType($user));
-        //$this->redirect(['controller' => 'general', 'action' => 'welcome']);
+            * 
+            */
+            
+            // comment out LDAP access for home dev
+            //if ($this->LDAP->auth($User['username'], $User['password'])) {
+            //    $user = $this->findByUsername($User['username']); //gets the user data from LDAP
+            //}
+            
+            // set up the variable that allow authorisation and access
+            $this->Auth->Session->write($this->Auth->sessionKey, $user); //sets the session
+            $this->Auth->loggedIn = true; //sets the user to be logged in
+            $this->Auth->login($user); //logs in the user
+            $this->Session->write('first', true); //set the session first to true to stop an infinite loop
+            //Find the CAMuserType from the Chemists table and write the userType to the Session variable
+            $this->Session->write('Auth.User.CAMuserType', $this->findCAMUserType($user));
+            $this->recordLogin($user);  //add a login instance to the login table
+        } 
     }  
         //var_dump($_SESSION);
         
@@ -148,10 +137,12 @@ class UsersController extends AppController {
      * @param type $data
      */
     private function recordLogin($data){
-        //sets the date that the login occurred
+        //sets the date and time that the login occurred
         $data['datetime'] = date('Y-m-d H:i:s');
         $this->Login->create();
-        $this->Login->save($data);
+        if ($this->Login->save($data)) {
+            return $this->redirect(['controller' => 'general', 'action' => 'welcome']);
+        }  //if save successful then redirect to the welcome screen
     } 
     
     /**
