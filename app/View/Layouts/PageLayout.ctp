@@ -79,7 +79,6 @@ assert(in_array($group, [$sampleSetGroup,
     <nav class="col-lg-2 col-md-2 layer-2" style="height: 100vh;overflow: auto;">
         <p><?php echo $this->Html->image('cam.png', array('alt' => 'CAM Logo', 'width' => '140')); ?> </p>
         <?php echo $this->Html->link('login', ['controller' => 'users', 'action' => 'login'], ['class' => 'btn btn-link']); ?>|
-        <?php //echo $this->Html->link('CAM4login',['controller' => 'users', 'action' => 'cam4_login'], ['target' => 'mainFrame', 'class' => 'btn btn-link']); ?>
         <?php echo $this->Html->link('logout',['controller' => 'users', 'action' => 'logout'], ['class' => 'btn btn-link']); ?>|
         <?php echo $this->Html->link('Clear Workbench', ['controller' => 'General', 'action' => 'welcome'], ['class' => 'btn btn-link']); ?>
 
@@ -210,9 +209,9 @@ assert(in_array($group, [$sampleSetGroup,
                         ?><?php
                         if (($login_name = 'Tony McGhie') && ($this->Session->read('Auth.User')!==null)) {
                             echo $this->Html->link('New Analyst', ['controller' => 'Chemists', 'action' => 'newAnalyst'], ['class' => 'list-group-item']);
+                            echo $this->Html->link('View Variables', ['controller' => 'General', 'action' => 'loginVar'], ['class' => 'list-group-item']);
                         }
                         ?>
-                        <?= $this->Html->link('Clear Workbench', ['controller' => 'General', 'action' => 'welcome'], ['class' => 'list-group-item']) ?>
                         <?= $this->Html->link('View Variables', ['controller' => 'General', 'action' => 'loginVar'], ['class' => 'list-group-item']) ?>
                         <?php
                         /*if ($this->Session->read('Auth.User')!==null && in_array("PFR-GP-Biological Chemistry and Bioactives Group", $this->Session->read('Auth.User')['groups'])){
