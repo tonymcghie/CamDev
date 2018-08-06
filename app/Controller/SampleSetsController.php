@@ -57,7 +57,7 @@ class SampleSetsController extends AppController {
         
         if (!$this->Auth->loggedIn()) {
             //echo "loggedOut";
-            $this->Session->setFlash('Please Login to use Sample Set actions','popup_message');
+            $this->Session->setFlash('Please SignIn to use Sample Set actions','popup_message');
             $this->redirect(['controller' => 'General', 'action' => 'welcome']);
         }
 
