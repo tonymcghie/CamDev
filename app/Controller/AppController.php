@@ -78,12 +78,10 @@ class AppController extends Controller {
         $login_message = '';
         $login_name = '';
         if ($this->Auth->loggedIn()) {
-            $user_data = $this->Session->read('Auth.User');
-            $login_message = 'Logged In. Hello '. $user_data['name'];
-            $login_name = $user_data['name'];
-            //var_dump($user_data);
+            $login_message = 'Signed In. Hello '. $this->Session->read('Auth.User.name');
+            $login_name = $this->Session->read('Auth.User.name');
         } else {
-           $login_message = 'Logged Out';
+           $login_message = 'Signed Out';
            $login_name = 'no one logged in';
         }
         $this->set('login_message', $login_message);

@@ -49,6 +49,12 @@ assert(in_array($group, [$sampleSetGroup,
     echo $this->fetch('css');
     echo $this->fetch('script');
     ?>
+    
+    <?php // setup background image variables
+    $BkImage = '../img/vineyard-blenheim.jpg';
+    $PalmyImage = '../img/palmy_town50scale.jpg';
+    $OtagoImage = '../img/chemlab_otago.jpg';
+    ?>
 
     <style>
         /* TODO remove */
@@ -64,7 +70,7 @@ assert(in_array($group, [$sampleSetGroup,
         }
 
         .background {
-            background-image: url('../img/vineyard-blenheim.jpg');
+            background-image: url('<?php echo $BkImage; ?>');
             background-size: cover;
             position: fixed;
             width: 100vw;
@@ -78,9 +84,9 @@ assert(in_array($group, [$sampleSetGroup,
 <body>
     <nav class="col-lg-2 col-md-2 layer-2" style="height: 100vh;overflow: auto;">
         <p><?php echo $this->Html->image('cam.png', array('alt' => 'CAM Logo', 'width' => '140')); ?> </p>
-        <?php echo $this->Html->link('login', ['controller' => 'users', 'action' => 'login'], ['class' => 'btn btn-link']); ?>|
-        <?php echo $this->Html->link('logout',['controller' => 'users', 'action' => 'logout'], ['class' => 'btn btn-link']); ?>|
-        <?php echo $this->Html->link('Clear Workbench', ['controller' => 'General', 'action' => 'welcome'], ['class' => 'btn btn-link']); ?>
+        <?php echo $this->Html->link('SignIn', ['controller' => 'users', 'action' => 'login'], ['class' => 'btn btn-link']); ?>|
+        <?php echo $this->Html->link('SignOut',['controller' => 'users', 'action' => 'logout'], ['class' => 'btn btn-link']); ?>|
+        <?php echo $this->Html->link('Clear', ['controller' => 'General', 'action' => 'welcome'], ['class' => 'btn btn-link']); ?>
 
         <div class="panel-group" id="nav_accordion">
             <div class="panel panel-default">
@@ -92,12 +98,7 @@ assert(in_array($group, [$sampleSetGroup,
                     <div class="panel-body light-blue lighten-3">
                         <?= $this->Html->link('Find', ['controller' => 'SampleSets', 'action' => 'search'], ['class' => 'list-group-item']) ?>
                         <?= $this->Html->link('New', ['controller' => 'SampleSets', 'action' => 'newSet'], ['class' => 'list-group-item']) ?>
-                        <?= ''//$this->Html->link('Import Samples', ['controller' => 'SampleSets', 'action' => 'import'], ['class' => 'list-group-item']) ?>
                         <?= $this->Html->link('Import Samples', ['controller' => 'Samples', 'action' => 'import'], ['class' => 'list-group-item']) ?>
-                        <!--links go here
-                        if ($this->Session->read('Auth.User')!==null){-->
-                        <?php /*echo $this->Html->link('New', ['controller' => 'SampleSets', 'action' => 'newSet'], ['target' => 'mainFrame', 'class' => 'btn btn-link']) */?>
-                        <!--}-->
                     </div>
                 </div>
             </div>
@@ -109,17 +110,13 @@ assert(in_array($group, [$sampleSetGroup,
                 <div class="panel-collapse collapse <?php if ($group == $compoundsGroup)echo 'in'; ?>" id="compounds_menu">
                     <div class="panel-body light-blue lighten-3">
                         <?= $this->Html->link('Find', ['controller' => 'Compounds', 'action' => 'search'], ['class' => 'list-group-item']) ?>
-                        <?= $this->Html->link('New', ['controller' => 'Compounds', 'action' => 'addCompound'], ['class' => 'list-group-item']) ?>
+                        <?php
+                        if (($this->Session->read('Auth.User.CAMuserType')!==null) && ($this->Session->read('Auth.User')!==null)) {
+                            echo $this->Html->link('New', ['controller' => 'Compounds', 'action' => 'addCompound'], ['class' => 'list-group-item']);
+                        }
+                        ?>
                         <?= $this->Html->link('Identify by Mass', ['controller' => 'Identify', 'action' => 'SelectFile'], ['class' => 'list-group-item']) ?>
                         <?= $this->Html->link('Name Changer (Matching)', ['controller' => 'Namechanger', 'action' => 'SelectFile'], ['class' => 'list-group-item']) ?>
-
-                        <?php
-                        /*//if ($this->Session->read('Auth.User')!==null && in_array("PFR-GP-Biological Chemistry and Bioactives Group", $this->Session->read('Auth.User')['groups'])){
-                        echo '<li>'. $this->Html->link('Add', ['controller' => 'Compounds','action' => 'addCompound'], ['target' => 'mainFrame', 'class' => 'btn btn-link']).'</li>';
-                        echo '<li>'.$this->Html->link('ID by Mass', ['controller' => 'Identify','action' => 'idMass'], ['target' => 'mainFrame', 'class' => 'btn btn-link']).'</li>';
-                        echo '<li>'.$this->Html->link('ID by Mass(ac)', ['controller' => 'Identify','action' => 'IdByMass'], ['target' => 'mainFrame', 'class' => 'btn btn-link']).'</li>';
-                        //}
-                        */?>
                     </div>
                 </div>
             </div>
@@ -135,16 +132,11 @@ assert(in_array($group, [$sampleSetGroup,
                         <?= $this->Html->link('Graph', ['controller' => 'Compoundpfr_data', 'action' => 'graphData'], ['class' => 'list-group-item']) ?>
                         <?= $this->Html->link('Import', ['controller' => 'Compoundpfr_data', 'action' => 'import'], ['class' => 'list-group-item']) ?>
                         <?php
-                        if (($login_name = 'Tony McGhie') && ($this->Session->read('Auth.User')!==null)) {
+                        if (($this->Session->read('Auth.User.name') == 'Tony McGhie') && ($this->Session->read('Auth.User')!==null)) {
                             echo $this->Html->link('dB Curation', ['controller' => 'Compoundpfr_data', 'action' => 'curate_getParam'], ['class' => 'list-group-item']);
                         }
                         ?>
                         <?= ''//$this->Html->link('Find-Bioactivity', ['controller' => 'Bioactivitypfr_data', 'action' => 'search'], ['class' => 'list-group-item']) ?>
-                        <?php
-                        /*if ($this->Session->read('Auth.User')!==null && in_array("PFR-GP-Biological Chemistry and Bioactives Group", $this->Session->read('Auth.User')['groups'])) {
-                        echo '<li>'.$this->Html->link('Import', array('controller' => 'Compoundpfr_data','action' => 'import'), array('target' => 'mainFrame' , 'class' => 'none')).'</li>';
-                        }*/
-                        ?>
                     </div>
                 </div>
             </div>
@@ -203,11 +195,8 @@ assert(in_array($group, [$sampleSetGroup,
                         <?= $this->Html->link('New Project', ['controller' => 'Projects', 'action' => 'addProject'], ['class' => 'list-group-item']) ?>
                         <?= ''//$this->Html->link('Find Analyst', ['controller' => 'Chemists', 'action' => 'search'], ['class' => 'list-group-item']) ?>
                         <?php
-                        if (($login_name = 'Tony McGhie') && ($this->Session->read('Auth.User')!==null)) {
+                        if (($this->Session->read('Auth.User.name') == 'Tony McGhie') && ($this->Session->read('Auth.User')!==null)) {
                             echo $this->Html->link('Find Analyst', ['controller' => 'Chemists', 'action' => 'search'], ['class' => 'list-group-item']);
-                        }
-                        ?><?php
-                        if (($login_name = 'Tony McGhie') && ($this->Session->read('Auth.User')!==null)) {
                             echo $this->Html->link('New Analyst', ['controller' => 'Chemists', 'action' => 'newAnalyst'], ['class' => 'list-group-item']);
                             echo $this->Html->link('View Variables', ['controller' => 'General', 'action' => 'loginVar'], ['class' => 'list-group-item']);
                         }
