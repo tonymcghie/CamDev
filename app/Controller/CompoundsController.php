@@ -93,6 +93,33 @@ class CompoundsController extends AppController {
            $this->request->data = $compound;
         }//update the data to display
     }
+    
+    /**
+     * Edit a compound
+     * @param type $id
+     * @return type
+     * @throws NotFoundExcpetion
+     */
+    public function editMsmsCompound($id = null){
+        //$this->layout = 'main';
+        if ($id == null){
+            $id = $this->params['url']['id'];
+        } // gets $id from the url
+        $compound = $this->Compound->findById($id);
+        if (!$compound){
+            throw new NotFoundExcpetion(__('Invalid Compound'));
+        } //throw error if the id does not belong to a compound
+        if ($this->request->is(array('post', 'put'))){ //gets edited data from the view
+            $this->Compound->id = $id;
+            if ($this->Compound->save($this->request->data)){
+                //$this->redirect(['controller' => 'Compounds', 'action' => 'search']);
+                echo "<script>window.close();</script>";
+            } //if saved successfully redirect to Compounds->search
+        } //save data if the form is being submitted
+        if (!$this->request->data){
+           $this->request->data = $compound;
+        }//update the data to display
+    }
 
     /**
      * This function contains the code for identifying unknown compounds by accurate mass.
