@@ -3,7 +3,7 @@
 App::uses('Searchable', 'Controller/Behavior');
 App::uses('Exportable', 'Controller/Behavior');
 
-class CompoundsController extends AppController {
+class MsmsCompoundsController extends AppController {
     use Searchable;
     use Exportable;
 
@@ -93,65 +93,54 @@ class CompoundsController extends AppController {
            $this->request->data = $compound;
         }//update the data to display
     }
-
+    
     /**
-     * This function contains the code for identifying unknown compounds by accurate mass.
-     * 1) a csv file containing accurate masses is read;
-     * 2) each mass is compared with entries in the compound table;
-     * 3) successful hits are written into an output file that is sent to Downloads
+     * Edit a compound
+     * @param type $id
+     * @return type
+     * @throws NotFoundExcpetion
      */
-    public function IdByMass(){
-    } 
+    public function editMsmsCompound($id = null){
         
-    /**
-     * This function displays a message describing the process for identifying unknown compounds by accurate mass
-     */
-    public function idMass(){
-    }
-
-    /**
-     * This is the function for the substructure search
-     */
-    public function subSearch(){
-        //empty as everything is done through ajax
-    }
-    
-    /**
-     * An Ajax function that checks to see of the result is in the database
-     */
-    public function filterSubStructRes(){
-        $this->autoRender=false; //stops the page from rendering as this is ajax so it outputs data
-        $this->layout = 'ajax';     //ajax layout is blank
-        $CID = $this->request->data['CID']; 
-        $comp = $this->Compound->find('first', ['conditions' => ['pub_chem' => $CID], 'fields' => ['Compound.pub_chem', 'Compound.compound_name', 'Compound.exact_mass']]);
-        echo json_encode($comp);
-    }
-    
-    /**
-     * An Ajax function that checks to see that the CAS number is not already in use
-     */
-    public function checkCAS(){
-        $this->autoRender=false; //stops the page from rendering as this is ajax so it outputs data
-        $this->layout = 'ajax';     //ajax layout is blank
-        //$CAS = $this->request->data['CAS'];
-        if ($this->request->is('ajax')) {
-            $CAS = $this->request->data('value_to_send');
-        }
-        //echo $CAS;  //check the variable has been sent correctly
-        $num = $this->Compound->find('count', ['conditions' => ['cas' => $CAS]]);        
-        if ($num == 0){
-            echo 'true';    
+        if ($id == null) {
+            $id = $this->params['url']['id'];
+        } // gets $id from the url
+        
+        $compound = $this->Compound->findById($id);
+        if (!$compound){
+            throw new NotFoundExcpetion(__('Invalid Compound'));
+            //throw error if the id does not belong to a compound
         } else {
-            echo 'false';
-        }//returns true if unique and false if not
-    }
-    
-    /**
-     * A function to get input and compute the amounts of compound required to make a solution of a given concentration
-     */
-    public function reagentsCompound($id = null) {
-        $compound = $this->Compound->findById($id); //find a compound by id
-        $this->set('info', $compound);// passes the compound info to the view
+            $this->set('compound', $compound);
+            // passes the compound info to the view
+        }
+        
+        if ($this->request->is('post')) { //check if the save button has being clicked            
+            $data = $this->request->data; //gets the data
+        }
+        var_dump($data);
+        
+        $this->Msms_compound->create();
+        if ($this->Msms_compound->save($data)) {
+            return $this->redirect(['controller' => 'general', 'action' => 'welcome']);
+        }  //if save successful then redirect to the welcome screen
+        
+        /**
+        $compound = $this->Compound->findById($id);
+        if (!$compound){
+            throw new NotFoundExcpetion(__('Invalid Compound'));
+        } //throw error if the id does not belong to a compound
+        if ($this->request->is(array('post', 'put'))){ //gets edited data from the view
+            $this->Compound->id = $id;
+            if ($this->Compound->save($this->request->data)){
+                //$this->redirect(['controller' => 'Compounds', 'action' => 'search']);
+                echo "<script>window.close();</script>";
+            } //if saved successfully redirect to Compounds->search
+        } //save data if the form is being submitted
+        if (!$this->request->data){
+           $this->request->data = $compound;
+        }//update the data to display
+        */
     }
 }
 
