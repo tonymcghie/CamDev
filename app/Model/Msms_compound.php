@@ -11,7 +11,7 @@
  *
  * @author CFPAJM
  */
-class Msms_Compound extends AppModel{
+class Msms_compound extends AppModel{
      public $validate = array(
     'id' => array(
         'rule' => 'notBlank'),
