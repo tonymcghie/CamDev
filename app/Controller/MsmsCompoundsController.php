@@ -73,7 +73,7 @@ class MsmsCompoundsController extends AppController {
      * @return type
      * @throws NotFoundExcpetion
      */
-    public function editCompound($id = null){
+    public function editMsmsCompound($id = null){
         //$this->layout = 'main';
         if ($id == null){
             $id = $this->params['url']['id'];
@@ -83,11 +83,13 @@ class MsmsCompoundsController extends AppController {
             throw new NotFoundExcpetion(__('Invalid Compound'));
         } //throw error if the id does not belong to a compound
         if ($this->request->is(array('post', 'put'))){ //gets edited data from the view
-            $this->Compound->id = $id;
-            if ($this->Compound->save($this->request->data)){
+            $data = $this->request->data; //gets the data
+            var_dump($data);
+            //$this->Compound->id = $id;
+            //if ($this->Compound->save($this->request->data)){
                 //$this->redirect(['controller' => 'Compounds', 'action' => 'search']);
-                echo "<script>window.close();</script>";
-            } //if saved successfully redirect to Compounds->search
+                //echo "<script>window.close();</script>";
+            //} //if saved successfully redirect to Compounds->search
         } //save data if the form is being submitted
         if (!$this->request->data){
            $this->request->data = $compound;
@@ -100,7 +102,7 @@ class MsmsCompoundsController extends AppController {
      * @return type
      * @throws NotFoundExcpetion
      */
-    public function editMsmsCompound($id = null){
+    /**public function editMsmsCompound($id = null){
         
         if ($id == null) {
             $id = $this->params['url']['id'];
@@ -141,6 +143,6 @@ class MsmsCompoundsController extends AppController {
            $this->request->data = $compound;
         }//update the data to display
         */
-    }
+    //}
 }
 

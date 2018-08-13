@@ -1,5 +1,5 @@
 <?php
-$this->assign('title', 'Edit Compound Information');
+$this->assign('title', 'Edit msms Compound Information');
 
 ?>
 <header>
@@ -8,14 +8,14 @@ $this->assign('title', 'Edit Compound Information');
 </header>
 
 <?php
-echo $this->BootstrapForm->create_horizontal('Msms_compound', ['type' => 'file' ,'action' => 'editMsmsCompound']);
+echo $this->BootstrapForm->create_horizontal('Compound', ['type' => 'file' ,'action' => 'editCompound']);
 //to do make a clone button in the table
 
-echo $this->BootstrapForm->input_horizontal('cas', ['label' => ['text' => $this->String->get_string('cas', 'Compound_msms_form')],
-    'readonly',]);
+echo $this->BootstrapForm->input_horizontal('cas', ['label' => ['text' => $this->String->get_string('cas', 'Compound_form')],
+    'required',]);
 
-echo $this->BootstrapForm->input_horizontal('compound_name', ['label' => $this->String->get_string('compound_name', 'Compound_msms_form'),
-    'readonly']);
+echo $this->BootstrapForm->input_horizontal('compound_name', ['label' => $this->String->get_string('compound_name', 'Compound_form'),
+    'autocomplete' => 'off']);
 
 echo $this->BootstrapForm->input_horizontal('parent_mz', ['label' => $this->String->get_string('parent_mz', 'Compound_msms_form'),
     'autocomplete' => 'off']);
