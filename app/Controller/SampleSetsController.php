@@ -181,10 +181,12 @@ class SampleSetsController extends AppController {
 
     protected function setEditFormRequirements() {
         $this->set('names', $this->Chemist->find('list', ['fields' => 'name']));
+        $this->set('p_names', $this->Project->find('list' , ['fields' => 'short_name']));
+        $this->set('crops', $this->Crop->find('list' , ['fields' => 'crop_name']));
     }
 
     protected function doSave($item) {
-        //var_dump($item);
+        var_dump($item);
         if(isset($item['SampleSet']['metadataFile']['error']) && $item['SampleSet']['metadataFile']['error']=='0'){
             $newName = $item['SampleSet']['set_code']. '_Metadata_' . time() . '.' . pathinfo($item['SampleSet']['metadataFile']['name'])['extension'];
             $newPath = 'data/files/samplesets/' . $newName;

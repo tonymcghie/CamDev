@@ -1,5 +1,6 @@
 <?php
-
+//var_dump($crops);
+var_dump($item);
 /**
  * Fields in the database that should be passed through but not edited or displayed.
  * @var array $hiddenFields
@@ -40,7 +41,8 @@ echo $this->BootstrapForm->input_horizontal('p_name',
         'label' => $this->String->get_string('p_name', 'SampleSet_form'),
         'placeholder' => $this->String->get_string('p_name_ph', 'SampleSet_form'),
         'autocomplete' => 'off',
-        'default' => isset($item['SampleSet']['p_name']) ? $item['SampleSet']['p_name'] : ''
+        'default' => isset($item['SampleSet']['p_name']) ? $item['SampleSet']['p_name'] : '',
+        'id' => 'SampleSetPName'
     ]
 );
 echo $this->BootstrapForm->input_horizontal('exp_reference',
@@ -61,16 +63,17 @@ echo $this->BootstrapForm->input_horizontal('associate_analyst',
     [
         'label' => $this->String->get_string('associate_analyst_name', 'SampleSet_form'),
         'placeholder' => $this->String->get_string('chemist_name_ph', 'SampleSet_form'),
-        'autocomplete' => 'on',
-        'default' => isset($item['SampleSet']['associate_analyst']) ? $item['SampleSet']['associate_analyst'] : ''
+        'autocomplete' => 'off',
+        'default' => isset($item['SampleSet']['associate_analyst']) ? $item['SampleSet']['associate_analyst'] : '',
+        'id' => 'SampleSetAssociateAnalyst'
     ]
 );
 echo $this->BootstrapForm->input_horizontal('crop',
     [
         'label' => $this->String->get_string('crop', 'SampleSet_form'),
         'placeholder' => $this->String->get_string('crop_name_ph', 'SampleSet_form'),
-        //'options' => $this->My->getCropOptions(),
-        'default' => isset($item['SampleSet']['crop']) ? $item['SampleSet']['crop'] : ''
+        'default' => isset($item['SampleSet']['crop']) ? $item['SampleSet']['crop'] : '',
+        'id' => 'SampleSetCrop'
     ]
 );
 echo $this->BootstrapForm->input_horizontal('type',
@@ -168,3 +171,5 @@ $this->BootstrapForm->add_validator('requires', 'compounds');
 $this->BootstrapForm->add_validator('match_validator', 'chemist', ['data' => $names]);
 
 $this->BootstrapForm->new_rule('display_if_checked', 'containment_details', 'containment' , null, ['transition' => 'slide_down']);
+
+
