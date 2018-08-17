@@ -79,21 +79,44 @@ class MsmsCompoundsController extends AppController {
             $id = $this->params['url']['id'];
         } // gets $id from the url
         $compound = $this->Compound->findById($id);
+        $this->set('compound', $this->Compound->findById($id));
         if (!$compound){
             throw new NotFoundExcpetion(__('Invalid Compound'));
-        } //throw error if the id does not belong to a compound
-        if ($this->request->is(array('post', 'put'))){ //gets edited data from the view
-            $data = $this->request->data; //gets the data
-            var_dump($data);
+        } //throw error if there is no compound for this id
+        $this->set('compound', $this->Compound->findById($id));
+        //if (isset($this->request->data['Msms_compound'])){ //check if the save button has being clicked 
+            //$data = $this->request->data;      //gets the data
+            //var_dump($data);
+            //$this->Msms_compound->create();    //setup to add new record
+            //if ($this->Project->save($data)){  //saves the msms compound data
+                //return $this->redirect(['controller' => 'General', 'action' => 'welcome']);
+            //}
+        //} 
+        //if ($this->request->is(array('post', 'put'))){ //gets edited data from the view
+            //$data = $this->request->data; //gets the data
+            //var_dump($data);
             //$this->Compound->id = $id;
             //if ($this->Compound->save($this->request->data)){
                 //$this->redirect(['controller' => 'Compounds', 'action' => 'search']);
                 //echo "<script>window.close();</script>";
             //} //if saved successfully redirect to Compounds->search
-        } //save data if the form is being submitted
-        if (!$this->request->data){
-           $this->request->data = $compound;
-        }//update the data to display
+
+        //} //save data if the form is being submitted
+        //if (!$this->request->data){
+           //$this->request->data = $compound;
+       //}//update the data to display
+    }
+    
+    public function saveMsmsCompound($id = null){
+        if (isset($this->request->data['Msms_compound'])){ //check if the save button has being clicked 
+            $data = $this->request->data;      //gets the data
+            var_dump($data);
+            $this->Msms_compound->create();    //setup to add new record
+            if ($this->Msms_compound->save($data)){  //saves the msms compound data
+                //return $this->redirect(['controller' => 'General', 'action' => 'welcome']);
+            }
+        }
+        $this->render(false);
     }
     
     /**
