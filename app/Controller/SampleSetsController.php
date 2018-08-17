@@ -186,7 +186,7 @@ class SampleSetsController extends AppController {
     }
 
     protected function doSave($item) {
-        //var_dump($item);
+        var_dump($item);
         if(isset($item['SampleSet']['metadataFile']['error']) && $item['SampleSet']['metadataFile']['error']=='0'){
             $newName = $item['SampleSet']['set_code']. '_Metadata_' . time() . '.' . pathinfo($item['SampleSet']['metadataFile']['name'])['extension'];
             $newPath = 'data/files/samplesets/' . $newName;
