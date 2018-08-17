@@ -186,7 +186,7 @@ class SampleSetsController extends AppController {
     }
 
     protected function doSave($item) {
-        var_dump($item);
+        //var_dump($item);
         if(isset($item['SampleSet']['metadataFile']['error']) && $item['SampleSet']['metadataFile']['error']=='0'){
             $newName = $item['SampleSet']['set_code']. '_Metadata_' . time() . '.' . pathinfo($item['SampleSet']['metadataFile']['name'])['extension'];
             $newPath = 'data/files/samplesets/' . $newName;
@@ -209,7 +209,7 @@ class SampleSetsController extends AppController {
         $item['SampleSet']['version'] = $maxVersion + 1;
 
         unset($item['SampleSet']['id']); //unsets the id so the new version is saved as a new row
-
+        var_dump($item);
         $this->SampleSet->create();
         $newItem = $this->SampleSet->save($item);
         assert($newItem, 'The SampleSet failed to be saved');
@@ -222,7 +222,7 @@ class SampleSetsController extends AppController {
                 'to' => $item['SampleSet']['submitter_email'],
                 'editor' => $this->Auth->Session->read($this->Auth->sessionKey)['Auth']['User']['name'],
                 'set_code' => $item['SampleSet']['set_code']]);
-        } //send email to the submitter if their email is recoded along with the sample set
+        } //send email to the submitter if their email is recorded along with the sample set
         return $newItem['SampleSet']['id'];
     }
 }
