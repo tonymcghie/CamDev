@@ -72,7 +72,6 @@ echo $this->BootstrapForm->input_horizontal('crop',
     [
         'type' => 'text',
         'label' => $this->String->get_string('crop', 'SampleSet_form'),
-        'placeholder' => $this->String->get_string('crop_name_ph', 'SampleSet_form'),
         'default' => isset($item['SampleSet']['crop']) ? $item['SampleSet']['crop'] : '',
         'id' => 'SampleSetCrop'
     ]
