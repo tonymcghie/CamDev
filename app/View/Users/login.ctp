@@ -55,8 +55,8 @@ body {
   <div class="wrapper">
       <?php echo $this->Form->create('User', array('action' => 'login', 'class' => 'form-signin')); ?>
       <h2 class="form-signin-heading">Please Sign In</h2>
-      <input type="text" class="form-control" name="username" placeholder="enter PFR username" required="" autofocus="" />
-      <input type="password" class="form-control" name="password" placeholder="password" required=""/>      
+      <input type="text" class="form-control" name="username" placeholder="enter PFR username" required="" autofocus="" autocomplete="off"/>
+      <input type="password" class="form-control" name="password" placeholder="password" required="" autocomplete="off"/>      
       <label class="checkbox">
         <input type="checkbox" value="remember-me" id="rememberMe" name="rememberMe"> Remember me 
       </label>

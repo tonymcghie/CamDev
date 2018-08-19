@@ -8,9 +8,15 @@ $this->assign('title', 'Edit msms Compound Information');
 </header>
 
 <?php
-var_dump($compound);
+//var_dump($compound);
 echo $this->BootstrapForm->create_horizontal('Msms_compound', ['type' => 'file' ,'action' => 'saveMsmsCompound']);
-//to do make a clone button in the table
+
+echo $this->BootstrapForm->input_horizontal('compound_id',
+        [
+        'type' => 'hidden',
+        'default' => $compound['Compound']['id']
+        ]
+    );
 
 echo $this->BootstrapForm->input_horizontal('cas', 
     ['label' => ['text' => $this->String->get_string('cas', 'Compound_form')],

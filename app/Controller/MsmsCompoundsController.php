@@ -86,7 +86,7 @@ class MsmsCompoundsController extends AppController {
         $this->set('compound', $this->Compound->findById($id));
         if (isset($this->request->data['Msms_compound'])){ //check if the save button has being clicked 
             $data = $this->request->data;      //gets the data
-            var_dump($data);
+            //var_dump($data);
             //$this->Msms_compound->create();    //setup to add new record
             //if ($this->Project->save($data)){  //saves the msms compound data
                 //return $this->redirect(['controller' => 'General', 'action' => 'welcome']);
@@ -109,7 +109,7 @@ class MsmsCompoundsController extends AppController {
     public function saveMsmsCompound($id = null){
         if (isset($this->request->data['Msms_compound'])){ //check if the save button has being clicked 
             $data = $this->request->data;      //gets the data
-            var_dump($data);
+            //var_dump($data);
             $this->Msms_compound->create();    //setup to add new record
             if ($this->Msms_compound->save($data)){  //saves the msms compound data
                 //return $this->redirect(['controller' => 'General', 'action' => 'welcome']);
