@@ -186,7 +186,7 @@ class SampleSetsController extends AppController {
     }
 
     protected function doSave($item) {
-        var_dump($item);
+        //var_dump($item);
         if(isset($item['SampleSet']['metadataFile']['error']) && $item['SampleSet']['metadataFile']['error']=='0'){
             $newName = $item['SampleSet']['set_code']. '_Metadata_' . time() . '.' . pathinfo($item['SampleSet']['metadataFile']['name'])['extension'];
             $newPath = 'data/files/samplesets/' . $newName;
@@ -207,9 +207,14 @@ class SampleSetsController extends AppController {
                 ]
         )[0]['SampleSet']['version'];
         $item['SampleSet']['version'] = $maxVersion + 1;
+        
+        if(!isset($item['SampleSet']['p_code']) || $item['SampleSet']['p_code']=='') {
+            $item['SampleSet']['p_code'] = 'No Project Code supplied';
+        } // for older sample sets when p_code has is blank or NULL - set P_code to text so that
+        // the record can be saved as p_code is now required.
 
         unset($item['SampleSet']['id']); //unsets the id so the new version is saved as a new row
-        var_dump($item);
+
         $this->SampleSet->create();
         $newItem = $this->SampleSet->save($item);
         assert($newItem, 'The SampleSet failed to be saved');

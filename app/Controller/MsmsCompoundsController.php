@@ -73,7 +73,7 @@ class MsmsCompoundsController extends AppController {
      * @return type
      * @throws NotFoundExcpetion
      */
-    public function editMsmsCompound($id = null){
+    public function addMsmsCompound($id = null){
         //$this->layout = 'main';
         if ($id == null){
             $id = $this->params['url']['id'];
@@ -84,6 +84,7 @@ class MsmsCompoundsController extends AppController {
             throw new NotFoundExcpetion(__('Invalid Compound'));
         } //throw error if there is no compound for this id
         $this->set('compound', $this->Compound->findById($id));
+
         //if (isset($this->request->data['Msms_compound'])){ //check if the save button has being clicked 
             //$data = $this->request->data;      //gets the data
             //var_dump($data);
@@ -110,7 +111,7 @@ class MsmsCompoundsController extends AppController {
     public function saveMsmsCompound($id = null){
         if (isset($this->request->data['Msms_compound'])){ //check if the save button has being clicked 
             $data = $this->request->data;      //gets the data
-            var_dump($data);
+            //var_dump($data);
             $this->Msms_compound->create();    //setup to add new record
             if ($this->Msms_compound->save($data)){  //saves the msms compound data
                 //return $this->redirect(['controller' => 'General', 'action' => 'welcome']);

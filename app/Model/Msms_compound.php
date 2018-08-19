@@ -17,6 +17,10 @@ class Msms_compound extends AppModel{
         'rule' => 'notBlank'),
     'compound_id' => array(
             'rule' => 'notBlank'),
+    'compound_name' => array(
+            'rule' => 'notBlank'),
+    'msms_title' => array(
+            'rule' => 'notBlank'),     
     'msms_ions' => array(
             'rule' => 'notBlank'),
     'parent_mz' => array(
