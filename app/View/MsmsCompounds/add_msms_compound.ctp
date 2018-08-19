@@ -24,6 +24,9 @@ echo $this->BootstrapForm->input_horizontal('compound_name',
     'default' => isset($compound['Compound']['compound_name']) ? $compound['Compound']['compound_name'] : ''
     ]);
 
+echo $this->BootstrapForm->input_horizontal('msms_title', ['label' => $this->String->get_string('msms_title', 'Compound_msms_form'),
+    'autocomplete' => 'on']);
+
 echo $this->BootstrapForm->input_horizontal('parent_mz', ['label' => $this->String->get_string('parent_mz', 'Compound_msms_form'),
     'autocomplete' => 'on']);
 

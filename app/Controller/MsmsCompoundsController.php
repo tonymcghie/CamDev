@@ -73,7 +73,7 @@ class MsmsCompoundsController extends AppController {
      * @return type
      * @throws NotFoundExcpetion
      */
-    public function editMsmsCompound($id = null){
+    public function addMsmsCompound($id = null){
         //$this->layout = 'main';
         if ($id == null){
             $id = $this->params['url']['id'];

@@ -1,6 +1,5 @@
 <?php
-//var_dump($crops);
-var_dump($item);
+
 /**
  * Fields in the database that should be passed through but not edited or displayed.
  * @var array $hiddenFields
