@@ -84,14 +84,15 @@ class MsmsCompoundsController extends AppController {
             throw new NotFoundExcpetion(__('Invalid Compound'));
         } //throw error if there is no compound for this id
         $this->set('compound', $this->Compound->findById($id));
-        if (isset($this->request->data['Msms_compound'])){ //check if the save button has being clicked 
-            $data = $this->request->data;      //gets the data
+
+        //if (isset($this->request->data['Msms_compound'])){ //check if the save button has being clicked 
+            //$data = $this->request->data;      //gets the data
             //var_dump($data);
             //$this->Msms_compound->create();    //setup to add new record
             //if ($this->Project->save($data)){  //saves the msms compound data
                 //return $this->redirect(['controller' => 'General', 'action' => 'welcome']);
             //}
-        } 
+        //} 
         //if ($this->request->is(array('post', 'put'))){ //gets edited data from the view
             //$data = $this->request->data; //gets the data
             //var_dump($data);
@@ -100,6 +101,7 @@ class MsmsCompoundsController extends AppController {
                 //$this->redirect(['controller' => 'Compounds', 'action' => 'search']);
                 //echo "<script>window.close();</script>";
             //} //if saved successfully redirect to Compounds->search
+
         //} //save data if the form is being submitted
         //if (!$this->request->data){
            //$this->request->data = $compound;
