@@ -67,11 +67,32 @@ class MsmsCompoundsController extends AppController {
         }  //makes sure that the form was submitted
     }
     
+    
     /**
-     * Edit a compound
+     * Add a new msms for the selected compound
      * @param type $id
      * @return type
      * @throws NotFoundExcpetion
+     */
+    public function newMsmsCompound($id = null){
+        //
+        //the next line is the example from AnalysesController
+        //$set_code = isset($this->params['url']['set_code']) ? $this->params['url']['set_code'] : $this->request->data['Analysis']['set_code'];
+        if ($id == null){
+            $compound_id = isset($this->params['url']['is']) ? $this->params['url']['id'] : $this->request->data['Msms_compound']['compound_id'];
+        } // gets $id from the url
+        $this->set('compound_id', $compound_id);
+        $titles = $this->Msms_compound->find('all', ['conditions' => ['compound_id' => $compound_id], 'fields' => ['Msms_compound.id', 'Msms_compound.msms_title']]);
+        $this->set('titles', $titles);
+    }
+    
+    /**
+     * Adds a new msms for the selected compound
+     * @param type $id
+     * @return type
+     * @throws NotFoundExcpetion
+     * This is a development and probably will be removed once the tabbed version
+     * is working okay.
      */
     public function addMsmsCompound($id = null){
         //$this->layout = 'main';
