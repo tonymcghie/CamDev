@@ -77,14 +77,18 @@ class UsersController extends AppController {
             //    $user = $this->findByUsername($User['username']); //gets the user data from LDAP
             //}
             
-            // set up the variable that allow authorisation and access
-            $this->Auth->Session->write($this->Auth->sessionKey, $user); //sets the session
-            $this->Auth->loggedIn = true; //sets the user to be logged in
-            $this->Auth->login($user); //logs in the user
-            $this->Session->write('first', true); //set the session first to true to stop an infinite loop
-            //Find the CAMuserType from the Chemists table and write the userType to the Session variable
-            $this->Session->write('Auth.User.CAMuserType', $this->findCAMUserType($user));
-            $this->recordLogin($user);  //add a login instance to the login table
+            // set up the variables that allow authorisation and access
+            if (isset($user)) {  //is user data exists completed the login else show a message
+                $this->Auth->Session->write($this->Auth->sessionKey, $user); //sets the session
+                $this->Auth->loggedIn = true; //sets the user to be logged in
+                $this->Auth->login($user); //logs in the user
+                $this->Session->write('first', true); //set the session first to true to stop an infinite loop
+                //Find the CAMuserType from the Chemists table and write the userType to the Session variable
+                $this->Session->write('Auth.User.CAMuserType', $this->findCAMUserType($user));
+                $this->recordLogin($user);  //add a login instance to the login table
+            } else {
+                $this->Session->setFlash('Opps! that did not work.  Maybe your username and password do not match.  Please try to Sign In again.','popup_message');
+            }
         } 
     }  
         //var_dump($_SESSION);
