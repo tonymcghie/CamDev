@@ -79,7 +79,7 @@ class MsmsCompoundsController extends AppController {
         //the next line is the example from AnalysesController
         //$set_code = isset($this->params['url']['set_code']) ? $this->params['url']['set_code'] : $this->request->data['Analysis']['set_code'];
         if ($id == null){
-            $compound_id = isset($this->params['url']['is']) ? $this->params['url']['id'] : $this->request->data['Msms_compound']['compound_id'];
+            $compound_id = isset($this->params['url']['id']) ? $this->params['url']['id'] : $this->request->data['Msms_compound']['compound_id'];
         } // gets $id from the url
         $this->set('compound_id', $compound_id);
         $titles = $this->Msms_compound->find('all', ['conditions' => ['compound_id' => $compound_id], 'fields' => ['Msms_compound.id', 'Msms_compound.msms_title']]);

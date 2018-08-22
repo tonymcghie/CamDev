@@ -158,7 +158,11 @@ class UsersController extends AppController {
         $data = $this->Chemist->find('first',
         array('conditions' => array('Chemist.name' => $user['name'])
         ));
-        $userType = $data['Chemist']['type'];
+        if (isset($data['Chemist']['type'])) {
+            $userType = $data['Chemist']['type'];
+        } else {
+            $userType = 'PFR Staff';
+        }
         return $userType;
     } 
     
