@@ -62,10 +62,20 @@ class LDAPComponent extends Component {
         $info['first_name'] = $array[0]['givenname'][0];
         $info['last_name'] = $array[0]['sn'][0];
         $info['name'] = $info['first_name'] .' '. $info['last_name'];
-        $info['email'] = $array[0]['mail'][0];
+        if (isset($info['email'])) {
+            $info['email'] = $array[0]['mail'][0];
+        } else {
+            $info['email'] = 'no email';
+        } //set email address to a string if email address is not provided by LDAP
+        //$info['email'] = $array[0]['mail'][0];
         $info['user'] = $array[0]['samaccountname'][0];
         $info['groups'] = $this->groups($array[0]['memberof']);
-        $info['location'] = $array[0]['physicaldeliveryofficename'][0];
+        if (isset($info['location'])) {
+            $info['location'] = $array[0]['physicaldeliveryofficename'][0];
+        } else {
+            $info['location'] = 'no location';
+        } //set location to a string if location is not provided by LDAP
+        //$info['location'] = $array[0]['physicaldeliveryofficename'][0];
  
         return $info;
     }

@@ -70,21 +70,67 @@ class MsmsCompoundsController extends AppController {
     
     /**
      * Add a new msms for the selected compound
+     * Called from CompoundDataObject.php
      * @param type $id
      * @return type
      * @throws NotFoundExcpetion
      */
-    public function newMsmsCompound($id = null){
+    public function newMsmsCompound($compound_name = null, $compound_id = null){
         //
         //the next line is the example from AnalysesController
         //$set_code = isset($this->params['url']['set_code']) ? $this->params['url']['set_code'] : $this->request->data['Analysis']['set_code'];
-        if ($id == null){
-            $compound_id = isset($this->params['url']['id']) ? $this->params['url']['id'] : $this->request->data['Msms_compound']['compound_id'];
-        } // gets $id from the url
+        if ($compound_id == null){
+            $compound_id = isset($this->params['url']['compound_id']) ? $this->params['url']['compound_id'] : $this->request->data['Msms_compound']['compound_id'];
+        } // gets $compound_id from the url
         $this->set('compound_id', $compound_id);
+        $titles = $this->Msms_compound->find('all', ['conditions' => ['compound_id' => $compound_id], 'fields' => ['Msms_compound.compound_id', 'Msms_compound.msms_title']]);
+        $this->set('titles', $titles);
+        if ($this->request->is('post')) {
+            var_dump($this->request->data);
+            $this->Msms_compound->create();
+            $this->Msms_compound->save($this->request->data);
+            $newId = $this->Msms_compound->id;
+            $this->redirect(['controller' => 'MsmsCompounds',
+                'action' => 'editMsmsCompound',
+                '?' => ['compound_id' => $compound_id, 'id' => $newId]]);
+        }
+    }
+    
+    /**
+     * Called when the save button is clicked on an msms entry already exists for the compound. 
+     * Msms data can be edited and saved to the database
+     */
+    public function editMsmsCompound() {
+        //get the compound_id and send to View
+        $compound_id = $this->params['url']['compound_id'];
+        if (!isset($compound_id)) {
+            throw new Exception('the compound_id parameter was not passed');
+        }
+        $this->set('compound_id', $compound_id);
+        //get the compound data and send to View
+        $compound = $this->Compound->findById($compound_id);
+        $this->set('compound', $compound);
+        
+        if ($this->request->is(['post', 'put'])) {
+            $data = $this->request->data;
+            $id = $data['Msms_compound']['id'];
+            $this->Msms_compound->id = $data['Msms_compound']['id'];
+            $this->Msms_compound->save($data);
+        }
+        //set the currentMsms so the focus is the the correct tab
+        if (!isset($id) && !isset($this->params['url']['id'])) {
+            $msms = $this->Msms_compound->find('first', ['conditions' => ['compound_id' => $compound_id]]);
+        } else if (isset($id)) {
+            $msms = $this->Msms_compound->find('first', ['conditions' => ['id' => $id]]);
+        } else {
+            $msms = $this->Msms_compound->find('first', ['conditions' => ['id' => $this->params['url']['id']]]);
+        }
+
         $titles = $this->Msms_compound->find('all', ['conditions' => ['compound_id' => $compound_id], 'fields' => ['Msms_compound.id', 'Msms_compound.msms_title']]);
         $this->set('titles', $titles);
+        $this->set('currentMsms', $msms);
     }
+    
     
     /**
      * Adds a new msms for the selected compound
