@@ -87,7 +87,9 @@ class StringHelper extends AppHelper{
             'comment_ph' => 'eg additional chemical sub-class'],
         'Compound_msms_form' => [
             'title' => 'PFR Chemistry: Compound Data msms',
-            'edit_title' => 'PFR Chemistry: Compound msms data (add/edit)',
+            'add_title' => 'PFR Chemistry: Compound msms data (add)',
+            'add_sub_title' => 'Enter msms information about this compound and then click Save',
+            'edit_title' => 'PFR Chemistry: Compound msms data (edit)',
             'edit_sub_title' => 'Enter/Edit the msms information about this compound and then click Save',
             'cas' => 'CAS Number',
             'msms_title' => 'Title for msms',
