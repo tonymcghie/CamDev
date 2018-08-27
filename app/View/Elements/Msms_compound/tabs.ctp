@@ -1,13 +1,14 @@
 <?php
-var_dump($titles);
+//var_dump($titles);
+//var_dump($currentMsms);
 ?>
 
 <ul class="nav nav-tabs">
     <?php foreach($titles as $title):?>
-        <li class="<?php if(isset($currentAnalysis) && $title['Msms_compound']['id'] == $currentAnalysis['Msms_compound']['id'])echo 'active';?>">
+        <li class="<?php if(isset($currentMsms) && $title['Msms_compound']['id'] == $currentMsms['Msms_compound']['id'])echo 'active';?>">
             <a href="<?= $this->Html->url([
                 'controller' => 'Msms_compounds',
-                'action' => 'editAnalysis',
+                'action' => 'editMsmsCompound',
                 '?' => [
                     'compound_id' => $compound_id,
                     'id' => $title['Msms_compound']['id']]])?>">
@@ -15,10 +16,10 @@ var_dump($titles);
             </a>
         </li>
     <?php endforeach; ?>
-    <li class="<?php if(!isset($currentAnalysis)) echo 'active'?>">
+    <li class="<?php if(!isset($currentMsms)) echo 'active'?>">
         <a href="<?= $this->Html->url([
             'controller' => 'Msms_compounds',
-            'action' => 'newAnalysis',
+            'action' => 'newMsmsCompound',
             '?' => [
                 'compound_id' => $compound_id]]);?>">+</a>
     </li>

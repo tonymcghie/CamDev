@@ -8,7 +8,7 @@ $this->assign('title', 'Edit msms Compound Information');
 <p><?php echo 'Compound ID = ', $compound_id; ?></p><br>
 </header>
 
-<?= $this->element('Msms_compound/tabs', ['titles' => $titles, 'currentAnalysis' => null]); ?>
+<?= $this->element('Msms_compound/tabs', ['titles' => $titles, 'currentMsms' => null]); ?>
 
 <?php
     echo $this->BootstrapForm->create_horizontal('Msms_compound', ['action' => 'newMsmsCompound']);
