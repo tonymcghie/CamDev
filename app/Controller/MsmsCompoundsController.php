@@ -118,14 +118,19 @@ class MsmsCompoundsController extends AppController {
             $this->Msms_compound->save($data);
         }
         //set the currentMsms so the focus is the the correct tab
-        if (!isset($id) && !isset($this->params['url']['id'])) {
+        /**if (!isset($id) && !isset($this->params['url']['id'])) {
             $msms = $this->Msms_compound->find('first', ['conditions' => ['compound_id' => $compound_id]]);
         } else if (isset($id)) {
             $msms = $this->Msms_compound->find('first', ['conditions' => ['id' => $id]]);
         } else {
             $msms = $this->Msms_compound->find('first', ['conditions' => ['id' => $this->params['url']['id']]]);
-        }
-
+        }*/
+        if (isset($compound_id)) {
+            $msms = $this->Msms_compound->find('first', ['conditions' => ['compound_id' => $compound_id]]);
+        } else if ((isset($compound_id)) && (isset($id))) {
+            $msms = $this->Msms_compound->find('first', ['conditions' => ['id' => $id]]);
+        }  //setting of $msms not working correctly
+        
         $titles = $this->Msms_compound->find('all', ['conditions' => ['compound_id' => $compound_id], 'fields' => ['Msms_compound.id', 'Msms_compound.msms_title']]);
         $this->set('titles', $titles);
         $this->set('currentMsms', $msms);
