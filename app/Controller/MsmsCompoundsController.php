@@ -86,7 +86,6 @@ class MsmsCompoundsController extends AppController {
         $titles = $this->Msms_compound->find('all', ['conditions' => ['compound_id' => $compound_id], 'fields' => ['Msms_compound.compound_id', 'Msms_compound.msms_title']]);
         $this->set('titles', $titles);
         if ($this->request->is('post')) {
-            var_dump($this->request->data);
             $this->Msms_compound->create();
             $this->Msms_compound->save($this->request->data);
             $newId = $this->Msms_compound->id;
@@ -94,6 +93,7 @@ class MsmsCompoundsController extends AppController {
                 'action' => 'editMsmsCompound',
                 '?' => ['compound_id' => $compound_id, 'id' => $newId]]);
         }
+        $this->render('edit_msms_compound');
     }
     
     /**
@@ -107,12 +107,19 @@ class MsmsCompoundsController extends AppController {
             throw new Exception('the compound_id parameter was not passed');
         }
         $this->set('compound_id', $compound_id);
+        //get the id and send to View
+        $id = $this->params['url']['id'];
+        //if (!isset($id)) {
+        //    throw new Exception('the id parameter was not passed');
+        //}
+        $this->set('id', $id);
         //get the compound data and send to View
         $compound = $this->Compound->findById($compound_id);
         $this->set('compound', $compound);
         
         if ($this->request->is(['post', 'put'])) {
             $data = $this->request->data;
+            var_dump($data);
             $id = $data['Msms_compound']['id'];
             $this->Msms_compound->id = $data['Msms_compound']['id'];
             $this->Msms_compound->save($data);
@@ -125,7 +132,7 @@ class MsmsCompoundsController extends AppController {
         } else {
             $msms = $this->Msms_compound->find('first', ['conditions' => ['id' => $this->params['url']['id']]]);
         }*/
-        if (isset($compound_id)) {
+        if ((isset($compound_id)) && (empty($id))) {
             $msms = $this->Msms_compound->find('first', ['conditions' => ['compound_id' => $compound_id]]);
         } else if ((isset($compound_id)) && (isset($id))) {
             $msms = $this->Msms_compound->find('first', ['conditions' => ['id' => $id]]);

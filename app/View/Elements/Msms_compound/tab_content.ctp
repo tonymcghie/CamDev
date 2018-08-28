@@ -15,6 +15,13 @@ echo $this->BootstrapForm->input_horizontal('compound_id',
         ]
     );
 
+echo $this->BootstrapForm->input_horizontal('id',
+        [
+        'type' => 'hidden',
+        'default' => $id
+        ]
+    );
+
 echo $this->BootstrapForm->input_horizontal('cas', 
     ['label' => ['text' => $this->String->get_string('cas', 'Compound_form')],
     'readonly',
