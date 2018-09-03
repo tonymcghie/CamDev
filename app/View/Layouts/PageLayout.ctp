@@ -229,19 +229,10 @@ assert(in_array($group, [$sampleSetGroup,
             </div>
             -->    
             <p><br><?php echo $login_message; ?> </p>
+            <p><br><?php echo 'PHP version = '.phpversion(); ?> </p>
+            <p><br><?php ''//echo 'PHP info = '.phpinfo(); ?> </p>
+            <p><br><?php echo 'cakePHP version = '.Configure::version(); ?> </p>
            
-            <!--
-            <div class="panel panel-default">
-                <div class="panel-heading light-green lighten-3" data-toggle="collapse" data-parent="#nav_accordion" href="#pre_release_menu">
-                    <span>Pre Relase</span>
-                </div>
-                <div class="panel-collapse collapse <?php if ($group == $preReleaseGroup)echo 'in'; ?>" id="pre_release_menu">
-                    <div class="panel-body light-blue lighten-3">
-                        <?= $this->Html->link('Plates', ['controller' => 'inDev', 'action' => 'plates'], ['class' => 'list-group-item']) ?>
-                    </div>
-                </div>
-            </div>
-            -->
         </div>
     </nav>
 

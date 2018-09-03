@@ -1,6 +1,6 @@
 <?php
-//var_dump($titles);
-var_dump($currentMsms);
+var_dump($titles);
+//var_dump($currentMsms);
 ?>
 
 <ul class="nav nav-tabs">
@@ -16,10 +16,10 @@ var_dump($currentMsms);
             </a>
         </li>
     <?php endforeach; ?>
-    <li class="<?php if(!isset($currentMsms)) echo 'active'?>">
+    <li class="<?php if(empty($currentMsms)) echo 'active'?>">
         <a href="<?= $this->Html->url([
             'controller' => 'Msms_compounds',
-            'action' => 'editMsmsCompound',
+            'action' => 'newMsmsCompound',
             '?' => [
                 'compound_id' => $compound_id]]);?>">+</a>
     </li>
