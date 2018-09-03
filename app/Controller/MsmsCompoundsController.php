@@ -91,6 +91,7 @@ class MsmsCompoundsController extends AppController {
                 'action' => 'editMsmsCompound',
                 '?' => ['compound_id' => $compound_id, 'id' => $newId]]);
         }
+        $this->render('edit_msms_compound');
     }
     
     public function newMsmsCompound($compound_name = null, $compound_id = null){
