@@ -88,6 +88,7 @@ class StringHelper extends AppHelper{
         'Compound_msms_form' => [
             'title' => 'PFR Chemistry: Compound Data msms',
             'add_title' => 'PFR Chemistry: Compound msms data (add)',
+            'new_title' => 'PFR Chemistry: Compound msms data (new)',
             'add_sub_title' => 'Enter msms information about this compound and then click Save',
             'edit_title' => 'PFR Chemistry: Compound msms data (edit)',
             'edit_sub_title' => 'Enter/Edit the msms information about this compound and then click Save',

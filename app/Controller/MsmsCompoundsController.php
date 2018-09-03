@@ -75,15 +75,13 @@ class MsmsCompoundsController extends AppController {
      * @return type
      * @throws NotFoundExcpetion
      */
-    public function newMsmsCompound($compound_name = null, $compound_id = null){
-        //
-        //the next line is the example from AnalysesController
-        //$set_code = isset($this->params['url']['set_code']) ? $this->params['url']['set_code'] : $this->request->data['Analysis']['set_code'];
+    
+    public function MsmsCompoundTabs($compound_name = null, $compound_id = null){
         if ($compound_id == null){
             $compound_id = isset($this->params['url']['compound_id']) ? $this->params['url']['compound_id'] : $this->request->data['Msms_compound']['compound_id'];
         } // gets $compound_id from the url
         $this->set('compound_id', $compound_id);
-        $titles = $this->Msms_compound->find('all', ['conditions' => ['compound_id' => $compound_id], 'fields' => ['Msms_compound.compound_id', 'Msms_compound.msms_title']]);
+        $titles = $this->Msms_compound->find('all', ['conditions' => ['compound_id' => $compound_id], 'fields' => ['Msms_compound.id', 'Msms_compound.msms_title']]);
         $this->set('titles', $titles);
         if ($this->request->is('post')) {
             $this->Msms_compound->create();
@@ -94,6 +92,19 @@ class MsmsCompoundsController extends AppController {
                 '?' => ['compound_id' => $compound_id, 'id' => $newId]]);
         }
         $this->render('edit_msms_compound');
+    }
+    
+    public function newMsmsCompound($compound_name = null, $compound_id = null){
+        // get the compound_id from the url
+        $compound_id = isset($this->params['url']['compound_id']) ? $this->params['url']['compound_id'] : $this->request->data['Msms_compound']['compound_id'];
+        $compound = $this->Compound->findById($compound_id);
+        $data['Msms_compound']['compound_name'] = $compound['Compound']['compound_name'];
+        $data['Msms_compound']['cas'] = $compound['Compound']['cas'];
+        $this->set('compound', $compound_id);
+        $this->Msms_compound->create();
+        $this->Msms_compound->save($data);
+        $newId = $this->Msms_compound->id;
+        $this->redirect(['controller' => 'MsmsCompounds', 'action' => 'editMsmsCompound', '?' => ['compound_id' => $compound_id, 'id' => $newId]]);          
     }
     
     /**
@@ -134,9 +145,15 @@ class MsmsCompoundsController extends AppController {
         }*/
         if ((isset($compound_id)) && (empty($id))) {
             $msms = $this->Msms_compound->find('first', ['conditions' => ['compound_id' => $compound_id]]);
+            // should be is this is a new msms for this compound - but not working
         } else if ((isset($compound_id)) && (isset($id))) {
             $msms = $this->Msms_compound->find('first', ['conditions' => ['id' => $id]]);
-        }  //setting of $msms not working correctly
+            //there there are msms for this compound, find and set to active
+        } else {
+            $msms = $this->Msms_compound->find('first', ['conditions' => ['id' => $this->params['url']['id']]]);
+        }
+        
+//setting of $msms not working correctly
         
         $titles = $this->Msms_compound->find('all', ['conditions' => ['compound_id' => $compound_id], 'fields' => ['Msms_compound.id', 'Msms_compound.msms_title']]);
         $this->set('titles', $titles);
