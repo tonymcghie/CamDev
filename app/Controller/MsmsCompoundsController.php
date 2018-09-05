@@ -94,13 +94,25 @@ class MsmsCompoundsController extends AppController {
         $this->render('edit_msms_compound');
     }
     
-    public function newMsmsCompound($compound_name = null, $compound_id = null){
+    public function newMsmsCompound($compound_name = null, $compound_id = null, $currentMsms = null){
         // get the compound_id from the url
-        $compound_id = isset($this->params['url']['compound_id']) ? $this->params['url']['compound_id'] : $this->request->data['Msms_compound']['compound_id'];
+        $compound_id = $this->params['url']['compound_id'];
+        // initialise the basic msms data
         $compound = $this->Compound->findById($compound_id);
         $data['Msms_compound']['compound_name'] = $compound['Compound']['compound_name'];
         $data['Msms_compound']['cas'] = $compound['Compound']['cas'];
+        $data['Msms_compound']['compound_id'] = $compound_id;
+        $data['Msms_compound']['msms_title'] = 'blank';
         $this->set('compound', $compound_id);
+        $this->set('currentMsms', $data);
+        //if (isset($this->request->data['Msms_compound'])){ //check if the save button has being clicked 
+        //    $data = $this->request->data;      //gets the data
+        //    var_dump($data);
+        //    $this->Msms_compound->create();    //setup to add new record
+        //    if ($this->Msms_compound->save($data)){  //saves the msms compound data
+        //        return $this->redirect(['controller' => 'MsmsCompounds', 'action' => 'MsmsCompoundTabs', '?' => ['compound_id' => $compound_id, 'id' => $newId]]);
+        //    }
+        //}
         $this->Msms_compound->create();
         $this->Msms_compound->save($data);
         $newId = $this->Msms_compound->id;
