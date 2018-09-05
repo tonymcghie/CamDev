@@ -35,10 +35,7 @@ class CompoundDataObject extends DataObject {
             'chemspiderLink' => ['http://www.chemspider.com/Chemical-Structure.'.$this->chemspider_id.'.html'],
             'viewURL' => ['https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/'.$this->pub_chem. '/PNG'],
             'editURL' => ['controller' => 'Compounds', 'action' => 'editCompound', '?' => ['id' => $this->id]],
-            'addmsmsURL' => ['controller' => 'MsmsCompounds', 'action' => 'addMsmsCompound', '?' => ['id' => $this->id]],
             'msmsURL' => ['controller' => 'MsmsCompounds', 'action' => 'MsmsCompoundTabs', '?' => ['compound_id' => $this->id]]
-            // have not worked out how to pass multiple parameters in the url to the controller
-            //probably best to pass the id then use this to get other data as needed
         ];
     }
     

@@ -1,5 +1,5 @@
 <?php
-$this->assign('title', 'New msms Compound Information');
+//$this->assign('title', 'New msms Compound Information');
 ?>
 <header>
 <h1><?php echo $this->String->get_string('new_title', 'Compound_msms_form'); ?></h1>
@@ -7,7 +7,7 @@ $this->assign('title', 'New msms Compound Information');
     <h2>Msms ID: <?php echo $id ?></h2>
 </header>
 
-<?= $this->element('Msms_compound/tabs', ['titles' => $titles, 'currentMsms' => null]); ?>
+<?= $this->element('Msms_compound/tabs_content', ['titles' => $titles, 'Msms' => $currentMsms]); ?>
 
 <?php
     

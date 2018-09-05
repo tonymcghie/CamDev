@@ -16,11 +16,10 @@
             </a>
         </li>
     <?php endforeach; ?>
-    <li class="<?php if(empty($currentMsms)) echo 'active'?>">
+    <li class="<?php if(empty($currentMsms['Msms_compound'])) echo 'active'?>">
         <a href="<?= $this->Html->url([
             'controller' => 'Msms_compounds',
-            'action' => 'editMsmsCompound',
-            '?' => [
-                'compound_id' => $compound_id]]);?>">+</a>
+            'action' => 'newMsmsCompound',
+            '?' => ['compound_id' => $compound_id]]);?>">+</a>
     </li>
 </ul>
