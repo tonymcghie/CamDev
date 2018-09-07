@@ -102,17 +102,8 @@ class MsmsCompoundsController extends AppController {
         $data['Msms_compound']['compound_name'] = $compound['Compound']['compound_name'];
         $data['Msms_compound']['cas'] = $compound['Compound']['cas'];
         $data['Msms_compound']['compound_id'] = $compound_id;
-        $data['Msms_compound']['msms_title'] = 'blank';
         $this->set('compound', $compound_id);
         $this->set('currentMsms', $data);
-        //if (isset($this->request->data['Msms_compound'])){ //check if the save button has being clicked 
-        //    $data = $this->request->data;      //gets the data
-        //    var_dump($data);
-        //    $this->Msms_compound->create();    //setup to add new record
-        //    if ($this->Msms_compound->save($data)){  //saves the msms compound data
-        //        return $this->redirect(['controller' => 'MsmsCompounds', 'action' => 'MsmsCompoundTabs', '?' => ['compound_id' => $compound_id, 'id' => $newId]]);
-        //    }
-        //}
         $this->Msms_compound->create();
         $this->Msms_compound->save($data);
         $newId = $this->Msms_compound->id;
@@ -132,9 +123,11 @@ class MsmsCompoundsController extends AppController {
         $this->set('compound_id', $compound_id);
         //get the id and send to View
         $id = $this->params['url']['id'];
-        //if (!isset($id)) {
-        //    throw new Exception('the id parameter was not passed');
-        //}
+        if (empty($id)) {
+            $msms_data = $this->Msms_compound->find('first', ['conditions' => ['compound_id' => $compound_id]]);
+            $id = $msms_data['Msms_compound']['id'];
+            //if the id is not obtained from the url, find the first id from Msms_compound
+        }
         $this->set('id', $id);
         //get the compound data and send to View
         $compound = $this->Compound->findById($compound_id);
@@ -142,30 +135,32 @@ class MsmsCompoundsController extends AppController {
         
         if ($this->request->is(['post', 'put'])) {
             $data = $this->request->data;
-            var_dump($data);
             $id = $data['Msms_compound']['id'];
-            $this->Msms_compound->id = $data['Msms_compound']['id'];
-            $this->Msms_compound->save($data);
-        }
-        //set the currentMsms so the focus is the the correct tab
-        /**if (!isset($id) && !isset($this->params['url']['id'])) {
-            $msms = $this->Msms_compound->find('first', ['conditions' => ['compound_id' => $compound_id]]);
-        } else if (isset($id)) {
-            $msms = $this->Msms_compound->find('first', ['conditions' => ['id' => $id]]);
-        } else {
-            $msms = $this->Msms_compound->find('first', ['conditions' => ['id' => $this->params['url']['id']]]);
-        }*/
-        if ((isset($compound_id)) && (empty($id))) {
-            $msms = $this->Msms_compound->find('first', ['conditions' => ['compound_id' => $compound_id]]);
-            // should be is this is a new msms for this compound - but not working
-        } else if ((isset($compound_id)) && (isset($id))) {
-            $msms = $this->Msms_compound->find('first', ['conditions' => ['id' => $id]]);
-            //there there are msms for this compound, find and set to active
-        } else {
-            $msms = $this->Msms_compound->find('first', ['conditions' => ['id' => $this->params['url']['id']]]);
+            if (!isset($data['Msms_compound']['id'])) {
+                 $this->Msms_compound->create();
+                 // if id not set then create a new record in Msms_compound
+            } else {
+                $this->Msms_compound->id = $data['Msms_compound']['id'];
+                //else if id exists update the  record
+            }
+            $this->Msms_compound->save($data);    
         }
         
-//setting of $msms not working correctly
+        if ((isset($compound_id)) && (isset($id))) {
+            $msms = $this->Msms_compound->find('first', ['conditions' => ['id' => $id]]);
+            //there are msms data for this compound, find and set the first msms to the active
+        } else if ((isset($compound_id)) && (empty($id))) {
+            //there are no current msms data for this compound; therefore set $msms to NULL.
+            $msms = NULL;
+        }
+        // added for debugging
+        if ($this->Msms_compound->find('first', ['conditions' => ['id' => $id]])) {
+            $new = 'a msms exists';
+        } else {
+            $new = 'msms does not exist';
+        }
+        $this->set('new', $new);
+        //
         
         $titles = $this->Msms_compound->find('all', ['conditions' => ['compound_id' => $compound_id], 'fields' => ['Msms_compound.id', 'Msms_compound.msms_title']]);
         $this->set('titles', $titles);
@@ -219,8 +214,14 @@ class MsmsCompoundsController extends AppController {
     public function saveMsmsCompound($id = null){
         if (isset($this->request->data['Msms_compound'])){ //check if the save button has being clicked 
             $data = $this->request->data;      //gets the data
-            //var_dump($data);
-            $this->Msms_compound->create();    //setup to add new record
+            if (!isset($data['Msms_compound']['id'])) {
+                 $this->Msms_compound->create();
+                 // if id not set then create a new record in Msms_compound
+            } else {
+                $this->Msms_compound->id = $data['Msms_compound']['id'];
+                //else if id exists update the  record
+            }
+            //$this->Msms_compound->create();    //setup to add new record
             if ($this->Msms_compound->save($data)){  //saves the msms compound data
                 //return $this->redirect(['controller' => 'General', 'action' => 'welcome']);
             }

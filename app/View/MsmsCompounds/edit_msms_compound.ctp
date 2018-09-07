@@ -1,7 +1,8 @@
 <header>
     <h1><?php echo $this->String->get_string('edit_title', 'Compound_msms_form'); ?></h1>
-    <h2>Compound ID: <?php echo $compound_id ?></h2>
-    <h2>Msms ID: <?php echo $id ?></h2>
+    <!--<h2>Compound ID: <?php //echo $compound_id ?></h2>
+    <h2>Msms ID: <?php //echo $id ?></h2>
+    <h2>New msms: <?php //echo $new ?></h2>-->
 </header>
 <?= $this->element('Msms_compound/tabs', ['titles' => $titles, 'currentMsms' => $currentMsms]); ?>
 
