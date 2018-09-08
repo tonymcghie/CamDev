@@ -16,7 +16,7 @@
             'chem_everything' => 'Chem: all sections',
             'chem_details' => 'Chem: analysis details only',
             'chem_files' => 'Chem: files only',
-            'chem_pictures' => 'Chem: pictures only'
+            'chem_pictures' => 'Chem: images only'
             //'bio_everything' => 'Bio: all sections',
             //'bio_details' => 'Bio: analysis details only',
             //'bio_files' => 'Bio: files only',
