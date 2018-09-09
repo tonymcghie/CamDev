@@ -221,11 +221,13 @@ class SampleSetsController extends AppController {
         $this->send_editSS_email(['from' => 'no_reply@plantandfood.co.nz',
             'to' => $this->Chemist->find('first', ['fields' => ['Chemist.email'],  'conditions' => ['name' => $item['SampleSet']['chemist']]])['Chemist']['email'],
             'editor' => $this->Auth->Session->read($this->Auth->sessionKey)['Auth']['User']['name'],
+            'status' => $item['SampleSet']['status'],
             'set_code' => $item['SampleSet']['set_code']]);
         if (isset($item['SampleSet']['submitter_email'])){
             $this->send_editSS_email(['from' => 'no_reply@plantandfood.co.nz',
                 'to' => $item['SampleSet']['submitter_email'],
                 'editor' => $this->Auth->Session->read($this->Auth->sessionKey)['Auth']['User']['name'],
+                'status' => $item['SampleSet']['status'],
                 'set_code' => $item['SampleSet']['set_code']]);
         } //send email to the submitter if their email is recorded along with the sample set
         return $newItem['SampleSet']['id'];

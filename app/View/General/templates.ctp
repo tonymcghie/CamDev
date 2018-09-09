@@ -40,6 +40,11 @@
         <td style = "vertical-align: middle"><button type="button" class="btn"><span class="glyphicon glyphicon-download-alt"></span> <?php  echo $this->Html->link('DownLoad Template',$this->My->makeTemplateURL('data_processing_tasq.xlsm'),['target'=>'_blank']); ?></td>    
     </tr>
     <tr>
+        <td><h3>Data Processing (volatiles):</h3></td>
+        <td class="text-center" style = "vertical-align: middle"><button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#dpvModal"><span class="glyphicon glyphicon-info-sign"></button></td>
+        <td style = "vertical-align: middle"><button type="button" class="btn"><span class="glyphicon glyphicon-download-alt"></span> <?php  echo $this->Html->link('DownLoad Template',$this->My->makeTemplateURL('data_processing_volatiles.xlsx'),['target'=>'_blank']); ?></td>    
+    </tr>
+    <tr>
         <td><h3>Flavour Volatile RI Reference:</h3></td>
         <td class="text-center" style = "vertical-align: middle"><button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#vol_riModal"><span class="glyphicon glyphicon-info-sign"></button></td>
         <td style = "vertical-align: middle"><button type="button" class="btn"><span class="glyphicon glyphicon-download-alt"></span> <?php  echo $this->Html->link('DownLoad Reference Data',$this->My->makeTemplateURL('flavour_volatile_RI.xlsx'),['target'=>'_blank']); ?></td>    
@@ -149,7 +154,7 @@
                 <h4 class="modal-title">Data Processing</h4>
             </div>
             <div class="modal-body">
-                <?php echo 'The data processing template contains formated sheets to facilitate the calculation of results' ?>
+                <?php echo 'This data processing template contains formated sheets to facilitate the calculation of results' ?>
                 <?php echo 'from data exported from chromatographic data systems (CDS) such as Chromeleon.' ?>
                 <?php echo 'The primary sheets in the Data Processing template are:' ?><br><br>
                 <?php echo 'Sample Data - contains samples codes, relevant sample metadata,  sample weights etc .' ?><br><br>
@@ -178,6 +183,30 @@
                 <?php echo 'specific operations relevant to the data processing of Bruker TASQ data.' ?>
                 <?php echo 'This template contains functionality to facilite the transfer of calibration curves of' ?>
                 <?php echo 'compounds with standards to compounds for which standards are not available.' ?>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="dpvModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Data Processing (volatiles)</h4>
+            </div>
+            <div class="modal-body">
+                <?php echo 'This data processing template contains formated sheets to facilitate the calculation of results' ?>
+                <?php echo 'from data exported from GCMS chromatographic data systems.' ?>
+                <?php echo 'The primary sheets in the Data Processing (volatile) template are:' ?><br><br>
+                <?php echo 'Sample Data - contains samples codes, relevant sample metadata,  sample weights etc .' ?><br><br>
+                <?php echo 'Analytes - a list of analytes with chemical information, which is autofilled when the name is entered.' ?><br><br>
+                <?php echo 'Raw Data - as exported from the CDS.' ?><br><br>
+                <?php echo 'Calculation - formulas for converting data from the GCMS daya system into concentration data for each analyte.' ?><br><br>
+                <?php echo 'Result Summary - combines information from Sample Data and data from Calculation to generate a Summary of the results for reporting.' ?><br>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

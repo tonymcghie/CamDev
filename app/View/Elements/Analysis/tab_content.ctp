@@ -13,13 +13,14 @@ echo $this->BootstrapForm->input_horizontal('id',
     ['label' => '', 'type' => 'hidden', 'value' => $analysis['Analysis']['id']]);
 echo $this->BootstrapForm->input_horizontal('set_code',
 ['label' => '', 'type' => 'hidden', 'value' => $analysis['Analysis']['set_code']]); ?>
-<fieldset>
-    <legend>Analysis Info</legend>
 
-    <?php if ($analysis['Analysis']['workflow'] == 'chem_everything'
-            || $analysis['Analysis']['workflow'] == 'chem_files'
-            || $analysis['Analysis']['workflow'] == 'bio_everything'
-            || $analysis['Analysis']['workflow'] == 'bio_files'): ?>
+<?php if ($analysis['Analysis']['workflow'] == 'chem_everything'
+    || $analysis['Analysis']['workflow'] == 'chem_details'
+    || $analysis['Analysis']['workflow'] == 'bio_everything'
+    || $analysis['Analysis']['workflow'] == 'bio_files'): ?>
+
+    <fieldset>   
+        <legend>Analysis Info</legend>
 
         <?= $this->BootstrapForm->input_horizontal('startdate',
             ['label' => 'Start date (dd/mm/yyyy):', 'value' => $analysis['Analysis']['startdate']]) ?>
@@ -27,7 +28,7 @@ echo $this->BootstrapForm->input_horizontal('set_code',
             ['label' => 'Method File:', 'value' => $analysis['Analysis']['method']]) ?>
         <?=  $this->BootstrapForm->input_horizontal('labbook_ref',
             ['label' => 'Reference:', 'value' => $analysis['Analysis']['labbook_ref'], 'placeholder' => 'Lab Book/MS #/Job # etc']) ?>
-    <?=  $this->BootstrapForm->input_horizontal('hazards',
+        <?=  $this->BootstrapForm->input_horizontal('hazards',
             ['label' => 'Risk Assessment:', 'value' => $analysis['Analysis']['hazards'], 'rows' => '3', 'cols' => '100', 'placeholder' => 'Enter risks and hazards associated with this method']) ?>
         <?=  $this->BootstrapForm->input_horizontal('prep',
             ['label' => 'Sample Preparation:', 'value' => $analysis['Analysis']['prep'], 'rows' => '5', 'cols' => '100']) ?>
@@ -37,27 +38,34 @@ echo $this->BootstrapForm->input_horizontal('set_code',
             ['label' => 'Results:', 'value' => $analysis['Analysis']['result_summary'], 'rows' => '5', 'cols' => '100']) ?>
         <?=  $this->BootstrapForm->input_horizontal( 'raw_data',
             ['label' => $this->String->get_string('rawData', 'Analysis'),
-            'value' => $analysis['Analysis']['raw_data']]) ?>
-</fieldset>
-<fieldset>
-    <legend>File Uploads
-        <span>(to PowerPlant)</span>
-    </legend>
-    <?php
-    //echo $this->BootstrapForm->input_horizontal('raw_data', [
-    //        'label' => $this->String->get_string('rawData', 'Analysis'),
-    //        'value' => $analysis['Analysis']['raw_data']]);
-    echo $this->BootstrapForm->fileUpload('derived_results', [
-        'label' => $this->String->get_string('processedData', 'Analysis'),
-        'url' => $this->Html->url(['action' => 'uploadProcessedData'], true),
-        'value' => $analysis['Analysis']['derived_results']]);
-    echo $this->BootstrapForm->fileUpload('processed', [
-        'label' => $this->String->get_string('resultsData', 'Analysis'),
-        'url' => $this->Html->url(['action' => 'uploadResultsData'], true),
-        'value' => $analysis['Analysis']['processed']]);
-    ?>
-</fieldset>
+            'value' => $analysis['Analysis']['raw_data']]) ?>   
+    </fieldset>
+
+<?php endif; /* End the Analysis Info inputs */ ?>
+
+<?php if ($analysis['Analysis']['workflow'] == 'chem_everything'
+            || $analysis['Analysis']['workflow'] == 'chem_files'
+            || $analysis['Analysis']['workflow'] == 'bio_everything'
+            || $analysis['Analysis']['workflow'] == 'bio_files'): ?>
+
+    <fieldset>
+        <legend>File Uploads
+            <span>(to PowerPlant)</span>
+        </legend>
+        <?php
+        echo $this->BootstrapForm->fileUpload('derived_results', [
+            'label' => $this->String->get_string('processedData', 'Analysis'),
+            'url' => $this->Html->url(['action' => 'uploadProcessedData'], true),
+            'value' => $analysis['Analysis']['derived_results']]);
+        echo $this->BootstrapForm->fileUpload('processed', [
+            'label' => $this->String->get_string('resultsData', 'Analysis'),
+            'url' => $this->Html->url(['action' => 'uploadResultsData'], true),
+            'value' => $analysis['Analysis']['processed']]);
+        ?>
+    </fieldset>
+
 <?php endif; /* The file inputs */ ?>
+
 <?php if ($analysis['Analysis']['workflow'] == 'chem_everything'
         || $analysis['Analysis']['workflow'] == 'chem_pictures'
         || $analysis['Analysis']['workflow'] == 'bio_everything'
