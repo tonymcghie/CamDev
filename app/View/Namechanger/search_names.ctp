@@ -4,7 +4,7 @@
         overflow-y: scroll;
       }
 </style>
-<h2>Name Matching Results:</h2>
+<h2>Match Results:</h2>
 <h4>Compound names and CAS numbers that match compounds in the input .csv datafile.</h4>
 <p style="display:inline"><strong>Input Data File: </strong><?php echo $identify_parms[0]?><br></p>
 

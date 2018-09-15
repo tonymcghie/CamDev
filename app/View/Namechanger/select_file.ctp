@@ -1,11 +1,12 @@
 <header>
-<h1>Find CAM-names by synonym matching</h1>
+<h1>Find CAM-names by synonym (or CAS #) matching</h1>
 <p id="one">  The process is:</p>
 <?php $message = "This is a message - Hello World"; ?>
 <!--<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal">Display Message</button>-->
-<p> 1) Generate a .csv file where the fourth column contains compound names.</p>
-<p> 2) The compound name in each row of the .csv file will be compared with the compound name and the synonyms in the CAM->Compound database.</p>
-<p> 3) When a match is found with the input compound name, the CAM compound name and CAS # will be added to the row in the table.</p>
+<p> 1) Generate a .csv file containing compound names or CAS # in  columns A-F.</p>
+<p> 2) If 'name' is selected the compound name in each row of the .csv file will be compared with the compound name and the synonyms in the CAM->Compound database.</p>
+<p> 3) If 'CAS' is selected the CAS # in each row of the .csv file will be compared with the CAS # in the CAM->Compound database.</p>
+<p> 4) When a match is found with the input compound name or CAS #, the CAM compound name and CAS # will be added to the row in the table.</p>
 <p> This table can be exported.</p>
 </header>
 <div id="myModal" class="modal fade" role="dialog">
@@ -25,13 +26,16 @@
     </div>
 </div>
 <?php
-    $mDa = ['5' => '5' , '10' => '10' , '20' => '20', '50' => '50', '100' => '100', '500' => '500'];
-    $ions = ['[M-H]-' => '[M-H]-' , '[M+H]+' => '[M+H]+', '[M]' => '[M]'];
-    echo $this->Form->create('Upload', array( 'type' => 'file'));
-    //echo $this->Form->input('mass_tolerance', array('type'=>'select', 'label'=>'Mass Tolerance (+/- mDa): ', 'options'=>$mDa, 'default'=>'10'));
-    //echo $this->Form->input('ion_type', array('type'=>'select', 'label'=>'Ion Type:', 'options'=>$ions, 'default'=>'[M-H]-'));
-    echo $this->Form->input('csv_path', array('type' => 'file','label' => 'CSV Data File (contains compound names)'));
-    echo $this->Form->end('Search for matching Compound Names');
+    $criteria = ['name' => 'name' , 'CAS' => 'CAS'];
+    $column = ['A' => 'A' , 'B' => 'B', 'C' => 'C', 'D' => 'D' , 'E' => 'E', 'F' => 'F' ];
+    echo $this->BootstrapForm->create_horizontal('Upload', ['type' => 'file']);
+    echo $this->BootstrapForm->input_horizontal('csv_path', ['label' => 'CSV Data File (containing compound names or CAS #)',
+    'type' => 'file']);
+    echo $this->BootstrapForm->input_horizontal('match_criteria', ['label' => 'Match Criteria: ',
+    'options' => $criteria, 'default' => 'name']);
+    echo $this->BootstrapForm->input_horizontal('data_column', ['label' => 'Match Column: ',
+    'options' => $column, 'default' => 'A']);
+    echo $this->BootstrapForm->addMatchButtons();
 ?>
 <script>
     $('#csvFile').on('change',function(){

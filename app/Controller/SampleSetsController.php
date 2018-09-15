@@ -99,7 +99,7 @@ class SampleSetsController extends AppController {
         return;
         $Email = new CakeEmail($options); //creates the email object and sets most of the options
         $Email->subject('Sample Set: '.$options['set_code'].' was edited'); //sets the subject of the emial
-        $Email->send($options['editor'].' has edited the sample set with set code: '.$options['set_code']); //sets the message of the email and also sends the email
+        $Email->send($options['editor'].' has edited the sample set with set code: '.$options['set_code']. 'Status: '.$options['status']); //sets the message of the email and also sends the email
     }
 
     public function createSampleSet(){
