@@ -188,9 +188,30 @@ class BootstrapFormHelper extends FormHelper{
     }
 
     /**
-     * Creates a save and cancel button
+     * Creates a Save and Cancel button
      */
     public function addActionButtons($save = 'Save', $cancel = 'Cancel', $cancelAction = 'window.history.back();return false;') {
+        $html = '';
+        $html .= $this->start_group();
+        $html .= '<div class="col-lg-4"></div>'; // Spacer.
+        $html .= $this->single_button([
+            'onClick' => $cancelAction,
+            'class' => 'btn-default',
+            'text' => $cancel,
+            'type' => 'button'
+        ]);
+        $html .= $this->single_button([
+            'class' => 'btn-primary',
+            'text' => $save
+        ]);
+        $html .= $this->end_group();
+        return $html;
+    }
+    
+    /**
+     * Creates a Match and Cancel button
+     */
+    public function addMatchButtons($save = 'Match', $cancel = 'Cancel', $cancelAction = 'window.history.back();return false;') {
         $html = '';
         $html .= $this->start_group();
         $html .= '<div class="col-lg-4"></div>'; // Spacer.

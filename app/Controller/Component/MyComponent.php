@@ -91,11 +91,11 @@ class MyComponent extends Component{
      public function NamechangeHeadings($DataFile){
         $file = fopen($DataFile,"r"); //sets up the file for reading
         $heading = fgetcsv($file); //read the column headers from the datafile
-        array_push($heading, "CAM Compound Name", "CAS #"); //add another column for search hits to the column headers
+        array_push($heading, 'CAM Cmpound Name', 'CAS #'); //add another column for search hits to the column headers
         return $heading;
     }
     
-    public function Namechange($DataFile){
+    public function Namechange($DataFile, $criteria, $column){
         $foundcmpd=array(); $data=array();
         $model = ClassRegistry::init('Compound');
         $file = fopen($DataFile,"r"); //sets up the file for reading
@@ -108,39 +108,42 @@ class MyComponent extends Component{
             } //when there are no more lines exit the loop               
             
             //replace < and > if present in the string with the entities &lt and &gt
-            $line[3] = str_replace("<","&lt;",str_replace(">","&gt;",$line[3]));
+            $line[$column] = str_replace("<","&lt;",str_replace(">","&gt;",$line[$column]));
             
             //remove non-printable characters from the inputed name string
-            $name_string = preg_replace('/[[:^print:]]/', "", $line[3]);
+            $name_string = preg_replace('/[[:^print:]]/', "", $line[$column]);
+            //try to match the compound name or the CAS # depending on the value of $criteria
+            if ($criteria === 'name') {
+                //construct the query strings if matching by name
+                $search_name = array('OR' => array(
+                    'Compound.compound_name LIKE' => "%" . $name_string . "%"));
             
-            //$search = array('OR' => array(
-            //    'Compound.pseudonyms LIKE' => "% " . $line[3] . ";%",
-            //    'Compound.compound_name LIKE' => "%" . $line[3] . "%"));
-            
-            $search_name = array('OR' => array(
-                'Compound.compound_name LIKE' => "%" . $name_string . "%"));
-            
-            $search_pseudonyms = array('OR' => array(
-                'Compound.pseudonyms LIKE' => "% " . $name_string . ";%"));
+                $search_pseudonyms = array('OR' => array(
+                    'Compound.pseudonyms LIKE' => "% " . $name_string . ";%"));
 
-            //$foundallcmpd = $model->find('all', ['conditions' =>$search]);
-            $foundcmpd = $model->find('first', ['conditions' =>$search_name]);  //search compounds table for match and add to the $line array if found
-            $foundpseudonym = $model->find('first', ['conditions' =>$search_pseudonyms]); //search compounds table for match and add to the $line array if found
+
+                $foundcmpd = $model->find('first', ['conditions' =>$search_name]);  //search compounds table for match and add to the $line array if found
+                $foundpseudonym = $model->find('first', ['conditions' =>$search_pseudonyms]); //search compounds table for match and add to the $line array if found
             
-            if (isset($foundcmpd["Compound"])){ //if compounds name found push compound name and CAS to line
-                array_push($line, $foundcmpd["Compound"]["compound_name"], $foundcmpd["Compound"]["cas"]);
-            } else if (isset($foundpseudonym["Compound"])) { //if pseudonym found push compound name and CAS to line
-               array_push($line, $foundpseudonym["Compound"]["compound_name"], $foundpseudonym["Compound"]["cas"]); 
-            } else if ($name_string <> $line[3]) { //if a non prinatable cahracter has been removed
-               array_push($line, 'Your compound name contains an unrecognised character - please remove!');
-            } else {
-                array_push($line, ' '); // if neither compound name or pseudonoym found insert a blank
+                if (isset($foundcmpd['Compound'])){ //if compounds name found push compound name and CAS to line
+                    array_push($line, $foundcmpd['Compound']['compound_name'], $foundcmpd['Compound']['cas']);
+                } else if (isset($foundpseudonym['Compound'])) { //if pseudonym found push compound name and CAS to line
+                    array_push($line, $foundpseudonym['Compound']['compound_name'], $foundpseudonym['Compound']['cas']); 
+                } else if ($name_string <> $line[$column]) { //if a non prinatable cahracter has been removed
+                    array_push($line, 'Your compound name contains an unrecognised character - please remove!');
+                } else {
+                    array_push($line, ' ', ' '); // if neither compound name or pseudonoym found insert a blank
+                }
+            } else if ($criteria === 'CAS') {
+                $search_cas = array('OR' => array(
+                    'Compound.cas LIKE' => "" . $name_string . ""));
+                $foundcmpd = $model->find('first', ['conditions' =>$search_cas]);  //search compounds table for match and add to the $line array if found
+                if (isset($foundcmpd['Compound']['cas'])){ //if compounds CAS found push compound name and CAS to line
+                    array_push($line, $foundcmpd['Compound']['compound_name'], $foundcmpd['Compound']['cas']);
+                } else {
+                    array_push($line, ' ', ' '); // if cas not found insert a blank
+                }
             }
-            
-            //$numberofcmpd = $model->find('count', ['conditions' =>$search]);
-            //if (isset($numberofcmpd["Compound"])){ 
-                //array_push($line, $numberofcmpd);
-            //}
 
             array_push($data, $line); //adds the array contining the values to an array containing all values to save
             //array_push($found, $foundcmpd); //adds the array containing the found compounds  to an array containing all values to save

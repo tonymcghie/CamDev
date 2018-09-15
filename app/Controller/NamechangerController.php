@@ -43,6 +43,30 @@ class NamechangerController extends AppController{
         $filename = '';
         if ($this->request->is('post')) { // checks for the post values
             $uploadData = $this->data['Upload']['csv_path'];
+            
+            $match_criteria = $this->data['Upload']['match_criteria'];
+            $data_column = $this->data['Upload']['data_column'];
+            //$data_column from a spreadsheet column to a column number
+            switch ($data_column) {
+                case "A":
+                    $data_column = 0;
+                    break;
+                case "B":
+                    $data_column = 1;;
+                    break;
+                case "C":
+                    $data_column = 2;;
+                    break;
+                case "D":
+                    $data_column = 3;;
+                    break;
+                case "E":
+                    $data_column = 4;;
+                    break;
+                case "F":
+                    $data_column = 5;;
+                    break;
+            }
 
             if ( $uploadData['size'] == 0 || $uploadData['error'] !== 0) { // checks for the errors and size of the uploaded file
                 return false;
@@ -60,7 +84,7 @@ class NamechangerController extends AppController{
             array_push($identify_parms, $filename); //put all the parameters for identifcation into an array
             $massdata = array();
             $head=$this->My->NamechangeHeadings($uploadPath); //get the headings from the datafile
-            $data=$this->My->Namechange($uploadPath); //get compound from the data file; search compounds and return a compound name
+            $data=$this->My->Namechange($uploadPath, $match_criteria, $data_column ); //get compound from the data file; search compounds and return a compound name
             $this->set('identify_parms', $identify_parms); //passes the identify parameters to the view 
             $this->set('head', $head); // pass table headings to the view 
             $this->set('data', $data); // pass array with the mass data from file to the view 
