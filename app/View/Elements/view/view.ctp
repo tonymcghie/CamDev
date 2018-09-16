@@ -3,6 +3,7 @@
 </header>
 
 <?php
+    //var_dump($dataObject);
     assert(isset($dataObject), 'The dataObject need to be passed in');
     assert(in_array('ViewableModel', class_implements($dataObject)),
         'The DataObject must implement Viewable');
@@ -12,8 +13,6 @@
     $displayData = array_filter($displayData, function($item) {
         return !empty($item);
     });
-    //var_dump($displayData['Analysis_One']);
-    //var_dump($displayData['metaData']);
     // Get the headings from the string helper.
     $displayData = array_map(function($key, $item) {
         if ($this->String->string_exists($key, $this->name)) {
@@ -29,7 +28,12 @@
             foreach ($item['links'] as &$link) {
                 //var_dump($link['text']);
                 if (is_array($link['text'])) {
-                    $link['text'] = $this->String->get_string($link['text']['id'], $link['text']['set']);
+                    if (isset($link['url'])) {
+                        $link['text'] = $this->String->get_string($link['text']['id'], $link['text']['set']);
+                    } else {
+                        $link['text'] = $this->String->get_string('noDataFile', 'Analysis');
+                        //no data file uploaded
+                    }
                 }
                 //this seems to be unecessary and doubles up parts of the url
                 /*if (is_array($link['url'])) {
@@ -41,9 +45,6 @@
         }
         return array_merge($item, ['heading' => $heading]);
     }, array_keys($displayData), $displayData);
-    //var_dump($displayData['17']);
-    //var_dump($displayData['18']);
-    //var_dump($displayData['19']);
 
     $shortItemFilter = function($item) {
         return !isset($item['text']) || strlen(strval($item['text'])) < 100;
