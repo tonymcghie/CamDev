@@ -455,7 +455,8 @@ class StringHelper extends AppHelper{
             'resultsData' => 'Additional Data (any file type):',
             'uploadImage' => 'Upload new image',           
             'processedDataFile' => 'Processed Data File',
-            'resultsDataFile' => ' Additional Data File'],
+            'resultsDataFile' => 'Additional Data File',
+            'noDataFile' => 'No Data File'],
         'Import' => [
             'import' => 'Import',
             'importFile' => 'Upload CSV file',
