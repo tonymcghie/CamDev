@@ -81,10 +81,13 @@ class NamechangerController extends AppController{
                 return false;
             }
             $identify_parms = array();
-            array_push($identify_parms, $filename); //put all the parameters for identifcation into an array
+            //put all the parameters for matching into an array
+            array_push($identify_parms, $filename); 
+            array_push($identify_parms, $match_criteria);
+            array_push($identify_parms, $data_column);
             $massdata = array();
             $head=$this->My->NamechangeHeadings($uploadPath); //get the headings from the datafile
-            $data=$this->My->Namechange($uploadPath, $match_criteria, $data_column ); //get compound from the data file; search compounds and return a compound name
+            $data=$this->My->Namechange($uploadPath, $match_criteria, $data_column); //get compound from the data file; search compounds and return a compound name
             $this->set('identify_parms', $identify_parms); //passes the identify parameters to the view 
             $this->set('head', $head); // pass table headings to the view 
             $this->set('data', $data); // pass array with the mass data from file to the view 
@@ -96,15 +99,14 @@ class NamechangerController extends AppController{
      * Exports the search results to a CSV file
      * @param type $data
      */
-    public function export($filename){
+    public function export($filename, $match_criteria, $data_column){
         //if ($identify_parms==null){
             //return;
         //}
-        $filename= urldecode($filename) . '.csv';
-        //var_dump($filename);
+        $filename= urldecode($filename);
         $filename=WWW_ROOT. 'data/files/namechanger'. DS . $filename; //set the correct path to the datafile
         $head=$this->My->NamechangeHeadings($filename); //get the headings from the datafile
-        $data=$this->My->Namechange($filename); //get the masses from the data file; search compounds and return a compound name
+        $data=$this->My->Namechange($filename, $match_criteria, $data_column); //get the masses from the data file; search compounds and return a compound name
         $this->set('head', $head); //send to view
         $this->set('masses', $data); //send to view
         $this->response->download("export.csv");

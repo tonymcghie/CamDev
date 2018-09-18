@@ -26,11 +26,15 @@
 <?php
     $mDa = ['5' => '5' , '10' => '10' , '20' => '20', '50' => '50', '100' => '100', '500' => '500'];
     $ions = ['[M-H]-' => '[M-H]-' , '[M+H]+' => '[M+H]+', '[M]' => '[M]'];
-    echo $this->Form->create('Upload', array( 'type' => 'file'));
-    echo $this->Form->input('mass_tolerance', array('type'=>'select', 'label'=>'Mass Tolerance (+/- mDa): ', 'options'=>$mDa, 'default'=>'10'));
-    echo $this->Form->input('ion_type', array('type'=>'select', 'label'=>'Ion Type:', 'options'=>$ions, 'default'=>'[M-H]-'));
-    echo $this->Form->input('csv_path', array('type' => 'file','label' => 'CSV Data File (contains accurate masses)'));
-    echo $this->Form->end('Search for matching Compounds');
+        
+    echo $this->BootstrapForm->create_horizontal('Upload', ['type' => 'file']);
+    echo $this->BootstrapForm->input_horizontal('csv_path', ['label' => 'CSV Data File (contains accurate masses)',
+    'type' => 'file']);
+    echo $this->BootstrapForm->input_horizontal('mass_tolerance', ['label' => 'Mass Tolerance (+/- mDa): ',
+    'options' => $mDa, 'default' => '10']);
+    echo $this->BootstrapForm->input_horizontal('ion_type', ['label' => 'Ion Type: ',
+    'options' => $ions, 'default' => '[M-H]-']);
+    echo $this->BootstrapForm->addMatchButtons();
 ?>
 <script>
     $('#csvFile').on('change',function(){

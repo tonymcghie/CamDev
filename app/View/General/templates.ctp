@@ -44,7 +44,7 @@
         <td class="text-center" style = "vertical-align: middle"><button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#dpvPNModal"><span class="glyphicon glyphicon-info-sign"></button></td>
         <td style = "vertical-align: middle"><button type="button" class="btn"><span class="glyphicon glyphicon-download-alt"></span> <?php  echo $this->Html->link('DownLoad Template',$this->My->makeTemplateURL('data_processing_pn_volatiles.xlsx'),['target'=>'_blank']); ?></td>    
     </tr>
-    tr>
+    <tr>
         <td><h3>Data Processing (MARC-volatiles):</h3></td>
         <td class="text-center" style = "vertical-align: middle"><button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#dpvMARCModal"><span class="glyphicon glyphicon-info-sign"></button></td>
         <td style = "vertical-align: middle"><button type="button" class="btn"><span class="glyphicon glyphicon-download-alt"></span> <?php  echo $this->Html->link('DownLoad Template',$this->My->makeTemplateURL('data_processing_marc_volatiles.xlsx'),['target'=>'_blank']); ?></td>    
