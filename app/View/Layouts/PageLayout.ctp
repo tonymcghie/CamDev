@@ -16,6 +16,7 @@ $adminGroup = 'admin';
 $toolsGroup = 'tools';
 $preReleaseGroup = 'preRelease';
 $inDevGroup = 'inDev';
+$metabolite_chemGroup = 'met_chem';
 
 // Set the group to sample set by default.
 if (!isset($group)) {
@@ -23,7 +24,8 @@ if (!isset($group)) {
 }
 assert(in_array($group, [$sampleSetGroup,
     $compoundsGroup, $pfrDataGroup, $unknownCompoundsGroup, $helpGroup,
-    $preReleaseGroup, $adminGroup, $toolsGroup, $metabolomicDataGroup, $inDevGroup]),
+    $preReleaseGroup, $adminGroup, $toolsGroup, $metabolomicDataGroup,
+    $inDevGroup, $metabolite_chemGroup]),
     "The group '$group' was not recognised.");
 ?>
 
@@ -90,7 +92,8 @@ assert(in_array($group, [$sampleSetGroup,
 
         <div class="panel-group" id="nav_accordion">
             <div class="panel panel-default">
-                <div class="panel-heading light-green lighten-3" data-toggle="collapse" data-parent="#nav_accordion" href="#sample_sets_menu">
+                <div class="panel-heading light-green lighten-3" data-toggle="collapse" data-parent="#nav_accordion" href="#sample_sets_menu"
+                     data-toggle="tooltip" title="Sample sets are a group of samples that are to be analysed as a unit. Click to see Sample Set actions!">
                     <span>Sample Sets</span>
                 </div>
                 <div class="panel-collapse collapse <?php if ($group == $sampleSetGroup)echo 'in'; ?>"
@@ -122,7 +125,8 @@ assert(in_array($group, [$sampleSetGroup,
             </div>
 
             <div class="panel panel-default">
-                <div class="panel-heading light-green lighten-3" data-toggle="collapse" data-parent="#nav_accordion" href="#pfr_data_menu">
+                <div class="panel-heading light-green lighten-3" data-toggle="collapse" data-parent="#nav_accordion" href="#pfr_data_menu"
+                     data-toggle="tooltip" title="Actions to find and access analytical data that has been uploaded to CAM. Click to see actions!">
                     <span>PFR Analytical Compound Data</span>
                 </div>
                 <div class="panel-collapse collapse <?php if ($group == $pfrDataGroup)echo 'in'; ?>" id="pfr_data_menu">
@@ -193,15 +197,6 @@ assert(in_array($group, [$sampleSetGroup,
                         <?= $this->Html->link('GCMS Utilities', ['controller' => 'General', 'action' => 'gcms'], ['class' => 'list-group-item']) ?>
                         <?= $this->Html->link('Templates & Reference Info', ['controller' => 'General', 'action' => 'templates'], ['class' => 'list-group-item']) ?>
                         <?= $this->Html->link('New Project', ['controller' => 'Projects', 'action' => 'addProject'], ['class' => 'list-group-item']) ?>
-                        <?= ''//$this->Html->link('Find Analyst', ['controller' => 'Chemists', 'action' => 'search'], ['class' => 'list-group-item']) ?>
-                        <?php
-                        if (($this->Session->read('Auth.User.name') == 'Tony McGhie') && ($this->Session->read('Auth.User')!==null)) {
-                            echo $this->Html->link('Find Analyst', ['controller' => 'Chemists', 'action' => 'search'], ['class' => 'list-group-item']);
-                            echo $this->Html->link('New Analyst', ['controller' => 'Chemists', 'action' => 'newAnalyst'], ['class' => 'list-group-item']);
-                            echo $this->Html->link('View Variables', ['controller' => 'General', 'action' => 'loginVar'], ['class' => 'list-group-item']);
-                        }
-                        ?>
-                        <?= $this->Html->link('View Variables', ['controller' => 'General', 'action' => 'loginVar'], ['class' => 'list-group-item']) ?>
                         <?php
                         /*if ($this->Session->read('Auth.User')!==null && in_array("PFR-GP-Biological Chemistry and Bioactives Group", $this->Session->read('Auth.User')['groups'])){
                             echo '<li>'.$this->Html->link('Scripts', ['controller' => 'General','action' => 'scripts'], ['target' => 'mainFrame', 'class' => 'btn btn-link']).'</li>';
@@ -210,7 +205,24 @@ assert(in_array($group, [$sampleSetGroup,
                     </div>
                 </div>
             </div>
-            <!--
+            
+            <?php if (($this->Session->read('Auth.User.name') == 'Tony McGhie') && ($this->Session->read('Auth.User')!==null)): ?>
+
+            <div class="panel panel-default">
+                <div class="panel-heading light-green lighten-3" data-toggle="collapse" data-parent="#nav_accordion" href="#met_chem"
+                     data-toggle="tooltip" title="Actions for the Metabolite Chemistry Team. Click to see actions!">
+                    <span>Metabolite Chemistry</span>
+                </div>
+                <div class="panel-collapse collapse <?php if ($group == $adminGroup)echo 'in'; ?>" id="met_chem">
+                    <div class="panel-body light-blue lighten-3">
+                        <?= $this->Html->link('View Variables', ['controller' => 'General', 'action' => 'loginVar'], ['class' => 'list-group-item']) ?>
+                    </div>
+                </div>
+            </div>
+            <?php endif; /* Metabolite Chemistry */ ?> 
+            
+            <?php if (($this->Session->read('Auth.User.name') == 'Tony McGhie') && ($this->Session->read('Auth.User')!==null)): ?>
+
             <div class="panel panel-default">
                 <div class="panel-heading light-green lighten-3" data-toggle="collapse" data-parent="#nav_accordion" href="#admin_menu">
                     <span>Administration</span>
@@ -219,15 +231,12 @@ assert(in_array($group, [$sampleSetGroup,
                     <div class="panel-body light-blue lighten-3">
                         <?= $this->Html->link('Find Analyst', ['controller' => 'Chemists', 'action' => 'search'], ['class' => 'list-group-item']) ?>
                         <?= $this->Html->link('New Analyst', ['controller' => 'Chemists', 'action' => 'newAnalyst'], ['class' => 'list-group-item']) ?>
-                        <?php
-                        /*if ($this->Session->read('Auth.User')!==null && in_array("PFR-GP-Biological Chemistry and Bioactives Group", $this->Session->read('Auth.User')['groups'])){
-                            echo '<li>'.$this->Html->link('Scripts', ['controller' => 'General','action' => 'scripts'], ['target' => 'mainFrame', 'class' => 'btn btn-link']).'</li>';
-                        }*/
-                        ?>
+                        <?= $this->Html->link('View Variables', ['controller' => 'General', 'action' => 'loginVar'], ['class' => 'list-group-item']) ?>
                     </div>
                 </div>
             </div>
-            -->    
+            <?php endif; /* Administration */ ?> 
+            
             <p><br><?php echo $login_message; ?> </p>
             <p><br><?php echo 'PHP version = '.phpversion(); ?> </p>
             <p><br><?php ''//echo 'PHP info = '.phpinfo(); ?> </p>
