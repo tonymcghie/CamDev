@@ -42,7 +42,7 @@ class ChemistsController extends AppController {
         parent::beforeFilter();
         //$this->Auth->deny('addMetabolite','editMetabolite','editProposedMetabolite','editMsmsMetabolite');
         $this->Auth->allow('newAnalyst','addMetabolite');
-        $this->set('group', 'tools');
+        $this->set('group', 'admin');
     }
     
     /**
