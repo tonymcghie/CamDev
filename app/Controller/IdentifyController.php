@@ -71,45 +71,6 @@ class IdentifyController extends AppController{
         }  
     }
         
-    public function SearchMasses(){
-        if ($this->request->is('post')){
-            //$file = fopen($this->request->data['Identify']['csv_file']['tmp_name'],"r"); //sets up the file for reading
-            $dataUrl="/home/tony/temp/TK151_apple_dissect.csv";
-            echo $dataUrl;
-            $massdata = array();
-            $compounds = array();
-            $file = fopen($dataUrl,"r"); //sets up the file for reading
-            $head = fgetcsv($file); //read the column headers from the datafile
-            array_push($head, "Compound"); //add another column for search hits to the column headers
-            $n = 0;
-            while (1==1){
-                $line = fgetcsv($file);
-                if ($line=== false){
-                    break;
-                } //when there are no more lines exit the loop               
-
-                $mass = $line[3] + 1.00794; //for [M-H] data add the mass of hydrogen to get monoisotopic MW
-                $low_mass = $mass - 0.01; //calculate lower and upper limits of the acurate mass window
-                $high_mass = $mass + 0.01;
-                $search =  array("Compound.exact_mass BETWEEN ? AND ?" => array($low_mass, $high_mass));
-
-                $foundcmpd = $this->Compound->find('first', ['conditions' =>$search]);
-                if (isset($foundcmpd["Compound"])){ 
-                    array_push($line, $foundcmpd["Compound"]["compound_name"]);
-                }
-
-                array_push($massdata, $line); //adds the array contining the values to an array containing all values to save
-                array_push($compounds, $foundcmpd); //adds the array containing the found compounds  to an array containing all values to save
-                $n = $n + 1;
-            } //loops through the CSV file an adds the appropriate values to an array
-            $this->set('fileName', $this->request->data['Identify']['csv_file']['name']); //passes the filename to the view 
-            $this->set('compounds', $compounds); // pass to the view 
-            $this->set('head', $head); // pass table headings to the view 
-            $this->set('masses', $massdata); // pass array with the mass data from file to the view 
-
-        }
-    }
-    
     /**
      * Exports the search results to a CSV file
      * @param type $data

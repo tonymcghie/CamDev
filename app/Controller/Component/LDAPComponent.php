@@ -62,7 +62,7 @@ class LDAPComponent extends Component {
         $info['first_name'] = $array[0]['givenname'][0];
         $info['last_name'] = $array[0]['sn'][0];
         $info['name'] = $info['first_name'] .' '. $info['last_name'];
-        if (isset($info['email'])) {
+        if (isset($array[0]['mail'][0])) {
             $info['email'] = $array[0]['mail'][0];
         } else {
             $info['email'] = 'no email';
