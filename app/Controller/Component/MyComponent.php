@@ -121,7 +121,6 @@ class MyComponent extends Component{
                 $search_pseudonyms = array('OR' => array(
                     'Compound.pseudonyms LIKE' => "% " . $name_string . ";%"));
 
-
                 $foundcmpd = $model->find('first', ['conditions' =>$search_name]);  //search compounds table for match and add to the $line array if found
                 $foundpseudonym = $model->find('first', ['conditions' =>$search_pseudonyms]); //search compounds table for match and add to the $line array if found
             
