@@ -17,7 +17,7 @@ echo $tempExp;
 ?>
 <div class="results-table">
     <table class="table table-striped table-hover">
-        <?php echo $this->Html->tableHeaders(array($head[0], $head[1], $head[2], $head[3], $head[4], $head[5]));?>
+        <?php echo $this->Html->tableHeaders($head);?>
         <?php echo $this->Html->tableCells($masses);; ?>
     </table>
 </div>

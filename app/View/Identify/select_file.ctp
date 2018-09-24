@@ -34,7 +34,7 @@
     'options' => $mDa, 'default' => '10']);
     echo $this->BootstrapForm->input_horizontal('ion_type', ['label' => 'Ion Type: ',
     'options' => $ions, 'default' => '[M-H]-']);
-    echo $this->BootstrapForm->addMatchButtons();
+    echo $this->BootstrapForm->addIdentifyButton();
 ?>
 <script>
     $('#csvFile').on('change',function(){
