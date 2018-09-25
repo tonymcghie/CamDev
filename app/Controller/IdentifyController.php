@@ -46,6 +46,29 @@ class IdentifyController extends AppController{
 
             $mass_tolerance = $this->data['Upload']['mass_tolerance']/1000;
             $ion_type = $this->data['Upload']['ion_type'];
+            
+            $data_column = $this->data['Upload']['data_column'];
+            //$data_column from a spreadsheet column to a column number
+            switch ($data_column) {
+                case "A":
+                    $data_column = 0;
+                    break;
+                case "B":
+                    $data_column = 1;;
+                    break;
+                case "C":
+                    $data_column = 2;;
+                    break;
+                case "D":
+                    $data_column = 3;;
+                    break;
+                case "E":
+                    $data_column = 4;;
+                    break;
+                case "F":
+                    $data_column = 5;;
+                    break;
+            }
 
             if ( $uploadData['size'] == 0 || $uploadData['error'] !== 0) { // checks for the errors and size of the uploaded file
                 return false;
@@ -63,7 +86,7 @@ class IdentifyController extends AppController{
             array_push($identify_parms, $filename, $mass_tolerance, $ion_type); //put all the parameters for identifcation into an array
             $massdata = array();
             $head=$this->My->IdentifyHeadings($uploadPath);
-            $massdata=$this->My->IdentifyMass($uploadPath, $mass_tolerance, $ion_type);
+            $massdata=$this->My->IdentifyMass($uploadPath, $mass_tolerance, $ion_type, $data_column);
             $this->set('identify_parms', $identify_parms); //passes the identify parameters to the view 
             $this->set('head', $head); // pass table headings to the view 
             $this->set('masses', $massdata); // pass array with the mass data from file to the view 

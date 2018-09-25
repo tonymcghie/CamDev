@@ -5,7 +5,7 @@
       }
 </style>
 <h2>Identification Results:</h2>
-<h4>Sample compounds that match compounds in the Compounds DB by accurate mass.</h4>
+<h4>Matching (by accurate mass) compounds in the CAM Compounds DB.</h4>
 <p><strong>Note: </strong>more than one DB compound may match.<br></p>
 <p style="display:inline-block; width: 250px;"><strong>Data File: </strong><?php echo $identify_parms[0]?></p>
 <p style="display:inline-block; width: 200px;"><strong>Mass Window (+/- mDa): </strong><?php echo $identify_parms[1]*1000?></p>

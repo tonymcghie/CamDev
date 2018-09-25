@@ -164,7 +164,7 @@ class MyComponent extends Component{
         return $heading;
     }
     
-    public function IdentifyMass($DataFile, $mass_tolerance, $ion_type){
+    public function IdentifyMass($DataFile, $mass_tolerance, $ion_type, $column){
         $foundcmpd=array(); $data=array();
         $model = ClassRegistry::init('Compound');
         $file = fopen($DataFile,"r"); //sets up the file for reading
@@ -177,42 +177,56 @@ class MyComponent extends Component{
             } //when there are no more lines exit the loop               
 
             if ($ion_type==='[M-H]-'){
-                $mass = $line[3] + 1.00794; //for [M-H] data add the mass of hydrogen to get monoisotopic MW
+                $mass = $line[$column] + 1.00794; //for [M-H] data add the mass of hydrogen to get monoisotopic MW
             }
             if ($ion_type==='[M+H]+'){
-                $mass = $line[3] - 1.00794; //for [M+H] data subtract the mass of hydrogen to get monoisotopic MW
+                $mass = $line[$column] - 1.00794; //for [M+H] data subtract the mass of hydrogen to get monoisotopic MW
             }
             $low_mass = $mass - $mass_tolerance; //calculate lower and upper limits of the acurate mass window
             $high_mass = $mass + $mass_tolerance;
             $search =  array("Compound.exact_mass BETWEEN ? AND ?" => array($low_mass, $high_mass));
 
-            $foundallcmpd = $model->find('all', ['conditions' =>$search]);
-            $foundcmpd = $model->find('first', ['conditions' =>$search]);  //search compounds table for match and add to the $line array if found
-            if (isset($foundcmpd["Compound"])){ 
-                array_push($line, $foundcmpd["Compound"]["compound_name"]);
-            } else {
-                array_push($line, ' '); //insert a blank
-            }
-             
-            if (isset($foundcmpd["Compound"])){
-                //calculate mass difference
-                //number_format("1000000",2)
-                //$delta_mDa = ($mass - $foundcmpd["Compound"]["exact_mass"])*1000;
-                $delta_mDa = number_format(($mass - $foundcmpd["Compound"]["exact_mass"])*1000,2);
-                array_push($line, $delta_mDa);
-            } else {
-                array_push($line, ' '); //insert a blank
-            }
-            
             $numberofcmpd = $model->find('count', ['conditions' =>$search]);
+            $foundallcmpd = $model->find('all', ['conditions' =>$search]);
+            //var_dump($foundallcmpd);
+            
+                //$cmpd_line = $line;
+            if ($numberofcmpd > 0) {
+                foreach($foundallcmpd as $item) {
+                    $cmpd_line = $line;
+                    //$foundcmpd = $model->find('first', ['conditions' =>$search]);  //search compounds table for match and add to the $line array if found
+                    if (isset($item['Compound'])){ 
+                        array_push($cmpd_line, $item['Compound']['compound_name']);
+                    } else {
+                        array_push($cmpd_line, ' '); //insert a blank
+                    }
+             
+                    if (isset($item['Compound'])){
+                        //calculate mass difference
+                        $delta_mDa = number_format(($mass - $item['Compound']['exact_mass'])*1000,2);
+                        array_push($cmpd_line, $delta_mDa);
+                    } else {
+                        array_push($cmpd_line, ' '); //insert a blank
+                    }
+                    array_push($cmpd_line, $numberofcmpd);
+                    array_push($data, $cmpd_line); //adds the array contining the values to an array containing all values to save
+                }              
+            } else { //push a couple of blanks and finish the line
+                array_push($line, ' '); //insert a blank
+                array_push($line, ' '); //insert a blank
+                array_push($line, '0'); //insert a zero
+                array_push($data, $line); //adds the array contining the values to an array containing all values to save
+            } 
+            
+            //$numberofcmpd = $model->find('count', ['conditions' =>$search]);
             //if (isset($numberofcmpd["Compound"])){ 
-                array_push($line, $numberofcmpd);
+                //array_push($line, $numberofcmpd);
             //}
 
-            array_push($data, $line); //adds the array contining the values to an array containing all values to save
+            //array_push($data, $line); //adds the array contining the values to an array containing all values to save
             //array_push($found, $foundcmpd); //adds the array containing the found compounds  to an array containing all values to save
             $n = $n + 1;
-            } //loops through the CSV file an adds the appropriate values to an array
+        } //loops through the CSV file an adds the appropriate values to an array
         return $data;             
     }
     
