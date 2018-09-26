@@ -19,6 +19,9 @@
     var_dump($cookie_password);
     echo '$_Cookie Variable';
     var_dump($_COOKIE);
+    echo 'LDAP entries';
+    var_dump($LDAP_entries);
+    
 ?>
     
     
