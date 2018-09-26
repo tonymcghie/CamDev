@@ -193,5 +193,19 @@ class GeneralController extends AppController {
         $cookie_password = $this->Cookie->read('User.password');
         $this->set('cookie_username', $cookie_username);
         $this->set('cookie_password', $cookie_password);
+        
+        //copied from LDAPComponent getInfo to try and sort a problem with email
+        //addresses.  Need to see exactly what is being retrieved from LDAP
+        
+        $user = $User['username'];
+        
+        $username = $user.$this->suffix;
+        $attributes = array('givenName','sn','mail','samaccountname','memberof','physicaldeliveryofficename');
+        $filter = "(userPrincipalName=$username)";
+ 
+        ldap_bind($this->ldap,$this->ldapUser,$this->ldapPassword);
+        $result = ldap_search($this->ldap, $this->baseDN, $filter,$attributes);
+        $entries = ldap_get_entries($this->ldap, $result);
+        $this->set('LDAP_entries', $entries);
     }
 }
