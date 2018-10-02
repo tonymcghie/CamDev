@@ -70,7 +70,7 @@ class LDAPComponent extends Component {
         //$info['email'] = $array[0]['mail'][0];
         $info['user'] = $array[0]['samaccountname'][0];
         $info['groups'] = $this->groups($array[0]['memberof']);
-        if (isset($info['location'])) {
+        if (isset($array[0]['physicaldeliveryofficename'][0])) {
             $info['location'] = $array[0]['physicaldeliveryofficename'][0];
         } else {
             $info['location'] = 'no location';
