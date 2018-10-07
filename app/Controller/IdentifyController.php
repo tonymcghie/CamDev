@@ -83,7 +83,7 @@ class IdentifyController extends AppController{
                 return false;
             }
             $identify_parms = array();
-            array_push($identify_parms, $filename, $mass_tolerance, $ion_type); //put all the parameters for identifcation into an array
+            array_push($identify_parms, $filename, $mass_tolerance, $ion_type, $data_column); //put all the parameters for identifcation into an array
             $massdata = array();
             $head=$this->My->IdentifyHeadings($uploadPath);
             $massdata=$this->My->IdentifyMass($uploadPath, $mass_tolerance, $ion_type, $data_column);
@@ -98,14 +98,14 @@ class IdentifyController extends AppController{
      * Exports the search results to a CSV file
      * @param type $data
      */
-    public function export($filename, $mass_tolerance, $ion_type){
+    public function export($filename, $mass_tolerance, $ion_type, $data_column){
         //if ($identify_parms==null){
             //return;
         //}
         $filename= urldecode($filename);
         $filename=WWW_ROOT. 'data/files/identify'. DS . $filename; //set the correct path to the datafile
         $head=$this->My->IdentifyHeadings($filename); //get the headings from the datafile
-        $massdata=$this->My->IdentifyMass($filename, $mass_tolerance, $ion_type); //get the masses from the data file; search compounds and return a compound name
+        $massdata=$this->My->IdentifyMass($filename, $mass_tolerance, $ion_type, $data_column); //get the masses from the data file; search compounds and return a compound name
         $this->set('head', $head); //send to view
         $this->set('masses', $massdata); //send to view
         $this->response->download("export.csv");

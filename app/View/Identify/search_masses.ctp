@@ -11,7 +11,7 @@
 <p style="display:inline-block; width: 200px;"><strong>Mass Window (+/- mDa): </strong><?php echo $identify_parms[1]*1000?></p>
 <p style="display:inline"><strong>Ion Type: </strong><?php echo $identify_parms[2]?><br></p>
 <?php
-$tempExp = $this->Form->postLink('Export to CSV',  array('action' => 'export', urlencode($identify_parms[0]), $identify_parms[1], $identify_parms[2]), ['class' => 'btn-xs btn-info']);
+$tempExp = $this->Form->postLink('Export to CSV',  array('action' => 'export', urlencode($identify_parms[0]), $identify_parms[1], $identify_parms[2], $identify_parms[3]), ['class' => 'btn-xs btn-info']);
 echo $tempExp; 
 //passes the search parameters back to IdentifyController>export so that the csv version of the results can be generated and exported
 ?>

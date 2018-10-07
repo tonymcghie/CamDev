@@ -34,6 +34,7 @@ class StringHelper extends AppHelper{
             'previous_setcode_ph' => 'Create Sample Set Similar to previouse Sample Set',
             'confidential' => 'Confidential',
             'submitter' => 'PFR Collaborator',
+            'submitter_email' => 'PFR Collaborator email',
             'submitter_ph' => 'Enter your name.  Separate multiple Collaborator names with a semicolon (;)',
             'p_name' => 'Project Name',
             'p_name_ph' => 'Start typing - registered projects will autocomplete',

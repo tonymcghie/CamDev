@@ -35,6 +35,12 @@ echo $this->BootstrapForm->input_horizontal('submitter',
         'default' => isset($item['SampleSet']['submitter']) ? $item['SampleSet']['submitter'] : ''
     ]
 );
+echo $this->BootstrapForm->input_horizontal('submitter_email',
+    [
+        'label' => ['text' => $this->String->get_string('submitter_email', 'SampleSet_form')],
+        'default' => isset($item['SampleSet']['submitter_email']) ? $item['SampleSet']['submitter_email'] : ''
+    ]
+);
 echo $this->BootstrapForm->input_horizontal('p_name',
     [
         'label' => $this->String->get_string('p_name', 'SampleSet_form'),
