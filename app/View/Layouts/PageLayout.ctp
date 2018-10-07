@@ -119,7 +119,7 @@ assert(in_array($group, [$sampleSetGroup,
                         }
                         ?>
                         <?= $this->Html->link('Identify by accurate mass', ['controller' => 'Identify', 'action' => 'SelectFile'], ['class' => 'list-group-item']) ?>
-                        <?= $this->Html->link('Matcher (name or CAS)', ['controller' => 'Namechanger', 'action' => 'SelectFile'], ['class' => 'list-group-item']) ?>
+                        <?= $this->Html->link('Match (by name or CAS)', ['controller' => 'Namechanger', 'action' => 'SelectFile'], ['class' => 'list-group-item']) ?>
                     </div>
                 </div>
             </div>
