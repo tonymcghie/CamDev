@@ -14,6 +14,12 @@ class DATABASE_CONFIG {
 		'prefix' => '',
 		'encoding' => 'utf8'
 	);
+        
+        public $dotmatics = array(
+                'datasource' => 'pfrDotmatics',
+                'apiKey'     => '1234abcd',
+        );
+        
         //live config
         /**public $default = [
 		'datasource' => 'Database/Mysql',

@@ -28,7 +28,7 @@
             foreach ($item['links'] as &$link) {
                 //var_dump($link['text']);
                 if (is_array($link['text'])) {
-                    if (isset($link['url'])) {
+                    if (!empty($link['url'])) {
                         $link['text'] = $this->String->get_string($link['text']['id'], $link['text']['set']);
                     } else {
                         $link['text'] = $this->String->get_string('noDataFile', 'Analysis');
