@@ -93,7 +93,7 @@ assert(in_array($group, [$sampleSetGroup,
         <div class="panel-group" id="nav_accordion">
             <div class="panel panel-default">
                 <div class="panel-heading light-green lighten-3" data-toggle="collapse" data-parent="#nav_accordion" href="#sample_sets_menu"
-                     data-toggle="tooltip" title="Sample sets are a group of samples that are to be analysed as a unit. Click to see Sample Set actions!">
+                     data-toggle="tooltip" title="Sample sets are a group of samples that are to be analysed as a single work unit. Click to see Sample Set actions!">
                     <span>Sample Sets</span>
                 </div>
                 <div class="panel-collapse collapse <?php if ($group == $sampleSetGroup)echo 'in'; ?>"
@@ -107,7 +107,8 @@ assert(in_array($group, [$sampleSetGroup,
             </div>
 
             <div class="panel panel-default">
-                <div class="panel-heading light-green lighten-3" data-toggle="collapse" data-parent="#nav_accordion" href="#compounds_menu">
+                <div class="panel-heading light-green lighten-3" data-toggle="collapse" data-parent="#nav_accordion" href="#compounds_menu"
+                     data-toggle="tooltip" title="Reference compounds data: formulas; CAS numbers; accurate masses; database links etc...">
                     <span>Compounds (Reference)</span>
                 </div>
                 <div class="panel-collapse collapse <?php if ($group == $compoundsGroup)echo 'in'; ?>" id="compounds_menu">
@@ -123,10 +124,25 @@ assert(in_array($group, [$sampleSetGroup,
                     </div>
                 </div>
             </div>
+            
+             <?php if (($this->Session->read('Auth.User.name') == 'Tony McGhie') && ($this->Session->read('Auth.User')!==null)): ?>
+
+            <div class="panel panel-default">
+                <div class="panel-heading light-green lighten-3" data-toggle="collapse" data-parent="#nav_accordion" href="#compounds_menu_dotmatics"
+                     data-toggle="tooltip" title="Reference data fetched from Dotmatics">
+                    <span>Compounds (Reference)(D)</span>
+                </div>
+                <div class="panel-collapse collapse <?php if ($group == $compoundsGroup)echo 'in'; ?>" id="compounds_menu_dotmatics">
+                    <div class="panel-body light-blue lighten-3">
+                        <?= $this->Html->link('Find', ['controller' => 'CompoundsDotmatics', 'action' => 'search'], ['class' => 'list-group-item']) ?>
+                    </div>
+                </div>
+            </div>
+            <?php endif; /* Compounds (D) */ ?> 
 
             <div class="panel panel-default">
                 <div class="panel-heading light-green lighten-3" data-toggle="collapse" data-parent="#nav_accordion" href="#pfr_data_menu"
-                     data-toggle="tooltip" title="Actions to find and access analytical data that has been uploaded to CAM. Click to see actions!">
+                     data-toggle="tooltip" title="Actions to find and access analytical data generate by PFR that has been uploaded to CAM. Click to see actions!">
                     <span>PFR Analytical Compound Data</span>
                 </div>
                 <div class="panel-collapse collapse <?php if ($group == $pfrDataGroup)echo 'in'; ?>" id="pfr_data_menu">
