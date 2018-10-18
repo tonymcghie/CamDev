@@ -1,5 +1,4 @@
 <?php
-//var_dump($data);
 echo $this->Html->link('PubChem', $data['pubchemLink'][0], array('style'=>'width: 70px','class' => 'btn-xs btn-primary', 'target' => '_blank'));
 echo $this->Html->link('ChemSpider', $data['chemspiderLink'][0], array('style'=>'width: 70px','class' => 'btn-xs btn-primary', 'target' => '_blank'));
 echo $this->Html->link('Structure', $data['viewURL'][0], array('style'=>'width: 70px','class' => 'btn-xs btn-primary', 'target' => '_blank'));

@@ -24,6 +24,7 @@ class MetaboliteDataObject extends DataObject implements ViewableModel {
             'viewURL' => ['controller' => 'Metabolites', 'action' => 'view', '?' => ['id' => $this->id]],
             'editURL' => ['controller' => 'Metabolites', 'action' => 'editMetabolite', '?' => ['id' => $this->id]],
             'loaddocURL' => ['controller' => 'Metabolites', 'action' => 'docsMetabolite', '?' => ['id' => $this->id]],
+            'document' => ['path' => $this->document],
             'msmsURL' => ['controller' => 'Metabolites', 'action' => 'addMsms', '?' => ['id' => $this->id]],
             'proposed_idURL' => ['controller' => 'Metabolites', 'action' => 'addProposedid', '?' => ['id' => $this->id]]
         ];

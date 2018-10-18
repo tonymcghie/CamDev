@@ -7,7 +7,6 @@
     /** @var array $initialColumns */
     assert(isset($model), '\'$model\' is required when \'$results\' is not empty');
     /** @var string $model */
-
     ?>
 
     <div id="search-results">
