@@ -153,7 +153,7 @@ class MetabolitesController extends AppController {
            $this->request->data = $metabolite;
         }//update the data to display
     }
-    
+     
     /**
      * updates a row in the Proposed Metabolite table
      * @param String $id
@@ -167,7 +167,7 @@ class MetabolitesController extends AppController {
      * @param type $id
      */
     public function editMsmsMetabolite($id = null){
-        $this->save($this->Msms_Metabolite, $id);
+        return true;
     }
     
     /**

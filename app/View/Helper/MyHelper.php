@@ -126,4 +126,5 @@ class MyHelper extends AppHelper{
 	public function getAnalystStatusOptions(){
         return ['Operational' => 'Operational', 'Archived' => 'Archived'];
     }
+    
 }
