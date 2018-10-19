@@ -229,9 +229,9 @@ assert(in_array($group, [$sampleSetGroup,
                      data-toggle="tooltip" title="Actions for the Metabolite Chemistry Team. Click to see actions!">
                     <span>Metabolite Chemistry</span>
                 </div>
-                <div class="panel-collapse collapse <?php if ($group == $adminGroup)echo 'in'; ?>" id="met_chem">
+                <div class="panel-collapse collapse <?php if ($group == $metabolite_chemGroup)echo 'in'; ?>" id="met_chem">
                     <div class="panel-body light-blue lighten-3">
-                        <?= $this->Html->link('View Variables', ['controller' => 'General', 'action' => 'loginVar'], ['class' => 'list-group-item']) ?>
+                        <?= $this->Html->link('Data Processing', ['controller' => 'DataProcessing', 'action' => 'SelectFile'], ['class' => 'list-group-item']) ?>
                     </div>
                 </div>
             </div>
