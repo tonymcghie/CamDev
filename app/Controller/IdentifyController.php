@@ -42,12 +42,12 @@ class IdentifyController extends AppController{
     public function SelectFile(){
         $filename = '';
         if ($this->request->is('post')) { // checks for the post values
-            $uploadData = $this->data['Upload']['csv_path'];
+            $uploadData = $this->request->data['Upload']['csv_path'];
 
-            $mass_tolerance = $this->data['Upload']['mass_tolerance']/1000;
-            $ion_type = $this->data['Upload']['ion_type'];
+            $mass_tolerance = $this->request->data['Upload']['mass_tolerance']/1000;
+            $ion_type = $this->request->data['Upload']['ion_type'];
             
-            $data_column = $this->data['Upload']['data_column'];
+            $data_column = $this->request->data['Upload']['data_column'];
             //$data_column from a spreadsheet column to a column number
             switch ($data_column) {
                 case "A":

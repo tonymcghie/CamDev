@@ -44,7 +44,7 @@ class ItemsController extends AppController{
 	public function view_samples($set_code = null) {
         $data = $this->request->data;        
         if ($set_code == null){
-            $set_code = $this->params['url']['set_code'];
+            $set_code = $this->request->params['url']['set_code'];
 		}
 		$this->set('set_code', $set_code);
     }*/
@@ -55,7 +55,7 @@ class ItemsController extends AppController{
     public function editAnalysis($set_code = null){                    
         $data = $this->request->data;        
         if ($set_code == null){
-            $set_code = $this->params['url']['set_code'];
+            $set_code = $this->request->params['url']['set_code'];
         } //gets the set_code
         if (isset($data['Analysis']['key'])){ 
             $this->Analysis->create();
@@ -107,7 +107,7 @@ class ItemsController extends AppController{
      */
     public function uploadNewImg(){                
         $this->layout = 'ajax'; //sets the layout to a minimilistic one contains the bear minimum with as little formating as possible.
-        $id = $this->params['url']['id'];
+        $id = $this->request->params['url']['id'];
         $imgURL = $this->Analysis->find('first', ['feilds' => ['imgURL'], 'conditions' => ['id' => $id]])['Analysis']['imgURL']; //finds the current imgURL for the row
         $this->set('id', $id);
         $this->set('imgURL', $imgURL);

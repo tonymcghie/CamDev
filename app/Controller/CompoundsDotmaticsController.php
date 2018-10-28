@@ -76,7 +76,7 @@ class CompoundsDotmaticsController extends AppController {
     public function editCompound($id = null){
         //$this->layout = 'main';
         if ($id == null){
-            $id = $this->params['url']['id'];
+            $id = $this->request->params['url']['id'];
         } // gets $id from the url
         $compound = $this->Compound->findById($id);
         if (!$compound){

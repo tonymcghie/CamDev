@@ -117,7 +117,7 @@ echo $this->BootstrapForm->input_horizontal('set_code',
                 );
                 carouselItems.append(
                     Mustache.render(itemTemplate["Analysis/carousel_item"],
-                        {"url": '<?= $this->webroot?>data/images/analysis/<?=$analysis['Analysis']['id']?>_'+ index,
+                        {"url": '<?= $this->request->webroot?>data/images/analysis/<?=$analysis['Analysis']['id']?>_'+ index,
                         "active": index === 0})
                 );
             }

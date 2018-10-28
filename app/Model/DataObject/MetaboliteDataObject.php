@@ -10,7 +10,7 @@ class MetaboliteDataObject extends DataObject implements ViewableModel {
 
     protected $immutableFields = ['id'];
 
-    // FRONT END DATA HELPERS
+    // FRONT END DATA APP . 'View' . DS . 'Helper' . DS
 
     /**
      * {@inheritdoc}

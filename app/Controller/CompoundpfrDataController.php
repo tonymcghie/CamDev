@@ -74,7 +74,7 @@ class CompoundpfrDataController extends AppController {
         $this->layout = 'main';
         $data = $this->request->data;
         if ($id == null){
-            $id = $this->params['url']['id'];
+            $id = $this->request->params['url']['id'];
         } // gets $id from the url
         if (empty($id)) {
             $this->set('error', 'Invalid Sample Set');
@@ -153,7 +153,7 @@ class CompoundpfrDataController extends AppController {
     public function viewSet($reference = null) {
         $data = $this->request->data;
         if ($reference == null){
-            $reference = $this->params['url']['reference'];
+            $reference = $this->request->params['url']['reference'];
         } // gets $id from the url
         if (empty($id)) {
             $this->set('error', 'Invalid Sample Set');

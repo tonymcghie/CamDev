@@ -17,9 +17,9 @@
        ?>
     }
 </script>
-<?php if (isset($this->params['url']['alert'])):?>
+<?php if (isset($this->request->params['url']['alert'])):?>
     <script>
-        alert('<?php echo $this->params['url']['alert']?>');
+        alert('<?php echo $this->request->params['url']['alert']?>');
         <?php 
             echo $this->Js->request(['controller' => 'Users', 'action' => 'Session_first'], [
                 'async' => true,

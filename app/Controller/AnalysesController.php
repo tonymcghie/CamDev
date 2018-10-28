@@ -35,7 +35,7 @@ class AnalysesController extends AppController{
      * this is called when the save or create button is pressed. It will update the values in the database and/or create a new row
      */
     public function editAnalysis() {
-        $set_code = $this->params['url']['set_code'];
+        $set_code = $this->request->params['url']['set_code'];
         if (!isset($set_code)) {
             throw new Exception('the set_code parameter was not passed');
         }
@@ -49,12 +49,12 @@ class AnalysesController extends AppController{
             $this->Analysis->save($data);
         }
 
-        if (!isset($id) && !isset($this->params['url']['id'])) {
+        if (!isset($id) && !isset($this->request->params['url']['id'])) {
             $analysis = $this->Analysis->find('first', ['conditions' => ['set_code' => $set_code]]);
         } else if (isset($id)) {
             $analysis = $this->Analysis->find('first', ['conditions' => ['id' => $id]]);
         } else {
-            $analysis = $this->Analysis->find('first', ['conditions' => ['id' => $this->params['url']['id']]]);
+            $analysis = $this->Analysis->find('first', ['conditions' => ['id' => $this->request->params['url']['id']]]);
         }
 
         $titles = $this->Analysis->find('all', ['conditions' => ['set_code' => $set_code], 'fields' => ['Analysis.id', 'Analysis.title']]);
@@ -64,7 +64,7 @@ class AnalysesController extends AppController{
     }
 
     public function newAnalysis() {
-        $set_code = isset($this->params['url']['set_code']) ? $this->params['url']['set_code'] : $this->request->data['Analysis']['set_code'];
+        $set_code = isset($this->request->params['url']['set_code']) ? $this->request->params['url']['set_code'] : $this->request->data['Analysis']['set_code'];
         $this->set('set_code', $set_code);
         $titles = $this->Analysis->find('all', ['conditions' => ['set_code' => $set_code], 'fields' => ['Analysis.id', 'Analysis.title']]);
         $this->set('titles', $titles);

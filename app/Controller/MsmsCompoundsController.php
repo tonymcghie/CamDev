@@ -78,7 +78,7 @@ class MsmsCompoundsController extends AppController {
     
     public function MsmsCompoundTabs($compound_name = null, $compound_id = null){
         if ($compound_id == null){
-            $compound_id = isset($this->params['url']['compound_id']) ? $this->params['url']['compound_id'] : $this->request->data['Msms_compound']['compound_id'];
+            $compound_id = isset($this->request->params['url']['compound_id']) ? $this->request->params['url']['compound_id'] : $this->request->data['Msms_compound']['compound_id'];
         } // gets $compound_id from the url
         $this->set('compound_id', $compound_id);
         $titles = $this->Msms_compound->find('all', ['conditions' => ['compound_id' => $compound_id], 'fields' => ['Msms_compound.id', 'Msms_compound.msms_title']]);
@@ -96,7 +96,7 @@ class MsmsCompoundsController extends AppController {
     
     public function newMsmsCompound($compound_name = null, $compound_id = null, $currentMsms = null){
         // get the compound_id from the url
-        $compound_id = $this->params['url']['compound_id'];
+        $compound_id = $this->request->params['url']['compound_id'];
         // initialise the basic msms data
         $compound = $this->Compound->findById($compound_id);
         $data['Msms_compound']['compound_name'] = $compound['Compound']['compound_name'];
@@ -116,13 +116,13 @@ class MsmsCompoundsController extends AppController {
      */
     public function editMsmsCompound() {
         //get the compound_id and send to View
-        $compound_id = $this->params['url']['compound_id'];
+        $compound_id = $this->request->params['url']['compound_id'];
         if (!isset($compound_id)) {
             throw new Exception('the compound_id parameter was not passed');
         }
         $this->set('compound_id', $compound_id);
         //get the id and send to View
-        $id = $this->params['url']['id'];
+        $id = $this->request->params['url']['id'];
         if (empty($id)) {
             $msms_data = $this->Msms_compound->find('first', ['conditions' => ['compound_id' => $compound_id]]);
             $id = $msms_data['Msms_compound']['id'];
@@ -179,7 +179,7 @@ class MsmsCompoundsController extends AppController {
     public function addMsmsCompound($id = null){
         //$this->layout = 'main';
         if ($id == null){
-            $id = $this->params['url']['id'];
+            $id = $this->request->params['url']['id'];
         } // gets $id from the url
         $compound = $this->Compound->findById($id);
         $this->set('compound', $this->Compound->findById($id));
@@ -238,7 +238,7 @@ class MsmsCompoundsController extends AppController {
     /**public function editMsmsCompound($id = null){
         
         if ($id == null) {
-            $id = $this->params['url']['id'];
+            $id = $this->request->params['url']['id'];
         } // gets $id from the url
         
         $compound = $this->Compound->findById($id);
