@@ -29,13 +29,13 @@
     $processing = ['all' => 'Apply surrogate calibrations and quantify' , 'quant' => 'Quantify only'];
     $upload = ['No' => 'No' , 'Yes' => 'Yes' ];
     echo $this->BootstrapForm->create_horizontal('Upload', ['type' => 'file']);
-    echo $this->BootstrapForm->input_horizontal('csv_path', ['label' => 'Data File (xlsx):',
+    echo $this->BootstrapForm->input_horizontal('xlsx_path', ['label' => 'Data File (xlsx):',
     'type' => 'file']);
     echo $this->BootstrapForm->input_horizontal('processing_options', ['label' => 'Processing Options: ',
     'options' => $processing, 'default' => 'all']);
-    echo $this->BootstrapForm->input_horizontal('upload', ['label' => 'Upload Options: ',
+    echo $this->BootstrapForm->input_horizontal('upload_options', ['label' => 'Upload (to PFR CompoundData) Options: ',
     'options' => $upload, 'default' => 'No']);
-    echo $this->BootstrapForm->addMatchButtons();
+    echo $this->BootstrapForm->addProcessButtons();
 ?>
 <script>
     $('#csvFile').on('change',function(){

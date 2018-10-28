@@ -6,11 +6,36 @@
  * and open the template in the editor.
  */
 
+/* Added this autoloader to get PhpSpreadsheetworking
+ * the code comes from http://www.dereuromark.de/2012/08/06/namespaces-in-vendor-files-and-cake2-x/
+ */
+// found this suggestion but does not work 
+//App::build(array('Vendor/PhpOffice' => array('%s' . 'PhpOffice' . DS)), App::REGISTER);
+
+/*
+spl_autoload_register(function ($class) {
+	foreach (App::path('Vendor') as $base) {
+		$path = $base . str_replace('\\', DS, $class) . '.php';
+		if (file_exists($path)) {
+			include $path;
+			return;
+		}
+	}
+});
+*/
+
+//App::import('Vendor', 'PackageName', array('file' => 'PackageName/SubFolder/ClassName.php'));
+//App::import('Vendor', 'Spreadsheet', array('file' => 'PhpOffice/PhpSpreadsheet/Spreadsheet.php'));
+//abandon using Spreadsheet at present  - cannot get it to load
+
 class DataProcessingController extends AppController{
+    
+    //use Spreadsheet;
+    
     public $helpers = array('Html' , 'Form' , 'My', 'Js');
     public $uses = array('Compound');
     public $layout = 'PageLayout';
-    public $components = array('Paginator', 'My', 'Session');
+    public $components = array('Paginator', 'My', 'Session', 'PhpExcel');
         
     /**
      * What to do before functions are called
@@ -20,6 +45,19 @@ class DataProcessingController extends AppController{
 
         $this->set('group', 'met_chem');
     }
+    
+    /**
+    * Checks to see if the Spreadsheet class exists
+    */
+    /**protected $_Engine;
+    public function __construct($settings) {
+	parent::__construct($settings);
+	if (!class_exists('Spreadsheet')) {
+            throw new RuntimeException('Spreadsheets library cannot be found');
+	}
+        //$this->_Engine = new PhpOffice\PhpSpreadsheet\Spreadsheet($settings);
+    }
+    */
     
     /**
      * Return weather the user is authorised to access the function
@@ -40,37 +78,18 @@ class DataProcessingController extends AppController{
     public function SelectFile(){
         $filename = '';
         if ($this->request->is('post')) { // checks for the post values
-            $uploadData = $this->data['Upload']['csv_path'];
             
-            $match_criteria = $this->data['Upload']['match_criteria'];
-            $data_column = $this->data['Upload']['data_column'];
-            //$data_column from a spreadsheet column to a column number
-            switch ($data_column) {
-                case "A":
-                    $data_column = 0;
-                    break;
-                case "B":
-                    $data_column = 1;;
-                    break;
-                case "C":
-                    $data_column = 2;;
-                    break;
-                case "D":
-                    $data_column = 3;;
-                    break;
-                case "E":
-                    $data_column = 4;;
-                    break;
-                case "F":
-                    $data_column = 5;;
-                    break;
-            }
+            $uploadData = $this->data['Upload']['xlsx_path'];
+            var_dump($uploadData);
+            $processing_options = $this->data['Upload']['processing_options'];
+            $upload_options = $this->data['Upload']['upload_options'];
+            
 
             if ( $uploadData['size'] == 0 || $uploadData['error'] !== 0) { // checks for the errors and size of the uploaded file
                 return false;
                 }
             $filename = basename($uploadData['name']); // gets the base name of the uploaded file
-            $uploadFolder = WWW_ROOT. 'data/files/namechanger';  // path where the uploaded file has to be saved
+            $uploadFolder = WWW_ROOT. 'data/files/data_processing';  // path where the uploaded file has to be saved
             $uploadPath =  $uploadFolder . DS . $filename;
             if( !file_exists($uploadFolder) ){
                 mkdir($uploadFolder); // creates folder if  not found
@@ -78,18 +97,31 @@ class DataProcessingController extends AppController{
             if (!move_uploaded_file($uploadData['tmp_name'], $uploadPath)) {
                 return false;
             }
-            $identify_parms = array();
+            $processing_parms = array();
             //put all the parameters for matching into an array
-            array_push($identify_parms, $filename); 
-            array_push($identify_parms, $match_criteria);
-            array_push($identify_parms, $data_column);
+            array_push($processing_parms, $filename); 
+            array_push($processing_parms, $processing_options);
+            array_push($processing_parms, $upload_options);
             $massdata = array();
-            $head=$this->My->NamechangeHeadings($uploadPath); //get the headings from the datafile
-            $data=$this->My->Namechange($uploadPath, $match_criteria, $data_column); //get compound from the data file; search compounds and return a compound name
-            $this->set('identify_parms', $identify_parms); //passes the identify parameters to the view 
-            $this->set('head', $head); // pass table headings to the view 
-            $this->set('data', $data); // pass array with the mass data from file to the view 
-            $this->render('search_names'); //direct to the search_masses view and not the default select_file view
+            //$spreadsheet = new PhpOffice\PhpSpreadsheet\Spreadsheet();
+           //$spreadsheet = new PhpOffice/PhpSpreadsheet/Spreadsheet();
+            //$spreadsheet = new PhpSpreadsheet/Spreadsheet();
+            //$spreadsheet = new Spreadsheet();
+            //$reader = \PhpOffice\PhpSpreadsheet\IOFactory::createReader("Xlsx");
+            //$spreadsheet = $reader->load($uploadPath);
+            //require_once 'PHPExcel/IOFactory.php';
+            //$objPHPExcel = PHPExcel_IOFactory::load($uploadPath);
+            $this->PhpExcel->loadWorksheet($uploadPath);
+            $data=$this->PhpExcel->getSheetByName('SampleData');
+            var_dump($data);
+            
+            //$data=$this->PhpExcel->importData('Excel5',$tmpPath);
+            //$head=$this->My->NamechangeHeadings($uploadPath); //get the headings from the datafile
+            //$data=$this->My->Namechange($uploadPath, $match_criteria, $data_column); //get compound from the data file; search compounds and return a compound name
+            $this->set('processing_parms', $processing_parms); //passes the identify parameters to the view 
+            //$this->set('head', $head); // pass table headings to the view 
+            //$this->set('data', $data); // pass array with the mass data from file to the view 
+            $this->render('data_processing'); //direct to the search_masses view and not the default select_file view
         }  
     }
         
