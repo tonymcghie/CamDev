@@ -113,3 +113,26 @@ CakeLog::config('error', array(
 
 App::build(['Controller/Behavior' => [APP . 'Controller' . DS . 'Behavior' . DS]], App::REGISTER);
 App::build(['Model/DataObject' => [APP . 'Model' . DS . 'DataObject' . DS]], App::REGISTER);
+
+ /**
+ * Configure the autoloader
+ * Part of the setup to install PhpSpreadsheet into Cakephp 2
+ * instructions were obtained for here http://abakalidis.blogspot.com/2018/08/how-to-use-latest-phpofficespreadsheet.html
+ */
+ /**spl_autoload_register( function($class) {
+        foreach(App::path('Vendor') as $base) {
+            $path = $base . str_replace('\\', DS, $class) . '.php';
+            if (file_exists($path)) 
+                return include $path;            
+        }
+    }, true);
+  */  
+    spl_autoload_register(function ($class) {
+	foreach (App::path('Vendor') as $base) {
+		$path = $base . str_replace('\\', DS, $class) . '.php';
+		if (file_exists($path)) {
+			include $path;
+			return;
+		}
+	}
+});

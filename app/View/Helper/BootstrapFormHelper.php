@@ -251,6 +251,27 @@ class BootstrapFormHelper extends FormHelper{
     }
     
     /**
+     * Creates a Process and Cancel button
+     */
+    public function addProcessButtons($save = 'Process', $cancel = 'Cancel', $cancelAction = 'window.history.back();return false;') {
+        $html = '';
+        $html .= $this->start_group();
+        $html .= '<div class="col-lg-4"></div>'; // Spacer.
+        $html .= $this->single_button([
+            'onClick' => $cancelAction,
+            'class' => 'btn-default',
+            'text' => $cancel,
+            'type' => 'button'
+        ]);
+        $html .= $this->single_button([
+            'class' => 'btn-primary',
+            'text' => $save
+        ]);
+        $html .= $this->end_group();
+        return $html;
+    }
+    
+    /**
      * Creates an Execute and cancel button
      */
     public function executeCurateButton($save = 'Execute (Careful!)', $cancel = 'Cancel', $cancelAction = 'window.history.back();return false;') {
