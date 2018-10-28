@@ -13,7 +13,7 @@ if (isset($set_code)){
 <p><?php echo $this->String->get_string('sub_title', 'SampleSet_form'); ?></p>
 	</header>
 <?php
-echo $this->BootstrapForm->create_horizontal('SampleSet', ['type' => 'file' ,'action' => 'createSampleSet']);
+echo $this->BootstrapForm->create_horizontal('SampleSet', ['type' => 'file' , 'url' => array('controller' => 'SampleSets', 'action' => 'createSampleSet')]);
 //to do make a clone button in the table
 echo $this->BootstrapForm->input_horizontal('confidential', ['type' => 'checkbox',
     'label' => $this->String->get_string('confidential', 'SampleSet_form')]);

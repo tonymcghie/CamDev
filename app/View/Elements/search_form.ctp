@@ -18,7 +18,7 @@ assert(isset($model),
 
 <h1><?= $this->String->get_string('searchTitle', $model);?></h1>
 
-<?= $this->BootstrapForm->create($model, ['action' => 'search', 'type' => 'get', 'class' => 'search-form']); ?>
+<?= $this->BootstrapForm->create($model, ['url' => 'search', 'type' => 'get', 'class' => 'search-form']); ?>
 
 <div class="search-set form-group row">
     <div class="col-lg-3"><?= $this->String->get_string('criteria', 'Search_form')?></div> <!--TODO use get string-->

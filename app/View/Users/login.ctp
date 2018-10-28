@@ -53,7 +53,7 @@ body {
 
 </style>
   <div class="wrapper">
-      <?php echo $this->Form->create('User', array('action' => 'login', 'class' => 'form-signin')); ?>
+      <?php echo $this->Form->create('User', array('url' => array('controller' => 'Users', 'action' => 'login'), 'class' => 'form-signin')); ?>
       <h2 class="form-signin-heading">Please Sign In</h2>
       <input type="text" class="form-control" name="username" placeholder="enter PFR username" required="" autofocus="" autocomplete="off"/>
       <input type="password" class="form-control" name="password" placeholder="password" required="" autocomplete="off"/>      

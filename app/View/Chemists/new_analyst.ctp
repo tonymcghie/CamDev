@@ -7,7 +7,7 @@ $this->assign('title', 'New Analyst');
 <p><?php echo $this->String->get_string('sub_title', 'Analyst_form'); ?></p>
 </header>
 <?php
-echo $this->BootstrapForm->create_horizontal('Chemist', ['action' => 'newAnalyst']);
+echo $this->BootstrapForm->create_horizontal('Chemist', ['url' => array('controller' => 'Chemists', 'action' => 'newAnalyst')]);
 echo $this->BootstrapForm->input_horizontal('name', ['label' => ['text' => $this->String->get_string('name', 'Analyst_form')],
     'required',]);
 echo $this->BootstrapForm->input_horizontal('team', ['label' => $this->String->get_string('team', 'Analyst_form'),
