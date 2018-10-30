@@ -78,13 +78,10 @@ class DataProcessingController extends AppController{
     public function SelectFile(){
         $filename = '';
         if ($this->request->is('post')) { // checks for the post values
-            
             $uploadData = $this->request->data['Upload']['xlsx_path'];
             var_dump($uploadData);
             $processing_options = $this->request->data['Upload']['processing_options'];
-            $upload_options = $this->request->data['Upload']['upload_options'];
-            
-
+            $upload_options = $this->request->data['Upload']['upload_options'];            
             if ( $uploadData['size'] == 0 || $uploadData['error'] !== 0) { // checks for the errors and size of the uploaded file
                 return false;
                 }
