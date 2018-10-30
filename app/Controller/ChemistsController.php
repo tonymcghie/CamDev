@@ -77,7 +77,7 @@ class ChemistsController extends AppController {
      */
     public function editAnalyst($id = null){
         if ($id == null){
-            $id = $this->params['url']['id'];
+            $id = $this->request->params['url']['id'];
         } // gets $id from the url
         $analyst = $this->Chemist->findById($id);
         if (!$analyst){

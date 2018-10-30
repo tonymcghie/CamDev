@@ -97,13 +97,13 @@ class UsersController extends AppController {
     if ($this->Session->read('Auth.User')) {
         $data = http_build_query(['alert' => 'You are already Logged in as '.$this->Session->read('Auth.User')['name']]);        
         $this->redirect(['controller' => 'General', 'action' => 'blank', '?' => $data]);        
-    } elseif (!empty($this->data || $this->Cookie->check('User'))) {
+    } elseif (!empty($this->request->data || $this->Cookie->check('User'))) {
         if ($this->Cookie->check('User')){
             $this->request->data['User']['username'] = $this->Cookie->read('User.username');
             $this->request->data['User']['password'] = $this->Cookie->read('User.password');
         } //if cookie exists then adjust the login details to that of the Cookie
         if ($this->LDAP->auth($this->request->data['User']['username'], $this->request->data['User']['password'])) {
-            $user = $this->findByUsername($this->data['User']['username']); //gets the user data              
+            $user = $this->findByUsername($this->request->data['User']['username']); //gets the user data              
             if ($this->Chemist->find('count', ['conditions' => ['name' => $user['name']]]) > 0){
                 array_push($user['groups'], "PFR-GP-Biological Chemistry and Bioactives Group"); //This searches the Chemsist database and adds the user to the admins if they are found
             }

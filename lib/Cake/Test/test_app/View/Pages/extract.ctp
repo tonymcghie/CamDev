@@ -1,9 +1,9 @@
 <?php
-$i = 10;
+$count = 10;
 $messages = array('count' => 10);
 
 // Plural
-echo __n('You have %d new message.', 'You have %d new messages.', $i);
+echo __n('You have %d new message.', 'You have %d new messages.', $count);
 echo __n('You deleted %d message.', 'You deleted %d messages.', $messages['count']);
 
 // Domain Plural
@@ -37,5 +37,5 @@ echo __('letter');
 echo __x('A', 'letter');
 echo __x('B', 'letter');
 echo __x('A', 'letter');
-echo __n('%d letter', '%d letters', $i);
-echo __xn('A', '%d letter', '%d letters', $i);
+echo __n('%d letter', '%d letters', $count);
+echo __xn('A', '%d letter', '%d letters', $count);

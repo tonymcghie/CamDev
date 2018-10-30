@@ -39,7 +39,7 @@
                 /*if (is_array($link['url'])) {
                     $link['url'] = $this->Html->url($link['url']);
                 } else {
-                    $link['url'] = $this->webroot.$link['url'];
+                    $link['url'] = $this->request->webroot.$link['url'];
                 } */
             }
         }

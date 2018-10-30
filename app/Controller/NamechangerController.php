@@ -42,10 +42,10 @@ class NamechangerController extends AppController{
     public function SelectFile(){
         $filename = '';
         if ($this->request->is('post')) { // checks for the post values
-            $uploadData = $this->data['Upload']['csv_path'];
+            $uploadData = $this->request->data['Upload']['csv_path'];
             
-            $match_criteria = $this->data['Upload']['match_criteria'];
-            $data_column = $this->data['Upload']['data_column'];
+            $match_criteria = $this->request->data['Upload']['match_criteria'];
+            $data_column = $this->request->data['Upload']['data_column'];
             //$data_column from a spreadsheet column to a column number
             switch ($data_column) {
                 case "A":

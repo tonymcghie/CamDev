@@ -8,7 +8,7 @@ $this->assign('title', 'New Compound');
 </header>
 <div id="unique"> </div>
 <?php
-echo $this->BootstrapForm->create_horizontal('Compound', ['type' => 'file' ,'action' => 'addCompound']);
+echo $this->BootstrapForm->create_horizontal('Compound', ['type' => 'file' , 'url' => array('controller' => 'Compounds', 'action' => 'addCompound')]);
 //to do make a clone button in the table
 echo $this->BootstrapForm->input_horizontal('cas', ['label' => ['text' => $this->String->get_string('cas', 'Compound_form')],
     'required',

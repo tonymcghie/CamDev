@@ -18,7 +18,7 @@ assert(isset($model),
 
 <h1><?= $this->String->get_string('overviewTitle', $model);?></h1>
 
-<?= $this->BootstrapForm->create($model, ['action' => 'overview', 'type' => 'get', 'class' => 'overview-form']); ?>
+<?= $this->BootstrapForm->create($model, ['url' => array('action' => 'overview'), 'type' => 'get', 'class' => 'overview-form']); ?>
 
 <div class="search-set form-group row">
     <div class="col-lg-3"><?= $this->String->get_string('by', 'Overview_form')?></div> 

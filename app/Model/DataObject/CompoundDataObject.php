@@ -20,7 +20,7 @@ class CompoundDataObject extends DataObject {
         }
     }
 
-    // FRONT END DATA HELPERS
+    // FRONT END DATA APP . 'View' . DS . 'Helper' . DS
 
     /**
      * {@inheritdoc}

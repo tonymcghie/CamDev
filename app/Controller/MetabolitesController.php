@@ -100,7 +100,7 @@ class MetabolitesController extends AppController {
      */
     public function addProposedid($id = null){
         if ($id == null){
-            $id = $this->params['url']['id'];
+            $id = $this->request->params['url']['id'];
         } // gets $id from the url
         if (empty($id)) {
             $this->set('error', 'Invalid Unknown');
@@ -133,7 +133,7 @@ class MetabolitesController extends AppController {
      */
     public function editMetabolite($id = null){
         if ($id == null){
-            $id = $this->params['url']['id'];
+            $id = $this->request->params['url']['id'];
         } // gets $id from the url
         if (empty($id)) {
             $this->set('error', 'Invalid Unknown');
@@ -198,7 +198,7 @@ class MetabolitesController extends AppController {
      */
     public function viewMetabolite($id = null){
         if ($id == null){
-            $id = $this->params['url']['id'];
+            $id = $this->request->params['url']['id'];
         } // gets $id from the url
         if (empty($id)) {
             $this->set('error', 'Invalid Unknown');
@@ -218,7 +218,7 @@ class MetabolitesController extends AppController {
     
     public function docsMetabolite($id = null){
         if ($id == null){
-            $id = $this->params['url']['id'];            
+            $id = $this->request->params['url']['id'];            
         } // gets $id from the url
         
         if (empty($id)) {
@@ -307,7 +307,7 @@ class MetabolitesController extends AppController {
      
     public function docsMetabolite($id = null){
         if ($id == null){
-            $id = $this->params['url']['id'];
+            $id = $this->request->params['url']['id'];
         } // gets $id from the url
         if (empty($id)) {
             $this->set('error', 'Invalid Unknown');
@@ -327,8 +327,8 @@ class MetabolitesController extends AppController {
         
         $filename = '';
         if ($this->request->is('post')) { // checks for the post values
-            $uploadData = $this->data['Upload']['doc_path'];
-            //var_dump($this->data);
+            $uploadData = $this->request->data['Upload']['doc_path'];
+            //var_dump($this->request->data);
             //var_dump($meta);
             if ( $uploadData['size'] == 0 || $uploadData['error'] !== 0) { // checks for the errors and size of the uploaded file
                 return false;
