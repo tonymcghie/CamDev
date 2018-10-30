@@ -1,6 +1,6 @@
 <h1><?= $this->String->get_string('title', 'Edit_form');?></h1>
 
-<?= $this->BootstrapForm->create($model, ['action' => 'edit']); ?>
+<?= $this->BootstrapForm->create($model, ['url' => array('controller' => 'Editable','action' => 'edit')]); ?>
 
 <?= $this->element($model.'/edit_form', ['item' => $item]); ?>
 

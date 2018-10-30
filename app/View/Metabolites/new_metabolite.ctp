@@ -7,7 +7,7 @@ $this->assign('title', 'New Unknown Compound');
 </header>
 <?php
 
-echo $this->BootstrapForm->create_horizontal('Metabolite', ['action' => 'createMetabolite']);
+echo $this->BootstrapForm->create_horizontal('Metabolite', ['url' => array('controller' => 'Metabolites', 'action' => 'createMetabolite')]);
 echo $this->BootstrapForm->input_horizontal('exact_mass', ['label' => ['text' => $this->String->get_string('exact_mass', 'Metabolite_form')],
     'required',]);
 echo $this->BootstrapForm->input_horizontal('ion_type', ['label' => $this->String->get_string('ion_type', 'Metabolite_form'),
