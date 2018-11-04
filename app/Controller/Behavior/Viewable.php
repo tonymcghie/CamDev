@@ -11,7 +11,7 @@ trait Viewable {
     protected abstract function getModel();
 
     public function view() {
-        $id = $this->request->params['url']['id'];
+        $id = $this->request->query['id'];
         $item = $this->getModel()->findById($id);
         $dataObject = $this->getModel()->buildObjects([$item])[0];
         $this->set('dataObject', $dataObject);
