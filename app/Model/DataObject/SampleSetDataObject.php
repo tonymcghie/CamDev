@@ -89,6 +89,8 @@ class SampleSetDataObject extends DataObject implements ViewableModel {
                 'text' => $this->exp_reference],
             'compounds' => [
                 'text' => $this->compounds],
+            'set_reason' => [
+                'text' => $this->set_reason],
             'comments' => [
                 'text' => $this->comments],
             'date' => [

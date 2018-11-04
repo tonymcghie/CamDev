@@ -35,7 +35,8 @@ class AnalysesController extends AppController{
      * this is called when the save or create button is pressed. It will update the values in the database and/or create a new row
      */
     public function editAnalysis() {
-        $set_code = $this->request->params['url']['set_code'];
+        //$set_code = $this->request->params['url']['set_code'];
+        $set_code = $this->request->query['set_code'];
         if (!isset($set_code)) {
             throw new Exception('the set_code parameter was not passed');
         }
@@ -64,7 +65,8 @@ class AnalysesController extends AppController{
     }
 
     public function newAnalysis() {
-        $set_code = isset($this->request->params['url']['set_code']) ? $this->request->params['url']['set_code'] : $this->request->data['Analysis']['set_code'];
+        $set_code = isset($this->request->query['set_code']) ? $this->request->query['set_code'] : $this->request->data['Analysis']['set_code'];
+        //$set_code = isset($this->request->params['url']['set_code']) ? $this->request->params['url']['set_code'] : $this->request->data['Analysis']['set_code'];
         $this->set('set_code', $set_code);
         $titles = $this->Analysis->find('all', ['conditions' => ['set_code' => $set_code], 'fields' => ['Analysis.id', 'Analysis.title']]);
         $this->set('titles', $titles);
@@ -165,7 +167,7 @@ class AnalysesController extends AppController{
             $this->PhpExcel->setActiveSheet(0);
             $SSData = $this->SampleSet->find('all', ['conditions' => ['SampleSet.set_code' => $set_code]]);
             if(isset($SSData[0]['SampleSet']['submitter'])){$this->PhpExcel->addData(['PFR Collaborator: ',$SSData[0]['SampleSet']['submitter']]);}
-            if(isset($SSData[0]['SampleSet']['chemist'])){$this->PhpExcel->addData(['Chemist: ',$SSData[0]['SampleSet']['chemist']]);}
+            if(isset($SSData[0]['SampleSet']['chemist'])){$this->PhpExcel->addData(['Analyst: ',$SSData[0]['SampleSet']['chemist']]);}
             if(isset($SSData[0]['SampleSet']['team'])){$this->PhpExcel->addData(['Team: ',$SSData[0]['SampleSet']['team']]);}
             if(isset($SSData[0]['SampleSet']['set_code'])){$this->PhpExcel->addData(['Set Code: ',$SSData[0]['SampleSet']['set_code']]);}
             if(isset($SSData[0]['SampleSet']['crop'])){$this->PhpExcel->addData(['Crop: ',$SSData[0]['SampleSet']['crop']]);}
