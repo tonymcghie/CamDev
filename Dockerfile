@@ -24,8 +24,8 @@ ENV GITHUB_VERSION master
 ##installs packages needed
 RUN apt-get update ;\
     apt-get install -y curl ;\
-    apt-get install -y php5-ldap ;\
-    apt-get install -y php5-mcrypt ;\
+    apt-get install -y php7-ldap ;\
+    apt-get install -y php7-mcrypt ;\
     apt-get install -y ssmtp ;\
     apt-get install -y python-setuptools ;\
     apt-get install -y python-pip ;\
@@ -43,14 +43,14 @@ RUN set -xe ;\
 
 ## starts mod_rewriting if not already running
 RUN a2enmod rewrite 
-RUN php5enmod mcrypt
+RUN php7enmod mcrypt
 
 EXPOSE 80 3306
 CMD ["/run.sh"]
 
 ##adds the config files to the right places for php and ssmtp(emails)
 ADD ssmtp.conf /etc/ssmtp/ssmtp.conf
-ADD php.ini /etc/php5/apache2/php.ini
+ADD php.ini /etc/php7/apache2/php.ini
 
 ##installs the python dependancies
 RUN pip install numpy --proxy=proxy.pfr.co.nz:8080
