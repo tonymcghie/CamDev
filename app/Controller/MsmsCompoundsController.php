@@ -78,8 +78,9 @@ class MsmsCompoundsController extends AppController {
     
     public function MsmsCompoundTabs($compound_name = null, $compound_id = null){
         if ($compound_id == null){
-            $compound_id = isset($this->request->params['url']['compound_id']) ? $this->request->params['url']['compound_id'] : $this->request->data['Msms_compound']['compound_id'];
+            $compound_id = isset($this->request->query['compound_id']) ? $this->request->query['compound_id'] : $this->request->data['Msms_compound']['compound_id'];
         } // gets $compound_id from the url
+        var_dump('compound_id');
         $this->set('compound_id', $compound_id);
         $titles = $this->Msms_compound->find('all', ['conditions' => ['compound_id' => $compound_id], 'fields' => ['Msms_compound.id', 'Msms_compound.msms_title']]);
         $this->set('titles', $titles);
@@ -116,13 +117,16 @@ class MsmsCompoundsController extends AppController {
      */
     public function editMsmsCompound() {
         //get the compound_id and send to View
-        $compound_id = $this->request->params['url']['compound_id'];
+        //var_dump($this->request->params);
+        //$compound_id = $this->request->params['url']['compound_id'];
+        $compound_id = $this->request->query['compound_id'];
         if (!isset($compound_id)) {
             throw new Exception('the compound_id parameter was not passed');
         }
         $this->set('compound_id', $compound_id);
         //get the id and send to View
-        $id = $this->request->params['url']['id'];
+        //$id = $this->request->params['url']['id'];
+        $id = $this->request->query['id'];
         if (empty($id)) {
             $msms_data = $this->Msms_compound->find('first', ['conditions' => ['compound_id' => $compound_id]]);
             $id = $msms_data['Msms_compound']['id'];
