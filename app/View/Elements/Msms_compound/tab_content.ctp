@@ -6,7 +6,7 @@
  */
 ?>
 <?php
-echo $this->BootstrapForm->create_horizontal('Msms_compound', ['type' => 'file' ,'action' => 'saveMsmsCompound']);
+echo $this->BootstrapForm->create_horizontal('Msms_compound', ['type' => 'file' , 'url' => array('controller' => 'Msms_compounds', 'action' => 'saveMsmsCompound')]);
 
 echo $this->BootstrapForm->input_horizontal('compound_id',
         [
