@@ -3,6 +3,7 @@
     <!--<h2>Compound ID: <?php //echo $compound_id ?></h2>
     <h2>Msms ID: <?php //echo $id ?></h2>
     <h2>New msms: <?php //echo $new ?></h2>-->
+    <?php //var_dump($currentMsms); ?>
 </header>
 <?= $this->element('Msms_compound/tabs', ['titles' => $titles, 'currentMsms' => $currentMsms]); ?>
 

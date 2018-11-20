@@ -80,7 +80,7 @@ class MsmsCompoundsController extends AppController {
         if ($compound_id == null){
             $compound_id = isset($this->request->query['compound_id']) ? $this->request->query['compound_id'] : $this->request->data['Msms_compound']['compound_id'];
         } // gets $compound_id from the url
-        var_dump('compound_id');
+        //var_dump('compound_id');
         $this->set('compound_id', $compound_id);
         $titles = $this->Msms_compound->find('all', ['conditions' => ['compound_id' => $compound_id], 'fields' => ['Msms_compound.id', 'Msms_compound.msms_title']]);
         $this->set('titles', $titles);
@@ -97,7 +97,8 @@ class MsmsCompoundsController extends AppController {
     
     public function newMsmsCompound($compound_name = null, $compound_id = null, $currentMsms = null){
         // get the compound_id from the url
-        $compound_id = $this->request->params['url']['compound_id'];
+        //$compound_id = $this->request->params['url']['compound_id'];
+        $compound_id = $this->request->query['compound_id'];
         // initialise the basic msms data
         $compound = $this->Compound->findById($compound_id);
         $data['Msms_compound']['compound_name'] = $compound['Compound']['compound_name'];
@@ -127,9 +128,15 @@ class MsmsCompoundsController extends AppController {
         //get the id and send to View
         //$id = $this->request->params['url']['id'];
         $id = $this->request->query['id'];
+        //var_dump($id);
         if (empty($id)) {
             $msms_data = $this->Msms_compound->find('first', ['conditions' => ['compound_id' => $compound_id]]);
-            $id = $msms_data['Msms_compound']['id'];
+            //var_dump($msms_data);
+            //if (!empty($msms_data['Msms_compound']['id'])) {
+                $id = $msms_data['Msms_compound']['id'];
+            //} else {
+            //    $id = 0;
+            //}
             //if the id is not obtained from the url, find the first id from Msms_compound
         }
         $this->set('id', $id);
