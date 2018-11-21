@@ -95,6 +95,7 @@ class StringHelper extends AppHelper{
             'edit_sub_title' => 'Enter/Edit the msms information about this compound and then click Save',
             'cas' => 'CAS Number',
             'msms_title' => 'Title for msms',
+            'msms_title_ph' => 'Click + before entering data!',
             'compound_name' => 'Compound Name',
             'msms_ions' => 'msms Ions',
             'msms_ions_ph' => 'Enter msms ions separated by a semicolon (;)',
