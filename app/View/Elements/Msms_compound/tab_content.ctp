@@ -37,6 +37,7 @@ echo $this->BootstrapForm->input_horizontal('compound_name',
 echo $this->BootstrapForm->input_horizontal('msms_title',
     ['label' => $this->String->get_string('msms_title', 'Compound_msms_form'),
     'autocomplete' => 'on',
+    'placeholder' => $this->String->get_string('msms_title_ph', 'Compound_msms_form'),
     'value' => $currentMsms['Msms_compound']['msms_title']
     ]);
 

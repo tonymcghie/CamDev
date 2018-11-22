@@ -5,7 +5,7 @@
 <?= $this->element('Analysis/tabs', ['titles' => $titles, 'currentAnalysis' => null]); ?>
 
 <?php
-    echo $this->BootstrapForm->create_horizontal('Analysis', ['action' => 'newAnalysis']);
+    echo $this->BootstrapForm->create_horizontal('Analysis', ['url' => array('controller' => 'Analyses', 'action' => 'newAnalysis')]);
     echo $this->BootstrapForm->input_horizontal('set_code', ['type' => 'hidden', 'value' => $set_code]);
 
     echo $this->BootstrapForm->input_horizontal('title', ['type' => 'text',

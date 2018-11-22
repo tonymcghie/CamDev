@@ -97,13 +97,13 @@ class MsmsCompoundsController extends AppController {
     
     public function newMsmsCompound($compound_name = null, $compound_id = null, $currentMsms = null){
         // get the compound_id from the url
-        //$compound_id = $this->request->params['url']['compound_id'];
         $compound_id = $this->request->query['compound_id'];
         // initialise the basic msms data
         $compound = $this->Compound->findById($compound_id);
         $data['Msms_compound']['compound_name'] = $compound['Compound']['compound_name'];
         $data['Msms_compound']['cas'] = $compound['Compound']['cas'];
         $data['Msms_compound']['compound_id'] = $compound_id;
+        $data['Msms_compound']['msms_title'] = "New Title ...";
         $this->set('compound', $compound_id);
         $this->set('currentMsms', $data);
         $this->Msms_compound->create();

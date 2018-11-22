@@ -50,12 +50,12 @@ class AnalysesController extends AppController{
             $this->Analysis->save($data);
         }
 
-        if (!isset($id) && !isset($this->request->params['url']['id'])) {
+        if (!isset($id) && !isset($this->request->query['id'])) {
             $analysis = $this->Analysis->find('first', ['conditions' => ['set_code' => $set_code]]);
         } else if (isset($id)) {
             $analysis = $this->Analysis->find('first', ['conditions' => ['id' => $id]]);
         } else {
-            $analysis = $this->Analysis->find('first', ['conditions' => ['id' => $this->request->params['url']['id']]]);
+            $analysis = $this->Analysis->find('first', ['conditions' => ['id' => $this->request->query['id']]]);
         }
 
         $titles = $this->Analysis->find('all', ['conditions' => ['set_code' => $set_code], 'fields' => ['Analysis.id', 'Analysis.title']]);
